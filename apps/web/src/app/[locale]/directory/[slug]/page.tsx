@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { domain } from '@/lib/data';
-import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Bookmark, Share2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { BookmarkButton, ShareButton } from '@/components/business/interactive-tools';
 
 // Preset luxury cover photography for distillers and estates
 const producerCovers: Record<string, string> = {
@@ -27,15 +28,27 @@ export default async function BusinessProfilePage({
 
   const coverImage = producerCovers[slug] || '/images/hero-oud-wood.svg';
 
+  // Find similar producers in directory
+  const allBusinesses = domain.listBusinesses();
+  const similar = allBusinesses.filter((b) => b.slug !== slug);
+
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '10px 0 60px' }}>
       {/* BREADCRUMB */}
-      <nav style={{ margin: '20px 0 16px', fontSize: '13.5px', color: 'var(--color-text-muted)' }}>
-        <Link href={`/${locale}`}>Home</Link>
-        {' > '}
-        <Link href={`/${locale}/directory`}>{isAr ? 'دليل الشركات' : 'Directory'}</Link>
-        {' > '}
-        <span>{biz.name}</span>
+      <nav style={{ margin: '20px 0 16px', fontSize: '13.5px', color: 'var(--color-text-muted)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+        <div>
+          <Link href={`/${locale}`}>Home</Link>
+          {' > '}
+          <Link href={`/${locale}/directory`}>{isAr ? 'دليل الشركات' : 'Directory'}</Link>
+          {' > '}
+          <span>{biz.name}</span>
+        </div>
+
+        {/* Interactive Tools: Save & Share */}
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <BookmarkButton slug={slug} label={isAr ? 'حفظ في القائمة' : 'Save Supplier'} />
+          <ShareButton title={`${biz.name} — OudGuide`} />
+        </div>
       </nav>
 
       {/* LUXURY ENTITY HERO HEADER WITH COVER IMAGE */}
@@ -210,6 +223,36 @@ export default async function BusinessProfilePage({
           </div>
         </div>
       </div>
+
+      {/* SIMILAR VERIFIED PRODUCERS (INDEXORBIT FEATURE) */}
+      {similar.length > 0 && (
+        <div className="mb-12">
+          <h3 className="font-serif text-2xl font-bold text-[#5c161d] mb-4">
+            {isAr ? 'موردون ومصانع تقطير أخرى في الدليل' : 'Other Verified Distillers in Registry'}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {similar.map((s) => (
+              <div key={s.id} className="luxury-card p-4 flex items-center justify-between">
+                <div>
+                  <h4 className="font-bold text-base m-0 text-[#14161d]">
+                    <Link href={`/${locale}/directory/${s.slug}`} className="hover:text-[#5c161d]">
+                      {s.name}
+                    </Link>
+                  </h4>
+                  <p className="text-xs text-[#68645c] m-0 mt-0.5">
+                    📍 {s.city}, {s.country_name} · <strong>{s.category}</strong>
+                  </p>
+                </div>
+                <Link href={`/${locale}/directory/${s.slug}`}>
+                  <Button variant="outline" size="sm" className="text-xs">
+                    View
+                  </Button>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="text-center py-6">
         <Link href={`/${locale}/rfq?profile=${encodeURIComponent(slug)}`}>

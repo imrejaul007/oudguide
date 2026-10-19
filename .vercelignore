@@ -9,7 +9,6 @@ docs/
 .claude/
 *.xlsx
 *.zip
-*.png
 reference/OudGuide_Developer_Build_Pack_v3/qa/
 reference/OudGuide_Developer_Build_Pack_v3/docs/
 reference/OudGuide_Developer_Build_Pack_v3/*.html
