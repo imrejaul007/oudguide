@@ -1,3 +1,5 @@
+import { FileEdit, CheckCircle2 } from 'lucide-react';
+
 export default async function CorrectionsPage({
   params,
   searchParams,
@@ -10,46 +12,68 @@ export default async function CorrectionsPage({
   const isAr = locale === 'ar';
 
   return (
-    <div>
-      <div className="hero">
-        <h2>{isAr ? 'تقديم طلب تصحيح أو تدقيق علمي' : 'Submit an Editorial or Directory Correction'}</h2>
-        <p>
-          {isAr
-            ? 'نرحب بملاحظات الخبراء والموردين والباحثين لتصحيح أو تحديث أي معلومات نباتية أو جغرافية أو تجارية مدرجة في دليل العود.'
-            : 'OudGuide maintains a transparent public correction register. If you notice inaccurate botanical terminology, outdated supplier details, or invalid links, submit a correction below.'}
-        </p>
-      </div>
-
-      {submitted && (
-        <div className="banner-success">
-          <strong>{isAr ? 'تم استلام طلب التصحيح بنجاح!' : 'Correction Submission Received!'}</strong>{' '}
-          {isAr ? 'شكراً لتعاونك. سيتم مراجعة الملاحظة وتوثيق التحديث في السجل التحريري.' : 'Thank you. Our editorial team will review the claim evidence and update the live register.'}
-        </div>
-      )}
-
-      <div className="card" style={{ maxWidth: '600px', margin: '20px auto' }}>
-        <h3>{isAr ? 'نموذج التدقيق التحريري' : 'Editorial Review Form'}</h3>
-        <form method="POST" action="/api/v1/corrections/form">
-          <input type="hidden" name="locale" value={locale} />
-          <div>
-            <label htmlFor="target_url">{isAr ? 'رابط الصفحة المعنية *' : 'Page URL or Route Path *'}</label>
-            <input type="text" id="target_url" name="target_url" required placeholder="e.g. /en/guides/what-is-agarwood or business slug" />
+    <div className="section">
+      <div className="container" style={{ maxWidth: 760 }}>
+        <section className="hero" style={{ padding: 'clamp(36px, 5vw, 56px) clamp(24px, 4vw, 48px)' }}>
+          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 700 }}>
+            <div className="hero-tag">
+              <FileEdit size={13} />
+              <span>{isAr ? 'تصحيحات' : 'Corrections'}</span>
+            </div>
+            <h1 className="hero-title" style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)' }}>
+              {isAr ? 'تقديم طلب تصحيح أو تدقيق علمي' : 'Submit an Editorial or Directory Correction'}
+              <span className="accent">{isAr ? 'سجل تصحيحات شفاف.' : 'A transparent correction register.'}</span>
+            </h1>
+            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+              {isAr
+                ? 'نرحب بملاحظات الخبراء والموردين والباحثين لتصحيح أو تحديث أي معلومات نباتية أو جغرافية أو تجارية.'
+                : 'OudGuide maintains a transparent public correction register. If you notice inaccurate botanical terminology, outdated supplier details, or invalid links, submit a correction below.'}
+            </p>
           </div>
+        </section>
 
-          <div style={{ marginTop: '10px' }}>
-            <label htmlFor="submitter_email">{isAr ? 'بريدك الإلكتروني للتواصل *' : 'Your Email Address *'}</label>
-            <input type="email" id="submitter_email" name="submitter_email" required placeholder="expert@perfumery.example" />
+        {submitted && (
+          <div className="privacy-shield" style={{ marginTop: 32, borderLeftColor: 'var(--color-emerald)', background: 'linear-gradient(135deg, #f0faf5, #e3f2ea)' }}>
+            <CheckCircle2 size={28} className="privacy-shield-icon" style={{ color: 'var(--color-emerald)' }} />
+            <div className="privacy-shield-body">
+              <h4 style={{ color: 'var(--color-emerald)' }}>
+                {isAr ? 'تم استلام طلب التصحيح بنجاح!' : 'Correction Submission Received!'}
+              </h4>
+              <p>
+                {isAr
+                  ? 'شكراً لتعاونك. سيتم مراجعة الملاحظة وتوثيق التحديث في السجل التحريري.'
+                  : 'Thank you. Our editorial team will review the claim evidence and update the live register.'}
+              </p>
+            </div>
           </div>
+        )}
 
-          <div style={{ marginTop: '10px' }}>
-            <label htmlFor="correction_details">{isAr ? 'تفاصيل التصحيح والدليل المرجعي *' : 'Correction Details & Evidence Reference *'}</label>
-            <textarea id="correction_details" name="correction_details" required placeholder="Describe the factual inaccuracy and cite primary botanical, CITES, or commercial sources..." />
-          </div>
+        <article className="card-frame" style={{ marginTop: 40, padding: 36, maxWidth: 640, marginLeft: 'auto', marginRight: 'auto' }}>
+          <span className="eyebrow eyebrow-crimson" style={{ display: 'block', marginBottom: 8 }}>{isAr ? 'النموذج' : 'Review Form'}</span>
+          <h2 className="h3 text-crimson" style={{ marginBottom: 24 }}>{isAr ? 'نموذج التدقيق التحريري' : 'Editorial Review Form'}</h2>
+          <form method="POST" action="/api/v1/corrections/form">
+            <input type="hidden" name="locale" value={locale} />
 
-          <button type="submit" className="btn-primary" style={{ marginTop: '16px', width: '100%' }}>
-            {isAr ? 'إرسال الملاحظة للتدقيق ←' : 'Submit for Editorial Review →'}
-          </button>
-        </form>
+            <div className="form-field">
+              <label className="form-label" htmlFor="target_url">{isAr ? 'رابط الصفحة المعنية *' : 'Page URL or Route Path *'}</label>
+              <input type="text" id="target_url" name="target_url" required placeholder="e.g. /en/guides/what-is-agarwood or business slug" className="form-input" />
+            </div>
+
+            <div className="form-field">
+              <label className="form-label" htmlFor="submitter_email">{isAr ? 'بريدك الإلكتروني للتواصل *' : 'Your Email Address *'}</label>
+              <input type="email" id="submitter_email" name="submitter_email" required placeholder="expert@perfumery.example" className="form-input" />
+            </div>
+
+            <div className="form-field">
+              <label className="form-label" htmlFor="correction_details">{isAr ? 'تفاصيل التصحيح والدليل المرجعي *' : 'Correction Details & Evidence Reference *'}</label>
+              <textarea id="correction_details" name="correction_details" required placeholder="Describe the factual inaccuracy and cite primary botanical, CITES, or commercial sources..." className="form-textarea" />
+            </div>
+
+            <button type="submit" className="btn btn-gold" style={{ width: '100%', marginTop: 8 }}>
+              {isAr ? 'إرسال الملاحظة للتدقيق ←' : 'Submit for Editorial Review →'}
+            </button>
+          </form>
+        </article>
       </div>
     </div>
   );

@@ -16,12 +16,16 @@ export default async function LocaleLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preload"
+          as="image"
+          href="/ornaments/gold-pattern.svg"
+          fetchPriority="low"
+        />
       </head>
       <body>
         <Header locale={locale} />
-        <main className="container" style={{ minHeight: '80vh', paddingBottom: '60px' }}>
-          {children}
-        </main>
+        <main style={{ minHeight: '80vh' }}>{children}</main>
         <Footer locale={locale} />
       </body>
     </html>

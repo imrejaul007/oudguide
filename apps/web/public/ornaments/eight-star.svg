@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Rub el-Hizb (8-point star) - traditional Islamic ornament -->
+  <g transform="translate(50,50)">
+    <path d="M 0 -38 L 9 -16 L 27 -27 L 16 -9 L 38 0 L 16 9 L 27 27 L 9 16 L 0 38 L -9 16 L -27 27 L -16 9 L -38 0 L -16 -9 L -27 -27 L -9 -16 Z"
+          fill="none" stroke="#c59b27" stroke-width="1.2"/>
+    <path d="M 0 -28 L 7 -12 L 20 -20 L 12 -7 L 28 0 L 12 7 L 20 20 L 7 12 L 0 28 L -7 12 L -20 20 L -12 7 L -28 0 L -12 -7 L -20 -20 L -7 -12 Z"
+          fill="none" stroke="#c59b27" stroke-width="0.6" opacity="0.7"/>
+    <circle cx="0" cy="0" r="6" fill="#c59b27"/>
+    <circle cx="0" cy="0" r="2.5" fill="#0d0a08"/>
+  </g>
+</svg>

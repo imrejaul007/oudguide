@@ -1,50 +1,111 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <radialGradient id="stillBg" cx="50%" cy="50%" r="75%">
-      <stop offset="0%" stop-color="#1f1412"/>
-      <stop offset="60%" stop-color="#110a08"/>
-      <stop offset="100%" stop-color="#050302"/>
+    <radialGradient id="sandalBg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#2a1f15"/>
+      <stop offset="60%" stop-color="#150d08"/>
+      <stop offset="100%" stop-color="#080402"/>
     </radialGradient>
-    <linearGradient id="copper" x1="0%" y1="0%" x2="100%" y2="80%">
-      <stop offset="0%" stop-color="#e88e63"/>
-      <stop offset="35%" stop-color="#bf5b2c"/>
-      <stop offset="70%" stop-color="#803413"/>
-      <stop offset="100%" stop-color="#401505"/>
+    <linearGradient id="sandalwood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a574"/>
+      <stop offset="40%" stop-color="#a07d4d"/>
+      <stop offset="80%" stop-color="#5c3d20"/>
+      <stop offset="100%" stop-color="#3a2510"/>
     </linearGradient>
-    <linearGradient id="brass" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffd97d"/>
-      <stop offset="50%" stop-color="#c59b27"/>
-      <stop offset="100%" stop-color="#6e500c"/>
+    <linearGradient id="roseAccent" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c47c8f"/>
+      <stop offset="100%" stop-color="#7a3a4d"/>
     </linearGradient>
-    <filter id="flameGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="14" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-    </filter>
+    <linearGradient id="bottleGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dfba55" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#a07d2d" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#5c3d20" stop-opacity="0.85"/>
+    </linearGradient>
+    <radialGradient id="attarGrad" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#f5e1a4"/>
+      <stop offset="60%" stop-color="#c59b27"/>
+      <stop offset="100%" stop-color="#5c161d"/>
+    </radialGradient>
   </defs>
-
-  <rect width="800" height="600" fill="url(#stillBg)"/>
-  <circle cx="360" cy="350" r="240" fill="#bf5b2c" opacity="0.12" filter="url(#flameGlow)"/>
-
-  <!-- Hearth Base / Fire Pit -->
-  <ellipse cx="360" cy="480" rx="190" ry="40" fill="#1f1008" stroke="#803413" stroke-width="1.5"/>
-
-  <!-- Copper Deg (Cauldron Body) -->
-  <path d="M 230 460 C 200 440, 190 350, 240 280 C 270 230, 310 210, 360 205 C 410 210, 450 230, 480 280 C 530 350, 520 440, 490 460 Z" fill="url(#copper)" stroke="#e88e63" stroke-width="1.8"/>
-
-  <!-- Copper Alembic Dome Lid (Sarposh) -->
-  <path d="M 270 220 C 290 170, 320 140, 360 135 C 400 140, 430 170, 450 220 Z" fill="url(#copper)" stroke="#ffd97d" stroke-width="1.5"/>
-
-  <!-- Chonga (Bamboo / Copper Vapor Pipe to Receiver) -->
-  <path d="M 360 135 Q 380 70, 460 70 T 560 160 L 560 300" fill="none" stroke="url(#brass)" stroke-width="9" stroke-linecap="round"/>
-
-  <!-- Copper Bhapka (Receiver Vessel in Water Tank) -->
-  <ellipse cx="560" cy="460" rx="90" ry="30" fill="#0f1915" stroke="#286653" stroke-width="1.5"/>
-  <path d="M 500 450 C 485 410, 495 340, 530 320 C 545 310, 575 310, 590 320 C 625 340, 635 410, 620 450 Z" fill="url(#copper)" stroke="#ffd97d" stroke-width="1.5"/>
-
-  <!-- Blue Scent Steam Ribbon -->
-  <path d="M 560 300 Q 580 230, 550 170 T 590 90 T 560 20" fill="none" stroke="#7ec8e3" stroke-width="2.2" opacity="0.45" filter="url(#flameGlow)"/>
-
-  <!-- Luxury Badge -->
-  <rect x="290" y="535" width="220" height="34" rx="17" fill="#1a0d07" stroke="#bf5b2c" stroke-width="1"/>
-  <text x="400" y="557" fill="#ffd97d" font-family="Georgia, serif" font-size="12" font-weight="bold" letter-spacing="2" text-anchor="middle">COPPER DEG DISTILLATION</text>
+  <rect width="800" height="600" fill="url(#sandalBg)"/>
+  <circle cx="400" cy="300" r="240" fill="#c59b27" opacity="0.06"/>
+  <!-- Sandalwood branches and chips at base -->
+  <g transform="translate(400,420)">
+    <!-- Sandalwood log cross-section (decorative base) -->
+    <ellipse cx="-180" cy="100" rx="60" ry="18" fill="url(#sandalwood)"/>
+    <ellipse cx="-180" cy="98" rx="55" ry="14" fill="none" stroke="#d4a574" stroke-width="0.8"/>
+    <!-- Growth rings -->
+    <g fill="none" stroke="#5c3d20" stroke-width="0.5" opacity="0.7">
+      <ellipse cx="-180" cy="98" rx="48" ry="11"/>
+      <ellipse cx="-180" cy="98" rx="38" ry="8"/>
+      <ellipse cx="-180" cy="98" rx="28" ry="6"/>
+      <ellipse cx="-180" cy="98" rx="18" ry="4"/>
+    </g>
+    <!-- Sandalwood chips scattered -->
+    <ellipse cx="-80" cy="115" rx="22" ry="7" fill="url(#sandalwood)"/>
+    <ellipse cx="-30" cy="118" rx="18" ry="6" fill="url(#sandalwood)" opacity="0.85"/>
+    <ellipse cx="20" cy="115" rx="20" ry="6" fill="url(#sandalwood)"/>
+    <ellipse cx="70" cy="118" rx="15" ry="5" fill="url(#sandalwood)" opacity="0.85"/>
+    <ellipse cx="110" cy="115" rx="22" ry="7" fill="url(#sandalwood)"/>
+    <ellipse cx="150" cy="118" rx="18" ry="6" fill="url(#sandalwood)" opacity="0.85"/>
+  </g>
+  <!-- Central crystal attar flacon -->
+  <g transform="translate(400,300)">
+    <!-- Bottle body (rounded shoulders) -->
+    <path d="M -50 -50 Q -60 -30 -65 60 Q -65 100 -40 110 L 40 110 Q 65 100 65 60 Q 60 -30 50 -50 Z"
+          fill="url(#bottleGlass)" stroke="#3a2510" stroke-width="1"/>
+    <!-- Glass highlights -->
+    <path d="M -45 -40 Q -55 -10 -55 50" stroke="#f5e1a4" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M 50 -30 Q 55 0 50 40" stroke="#f5e1a4" stroke-width="2" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <!-- Liquid inside (golden attar oil) -->
+    <path d="M -52 -8 Q -58 30 -50 80 L 50 80 Q 58 30 52 -8 Q 50 -15 40 -18 L -40 -18 Q -50 -15 -52 -8 Z"
+          fill="url(#attarGrad)" opacity="0.85"/>
+    <!-- Bottle neck -->
+    <rect x="-15" y="-90" width="30" height="40" fill="url(#bottleGlass)" stroke="#3a2510" stroke-width="1"/>
+    <!-- Cork/stopper (ornate) -->
+    <rect x="-18" y="-110" width="36" height="20" fill="#5c3d20" stroke="#3a2510" stroke-width="0.5"/>
+    <rect x="-18" y="-110" width="36" height="20" fill="url(#roseAccent)" opacity="0.4"/>
+    <!-- Gold cap detail -->
+    <rect x="-20" y="-130" width="40" height="20" fill="url(#bottleGlass)" stroke="#3a2510" stroke-width="0.5"/>
+    <rect x="-18" y="-128" width="36" height="16" fill="none" stroke="#c59b27" stroke-width="0.5"/>
+    <!-- Tiny ornamental finial -->
+    <circle cx="0" cy="-140" r="6" fill="#c59b27" stroke="#5c161d" stroke-width="0.5"/>
+    <circle cx="0" cy="-140" r="2" fill="#5c161d"/>
+    <!-- Wax-seal label on bottle front -->
+    <ellipse cx="0" cy="40" rx="32" ry="22" fill="#3a1f0e" stroke="#c59b27" stroke-width="0.6"/>
+    <ellipse cx="0" cy="40" rx="28" ry="18" fill="none" stroke="#c59b27" stroke-width="0.4" opacity="0.6"/>
+    <!-- Calligraphic mark on label -->
+    <path d="M -10 35 Q -5 30 0 35 Q 5 40 10 35 M -8 45 Q 0 50 8 45"
+          stroke="#c59b27" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <!-- Tag string -->
+    <path d="M 30 -10 Q 60 -20 80 0 Q 100 10 95 30" stroke="#c59b27" stroke-width="1" fill="none" opacity="0.6"/>
+    <rect x="85" y="22" width="22" height="16" fill="#c59b27" opacity="0.7" stroke="#5c161d" stroke-width="0.4" transform="rotate(15 96 30)"/>
+  </g>
+  <!-- Rose petals floating (Ruh Gulab) -->
+  <g opacity="0.7">
+    <ellipse cx="180" cy="200" rx="14" ry="8" fill="#c47c8f" transform="rotate(20 180 200)"/>
+    <ellipse cx="180" cy="200" rx="10" ry="5" fill="#7a3a4d" transform="rotate(20 180 200)"/>
+    <ellipse cx="620" cy="220" rx="12" ry="7" fill="#c47c8f" transform="rotate(-30 620 220)"/>
+    <ellipse cx="620" cy="220" rx="8" ry="4" fill="#7a3a4d" transform="rotate(-30 620 220)"/>
+    <ellipse cx="240" cy="380" rx="11" ry="6" fill="#c47c8f" transform="rotate(45 240 380)"/>
+    <ellipse cx="580" cy="400" rx="13" ry="7" fill="#c47c8f" transform="rotate(-15 580 400)"/>
+  </g>
+  <!-- Sandalwood dust particles -->
+  <g opacity="0.5" fill="#d4a574">
+    <circle cx="320" cy="160" r="1.5"/>
+    <circle cx="480" cy="180" r="1"/>
+    <circle cx="350" cy="140" r="1.2"/>
+    <circle cx="450" cy="130" r="1.5"/>
+    <circle cx="500" cy="160" r="1"/>
+    <circle cx="280" cy="200" r="1.3"/>
+  </g>
+  <!-- Ornamental frame -->
+  <rect x="40" y="40" width="720" height="520" fill="none" stroke="#c59b27" stroke-width="0.4" opacity="0.4"/>
+  <rect x="48" y="48" width="704" height="504" fill="none" stroke="#c59b27" stroke-width="0.3" opacity="0.25"/>
+  <!-- Corner arabesque marks -->
+  <g fill="#c59b27" opacity="0.6">
+    <path d="M 60 60 L 80 60 L 80 62 L 62 62 L 62 80 L 60 80 Z"/>
+    <path d="M 740 60 L 720 60 L 720 62 L 738 62 L 738 80 L 740 80 Z"/>
+    <path d="M 60 540 L 80 540 L 80 538 L 62 538 L 62 520 L 60 520 Z"/>
+    <path d="M 740 540 L 720 540 L 720 538 L 738 538 L 738 520 L 740 520 Z"/>
+  </g>
 </svg>

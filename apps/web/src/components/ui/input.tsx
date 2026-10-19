@@ -1,24 +1,25 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
-
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
-    return (
-      <input
-        type={type}
-        className={cn(
-          'flex h-10 w-full rounded-md border border-[#e6dfd1] bg-[#fdfcf9] px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#9d988d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c59b27]/40 focus-visible:border-[#c59b27] disabled:cursor-not-allowed disabled:opacity-50 transition-colors',
-          className
-        )}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
+export const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
+  ({ className, ...props }, ref) => (
+    <input ref={ref} className={cn('form-input', className)} {...props} />
+  )
 );
 Input.displayName = 'Input';
 
-export { Input };
+export const Textarea = React.forwardRef<HTMLTextAreaElement, React.TextareaHTMLAttributes<HTMLTextAreaElement>>(
+  ({ className, ...props }, ref) => (
+    <textarea ref={ref} className={cn('form-textarea', className)} {...props} />
+  )
+);
+Textarea.displayName = 'Textarea';
+
+export const Select = React.forwardRef<HTMLSelectElement, React.SelectHTMLAttributes<HTMLSelectElement>>(
+  ({ className, children, ...props }, ref) => (
+    <select ref={ref} className={cn('form-select', className)} {...props}>
+      {children}
+    </select>
+  )
+);
+Select.displayName = 'Select';

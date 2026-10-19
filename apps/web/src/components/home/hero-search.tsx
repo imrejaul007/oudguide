@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, MapPin, Loader2, Compass } from 'lucide-react';
+import { Search, MapPin, Loader2, ArrowRight } from 'lucide-react';
 
 interface HeroSearchProps {
   locale: string;
@@ -11,14 +11,13 @@ interface HeroSearchProps {
 export function HeroSearch({ locale }: HeroSearchProps) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
-  const [category, setCategory] = useState('Oud oil');
+  const [category, setCategory] = useState('oud-oil');
   const [locating, setLocating] = useState(false);
   const [locationName, setLocationName] = useState('');
   const isAr = locale === 'ar';
 
   const handleLocationClick = () => {
     if (!navigator.geolocation) return;
-
     setLocating(true);
     navigator.geolocation.getCurrentPosition(
       async (position) => {
@@ -33,9 +32,7 @@ export function HeroSearch({ locale }: HeroSearchProps) {
             const city = data.address?.city || data.address?.town || data.address?.country || '';
             if (city) setLocationName(city);
           }
-        } catch {
-          // graceful fallback
-        } finally {
+        } catch {} finally {
           setLocating(false);
         }
       },
@@ -47,49 +44,50 @@ export function HeroSearch({ locale }: HeroSearchProps) {
     e.preventDefault();
     const params = new URLSearchParams();
     if (searchQuery) params.set('search', searchQuery);
-    if (category) params.set('role', category === 'Oud wood' ? 'distiller' : 'wholesaler');
+    if (category) params.set('role', category === 'oud-wood' ? 'distiller' : 'wholesaler');
     if (locationName) params.set('country', locationName);
     router.push(`/${locale}/directory?${params.toString()}`);
   };
 
   return (
-    <form onSubmit={handleSearch} className="search-box-hero" style={{ padding: '8px 12px', borderRadius: '14px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: '1 1 240px' }}>
-        <Search className="h-5 w-5 text-[#8c6a15] shrink-0" />
+    <form onSubmit={handleSearch} className="hero-search">
+      <div className="search-field">
+        <Search size={18} />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder={isAr ? 'ابحث بالصنف، المقطر، أو المنطقة (Assam, Trat, Koh Kong)...' : 'Search by material, distiller, or terroir (Assam, Trat, Koh Kong)...'}
-          style={{ fontSize: '15px' }}
+          placeholder={isAr
+            ? 'ابحث بالصنف، المقطر، أو الإقليم...'
+            : 'Search by material, distiller, or terroir...'}
         />
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderLeft: isAr ? 'none' : '1px solid #e6dfd1', borderRight: isAr ? '1px solid #e6dfd1' : 'none', paddingInlineStart: '10px' }}>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          style={{ fontSize: '13.5px', padding: '8px 12px', background: '#fcfaf6', borderRadius: '8px' }}
-        >
-          <option value="Oud wood">{isAr ? 'خشب وبخور' : 'Oud Wood / Chips'}</option>
-          <option value="Oud oil">{isAr ? 'دهن عود مقطر' : 'Pure Dehn Al Oud'}</option>
-          <option value="Attar">{isAr ? 'عطور شرقية وزيوت' : 'Artisan Attars'}</option>
-          <option value="Finished perfume">{isAr ? 'تصنيع عطور خاص' : 'Private Label'}</option>
-        </select>
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        aria-label={isAr ? 'الصنف' : 'Category'}
+      >
+        <option value="oud-wood">{isAr ? 'خشب وبخور' : 'Oud Wood / Chips'}</option>
+        <option value="oud-oil">{isAr ? 'دهن عود مقطر' : 'Pure Dehn Al Oud'}</option>
+        <option value="attar">{isAr ? 'عطور شرقية' : 'Heritage Attars'}</option>
+        <option value="private-label">{isAr ? 'تصنيع خاص' : 'Private Label'}</option>
+      </select>
 
-        <button
-          type="button"
-          onClick={handleLocationClick}
-          className="p-2 rounded-lg hover:bg-black/5 text-[#8c6a15] transition-colors"
-          title={isAr ? 'تحديد الموقع الجغرافي القريب' : 'Detect your nearest fragrance market'}
-        >
-          {locating ? <Loader2 className="h-4 w-4 animate-spin" /> : <MapPin className="h-4 w-4" />}
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={handleLocationClick}
+        className="location-trigger"
+        disabled={locating}
+        aria-label={isAr ? 'كشف الموقع' : 'Detect location'}
+      >
+        {locating ? <Loader2 size={14} className="spin" /> : <MapPin size={14} />}
+        <span>{locationName || (isAr ? 'موقعي' : 'My location')}</span>
+      </button>
 
-      <button type="submit" className="btn-gold" style={{ padding: '11px 24px', whiteSpace: 'nowrap', border: 'none' }}>
-        <span>{isAr ? 'بحث الموردين' : 'Find Suppliers'}</span>
-        <span>{isAr ? '←' : '→'}</span>
+      <button type="submit" className="btn btn-gold search-button">
+        {isAr ? 'بحث' : 'Search'}
+        <ArrowRight size={14} />
       </button>
     </form>
   );

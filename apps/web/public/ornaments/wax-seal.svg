@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="waxGrad" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#7d1f28"/>
+      <stop offset="60%" stop-color="#5c161d"/>
+      <stop offset="100%" stop-color="#3d0e14"/>
+    </radialGradient>
+    <radialGradient id="waxShine" cx="35%" cy="30%" r="30%">
+      <stop offset="0%" stop-color="#dfba55" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#dfba55" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Wax seal disc with serrated edge -->
+  <circle cx="50" cy="50" r="42" fill="url(#waxGrad)" stroke="#3d0e14" stroke-width="1"/>
+  <circle cx="50" cy="50" r="42" fill="url(#waxShine)"/>
+  <!-- Inner ring -->
+  <circle cx="50" cy="50" r="32" fill="none" stroke="#c59b27" stroke-width="0.8" opacity="0.7"/>
+  <!-- Center monogram "OG" -->
+  <text x="50" y="58" font-family="serif" font-size="24" font-weight="700"
+        text-anchor="middle" fill="#dfba55" letter-spacing="1">OG</text>
+  <!-- Decorative dots -->
+  <circle cx="50" cy="22" r="1.2" fill="#dfba55"/>
+  <circle cx="50" cy="78" r="1.2" fill="#dfba55"/>
+  <circle cx="22" cy="50" r="1.2" fill="#dfba55"/>
+  <circle cx="78" cy="50" r="1.2" fill="#dfba55"/>
+  <!-- Crown micro-detail above monogram -->
+  <path d="M 42 38 L 46 34 L 50 38 L 54 34 L 58 38" stroke="#dfba55" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+</svg>

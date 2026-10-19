@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <pattern id="gold-textile" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <rect width="60" height="60" fill="none"/>
+      <!-- Center 8-point star -->
+      <g transform="translate(30,30)">
+        <path d="M 0 -12 L 3 -5 L 9 -7 L 5 -3 L 12 0 L 5 3 L 9 7 L 3 5 L 0 12 L -3 5 L -9 7 L -5 3 L -12 0 L -5 -3 L -9 -7 L -3 -5 Z"
+              fill="#c59b27" opacity="0.12"/>
+        <circle cx="0" cy="0" r="1.5" fill="#c59b27" opacity="0.4"/>
+      </g>
+      <!-- Corner accents -->
+      <circle cx="0" cy="0" r="1.2" fill="#c59b27" opacity="0.25"/>
+      <circle cx="60" cy="0" r="1.2" fill="#c59b27" opacity="0.25"/>
+      <circle cx="0" cy="60" r="1.2" fill="#c59b27" opacity="0.25"/>
+      <circle cx="60" cy="60" r="1.2" fill="#c59b27" opacity="0.25"/>
+      <!-- Connecting lines -->
+      <path d="M 0 0 L 30 30 M 60 0 L 30 30 M 0 60 L 30 30 M 60 60 L 30 30" stroke="#c59b27" stroke-width="0.3" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="120" height="120" fill="url(#gold-textile)"/>
+</svg>

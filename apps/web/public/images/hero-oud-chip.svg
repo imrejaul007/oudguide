@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bgRadial" cx="50%" cy="50%" r="80%">
+      <stop offset="0%" stop-color="#241a14"/>
+      <stop offset="60%" stop-color="#0f0a07"/>
+      <stop offset="100%" stop-color="#050302"/>
+    </radialGradient>
+    <linearGradient id="goldSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e1a4"/>
+      <stop offset="50%" stop-color="#c59b27"/>
+      <stop offset="100%" stop-color="#805b10"/>
+    </linearGradient>
+    <linearGradient id="resinDark" x1="0%" y1="0%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#3a2312"/>
+      <stop offset="40%" stop-color="#1f1107"/>
+      <stop offset="80%" stop-color="#0c0703"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgRadial)"/>
+  <!-- Ambient gold glow -->
+  <circle cx="400" cy="300" r="220" fill="#c59b27" opacity="0.10" filter="url(#softGlow)"/>
+  <!-- Agarwood resin chunk - organic shape with resin veins -->
+  <g transform="translate(400,300)">
+    <!-- Outer dark wood silhouette -->
+    <path d="M -180 60 Q -200 -40 -130 -100 Q -50 -150 60 -130 Q 180 -100 200 0 Q 210 90 140 130 Q 60 160 -50 140 Q -160 110 -180 60 Z"
+          fill="url(#resinDark)" stroke="#5c3a1a" stroke-width="0.6"/>
+    <!-- Inner resin-rich core -->
+    <path d="M -120 40 Q -130 -30 -70 -70 Q -10 -100 70 -80 Q 140 -60 150 10 Q 155 80 90 100 Q 10 120 -50 100 Q -130 80 -120 40 Z"
+          fill="#1a0a04" opacity="0.9"/>
+    <!-- Gold resin veins -->
+    <path d="M -100 20 Q -60 -40 -10 -50 Q 50 -60 100 -30 Q 130 0 90 50 Q 40 80 -10 60 Q -80 40 -100 20 Z"
+          fill="url(#goldSheen)" opacity="0.85"/>
+    <path d="M -80 0 Q -40 -50 10 -50 Q 70 -50 110 -20" stroke="#f5e1a4" stroke-width="2.5" fill="none" opacity="0.8"/>
+    <path d="M -60 30 Q -10 10 50 20 Q 90 30 80 60" stroke="#dfba55" stroke-width="2" fill="none" opacity="0.7"/>
+    <!-- Fine resin rivulets -->
+    <path d="M -40 -10 L -10 -20 M 0 -30 L 30 -25 M 50 -25 L 70 -10 M 30 10 L 60 15 M -20 30 L 10 35 M 0 50 L 30 55"
+          stroke="#f5e1a4" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <!-- Resin droplets -->
+    <circle cx="-50" cy="0" r="3" fill="#f5e1a4" opacity="0.9"/>
+    <circle cx="20" cy="-10" r="2" fill="#f5e1a4" opacity="0.8"/>
+    <circle cx="60" cy="20" r="2.5" fill="#dfba55" opacity="0.85"/>
+    <circle cx="-30" cy="40" r="2" fill="#dfba55" opacity="0.8"/>
+    <!-- Wood grain texture lines -->
+    <path d="M -160 60 Q -100 30 -40 50 Q 20 70 100 50 Q 160 30 190 60" stroke="#2a1a0a" stroke-width="0.5" fill="none" opacity="0.6"/>
+    <path d="M -150 80 Q -80 60 -20 70 Q 50 80 130 70 Q 170 60 185 80" stroke="#2a1a0a" stroke-width="0.4" fill="none" opacity="0.5"/>
+    <!-- Bark edge highlights -->
+    <path d="M -180 60 Q -170 30 -160 0" stroke="#3a2312" stroke-width="1" fill="none" opacity="0.7"/>
+    <path d="M 200 0 Q 195 50 190 100" stroke="#3a2312" stroke-width="1" fill="none" opacity="0.7"/>
+  </g>
+  <!-- Floating aromatic particles -->
+  <circle cx="100" cy="120" r="2" fill="#dfba55" opacity="0.6"/>
+  <circle cx="700" cy="150" r="1.5" fill="#dfba55" opacity="0.5"/>
+  <circle cx="150" cy="480" r="1.8" fill="#f5e1a4" opacity="0.4"/>
+  <circle cx="650" cy="460" r="2" fill="#dfba55" opacity="0.5"/>
+  <circle cx="250" cy="100" r="1.2" fill="#f5e1a4" opacity="0.6"/>
+  <!-- Subtle ornamental frame -->
+  <rect x="40" y="40" width="720" height="520" fill="none" stroke="#c59b27" stroke-width="0.4" opacity="0.4"/>
+  <rect x="48" y="48" width="704" height="504" fill="none" stroke="#c59b27" stroke-width="0.3" opacity="0.25"/>
+  <!-- Corner arabesque marks -->
+  <g fill="#c59b27" opacity="0.6">
+    <path d="M 60 60 L 80 60 L 80 62 L 62 62 L 62 80 L 60 80 Z"/>
+    <path d="M 740 60 L 720 60 L 720 62 L 738 62 L 738 80 L 740 80 Z"/>
+    <path d="M 60 540 L 80 540 L 80 538 L 62 538 L 62 520 L 60 520 Z"/>
+    <path d="M 740 540 L 720 540 L 720 538 L 738 538 L 738 520 L 740 520 Z"/>
+  </g>
+</svg>

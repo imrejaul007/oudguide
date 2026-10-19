@@ -12,10 +12,8 @@ const TabsList = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.List
     ref={ref}
-    className={cn(
-      'inline-flex h-11 items-center justify-center rounded-lg bg-[#f5f0e6] p-1 text-[#68645c]',
-      className
-    )}
+    className={cn('cluster', className)}
+    style={{ borderBottom: '1px solid var(--color-border-warm)', paddingBottom: 4 }}
     {...props}
   />
 ));
@@ -27,28 +25,13 @@ const TabsTrigger = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
-    className={cn(
-      'inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-1.5 text-sm font-semibold ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-[#5c161d] data-[state=active]:shadow-sm cursor-pointer',
-      className
-    )}
+    className={cn('search-pill', className)}
+    style={{ border: 'none' }}
     {...props}
   />
 ));
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
-const TabsContent = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Content
-    ref={ref}
-    className={cn(
-      'mt-3 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-      className
-    )}
-    {...props}
-  />
-));
-TabsContent.displayName = TabsPrimitive.Content.displayName;
+const TabsContent = TabsPrimitive.Content;
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };

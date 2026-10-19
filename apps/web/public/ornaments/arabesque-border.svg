@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 40" fill="none" stroke="#c59b27" stroke-width="0.6" stroke-linecap="round">
+  <!-- Horizontal arabesque border - repeating pattern -->
+  <g opacity="0.85">
+    <!-- Left flourish -->
+    <path d="M 10 20 Q 20 8 30 20 Q 40 32 50 20"/>
+    <path d="M 14 20 Q 22 12 30 20 Q 38 28 50 20" opacity="0.5"/>
+    <!-- Center 8-point star (large) -->
+    <g transform="translate(200,20)">
+      <path d="M 0 -12 L 3 -3 L 12 -2 L 4 2 L 8 12 L 0 6 L -8 12 L -4 2 L -12 -2 L -3 -3 Z" fill="#c59b27"/>
+      <circle cx="0" cy="0" r="2" fill="#0d0a08"/>
+    </g>
+    <!-- Right flourish (mirror) -->
+    <path d="M 390 20 Q 380 8 370 20 Q 360 32 350 20"/>
+    <path d="M 386 20 Q 378 12 370 20 Q 362 28 350 20" opacity="0.5"/>
+    <!-- Connecting dashes -->
+    <path d="M 60 20 L 100 20" stroke-dasharray="2,3"/>
+    <path d="M 110 20 L 145 20" stroke-dasharray="2,3"/>
+    <path d="M 155 20 L 188 20" stroke-dasharray="2,3"/>
+    <path d="M 212 20 L 245 20" stroke-dasharray="2,3"/>
+    <path d="M 255 20 L 290 20" stroke-dasharray="2,3"/>
+    <path d="M 300 20 L 340 20" stroke-dasharray="2,3"/>
+    <!-- Small stars on either side -->
+    <g transform="translate(105,20)">
+      <path d="M 0 -4 L 1 -1 L 4 0 L 1 1 L 0 4 L -1 1 L -4 0 L -1 -1 Z" fill="#c59b27"/>
+    </g>
+    <g transform="translate(295,20)">
+      <path d="M 0 -4 L 1 -1 L 4 0 L 1 1 L 0 4 L -1 1 L -4 0 L -1 -1 Z" fill="#c59b27"/>
+    </g>
+  </g>
+</svg>

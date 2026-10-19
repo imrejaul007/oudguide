@@ -1,52 +1,114 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <radialGradient id="oilBg" cx="50%" cy="50%" r="75%">
-      <stop offset="0%" stop-color="#24170a"/>
-      <stop offset="60%" stop-color="#120b05"/>
-      <stop offset="100%" stop-color="#050301"/>
+    <radialGradient id="copperRadial" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#3a1f0e"/>
+      <stop offset="60%" stop-color="#1a0e06"/>
+      <stop offset="100%" stop-color="#0a0603"/>
     </radialGradient>
-    <linearGradient id="amberGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffe394"/>
-      <stop offset="35%" stop-color="#d49b28"/>
-      <stop offset="70%" stop-color="#94580b"/>
-      <stop offset="100%" stop-color="#4d2703"/>
+    <linearGradient id="copperMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e6a860"/>
+      <stop offset="30%" stop-color="#c08440"/>
+      <stop offset="60%" stop-color="#8a5520"/>
+      <stop offset="100%" stop-color="#3a1f0a"/>
     </linearGradient>
-    <linearGradient id="glassSheen" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
-      <stop offset="30%" stop-color="rgba(255,255,255,0.08)"/>
-      <stop offset="70%" stop-color="rgba(255,255,255,0.15)"/>
-      <stop offset="100%" stop-color="rgba(255,255,255,0.5)"/>
+    <linearGradient id="copperHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffd9a0" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#c08440" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#8a5520" stop-opacity="0"/>
     </linearGradient>
-    <filter id="oilGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="12" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    <linearGradient id="oilAmber" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#dfba55"/>
+      <stop offset="50%" stop-color="#a07d2d"/>
+      <stop offset="100%" stop-color="#5c161d"/>
+    </linearGradient>
+    <radialGradient id="steamGrad" cx="50%" cy="100%" r="50%">
+      <stop offset="0%" stop-color="#f5e1a4" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#f5e1a4" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="copperGlow">
+      <feGaussianBlur stdDeviation="3"/>
     </filter>
   </defs>
-
-  <rect width="800" height="600" fill="url(#oilBg)"/>
-  <circle cx="400" cy="310" r="230" fill="#d49b28" opacity="0.14" filter="url(#oilGlow)"/>
-
-  <!-- Pedestal Base -->
-  <ellipse cx="400" cy="480" rx="260" ry="50" fill="#140c06" stroke="#c59b27" stroke-width="1.2" opacity="0.6"/>
-
-  <!-- Crystal Crystal Flacon Body -->
-  <path d="M 330 460 C 310 460, 290 420, 290 310 C 290 220, 320 180, 360 170 L 360 140 L 440 140 L 440 170 C 480 180, 510 220, 510 310 C 510 420, 490 460, 470 460 Z" fill="#1a1107" stroke="#dfba55" stroke-width="2"/>
-
-  <!-- Rich Amber Viscous Liquid Inside -->
-  <path d="M 340 450 C 325 450, 305 415, 305 320 C 305 245, 335 220, 370 215 L 430 215 C 465 220, 495 245, 495 320 C 495 415, 475 450, 460 450 Z" fill="url(#amberGold)" opacity="0.92"/>
-
-  <!-- Glass Facet Highlights & Reflections -->
-  <path d="M 320 230 L 320 420" stroke="url(#glassSheen)" stroke-width="5" stroke-linecap="round"/>
-  <path d="M 480 230 L 480 420" stroke="url(#glassSheen)" stroke-width="3" stroke-linecap="round"/>
-
-  <!-- Golden Ornate Crystal Stopper -->
-  <path d="M 370 140 L 370 100 C 370 80, 385 65, 400 65 C 415 65, 430 80, 430 100 L 430 140 Z" fill="#dfba55" stroke="#f5e1a4" stroke-width="1.5"/>
-  <circle cx="400" cy="85" r="14" fill="#f5e1a4" opacity="0.6" filter="url(#oilGlow)"/>
-
-  <!-- Suspended Viscous Droplet on Glass Wand -->
-  <path d="M 400 480 C 390 480, 380 495, 390 515 C 395 525, 405 525, 410 515 C 420 495, 410 480, 400 480 Z" fill="url(#amberGold)" stroke="#f5e1a4" stroke-width="1.2" filter="url(#oilGlow)"/>
-
-  <!-- Luxury Badge -->
-  <rect x="290" y="540" width="220" height="34" rx="17" fill="#140c06" stroke="#c59b27" stroke-width="1"/>
-  <text x="400" y="562" fill="#dfba55" font-family="Georgia, serif" font-size="12" font-weight="bold" letter-spacing="2" text-anchor="middle">PURE DEHN AL OUD OIL</text>
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#copperRadial)"/>
+  <!-- Ambient warm glow -->
+  <circle cx="400" cy="320" r="280" fill="#c59b27" opacity="0.08" filter="url(#copperGlow)"/>
+  <!-- Steam rising -->
+  <g opacity="0.5">
+    <ellipse cx="400" cy="200" rx="120" ry="60" fill="url(#steamGrad)"/>
+    <ellipse cx="380" cy="160" rx="80" ry="40" fill="url(#steamGrad)"/>
+    <ellipse cx="420" cy="120" rx="100" ry="50" fill="url(#steamGrad)"/>
+    <ellipse cx="395" cy="80" rx="70" ry="35" fill="url(#steamGrad)"/>
+  </g>
+  <!-- Copper Alembic (Deg) - traditional hydrodistillation apparatus -->
+  <g transform="translate(400,400)">
+    <!-- Base: copper cauldron body -->
+    <ellipse cx="0" cy="80" rx="180" ry="30" fill="#1a0a04"/>
+    <!-- Main copper body (rounded) -->
+    <path d="M -160 80 Q -180 -40 -120 -80 Q -60 -110 0 -110 Q 60 -110 120 -80 Q 180 -40 160 80 Z"
+          fill="url(#copperMetal)" stroke="#3a1f0a" stroke-width="1"/>
+    <!-- Body highlight (left side) -->
+    <path d="M -155 70 Q -165 -30 -115 -70 Q -90 -90 -70 -100"
+          fill="none" stroke="url(#copperHighlight)" stroke-width="3"/>
+    <!-- Body highlight (right side, subtle) -->
+    <path d="M 145 60 Q 150 -20 120 -50"
+          fill="none" stroke="url(#copperHighlight)" stroke-width="2" opacity="0.5"/>
+    <!-- Horizontal copper rings -->
+    <path d="M -160 30 Q 0 50 160 30" stroke="#3a1f0a" stroke-width="1" fill="none" opacity="0.6"/>
+    <path d="M -160 50 Q 0 70 160 50" stroke="#3a1f0a" stroke-width="1" fill="none" opacity="0.6"/>
+    <path d="M -165 -10 Q 0 10 165 -10" stroke="#3a1f0a" stroke-width="1" fill="none" opacity="0.6"/>
+    <!-- Hammered copper texture (small dots) -->
+    <g opacity="0.4">
+      <circle cx="-100" cy="20" r="1.5" fill="#ffd9a0"/>
+      <circle cx="-60" cy="-30" r="1.5" fill="#ffd9a0"/>
+      <circle cx="-20" cy="40" r="1.5" fill="#ffd9a0"/>
+      <circle cx="40" cy="-20" r="1.5" fill="#ffd9a0"/>
+      <circle cx="80" cy="30" r="1.5" fill="#ffd9a0"/>
+      <circle cx="120" cy="-40" r="1.5" fill="#ffd9a0"/>
+      <circle cx="-130" cy="-10" r="1.5" fill="#ffd9a0"/>
+      <circle cx="100" cy="60" r="1.5" fill="#ffd9a0"/>
+    </g>
+    <!-- Top rim -->
+    <ellipse cx="0" cy="-110" rx="120" ry="20" fill="#8a5520" stroke="#3a1f0a" stroke-width="1"/>
+    <ellipse cx="0" cy="-115" rx="115" ry="15" fill="none" stroke="#c08440" stroke-width="2"/>
+    <!-- Domed lid (alembic head) -->
+    <path d="M -120 -110 Q -120 -200 0 -220 Q 120 -200 120 -110 Z"
+          fill="url(#copperMetal)" stroke="#3a1f0a" stroke-width="1"/>
+    <!-- Lid highlight -->
+    <path d="M -100 -130 Q -110 -190 -30 -210" fill="none" stroke="#ffd9a0" stroke-width="2" opacity="0.6"/>
+    <!-- Swan-neck pipe (alembic characteristic) -->
+    <path d="M 0 -220 Q 0 -260 -60 -270 Q -120 -270 -130 -240 Q -135 -220 -125 -220"
+          fill="none" stroke="url(#copperMetal)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 0 -220 Q 0 -260 -60 -270 Q -120 -270 -130 -240 Q -135 -220 -125 -220"
+          fill="none" stroke="#ffd9a0" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+    <!-- Condenser/Receiver flask at end of pipe -->
+    <ellipse cx="-145" cy="-200" rx="35" ry="50" fill="url(#copperMetal)" stroke="#3a1f0a" stroke-width="1"/>
+    <!-- Liquid dripping from receiver (oud oil - amber) -->
+    <g>
+      <circle cx="-150" cy="-150" r="3" fill="url(#oilAmber)" opacity="0.9"/>
+      <path d="M -150 -148 Q -148 -135 -150 -125 Q -152 -135 -150 -148" fill="url(#oilAmber)" opacity="0.85"/>
+    </g>
+    <!-- Handle on side -->
+    <path d="M 145 -20 Q 175 -10 175 10 Q 175 25 155 25"
+          fill="none" stroke="#8a5520" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <!-- Floating gold droplets in steam -->
+  <g opacity="0.7">
+    <circle cx="250" cy="180" r="2.5" fill="#f5e1a4"/>
+    <circle cx="290" cy="140" r="2" fill="#dfba55"/>
+    <circle cx="220" cy="220" r="1.8" fill="#f5e1a4"/>
+    <circle cx="540" cy="190" r="2.5" fill="#dfba55"/>
+    <circle cx="580" cy="150" r="2" fill="#f5e1a4"/>
+    <circle cx="510" cy="230" r="1.8" fill="#dfba55"/>
+  </g>
+  <!-- Ornamental frame -->
+  <rect x="40" y="40" width="720" height="520" fill="none" stroke="#c59b27" stroke-width="0.4" opacity="0.4"/>
+  <rect x="48" y="48" width="704" height="504" fill="none" stroke="#c59b27" stroke-width="0.3" opacity="0.25"/>
+  <!-- Corner arabesque marks -->
+  <g fill="#c59b27" opacity="0.6">
+    <path d="M 60 60 L 80 60 L 80 62 L 62 62 L 62 80 L 60 80 Z"/>
+    <path d="M 740 60 L 720 60 L 720 62 L 738 62 L 738 80 L 740 80 Z"/>
+    <path d="M 60 540 L 80 540 L 80 538 L 62 538 L 62 520 L 60 520 Z"/>
+    <path d="M 740 540 L 720 540 L 720 538 L 738 538 L 738 520 L 740 520 Z"/>
+  </g>
 </svg>

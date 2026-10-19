@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { seed } from '@/lib/data';
+import { Crown, ShieldCheck, Award, Eye, ExternalLink, CheckCircle2 } from 'lucide-react';
 
 export default async function MembershipCheckoutPage({
   params,
@@ -15,128 +16,115 @@ export default async function MembershipCheckoutPage({
   const businesses = seed.businesses;
 
   return (
-    <div style={{ maxWidth: '920px', margin: '0 auto', padding: '10px 0 60px' }}>
-      {/* CHECKOUT HERO */}
-      <div className="luxury-hero" style={{ padding: '44px 36px', marginBottom: '36px' }}>
-        <div className="hero-tag">
-          <span>👑</span>
-          <span>{isAr ? 'تفعيل العضوية التجارية السنوية' : 'Annual Commercial Membership'}</span>
-        </div>
-        <h1 className="hero-headline font-display" style={{ fontSize: '34px', margin: '0 0 10px' }}>
-          {isAr ? 'ترقية الملف التجاري وإتاحة الاتصال المباشر' : 'Unlock Direct Commercial Contact Display'}
-        </h1>
-        <p className="hero-lead" style={{ fontSize: '15.5px', margin: 0, maxWidth: '760px' }}>
-          {isAr
-            ? 'تتيح العضوية السنوية عرض البريد الإلكتروني الرسمي، أرقام الهواتف، والواتساب التجاري مباشرة على ملف شركتك لجميع المشترين الدوليين.'
-            : 'Subscribed membership activates direct telephone, WhatsApp, official email, and physical facility coordinates on your directory profile.'}
-        </p>
-      </div>
+    <div className="section">
+      <div className="container" style={{ maxWidth: 1080 }}>
+        {/* HERO */}
+        <section className="hero" style={{ padding: 'clamp(40px, 6vw, 72px) clamp(24px, 4vw, 56px)' }}>
+          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 820 }}>
+            <div className="hero-tag">
+              <Crown size={13} />
+              <span>{isAr ? 'تفعيل العضوية التجارية السنوية' : 'Annual Commercial Membership'}</span>
+            </div>
+            <h1 className="hero-title" style={{ fontSize: 'clamp(1.9rem, 4vw, 3rem)' }}>
+              {isAr ? 'ترقية الملف التجاري' : 'Unlock Direct Commercial Contact Display'}
+              <span className="accent">{isAr ? '1,200 درهم/سنة.' : 'AED 1,200 per year.'}</span>
+            </h1>
+            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+              {isAr
+                ? 'تتيح العضوية السنوية عرض البريد الإلكتروني الرسمي، أرقام الهواتف، والواتساب التجاري مباشرة على ملف شركتك لجميع المشترين الدوليين.'
+                : 'Subscribed membership activates direct telephone, WhatsApp, official email, and physical facility coordinates on your directory profile.'}
+            </p>
+          </div>
+        </section>
 
-      {success && (
-        <div className="form-card" style={{ background: '#f6fbf8', borderColor: '#c8e6d5', padding: '24px', marginBottom: '32px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-            <span style={{ fontSize: '24px' }}>🎉</span>
-            <h3 style={{ margin: 0, color: '#1b4d3e', fontSize: '20px' }}>
-              {isAr ? 'تم تفعيل العضوية السنوية بنجاح!' : 'Annual Membership Activated Successfully!'}
-            </h3>
-          </div>
-          <p style={{ margin: '0 0 16px', fontSize: '14.5px', color: '#385e49' }}>
-            {isAr
-              ? `تم ترقية ملف المنشأة (${success}) إلى حالة "��ضو سنوي معتمد" وتم فتح إمكانية عرض بيانات الاتصال المباشرة للمشترين.`
-              : `Your business profile (${success}) has been upgraded to Subscribed Member status. Direct contact display is now live in the global directory.`}
-          </p>
-          <Link href={`/${locale}/directory`} className="btn-gold" style={{ padding: '8px 20px', fontSize: '13px' }}>
-            {isAr ? 'مشاهدة الملف في الدليل ←' : 'View Profile in Directory →'}
-          </Link>
-        </div>
-      )}
-
-      <div className="grid-2" style={{ gap: '30px' }}>
-        {/* INVOICE SUMMARY */}
-        <div className="form-card">
-          <h3 className="card-title font-display" style={{ fontSize: '20px', borderBottom: '1px solid var(--color-border)', paddingBottom: '12px', marginBottom: '16px' }}>
-            {isAr ? 'ملخص الفاتورة السنوية' : 'Annual Commercial Order Summary'}
-          </h3>
-
-          <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid #f0ece1', fontSize: '14.5px' }}>
-            <span>{isAr ? 'العضوية التجارية السنوية:' : 'Annual Business Visibility:'}</span>
-            <strong>1,200 AED</strong>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid #f0ece1', fontSize: '14.5px' }}>
-            <span>{isAr ? 'المدة الزمنية:' : 'Billing Term:'}</span>
-            <span>{isAr ? '12 شهراً (تجديد سنوي)' : '12 Months (Annual)'}</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid #f0ece1', fontSize: '14.5px' }}>
-            <span>{isAr ? 'ضريبة القيمة المضافة (0%):' : 'VAT / Regional Tax (0%):'}</span>
-            <span>0.00 AED</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', padding: '16px 0', fontSize: '20px', color: 'var(--color-crimson)', fontWeight: 800 }}>
-            <span>{isAr ? 'المجموع الإجمالي:' : 'Total Payable:'}</span>
-            <span>1,200 AED</span>
-          </div>
-
-          <div className="privacy-shield" style={{ margin: '16px 0 0', padding: '14px 18px' }}>
-            <div className="privacy-shield-icon" style={{ fontSize: '18px' }}>ℹ️</div>
-            <div className="privacy-shield-text" style={{ fontSize: '12.5px' }}>
-              <strong>DEC02 / DEC03 Policy:</strong> Billed upfront annually at AED 1,200 (equivalent to AED 100/mo). Immediate activation upon transaction confirmation.
+        {success && (
+          <div className="privacy-shield" style={{ marginTop: 32, borderLeftColor: 'var(--color-emerald)', background: 'linear-gradient(135deg, #f0faf5, #e3f2ea)' }}>
+            <CheckCircle2 size={28} className="privacy-shield-icon" style={{ color: 'var(--color-emerald)' }} />
+            <div className="privacy-shield-body">
+              <h4 style={{ color: 'var(--color-emerald)' }}>
+                {isAr ? 'ت�� تفعيل العضوية السنوية بنجاح!' : 'Annual Membership Activated!'}
+              </h4>
+              <p>
+                {isAr
+                  ? `تم ترقية ملف المنشأة (${success}) إلى حالة "عضو سنوي معتمد".`
+                  : `Your business profile (${success}) has been upgraded to Subscribed Member status.`}
+              </p>
+              <Link href={`/${locale}/directory`} className="btn btn-outline btn-sm" style={{ marginTop: 8 }}>
+                {isAr ? 'مشاهدة الملف في الدليل ←' : 'View Profile in Directory →'}
+              </Link>
             </div>
           </div>
-        </div>
+        )}
 
-        {/* SELF-SERVICE CHECKOUT FORM */}
-        <div className="form-card" style={{ borderColor: 'var(--color-gold)', background: '#fffdfa' }}>
-          <h3 className="card-title font-display" style={{ fontSize: '20px', margin: '0 0 16px' }}>
-            {isAr ? 'تأكيد السداد وتفعيل الحساب' : 'Payment & Account Activation'}
-          </h3>
+        <div className="grid-2" style={{ marginTop: 56, gap: 32 }}>
+          {/* INVOICE */}
+          <div className="card-frame" style={{ padding: 36 }}>
+            <span className="eyebrow eyebrow-crimson" style={{ display: 'block', marginBottom: 12 }}>{isAr ? 'فاتورة' : 'Order Summary'}</span>
+            <h2 className="h3" style={{ marginBottom: 24 }}>{isAr ? 'ملخص الفاتورة السنوية' : 'Annual Commercial Order'}</h2>
 
-          <form method="POST" action="/api/v1/businesses/membership-checkout-form">
-            <input type="hidden" name="locale" value={locale} />
-
-            <div>
-              <label className="form-label" htmlFor="business_id">
-                {isAr ? 'اختر المنشأة المراد ترقيتها *' : 'Select Registered Business *'}
-              </label>
-              <select id="business_id" name="business_id" className="form-select" required defaultValue={businesses[0].id}>
-                {businesses.map((b: any) => (
-                  <option key={b.id} value={b.id}>
-                    {b.name} ({b.city}, {b.country_name})
-                  </option>
-                ))}
-              </select>
+            <div className="stack-4" style={{ borderTop: '1px solid var(--color-border)', paddingTop: 18 }}>
+              <div className="row-between">
+                <span>{isAr ? 'العضوية التجارية السنوية' : 'Annual Business Visibility'}</span>
+                <strong>1,200 AED</strong>
+              </div>
+              <div className="row-between">
+                <span>{isAr ? 'المدة الزمنية' : 'Billing Term'}</span>
+                <span>{isAr ? '12 شهراً' : '12 months'}</span>
+              </div>
+              <div className="row-between">
+                <span>{isAr ? 'ضريبة القيمة المضافة (0%)' : 'VAT (0%)'}</span>
+                <span>0.00 AED</span>
+              </div>
+              <div className="row-between" style={{ borderTop: '1px solid var(--color-gold)', paddingTop: 16, marginTop: 8 }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--color-crimson)' }}>
+                  {isAr ? 'المجموع الإجمالي' : 'Total Payable'}
+                </span>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--color-crimson)' }}>
+                  1,200 AED
+                </span>
+              </div>
             </div>
 
-            <div style={{ marginTop: '14px' }}>
-              <label className="form-label" htmlFor="owner_email">
-                {isAr ? 'البريد الإلكتروني المعتمد للمالك *' : 'Authorized Signatory Email *'}
-              </label>
-              <input
-                type="email"
-                id="owner_email"
-                name="owner_email"
-                className="form-input"
-                required
-                placeholder="owner@distillery.example"
-                defaultValue="owner@distillery.example"
-              />
+            <div className="privacy-shield" style={{ marginTop: 24 }}>
+              <ShieldCheck size={24} className="privacy-shield-icon" />
+              <div className="privacy-shield-body">
+                <h4>{isAr ? 'تجديد تلقائي وإلغاء في أي وقت' : 'Auto-Renewal & Cancel Anytime'}</h4>
+                <p>{isAr ? 'يمكنك إلغاء العضوية في أي وقت دون رسوم إضافية.' : 'Cancel anytime without penalty.'}</p>
+              </div>
             </div>
 
-            <div style={{ marginTop: '14px' }}>
-              <label className="form-label" htmlFor="payment_method">
-                {isAr ? 'طريقة السداد (Test Gateway) *' : 'Payment Method (Test Mode) *'}
-              </label>
-              <select id="payment_method" name="payment_method" className="form-select">
-                <option value="test_card">Credit / Debit Card (Instant Test Clearance)</option>
-                <option value="bank_transfer">Corporate Wire Transfer / Bank Invoice (UAE)</option>
-              </select>
-            </div>
+            <button type="button" className="btn btn-gold btn-lg" style={{ width: '100%', marginTop: 20 }}>
+              <Award size={16} />
+              {isAr ? 'تفعيل العضوية الآن ←' : 'Activate Membership Now →'}
+            </button>
+          </div>
 
-            <div style={{ marginTop: '24px' }}>
-              <button type="submit" className="btn-gold" style={{ width: '100%', justifyContent: 'center', padding: '12px' }}>
-                <span>{isAr ? 'إتمام السداد وتفعيل العضوية (1,200 د.إ)' : 'Confirm Payment & Unlock Contacts (1,200 AED)'}</span>
-                <span>{isAr ? '←' : '→'}</span>
-              </button>
+          {/* BENEFITS */}
+          <div>
+            <h2 className="h3 text-crimson" style={{ marginBottom: 24 }}>
+              {isAr ? 'المزايا المتضمنة' : 'Included Benefits'}
+            </h2>
+            <div className="stack-4">
+              {[
+                { icon: Eye, title: isAr ? 'عرض بيانات الاتصال المباشر' : 'Direct Contact Display', desc: isAr ? 'البريد، الهاتف، الواتساب، والعنوان الفعلي مكشوفة لجميع المشترين.' : 'Email, phone, WhatsApp, and physical address visible to all buyers.' },
+                { icon: ShieldCheck, title: isAr ? 'حماية كاملة من البريد المزعج' : 'Spam-Protected Inquiries', desc: isAr ? 'كل طلب يخضع لبوابة OTP قبل مشاركة بياناتك.' : 'Every inquiry gated by OTP verification before sharing your details.' },
+                { icon: Award, title: isAr ? 'شارة "عضو سنوي معتمد"' : 'Verified Member Badge', desc: isAr ? 'شارة مميزة تعزز الثقة وتميز ملفك في الدليل.' : 'Distinctive badge builds trust and elevates your profile.' },
+                { icon: ExternalLink, title: isAr ? 'إمكانية إضافة روابط مباشرة' : 'Direct Link Integration', desc: isAr ? 'روابط موقعك الرسمي وحساباتك على منصات التواصل.' : 'Official website and social media channel links.' },
+              ].map((b, i) => (
+                <div key={i} className="card" style={{ padding: 24 }}>
+                  <div className="cluster" style={{ alignItems: 'flex-start', gap: 14 }}>
+                    <div style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 10, background: 'linear-gradient(135deg, var(--color-gold-light), var(--color-gold-dark))', color: 'var(--bg-majlis)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <b.icon size={20} />
+                    </div>
+                    <div>
+                      <h3 className="step-tile-title" style={{ marginBottom: 4 }}>{b.title}</h3>
+                      <p className="step-tile-desc" style={{ margin: 0 }}>{b.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { domain } from '@/lib/data';
 import { HeroSearch } from '@/components/home/hero-search';
-import { FeaturedCarousel } from '@/components/business/featured-carousel';
-import { Award, ShieldCheck, Compass, Sparkles, AlertTriangle, ArrowRight } from 'lucide-react';
+import { BusinessCard } from '@/components/business/business-card';
+import { Sparkles, AlertTriangle, Compass, Award, ShieldCheck, ArrowRight } from 'lucide-react';
 
 export default async function HomePage({
   params,
@@ -15,362 +15,436 @@ export default async function HomePage({
   const businesses = domain.listBusinesses();
 
   return (
-    <div>
-      {/* 1. CINEMATIC LUXURY HERO SECTION */}
-      <section className="luxury-hero" style={{ padding: '72px 48px', position: 'relative' }}>
-        <div className="hero-glow-1"></div>
-        <div className="hero-glow-2"></div>
-
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: '960px' }}>
+    <>
+      {/* ==============================================================
+          1. CINEMATIC MAJLIS HERO
+          ============================================================== */}
+      <section className="hero">
+        <div className="hero-content">
           <div className="hero-tag">
-            <Sparkles className="h-3.5 w-3.5 text-[#dfba55]" />
-            <span>{isAr ? 'المرجع التوثيقي العالمي لتجارة العود والزيوت العطرية النادرة' : 'The Global Authority on Natural Oud & Fragrance Sourcing'}</span>
+            <Sparkles size={13} />
+            <span>
+              {isAr
+                ? 'المرجع التوثيقي العالمي للعود الطبيعي والعطور'
+                : 'The Global Reference for Natural Oud & Heritage Fragrance'}
+            </span>
           </div>
 
-          <h1 className="hero-headline font-display" style={{ fontSize: '46px', lineHeight: 1.15, margin: '0 0 18px', color: '#ffffff' }}>
+          <h1 className="hero-title">
             {isAr
-              ? 'خدمة الربط التجاري المحايدة لتوريد العود الطبيعي والزيوت العطرية بالجملة.'
+              ? 'خدمة الربط التجاري المحايدة لتوريد العود الطبيعي بالجملة.'
               : 'Direct Sourcing for Natural Oud, Artisan Oils & Verified Wholesale Introductions.'}
+            <span className="accent">
+              {isAr
+                ? 'ربط المنتجين المعتمدين بكبار المشترين الدوليين.'
+                : 'Connecting certified distillers with institutional buyers worldwide.'}
+            </span>
           </h1>
 
-          <p className="hero-lead" style={{ fontSize: '18px', color: '#dedbd2', maxWidth: '820px', margin: '0 0 36px', lineHeight: 1.65 }}>
+          <p className="hero-lead">
             {isAr
-              ? 'نربط دور العطور والمشترين التجاريين والمقتنين بأفضل المقطرين والمزارع المعتمدة في أسام، كمبوديا، تايلاند، وإندونيسيا. حماية تامة لبيانات المشترين مع اشتراط الموافقة الصريحة قبل تسليم معلومات الا��صال.'
-              : 'Connecting bespoke perfume houses, institutional buyers, and luxury collectors directly with certified distillers and sustainable estates across Assam, Indochina, and the Malay Archipelago. Zero contact leakage with mandatory buyer approval.'}
+              ? 'نربط دور العطور والمشترين التجاريين والمقتنين بأفضل المقطرين والمزارع المعتمدة في أسام، كمبوديا، تايلاند، وإندونيسيا. حماية تامة لبيانات المشترين مع اشتراط الموافقة الصريحة قبل تسليم بيانات الاتصال.'
+              : 'Connecting bespoke perfume houses, institutional buyers, and luxury collectors with certified distillers and sustainable estates across Assam, Indochina, and the Malay Archipelago. Zero contact leakage with mandatory buyer approval.'}
           </p>
 
-          {/* INTERACTIVE GEOLOCATED HERO SEARCH */}
           <HeroSearch locale={locale} />
         </div>
       </section>
 
-      {/* 2. LIVE VERIFIED MARKET METRICS RIBBON */}
-      <section className="metrics-ribbon" style={{ margin: '-20px 0 50px', position: 'relative', zIndex: 10 }}>
-        <div className="metric-item">
-          <div className="metric-value">772</div>
-          <div className="metric-label">{isAr ? 'مسار بحثي وتوثيقي معتمد' : 'Researched Route Briefs'}</div>
+      {/* ==============================================================
+          2. METRICS RIBBON
+          ============================================================== */}
+      <div className="container">
+        <div className="metrics">
+          <div className="metric">
+            <div className="metric-value">772</div>
+            <div className="metric-label">{isAr ? 'مسار بحثي معتمد' : 'Researched Route Briefs'}</div>
+          </div>
+          <div className="metric">
+            <div className="metric-value">249</div>
+            <div className="metric-label">{isAr ? 'دولة وإقليم' : 'Documented Territories'}</div>
+          </div>
+          <div className="metric">
+            <div className="metric-value">83</div>
+            <div className="metric-label">{isAr ? 'دليل علمي متعمق' : 'Editorial & Sourcing Guides'}</div>
+          </div>
+          <div className="metric">
+            <div className="metric-value">100<span className="unit">%</span></div>
+            <div className="metric-label">{isAr ? 'حماية بيانات الاتصال' : 'Zero Contact Leakage'}</div>
+          </div>
         </div>
-        <div className="metric-item">
-          <div className="metric-value">249</div>
-          <div className="metric-label">{isAr ? 'دولة وإقليم مسجل' : 'Documented Territories'}</div>
-        </div>
-        <div className="metric-item">
-          <div className="metric-value">83</div>
-          <div className="metric-label">{isAr ? 'دليل علمي وتجاري متعمق' : 'Editorial & Sourcing Guides'}</div>
-        </div>
-        <div className="metric-item">
-          <div className="metric-value">100%</div>
-          <div className="metric-label">{isAr ? 'حماية بيانات الاتصال للأساسيات' : 'Zero Contact Leakage'}</div>
+      </div>
+
+      {/* ==============================================================
+          3. FOUR DISCIPLINES — Wood / Oil / Attar / Private Label
+          ============================================================== */}
+      <section className="section section-pearl">
+        <div className="container">
+          <div className="text-center" style={{ marginBottom: 56, maxWidth: 760, marginLeft: 'auto', marginRight: 'auto' }}>
+            <div className="hero-eyebrow-line">
+              <span>{isAr ? 'التصنيفات الأربعة المعتمدة' : 'Four Core Disciplines'}</span>
+            </div>
+            <h2 className="h2 text-crimson">
+              {isAr ? 'أصناف العود ومواد العطور الموثقة' : 'Curated Fragrance & Agarwood Disciplines'}
+            </h2>
+            <p className="lede">
+              {isAr
+                ? 'نوثق المصادر الأصلية لكل صنف مع شروط التقطير وفحوصات السلامة المخبرية ولوائح التصدير.'
+                : 'Every category is mapped to documented botanical habitats, extraction systems, GC-MS lab protocols, and CITES export regulations.'}
+            </p>
+          </div>
+
+          <div className="grid-2">
+            {/* DISCIPLINE 1: ARTISANAL WOOD */}
+            <article className="discipline-card">
+              <div className="discipline-cover">
+                <div className="discipline-cover-badges">
+                  <span className="badge badge-glass-light">Natural Wood</span>
+                  <span className="badge badge-glass">CITES II</span>
+                </div>
+                <img src="/images/hero-oud-chip.svg" alt="Artisanal Agarwood Wood" />
+              </div>
+              <div className="discipline-body">
+                <span className="badge badge-crimson" style={{ marginBottom: 12 }}>Forest & Plantation</span>
+                <h3 className="discipline-title">{isAr ? 'خشب العود الطبيعي' : 'Artisanal Agarwood'}</h3>
+                <p className="discipline-desc">
+                  {isAr
+                    ? 'رقائق غابات طبيعية، عود غطاس (Sinking Grade)، وخشب مستزرع مستدام من أسام وكاليمانتان وكمبوديا.'
+                    : 'Wild forest heartwood, sinking underwater grades, and sustainably inoculated plantation chips with certified resin density.'}
+                </p>
+                <div className="discipline-notes">
+                  Balsamic · Smoky · Ancient Wood
+                </div>
+              </div>
+            </article>
+
+            {/* DISCIPLINE 2: PURE DEHN AL OUD OIL */}
+            <article className="discipline-card">
+              <div className="discipline-cover">
+                <div className="discipline-cover-badges">
+                  <span className="badge badge-glass-light">Hydro-Distillation</span>
+                  <span className="badge badge-glass">Copper Alembic</span>
+                </div>
+                <img src="/images/hero-dehn-al-oud.svg" alt="Pure Dehn Al Oud Oil" />
+              </div>
+              <div className="discipline-body">
+                <span className="badge badge-gold" style={{ marginBottom: 12 }}>Pure Distillation</span>
+                <h3 className="discipline-title">{isAr ? 'دهن العود الخالص' : 'Pure Dehn Al Oud'}</h3>
+                <p className="discipline-desc">
+                  {isAr
+                    ? 'تقطير قدور النحاس التقليدية والبخار منخفض الحرارة. زيوت معتقة هندي وبراشين وكوه كونغ ومروكي.'
+                    : 'Traditional copper alembic deg and modern steam extractions. Aged vintages from Assam, Koh Kong, Trat, and Merauke.'}
+                </p>
+                <div className="discipline-notes">
+                  Leather · Animalic · Warm Hay · Honey
+                </div>
+              </div>
+            </article>
+
+            {/* DISCIPLINE 3: HERITAGE ATTAR */}
+            <article className="discipline-card">
+              <div className="discipline-cover">
+                <div className="discipline-cover-badges">
+                  <span className="badge badge-glass-light">Sandalwood Base</span>
+                  <span className="badge badge-glass">Mysore</span>
+                </div>
+                <img src="/images/hero-attar-still.svg" alt="Traditional Copper Deg Distillation" />
+              </div>
+              <div className="discipline-body">
+                <span className="badge badge-emerald" style={{ marginBottom: 12 }}>Heritage Attar</span>
+                <h3 className="discipline-title">{isAr ? 'العطور الشرقية والمخلطات' : 'Heritage Attars'}</h3>
+                <p className="discipline-desc">
+                  {isAr
+                    ? 'تقطير مشترك على قاعدة خشب الصندل النقي. شمامة العنبر، الورد الدمشقي، الطين الهندي والمسك الطبيعي.'
+                    : 'True hydro-distillations over pure Mysore sandalwood base. Shamamatul Amber, Ruh Gulab, Mitti, and Royal Musk accords.'}
+                </p>
+                <div className="discipline-notes">
+                  Earthy · Floral · Sacred Amber
+                </div>
+              </div>
+            </article>
+
+            {/* DISCIPLINE 4: PRIVATE LABEL */}
+            <article className="discipline-card">
+              <div className="discipline-cover">
+                <div className="discipline-cover-badges">
+                  <span className="badge badge-glass-light">IFRA Certified</span>
+                  <span className="badge badge-glass">GC-MS</span>
+                </div>
+                <img src="/images/hero-private-label.svg" alt="Private Label Crystal Flacon" />
+              </div>
+              <div className="discipline-body">
+                <span className="badge badge-charcoal" style={{ marginBottom: 12 }}>Private Label</span>
+                <h3 className="discipline-title">{isAr ? 'التصنيع الخاص والتعبئة' : 'Private Label & Flacons'}</h3>
+                <p className="discipline-desc">
+                  {isAr
+                    ? 'تركيب وتصنيع العطور الفاخرة (Extrait de Parfum)، مع مطابقة معايير إفرا العالمية وزجاجات كريستال مخصصة.'
+                    : 'Custom formulation, IFRA safety compliance, bespoke crystal flacons, and low-MOQ luxury production runs.'}
+                </p>
+                <div className="discipline-notes">
+                  IFRA · GC-MS Lab Tested · Crystal Flacons
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
-      {/* 3. FOUR CURATED PRODUCT DISCIPLINES (WITH RICH SVG VISUALS) */}
-      <section style={{ marginBottom: '70px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <div className="hero-tag" style={{ background: '#fcf6e8', color: 'var(--color-gold-dark)', border: '1px solid rgba(197, 155, 39, 0.4)' }}>
-            <Compass className="h-3.5 w-3.5 text-[#c59b27]" />
-            <span>{isAr ? 'التصنيفات الأربعة المعتمدة' : 'Four Core Sourcing Disciplines'}</span>
-          </div>
-          <h2 className="font-display" style={{ fontSize: '36px', margin: '8px 0 12px', color: 'var(--color-crimson)' }}>
-            {isAr ? 'أصناف العود ومواد العطور المعتمدة' : 'Curated Fragrance & Agarwood Disciplines'}
-          </h2>
-          <p style={{ color: 'var(--color-text-muted)', fontSize: '16.5px', maxWidth: '680px', margin: '0 auto' }}>
-            {isAr
-              ? 'نوثق المصادر الأصلية لكل صنف مع شروط التقطير وفحوصات السلامة المخبرية.'
-              : 'Every material category is mapped to documented botanical habitats, extraction systems, and CITES export regulations.'}
-          </p>
-        </div>
+      {/* ==============================================================
+          4. ARABESQUE DIVIDER
+          ============================================================== */}
+      <div className="section-divider">
+        <img src="/ornaments/arabesque-border.svg" alt="" aria-hidden="true" />
+      </div>
 
-        <div className="grid-4">
-          {/* DISCIPLINE 1: ARTISANAL WOOD */}
-          <div className="luxury-card" style={{ padding: 0 }}>
-            <div style={{ height: '220px', width: '100%', position: 'relative', background: '#0e0c0a', borderBottom: '1px solid var(--color-border)' }}>
-              <img
-                src="/images/hero-oud-wood.svg"
-                alt="Artisanal Agarwood Wood"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
-            <div style={{ padding: '24px' }}>
-              <span className="badge-crimson" style={{ marginBottom: '8px' }}>Natural Wood</span>
-              <h3 className="card-title font-display" style={{ fontSize: '20px', margin: '6px 0 10px' }}>
-                {isAr ? 'خشب العود الطبيعي' : 'Artisanal Agarwood'}
-              </h3>
-              <p className="card-desc" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
+      {/* ==============================================================
+          5. COUNTERFEIT AWARENESS HUB
+          ============================================================== */}
+      <section className="section section-cream">
+        <div className="container">
+          <div className="counterfeit-hub">
+            <div className="counterfeit-hub-header">
+              <span className="badge badge-crimson" style={{ marginBottom: 18 }}>
+                <AlertTriangle size={12} />
+                {isAr ? 'دليل كشف الغش التجاري' : 'Counterfeit Awareness'}
+              </span>
+              <h2 className="h2 text-crimson">
+                {isAr ? 'معظم ما يباع كـ "عود طبيعي" ليس حقيقياً' : 'Much of the Agarwood Sold Online Isn’t Authentic.'}
+              </h2>
+              <p className="lede">
                 {isAr
-                  ? 'رقائق غابات طبيعية، ع��د غطاس (Sinking Grade)، وخشب مستزرع مستدام من أسام وكاليمانتان وكمبوديا.'
-                  : 'Wild forest heartwood, sinking underwater grades, and sustainably inoculated plantation chips with certified resin density.'}
+                  ? 'التعطير الكيميائي، طلاء الراتنج السطحي، وتزييف درجات الغطاس شائعة جداً. هذه أبرز 4 أشكال للغش التجاري.'
+                  : 'Synthetic scenting, chemical injection with plasticizers, and inflated sinking grades are ubiquitous in open marketplaces. Here are the four primary deceptions.'}
               </p>
-              <div style={{ fontSize: '12.5px', color: 'var(--color-gold-dark)', fontWeight: 700, borderTop: '1px solid #f0ece1', paddingTop: '10px' }}>
-                Notes: Balsamic, Smoky, Ancient Wood
+            </div>
+
+            <div className="grid-2" style={{ gap: 16 }}>
+              <div className="counterfeit-item">
+                <h4>{isAr ? '❌ خشب غطاس مزيف (حقن الرصاص والشمع)' : '❌ Artificial Sinking Wood (Lead & Wax Injection)'}</h4>
+                <p>
+                  {isAr
+                    ? 'خشب بري منخفض الجودة يُحقن بالرصاص المنصوب أو شمع الأسنان ليبدو ثقيلاً كأنه غطاس. يُكشف بالأشعة وفحص رائحة الاحتراق.'
+                    : 'Low-grade wild timber injected with molten lead shot, dental wax, or synthetic glue to simulate heavy underwater sinker density. Verified via X-ray and burning aroma testing.'}
+                </p>
+              </div>
+              <div className="counterfeit-item">
+                <h4>{isAr ? '❌ تخفيف بالبلاستيك والمواد الكيميائية' : '❌ Plasticizer & Booster Adulteration'}</h4>
+                <p>
+                  {isAr
+                    ? 'زيوت العود مخففة بمذيبات صناعية عديمة الرائحة (DPG) ومقواة بمواد كيميائية عطرية مقلدة. يُكشف بجهاز GC-MS.'
+                    : 'Oud oils diluted with odorless synthetic solvents (dipropylene glycol) or fortified with chemical aromachemicals to fake longevity. Verified via GC-MS chromatography.'}
+                </p>
+              </div>
+              <div className="counterfeit-item">
+                <h4>{isAr ? '❌ انتحال المنشأ النباتي والجغرافي' : '❌ Misrepresented Botanical Origins'}</h4>
+                <p>
+                  {isAr
+                    ? 'خشب A. crassna مستزرع يُباع على أنه عود أسام بري قديم بفارق سعر 10 أضعاف. يُكشف بتتبع المنشأ المعتمد ومراجعة المقطر.'
+                    : 'Plantation-grown A. crassna falsely marketed as wild vintage Assam A. agallocha to command 10x price markups. Verified via certified origin tracing and distiller audit.'}
+                </p>
+              </div>
+              <div className="counterfeit-item">
+                <h4>{isAr ? '❌ وثائق تصدير سايتس مزورة' : '❌ Fabricated CITES Export Documentation'}</h4>
+                <p>
+                  {isAr
+                    ? 'طرود دولية غير موثقة تُصادر من الجمارك بسبب تصاريح مزورة أو حصص غير مسجلة. يُكشف بالمطابقة المباشرة مع سجلات الغابات الوطنية.'
+                    : 'Uncertified international parcels seized by customs due to counterfeit permits or unrecorded quotas. Verified via cross-check against official national forestry registries.'}
+                </p>
               </div>
             </div>
+
+            <div className="text-center" style={{ marginTop: 36 }}>
+              <Link href={`/${locale}/guides`} className="btn btn-outline">
+                {isAr ? 'اقرأ الدليل التوثيقي الكامل ←' : 'Explore the Full Authenticity Guide →'}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==============================================================
+          6. REGIONAL OLFactory TERROIRS (DARK MAJLIS SECTION)
+          ============================================================== */}
+      <section className="section section-dark">
+        <div className="container">
+          <div className="text-center" style={{ marginBottom: 48, maxWidth: 780, marginLeft: 'auto', marginRight: 'auto' }}>
+            <div className="hero-eyebrow-line" style={{ color: 'var(--color-gold-light)' }}>
+              <span><Compass size={14} style={{ display: 'inline', verticalAlign: 'middle', marginInlineEnd: 6 }} />{isAr ? 'الخريطة الشمية الإقليمية' : 'Regional Olfactory Terroirs'}</span>
+            </div>
+            <h2 className="h2" style={{ color: '#f5e1a4' }}>
+              {isAr ? 'الأقاليم الجغرافية وبصماتها الشمية' : 'Distinct Geographic Terroirs of the Oud World'}
+            </h2>
+            <p className="lede" style={{ color: '#a8a094' }}>
+              {isAr
+                ? 'تختلف الرائحة والمكونات الكيميائية للعود بحسب نوع الشجرة والمناخ وفطريات العدوى وطريقة التقطير.'
+                : 'Soil mineralogy, indigenous fungus species, and ambient humidity create radically distinct olfactory signatures across major producing regions.'}
+            </p>
           </div>
 
-          {/* DISCIPLINE 2: PURE DEHN AL OUD OIL */}
-          <div className="luxury-card" style={{ padding: 0 }}>
-            <div style={{ height: '220px', width: '100%', position: 'relative', background: '#120b05', borderBottom: '1px solid var(--color-border)' }}>
-              <img
-                src="/images/hero-dehn-al-oud.svg"
-                alt="Pure Dehn Al Oud Oil"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
-            <div style={{ padding: '24px' }}>
-              <span className="badge-gold" style={{ marginBottom: '8px' }}>Pure Distillation</span>
-              <h3 className="card-title font-display" style={{ fontSize: '20px', margin: '6px 0 10px' }}>
-                {isAr ? 'دهن العود الخالص' : 'Pure Dehn Al Oud'}
-              </h3>
-              <p className="card-desc" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
-                {isAr
-                  ? 'تقطير قدور النحاس التقليدية والبخار منخفض الحرارة. زيوت معتقة هندي وبراشين وكوه كونغ ومروكي.'
-                  : 'Traditional copper alembic deg and modern steam extractions. Aged vintages from Assam, Koh Kong, Trat, and Merauke.'}
+          <div className="grid-4">
+            <div className="terroir-card">
+              <div className="terroir-flag">🇮🇳 India · Assam</div>
+              <div className="terroir-species">Aquilaria agallocha</div>
+              <p className="terroir-notes">
+                Deep animalic barnyard, tanned saddle leather, dried dark fruits, and rich sweet tobacco smoke.
               </p>
-              <div style={{ fontSize: '12.5px', color: 'var(--color-gold-dark)', fontWeight: 700, borderTop: '1px solid #f0ece1', paddingTop: '10px' }}>
-                Notes: Leather, Animalic, Warm Hay, Honey
-              </div>
             </div>
-          </div>
-
-          {/* DISCIPLINE 3: HERITAGE ATTAR */}
-          <div className="luxury-card" style={{ padding: 0 }}>
-            <div style={{ height: '220px', width: '100%', position: 'relative', background: '#110a08', borderBottom: '1px solid var(--color-border)' }}>
-              <img
-                src="/images/hero-attar-still.svg"
-                alt="Traditional Copper Deg Distillation"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
-            <div style={{ padding: '24px' }}>
-              <span className="badge-forest" style={{ marginBottom: '8px' }}>Traditional Attar</span>
-              <h3 className="card-title font-display" style={{ fontSize: '20px', margin: '6px 0 10px' }}>
-                {isAr ? 'العطور الشرقية والمخلطات' : 'Heritage Attars'}
-              </h3>
-              <p className="card-desc" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
-                {isAr
-                  ? 'تقطير مشترك على قاعدة خشب الصندل النقي. شمامة العنبر، الورد الدمشقي، الطين الهندي والمسك الطبيعي.'
-                  : 'True hydro-distillations over pure Mysore sandalwood base. Shamamatul Amber, Ruh Gulab, Mitti, and Royal Musk accords.'}
+            <div className="terroir-card">
+              <div className="terroir-flag">🇰🇭 Cambodia · Koh Kong</div>
+              <div className="terroir-species">Aquilaria crassna</div>
+              <p className="terroir-notes">
+                Ripe red cherries, sun-dried figs, golden wildflower honey, and smooth resinous incense.
               </p>
-              <div style={{ fontSize: '12.5px', color: 'var(--color-gold-dark)', fontWeight: 700, borderTop: '1px solid #f0ece1', paddingTop: '10px' }}>
-                Notes: Earthy, Floral, Sacred Amber
-              </div>
             </div>
-          </div>
-
-          {/* DISCIPLINE 4: PRIVATE LABEL FLACONS */}
-          <div className="luxury-card" style={{ padding: 0 }}>
-            <div style={{ height: '220px', width: '100%', position: 'relative', background: '#0c0d12', borderBottom: '1px solid var(--color-border)' }}>
-              <img
-                src="/images/hero-private-label.svg"
-                alt="Private Label Perfume Flacon"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
-            <div style={{ padding: '24px' }}>
-              <span className="badge-crimson" style={{ marginBottom: '8px' }}>Private Label</span>
-              <h3 className="card-title font-display" style={{ fontSize: '20px', margin: '6px 0 10px' }}>
-                {isAr ? 'التصنيع الخاص والتعبئة' : 'Private Label & Flacons'}
-              </h3>
-              <p className="card-desc" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
-                {isAr
-                  ? 'تركيب وتصنيع العطور الفاخرة (Extrait de Parfum)، مع مطابقة معايير إفرا العالمية وزجاجات كريستال مخصصة.'
-                  : 'Custom formulation, IFRA safety compliance certificates, bespoke crystal flacons, and low-MOQ luxury production runs.'}
+            <div className="terroir-card">
+              <div className="terroir-flag">🇹🇭 Thailand · Trat</div>
+              <div className="terroir-species">Aquilaria crassna</div>
+              <p className="terroir-notes">
+                Delicate sweet florals, ripe peach skin, light golden nectar, and clean polished sandalwood.
               </p>
-              <div style={{ fontSize: '12.5px', color: 'var(--color-gold-dark)', fontWeight: 700, borderTop: '1px solid #f0ece1', paddingTop: '10px' }}>
-                Specs: IFRA Certified, GC-MS Lab Tested
+            </div>
+            <div className="terroir-card">
+              <div className="terroir-flag">🇮🇩 Indonesia · Kalimantan</div>
+              <div className="terroir-species">Aquilaria malaccensis</div>
+              <p className="terroir-notes">
+                Airy jungle rain, cooling medicinal camphor, green herbal resins, and creamy vanillic wood.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center" style={{ marginTop: 48 }}>
+            <Link href={`/${locale}/world`} className="btn btn-gold btn-lg">
+              {isAr ? 'استكشف 249 دولة في الخريطة العالمية ←' : 'Explore All 249 World Terroirs →'}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ==============================================================
+          7. FEATURED PRODUCERS
+          ============================================================== */}
+      <section className="section section-pearl">
+        <div className="container">
+          <div className="row-between" style={{ marginBottom: 36 }}>
+            <div>
+              <div style={{ marginBottom: 8 }}>
+                <span className="badge badge-gold">
+                  <Award size={11} />
+                  {isAr ? 'المقطرون المعتمدون' : 'Verified Producer Network'}
+                </span>
               </div>
+              <h2 className="h2 text-crimson">
+                {isAr ? 'نخبة معامل التقطير والمزارع المستدامة' : 'Featured Distillers & Accredited Plantations'}
+              </h2>
+            </div>
+            <Link href={`/${locale}/directory`} className="btn btn-outline">
+              {isAr ? 'كل الدليل ←' : 'Full Directory →'}
+            </Link>
+          </div>
+
+          <div className="grid-3">
+            {businesses.slice(0, 3).map((biz) => (
+              <BusinessCard key={biz.id} business={biz} locale={locale} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==============================================================
+          8. FOUR-STEP NEUTRAL MATCHING PROTOCOL
+          ============================================================== */}
+      <section className="section section-cream">
+        <div className="container">
+          <div className="text-center" style={{ marginBottom: 56, maxWidth: 720, marginLeft: 'auto', marginRight: 'auto' }}>
+            <div className="hero-eyebrow-line">
+              <span><ShieldCheck size={14} style={{ display: 'inline', verticalAlign: 'middle', marginInlineEnd: 6 }} />{isAr ? 'بروتوكول الربط المحايد' : 'Neutral Matching Protocol'}</span>
+            </div>
+            <h2 className="h2 text-crimson">
+              {isAr ? 'كيف تعمل خدمة الربط التجاري المحايدة؟' : 'How the Neutral Matching Service Works'}
+            </h2>
+            <p className="lede">
+              {isAr
+                ? 'صُممت المنصة لضمان النزاهة وحماية خصوصية المشترين، وتقديم خدمات التوريد دون أي استبدال صامت للموردين.'
+                : 'Engineered for transparency, buyer data protection, and verified supplier accountability.'}
+            </p>
+          </div>
+
+          <div className="grid-4">
+            <div className="step-tile">
+              <div className="step-tile-num">01</div>
+              <h3 className="step-tile-title">{isAr ? 'المتطلبات الفنية' : 'Technical RFQ'}</h3>
+              <p className="step-tile-desc">
+                {isAr
+                  ? 'املأ الاستمارة التدريجية (الصنف، الكمية، بلد الوصول، درجة العود، شروط فحص العينات).'
+                  : 'Submit detailed material requirements across 67 conditional specifications with target pricing and delivery.'}
+              </p>
+            </div>
+            <div className="step-tile">
+              <div className="step-tile-num crimson">02</div>
+              <h3 className="step-tile-title">{isAr ? 'التحقق بـ OTP' : 'OTP Verification'}</h3>
+              <p className="step-tile-desc">
+                {isAr
+                  ? 'رمز تحقق لمرة واحدة من 6 أرقام يؤكد ملكيتك لوسيلة الاتصال قبل أي خطوة.'
+                  : 'A 6-digit one-time passcode confirms your contact channel prior to brief authorization.'}
+              </p>
+            </div>
+            <div className="step-tile">
+              <div className="step-tile-num emerald">03</div>
+              <h3 className="step-tile-title">{isAr ? 'موجز مشفر' : 'Redacted Brief'}</h3>
+              <p className="step-tile-desc">
+                {isAr
+                  ? 'يطلع الموردون المؤهلون على المواصفات الفنية فقط دون أي اسم أو بريد أو هاتف.'
+                  : 'Verified partners inspect technical specifications with zero buyer identifying data exposed.'}
+              </p>
+            </div>
+            <div className="step-tile">
+              <div className="step-tile-num charcoal">04</div>
+              <h3 className="step-tile-title">{isAr ? 'موافقتك الصريحة' : 'Buyer Approval'}</h3>
+              <p className="step-tile-desc">
+                {isAr
+                  ? 'تراجع المرشحين وتعتمد بالاسم حتى 3 موردين قبل تسليم بياناتك لهم.'
+                  : 'Review matching distillers and explicitly approve up to 3 named businesses before contact release.'}
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center" style={{ marginTop: 48 }}>
+            <Link href={`/${locale}/rfq`} className="btn btn-gold btn-lg">
+              {isAr ? 'تقديم طلب توريد بالجملة الآن ←' : 'Start Your Wholesale Requirement →'}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ==============================================================
+          9. FINAL CTA PANEL
+          ============================================================== */}
+      <section className="section">
+        <div className="container container-narrow text-center">
+          <div className="card-frame" style={{ padding: 'clamp(36px, 5vw, 64px) clamp(28px, 5vw, 56px)' }}>
+            <span className="eyebrow eyebrow-crimson" style={{ marginBottom: 14 }}>
+              <ArrowRight size={14} />
+              {isAr ? 'ابدأ اليوم' : 'Begin Today'}
+            </span>
+            <h2 className="h2 text-crimson">
+              {isAr ? 'انضم إلى كبار المشترين والموردين المعتمدين' : 'Join the World’s Institutional Buyers & Verified Producers'}
+            </h2>
+            <p className="lede" style={{ marginBottom: 32 }}>
+              {isAr
+                ? 'اكتشف 772 مساراً بحثياً و249 دولة و83 دليلاً معمارياً متعمقاً. كل ذلك مع حماية بيانات اتصال صارمة.'
+                : 'Discover 772 researched route briefs, 249 documented countries, and 83 in-depth editorial guides. All under strict contact data protection.'}
+            </p>
+            <div className="cluster" style={{ justifyContent: 'center' }}>
+              <Link href={`/${locale}/rfq`} className="btn btn-gold btn-lg">
+                {isAr ? 'طلب توريد جديد ←' : 'Submit Wholesale RFQ →'}
+              </Link>
+              <Link href={`/${locale}/membership`} className="btn btn-outline btn-lg">
+                {isAr ? 'انضم كعضو سنوي (1,200 درهم)' : 'Annual Membership (AED 1,200)'}
+              </Link>
             </div>
           </div>
         </div>
       </section>
-
-      {/* 4. COUNTERFEIT WARNING & AUTHENTICITY HUB (AGARWOOD GUIDE INSIGHT) */}
-      <section className="form-card" style={{ padding: '44px 40px', marginBottom: '70px', background: '#fffdf9', borderColor: 'var(--color-gold)' }}>
-        <div style={{ maxWidth: '820px', margin: '0 auto', textAlign: 'center', marginBottom: '32px' }}>
-          <span className="badge-crimson" style={{ fontSize: '12px', padding: '6px 14px' }}>
-            <AlertTriangle className="h-3 w-3 inline mr-1" />
-            {isAr ? 'دليل كشف الغش والتزييف التجاري' : 'Counterfeit Awareness & Authenticity Standard'}
-          </span>
-          <h2 className="font-display" style={{ fontSize: '32px', margin: '14px 0 10px', color: 'var(--color-crimson)' }}>
-            {isAr ? 'معظم ما يباع كـ "عود طبيعي" عبر الإنترنت ليس حقيقياً' : 'Much of the Agarwood Sold Online Isn’t Authentic.'}
-          </h2>
-          <p style={{ color: 'var(--color-text-muted)', fontSize: '16px', lineHeight: 1.65 }}>
-            {isAr
-              ? 'التعطير الكيميائي، طلاء الراتنج السطحي، وتزييف درجات الغطاس شائعة جداً. هذه هي أبرز 4 أشكال للغش التجاري في الأسواق العالمية وكيف يكشفها فحص دليل العود.'
-              : 'Synthetic scenting, chemical injection with DOP/DPG plasticizers, and inflated sinking grades are ubiquitous in open marketplaces. Here are the four primary deceptions verified by OudGuide protocols.'}
-          </p>
-        </div>
-
-        <div className="grid-2" style={{ gap: '20px' }}>
-          <div style={{ background: '#fdfbf6', padding: '22px', borderRadius: '10px', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ color: 'var(--color-crimson)', margin: '0 0 6px', fontSize: '17px' }}>
-              ❌ 1. Artificial Sinking Wood (Lead & Wax Injection)
-            </h4>
-            <p style={{ margin: 0, fontSize: '13.5px', color: '#555', lineHeight: 1.6 }}>
-              Low-grade wild timber injected with molten lead shot, dental wax, or synthetic glue to simulate heavy underwater sinker density. Verified via X-ray and burning aroma testing.
-            </p>
-          </div>
-
-          <div style={{ background: '#fdfbf6', padding: '22px', borderRadius: '10px', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ color: 'var(--color-crimson)', margin: '0 0 6px', fontSize: '17px' }}>
-              ❌ 2. Plasticizer & Booster Adulteration (DPG & DOP)
-            </h4>
-            <p style={{ margin: 0, fontSize: '13.5px', color: '#555', lineHeight: 1.6 }}>
-              Oud oils diluted with odorless synthetic solvents (dipropylene glycol) or fortified with chemical aromachemicals (Kephalis, Javanol) to fake longevity. Verified via GC-MS chromatography.
-            </p>
-          </div>
-
-          <div style={{ background: '#fdfbf6', padding: '22px', borderRadius: '10px', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ color: 'var(--color-crimson)', margin: '0 0 6px', fontSize: '17px' }}>
-              ❌ 3. Misrepresented Botanical Origins & Species
-            </h4>
-            <p style={{ margin: 0, fontSize: '13.5px', color: '#555', lineHeight: 1.6 }}>
-              Plantation-grown <em>A. crassna</em> falsely marketed as wild vintage Assam <em>A. agallocha</em> to command 10x price markups. Verified via certified origin tracing and distiller audit.
-            </p>
-          </div>
-
-          <div style={{ background: '#fdfbf6', padding: '22px', borderRadius: '10px', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ color: 'var(--color-crimson)', margin: '0 0 6px', fontSize: '17px' }}>
-              ❌ 4. Fabricated CITES Export Documentation
-            </h4>
-            <p style={{ margin: 0, fontSize: '13.5px', color: '#555', lineHeight: 1.6 }}>
-              Uncertified international parcels seized by customs due to counterfeit permits or unrecorded quotas. Verified via direct cross-check against official national forestry export registries.
-            </p>
-          </div>
-        </div>
-
-        <div style={{ marginTop: '30px', textAlign: 'center' }}>
-          <Link href={`/${locale}/guides`} className="btn-outline" style={{ borderColor: 'var(--color-gold)', color: 'var(--color-gold-dark)' }}>
-            <span>{isAr ? 'اقرأ الدليل التوثيقي الكامل لفحص الجودة' : 'Explore the Full Authenticity & Grading Guide →'}</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* 5. INTERACTIVE REGIONAL OLFATORY TERROIRS MAP */}
-      <section className="luxury-hero" style={{ padding: '60px 48px', marginBottom: '70px', background: 'linear-gradient(145deg, #181415 0%, #221a1e 50%, #120e10 100%)' }}>
-        <div style={{ maxWidth: '820px', marginBottom: '36px' }}>
-          <div className="hero-tag" style={{ color: '#dfba55', borderColor: 'rgba(223, 186, 85, 0.4)' }}>
-            <Compass className="h-3.5 w-3.5 text-[#dfba55]" />
-            <span>{isAr ? 'الخريطة الشمية الإقليمية' : 'Regional Olfactory Terroirs & Botanical Taxa'}</span>
-          </div>
-          <h2 className="font-display" style={{ fontSize: '36px', color: '#ffffff', margin: '0 0 14px' }}>
-            {isAr ? 'الأقاليم الجغرافية وبصماتها الشمية المميزة' : 'Distinct Geographic Terroirs of the Oud World'}
-          </h2>
-          <p style={{ color: '#d0ccc3', fontSize: '16px', lineHeight: 1.7, margin: 0 }}>
-            {isAr
-              ? 'تختلف الرائحة والمكونات الكيميائية للعود بحسب نوع الشجرة والمناخ وفطريات العدوى وطريقة التقطير.'
-              : 'Soil mineralogy, indigenous fungus species, and ambient humidity create radically distinct olfactory signatures across major producing regions.'}
-          </p>
-        </div>
-
-        <div className="grid-4">
-          <div style={{ background: 'rgba(255, 255, 255, 0.06)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(255, 255, 255, 0.14)' }}>
-            <div style={{ color: '#dfba55', fontWeight: 800, fontSize: '18px', marginBottom: '4px' }}>🇮🇳 India (Assam)</div>
-            <div style={{ fontSize: '12px', color: '#a09d94', marginBottom: '10px' }}>Aquilaria Agallocha</div>
-            <p style={{ fontSize: '13.5px', color: '#ece8de', margin: 0, lineHeight: 1.6 }}>
-              Deep animalic barnyard, tanned saddle leather, dried dark fruits, and rich sweet tobacco smoke.
-            </p>
-          </div>
-
-          <div style={{ background: 'rgba(255, 255, 255, 0.06)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(255, 255, 255, 0.14)' }}>
-            <div style={{ color: '#dfba55', fontWeight: 800, fontSize: '18px', marginBottom: '4px' }}>🇰🇭 Cambodia (Koh Kong)</div>
-            <div style={{ fontSize: '12px', color: '#a09d94', marginBottom: '10px' }}>Aquilaria Crassna</div>
-            <p style={{ fontSize: '13.5px', color: '#ece8de', margin: 0, lineHeight: 1.6 }}>
-              Ripe red cherries, sun-dried figs, golden wildflower honey, and smooth resinous incense.
-            </p>
-          </div>
-
-          <div style={{ background: 'rgba(255, 255, 255, 0.06)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(255, 255, 255, 0.14)' }}>
-            <div style={{ color: '#dfba55', fontWeight: 800, fontSize: '18px', marginBottom: '4px' }}>🇹🇭 Thailand (Trat)</div>
-            <div style={{ fontSize: '12px', color: '#a09d94', marginBottom: '10px' }}>Aquilaria Crassna</div>
-            <p style={{ fontSize: '13.5px', color: '#ece8de', margin: 0, lineHeight: 1.6 }}>
-              Delicate sweet florals, ripe peach skin, light golden nectar, and clean polished sandalwood.
-            </p>
-          </div>
-
-          <div style={{ background: 'rgba(255, 255, 255, 0.06)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(255, 255, 255, 0.14)' }}>
-            <div style={{ color: '#dfba55', fontWeight: 800, fontSize: '18px', marginBottom: '4px' }}>🇮🇩 Indonesia (Kalimantan)</div>
-            <div style={{ fontSize: '12px', color: '#a09d94', marginBottom: '10px' }}>Aquilaria Malaccensis</div>
-            <p style={{ fontSize: '13.5px', color: '#ece8de', margin: 0, lineHeight: 1.6 }}>
-              Airy jungle rain, cooling medicinal camphor, green herbal resins, and creamy vanillic wood.
-            </p>
-          </div>
-        </div>
-
-        <div style={{ marginTop: '36px', textAlign: 'center' }}>
-          <Link href={`/${locale}/world`} className="btn-gold" style={{ padding: '12px 32px' }}>
-            <span>{isAr ? 'استكشف 249 دولة في الخريطة العالمية ←' : 'Explore All 249 World Terroirs →'}</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* 6. FEATURED PRODUCER SHOWCASE WITH BUSINESS CARDS */}
-      <section style={{ marginBottom: '70px' }}>
-        <FeaturedCarousel businesses={businesses} locale={locale} />
-      </section>
-
-      {/* 7. FOUR-STEP NEUTRAL MATCHING PROTOCOL */}
-      <section style={{ marginBottom: '70px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h2 className="font-display" style={{ fontSize: '32px', margin: '0 0 10px', color: 'var(--color-crimson)' }}>
-            {isAr ? 'كيف تعمل خدمة الربط التجاري المحايدة؟' : 'The Four-Step Neutral Matching Protocol'}
-          </h2>
-          <p style={{ color: 'var(--color-text-muted)', fontSize: '16px', maxWidth: '660px', margin: '0 auto' }}>
-            {isAr
-              ? 'صممت المنصة لضمان النزاهة وحماية خصوصية المشترين، مع تقديم خدمات التوريد دون أي استبدال صامت للموردين.'
-              : 'Engineered for transparency, buyer data protection, and verified supplier accountability.'}
-          </p>
-        </div>
-
-        <div className="grid-4">
-          <div className="luxury-card" style={{ borderTop: '4px solid var(--color-gold)' }}>
-            <div style={{ fontSize: '28px', fontWeight: 900, color: 'var(--color-gold)', marginBottom: '8px' }}>01</div>
-            <h3 className="card-title" style={{ fontSize: '17px' }}>{isAr ? 'المتطلبات الفنية' : 'Technical RFQ'}</h3>
-            <p className="card-desc" style={{ fontSize: '13.5px' }}>
-              {isAr
-                ? 'املأ الاستمارة التدريجية (الصنف، الكمية، بلد الوصول، درجة العود، وشروط فحص العينات).'
-                : 'Submit detailed material requirements across 67 conditional specifications with target pricing and delivery.'}
-            </p>
-          </div>
-
-          <div className="luxury-card" style={{ borderTop: '4px solid var(--color-crimson)' }}>
-            <div style={{ fontSize: '28px', fontWeight: 900, color: 'var(--color-crimson)', marginBottom: '8px' }}>02</div>
-            <h3 className="card-title" style={{ fontSize: '17px' }}>{isAr ? 'التحقق بـ OTP' : 'OTP Verification'}</h3>
-            <p className="card-desc" style={{ fontSize: '13.5px' }}>
-              {isAr
-                ? 'رمز تحقق لمرة واحدة مكون من 6 أرقام يؤكد ملكيتك لوسيلة الاتصال قبل اتخاذ أي خطوة.'
-                : 'A 6-digit one-time passcode confirms your contact channel prior to brief authorization.'}
-            </p>
-          </div>
-
-          <div className="luxury-card" style={{ borderTop: '4px solid var(--color-forest)' }}>
-            <div style={{ fontSize: '28px', fontWeight: 900, color: 'var(--color-forest)', marginBottom: '8px' }}>03</div>
-            <h3 className="card-title" style={{ fontSize: '17px' }}>{isAr ? 'موجز مشفر' : 'Redacted Brief'}</h3>
-            <p className="card-desc" style={{ fontSize: '13.5px' }}>
-              {isAr
-                ? 'يطلع الموردون المؤهلون على المواصفات الفنية فقط دون أي اسم أو بريد أو هاتف خاص بك.'
-                : 'Verified partners inspect technical specifications with zero buyer identifying data exposed.'}
-            </p>
-          </div>
-
-          <div className="luxury-card" style={{ borderTop: '4px solid #111' }}>
-            <div style={{ fontSize: '28px', fontWeight: 900, color: '#111', marginBottom: '8px' }}>04</div>
-            <h3 className="card-title" style={{ fontSize: '17px' }}>{isAr ? 'موافقتك الصريحة' : 'Buyer Approval'}</h3>
-            <p className="card-desc" style={{ fontSize: '13.5px' }}>
-              {isAr
-                ? 'تراجع المرشحين وتعتمد بالاسم حتى 3 موردين قبل تسليم بيانات التنسيق لهم.'
-                : 'Review matching distillers and explicitly approve up to 3 named businesses before contact release.'}
-            </p>
-          </div>
-        </div>
-
-        <div style={{ marginTop: '36px', textAlign: 'center' }}>
-          <Link href={`/${locale}/rfq`} className="btn-gold" style={{ padding: '14px 38px', fontSize: '16px' }}>
-            <span>{isAr ? 'تقديم طلب توريد بالجملة الآن' : 'Start Your Wholesale Requirement Now'}</span>
-            <span>{isAr ? '←' : '→'}</span>
-          </Link>
-        </div>
-      </section>
-    </div>
+    </>
   );
 }

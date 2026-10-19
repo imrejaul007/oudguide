@@ -1,8 +1,4 @@
-import Link from 'next/link';
-
-
-
-
+import { Briefcase, Lock, Globe, Calendar, FileText, CheckCircle2 } from 'lucide-react';
 
 export default async function PartnerOpportunitiesPage({
   params,
@@ -15,7 +11,6 @@ export default async function PartnerOpportunitiesPage({
   const { expressed } = await searchParams;
   const isAr = locale === 'ar';
 
-  // Seed sample match briefs for partner discovery
   const sampleBriefs = [
     {
       inquiry_id: 'inq_sample_01',
@@ -27,7 +22,6 @@ export default async function PartnerOpportunitiesPage({
       origin_preference: 'India (Assam) or Cambodia',
       samples_requested: true,
       required_date: '2026-11-15',
-      created_at: new Date('2026-10-19'),
     },
     {
       inquiry_id: 'inq_sample_02',
@@ -39,7 +33,6 @@ export default async function PartnerOpportunitiesPage({
       origin_preference: 'Indonesia (Kalimantan / Merauke)',
       samples_requested: false,
       required_date: '2026-12-01',
-      created_at: new Date('2026-10-18'),
     },
     {
       inquiry_id: 'inq_sample_03',
@@ -51,88 +44,161 @@ export default async function PartnerOpportunitiesPage({
       origin_preference: 'IFRA-compliant pure blends',
       samples_requested: true,
       required_date: '2027-01-20',
-      created_at: new Date('2026-10-19'),
     },
   ];
 
   return (
-    <div>
-      <div className="hero">
-        <h2>{isAr ? 'بوابة الموردين: فرص التوريد وعروض الأسعار' : 'Supplier Partner Portal: Live Wholesale Opportunities'}</h2>
-        <p>
-          {isAr
-            ? 'موجز مشفر ومحايد للمتطلبات التجارية الواردة. لا تحتوي هذه الموجزات على أي بيانات شخصية للمشتري حتى يتم اختياره واعتماده رسمياً.'
-            : 'Redacted match briefs for verified suppliers. All buyer personal data remains strictly confidential until you are explicitly approved by the buyer.'}
-        </p>
-      </div>
+    <div className="section">
+      <div className="container" style={{ maxWidth: 1100 }}>
+        <section className="hero" style={{ padding: 'clamp(36px, 5vw, 56px) clamp(24px, 4vw, 48px)' }}>
+          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 820 }}>
+            <div className="hero-tag">
+              <Briefcase size={13} />
+              <span>{isAr ? 'بوابة الشركاء' : 'Supplier Portal'}</span>
+            </div>
+            <h1 className="hero-title" style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)' }}>
+              {isAr ? 'بوابة الموردين: فرص التوريد' : 'Supplier Partner Portal: Live Wholesale Opportunities'}
+              <span className="accent">{isAr ? 'موجزات مشفرة.' : 'Redacted match briefs.'}</span>
+            </h1>
+            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+              {isAr
+                ? 'موجز مشفر ومحايد للمتطلبات التجارية الواردة. لا تحتوي هذه الموجزات على أي بيانات شخصية للمشتري حتى يتم اختياره واعتماده رسمياً.'
+                : 'Redacted match briefs for verified suppliers. All buyer personal data remains strictly confidential until you are explicitly approved by the buyer.'}
+            </p>
+          </div>
+        </section>
 
-      {expressed && (
-        <div className="banner-success">
-          <strong>{isAr ? 'تم تسجيل اهتمامك بنجاح!' : 'Interest Registered!'}</strong>{' '}
-          {isAr
-            ? `تم إشعار المشتري بأن مؤسستك مرشحة لتوريد هذا الطلب (${expressed}). ستصلك بيانات الاتصال بمجرد اعتماده.`
-            : `Your interest in inquiry (${expressed}) has been logged. The buyer has been notified and can approve introduction release.`}
+        {expressed && (
+          <div className="privacy-shield" style={{ marginTop: 32, borderLeftColor: 'var(--color-emerald)', background: 'linear-gradient(135deg, #f0faf5, #e3f2ea)' }}>
+            <CheckCircle2 size={28} className="privacy-shield-icon" style={{ color: 'var(--color-emerald)' }} />
+            <div className="privacy-shield-body">
+              <h4 style={{ color: 'var(--color-emerald)' }}>
+                {isAr ? 'تم تسجيل اهتمامك بنجاح!' : 'Interest Registered!'}
+              </h4>
+              <p>
+                {isAr
+                  ? `تم إشعار المشتري بأن مؤسستك مرشحة لتوريد هذا الطلب (${expressed}).`
+                  : `Your interest in inquiry (${expressed}) has been logged. The buyer has been notified and can approve introduction release.`}
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="privacy-shield" style={{ marginTop: 40 }}>
+          <Lock size={24} className="privacy-shield-icon" />
+          <div className="privacy-shield-body">
+            <h4>{isAr ? 'سياسة حماية بيانات المشترين (QA-025)' : 'Buyer Data Protection Standard (QA-025)'}</h4>
+            <p>
+              {isAr
+                ? 'تعرض هذه الصفحة المواصفات الفنية للصنف والكمية وبلد الوصول فقط. لا يتم كشف أسماء الشركات أو المشترين أو وسائل اتصالهم.'
+                : 'This workspace displays technical material specifications, target volume, and delivery country only. Zero buyer identifying data is exposed.'}
+            </p>
+          </div>
         </div>
-      )}
 
-      <div className="section-box" style={{ background: '#fdfbf6' }}>
-        <p style={{ margin: 0, fontSize: '14px', color: 'var(--color-muted)' }}>
-          🔒 <strong>{isAr ? 'سياسة حماية بيانات المشترين (QA-025):' : 'Buyer Data Protection Standard (QA-025):'}</strong>{' '}
-          {isAr
-            ? 'تعرض هذه الصفحة المواصفات الفنية للصنف والكمية وبلد الوصول فقط. لا يتم كشف أسماء الشركات أو المشترين أو وسائل اتصالهم في هذه البوابة.'
-            : 'This workspace displays technical material specifications, target volume, and delivery country only. Zero buyer identifying data is exposed.'}
-        </p>
-      </div>
+        <h2 className="h2 text-crimson" style={{ margin: '48px 0 24px' }}>
+          {isAr ? 'المتطلبات النشطة المتاحة للتسعير' : 'Active Requirements Open for Sourcing'}
+        </h2>
 
-      <div style={{ marginTop: '24px' }}>
-        <h3>{isAr ? 'المتطلبات النشطة المتاحة للتسعير' : 'Active Requirements Open for Sourcing'}</h3>
-
-        {sampleBriefs.map((brief) => (
-          <div key={brief.inquiry_id} className="card">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '10px' }}>
-              <div>
-                <span className="badge badge-unlocked">{brief.product_family}</span>
-                <span className="badge badge-member">{brief.destination_country}</span>
-                <span style={{ fontSize: '12px', color: 'var(--color-muted)', marginInlineStart: '8px' }}>
-                  ID: {brief.inquiry_id}
-                </span>
-                <h4 style={{ margin: '8px 0 6px 0', fontSize: '18px' }}>
-                  Requirement for {brief.quantity} {brief.quantity_unit} {brief.product_family}
-                </h4>
-              </div>
-              <div>
+        <div className="stack-6">
+          {sampleBriefs.map((brief) => (
+            <article key={brief.inquiry_id} className="card" style={{ padding: 28 }}>
+              <div className="row-between" style={{ marginBottom: 16 }}>
+                <div>
+                  <div className="cluster" style={{ gap: 8, marginBottom: 10 }}>
+                    <span className="badge badge-gold">{brief.product_family}</span>
+                    <span className="badge badge-crimson">
+                      <Globe size={11} />
+                      {brief.destination_country}
+                    </span>
+                    <span className="badge badge-locked">ID: {brief.inquiry_id}</span>
+                  </div>
+                  <h3 className="discipline-title" style={{ fontSize: '1.2rem', margin: '0 0 4px' }}>
+                    {isAr
+                      ? `طلب توريد ${brief.quantity} ${brief.quantity_unit} ${brief.product_family}`
+                      : `Requirement: ${brief.quantity} ${brief.quantity_unit} of ${brief.product_family}`}
+                  </h3>
+                </div>
                 <form method="POST" action="/api/v1/partners/interest-form">
                   <input type="hidden" name="inquiry_id" value={brief.inquiry_id} />
                   <input type="hidden" name="locale" value={locale} />
-                  <button type="submit" className="btn-primary" style={{ padding: '8px 16px', fontSize: '13px' }}>
+                  <button type="submit" className="btn btn-gold btn-sm">
                     {isAr ? 'إبداء الرغبة في التوريد ←' : 'Express Sourcing Interest →'}
                   </button>
                 </form>
               </div>
-            </div>
 
-            <div className="grid-3" style={{ fontSize: '13px', marginTop: '12px', background: '#faf7ed', padding: '10px 14px', borderRadius: '4px' }}>
-              <div>
-                <strong>{isAr ? 'الكمية المستهدفة:' : 'Volume:'}</strong> {brief.quantity} {brief.quantity_unit}
+              <div className="grid-3" style={{ gap: 14 }}>
+                <div className="card" style={{ padding: 16, background: 'var(--bg-sandstone)' }}>
+                  <div className="cluster" style={{ marginBottom: 6, gap: 6 }}>
+                    <FileText size={12} style={{ color: 'var(--color-gold-dark)' }} />
+                    <strong style={{ fontSize: '0.78rem', letterSpacing: '0.05em' }}>
+                      {isAr ? 'الكمية المستهدفة' : 'Volume'}
+                    </strong>
+                  </div>
+                  <span className="display-serif" style={{ fontSize: '1.05rem', fontStyle: 'italic' }}>
+                    {brief.quantity} {brief.quantity_unit}
+                  </span>
+                </div>
+                <div className="card" style={{ padding: 16, background: 'var(--bg-sandstone)' }}>
+                  <div className="cluster" style={{ marginBottom: 6, gap: 6 }}>
+                    <FileText size={12} style={{ color: 'var(--color-gold-dark)' }} />
+                    <strong style={{ fontSize: '0.78rem', letterSpacing: '0.05em' }}>
+                      {isAr ? 'الميزانية التقريبية' : 'Target Price'}
+                    </strong>
+                  </div>
+                  <span className="display-serif" style={{ fontSize: '1.05rem', fontStyle: 'italic' }}>
+                    {brief.target_price_per_unit}
+                  </span>
+                </div>
+                <div className="card" style={{ padding: 16, background: 'var(--bg-sandstone)' }}>
+                  <div className="cluster" style={{ marginBottom: 6, gap: 6 }}>
+                    <Globe size={12} style={{ color: 'var(--color-gold-dark)' }} />
+                    <strong style={{ fontSize: '0.78rem', letterSpacing: '0.05em' }}>
+                      {isAr ? 'المنطقة المطلوبة' : 'Origin Preference'}
+                    </strong>
+                  </div>
+                  <span className="display-serif" style={{ fontSize: '1.05rem', fontStyle: 'italic' }}>
+                    {brief.origin_preference}
+                  </span>
+                </div>
+                <div className="card" style={{ padding: 16, background: 'var(--bg-sandstone)' }}>
+                  <div className="cluster" style={{ marginBottom: 6, gap: 6 }}>
+                    <Globe size={12} style={{ color: 'var(--color-gold-dark)' }} />
+                    <strong style={{ fontSize: '0.78rem', letterSpacing: '0.05em' }}>
+                      {isAr ? 'بلد الوصول' : 'Destination'}
+                    </strong>
+                  </div>
+                  <span className="display-serif" style={{ fontSize: '1.05rem', fontStyle: 'italic' }}>
+                    {brief.destination_country}
+                  </span>
+                </div>
+                <div className="card" style={{ padding: 16, background: 'var(--bg-sandstone)' }}>
+                  <div className="cluster" style={{ marginBottom: 6, gap: 6 }}>
+                    <FileText size={12} style={{ color: 'var(--color-gold-dark)' }} />
+                    <strong style={{ fontSize: '0.78rem', letterSpacing: '0.05em' }}>
+                      {isAr ? 'طلب عينات' : 'Samples'}
+                    </strong>
+                  </div>
+                  <span className="display-serif" style={{ fontSize: '1.05rem', fontStyle: 'italic' }}>
+                    {brief.samples_requested ? (isAr ? 'مطلوبة' : 'Required') : (isAr ? 'بدون عينات' : 'Bulk Direct')}
+                  </span>
+                </div>
+                <div className="card" style={{ padding: 16, background: 'var(--bg-sandstone)' }}>
+                  <div className="cluster" style={{ marginBottom: 6, gap: 6 }}>
+                    <Calendar size={12} style={{ color: 'var(--color-gold-dark)' }} />
+                    <strong style={{ fontSize: '0.78rem', letterSpacing: '0.05em' }}>
+                      {isAr ? 'تاريخ التسليم' : 'Target Date'}
+                    </strong>
+                  </div>
+                  <span className="display-serif" style={{ fontSize: '1.05rem', fontStyle: 'italic' }}>
+                    {brief.required_date}
+                  </span>
+                </div>
               </div>
-              <div>
-                <strong>{isAr ? 'الميزانية التقريبية:' : 'Target Price:'}</strong> {brief.target_price_per_unit}
-              </div>
-              <div>
-                <strong>{isAr ? 'المنطقة المطلوبة:' : 'Origin Preference:'}</strong> {brief.origin_preference}
-              </div>
-              <div>
-                <strong>{isAr ? 'بلد الوصول:' : 'Destination:'}</strong> {brief.destination_country}
-              </div>
-              <div>
-                <strong>{isAr ? 'طلب عينات:' : 'Samples:'}</strong> {brief.samples_requested ? 'Required' : 'Bulk Direct'}
-              </div>
-              <div>
-                <strong>{isAr ? 'تاريخ التسليم:' : 'Target Date:'}</strong> {brief.required_date}
-              </div>
-            </div>
-          </div>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );
