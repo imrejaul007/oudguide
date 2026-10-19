@@ -31,24 +31,17 @@ export function Header({ locale }: { locale: string }) {
       <header className="header-sticky">
         <div className="container nav-wrapper">
           <div className="brand-emblem">
-            <Link href={`/${locale}`} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '10px',
-                background: 'linear-gradient(135deg, #5c161d 0%, #1e0508 100%)',
-                border: '1.5px solid rgba(197, 155, 39, 0.45)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#dfba55',
-                fontFamily: 'var(--font-display)',
-                fontWeight: 900,
-                fontSize: '20px',
-                boxShadow: '0 4px 14px rgba(92, 22, 29, 0.35)',
-              }}>
-                OG
-              </div>
+            <Link href={`/${locale}`} style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <img
+                src="/logo.png"
+                alt="OudGuide Logo"
+                style={{
+                  height: '46px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 2px 8px rgba(197, 155, 39, 0.35))',
+                }}
+              />
               <div>
                 <div className="brand-title">
                   OudGuide
@@ -71,7 +64,7 @@ export function Header({ locale }: { locale: string }) {
               🌐 {otherLocaleLabel}
             </Link>
             <Link href={`/${locale}/rfq`} className="btn-gold">
-              <span>{isAr ? 'طلب توريد بالجملة' : 'Wholesale RFQ'}</span>
+              <span>{isAr ? 'طلب تور��د بالجملة' : 'Wholesale RFQ'}</span>
               <span>{isAr ? '←' : '→'}</span>
             </Link>
           </div>

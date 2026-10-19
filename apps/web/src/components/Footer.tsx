@@ -8,9 +8,22 @@ export function Footer({ locale }: { locale: string }) {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <div className="brand-title" style={{ color: '#ffffff', marginBottom: '14px', fontSize: '24px' }}>
-              OudGuide <span style={{ color: 'var(--color-gold)' }}>· دَلِيلُ العُود</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
+              <img
+                src="/logo.png"
+                alt="OudGuide Logo"
+                style={{
+                  height: '42px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 2px 8px rgba(197, 155, 39, 0.35))',
+                }}
+              />
+              <div className="brand-title" style={{ color: '#ffffff', fontSize: '22px', margin: 0 }}>
+                OudGuide <span style={{ color: 'var(--color-gold)' }}>· دَلِيلُ العُود</span>
+              </div>
             </div>
+
             <p style={{ fontSize: '14px', color: '#a8a49a', lineHeight: 1.75, maxWidth: '400px', margin: '0 0 18px' }}>
               {isAr
                 ? 'المرجع العالمي المستقل لأبحاث العود الطبيعي، دهن العود الخالص، الزيوت العطرية، وخدمة الربط التجاري المحايدة بين كبار المنتجين والمشترين الدوليين.'
