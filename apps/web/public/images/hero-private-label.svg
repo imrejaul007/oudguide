@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="perfumeBg" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#14151b"/>
+      <stop offset="60%" stop-color="#0c0d12"/>
+      <stop offset="100%" stop-color="#040406"/>
+    </radialGradient>
+    <linearGradient id="matteBlack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c2e3b"/>
+      <stop offset="50%" stop-color="#191a22"/>
+      <stop offset="100%" stop-color="#0d0e13"/>
+    </linearGradient>
+    <linearGradient id="goldAccents" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fae8b2"/>
+      <stop offset="40%" stop-color="#c59b27"/>
+      <stop offset="100%" stop-color="#7a5a0f"/>
+    </linearGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#perfumeBg)"/>
+  <circle cx="400" cy="300" r="210" fill="#c59b27" opacity="0.1" filter="url(#goldGlow)"/>
+
+  <!-- Presentation Pedestal -->
+  <ellipse cx="400" cy="480" rx="250" ry="45" fill="#111218" stroke="#c59b27" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Luxury Matte Flacon Shoulder and Body -->
+  <rect x="290" y="190" width="220" height="270" rx="16" fill="url(#matteBlack)" stroke="url(#goldAccents)" stroke-width="2"/>
+
+  <!-- Beveled Crystal Collar -->
+  <rect x="360" y="150" width="80" height="40" rx="4" fill="url(#goldAccents)" stroke="#fae8b2" stroke-width="1.2"/>
+
+  <!-- Heavy Magnetic Gold Cap -->
+  <rect x="345" y="70" width="110" height="80" rx="8" fill="url(#goldAccents)" stroke="#fae8b2" stroke-width="1.5"/>
+
+  <!-- Royal Front Emblem / Metal Plaque -->
+  <rect x="330" y="250" width="140" height="150" rx="8" fill="#121319" stroke="url(#goldAccents)" stroke-width="1.5"/>
+  <circle cx="400" cy="295" r="24" fill="none" stroke="url(#goldAccents)" stroke-width="1.8"/>
+  <text x="400" y="302" fill="#dfba55" font-family="Georgia, serif" font-size="16" font-weight="bold" text-anchor="middle">OG</text>
+
+  <line x1="355" y1="335" x2="445" y2="335" stroke="url(#goldAccents)" stroke-width="1"/>
+  <text x="400" y="355" fill="#fae8b2" font-family="'Cinzel', Georgia, serif" font-size="11" letter-spacing="3" text-anchor="middle">EXTRAIT</text>
+  <text x="400" y="375" fill="#c59b27" font-family="'Cinzel', Georgia, serif" font-size="9" letter-spacing="2" text-anchor="middle">DE PARFUM</text>
+
+  <!-- Luxury Badge -->
+  <rect x="290" y="535" width="220" height="34" rx="17" fill="#121319" stroke="#c59b27" stroke-width="1"/>
+  <text x="400" y="557" fill="#dfba55" font-family="Georgia, serif" font-size="12" font-weight="bold" letter-spacing="2" text-anchor="middle">PRIVATE LABEL FORMULATION</text>
+</svg>
