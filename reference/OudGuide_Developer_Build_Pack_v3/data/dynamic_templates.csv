@@ -1,0 +1,8 @@
+﻿id,family,pattern,count_variable,publication_gate,required_fields
+D01,Business profile,/en/businesses/{business-slug-id}/,B,One independently researched organization; repeat by branches only when meaningful,name; roles; places; attributed claims; contact eligibility; how inquiry works; corrections
+D02,Branch,/en/businesses/{business-slug-id}/locations/{branch-slug-id}/,L,Real independently useful physical branch; otherwise section on main profile,checked location; opening hours where current; access; parent; verified media or no image
+D03,Brand,/en/brands/{brand-slug-id}/,R,Distinct brand; ownership and brand/organization relationships,identity; documented credits; formats; related references; current sources
+D04,Fragrance reference,/en/fragrances/{brand-slug}/{product-slug-id}/,F,"Identifiable actual released product, not imagined variants",declared notes; composition evidence separately; release/credits sources; variants; seller offers
+D05,Material batch,/en/materials/{batch-slug-id}/,M,"Public, sufficiently evidenced batch; no private stock leakage",seller; batch; claim status; grade issuer; quantity; photos; offers; evidence dates
+D06,Expert/person,/en/people/{person-slug-id}/,E,"Consenting/public professional identity, relevant work documented",roles; publications; credits; editorial disclosures
+D07,Event,/en/events/{event-slug-id}/,V,Real event; dates and organizers checked,date; location; status; official booking source; no invented events

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "DEC01",
+    "decision": "Legal operating entity and ownership disclosure",
+    "status": "REQUIRED BEFORE COLLECTION",
+    "owner": "Owner + counsel",
+    "default_or_constraint": "Neutral headline permitted; actual controller/affiliation cannot be invented"
+  },
+  {
+    "id": "DEC02",
+    "decision": "Billing cadence",
+    "status": "APPROVAL REQUIRED",
+    "owner": "Owner + finance",
+    "default_or_constraint": "Default assumption AED1200 annually upfront, not a decided monthly installment plan"
+  },
+  {
+    "id": "DEC03",
+    "decision": "VAT/tax and invoicing",
+    "status": "JURISDICTION REVIEW",
+    "owner": "Finance + counsel",
+    "default_or_constraint": "No tax rate or inclusive/exclusive assumption embedded"
+  },
+  {
+    "id": "DEC04",
+    "decision": "Lead price and exclusivity/refunds",
+    "status": "APPROVAL REQUIRED",
+    "owner": "Owner",
+    "default_or_constraint": "Unpriced until evidence; separate membership and lead terms"
+  },
+  {
+    "id": "DEC05",
+    "decision": "Markets/channels enabled for introductions",
+    "status": "REQUIRED BEFORE RELEASE",
+    "owner": "Privacy/legal",
+    "default_or_constraint": "Start with reviewed matrix; hold unreviewed jurisdictions"
+  },
+  {
+    "id": "DEC06",
+    "decision": "Partner identity and access contract",
+    "status": "REQUIRED BEFORE ACCESS",
+    "owner": "Operations + counsel",
+    "default_or_constraint": "No anonymous unrestricted buyer-data export"
+  },
+  {
+    "id": "DEC07",
+    "decision": "Two-site image rights inventory",
+    "status": "REQUIRED BEFORE MEDIA PUBLICATION",
+    "owner": "Owner + editor",
+    "default_or_constraint": "Third-party assets on owned storefront still need rights confirmation"
+  },
+  {
+    "id": "DEC08",
+    "decision": "Third-party owner uploads exception",
+    "status": "NOT APPROVED",
+    "owner": "Owner",
+    "default_or_constraint": "Current rule only two owned-site image sources; use text placeholders elsewhere"
+  },
+  {
+    "id": "DEC09",
+    "decision": "Portal brand identity",
+    "status": "NOT APPROVED",
+    "owner": "Owner + designer",
+    "default_or_constraint": "Temporary text wordmark, not modified Al Mutalib falcon"
+  },
+  {
+    "id": "DEC10",
+    "decision": "Hosting data regions and providers",
+    "status": "NOT SELECTED",
+    "owner": "Engineering + privacy",
+    "default_or_constraint": "Reference architecture not deployed account IDs"
+  },
+  {
+    "id": "DEC11",
+    "decision": "Al Mutalib CRM/quote endpoints",
+    "status": "UNVERIFIED",
+    "owner": "Commerce engineer",
+    "default_or_constraint": "No guessed URLs; server-side authorized destination only"
+  },
+  {
+    "id": "DEC12",
+    "decision": "English/Arabic release corpus",
+    "status": "APPROVAL REQUIRED",
+    "owner": "Editorial lead",
+    "default_or_constraint": "Do not double public pages with unreviewed translation"
+  },
+  {
+    "id": "DEC13",
+    "decision": "Membership cancellation/renewal",
+    "status": "APPROVAL REQUIRED",
+    "owner": "Owner + counsel",
+    "default_or_constraint": "Publish exact terms before payment"
+  },
+  {
+    "id": "DEC14",
+    "decision": "Recipient cap and outreach policy",
+    "status": "APPROVAL REQUIRED",
+    "owner": "Owner + privacy",
+    "default_or_constraint": "Recommended default at most three approved suppliers"
+  },
+  {
+    "id": "DEC15",
+    "decision": "Retention periods and rights handling",
+    "status": "JURISDICTION REVIEW",
+    "owner": "Privacy/legal",
+    "default_or_constraint": "No indefinite lead retention"
+  },
+  {
+    "id": "DEC16",
+    "decision": "Public star reviews/community",
+    "status": "LATER FEATURE",
+    "owner": "Owner",
+    "default_or_constraint": "No review stars until credible moderation and methods exist"
+  },
+  {
+    "id": "DEC17",
+    "decision": "Scientific/terminology reviewers",
+    "status": "STAFFING REQUIRED",
+    "owner": "Editorial lead",
+    "default_or_constraint": "No invented expert identities"
+  },
+  {
+    "id": "DEC18",
+    "decision": "Full rendered technical crawl follow-up",
+    "status": "NOT COMPLETED HERE",
+    "owner": "SEO engineer",
+    "default_or_constraint": "68-URL evidence audit is not full rendered crawling"
+  },
+  {
+    "id": "DEC19",
+    "decision": "Global supplier research census",
+    "status": "NOT COMPLETED",
+    "owner": "Directory team",
+    "default_or_constraint": "Business list grows from independent research, not competitor cloning"
+  },
+  {
+    "id": "DEC20",
+    "decision": "Measured keyword demand",
+    "status": "NOT MEASURED",
+    "owner": "SEO lead",
+    "default_or_constraint": "Connect authorized tools/exports; no fabricated volume/difficulty"
+  }
+]

@@ -1,0 +1,1102 @@
+[
+  {
+    "test_id": "QA-001",
+    "area": "Content and sources",
+    "requirement": "Every published factual claim has the right source scope",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-002",
+    "area": "Content and sources",
+    "requirement": "Merchant claim is labelled as merchant-declared",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-003",
+    "area": "Content and sources",
+    "requirement": "No invented region/product/grade association",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-004",
+    "area": "Content and sources",
+    "requirement": "Title H1 social title and canonical refer to same article",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-005",
+    "area": "Content and sources",
+    "requirement": "Numerical list count matches visible records",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-006",
+    "area": "Content and sources",
+    "requirement": "Updated claim flags all referencing articles",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-007",
+    "area": "Content and sources",
+    "requirement": "Qualified reviewer recorded where required",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-008",
+    "area": "Content and sources",
+    "requirement": "No competitor prose copied into portal",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-009",
+    "area": "Content and sources",
+    "requirement": "Term aliases cannot silently merge distinct meanings",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-010",
+    "area": "Content and sources",
+    "requirement": "No placeholder sources or unverifiable expert bylines",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-011",
+    "area": "Routes and internal links",
+    "requirement": "All candidate paths unique and parent references resolve",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-012",
+    "area": "Routes and internal links",
+    "requirement": "Published indexables reachable from a public index",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-013",
+    "area": "Routes and internal links",
+    "requirement": "Unpublished candidates absent from navigation and sitemap",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-014",
+    "area": "Routes and internal links",
+    "requirement": "No broken in-scope links or fragments",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-015",
+    "area": "Routes and internal links",
+    "requirement": "Redirects have no cycles and use true replacements",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-016",
+    "area": "Routes and internal links",
+    "requirement": "Retired supplier never redirected to unrelated shop",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-017",
+    "area": "Routes and internal links",
+    "requirement": "Large index uses grouped crawlable pagination",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-018",
+    "area": "Routes and internal links",
+    "requirement": "Locale links point to equivalent reviewed content",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-019",
+    "area": "Routes and internal links",
+    "requirement": "UTM/facet duplicates handled without canonical conflicts",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-020",
+    "area": "Routes and internal links",
+    "requirement": "No same-location business cloned for every served country",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-021",
+    "area": "Directory geography",
+    "requirement": "Seller location origin and destination filters independent",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-022",
+    "area": "Directory geography",
+    "requirement": "Material origin not inferred from company address",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-023",
+    "area": "Directory geography",
+    "requirement": "Destination capability scoped to product class and date",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-024",
+    "area": "Directory geography",
+    "requirement": "Unresearched area says coverage gap not no businesses exist",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-025",
+    "area": "Directory geography",
+    "requirement": "Real physical branches only",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-026",
+    "area": "Directory geography",
+    "requirement": "Country seed never declares production automatically",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-027",
+    "area": "Directory geography",
+    "requirement": "Neighborhood page has unique local utility",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-028",
+    "area": "Directory geography",
+    "requirement": "Duplicate business identity review prevents false merge",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-029",
+    "area": "Directory geography",
+    "requirement": "Sponsored module labelled separately from organic order",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-030",
+    "area": "Directory geography",
+    "requirement": "Related-business module explains why each is related",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-031",
+    "area": "Contact entitlement",
+    "requirement": "Anonymous basic profile excludes all phone email site values",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-032",
+    "area": "Contact entitlement",
+    "requirement": "Disabled contacts absent from raw HTML and public JSON",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-033",
+    "area": "Contact entitlement",
+    "requirement": "Disabled contacts absent from JSON-LD and search projections",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-034",
+    "area": "Contact entitlement",
+    "requirement": "Description/media text cannot leak restricted contacts",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-035",
+    "area": "Contact entitlement",
+    "requirement": "Active payment without owner authorization cannot publish contacts",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-036",
+    "area": "Contact entitlement",
+    "requirement": "Owner-approved contact without entitlement stays hidden",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-037",
+    "area": "Contact entitlement",
+    "requirement": "Expired subscription purges public caches",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-038",
+    "area": "Contact entitlement",
+    "requirement": "Subscription loss does not remove independent verification",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-039",
+    "area": "Contact entitlement",
+    "requirement": "Free correction workflow always accessible",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-040",
+    "area": "Contact entitlement",
+    "requirement": "Invoice success return URL cannot activate contacts",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-041",
+    "area": "Neutral form and buyer permission",
+    "requirement": "Hero/form branded OudGuide without mandatory merchant pitch",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-042",
+    "area": "Neutral form and buyer permission",
+    "requirement": "Actual processing/operator information available before collection",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-043",
+    "area": "Neutral form and buyer permission",
+    "requirement": "Basic profile form does not imply message to listed business",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-044",
+    "area": "Neutral form and buyer permission",
+    "requirement": "Supplier-specific request cannot silently become general matching",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-045",
+    "area": "Neutral form and buyer permission",
+    "requirement": "Separate optional marketing control unticked",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-046",
+    "area": "Neutral form and buyer permission",
+    "requirement": "One chosen contact channel sufficient",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-047",
+    "area": "Neutral form and buyer permission",
+    "requirement": "Actual supplier named before contact release",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-048",
+    "area": "Neutral form and buyer permission",
+    "requirement": "Affiliated supplier relationship visible at introduction",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-049",
+    "area": "Neutral form and buyer permission",
+    "requirement": "Recipient identity version and fields recorded",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-050",
+    "area": "Neutral form and buyer permission",
+    "requirement": "Buyer can refuse extra suppliers without losing primary chosen request",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-051",
+    "area": "Lead marketplace",
+    "requirement": "Partner preview contains no direct contact or original attachments",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-052",
+    "area": "Lead marketplace",
+    "requirement": "Redacted brief checked for identifying free text",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-053",
+    "area": "Lead marketplace",
+    "requirement": "Unapproved/suspended partner cannot view opportunities",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-054",
+    "area": "Lead marketplace",
+    "requirement": "Lead purchase alone cannot bypass recipient approval",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-055",
+    "area": "Lead marketplace",
+    "requirement": "Maximum recipient cap enforced in a transaction",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-056",
+    "area": "Lead marketplace",
+    "requirement": "New recipient requires new grant",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-057",
+    "area": "Lead marketplace",
+    "requirement": "Affiliate sales access counts against exclusive offer",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-058",
+    "area": "Lead marketplace",
+    "requirement": "Duplicate access purchase/dispatch idempotent",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-059",
+    "area": "Lead marketplace",
+    "requirement": "Expired or withdrawn lead not sold as fresh",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-060",
+    "area": "Lead marketplace",
+    "requirement": "Partner contract forbids onward resale and unrelated marketing",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-061",
+    "area": "Dispatch and privacy",
+    "requirement": "Verified contact channel required before external release",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-062",
+    "area": "Dispatch and privacy",
+    "requirement": "Dispatch rechecks withdrawal immediately before sending",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-063",
+    "area": "Dispatch and privacy",
+    "requirement": "Only granted fields and channels released",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-064",
+    "area": "Dispatch and privacy",
+    "requirement": "Pending outbox cancelled on withdrawal",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-065",
+    "area": "Dispatch and privacy",
+    "requirement": "Already-released recipients receive suppression notice as applicable",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-066",
+    "area": "Dispatch and privacy",
+    "requirement": "Business identity in outbound introduction correct",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-067",
+    "area": "Dispatch and privacy",
+    "requirement": "PII absent from logs URLs analytics and public caches",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-068",
+    "area": "Dispatch and privacy",
+    "requirement": "Private access isolated between supplier organizations",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-069",
+    "area": "Dispatch and privacy",
+    "requirement": "Rights request authentication and policy deadline handled",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-070",
+    "area": "Dispatch and privacy",
+    "requirement": "Retention deletion includes derived projections and backup restore procedure",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-071",
+    "area": "Payments and billing",
+    "requirement": "Annual upfront versus monthly installment wording approved",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-072",
+    "area": "Payments and billing",
+    "requirement": "Tax treatment reviewed not silently assumed",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-073",
+    "area": "Payments and billing",
+    "requirement": "Webhook signature validated",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-074",
+    "area": "Payments and billing",
+    "requirement": "Webhook event ID deduplicated",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-075",
+    "area": "Payments and billing",
+    "requirement": "Out-of-order events reconciled",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-076",
+    "area": "Payments and billing",
+    "requirement": "Payment cannot set verification or consent status",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-077",
+    "area": "Payments and billing",
+    "requirement": "Refund/cancellation entitlement behaviour correct",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-078",
+    "area": "Payments and billing",
+    "requirement": "Lead reservation expiry triggers agreed void/credit handling",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-079",
+    "area": "Payments and billing",
+    "requirement": "Currency minor units used without floating-point errors",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-080",
+    "area": "Payments and billing",
+    "requirement": "No sale of guaranteed leads or ranking-credit backlinks",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-081",
+    "area": "Media",
+    "requirement": "Each asset has source rights holder and usage scope",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-082",
+    "area": "Media",
+    "requirement": "Al Mutalib photo not shown as rival business inventory",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-083",
+    "area": "Media",
+    "requirement": "Product identity and logo never altered by image processing",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-084",
+    "area": "Media",
+    "requirement": "Thumbnail not upscaled as original hero",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-085",
+    "area": "Media",
+    "requirement": "No generic wood image falsely labelled as a forest",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-086",
+    "area": "Media",
+    "requirement": "Alternative text describes image not keywords",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-087",
+    "area": "Media",
+    "requirement": "Responsive dimensions and source sets render correctly",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-088",
+    "area": "Media",
+    "requirement": "Expired/revoked asset removed from pages and caches",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-089",
+    "area": "Media",
+    "requirement": "Image import blocks private-network URLs and redirect tricks",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-090",
+    "area": "Media",
+    "requirement": "Only approved image-source domain or approved exception used",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-091",
+    "area": "SEO AEO and accessibility",
+    "requirement": "Important pages have readable server-rendered HTML",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-092",
+    "area": "SEO AEO and accessibility",
+    "requirement": "Facet combinations cannot create infinite crawl paths",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-093",
+    "area": "SEO AEO and accessibility",
+    "requirement": "Robots noindex and canonical policies are not contradictory",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-094",
+    "area": "SEO AEO and accessibility",
+    "requirement": "Structured data matches visible content",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-095",
+    "area": "SEO AEO and accessibility",
+    "requirement": "FAQ rich-result claims not used as a growth promise",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-096",
+    "area": "SEO AEO and accessibility",
+    "requirement": "OAI-SearchBot and GPTBot policies independent",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-097",
+    "area": "SEO AEO and accessibility",
+    "requirement": "Sitemaps contain only canonical published indexables",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-098",
+    "area": "SEO AEO and accessibility",
+    "requirement": "Keyboard focus dialogs and errors work",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-099",
+    "area": "SEO AEO and accessibility",
+    "requirement": "Arabic RTL mixed phone/Latin text readable",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-100",
+    "area": "SEO AEO and accessibility",
+    "requirement": "No fake reviews ratings or current pricing",
+    "priority": "P1",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-101",
+    "area": "Security and reliability",
+    "requirement": "Admin high-risk roles use MFA",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-102",
+    "area": "Security and reliability",
+    "requirement": "CSRF session and tenant isolation tested",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-103",
+    "area": "Security and reliability",
+    "requirement": "Uploads quarantined scanned and private",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-104",
+    "area": "Security and reliability",
+    "requirement": "Public endpoints rate limited without blocking legitimate access",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-105",
+    "area": "Security and reliability",
+    "requirement": "Sensitive pages use no-store and authorization",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-106",
+    "area": "Security and reliability",
+    "requirement": "Background retries cannot duplicate introductions",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-107",
+    "area": "Security and reliability",
+    "requirement": "Race test withdrawal versus dispatch fails closed",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-108",
+    "area": "Security and reliability",
+    "requirement": "Full backup restore verified",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-109",
+    "area": "Security and reliability",
+    "requirement": "Staging protected and synthetic seed data only",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  },
+  {
+    "test_id": "QA-110",
+    "area": "Security and reliability",
+    "requirement": "Rollback and monitoring runbooks exercised",
+    "priority": "P0",
+    "test_method": "Automated integration/E2E or documented manual review appropriate to requirement",
+    "expected": "Requirement holds in production-like fixtures; failure blocks relevant feature",
+    "execution_status": "NOT RUN: portal not built",
+    "owner": "Engineering + editorial/privacy owner as applicable"
+  }
+]

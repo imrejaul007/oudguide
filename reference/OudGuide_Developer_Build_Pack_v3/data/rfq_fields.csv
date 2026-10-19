@@ -1,0 +1,68 @@
+﻿ID,Form stage,Field,Input type,When shown,Required?,Validation / choices,Privacy / interpretation
+Q01,Start,Product family,Select,All requests,Required,Oud wood; oud oil; perfume oil; finished perfume; bakhoor/incense; related products; not sure,"Public taxonomy, private buyer answer"
+Q02,Start,Purchase purpose,Select,All requests,Required,Wholesale/resale; manufacturing; private label; retail/personal; gifting; not sure,Do not reject genuine buyers without a registered business
+Q03,Start,Buyer destination country,Country selector,All requests,Required,Choose delivery country explicitly; do not rely only on IP,Used for matching and eligibility
+Q04,Start,Buyer destination city,Place selector + fallback text,All requests,Required,Match place ID when possible; preserve buyer text,No exact street address at first step
+Q05,Start,Quantity and unit,Number + unit + not sure,All requests,Required or Not sure,Positive value; g/kg for wood; mL/L/g/kg where appropriate for oils; units for bottles,Do not convert volume to mass without documented density
+Q06,Start,Product/trade name,Search + free text,All requests,Optional,Preserve exact wording and selected taxonomy ID,Unknown trade names go to review; no forced synonym mapping
+Q07,Start,Desired origin country,Multi-select,Material requests,Optional,Any; specific countries; not sure,A buyer preference is not origin evidence
+Q08,Start,Desired origin region,Region selector,Specific origin chosen,Optional,Only applicable researched region options,No implied universal link between trade name and region
+Q09,Start,Budget amount and currency,Number + currency + flexible,All requests,Optional,Specify total/per-unit basis separately,Private commercial information
+Q10,Start,Budget basis,Select,Budget entered,Conditional,Total order; per gram; per kg; per mL; per litre; per bottle,Prevent comparing incompatible quantities
+Q11,Start,Required date,Date or flexible,All requests,Optional,Past dates flagged; no delivery promise generated,Private
+Q12,Start,Sample preference,Select,All requests,Required,Yes; no; advice needed,Triggers sample branch only
+Q13,Wood,Trade grade as requested,Text + Not sure,Oud wood,Optional,Capture Super/Double Super/Triple Super as buyer wording,Never translate automatically into a universal rank
+Q14,Wood,Physical size and form,Multi-select + dimensions,Wood/incense/beads,Optional,Pieces; slices; strips; blocks; powder; other; dimensions in mm if known,Use chips only when user/supplier actually uses that label
+Q15,Wood,Intended use,Select,Oud wood,Optional,Heating/burning; distillation; manufacture; collecting; carving; not sure,Routes to relevant business capabilities
+Q16,Wood,Treatment preference,Multi-select,Wood/incense,Optional,Declared untreated; infused/scented acceptable; treatment disclosure required; not sure,Do not claim a photograph proves absence of treatment
+Q17,Wood,Sourcing preference,Select,Oud wood/oil,Optional,Cultivated; documented other source; no preference; advice needed,No sourcing legality guarantee from selection
+Q18,Wood,Resin/density preference,Text,Oud wood,Optional,"Record desired evidence or test conditions, not just sinking label",Density alone is not an authenticity verdict
+Q19,Wood,Cleaning and preparation,Select + text,Oud wood,Optional,Cleaned; minimally processed; specified size preparation; not sure,Seller confirmation required
+Q20,Wood,Aroma preferences,Multi-select + text,Aromatic materials,Optional,Buyer-described sweet/woody/smoky/etc.; dislikes,"Subjective preferences, not origin proofs"
+Q21,Wood,Reference media,Private upload,All requests,Optional,Size/type allowlist; malware scan; strip location metadata,Signed access only; no public media sitemap
+Q22,Wood,Acceptance/quality evidence,Multi-select + text,Material requests,Optional,Batch images; live video; sample approval; agreed tests; documents,Do not promise any test proves all quality claims
+Q23,Oil,Oil category,Select,Oud oil/perfume oil,Conditional,Declared oud oil; attar blend; fragrance compound; diluted oil; not sure,"Keep pure, blend and synthetic-accord categories distinct"
+Q24,Oil,Distillation preference,Text + not sure,Oud oil,Optional,Method and date preferences when meaningful,Seller/batch evidence needed for responses
+Q25,Oil,Dilution/carrier preference,Text + not sure,Oil/attar requests,Optional,Desired dilution; carrier restrictions; use-case constraints,No skin-safety assurance inferred
+Q26,Oil,Batch/age preference,Text,Oud oil,Optional,Specify what is claimed aged and reference date,Age label alone not verified history
+Q27,Oil,Technical documents needed,Multi-select,Manufacturing/oil requests,Optional,SDS; applicable conformity information; COA; batch test report; ingredient information,Applicability depends on product/use/destination
+Q28,Oil,Consistency requirement,Select,Repeat oil sourcing,Optional,Single batch; repeatable blend; natural batch variation accepted,Do not guarantee identical future natural batches
+Q29,Oil,Packaging and seal,Select + text,Oil requests,Optional,Bulk container; small bottles; tamper seal; other,Units and closure details recorded
+Q30,Perfume,Finished or private label,Select,Finished perfume,Conditional,Existing branded product; private label; custom formulation; not sure,Do not offer another brand's identity without authorization
+Q31,Perfume,Concentration/format,Text,Finished perfume,Optional,EDP/EDT/extrait/oil/other as requested,Capture stated terms; no arbitrary percentage inference
+Q32,Perfume,Bottle size and count,Number fields,Finished perfume,Optional,mL per bottle and number of units separately,Order quantity remains unit-based
+Q33,Perfume,Scent brief,Text,Perfume/private label,Optional,"Desired family, notes and performance context",Notes are not an ingredient declaration
+Q34,Perfume,Branding and label needs,Text,Private label,Optional,"Brand assets, language, pack format, destination needs",Private licensed assets only
+Q35,Perfume,Development and testing,Select + text,Custom formulation,Optional,Prototype; samples; stability/compatibility needs; not sure,Quote scope and responsibilities must be agreed
+Q36,Sample,Sample quantity,Number + unit,Samples requested,Optional,Positive amount; compatible unit,Separate from eventual bulk order
+Q37,Sample,Number of selections,Integer,Samples requested,Optional,Positive integer; reasonable platform limit,No guaranteed free samples
+Q38,Sample,Paid sample budget,Amount + currency + not sure,Samples requested,Optional,Separate sample and courier cost expectations,Commercial acceptance occurs later
+Q39,Sample,Same-batch requirement,Select,Samples requested,Optional,Require bulk from sampled batch; acceptable variation; advice needed,Bind to batch ID where supplier can support it
+Q40,Sample,Sample delivery country/city,Place selectors,Different from bulk destination,Conditional,Validate separately from bulk destination,Collect exact address only when needed to dispatch
+Q41,Sample,Sample approval process,Text,Samples requested,Optional,Evaluation criteria; reviewer; desired timeline,Do not silently convert sample inquiry to paid order
+Q42,Delivery,Postal code,Text,Needed for a meaningful shipping quote,Conditional,Country-sensitive format; no universal numeric rule,Minimize address collection
+Q43,Delivery,Delivery method,Select,All requests,Optional,Courier; air cargo; other; seller advice,No universal worldwide shipping promise
+Q44,Delivery,Importer/clearance arrangement,Select + text,Cross-border commercial request,Optional,Buyer; supplier; broker; advice needed,Not a substitute for destination legal review
+Q45,Delivery,Trade terms preference,Text + not sure,Commercial shipment,Optional,Named rule/place/version only when known,No automatic DDP/export guarantee
+Q46,Delivery,Documentation requirements,Multi-select + text,Cross-border material request,Optional,Invoice; origin evidence; applicable permits; packing details; advice needed,"Per product, route and jurisdiction; not blanket CITES statements"
+Q47,Delivery,Order recurrence,Select,Wholesale,Optional,One-off; monthly; quarterly; other; not sure,No subscription implied
+Q48,Contact,Buyer name,Text,Submission,Required,Length and character validation,Private
+Q49,Contact,Company name,Text,Business buyer,Optional,Allow sole traders and buyers still researching,Private unless buyer authorizes sharing
+Q50,Contact,Preferred contact channel,Select,Submission,Required,Email or phone/WhatsApp,Only require the chosen working channel
+Q51,Contact,Email,Email field,Email chosen,Conditional,Email syntax; verification before sensitive delivery if required,Private; no analytics query parameters
+Q52,Contact,Phone/WhatsApp,Country code + number,Phone chosen,Conditional,International parsing; preserve leading +; no one-country mask,Private; do not require both phone and email
+Q53,Contact,Language and time zone,Select + text,Submission,Optional,Buyer preference,Used only for service follow-up
+Q54,Consent,OudGuide processing notice and recipient approval step,Read-only recipient banner,Initial processing notice; recipient names at confirmation before release,Required display,Initial recipient is OudGuide operations. Show each selected actual supplier before introduction.,Neutral CTA does not conceal controller or later supplier; affiliate is disclosed in recipient card.
+Q55,Consent,Inquiry processing acknowledgment,Unticked affirmative control,Submission,Required for chosen service,"Clear purpose, recipient and privacy notice version",Store choice and notice version; legal basis review before launch
+Q56,Consent,Additional supplier matching permission,Unticked opt-in,Supplier-specific request,Optional,Optional; named recipient approval before release; refusal must not cancel a supplier-specific primary request,Named recipients before release; refusal must not block primary inquiry
+Q57,Consent,Marketing permission,Unticked opt-in,Submission,Optional,Separate from quotation processing,No newsletter subscription bundled with RFQ
+Q58,System,Lead ID and idempotency key,Server-generated,Submission,Automatic,Unique request; safe retry without duplicate dispatch,Do not accept client-supplied recipient authorization
+Q59,System,Context and recipient snapshot,Server record,Submission,Automatic,"Page/entity IDs, destination, directory context, request mode, service notice version, recipient grant versions; no ad analytics PII","No buyer PII in UTM tags, browser URLs or public logs"
+Q60,System,Delivery state and access log,Server record,After submission,Automatic,draft; submitted; channel-verified; qualification; matching; recipient-approval; authorized; dispatched; answered; closed; withdrawn; rejected; expired,Transport success is not supplier acceptance or a quote
+Q61,Matching,Request mode,Choice,All inquiries,Required,OudGuide matching / chosen supplier only,No silent source-profile switching
+Q62,Matching,Maximum supplier introductions,Choice,Matching flow,Required at recipient approval,1 or up to 3 default policy; configurable after approval,Maximum is not a promise of that many responses
+Q63,Matching,Anonymized/redacted brief permission,Affirmative service choice,Before partner preview,Required for marketplace previews,"No names, exact address, contact, website, free-text or original attachments in preview",Redacted does not automatically mean anonymous; assess re-identification
+Q64,Approval,Named recipient set,Explicit selection,Before any external PII release,Required per introduction,"Business identities, affiliation label, approved channels, field set",New recipient requires new approval
+Q65,Approval,Consent withdrawal control,Secure action,After submit,Always accessible,Stops pending release; sends suppression to released recipients,Cannot promise to undo an already delivered message
+Q66,Partner,Lead access offer and exclusivity,Server offer,Approved partner account,Server controlled,Terms version; price minor units; currency; recipient capacity; expiry,Paying never overrides buyer permission; Al Mutalib counts toward exclusivity
+Q67,System,Jurisdiction and channel policy result,Server review,Before release,Required,Allowed/held/blocked; policy version; reviewer if manual,No claim of worldwide legal compliance from generic checkbox

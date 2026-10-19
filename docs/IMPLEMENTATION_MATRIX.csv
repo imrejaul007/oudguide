@@ -1,0 +1,139 @@
+req_id,category,requirement,priority,impl_location,test_location,status,blocker
+QA-001,QA Acceptance: Content and sources,Every published factual claim has the right source scope,P1,,,not_started,Requires application scaffolding
+QA-002,QA Acceptance: Content and sources,Merchant claim is labelled as merchant-declared,P1,,,not_started,Requires application scaffolding
+QA-003,QA Acceptance: Content and sources,No invented region/product/grade association,P1,,,not_started,Requires application scaffolding
+QA-004,QA Acceptance: Content and sources,Title H1 social title and canonical refer to same article,P1,,,not_started,Requires application scaffolding
+QA-005,QA Acceptance: Content and sources,Numerical list count matches visible records,P1,,,not_started,Requires application scaffolding
+QA-006,QA Acceptance: Content and sources,Updated claim flags all referencing articles,P1,,,not_started,Requires application scaffolding
+QA-007,QA Acceptance: Content and sources,Qualified reviewer recorded where required,P1,packages/permissions/src/contact-policy.ts,tests/contact-policy.test.ts,tested_locally,None
+QA-008,QA Acceptance: Content and sources,No competitor prose copied into portal,P1,packages/permissions/src/contact-policy.ts,tests/contact-policy.test.ts,tested_locally,None
+QA-009,QA Acceptance: Content and sources,Term aliases cannot silently merge distinct meanings,P1,,,not_started,Requires application scaffolding
+QA-010,QA Acceptance: Content and sources,No placeholder sources or unverifiable expert bylines,P1,packages/permissions/src/contact-policy.ts,tests/web-server.test.ts,tested_locally,None
+QA-011,QA Acceptance: Routes and internal links,All candidate paths unique and parent references resolve,P1,,,not_started,Requires application scaffolding
+QA-012,QA Acceptance: Routes and internal links,Published indexables reachable from a public index,P1,,,not_started,Requires application scaffolding
+QA-013,QA Acceptance: Routes and internal links,Unpublished candidates absent from navigation and sitemap,P1,,,not_started,Requires application scaffolding
+QA-014,QA Acceptance: Routes and internal links,No broken in-scope links or fragments,P1,,,not_started,Requires application scaffolding
+QA-015,QA Acceptance: Routes and internal links,Redirects have no cycles and use true replacements,P1,,,not_started,Requires application scaffolding
+QA-016,QA Acceptance: Routes and internal links,Retired supplier never redirected to unrelated shop,P1,,,not_started,Requires application scaffolding
+QA-017,QA Acceptance: Routes and internal links,Large index uses grouped crawlable pagination,P1,,,not_started,Requires application scaffolding
+QA-018,QA Acceptance: Routes and internal links,Locale links point to equivalent reviewed content,P1,packages/permissions/src/lead-policy.ts,tests/lead-policy.test.ts,tested_locally,None
+QA-019,QA Acceptance: Routes and internal links,UTM/facet duplicates handled without canonical conflicts,P1,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+QA-020,QA Acceptance: Routes and internal links,No same-location business cloned for every served country,P1,,,not_started,Requires application scaffolding
+QA-021,QA Acceptance: Directory geography,Seller location origin and destination filters independent,P1,,,not_started,Requires application scaffolding
+QA-022,QA Acceptance: Directory geography,Material origin not inferred from company address,P1,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+QA-023,QA Acceptance: Directory geography,Destination capability scoped to product class and date,P1,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+QA-024,QA Acceptance: Directory geography,Unresearched area says coverage gap not no businesses exist,P1,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+QA-025,QA Acceptance: Directory geography,Real physical branches only,P1,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+QA-026,QA Acceptance: Directory geography,Country seed never declares production automatically,P1,,,not_started,Requires application scaffolding
+QA-027,QA Acceptance: Directory geography,Neighborhood page has unique local utility,P1,,,not_started,Requires application scaffolding
+QA-028,QA Acceptance: Directory geography,Duplicate business identity review prevents false merge,P1,,,not_started,Requires application scaffolding
+QA-029,QA Acceptance: Directory geography,Sponsored module labelled separately from organic order,P1,,,not_started,Requires application scaffolding
+QA-030,QA Acceptance: Directory geography,Related-business module explains why each is related,P1,,,not_started,Requires application scaffolding
+QA-031,QA Acceptance: Contact entitlement,Anonymous basic profile excludes all phone email site values,P0,,,not_started,Requires application scaffolding
+QA-032,QA Acceptance: Contact entitlement,Disabled contacts absent from raw HTML and public JSON,P0,,,not_started,Requires application scaffolding
+QA-033,QA Acceptance: Contact entitlement,Disabled contacts absent from JSON-LD and search projections,P0,,,not_started,Requires application scaffolding
+QA-034,QA Acceptance: Contact entitlement,Description/media text cannot leak restricted contacts,P0,,,not_started,Requires application scaffolding
+QA-035,QA Acceptance: Contact entitlement,Active payment without owner authorization cannot publish contacts,P0,,,not_started,Requires application scaffolding
+QA-036,QA Acceptance: Contact entitlement,Owner-approved contact without entitlement stays hidden,P0,,,not_started,Requires application scaffolding
+QA-037,QA Acceptance: Contact entitlement,Expired subscription purges public caches,P0,,,not_started,Requires application scaffolding
+QA-038,QA Acceptance: Contact entitlement,Subscription loss does not remove independent verification,P0,,,not_started,Requires application scaffolding
+QA-039,QA Acceptance: Contact entitlement,Free correction workflow always accessible,P0,,,not_started,Requires application scaffolding
+QA-040,QA Acceptance: Contact entitlement,Invoice success return URL cannot activate contacts,P0,,,not_started,Requires application scaffolding
+QA-041,QA Acceptance: Neutral form and buyer permission,Hero/form branded OudGuide without mandatory merchant pitch,P0,,,not_started,Requires application scaffolding
+QA-042,QA Acceptance: Neutral form and buyer permission,Actual processing/operator information available before collection,P0,apps/web/src/server.ts,tests/web-server.test.ts,tested_locally,None
+QA-043,QA Acceptance: Neutral form and buyer permission,Basic profile form does not imply message to listed business,P0,,,not_started,Requires application scaffolding
+QA-044,QA Acceptance: Neutral form and buyer permission,Supplier-specific request cannot silently become general matching,P0,,,not_started,Requires application scaffolding
+QA-045,QA Acceptance: Neutral form and buyer permission,Separate optional marketing control unticked,P0,,,not_started,Requires application scaffolding
+QA-046,QA Acceptance: Neutral form and buyer permission,One chosen contact channel sufficient,P0,,,not_started,Requires application scaffolding
+QA-047,QA Acceptance: Neutral form and buyer permission,Actual supplier named before contact release,P0,,,not_started,Requires application scaffolding
+QA-048,QA Acceptance: Neutral form and buyer permission,Affiliated supplier relationship visible at introduction,P0,,,not_started,Requires application scaffolding
+QA-049,QA Acceptance: Neutral form and buyer permission,Recipient identity version and fields recorded,P0,,,not_started,Requires application scaffolding
+QA-050,QA Acceptance: Neutral form and buyer permission,Buyer can refuse extra suppliers without losing primary chosen request,P0,scripts/seed.js,tests/connected-journey.test.ts,tested_locally,None
+QA-051,QA Acceptance: Lead marketplace,Partner preview contains no direct contact or original attachments,P0,,,not_started,Requires application scaffolding
+QA-052,QA Acceptance: Lead marketplace,Redacted brief checked for identifying free text,P0,,,not_started,Requires application scaffolding
+QA-053,QA Acceptance: Lead marketplace,Unapproved/suspended partner cannot view opportunities,P0,,,not_started,Requires application scaffolding
+QA-054,QA Acceptance: Lead marketplace,Lead purchase alone cannot bypass recipient approval,P0,,,not_started,Requires application scaffolding
+QA-055,QA Acceptance: Lead marketplace,Maximum recipient cap enforced in a transaction,P0,,,not_started,Requires application scaffolding
+QA-056,QA Acceptance: Lead marketplace,New recipient requires new grant,P0,,,not_started,Requires application scaffolding
+QA-057,QA Acceptance: Lead marketplace,Affiliate sales access counts against exclusive offer,P0,,,not_started,Requires application scaffolding
+QA-058,QA Acceptance: Lead marketplace,Duplicate access purchase/dispatch idempotent,P0,,,not_started,Requires application scaffolding
+QA-059,QA Acceptance: Lead marketplace,Expired or withdrawn lead not sold as fresh,P0,,,not_started,Requires application scaffolding
+QA-060,QA Acceptance: Lead marketplace,Partner contract forbids onward resale and unrelated marketing,P0,packages/contracts/src/rfq-fields.ts,tests/rfq-fields.test.ts,tested_locally,None
+QA-061,QA Acceptance: Dispatch and privacy,Verified contact channel required before external release,P0,,,not_started,Requires application scaffolding
+QA-062,QA Acceptance: Dispatch and privacy,Dispatch rechecks withdrawal immediately before sending,P0,,,not_started,Requires application scaffolding
+QA-063,QA Acceptance: Dispatch and privacy,Only granted fields and channels released,P0,,,not_started,Requires application scaffolding
+QA-064,QA Acceptance: Dispatch and privacy,Pending outbox cancelled on withdrawal,P0,,,not_started,Requires application scaffolding
+QA-065,QA Acceptance: Dispatch and privacy,Already-released recipients receive suppression notice as applicable,P0,,,not_started,Requires application scaffolding
+QA-066,QA Acceptance: Dispatch and privacy,Business identity in outbound introduction correct,P0,,,not_started,Requires application scaffolding
+QA-067,QA Acceptance: Dispatch and privacy,PII absent from logs URLs analytics and public caches,P0,,,not_started,Requires application scaffolding
+QA-068,QA Acceptance: Dispatch and privacy,Private access isolated between supplier organizations,P0,,,not_started,Requires application scaffolding
+QA-069,QA Acceptance: Dispatch and privacy,Rights request authentication and policy deadline handled,P0,,,not_started,Requires application scaffolding
+QA-070,QA Acceptance: Dispatch and privacy,Retention deletion includes derived projections and backup restore procedure,P0,,,not_started,Requires application scaffolding
+QA-071,QA Acceptance: Payments and billing,Annual upfront versus monthly installment wording approved,P0,,,not_started,Requires application scaffolding
+QA-072,QA Acceptance: Payments and billing,Tax treatment reviewed not silently assumed,P0,,,not_started,Requires application scaffolding
+QA-073,QA Acceptance: Payments and billing,Webhook signature validated,P0,,,not_started,Requires application scaffolding
+QA-074,QA Acceptance: Payments and billing,Webhook event ID deduplicated,P0,,,not_started,Requires application scaffolding
+QA-075,QA Acceptance: Payments and billing,Out-of-order events reconciled,P0,,,not_started,Requires application scaffolding
+QA-076,QA Acceptance: Payments and billing,Payment cannot set verification or consent status,P0,,,not_started,Requires application scaffolding
+QA-077,QA Acceptance: Payments and billing,Refund/cancellation entitlement behaviour correct,P0,,,not_started,Requires application scaffolding
+QA-078,QA Acceptance: Payments and billing,Lead reservation expiry triggers agreed void/credit handling,P0,,,not_started,Requires application scaffolding
+QA-079,QA Acceptance: Payments and billing,Currency minor units used without floating-point errors,P0,,,not_started,Requires application scaffolding
+QA-080,QA Acceptance: Payments and billing,No sale of guaranteed leads or ranking-credit backlinks,P0,,,not_started,Requires application scaffolding
+QA-081,QA Acceptance: Media,Each asset has source rights holder and usage scope,P1,,,not_started,Requires application scaffolding
+QA-082,QA Acceptance: Media,Al Mutalib photo not shown as rival business inventory,P1,,,not_started,Requires application scaffolding
+QA-083,QA Acceptance: Media,Product identity and logo never altered by image processing,P1,,,not_started,Requires application scaffolding
+QA-084,QA Acceptance: Media,Thumbnail not upscaled as original hero,P1,,,not_started,Requires application scaffolding
+QA-085,QA Acceptance: Media,No generic wood image falsely labelled as a forest,P1,,,not_started,Requires application scaffolding
+QA-086,QA Acceptance: Media,Alternative text describes image not keywords,P1,,,not_started,Requires application scaffolding
+QA-087,QA Acceptance: Media,Responsive dimensions and source sets render correctly,P1,,,not_started,Requires application scaffolding
+QA-088,QA Acceptance: Media,Expired/revoked asset removed from pages and caches,P1,,,not_started,Requires application scaffolding
+QA-089,QA Acceptance: Media,Image import blocks private-network URLs and redirect tricks,P1,,,not_started,Requires application scaffolding
+QA-090,QA Acceptance: Media,Only approved image-source domain or approved exception used,P1,,,not_started,Requires application scaffolding
+QA-091,QA Acceptance: SEO AEO and accessibility,Important pages have readable server-rendered HTML,P1,,,not_started,Requires application scaffolding
+QA-092,QA Acceptance: SEO AEO and accessibility,Facet combinations cannot create infinite crawl paths,P1,,,not_started,Requires application scaffolding
+QA-093,QA Acceptance: SEO AEO and accessibility,Robots noindex and canonical policies are not contradictory,P1,,,not_started,Requires application scaffolding
+QA-094,QA Acceptance: SEO AEO and accessibility,Structured data matches visible content,P1,,,not_started,Requires application scaffolding
+QA-095,QA Acceptance: SEO AEO and accessibility,FAQ rich-result claims not used as a growth promise,P1,,,not_started,Requires application scaffolding
+QA-096,QA Acceptance: SEO AEO and accessibility,OAI-SearchBot and GPTBot policies independent,P1,,,not_started,Requires application scaffolding
+QA-097,QA Acceptance: SEO AEO and accessibility,Sitemaps contain only canonical published indexables,P1,,,not_started,Requires application scaffolding
+QA-098,QA Acceptance: SEO AEO and accessibility,Keyboard focus dialogs and errors work,P1,,,not_started,Requires application scaffolding
+QA-099,QA Acceptance: SEO AEO and accessibility,Arabic RTL mixed phone/Latin text readable,P1,,,not_started,Requires application scaffolding
+QA-100,QA Acceptance: SEO AEO and accessibility,No fake reviews ratings or current pricing,P1,,,not_started,Requires application scaffolding
+QA-101,QA Acceptance: Security and reliability,Admin high-risk roles use MFA,P0,,,not_started,Requires application scaffolding
+QA-102,QA Acceptance: Security and reliability,CSRF session and tenant isolation tested,P0,,,not_started,Requires application scaffolding
+QA-103,QA Acceptance: Security and reliability,Uploads quarantined scanned and private,P0,,,not_started,Requires application scaffolding
+QA-104,QA Acceptance: Security and reliability,Public endpoints rate limited without blocking legitimate access,P0,,,not_started,Requires application scaffolding
+QA-105,QA Acceptance: Security and reliability,Sensitive pages use no-store and authorization,P0,,,not_started,Requires application scaffolding
+QA-106,QA Acceptance: Security and reliability,Background retries cannot duplicate introductions,P0,,,not_started,Requires application scaffolding
+QA-107,QA Acceptance: Security and reliability,Race test withdrawal versus dispatch fails closed,P0,,,not_started,Requires application scaffolding
+QA-108,QA Acceptance: Security and reliability,Full backup restore verified,P0,,,not_started,Requires application scaffolding
+QA-109,QA Acceptance: Security and reliability,Staging protected and synthetic seed data only,P0,,,not_started,Requires application scaffolding
+QA-110,QA Acceptance: Security and reliability,Rollback and monitoring runbooks exercised,P0,,,not_started,Requires application scaffolding
+V4-ARCH-01,Architecture,"TypeScript monorepo with apps/web, apps/worker, packages/*",P0,"packages/*, apps/web, pnpm-workspace.yaml",tests/web-server.test.ts,tested_locally,None
+V4-ARCH-02,Architecture,PostgreSQL database migrations for 50 reference tables,P0,packages/db/migrations/001_initial_schema.sql,tests/connected-journey.test.ts,tested_locally,None
+V4-ARCH-03,Architecture,Zero-credential local development and test environment,P0,packages/db/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+V4-DATA-01,Data & Import,Idempotent schema-validated import of all 17 reference registers,P0,scripts/seed.js,tests/connected-journey.test.ts,tested_locally,None
+V4-DATA-02,Data & Import,Handle UTF-8 BOMs and validate CSV/JSON content parity,P1,scripts/seed.js,tests/connected-journey.test.ts,tested_locally,None
+V4-GEO-01,Geography & Taxa,Country registry with ISO-2 seeds and region hierarchies,P1,"scripts/seed.js, reference/.../country_registry.json",tests/connected-journey.test.ts,tested_locally,None
+V4-GEO-02,Geography & Taxa,"Independent seller location, material origin, and buyer destination discovery",P0,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+V4-DIR-01,Directory,Public directory listing non-contact business profiles,P0,"packages/domain/src/index.ts, apps/web/src/server.ts",tests/web-server.test.ts,tested_locally,None
+V4-DIR-02,Directory,"Basic profiles hide phone, email, WhatsApp, address details by default",P0,packages/permissions/src/contact-policy.ts,tests/contact-policy.test.ts,tested_locally,None
+V4-DIR-03,Directory,Business ownership claim workflow with verification steps,P1,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+V4-MEMB-01,Membership,"Annual paid business visibility (AED 1,200/yr equivalent to AED 100/mo)",P1,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+V4-MEMB-02,Membership,"Separate profile membership, verification, lead payment, recipient permission",P0,"packages/permissions/src/lead-policy.ts, contact-policy.ts",tests/lead-policy.test.ts,tested_locally,None
+V4-RFQ-01,Wholesale RFQ,OudGuide-branded neutral intake (not Al Mutalib headline),P0,apps/web/src/server.ts,tests/web-server.test.ts,tested_locally,None
+V4-RFQ-02,Wholesale RFQ,67 conditional requirement form fields implemented,P0,packages/contracts/src/rfq-fields.ts,tests/rfq-fields.test.ts,tested_locally,None
+V4-RFQ-03,Wholesale RFQ,Channel verification via OTP/email token before dispatch,P0,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+V4-MATCH-01,Supplier Matching,Redacted inquiry matching briefs visible to eligible suppliers,P0,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+V4-MATCH-02,Supplier Matching,Explicit buyer approval of named recipient businesses prior to release,P0,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+V4-MATCH-03,Supplier Matching,Maximum 3 approved recipient introductions per inquiry (configurable),P0,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+V4-LEAD-01,Lead Policy,Fail-closed lead release policy ported and verified with unit tests,P0,packages/permissions/src/lead-policy.ts,tests/lead-policy.test.ts,tested_locally,None
+V4-LEAD-02,Lead Policy,Outbox dispatch pattern for safe introduction release without duplicate sends,P0,packages/domain/src/index.ts,tests/connected-journey.test.ts,tested_locally,None
+V4-ROUTER-01,Routing & CMS,Route resolution engine for 772 planned paths and 45 templates,P0,"scripts/seed.js, apps/web/src/server.ts",tests/connected-journey.test.ts,tested_locally,None
+V4-ROUTER-02,Routing & CMS,"Internal linking engine based on 1,553 proposed relationships",P1,scripts/seed.js,tests/connected-journey.test.ts,tested_locally,None
+V4-COMM-01,Commerce Integration,Clearly identified retail referral integration to ae.almutalib.com,P1,,,not_started,Pending stage execution
+V4-SEO-01,Technical SEO,"Sitemap, robots.txt, JSON-LD schema, canonical tags, no empty thin pages",P1,apps/web/src/server.ts,tests/web-server.test.ts,tested_locally,None
+V4-I18N-01,Localization,English and Arabic UI scaffolding with RTL support,P1,,,not_started,Pending stage execution
+V4-SEC-01,Security & Privacy,"Zero contact leakage in HTML, JSON-LD, API, RSC, search, exports",P0,packages/permissions/src/contact-policy.ts,tests/contact-policy.test.ts,tested_locally,None
+V4-SEC-02,Security & Privacy,"Privacy requests, corrections, data suppression and audit event logging",P1,,,not_started,Pending stage execution
+V4-OPS-01,Operations,Acceptance tests automated in CI/local test suite,P0,package.json,tests/*.test.ts,tested_locally,None

@@ -1,0 +1,58 @@
+[
+  {
+    "link_class": "Editorial evidence",
+    "destination": "Appropriate primary source",
+    "link_treatment": "Ordinary contextual link",
+    "gate": "No requirement to pay",
+    "guardrail": "Keep sources even when seller contacts hidden"
+  },
+  {
+    "link_class": "Paid directory website",
+    "destination": "Owner-approved site after subscription",
+    "link_treatment": "rel=sponsored, with security attributes if new tab",
+    "gate": "Active verified entitlement",
+    "guardrail": "Never sell dofollow SEO credit"
+  },
+  {
+    "link_class": "Owned retail referral",
+    "destination": "Relevant ae.almutalib.com page",
+    "link_treatment": "Named commercial module; qualify sponsored/affiliate placements",
+    "gate": "Destination record checked",
+    "guardrail": "No forced redirect; honest shipping scope"
+  },
+  {
+    "link_class": "Owned wholesale reference",
+    "destination": "Relevant almutalib.com page",
+    "link_treatment": "Contextual disclosed reference, not universal keyword autolink",
+    "gate": "Deep destination checked before use",
+    "guardrail": "Neutral RFQ stays on OudGuide"
+  },
+  {
+    "link_class": "User submitted link",
+    "destination": "Moderated URL",
+    "link_treatment": "ugc/nofollow as appropriate; sponsored if paid",
+    "gate": "Sanitize + review",
+    "guardrail": "No untrusted arbitrary embeds"
+  },
+  {
+    "link_class": "Internal article",
+    "destination": "Published relevant page",
+    "link_treatment": "Normal descriptive anchor",
+    "gate": "Publication/link gate",
+    "guardrail": "Do not nofollow all useful internal links"
+  },
+  {
+    "link_class": "Private form state",
+    "destination": "Authorized secure route",
+    "link_treatment": "Task link; noindex/no-store",
+    "gate": "Authorization",
+    "guardrail": "No buyer PII in paths, referrers or analytics"
+  },
+  {
+    "link_class": "Image source credit",
+    "destination": "Actual rights/source page",
+    "link_treatment": "Clear attribution; commercial classification where applicable",
+    "gate": "Rights and subject checked",
+    "guardrail": "No forced source backlink on every page"
+  }
+]

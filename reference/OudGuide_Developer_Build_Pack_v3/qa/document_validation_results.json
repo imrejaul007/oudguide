@@ -1,0 +1,11 @@
+{
+  "html_internal_anchor_errors": [],
+  "manual_word_count": 16229,
+  "templates_in_appendix": 45,
+  "source_entries": 25,
+  "html_self_contained": true,
+  "no_external_styles_scripts_images": true,
+  "html_browser_render": "System Chromium via Playwright set_content; local generated HTML only",
+  "desktop_horizontal_overflow": false,
+  "mobile_horizontal_overflow": false
+}

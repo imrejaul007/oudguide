@@ -1,0 +1,672 @@
+[
+  {
+    "ID": "Q01",
+    "Form stage": "Start",
+    "Field": "Product family",
+    "Input type": "Select",
+    "When shown": "All requests",
+    "Required?": "Required",
+    "Validation / choices": "Oud wood; oud oil; perfume oil; finished perfume; bakhoor/incense; related products; not sure",
+    "Privacy / interpretation": "Public taxonomy, private buyer answer"
+  },
+  {
+    "ID": "Q02",
+    "Form stage": "Start",
+    "Field": "Purchase purpose",
+    "Input type": "Select",
+    "When shown": "All requests",
+    "Required?": "Required",
+    "Validation / choices": "Wholesale/resale; manufacturing; private label; retail/personal; gifting; not sure",
+    "Privacy / interpretation": "Do not reject genuine buyers without a registered business"
+  },
+  {
+    "ID": "Q03",
+    "Form stage": "Start",
+    "Field": "Buyer destination country",
+    "Input type": "Country selector",
+    "When shown": "All requests",
+    "Required?": "Required",
+    "Validation / choices": "Choose delivery country explicitly; do not rely only on IP",
+    "Privacy / interpretation": "Used for matching and eligibility"
+  },
+  {
+    "ID": "Q04",
+    "Form stage": "Start",
+    "Field": "Buyer destination city",
+    "Input type": "Place selector + fallback text",
+    "When shown": "All requests",
+    "Required?": "Required",
+    "Validation / choices": "Match place ID when possible; preserve buyer text",
+    "Privacy / interpretation": "No exact street address at first step"
+  },
+  {
+    "ID": "Q05",
+    "Form stage": "Start",
+    "Field": "Quantity and unit",
+    "Input type": "Number + unit + not sure",
+    "When shown": "All requests",
+    "Required?": "Required or Not sure",
+    "Validation / choices": "Positive value; g/kg for wood; mL/L/g/kg where appropriate for oils; units for bottles",
+    "Privacy / interpretation": "Do not convert volume to mass without documented density"
+  },
+  {
+    "ID": "Q06",
+    "Form stage": "Start",
+    "Field": "Product/trade name",
+    "Input type": "Search + free text",
+    "When shown": "All requests",
+    "Required?": "Optional",
+    "Validation / choices": "Preserve exact wording and selected taxonomy ID",
+    "Privacy / interpretation": "Unknown trade names go to review; no forced synonym mapping"
+  },
+  {
+    "ID": "Q07",
+    "Form stage": "Start",
+    "Field": "Desired origin country",
+    "Input type": "Multi-select",
+    "When shown": "Material requests",
+    "Required?": "Optional",
+    "Validation / choices": "Any; specific countries; not sure",
+    "Privacy / interpretation": "A buyer preference is not origin evidence"
+  },
+  {
+    "ID": "Q08",
+    "Form stage": "Start",
+    "Field": "Desired origin region",
+    "Input type": "Region selector",
+    "When shown": "Specific origin chosen",
+    "Required?": "Optional",
+    "Validation / choices": "Only applicable researched region options",
+    "Privacy / interpretation": "No implied universal link between trade name and region"
+  },
+  {
+    "ID": "Q09",
+    "Form stage": "Start",
+    "Field": "Budget amount and currency",
+    "Input type": "Number + currency + flexible",
+    "When shown": "All requests",
+    "Required?": "Optional",
+    "Validation / choices": "Specify total/per-unit basis separately",
+    "Privacy / interpretation": "Private commercial information"
+  },
+  {
+    "ID": "Q10",
+    "Form stage": "Start",
+    "Field": "Budget basis",
+    "Input type": "Select",
+    "When shown": "Budget entered",
+    "Required?": "Conditional",
+    "Validation / choices": "Total order; per gram; per kg; per mL; per litre; per bottle",
+    "Privacy / interpretation": "Prevent comparing incompatible quantities"
+  },
+  {
+    "ID": "Q11",
+    "Form stage": "Start",
+    "Field": "Required date",
+    "Input type": "Date or flexible",
+    "When shown": "All requests",
+    "Required?": "Optional",
+    "Validation / choices": "Past dates flagged; no delivery promise generated",
+    "Privacy / interpretation": "Private"
+  },
+  {
+    "ID": "Q12",
+    "Form stage": "Start",
+    "Field": "Sample preference",
+    "Input type": "Select",
+    "When shown": "All requests",
+    "Required?": "Required",
+    "Validation / choices": "Yes; no; advice needed",
+    "Privacy / interpretation": "Triggers sample branch only"
+  },
+  {
+    "ID": "Q13",
+    "Form stage": "Wood",
+    "Field": "Trade grade as requested",
+    "Input type": "Text + Not sure",
+    "When shown": "Oud wood",
+    "Required?": "Optional",
+    "Validation / choices": "Capture Super/Double Super/Triple Super as buyer wording",
+    "Privacy / interpretation": "Never translate automatically into a universal rank"
+  },
+  {
+    "ID": "Q14",
+    "Form stage": "Wood",
+    "Field": "Physical size and form",
+    "Input type": "Multi-select + dimensions",
+    "When shown": "Wood/incense/beads",
+    "Required?": "Optional",
+    "Validation / choices": "Pieces; slices; strips; blocks; powder; other; dimensions in mm if known",
+    "Privacy / interpretation": "Use chips only when user/supplier actually uses that label"
+  },
+  {
+    "ID": "Q15",
+    "Form stage": "Wood",
+    "Field": "Intended use",
+    "Input type": "Select",
+    "When shown": "Oud wood",
+    "Required?": "Optional",
+    "Validation / choices": "Heating/burning; distillation; manufacture; collecting; carving; not sure",
+    "Privacy / interpretation": "Routes to relevant business capabilities"
+  },
+  {
+    "ID": "Q16",
+    "Form stage": "Wood",
+    "Field": "Treatment preference",
+    "Input type": "Multi-select",
+    "When shown": "Wood/incense",
+    "Required?": "Optional",
+    "Validation / choices": "Declared untreated; infused/scented acceptable; treatment disclosure required; not sure",
+    "Privacy / interpretation": "Do not claim a photograph proves absence of treatment"
+  },
+  {
+    "ID": "Q17",
+    "Form stage": "Wood",
+    "Field": "Sourcing preference",
+    "Input type": "Select",
+    "When shown": "Oud wood/oil",
+    "Required?": "Optional",
+    "Validation / choices": "Cultivated; documented other source; no preference; advice needed",
+    "Privacy / interpretation": "No sourcing legality guarantee from selection"
+  },
+  {
+    "ID": "Q18",
+    "Form stage": "Wood",
+    "Field": "Resin/density preference",
+    "Input type": "Text",
+    "When shown": "Oud wood",
+    "Required?": "Optional",
+    "Validation / choices": "Record desired evidence or test conditions, not just sinking label",
+    "Privacy / interpretation": "Density alone is not an authenticity verdict"
+  },
+  {
+    "ID": "Q19",
+    "Form stage": "Wood",
+    "Field": "Cleaning and preparation",
+    "Input type": "Select + text",
+    "When shown": "Oud wood",
+    "Required?": "Optional",
+    "Validation / choices": "Cleaned; minimally processed; specified size preparation; not sure",
+    "Privacy / interpretation": "Seller confirmation required"
+  },
+  {
+    "ID": "Q20",
+    "Form stage": "Wood",
+    "Field": "Aroma preferences",
+    "Input type": "Multi-select + text",
+    "When shown": "Aromatic materials",
+    "Required?": "Optional",
+    "Validation / choices": "Buyer-described sweet/woody/smoky/etc.; dislikes",
+    "Privacy / interpretation": "Subjective preferences, not origin proofs"
+  },
+  {
+    "ID": "Q21",
+    "Form stage": "Wood",
+    "Field": "Reference media",
+    "Input type": "Private upload",
+    "When shown": "All requests",
+    "Required?": "Optional",
+    "Validation / choices": "Size/type allowlist; malware scan; strip location metadata",
+    "Privacy / interpretation": "Signed access only; no public media sitemap"
+  },
+  {
+    "ID": "Q22",
+    "Form stage": "Wood",
+    "Field": "Acceptance/quality evidence",
+    "Input type": "Multi-select + text",
+    "When shown": "Material requests",
+    "Required?": "Optional",
+    "Validation / choices": "Batch images; live video; sample approval; agreed tests; documents",
+    "Privacy / interpretation": "Do not promise any test proves all quality claims"
+  },
+  {
+    "ID": "Q23",
+    "Form stage": "Oil",
+    "Field": "Oil category",
+    "Input type": "Select",
+    "When shown": "Oud oil/perfume oil",
+    "Required?": "Conditional",
+    "Validation / choices": "Declared oud oil; attar blend; fragrance compound; diluted oil; not sure",
+    "Privacy / interpretation": "Keep pure, blend and synthetic-accord categories distinct"
+  },
+  {
+    "ID": "Q24",
+    "Form stage": "Oil",
+    "Field": "Distillation preference",
+    "Input type": "Text + not sure",
+    "When shown": "Oud oil",
+    "Required?": "Optional",
+    "Validation / choices": "Method and date preferences when meaningful",
+    "Privacy / interpretation": "Seller/batch evidence needed for responses"
+  },
+  {
+    "ID": "Q25",
+    "Form stage": "Oil",
+    "Field": "Dilution/carrier preference",
+    "Input type": "Text + not sure",
+    "When shown": "Oil/attar requests",
+    "Required?": "Optional",
+    "Validation / choices": "Desired dilution; carrier restrictions; use-case constraints",
+    "Privacy / interpretation": "No skin-safety assurance inferred"
+  },
+  {
+    "ID": "Q26",
+    "Form stage": "Oil",
+    "Field": "Batch/age preference",
+    "Input type": "Text",
+    "When shown": "Oud oil",
+    "Required?": "Optional",
+    "Validation / choices": "Specify what is claimed aged and reference date",
+    "Privacy / interpretation": "Age label alone not verified history"
+  },
+  {
+    "ID": "Q27",
+    "Form stage": "Oil",
+    "Field": "Technical documents needed",
+    "Input type": "Multi-select",
+    "When shown": "Manufacturing/oil requests",
+    "Required?": "Optional",
+    "Validation / choices": "SDS; applicable conformity information; COA; batch test report; ingredient information",
+    "Privacy / interpretation": "Applicability depends on product/use/destination"
+  },
+  {
+    "ID": "Q28",
+    "Form stage": "Oil",
+    "Field": "Consistency requirement",
+    "Input type": "Select",
+    "When shown": "Repeat oil sourcing",
+    "Required?": "Optional",
+    "Validation / choices": "Single batch; repeatable blend; natural batch variation accepted",
+    "Privacy / interpretation": "Do not guarantee identical future natural batches"
+  },
+  {
+    "ID": "Q29",
+    "Form stage": "Oil",
+    "Field": "Packaging and seal",
+    "Input type": "Select + text",
+    "When shown": "Oil requests",
+    "Required?": "Optional",
+    "Validation / choices": "Bulk container; small bottles; tamper seal; other",
+    "Privacy / interpretation": "Units and closure details recorded"
+  },
+  {
+    "ID": "Q30",
+    "Form stage": "Perfume",
+    "Field": "Finished or private label",
+    "Input type": "Select",
+    "When shown": "Finished perfume",
+    "Required?": "Conditional",
+    "Validation / choices": "Existing branded product; private label; custom formulation; not sure",
+    "Privacy / interpretation": "Do not offer another brand's identity without authorization"
+  },
+  {
+    "ID": "Q31",
+    "Form stage": "Perfume",
+    "Field": "Concentration/format",
+    "Input type": "Text",
+    "When shown": "Finished perfume",
+    "Required?": "Optional",
+    "Validation / choices": "EDP/EDT/extrait/oil/other as requested",
+    "Privacy / interpretation": "Capture stated terms; no arbitrary percentage inference"
+  },
+  {
+    "ID": "Q32",
+    "Form stage": "Perfume",
+    "Field": "Bottle size and count",
+    "Input type": "Number fields",
+    "When shown": "Finished perfume",
+    "Required?": "Optional",
+    "Validation / choices": "mL per bottle and number of units separately",
+    "Privacy / interpretation": "Order quantity remains unit-based"
+  },
+  {
+    "ID": "Q33",
+    "Form stage": "Perfume",
+    "Field": "Scent brief",
+    "Input type": "Text",
+    "When shown": "Perfume/private label",
+    "Required?": "Optional",
+    "Validation / choices": "Desired family, notes and performance context",
+    "Privacy / interpretation": "Notes are not an ingredient declaration"
+  },
+  {
+    "ID": "Q34",
+    "Form stage": "Perfume",
+    "Field": "Branding and label needs",
+    "Input type": "Text",
+    "When shown": "Private label",
+    "Required?": "Optional",
+    "Validation / choices": "Brand assets, language, pack format, destination needs",
+    "Privacy / interpretation": "Private licensed assets only"
+  },
+  {
+    "ID": "Q35",
+    "Form stage": "Perfume",
+    "Field": "Development and testing",
+    "Input type": "Select + text",
+    "When shown": "Custom formulation",
+    "Required?": "Optional",
+    "Validation / choices": "Prototype; samples; stability/compatibility needs; not sure",
+    "Privacy / interpretation": "Quote scope and responsibilities must be agreed"
+  },
+  {
+    "ID": "Q36",
+    "Form stage": "Sample",
+    "Field": "Sample quantity",
+    "Input type": "Number + unit",
+    "When shown": "Samples requested",
+    "Required?": "Optional",
+    "Validation / choices": "Positive amount; compatible unit",
+    "Privacy / interpretation": "Separate from eventual bulk order"
+  },
+  {
+    "ID": "Q37",
+    "Form stage": "Sample",
+    "Field": "Number of selections",
+    "Input type": "Integer",
+    "When shown": "Samples requested",
+    "Required?": "Optional",
+    "Validation / choices": "Positive integer; reasonable platform limit",
+    "Privacy / interpretation": "No guaranteed free samples"
+  },
+  {
+    "ID": "Q38",
+    "Form stage": "Sample",
+    "Field": "Paid sample budget",
+    "Input type": "Amount + currency + not sure",
+    "When shown": "Samples requested",
+    "Required?": "Optional",
+    "Validation / choices": "Separate sample and courier cost expectations",
+    "Privacy / interpretation": "Commercial acceptance occurs later"
+  },
+  {
+    "ID": "Q39",
+    "Form stage": "Sample",
+    "Field": "Same-batch requirement",
+    "Input type": "Select",
+    "When shown": "Samples requested",
+    "Required?": "Optional",
+    "Validation / choices": "Require bulk from sampled batch; acceptable variation; advice needed",
+    "Privacy / interpretation": "Bind to batch ID where supplier can support it"
+  },
+  {
+    "ID": "Q40",
+    "Form stage": "Sample",
+    "Field": "Sample delivery country/city",
+    "Input type": "Place selectors",
+    "When shown": "Different from bulk destination",
+    "Required?": "Conditional",
+    "Validation / choices": "Validate separately from bulk destination",
+    "Privacy / interpretation": "Collect exact address only when needed to dispatch"
+  },
+  {
+    "ID": "Q41",
+    "Form stage": "Sample",
+    "Field": "Sample approval process",
+    "Input type": "Text",
+    "When shown": "Samples requested",
+    "Required?": "Optional",
+    "Validation / choices": "Evaluation criteria; reviewer; desired timeline",
+    "Privacy / interpretation": "Do not silently convert sample inquiry to paid order"
+  },
+  {
+    "ID": "Q42",
+    "Form stage": "Delivery",
+    "Field": "Postal code",
+    "Input type": "Text",
+    "When shown": "Needed for a meaningful shipping quote",
+    "Required?": "Conditional",
+    "Validation / choices": "Country-sensitive format; no universal numeric rule",
+    "Privacy / interpretation": "Minimize address collection"
+  },
+  {
+    "ID": "Q43",
+    "Form stage": "Delivery",
+    "Field": "Delivery method",
+    "Input type": "Select",
+    "When shown": "All requests",
+    "Required?": "Optional",
+    "Validation / choices": "Courier; air cargo; other; seller advice",
+    "Privacy / interpretation": "No universal worldwide shipping promise"
+  },
+  {
+    "ID": "Q44",
+    "Form stage": "Delivery",
+    "Field": "Importer/clearance arrangement",
+    "Input type": "Select + text",
+    "When shown": "Cross-border commercial request",
+    "Required?": "Optional",
+    "Validation / choices": "Buyer; supplier; broker; advice needed",
+    "Privacy / interpretation": "Not a substitute for destination legal review"
+  },
+  {
+    "ID": "Q45",
+    "Form stage": "Delivery",
+    "Field": "Trade terms preference",
+    "Input type": "Text + not sure",
+    "When shown": "Commercial shipment",
+    "Required?": "Optional",
+    "Validation / choices": "Named rule/place/version only when known",
+    "Privacy / interpretation": "No automatic DDP/export guarantee"
+  },
+  {
+    "ID": "Q46",
+    "Form stage": "Delivery",
+    "Field": "Documentation requirements",
+    "Input type": "Multi-select + text",
+    "When shown": "Cross-border material request",
+    "Required?": "Optional",
+    "Validation / choices": "Invoice; origin evidence; applicable permits; packing details; advice needed",
+    "Privacy / interpretation": "Per product, route and jurisdiction; not blanket CITES statements"
+  },
+  {
+    "ID": "Q47",
+    "Form stage": "Delivery",
+    "Field": "Order recurrence",
+    "Input type": "Select",
+    "When shown": "Wholesale",
+    "Required?": "Optional",
+    "Validation / choices": "One-off; monthly; quarterly; other; not sure",
+    "Privacy / interpretation": "No subscription implied"
+  },
+  {
+    "ID": "Q48",
+    "Form stage": "Contact",
+    "Field": "Buyer name",
+    "Input type": "Text",
+    "When shown": "Submission",
+    "Required?": "Required",
+    "Validation / choices": "Length and character validation",
+    "Privacy / interpretation": "Private"
+  },
+  {
+    "ID": "Q49",
+    "Form stage": "Contact",
+    "Field": "Company name",
+    "Input type": "Text",
+    "When shown": "Business buyer",
+    "Required?": "Optional",
+    "Validation / choices": "Allow sole traders and buyers still researching",
+    "Privacy / interpretation": "Private unless buyer authorizes sharing"
+  },
+  {
+    "ID": "Q50",
+    "Form stage": "Contact",
+    "Field": "Preferred contact channel",
+    "Input type": "Select",
+    "When shown": "Submission",
+    "Required?": "Required",
+    "Validation / choices": "Email or phone/WhatsApp",
+    "Privacy / interpretation": "Only require the chosen working channel"
+  },
+  {
+    "ID": "Q51",
+    "Form stage": "Contact",
+    "Field": "Email",
+    "Input type": "Email field",
+    "When shown": "Email chosen",
+    "Required?": "Conditional",
+    "Validation / choices": "Email syntax; verification before sensitive delivery if required",
+    "Privacy / interpretation": "Private; no analytics query parameters"
+  },
+  {
+    "ID": "Q52",
+    "Form stage": "Contact",
+    "Field": "Phone/WhatsApp",
+    "Input type": "Country code + number",
+    "When shown": "Phone chosen",
+    "Required?": "Conditional",
+    "Validation / choices": "International parsing; preserve leading +; no one-country mask",
+    "Privacy / interpretation": "Private; do not require both phone and email"
+  },
+  {
+    "ID": "Q53",
+    "Form stage": "Contact",
+    "Field": "Language and time zone",
+    "Input type": "Select + text",
+    "When shown": "Submission",
+    "Required?": "Optional",
+    "Validation / choices": "Buyer preference",
+    "Privacy / interpretation": "Used only for service follow-up"
+  },
+  {
+    "ID": "Q54",
+    "Form stage": "Consent",
+    "Field": "OudGuide processing notice and recipient approval step",
+    "Input type": "Read-only recipient banner",
+    "When shown": "Initial processing notice; recipient names at confirmation before release",
+    "Required?": "Required display",
+    "Validation / choices": "Initial recipient is OudGuide operations. Show each selected actual supplier before introduction.",
+    "Privacy / interpretation": "Neutral CTA does not conceal controller or later supplier; affiliate is disclosed in recipient card."
+  },
+  {
+    "ID": "Q55",
+    "Form stage": "Consent",
+    "Field": "Inquiry processing acknowledgment",
+    "Input type": "Unticked affirmative control",
+    "When shown": "Submission",
+    "Required?": "Required for chosen service",
+    "Validation / choices": "Clear purpose, recipient and privacy notice version",
+    "Privacy / interpretation": "Store choice and notice version; legal basis review before launch"
+  },
+  {
+    "ID": "Q56",
+    "Form stage": "Consent",
+    "Field": "Additional supplier matching permission",
+    "Input type": "Unticked opt-in",
+    "When shown": "Supplier-specific request",
+    "Required?": "Optional",
+    "Validation / choices": "Optional; named recipient approval before release; refusal must not cancel a supplier-specific primary request",
+    "Privacy / interpretation": "Named recipients before release; refusal must not block primary inquiry"
+  },
+  {
+    "ID": "Q57",
+    "Form stage": "Consent",
+    "Field": "Marketing permission",
+    "Input type": "Unticked opt-in",
+    "When shown": "Submission",
+    "Required?": "Optional",
+    "Validation / choices": "Separate from quotation processing",
+    "Privacy / interpretation": "No newsletter subscription bundled with RFQ"
+  },
+  {
+    "ID": "Q58",
+    "Form stage": "System",
+    "Field": "Lead ID and idempotency key",
+    "Input type": "Server-generated",
+    "When shown": "Submission",
+    "Required?": "Automatic",
+    "Validation / choices": "Unique request; safe retry without duplicate dispatch",
+    "Privacy / interpretation": "Do not accept client-supplied recipient authorization"
+  },
+  {
+    "ID": "Q59",
+    "Form stage": "System",
+    "Field": "Context and recipient snapshot",
+    "Input type": "Server record",
+    "When shown": "Submission",
+    "Required?": "Automatic",
+    "Validation / choices": "Page/entity IDs, destination, directory context, request mode, service notice version, recipient grant versions; no ad analytics PII",
+    "Privacy / interpretation": "No buyer PII in UTM tags, browser URLs or public logs"
+  },
+  {
+    "ID": "Q60",
+    "Form stage": "System",
+    "Field": "Delivery state and access log",
+    "Input type": "Server record",
+    "When shown": "After submission",
+    "Required?": "Automatic",
+    "Validation / choices": "draft; submitted; channel-verified; qualification; matching; recipient-approval; authorized; dispatched; answered; closed; withdrawn; rejected; expired",
+    "Privacy / interpretation": "Transport success is not supplier acceptance or a quote"
+  },
+  {
+    "ID": "Q61",
+    "Form stage": "Matching",
+    "Field": "Request mode",
+    "Input type": "Choice",
+    "When shown": "All inquiries",
+    "Required?": "Required",
+    "Validation / choices": "OudGuide matching / chosen supplier only",
+    "Privacy / interpretation": "No silent source-profile switching"
+  },
+  {
+    "ID": "Q62",
+    "Form stage": "Matching",
+    "Field": "Maximum supplier introductions",
+    "Input type": "Choice",
+    "When shown": "Matching flow",
+    "Required?": "Required at recipient approval",
+    "Validation / choices": "1 or up to 3 default policy; configurable after approval",
+    "Privacy / interpretation": "Maximum is not a promise of that many responses"
+  },
+  {
+    "ID": "Q63",
+    "Form stage": "Matching",
+    "Field": "Anonymized/redacted brief permission",
+    "Input type": "Affirmative service choice",
+    "When shown": "Before partner preview",
+    "Required?": "Required for marketplace previews",
+    "Validation / choices": "No names, exact address, contact, website, free-text or original attachments in preview",
+    "Privacy / interpretation": "Redacted does not automatically mean anonymous; assess re-identification"
+  },
+  {
+    "ID": "Q64",
+    "Form stage": "Approval",
+    "Field": "Named recipient set",
+    "Input type": "Explicit selection",
+    "When shown": "Before any external PII release",
+    "Required?": "Required per introduction",
+    "Validation / choices": "Business identities, affiliation label, approved channels, field set",
+    "Privacy / interpretation": "New recipient requires new approval"
+  },
+  {
+    "ID": "Q65",
+    "Form stage": "Approval",
+    "Field": "Consent withdrawal control",
+    "Input type": "Secure action",
+    "When shown": "After submit",
+    "Required?": "Always accessible",
+    "Validation / choices": "Stops pending release; sends suppression to released recipients",
+    "Privacy / interpretation": "Cannot promise to undo an already delivered message"
+  },
+  {
+    "ID": "Q66",
+    "Form stage": "Partner",
+    "Field": "Lead access offer and exclusivity",
+    "Input type": "Server offer",
+    "When shown": "Approved partner account",
+    "Required?": "Server controlled",
+    "Validation / choices": "Terms version; price minor units; currency; recipient capacity; expiry",
+    "Privacy / interpretation": "Paying never overrides buyer permission; Al Mutalib counts toward exclusivity"
+  },
+  {
+    "ID": "Q67",
+    "Form stage": "System",
+    "Field": "Jurisdiction and channel policy result",
+    "Input type": "Server review",
+    "When shown": "Before release",
+    "Required?": "Required",
+    "Validation / choices": "Allowed/held/blocked; policy version; reviewer if manual",
+    "Privacy / interpretation": "No claim of worldwide legal compliance from generic checkbox"
+  }
+]

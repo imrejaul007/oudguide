@@ -1,0 +1,21 @@
+﻿id,decision,status,owner,default_or_constraint
+DEC01,Legal operating entity and ownership disclosure,REQUIRED BEFORE COLLECTION,Owner + counsel,Neutral headline permitted; actual controller/affiliation cannot be invented
+DEC02,Billing cadence,APPROVAL REQUIRED,Owner + finance,"Default assumption AED1200 annually upfront, not a decided monthly installment plan"
+DEC03,VAT/tax and invoicing,JURISDICTION REVIEW,Finance + counsel,No tax rate or inclusive/exclusive assumption embedded
+DEC04,Lead price and exclusivity/refunds,APPROVAL REQUIRED,Owner,Unpriced until evidence; separate membership and lead terms
+DEC05,Markets/channels enabled for introductions,REQUIRED BEFORE RELEASE,Privacy/legal,Start with reviewed matrix; hold unreviewed jurisdictions
+DEC06,Partner identity and access contract,REQUIRED BEFORE ACCESS,Operations + counsel,No anonymous unrestricted buyer-data export
+DEC07,Two-site image rights inventory,REQUIRED BEFORE MEDIA PUBLICATION,Owner + editor,Third-party assets on owned storefront still need rights confirmation
+DEC08,Third-party owner uploads exception,NOT APPROVED,Owner,Current rule only two owned-site image sources; use text placeholders elsewhere
+DEC09,Portal brand identity,NOT APPROVED,Owner + designer,"Temporary text wordmark, not modified Al Mutalib falcon"
+DEC10,Hosting data regions and providers,NOT SELECTED,Engineering + privacy,Reference architecture not deployed account IDs
+DEC11,Al Mutalib CRM/quote endpoints,UNVERIFIED,Commerce engineer,No guessed URLs; server-side authorized destination only
+DEC12,English/Arabic release corpus,APPROVAL REQUIRED,Editorial lead,Do not double public pages with unreviewed translation
+DEC13,Membership cancellation/renewal,APPROVAL REQUIRED,Owner + counsel,Publish exact terms before payment
+DEC14,Recipient cap and outreach policy,APPROVAL REQUIRED,Owner + privacy,Recommended default at most three approved suppliers
+DEC15,Retention periods and rights handling,JURISDICTION REVIEW,Privacy/legal,No indefinite lead retention
+DEC16,Public star reviews/community,LATER FEATURE,Owner,No review stars until credible moderation and methods exist
+DEC17,Scientific/terminology reviewers,STAFFING REQUIRED,Editorial lead,No invented expert identities
+DEC18,Full rendered technical crawl follow-up,NOT COMPLETED HERE,SEO engineer,68-URL evidence audit is not full rendered crawling
+DEC19,Global supplier research census,NOT COMPLETED,Directory team,"Business list grows from independent research, not competitor cloning"
+DEC20,Measured keyword demand,NOT MEASURED,SEO lead,Connect authorized tools/exports; no fabricated volume/difficulty

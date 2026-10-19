@@ -1,0 +1,58 @@
+[
+  {
+    "id": "D01",
+    "family": "Business profile",
+    "pattern": "/en/businesses/{business-slug-id}/",
+    "count_variable": "B",
+    "publication_gate": "One independently researched organization; repeat by branches only when meaningful",
+    "required_fields": "name; roles; places; attributed claims; contact eligibility; how inquiry works; corrections"
+  },
+  {
+    "id": "D02",
+    "family": "Branch",
+    "pattern": "/en/businesses/{business-slug-id}/locations/{branch-slug-id}/",
+    "count_variable": "L",
+    "publication_gate": "Real independently useful physical branch; otherwise section on main profile",
+    "required_fields": "checked location; opening hours where current; access; parent; verified media or no image"
+  },
+  {
+    "id": "D03",
+    "family": "Brand",
+    "pattern": "/en/brands/{brand-slug-id}/",
+    "count_variable": "R",
+    "publication_gate": "Distinct brand; ownership and brand/organization relationships",
+    "required_fields": "identity; documented credits; formats; related references; current sources"
+  },
+  {
+    "id": "D04",
+    "family": "Fragrance reference",
+    "pattern": "/en/fragrances/{brand-slug}/{product-slug-id}/",
+    "count_variable": "F",
+    "publication_gate": "Identifiable actual released product, not imagined variants",
+    "required_fields": "declared notes; composition evidence separately; release/credits sources; variants; seller offers"
+  },
+  {
+    "id": "D05",
+    "family": "Material batch",
+    "pattern": "/en/materials/{batch-slug-id}/",
+    "count_variable": "M",
+    "publication_gate": "Public, sufficiently evidenced batch; no private stock leakage",
+    "required_fields": "seller; batch; claim status; grade issuer; quantity; photos; offers; evidence dates"
+  },
+  {
+    "id": "D06",
+    "family": "Expert/person",
+    "pattern": "/en/people/{person-slug-id}/",
+    "count_variable": "E",
+    "publication_gate": "Consenting/public professional identity, relevant work documented",
+    "required_fields": "roles; publications; credits; editorial disclosures"
+  },
+  {
+    "id": "D07",
+    "family": "Event",
+    "pattern": "/en/events/{event-slug-id}/",
+    "count_variable": "V",
+    "publication_gate": "Real event; dates and organizers checked",
+    "required_fields": "date; location; status; official booking source; no invented events"
+  }
+]

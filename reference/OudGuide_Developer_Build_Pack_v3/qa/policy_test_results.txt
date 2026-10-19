@@ -1,0 +1,23 @@
+test_affiliate_counts_for_exclusive (test_lead_policy.ReleasePolicyTest.test_affiliate_counts_for_exclusive) ... ok
+test_allowed (test_lead_policy.ReleasePolicyTest.test_allowed) ... ok
+test_cap (test_lead_policy.ReleasePolicyTest.test_cap) ... ok
+test_closed (test_lead_policy.ReleasePolicyTest.test_closed) ... ok
+test_duplicate (test_lead_policy.ReleasePolicyTest.test_duplicate) ... ok
+test_expired (test_lead_policy.ReleasePolicyTest.test_expired) ... ok
+test_extra_channel (test_lead_policy.ReleasePolicyTest.test_extra_channel) ... ok
+test_extra_field (test_lead_policy.ReleasePolicyTest.test_extra_field) ... ok
+test_jurisdiction (test_lead_policy.ReleasePolicyTest.test_jurisdiction) ... ok
+test_marketing (test_lead_policy.ReleasePolicyTest.test_marketing) ... ok
+test_naive_time (test_lead_policy.ReleasePolicyTest.test_naive_time) ... ok
+test_not_verified (test_lead_policy.ReleasePolicyTest.test_not_verified) ... ok
+test_profile_substitution (test_lead_policy.ReleasePolicyTest.test_profile_substitution) ... ok
+test_suspended (test_lead_policy.ReleasePolicyTest.test_suspended) ... ok
+test_unpaid (test_lead_policy.ReleasePolicyTest.test_unpaid) ... ok
+test_withdrawn (test_lead_policy.ReleasePolicyTest.test_withdrawn) ... ok
+test_wrong_recipient (test_lead_policy.ReleasePolicyTest.test_wrong_recipient) ... ok
+test_wrong_request (test_lead_policy.ReleasePolicyTest.test_wrong_request) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.001s
+
+OK

@@ -1,0 +1,2037 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OudGuide reference interface contract",
+    "version": "3.0.0",
+    "description": "Reference only, not a running API. GenericResult/GenericAction entries identify places requiring endpoint-specific finalized schemas before code generation. All personal data flows require authorization beyond authentication."
+  },
+  "servers": [
+    {
+      "url": "https://oudguide.example.invalid",
+      "description": "Illustrative only; do not deploy this hostname"
+    }
+  ],
+  "paths": {
+    "/v1/directory/businesses": {
+      "get": {
+        "operationId": "get_v1_directory_businesses",
+        "summary": "Find published businesses",
+        "description": "Actor: public. Typed filters: role_id, family_id, seller_place_id, origin_place_id, destination_place_id, cursor; validate/limit combinations.",
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessResults"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        }
+      }
+    },
+    "/v1/businesses/{id}": {
+      "get": {
+        "operationId": "get_v1_businesses_id",
+        "summary": "Read public profile",
+        "description": "Actor: public. Disabled contacts omitted; owner approval + entitlement + moderation required to include them.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicBusiness"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "patch_v1_businesses_id",
+        "summary": "Propose profile edits",
+        "description": "Actor: authorized owner. Version checked; moderated facts; contact eligibility separate.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfilePatch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/pages/{id}": {
+      "get": {
+        "operationId": "get_v1_pages_id",
+        "summary": "Read published page",
+        "description": "Actor: public. Locale query; only public published revision; never expose draft blocks.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        }
+      }
+    },
+    "/v1/inquiries": {
+      "post": {
+        "operationId": "post_v1_inquiries",
+        "summary": "Submit requirement to OudGuide",
+        "description": "Actor: buyer or anonymous protected service. Validate service notice; matching initially only OudGuide operations. No external PII release.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InquiryCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/inquiries/{id}/verify": {
+      "post": {
+        "operationId": "post_v1_inquiries_id_verify",
+        "summary": "Verify chosen contact channel",
+        "description": "Actor: buyer challenge holder. Challenge scoped to inquiry and session; attempt/expiry limits; no contact details in response.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Verification"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/inquiries/{id}": {
+      "get": {
+        "operationId": "get_v1_inquiries_id",
+        "summary": "Read own request status",
+        "description": "Actor: verified buyer. Strong ownership authorization; secure opaque receipt alone not universal authority.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        }
+      }
+    },
+    "/v1/inquiries/{id}/candidates": {
+      "get": {
+        "operationId": "get_v1_inquiries_id_candidates",
+        "summary": "Review proposed named recipients",
+        "description": "Actor: verified buyer. Real supplier identity and affiliation plus approval scope before introduction.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        }
+      }
+    },
+    "/v1/inquiries/{id}/approvals": {
+      "post": {
+        "operationId": "post_v1_inquiries_id_approvals",
+        "summary": "Approve a named supplier introduction",
+        "description": "Actor: verified buyer. Server validates identity version; purpose, cap and jurisdiction checks; persists grant.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecipientApproval"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/inquiries/{id}/withdraw": {
+      "post": {
+        "operationId": "post_v1_inquiries_id_withdraw",
+        "summary": "Withdraw pending sharing permission",
+        "description": "Actor: verified buyer. Cancel queued releases; propagate suppression to prior recipients as applicable.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/inquiries/{id}/close": {
+      "post": {
+        "operationId": "post_v1_inquiries_id_close",
+        "summary": "Close own requirement",
+        "description": "Actor: verified buyer. No further introductions after close without explicit reopening and new validation.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/inquiries/{id}/uploads": {
+      "post": {
+        "operationId": "post_v1_inquiries_id_uploads",
+        "summary": "Create private upload reservation",
+        "description": "Actor: verified buyer. Size/type allowlist; quarantine; expiring signed storage path; scanning before approval.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/businesses/{id}/claim": {
+      "post": {
+        "operationId": "post_v1_businesses_id_claim",
+        "summary": "Submit authority claim",
+        "description": "Actor: authenticated claimant. Payment not proof of ownership; evidence kept private.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/businesses/{id}/membership-checkout": {
+      "post": {
+        "operationId": "post_v1_businesses_id_membership_checkout",
+        "summary": "Start annual membership checkout",
+        "description": "Actor: authorized owner. Exact approved plan/terms from server; no activation from return URL.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partners/apply": {
+      "post": {
+        "operationId": "post_v1_partners_apply",
+        "summary": "Apply for supplier opportunities",
+        "description": "Actor: authorized business owner. Contract, identity and capability checks separate from directory membership.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partners/opportunities": {
+      "get": {
+        "operationId": "get_v1_partners_opportunities",
+        "summary": "Read redacted eligible briefs",
+        "description": "Actor: approved partner. Return RedactedOpportunity objects only after re-identification review; no buyer PII.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        }
+      }
+    },
+    "/v1/partners/opportunities/{id}/interest": {
+      "post": {
+        "operationId": "post_v1_partners_opportunities_id_interest",
+        "summary": "Express capability interest",
+        "description": "Actor: approved partner. No contact release or promise of buyer selection.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partners/lead-orders": {
+      "post": {
+        "operationId": "post_v1_partners_lead_orders",
+        "summary": "Reserve approved introduction purchase",
+        "description": "Actor: approved partner. Payment does not override recipient grant; recheck before capture/release.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadPurchase"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partners/introductions/{id}": {
+      "get": {
+        "operationId": "get_v1_partners_introductions_id",
+        "summary": "Read authorized introduction fields",
+        "description": "Actor: specific authorized recipient. Field/channel-scoped view; actor organization must match recipient; no unrelated requests.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        }
+      }
+    },
+    "/v1/partners/introductions/{id}/response": {
+      "post": {
+        "operationId": "post_v1_partners_introductions_id_response",
+        "summary": "Record supplier reply state",
+        "description": "Actor: specific authorized recipient. A message sent is not assumed delivered or accepted; truthful status transitions.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/corrections": {
+      "post": {
+        "operationId": "post_v1_corrections",
+        "summary": "Submit a free factual correction",
+        "description": "Actor: public protected intake. No payment condition; authenticate before disclosing any private case status.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/privacy/requests": {
+      "post": {
+        "operationId": "post_v1_privacy_requests",
+        "summary": "Submit personal data request",
+        "description": "Actor: verified relevant person. Identity/scoped request review and jurisdiction deadline handling.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/publication/{id}/approve": {
+      "post": {
+        "operationId": "post_v1_admin_publication_id_approve",
+        "summary": "Approve reviewed page",
+        "description": "Actor: authorized editorial reviewer. Claim/source/link/media/metadata gates; role separation and audit.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/internal/releases/{id}/dispatch": {
+      "post": {
+        "operationId": "post_v1_internal_releases_id_dispatch",
+        "summary": "Dispatch one approved introduction",
+        "description": "Actor: private service identity. Not internet-public. Atomic locking + current grant/cap/payment/policy checks, outbox dedupe.",
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenericAction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/webhooks/payment": {
+      "post": {
+        "operationId": "post_v1_webhooks_payment",
+        "summary": "Receive signed payment event",
+        "description": "Actor: payment provider. Provider-specific raw payload, signature/timestamp verification and event dedupe required; no session auth.",
+        "security": [
+          {
+            "providerSignature": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful safe response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission or policy denied"
+          },
+          "409": {
+            "description": "Version/state conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "sessionAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Illustrative authenticated session; production may use secure cookies with CSRF protection."
+      },
+      "providerSignature": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Provider-Signature",
+        "description": "Illustrative name only; implement actual selected provider signature protocol."
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "field_errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "request_id"
+        ],
+        "additionalProperties": false
+      },
+      "PublicBusiness": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location_label": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "claim_status": {
+            "type": "string"
+          },
+          "reviewed_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "match_explanation": {
+            "type": "string"
+          },
+          "contact_enabled": {
+            "type": "boolean"
+          },
+          "approved_contacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "channel": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "channel",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "contact_enabled"
+        ],
+        "additionalProperties": false
+      },
+      "BusinessResults": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicBusiness"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "coverage_note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "coverage_note"
+        ],
+        "additionalProperties": false
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "enum": [
+              "email",
+              "phone",
+              "whatsapp"
+            ]
+          },
+          "value": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel",
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "Requirements": {
+        "type": "object",
+        "properties": {
+          "product_family_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "destination_place_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "origin_preference_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quantity": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "exclusiveMinimum": 0
+          },
+          "unit": {
+            "type": "string"
+          },
+          "sample_preference": {
+            "enum": [
+              "yes",
+              "no",
+              "unsure"
+            ]
+          },
+          "grade_wording": {
+            "type": "string"
+          },
+          "budget_minor": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "sample_preference"
+        ],
+        "additionalProperties": false
+      },
+      "InquiryCreate": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "enum": [
+              "matching",
+              "selected_supplier"
+            ]
+          },
+          "selected_business_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source_page_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "requirements": {
+            "$ref": "#/components/schemas/Requirements"
+          },
+          "contact": {
+            "$ref": "#/components/schemas/Contact"
+          },
+          "service_notice_version": {
+            "type": "string"
+          },
+          "service_acknowledged": {
+            "const": true
+          },
+          "marketing_opt_in": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "mode",
+          "requirements",
+          "contact",
+          "service_notice_version",
+          "service_acknowledged"
+        ],
+        "additionalProperties": false
+      },
+      "Receipt": {
+        "type": "object",
+        "properties": {
+          "receipt_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "status_path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "receipt_id",
+          "state"
+        ],
+        "additionalProperties": false
+      },
+      "RecipientApproval": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "recipient_identity_version": {
+            "type": "string"
+          },
+          "allowed_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "email",
+                "phone",
+                "whatsapp"
+              ]
+            },
+            "minItems": 1
+          },
+          "notice_version": {
+            "type": "string"
+          },
+          "approved": {
+            "const": true
+          }
+        },
+        "required": [
+          "candidate_id",
+          "recipient_identity_version",
+          "allowed_fields",
+          "channels",
+          "notice_version",
+          "approved"
+        ],
+        "additionalProperties": false
+      },
+      "Status": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string"
+          },
+          "request_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "state"
+        ],
+        "additionalProperties": false
+      },
+      "Verification": {
+        "type": "object",
+        "properties": {
+          "challenge_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 12
+          }
+        },
+        "required": [
+          "challenge_id",
+          "code"
+        ],
+        "additionalProperties": false
+      },
+      "RedactedOpportunity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "family_label": {
+            "type": "string"
+          },
+          "destination_country": {
+            "type": "string"
+          },
+          "quantity_band": {
+            "type": "string"
+          },
+          "budget_band": {
+            "type": "string"
+          },
+          "requirements_summary": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "requirements_summary",
+          "expires_at"
+        ],
+        "additionalProperties": false
+      },
+      "LeadPurchase": {
+        "type": "object",
+        "properties": {
+          "offer_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "offer_version": {
+            "type": "string"
+          },
+          "terms_version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "offer_id",
+          "offer_version",
+          "terms_version"
+        ],
+        "additionalProperties": false
+      },
+      "ProfilePatch": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "proposed_summary": {
+            "type": "string"
+          },
+          "public_contacts_requested": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "contact_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "publish": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "contact_id",
+                "publish"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "version"
+        ],
+        "additionalProperties": false
+      },
+      "GenericAction": {
+        "type": "object",
+        "properties": {
+          "reference_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "GenericResult": {
+        "type": "object",
+        "description": "Endpoint-specific safe projection; finalize strict schema before implementation. Never return raw private rows."
+      }
+    }
+  }
+}

@@ -1,0 +1,975 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OudGuide — Developer Playbook v3</title><style>
+:root{--ink:#272a2b;--muted:#626970;--paper:#fcfbf8;--burgundy:#561f2d;--forest:#243e3b;--rule:#dddcd6;--panel:#f2f0e9;--gold:#b59159}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--burgundy);text-underline-offset:3px;overflow-wrap:anywhere}aside{position:fixed;inset:0 auto 0 0;width:286px;padding:30px 23px;background:var(--forest);color:white;overflow:auto}aside .brand{font:700 25px/1.2 Georgia,serif;letter-spacing:.02em;margin-bottom:9px}aside .version{font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#d6d5c5;margin-bottom:28px}aside a{display:block;color:#f4f3ef;text-decoration:none;padding:10px 0;border-bottom:1px solid #48625d;font-size:13px;line-height:1.5}aside a:hover,aside a:focus{color:white;text-decoration:underline}aside small{display:block;margin-top:22px;color:#dddcd6;font-size:12px}main{max-width:1150px;margin-left:286px;padding:52px 64px 90px}h1{font:700 36px/1.2 Georgia,serif;color:var(--burgundy);margin:62px 0 25px;letter-spacing:-.015em;border-top:3px solid var(--burgundy);padding-top:26px}h1:first-child{font-size:58px;border-top:0;margin-top:0;padding-top:0}h2{font-size:23px;line-height:1.35;margin:35px 0 15px;color:var(--forest)}h3{font-size:19px;line-height:1.4;margin:27px 0 12px}p{margin:0 0 18px}strong{font-weight:690}ul,ol{padding-left:26px;margin:15px 0 24px}li{margin:8px 0}.table-scroll{overflow-x:auto;margin:25px 0;border:1px solid var(--rule);border-radius:5px}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}th{background:var(--forest);color:white;text-align:left;padding:13px 15px;vertical-align:top}td{padding:13px 15px;vertical-align:top;border-bottom:1px solid var(--rule);overflow-wrap:anywhere}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#f4f2ed}code{font:13px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;background:#eeece6;padding:.1em .3em;border-radius:3px;overflow-wrap:anywhere}pre{background:#eeece6;padding:20px;border-left:3px solid var(--gold);overflow:auto;line-height:1.55}pre code{background:none;padding:0}blockquote{border-left:4px solid var(--gold);padding:15px 22px;margin:24px 0;background:var(--panel)}hr{border:0;border-top:1px solid var(--rule);margin:45px 0}footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);padding-top:22px;margin-top:50px}
+@media(max-width:1000px){aside{width:240px}main{margin-left:240px;padding:35px 30px 65px}h1:first-child{font-size:46px}}
+@media(max-width:720px){aside{position:relative;width:auto;padding:22px}aside nav{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}aside small{display:none}main{margin-left:0;padding:30px 22px 60px}h1{font-size:29px}h1:first-child{font-size:43px}h2{font-size:21px}table{font-size:13px}th,td{padding:11px}body{font-size:15px}}
+@media print{aside{display:none}main{margin:0;max-width:none;padding:0}body{font-size:10pt;background:white}h1{break-before:page;font-size:24pt}h1:first-child{break-before:auto}h2,h3{break-after:avoid}table,pre{font-size:9pt}.table-scroll{overflow:visible}a{color:inherit}pre{white-space:pre-wrap}tr{break-inside:avoid}p,li{orphans:3;widows:3}}
+</style></head><body><aside><div class="brand">OudGuide</div><div class="version">Developer playbook · v3</div><nav aria-label="Document sections"><a href="#oudguide-com">OudGuide.com</a><a href="#1-product-charter-and-reference-audit">1. Product charter and reference audit</a><a href="#2-information-architecture-entity-model-and-interface">2. Information architecture, entity model and interface</a><a href="#3-content-production-seo-aeo-geo-and-links">3. Content production, SEO, AEO, GEO and links</a><a href="#4-wholesale-matching-lead-sales-and-membership">4. Wholesale matching, lead sales and membership</a><a href="#5-engineering-architecture-and-operational-contracts">5. Engineering architecture and operational contracts</a><a href="#6-editorial-brief-formation-and-publishing-operations">6. Editorial brief formation and publishing operations</a><a href="#7-page-counts-rollout-and-definition-of-done">7. Page counts, rollout and definition of done</a><a href="#8-page-template-build-cards">8. Page-template build cards</a><a href="#9-sources-and-evidence-register">9. Sources and evidence register</a></nav><small>Research and specification<br>19 October 2026<br><br>Companion: 19-sheet workbook, CSV/JSON registers and reference engineering files.</small></aside><main><h1 id="oudguide-com">OudGuide.com</h1>
+<h2 id="worldwide-portal-developer-playbook">Worldwide portal — developer playbook</h2>
+<p><strong>Version 3.0 · 19 October 2026</strong></p>
+<p>A reference audit, information architecture, publishing system, directory specification and permission-controlled supplier-matching model.</p>
+<p><strong>Latest wholesale model:</strong> acquisition stays OudGuide-branded. Al Mutalib or other approved suppliers may fulfil or purchase an introduction. The buyer approves the actual recipients before contact release.</p>
+<p><strong>Delivery status:</strong> research and implementation specification. No website has been deployed. Route candidates are not completed articles or verified seller records.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Included register</th>
+<th style="text-align:right">Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reference URLs audited</td>
+<td style="text-align:right">68, including all 48 linked guides</td>
+</tr>
+<tr>
+<td>Recorded reference links</td>
+<td style="text-align:right">403 observed edges; partial graph</td>
+</tr>
+<tr>
+<td>Named English route candidates</td>
+<td style="text-align:right">772</td>
+</tr>
+<tr>
+<td>Proposed OudGuide internal links</td>
+<td style="text-align:right">1,553</td>
+</tr>
+<tr>
+<td>Page templates</td>
+<td style="text-align:right">45</td>
+</tr>
+<tr>
+<td>Country / territory seeds</td>
+<td style="text-align:right">249</td>
+</tr>
+<tr>
+<td>Conditional requirement fields</td>
+<td style="text-align:right">67 possible fields</td>
+</tr>
+<tr>
+<td>App acceptance requirements</td>
+<td style="text-align:right">110; not executed against a portal</td>
+</tr>
+<tr>
+<td>Executed helper tests</td>
+<td style="text-align:right">18 passed</td>
+</tr>
+</tbody>
+</table></div>
+<p>The workbook and CSV/JSON registers are the detailed inventories. This playbook explains how the records become the product.</p>
+<hr/>
+<h1 id="1-product-charter-and-reference-audit">1. Product charter and reference audit</h1>
+<p><strong>Project:</strong> OudGuide.com. <strong>Specification version:</strong> 3.0. <strong>Research date:</strong> 19 October 2026. <strong>Status:</strong> developer handoff and researched planning records, not a deployed website or completed seller census.</p>
+<h2 id="1-1-what-is-being-built">1.1 What is being built</h2>
+<p>OudGuide is a worldwide reference library, business directory and supplier-introduction service for oud wood, oud oils, perfume oils, attars, finished perfumes and related fragrance products and services. It is not merely a second storefront. Visitors should be able to answer a question, understand a product term, assess the limits of a claim and discover relevant businesses without first submitting a sales inquiry.</p>
+<p>The operating model has four income/referral paths: paid profile contact visibility; clearly labelled retail referrals to ae.almutalib.com; OudGuide-branded supplier matching that may introduce Al Mutalib or other approved suppliers; and separately priced, consent-based supplier introductions. Payment for visibility or opportunities never purchases an authenticity verdict, a favourable editorial conclusion or buyer permission.</p>
+<p>The latest wholesale decision supersedes the v2 headline routing. The public form is headed <strong>Find suppliers for your wholesale requirement</strong>, not <strong>Request a quote from Al Mutalib</strong>. OudGuide initially receives the request. Actual supplier identities are presented before buyer details are released. Al Mutalib can be one of those suppliers; its representatives identify their company when contacting a buyer. A neutral acquisition brand is compatible with this workflow. Concealing the operator, the affiliation or the eventual data recipient is not part of the implementation.</p>
+<p>The two Al Mutalib sites are commercial references and intended image sources. They are not independent scientific references for claims about all oud, nor evidence that all third-party brands or photographs on those sites belong to the operator. Use contextual commercial links, not an automatic keyword-linking network.</p>
+<h2 id="1-2-requirements-recommendations-and-unresolved-decisions">1.2 Requirements, recommendations and unresolved decisions</h2>
+<p><strong>User requirements:</strong> worldwide geographic scope; individual retailer and wholesaler profiles; discovery by seller location, material origin and buyer destination; non-subscribed contacts hidden; annual business membership at AED100/month equivalent; educational origin-country and region trees; use owned-site images; commerce referrals; neutral wholesale intake; ability to fulfil or monetize qualified leads.</p>
+<p><strong>Recommended implementation defaults:</strong> basic profiles retain useful public non-contact facts; name-only records stay unindexed; membership billed AED1,200 upfront annually pending billing approval; maximum three named supplier introductions per request unless the buyer explicitly changes it; initially manual matching rather than opaque automatic allocation; no public star ratings in the first release; English first with Arabic readiness and reviewed translated releases; no instant publication of owner claims.</p>
+<p><strong>Not approved or established:</strong> legal operator name, final privacy wording, worldwide legal coverage, payment provider, lead prices, sales commission terms, refund policy, billing cadence, approved portal logo, development stack versions, hosting/data regions, current complete catalog, image-rights inventory, real supplier counts, measured keyword volumes, budgets and staffing. These are explicit launch gates, not blanks a developer should guess.</p>
+<h2 id="1-3-audit-coverage-and-evidence-limits">1.3 Audit coverage and evidence limits</h2>
+<p>The audit register covers <strong>68 discoverable/reference URLs</strong>: 48 guide articles, five guide hubs, five core pages, six discovered business profiles and four linked destinations that returned 404. The extracted-link register contains <strong>403 recorded edges from 49 source pages</strong>. It includes structural links and selected contextual/related-business links; it is not a complete raw-HTML edge extraction. Exact anchor text was not comprehensively harvested, and the role label is not an exact anchor transcript.</p>
+<p>All 48 guides linked from the reference's guides index are represented individually in <code>competitor_page_audit.csv</code>. This does not establish that these are every URL on the domain. The JavaScript directory may expose additional businesses, pagination states or endpoints not found here. Robots rules, every sitemap, complete rendered DOM, raw head tags, redirects at every edge, Core Web Vitals, server logs, Search Console, link authority, traffic and rankings were not fully verified. Do not describe this audit as a comprehensive technical crawl or use subset graph counts as full-site metrics.</p>
+<p>The reference's own index displays five hubs containing 11, 9, 9, 10 and 9 linked guides, respectively. Source: https://agarwoodguide.com/guides/ . These counts describe the visible index at retrieval, not hidden inventory.</p>
+<h2 id="1-4-reference-architecture-retain-the-useful-patterns">1.4 Reference architecture: retain the useful patterns</h2>
+<p>The five-hub learning sequence is coherent: understanding the material; origins and varieties; quality and authenticity; practical use; purchasing. Hubs distinguish starter reading from additional guides. Articles use an introductory answer, section navigation, comparisons, supporting sources and a next-step pathway. The directory has business-role and geography controls, while the inspected profiles separate descriptions, sourcing notes, public contact fields, locations and related businesses.</p>
+<p>Retain the learning sequence, local table of contents, source notes, contextual related reading and structured profile attributes. Expand it for OudGuide into 12 editorial hubs and a richer directory model. Do not reproduce proprietary articles, page designs, photographs, logos, database descriptions or brand endorsements. The competitor is an architectural reference and a discovery lead, not a source license.</p>
+<h2 id="1-5-findings-and-implementation-response">1.5 Findings and implementation response</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Observed evidence and limit</th>
+<th>OudGuide response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Directory content is fragile in extracted retrieval</td>
+<td>Retrieved directory shows <code>{{label}}</code>, <code>{{locationDetails}}</code>, repeated filters and an empty-result message. This does not prove what every rendered browser or Googlebot sees.</td>
+<td>Server-render real result cards and anchors; browser/no-JavaScript tests; accessible empty states; test hydration separately.</td>
+</tr>
+<tr>
+<td>Four homepage-linked destinations returned 404</td>
+<td><code>/list-your-business/</code>, <code>/directory/distillers/</code>, <code>/directory/sellers-retailers/</code>, <code>/directory/suppliers-wholesale/</code> returned explicit 404 during the audit.</td>
+<td>Route-registry-based navigation; CI link validation; no buttons to planned-only URLs.</td>
+</tr>
+<tr>
+<td>Retrieved title and article identity disagree</td>
+<td>The trade-history URL is retrieved with a CITES-oriented title; the CITES URL with a history-oriented title. Raw head inspection remains necessary.</td>
+<td>One content identity produces title, H1, canonical, social metadata and structured data; tests compare all five.</td>
+</tr>
+<tr>
+<td>A regional count is inconsistent</td>
+<td>Regional comparison is retrieved with eight origins in the title while its introduction and main comparison cover seven.</td>
+<td>Calculate scope counts from the actual published item collection or avoid a number in metadata.</td>
+</tr>
+<tr>
+<td>Generic guide-to-directory exits lose context</td>
+<td>Inspected origin/quality/buying pages often lead to the directory root rather than a matching subset or specific verified profiles.</td>
+<td>Origin-aware and product-aware directory modules, while retaining the buyer's separate destination choice.</td>
+</tr>
+<tr>
+<td>Related businesses may need stronger reasoning</td>
+<td>Six inspected profiles expose related-supplier modules. No public matching methodology was established by this audit.</td>
+<td>Show why an item is related; match role, products and documented capabilities; sponsored positions visibly separate.</td>
+</tr>
+<tr>
+<td>A suspected testing contradiction changed on recheck</td>
+<td>An earlier retrieved version raised concern. Latest recheck treats paper/viscosity tests as weak, and buying-oil guidance rejects reliable home purity tests. The earlier conflict was not reproduced.</td>
+<td>Do not report it as a current confirmed defect. Maintain claim history and test consistency across pages whenever a claim is revised.</td>
+</tr>
+<tr>
+<td>Merchant claims can be mistaken for evidence</td>
+<td>Inspected profiles attribute some sourcing claims; absence of reviewed permits is also stated.</td>
+<td>Store the claimant, source, check scope and expiry independently; never equate membership with verification.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Primary observation pages: https://agarwoodguide.com/directory/ ; https://agarwoodguide.com/listing/haga-oud/ ; https://agarwoodguide.com/guides/understanding-agarwood/history-of-agarwood-trade/ ; https://agarwoodguide.com/guides/understanding-agarwood/agarwood-cites-conservation/ ; https://agarwoodguide.com/guides/origins-and-varieties/regional-agarwood-comparison/ . Row-level sources are retained in the audit CSV. These observations are not claims about actual traffic, revenue or search penalties.</p>
+<h2 id="1-6-internal-link-audit-interpretation">1.6 Internal-link audit interpretation</h2>
+<p>The recorded subset has 213 selected contextual links, 48 guide-index child links, 48 hub-child links, 24 profile-navigation links, 21 selected homepage links, 20 cross-hub navigation links, 15 related-business links, five index-to-hub links, five homepage hub links and four broken homepage calls to action. These categories sum to 403; they do not include every header/footer link on every page.</p>
+<p>The useful pattern is a learning graph rather than isolated posts. The improvement is to attach the next directory step to the subject being discussed. An Assam guide should distinguish businesses in Assam from businesses elsewhere handling Assam-origin material. A UK destination guide should distinguish physically local shops from foreign sellers declaring that they serve the UK. A business profile should lead back to its place, role and relevant subject guides, creating two-way knowledge/discovery navigation.</p>
+<p><code>observed_link_metrics.csv</code> reports subset inlinks and outlinks. A zero is not evidence of a real orphan. <code>proposed_internal_links.csv</code> is a separate proposed OudGuide graph, not a crawl of an existing OudGuide deployment. Never combine them into one metric.</p>
+<h2 id="1-7-owned-site-reference-audit">1.7 Owned-site reference audit</h2>
+<p>The UAE wood collection was retrieved and exposes wood, oil and perfume navigation, product names, quantities, merchant origin wording, retail purchase options and delivery content. The Zura Yaumi page provides product photographs and merchant statements including an origin and age value. These are <strong>merchant claims</strong>, not independently validated scientific or provenance findings. Do not import all promotional language into neutral reference articles.</p>
+<p>Four image links were opened and recorded, including a wood image and branded packaging. Two are only small thumbnails and are not suitable hero assets. The collection also exposes third-party merchant/brand names, so the individual image-rights audit must not assume the entire site is exclusively own-brand inventory.</p>
+<p>The wholesale homepage had an earlier recorded retrieval but repeated later fetches timed out. Do not infer an outage or configure unverified deep URLs from that failure. Its current catalog, media URLs, quote endpoint and delivery capabilities require authorized confirmation before integration. <code>almutalib.com</code> remains a user-specified commercial destination, not a verified API.</p>
+<h2 id="1-8-what-would-make-oudguide-competitive">1.8 What would make OudGuide competitive</h2>
+<p>The recommendation is to compete on precise geography, a reviewed terminology dictionary, useful non-contact profiles, evidence-aware claims, good samples/quotation workflows and reliable matching. A directory format or keyword-relevant domain does not itself confer a ranking advantage. Google's spam policies specifically distinguish useful resources from doorway pages and scaled content made primarily for ranking manipulation. [<a href="#source-g01">G01</a>]</p>
+<p>Success measures are useful searches, qualified inquiries, buyer-approved introductions, supplier response quality, returning visitors, stale-record reduction, editorial corrections, paid renewals and legitimate commerce referrals. Search impressions and indexed pages are useful diagnostics, not the sole goal.</p>
+<hr/>
+<h1 id="2-information-architecture-entity-model-and-interface">2. Information architecture, entity model and interface</h1>
+<h2 id="2-1-global-geography-is-relational">2.1 Global geography is relational</h2>
+<p>Keep distinct fields for botanical distribution, claimed material origin, growing/collection location, processing location, business headquarters, physical branches, shipping origin and buyer destination. Cultural association is another relationship. Never use one <code>country</code> field for all of them.</p>
+<p>The country/territory seed contains 249 ISO-derived entries from the earlier planning workbook, with English and Arabic labels. It is a seed snapshot, not a current authoritative geodata service or evidence of oud production. Store stable external IDs and review ambiguous/disputed display labels. All records start with role <code>not_assessed</code>. Country existence never implies production, shipping eligibility or a minimum number of sellers.</p>
+<p>Administrative hierarchy is generally country/territory → subdivision → city → district → venue, but natural, historical and trade regions can overlap those boundaries. Store typed <code>place_relationships</code>; do not duplicate Kalimantan, Papua or other broad regions just to force a strict tree. Distinguish Indonesian Papua from Papua New Guinea. Store historical aliases and validity periods when boundaries or names change. Exact locations of vulnerable wild resources and confidential suppliers are not public map data.</p>
+<p>The first interface provides three independent selectors: <strong>Seller based in</strong>, <strong>Material origin</strong>, <strong>Deliver to</strong>. Each result identifies which match conditions are supported and by what kind of evidence. Business-reported capability is labelled as such. Product family and shipment class are part of destination capability; a perfume shipping statement does not automatically cover raw wood.</p>
+<h2 id="2-2-entity-catalogue">2.2 Entity catalogue</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Entity group</th>
+<th>Canonical records and required relationships</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Geography</td>
+<td>Place; alias; place relation; country code; source; boundary/role review.</td>
+</tr>
+<tr>
+<td>Industry terms</td>
+<td>Taxonomy term; locale label; usage/meaning; synonym-candidate relation; issuer-scoped grade definition; evidence.</td>
+</tr>
+<tr>
+<td>Science</td>
+<td>Botanical taxon or accepted-name reference; specimen/batch claims kept separate; no inferred species from origin label.</td>
+</tr>
+<tr>
+<td>Businesses</td>
+<td>Organization; role; owner claim; team member; branch; public/private contact; status and verification events.</td>
+</tr>
+<tr>
+<td>Commercial identities</td>
+<td>Brand and owner relationships; perfumer/person credits; manufacturer and distributor relationships with dates.</td>
+</tr>
+<tr>
+<td>Materials and products</td>
+<td>Material family; actual batch; finished product; variant; seller offer; unit and availability observation.</td>
+</tr>
+<tr>
+<td>Capabilities</td>
+<td>Product role; handled origins; shipping origin; served destination; samples; minimum quantity; time validity; claim source.</td>
+</tr>
+<tr>
+<td>Editorial</td>
+<td>Page identity; translated revision; structured content blocks; claim uses; reviewer; source; publication state; internal links.</td>
+</tr>
+<tr>
+<td>Assets</td>
+<td>Original source; rights holder; rights scope; subject; product/batch association; dimensions; allowed derivatives; localized alternative text.</td>
+</tr>
+<tr>
+<td>Matching</td>
+<td>Inquiry; private contact; requirements; redacted brief; candidate supplier; recipient approval; release record; quote; event log.</td>
+</tr>
+<tr>
+<td>Commercial controls</td>
+<td>Membership; contact entitlement; partner approval; lead-access offer; order; credit/refund; payment event.</td>
+</tr>
+<tr>
+<td>Governance</td>
+<td>Correction; dispute; abuse report; retention policy; privacy request; audit event; suppression; source expiry.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The same seller can have multiple roles. The same product can have multiple offers. The same named oud selection can refer to different sellers' batches. A grade is scoped to its issuer. A declared fragrance note is not automatically a chemical ingredient. A branch is not a separate company. A source review verifies a particular claim within its scope; it is not a blanket seal of authenticity.</p>
+<h2 id="2-3-main-navigation-and-homepage-formation">2.3 Main navigation and homepage formation</h2>
+<p>Desktop top navigation: <strong>Learn</strong>, <strong>Origins</strong>, <strong>Find Businesses</strong>, <strong>Explore the World</strong>, <strong>Products &amp; Fragrance</strong>, <strong>For Businesses</strong>. A separate action starts <strong>Request Suppliers</strong>. Search accepts normal queries and suggests categories: guides, terms, places, businesses and actual product references. Do not force a visitor to choose a country before reading.</p>
+<p>Homepage component order: accessible header; concise portal purpose; combined learning/directory search; three pathways (learn, retail discovery, wholesale sourcing); product-family entry cards; origin research entry points; buyer-country entry points; selected reviewed guides; useful directory entries with transparent labels; explanation of matching and paid membership; editorial/ownership links; footer. Populate counters from published records only. Zero researched suppliers means a truthful coverage message, not fake sample businesses.</p>
+<p>On mobile, search is a single accessible control followed by an expanded filter drawer. Preserve selected values in state and allow reset per field. Changing material origin must not silently change buyer destination. Map view is optional and loads only after interaction; list view stays primary and accessible. Geolocation is optional, never required; manual country/city entry always works.</p>
+<h2 id="2-4-business-profile-formation">2.4 Business profile formation</h2>
+<p>Header: legal/trading name, roles, city/country, profile-claim state, fact-review date and explanation of contact visibility. Use a verified, authorized business logo only when it satisfies the user's image-source restriction; otherwise use a text/initial placeholder. Do not put an Al Mutalib product photo in another seller's header or gallery.</p>
+<p>Body order: original factual summary; roles and product families; physical locations; origin claims handled; destinations declared served; samples/MOQs where substantiated; evidence and limitations; contact/matching panel; related businesses with match reason; linked guides; corrections and claim-profile actions. Locations and capabilities must not be converted into stronger guarantees by the template.</p>
+<p>A basic unclaimed listing can display useful sourced facts without showing website, email, phone, WhatsApp, social links or exact contact routes. Name-only records are a database/research state, not an SEO page. Corrections and ownership disputes remain available without payment. Claimed and subscribed are separate statuses. An expired subscription hides approved contact fields but does not reset a valid factual verification history.</p>
+<p>Paid profile contacts require all of: a current membership entitlement, an authorized owner, explicit publication choice and no moderation hold. Enable fields individually. The public data serializer must not include disabled values, even as hidden HTML, JSON-LD, preloaded JSON, text inside descriptions, API responses or search snippets.</p>
+<p>A paid profile may expose a clearly addressed direct inquiry to that business. A basic profile exposes <strong>Find suppliers for this requirement</strong>, with text stating that it is an OudGuide matching request and not a message to the listed company. Preserve a source-profile context internally without silently treating that seller as the recipient.</p>
+<h2 id="2-5-directory-results-and-ordering">2.5 Directory results and ordering</h2>
+<p>Default cards show name, roles, place, product fit, origin/destination claim labels, review date and profile link. Do not infer stock or shipping certainty. Explain the match briefly: for example, <code>Based in Dubai; seller-declared oud-oil supply; UK shipping needs confirmation</code>.</p>
+<p>Organic ordering should use relevance to explicit filters, documented capabilities and information freshness. Paid features may have a separate clearly labelled sponsored module. Do not silently insert membership payment or affiliation into a score labelled <code>best</code> or <code>most trusted</code>. Display sorting options such as relevance, name and recently reviewed. Distance sorting requires a real location basis and consented/geographically appropriate use.</p>
+<p>The default result size is a product decision of 20 cards, not an SEO requirement. Provide normal linked pagination with stable server-side queries. A load-more enhancement must retain crawlable pagination. No-results content states which constraints eliminated results, offers a reversible broader search and allows matching. Never say no businesses exist when the dataset is incomplete.</p>
+<h2 id="2-6-guide-article-formation">2.6 Guide/article formation</h2>
+<p>Article header: breadcrumb, H1, scope, author and qualified reviewer when applicable, published/modified dates derived from editorial events, answer summary and a concise evidence note. Body: stable table of contents, question-specific sections, original examples, tables that use real records or clearly hypothetical values, claim limitations and practical next steps. Footer: primary references, related guides, matching directory results and optional commercial modules.</p>
+<p>Origin pages distinguish species distribution from proven provenance. Region pages need region-specific evidence beyond a renamed country introduction. Trade-term pages identify market/language usage and unresolved meanings. Quality pages describe issuer criteria and testing limitations. Buyer guides tie destination information to actual product class and dated sources. Fragrance pages separate brand notes, perfumer credits, ingredients, release history and review opinions.</p>
+<p>Do not require a rigid word count. Editorial budget bands may help estimation, but a correct 500-word narrow glossary answer can be preferable to 1,500 words of filler. The gate is whether the page fulfills its specific purpose with reliable information and a useful next step.</p>
+<h2 id="2-7-visual-system-and-accessibility">2.7 Visual system and accessibility</h2>
+<p>Recommended visual direction is editorial rather than a disguised Al Mutalib shop: ivory surface, ink text, restrained deep burgundy accents, abundant whitespace and strong table readability. This is an unapproved direction, not a final brand identity. Do not redesign or repurpose the Al Mutalib falcon as OudGuide's logo without a separate instruction. Use a temporary text wordmark until the portal identity is approved.</p>
+<p>Design desktop around an approximately 1,200-pixel content container, article text around 65–75 characters per line, and mobile from 320 pixels upward. These are design starting points, not fixed performance or SEO thresholds. Form labels remain visible; do not use placeholders as labels. Use logical CSS properties for Arabic RTL, preserve correct rendering of Latin product names, international phone numbers and numbers, and test mixed-direction text.</p>
+<p>Target WCAG 2.2 AA: keyboard navigation, skip link, visible focus, contrast, accessible dialogs, descriptive labels, error summaries tied to fields, no color-only statuses, captions/alt where appropriate and no compulsory drag gestures. A map is never the only means of finding a business. [<a href="#source-w01">W01</a>]</p>
+<h2 id="2-8-locale-and-url-rules">2.8 Locale and URL rules</h2>
+<p>Use stable entity IDs and localized slugs. English and Arabic descriptions are translations of one entity, not independent duplicates. Use <code>/en/</code> and <code>/ar/</code> prefixes; root can be an accessible language/entry page with <code>x-default</code> or an agreed single consistent redirect. Do not force redirects based solely on IP. User preferences may suggest a language without trapping visitors.</p>
+<p>Use lowercase hyphenated routes, a consistent trailing-slash policy and one canonical hostname. Keep redirects for slug changes. Preserve semantic parents for breadcrumbs even where a term has multiple related origins. Only equivalent reviewed translations participate in reciprocal hreflang; unreviewed automatic copies are not published merely to inflate counts. [<a href="#source-g08">G08</a>]</p>
+<p>The route manifest deliberately includes planning-only places and topics. A URL becomes public only through the publication gate. Country, region, product and grade combinations are represented by relationships and filters first, not an unbounded route Cartesian product.</p>
+<hr/>
+<h1 id="3-content-production-seo-aeo-geo-and-links">3. Content production, SEO, AEO, GEO and links</h1>
+<h2 id="3-1-editorial-hubs-and-subject-coverage">3.1 Editorial hubs and subject coverage</h2>
+<p>The planned editorial hubs are oud basics, origins, quality, using oud, buying, culture, production, sourcing, trade, fragrance, comparisons and collecting. Product-family pages cover wood, oud oil, perfume oils, attars, finished perfumes, bakhoor, incense, powder, beads, carvings, burners, home fragrance, accessories, samples, gifting and packaging. Directory categories cover the actual supply chain, including growers, distillers, processors, wholesalers, retailers, exporters, importers, distributors, brands, manufacturers, private label, materials, packaging, laboratories, experts, training and cultural organizations.</p>
+<p>A country or region guide connects to the product and term entities relevant to it. It does not assert that every global grade, shape or scent descriptor belongs to that region. Names such as Muri, Mori, Salla, Salda, Zawaya, Girmi, Zura, Kudi, Bisa, Malino and Silani start as candidate terminology records. Collect original language, transliteration, market of use, merchant examples and expert interpretation before deciding which are synonyms, distinct selections or ambiguous terms.</p>
+<p>Normalize concepts, not user wording. Store misspellings/variants as search aliases when justified; do not automatically publish one URL per spelling. A visitor typing a musical-instrument meaning of oud should see a concise disambiguation rather than an irrelevant fragrance answer. Clinical, regulatory or sustainability claims require the appropriate expertise and source scope, not a seller testimonial.</p>
+<h2 id="3-2-research-to-publication-pipeline">3.2 Research-to-publication pipeline</h2>
+<p>Every content brief has entity IDs, primary intent, locale/market, questions to answer, evidence to collect, source limitations, associated directory results, original image options, intended internal links, commercial disclosures, reviewer requirements and refresh triggers. A draft cannot supply facts absent from the evidence record. Automated assistance may organize material and draft prose but may not invent sensory testing, travel experience, supplier checks, quotations or scientific certainty.</p>
+<p>Workflow: research candidate → sources collected → terminology/geography reconciled → brief approved → original draft → subject review → editorial and commercial-conflict review → links/assets/metadata checked → publish → monitor → update, merge or retire. Store every revision and who approved it. <code>dateModified</code> changes for material corrections, not whenever a background job runs.</p>
+<p>Maintain a claim registry with claim text, scope, claimant, source, source date, observed date, reviewer, evidence status, confidence rationale and expiry/review trigger. Articles reference claim IDs. Updating the limitations of a purity test should flag all pages that use that test, rather than fixing one article while leaving contradictory copies elsewhere.</p>
+<p>Retain a source hierarchy: authorities for legal rules; accepted botanical references for scientific names; original research for measurement claims; official merchant data for what a seller declares; documented interviews for expert opinions; original observations for what the editorial team actually tested. Images are not proof of origin, age, botanical identity, treatment or aroma. Competitor content is a research lead, not independent validation.</p>
+<h2 id="3-3-page-level-metadata-contract">3.3 Page-level metadata contract</h2>
+<p>Each published page must have a unique intended title, a clear primary H1, a purpose-specific description, self-consistent canonical, locale, robots policy, social title/image, breadcrumb and relevant structured data. Generate these from the same page record rather than disconnected CMS fields. An editor may override wording without changing identity.</p>
+<p>Title example: <code>Oud wholesalers in Dubai | OudGuide</code> only when the page lists real matching businesses. Title example: <code>Assam oud: origin claims, trade terms and buying questions | OudGuide</code> only after the research exists. Avoid <code>best</code>, <code>verified</code>, <code>cheapest</code>, fixed supplier counts or delivery claims unless supported and kept current. Character counts are preview aids, not hard Google limits. Unique wording is not enough if the underlying page adds no distinct value.</p>
+<p>Meta descriptions should describe what the user actually gets. A basic profile with hidden contacts must not advertise <code>phone number, WhatsApp and website</code> in the snippet. A sourcing service must not promise to be the named seller whose profile the visitor was reading. An article must not use a merchant product as universal evidence. [<a href="#source-g01">G01</a>, <a href="#source-g07">G07</a>]</p>
+<h2 id="3-4-internal-linking-model">3.4 Internal linking model</h2>
+<p>Use five explicit relationships: parent/child; definition/explanation; comparison; geographically relevant discovery; and action/tool. Every public indexable page should have a discoverable parent or collection entry. Related links should provide an actual next step, not merely increase a count.</p>
+<p>The supplied proposed graph contains structural edges and specific authored contextual examples. It is an implementation starting point, not a prescription to render every edge on one screen. Large country/category indexes are grouped and paginated. The navigation does not repeat all countries, terms or products in every footer.</p>
+<p>For an origin country: link to documented regions, relevant terminology, botanical explanation, quality limitations, businesses handling that origin and a sourcing checklist. For a region: link to its origin country, relevant actual local businesses, process/term explanations and other related regions only where meaningful. For a destination guide: link to physically local sellers, sellers serving that destination, product-class guidance and the relevant request form. For a business: link back to roles and place, and to relevant guides, without asserting unverified affiliations or capabilities.</p>
+<p>Suggested modules normally show a small shortlist rather than exhaustive crosslinks. Module limits such as three related businesses or four related guides are UI defaults, not ranking formulas. Organic related-business selection must not secretly prioritize Al Mutalib. Sponsored entries occupy an explicitly labelled module.</p>
+<p>Use real <code>&lt;a href&gt;</code> links with concise descriptive text and accessible names. Do not link only through click handlers, empty hash fragments or inaccessible filter controls. Deep links include only safe public context IDs; no buyer names, phones or detailed quote budgets in URLs. Avoid repeated exact-match commercial anchors. [<a href="#source-g02">G02</a>]</p>
+<h2 id="3-5-link-resolution-and-integrity">3.5 Link resolution and integrity</h2>
+<p>Store the target entity/page ID, relation type, source block ID and editorial reason. Resolve the current localized URL at render time. A target must be published and public before a normal editorial link is emitted. Links to noindex user utilities such as a form remain legitimate user actions; exclude them from XML sitemaps rather than pretending they are editorial pages.</p>
+<p>A merge creates a permanent redirect to the real replacement when equivalent. A deletion without a replacement returns a proper 404 or 410 and updates inbound editorial references. Do not redirect every retired business or guide to a shop homepage. Test redirect loops, chains, broken fragments, language mislinks and backlinks to unpublished targets.</p>
+<p>Publish gate checks: all intended indexable pages are reachable from a published index; no broken in-scope links; canonical and hreflang targets resolve; breadcrumbs form a coherent chain; title scope matches content; selected business count equals the visible dataset. Graph reachability is tested on the rendered published subset, not only on planning files.</p>
+<h2 id="3-6-external-linking-and-the-al-mutalib-relationship">3.6 External linking and the Al Mutalib relationship</h2>
+<p>There are four distinct external-link classes:</p>
+<ol>
+<li>Primary evidence citations are ordinary editorial references. They remain available even if most merchant contacts are restricted.</li>
+<li>Owned-business commercial referrals use clear brand identity and a relevant destination. Ordinary ownership does not automatically make every link paid, but a clearly commercial affiliate/sponsored placement should be qualified appropriately. Do not promise or sell ranking credit.</li>
+<li>Paid directory website links are labelled commercial features and normally use <code>rel="sponsored"</code>; Google also accepts <code>nofollow</code> for paid links. [<a href="#source-g04">G04</a>]</li>
+<li>Untrusted public submissions use appropriate <code>ugc</code>/<code>nofollow</code> handling and moderation. Paid user content may need both <code>sponsored ugc</code>.</li>
+</ol>
+<p>Use Al Mutalib wood and oil collection destinations where actually verified. Product-level links must use a live destination registry and can change when catalog entries move. Wholesale source/brand references can point to almutalib.com where directly relevant; the neutral request form need not leave OudGuide. A backlink is not needed in every paragraph, image or page. Do not hide owned-site links in CSS, insert them into every keyword occurrence, require reciprocal links from businesses or use a network of doorway domains. [<a href="#source-g01">G01</a>]</p>
+<p>The portal remains useful without clicking an Al Mutalib referral. Footer ownership disclosure identifies the actual operating relationship once the legal entity is approved. Commercial modules do not masquerade as independent research. A link to a third-party scientific source is not a prohibited free seller contact.</p>
+<h2 id="3-7-images-and-assets-from-the-two-owned-sites">3.7 Images and assets from the two owned sites</h2>
+<p>Use original authorized bytes from the approved source library, not competitor assets. Record source page, exact source URL, copyright holder, permission scope, depicted subject, actual product/variant if known, master dimensions, checksum, approved crop/focal point, credit, rights expiry and permitted uses. Localize alternative text and captions independently.</p>
+<p>For production, ingest approved originals into a controlled media store and generate responsive derivatives. Avoid relying indefinitely on third-party hotlinks. Do not enlarge 120-pixel thumbnails into hero images. Use modern formats where compatible, explicit dimensions and responsive <code>srcset</code>/<code>sizes</code>; prioritize the actual LCP image and lazy-load noncritical images. [<a href="#source-g06">G06</a>]</p>
+<p>All existing logos, wood shapes, packaging and product details remain accurate; no re-rendering, reshaping or unsupported enhancement. A photograph associated with an Al Mutalib product can illustrate that selection with attribution. It cannot illustrate an unrelated seller's inventory, a specific forest, a laboratory test or an authentic origin specimen unless the rights and identity support that use.</p>
+<p>When the owned sites lack a suitable forest, region, distillery or third-party business photo, publish without that photograph or use an accessible typographic/data component. Do not fill the gap with a misleading generic product image. A paid business uploading new images would be an exception to the user's two-site image rule and therefore requires explicit product-owner approval before enabling that feature.</p>
+<p>An Al Mutalib photo source may be credited contextually; image attribution is not a mechanism to force a sitewide SEO backlink. Do not copy identical merchant descriptions along with reused images. Portal editorial pages use self-canonicals for their original purpose; only truly duplicated content calls for a duplication decision.</p>
+<h2 id="3-8-facets-indexing-and-sitemaps">3.8 Facets, indexing and sitemaps</h2>
+<p>Publish a curated allowlist of useful directory landing routes. Arbitrary combinations remain interactive filters. Decide each URL class explicitly: published indexable page; crawlable noindex utility; parameter alias canonicalized to a truly equivalent route; invalid filter returning a useful error; or private route with authorization. A robots disallow is not a substitute for <code>noindex</code> on a URL a crawler needs to fetch to see the instruction. [<a href="#source-g03">G03</a>]</p>
+<p>Do not canonicalize materially different pages to a generic parent merely to hide duplication. Use noindex where appropriate and remove useless crawlable permutations. Normalize parameter order and values. Deny infinite page numbers, unknown enumerations and malicious queries. Search results and buyer-specific quote pages are not indexable.</p>
+<p>XML sitemap indexes separate editorial, directory profiles, geographic landing pages, product references and locales. Include only published canonical indexable URLs with accurate modification dates. Split before the official protocol limits and validate response format. Sitemap inclusion is not an indexing or ranking guarantee. [<a href="#source-g09">G09</a>]</p>
+<h2 id="3-9-aeo-and-generative-engine-discovery">3.9 AEO and generative-engine discovery</h2>
+<p>AEO means answering useful questions clearly. GEO here means discovery in generative search, not local geography. Show direct explanations, source references, author/reviewer identity, dates where relevant, comparison tables and explicit uncertainty. Do not create one thin page per conversational rephrasing. The entity IDs and reviewed relationships help make the site understandable without a special AI-only content layer.</p>
+<p>Google documents that normal SEO fundamentals apply to its AI features and that no special AI schema or mandatory AI text file replaces them. OpenAI separates OAI-SearchBot search discovery from GPTBot training controls; configure those decisions independently and test CDN/firewall access. Neither crawler access nor schema guarantees citation. [<a href="#source-g05">G05</a>, <a href="#source-o01">O01</a>]</p>
+<p>As of the checked Google documentation, FAQ rich results were removed beginning 7 May 2026. Keep useful Q&amp;A content but do not sell FAQ schema as a rich-result growth feature. Confirm the current feature documentation at implementation. [<a href="#source-g11">G11</a>]</p>
+<p>Use Organization and appropriate Article, BreadcrumbList, LocalBusiness, Product or Event structures only where the actual page meets their semantics and current feature rules. A directory listing is not a product for sale by OudGuide. Do not emit hidden contacts, invented aggregate reviews, product offers without evidence or misleading prices. [<a href="#source-g07">G07</a>]</p>
+<h2 id="3-10-measurement-and-revision">3.10 Measurement and revision</h2>
+<p>Track intent-level traffic and conversions without buyer PII. Events include directory search, filter changed, profile viewed, evidence expanded, retail referral, RFQ started/submitted, channel verified, recipient approved, introduction delivered, supplier replied, withdrawal, membership checkout and renewal. Commercial CTR should be read alongside fulfilled user needs, not used to force every page into a shop exit.</p>
+<p>Search Console and rank/keyword tools must be connected separately for genuine demand and indexing measurements. No search volumes or difficulty scores in this pack are fabricated. Prioritize queries using measured demand when available, actual inventory/capability, evidence readiness, buyer value and content distinctiveness. Refresh titles, links and pages when those inputs change, not on an arbitrary mass-rewrite schedule.</p>
+<hr/>
+<h1 id="4-wholesale-matching-lead-sales-and-membership">4. Wholesale matching, lead sales and membership</h1>
+<h2 id="4-1-front-end-brand-versus-actual-recipient">4.1 Front-end brand versus actual recipient</h2>
+<p>The public acquisition experience is <strong>OudGuide Supplier Matching</strong>. Its hero, button and initial form do not need to promote Al Mutalib. The actual operator and privacy information remain accurately identified, and eventual suppliers are named before an introduction. An Al Mutalib salesperson does not impersonate an independent OudGuide adviser.</p>
+<p>Initial form copy, to be legally reviewed: <strong>Tell us what you need. OudGuide will review your requirement and help you choose suitable suppliers. We may receive a fee from suppliers for introductions. You approve who receives your contact details.</strong></p>
+<p>The submit label is <strong>Submit requirement to OudGuide</strong>. A page-level notice explains whether the request is general matching or addressed to a participating named business. If the source business is not receiving it, say so before submission. Refusing additional matching must not silently redirect a supplier-specific request to Al Mutalib.</p>
+<p>The introduction screen identifies each proposed supplier, country, relevant capabilities, relationship to the portal if affiliated, approved contact channels and exactly which information will be shared. The button is <strong>Approve these introductions</strong>. Al Mutalib can appear here as an actual named supplier rather than in the acquisition headline.</p>
+<h2 id="4-2-three-distinct-commercial-products">4.2 Three distinct commercial products</h2>
+<p><strong>Directory membership:</strong> business-funded public contact visibility and profile tools. Proposed price is AED1,200 per year, described as AED100 per month equivalent. This assumes annual upfront billing; monthly installments under an annual commitment need a different contract and implementation decision.</p>
+<p><strong>General matching:</strong> a buyer asks OudGuide to help source. Approved partners can express interest in an appropriately redacted brief. The buyer chooses introductions. Al Mutalib can participate on the same permission basis.</p>
+<p><strong>Lead/intro access:</strong> a supplier pays an agreed fee to obtain an approved introduction within a defined scope. This is not unrestricted ownership of personal information. A supplier may not resell it, add unrelated marketing, share it with undisclosed companies or export all inquiries merely because it purchased one opportunity.</p>
+<p>These products have separate entitlements, terms and payment records. Membership does not automatically buy lead access. A paid introduction does not buy an authenticity badge. A staff role in portal operations does not authorize affiliated retail/wholesale sales use.</p>
+<h2 id="4-3-end-to-end-wholesale-flow">4.3 End-to-end wholesale flow</h2>
+<ol>
+<li>A guide, profile or directory opens a requirement form with safe public context: product family, relevant origin/term and source page ID. The buyer separately chooses delivery location. No name, email or phone is stored in URL parameters.</li>
+<li>OudGuide collects requirements, one contact channel and the service permission. Rate limiting and accessible anti-abuse controls apply. The receipt states that the request has been received, not that suppliers have accepted it or that a quote is guaranteed.</li>
+<li>Verify the chosen contact channel before external release. Portal operations qualify the requirement, check purpose/product class and reject abuse. Reviewers can ask a service-related clarification as OudGuide, not start an undisclosed sales campaign.</li>
+<li>Create a redacted matching brief. Remove names, business identity, phone, email, social links, exact street address, identifying free text and original attachments. Use country and necessary coarse geography, quantity/budget bands and structured requirements. Redaction is not automatically anonymization; screen distinctive combinations for re-identification risk. Unapproved users see nothing.</li>
+<li>Eligible suppliers see the redacted opportunity and can signal capability. Participation requires a contract, identity review, product/destination fit and policy eligibility. Viewing an opportunity does not release contacts. Paid preference is not described as independent best-match ranking.</li>
+<li>Present the relevant supplier identities to the buyer. The default is at most three, or one if the buyer requests it. This limit is an operational policy, not a promise of three offers. Each additional supplier requires approval. A selected-profile request remains selected-profile-only unless the buyer opts into alternatives.</li>
+<li>Store a versioned recipient grant: inquiry, business identity, fields, purpose, channels, notice version, approved time, expiry and withdrawal state. Verify these server-side; never trust a client-supplied <code>consent=true</code> or a supplied recipient ID as authorization.</li>
+<li>Confirm commercial eligibility and any payment entitlement. For paid access, authorize/reserve first and capture only according to the agreed fulfilment/refund policy. A pending payment is not permission. An expired or withdrawn grant prevents release even if a supplier has paid; void/refund according to terms.</li>
+<li>Atomically reserve the permitted introduction slot and create a unique release event/outbox task. Validate approval again immediately before dispatch. Only approved fields and safe scanned attachments are released to the named recipient. A transport acknowledgement is not a supplier reply.</li>
+<li>Suppliers identify themselves and respond only in the approved channels and purpose. The portal records delivered, acknowledged, quoted and closed states separately. Failure/retry handling must not duplicate sales or introductions. Buyers can see recipients, close the request, withdraw pending permissions and report misuse.</li>
+</ol>
+<h2 id="4-4-lead-state-machine">4.4 Lead state machine</h2>
+<p><code>draft → submitted → contact_pending → qualified → matching → recipient_approval_pending → authorized → dispatch_pending → delivered → answered → closed</code>.</p>
+<p>Exceptional states include <code>needs_clarification</code>, <code>rejected</code>, <code>expired</code>, <code>withdrawn</code>, <code>delivery_failed</code> and <code>held_for_policy_review</code>. Transitions are server-side events with idempotency keys. The buyer's sourcing state, per-recipient permission state, per-introduction delivery state and payment state are separate; one field cannot represent them safely.</p>
+<p>A privacy withdrawal immediately suppresses pending releases and notifies released recipients of the requested change. Do not claim to erase an email already delivered or override a recipient's independent lawful recordkeeping obligations. Account suspension removes future access and triggers review of outstanding introductions. A payment refund does not retroactively authorize further data use.</p>
+<h2 id="4-5-exclusivity-and-shared-leads">4.5 Exclusivity and shared leads</h2>
+<p>Define an exclusive lead as an introduction not released to any other supplier within the specified exclusivity scope/period. An Al Mutalib sales introduction counts as a release. It cannot contact the lead first and then sell the same lead as exclusive to someone else. Portal operations processing under a restricted service role is distinct from supplier sales access and must be logged.</p>
+<p>For shared leads, state the maximum number of buyers, whether introductions have already occurred and which time window applies. Never silently expand a three-recipient grant into ten recipients. The supplier receives an honest access product, not a sales guarantee. If the requirement is already closed, withdrawn, expired or otherwise invalid, it is not sold as fresh.</p>
+<p>Lead pricing is deliberately unpriced in this specification. Set fees after observing qualification cost, buyer acceptance, supplier response, duplicates, disputes and actual value. Keep raw personal information out of public auction pages. The recommendation is manual matching and private approved partner access initially, not an unrestricted downloadable lead marketplace.</p>
+<h2 id="4-6-quote-fields-and-validation">4.6 Quote fields and validation</h2>
+<p>The register defines <strong>67 possible fields</strong>, retaining 60 earlier requirement fields and adding seven matching/permission controls. A normal buyer sees only the fields relevant to the selected product. Required first-pass inputs are product family or unsure, purpose, quantity or unsure, destination country/city where known, sample requirement, one contact channel and the actual service choice.</p>
+<p>Wood fields include trade name, origin preference, grade wording and issuer if known, physical form/dimensions, quantity/unit, preparation/treatment requirements, intended use, batch repeatability and packaging. Oil fields separate declared pure oud oil, blend, perfume compound and unknown; collect volume or mass without automatic conversion and intended application. Finished perfume/private-label fields include format, concentration wording, bottle size, units, fragrance brief, packaging and manufacturing expectations.</p>
+<p>Samples fields include sample count/amount, sample budget, whether fees are acceptable, destination and whether bulk must match the sampled batch. Do not promise free samples, universal minimum orders or guaranteed shipping. Grade labels remain free-text or issuer-scoped references, not a forced universal score.</p>
+<p>Validate international phone input with an explicit country choice and a maintained parser; preserve the original entry alongside the normalized form, including the leading plus. Do not coerce every number to UAE length. Validate dates against time zone and allow no firm deadline. Quantity units have a family; grams and millilitres are not converted without actual density. Money uses a currency and basis such as per kilogram or total budget. Reject unsupported HTML and uploaded executable content; allow buyers to say unsure instead of entering invented numbers.</p>
+<h2 id="4-7-permission-and-privacy-engineering-baseline">4.7 Permission and privacy engineering baseline</h2>
+<p>This is a worldwide service design, not a legal opinion or a universal consent recipe. A qualified reviewer must map applicable rules for the operator, buyer, recipient location, product class and contact channel before enabling a market. Some obligations depend on unsolicited marketing versus a solicited quotation, business versus individual subscriber, cross-border processing and sales/sharing definitions. A generic <code>partners may contact you</code> checkbox is not assumed sufficient.</p>
+<p>The UK ICO's data-broker guidance stresses transparency, lawful basis and recipient due diligence, and its electronic-mail guidance addresses bought-in lists and consent where required. These sources are jurisdiction-specific and must not be presented as worldwide clearance. [<a href="#source-p01">P01</a>, <a href="#source-p02">P02</a>]</p>
+<p>Use separate purposes: OudGuide service processing; the selected supplier introduction; optional additional introductions; and optional ongoing marketing. Keep optional marketing unticked and revocable. Record notice text/version and approved suppliers, not merely the existence of a checkbox. Do not make unrelated marketing necessary to submit a quote request. Avoid public buyer profiles, public requests, open attachments and unrestricted exports.</p>
+<p>Actual controller/business identity and commercial affiliations need disclosure in the appropriate places, with the named supplier decision visible before data release. A buyer should not learn only during an unexpected call that their details were sold to a different company. Partner contracts prohibit onward resale, require access controls, specify use limits and provide a misuse/removal mechanism. Processor versus controller roles require legal assessment; common ownership is not an automatic exemption.</p>
+<p>Retention durations are configuration proposals pending legal review: short-lived drafts; time-limited active requests; periodic review of inactive leads; minimal suppression records; separate legally required billing retention. Do not hardcode indefinite retention or promise instant universal deletion. Every personal-data table has a retention classification and a deletion/hold workflow.</p>
+<h2 id="4-8-membership-implementation">4.8 Membership implementation</h2>
+<p>Plan fields: currency AED; amount 120000 minor units per annual period for the proposed upfront model; public wording AED1,200/year (AED100/month equivalent); tax treatment not assumed; cancellation, renewal and refund wording approved before checkout. Supplier team seats, branch limits and included features must be explicit configuration, not hidden later charges.</p>
+<p>Subscription states are pending, active, past_due, cancelled_at_period_end, expired, suspended and refunded as applicable. Source of truth is verified provider events plus reconciliation, not a <code>success</code> URL. Verify webhook signatures, deduplicate event IDs and cope with out-of-order delivery; invalid events cannot activate contacts. [<a href="#source-s02">S02</a>]</p>
+<p>Public contacts are recomputed after status changes, owner changes and moderation holds. Purge public CDN/search caches when entitlement expires. The profile itself remains useful and does not turn into a negative label. Emails asking a business to subscribe must not assert that an unclaimed profile means the business is fraudulent or unsafe.</p>
+<h2 id="4-9-buyer-and-partner-dashboards">4.9 Buyer and partner dashboards</h2>
+<p>Buyer request view shows requirements, recipient approvals, current status, introductions made, messages/quotes where supported, withdrawal and help. Access requires a verified account or short-lived secure token with appropriate re-verification. Guessing sequential IDs must never reveal another request.</p>
+<p>Partner dashboard separates membership/profile management from redacted opportunities, purchased introductions, consent-scoped buyer details, credits/disputes and team permissions. Sales staff see only authorized introductions assigned to their organization. Portal editors do not need buyer contacts. Financial staff do not need uploaded buyer documents. Operational admin access is narrowly logged and protected by multifactor authentication.</p>
+<p>The initial service can avoid a full messaging system: a structured introduction and response status are enough. Do not promise escrow, payment protection, guaranteed product authenticity, shipments or deals unless those products are actually implemented and contractually supported.</p>
+<hr/>
+<h1 id="5-engineering-architecture-and-operational-contracts">5. Engineering architecture and operational contracts</h1>
+<h2 id="5-1-reference-architecture">5.1 Reference architecture</h2>
+<p>Use a server-rendered public application, a relational database, an editorial CMS/admin interface, private object storage, a background job/outbox system and a suitable search index. Next.js/TypeScript and PostgreSQL are a reasonable reference stack, not a selected vendor/version commitment. Pin supported versions after engineering validation. Existing Al Mutalib storefronts stay separate commerce systems connected through approved links or authorized integrations; do not reconstruct their checkout inside a directory.</p>
+<p>Public content should be cacheable, while account, inquiry, approval and partner data is private and never cached at shared edges. Separate public business summaries from restricted contact data and buyer data at the storage/query boundary. Search indexes contain explicit public projections, not a copy of database rows. Private matching search uses a different index/endpoint with authorization.</p>
+<p>The handoff includes a reference SQL schema and OpenAPI contract. They express core entities, constraints and interface intent. They are not a substitute for application authorization, production migrations, provider-specific payment integration, full legal policies, load tests or security review. No deployment has been performed.</p>
+<h2 id="5-2-services-and-ownership">5.2 Services and ownership</h2>
+<p>Public content service resolves published pages and localized aliases, builds metadata, breadcrumbs, internal links and permissible media. Directory service applies explicit filters and returns public cards. Business service controls claiming, team membership, public field approval and subscription entitlements. Inquiry service manages private requirements and approval. Matching service sees necessary redacted specifications and candidate capabilities. Release service alone dispatches approved introductions. Billing service validates provider events and reconciles payments. Editorial service manages claims, sources, revisions and publication checks.</p>
+<p>Use least-privilege application identities for each boundary. An admin API with a shared all-powerful token exposed to browsers is not acceptable. Hosting dashboards and secrets remain out of the repository. Authorized CRM integration runs server-side; no buyer data is placed in links to almutalib.com or an analytics UTM parameter.</p>
+<h2 id="5-3-public-contracts">5.3 Public contracts</h2>
+<p>Search endpoints accept typed enums/IDs for role, product family, seller place, origin place, destination and page/cursor. Respond with useful match explanations and coverage status. Unknown IDs produce a clear validation error. Limit query length, facet count and expensive geography operations. Result totals describe researched published entries, not total global sellers.</p>
+<p>Page endpoints return published content or a real not-found response. Hidden/private pages never leak drafts in preview cache, JSON metadata or public sitemap generation. Previews require authorization and use noindex/no-store. Page slugs map to immutable IDs with redirect history. A locale fallback is clearly indicated and must not masquerade as a completed translation.</p>
+<p>Public business detail response intentionally excludes unrestricted contact fields. The server may add only owner-approved contact projections that satisfy all active entitlement checks. API tests must scan both rendered HTML and JSON for hidden contact canaries. An enriched description that embeds a phone number is reviewed and filtered under the same policy.</p>
+<h2 id="5-4-inquiry-and-partner-contracts">5.4 Inquiry and partner contracts</h2>
+<p>Initial RFQ submission is idempotent and creates one private inquiry. Return an opaque receipt ID and a limited status link, not a complete echo of private data. Verify contact ownership before release. No client request can set itself to <code>approved</code>, <code>paid</code>, <code>verified</code> or <code>delivered</code>.</p>
+<p>Recipient approval references a server-generated supplier candidate and exact notice version. The server checks inquiry ownership, verified channel, request state, allowed geography/channel policy, cap and expiry. Revocation updates grant status and cancels unsent outbox events. Released recipients receive an appropriate suppression/withdrawal update; continued processing is reviewed under their applicable obligations.</p>
+<p>Partner opportunity endpoints return redacted structured briefs only. Approved grants unlock a limited projection, not raw inquiry storage. File downloads are separately authorized, signed and expiring. Supplier callbacks are authenticated, idempotent and scoped to the specific introduction. Payment, CRM and notification webhooks each have separate signature/secret validation and anti-replay strategy.</p>
+<h2 id="5-5-core-validation-and-error-semantics">5.5 Core validation and error semantics</h2>
+<p>Use 400/422 for invalid shape/values, 401 for missing authentication, 403 for authenticated but unauthorized actions, 404 where hiding resource existence is appropriate, 409 for stale versions or duplicate conflicting operations, 429 for limits and 5xx for real service failures. Return field errors with human-readable messages and a request ID; no stack traces, SQL errors, secrets or private recipient details.</p>
+<p>Use optimistic versions for editorial edits, business ownership changes and consent changes. Payment/release transitions use database transactions and uniqueness constraints. Clock/time handling is UTC internally with display in the requested locale/time zone. Monetary calculations use integer minor units and explicit currencies; amounts in different currencies are not summed without dated conversion policy.</p>
+<h2 id="5-6-security-baseline">5.6 Security baseline</h2>
+<p>Require strong sessions, secure HttpOnly cookies where applicable, CSRF protection, rate limits, validation, output escaping and a restrictive content security policy suited to approved embeds. Admins and high-risk partner actions use multifactor authentication. Scope roles by organization; test horizontal and vertical authorization. Audit privileged access without logging raw PII.</p>
+<p>Uploaded files are allowlisted by content type and extension, size-limited, quarantined, scanned and stored outside executable/public directories. Strip dangerous metadata where suitable, reject active content, and require extra review for documents with personal identifiers. Render safe previews separately. Follow OWASP upload guidance and test actual processing. [<a href="#source-s01">S01</a>]</p>
+<p>Remote image imports require an allowlist, redirect validation, size/time limits, MIME checks and blocking of local/private network destinations. Do not let arbitrary business image URLs become server-side request forgery. Do not import a merchant website wholesale without permission or retain unrelated personal data.</p>
+<p>A form request, attachment or retrieved web page is untrusted input. Any future AI assistant must not execute instructions embedded in supplier descriptions, uploaded documents or sources. It should retrieve reviewed facts, cite them, expose uncertainty and avoid autonomous lead release or payment changes. No third-party model receives buyer PII without the appropriate arrangement and approved purpose.</p>
+<h2 id="5-7-data-and-editorial-administration">5.7 Data and editorial administration</h2>
+<p>The CMS should support typed blocks: answer, paragraph, definition, table, comparison, attributed quote, evidence note, image, directory module, product example, caution, Q&amp;A and CTA. Each block supports safe links and explicit source/claim associations. A linked claim update flags affected pages for review. Automated drafts are visibly marked in admin and cannot self-publish factual articles or supplier claims.</p>
+<p>Business submissions enter a moderation queue. Deduplicate by normalized name, official domain where privately retained, address, owner proof and other evidence; never blindly merge same-name companies. Preserve provenance and disputes when merging. Source expiry flags pages for review rather than fabricating updated facts.</p>
+<p>A geography editor manages aliases, boundary/version notes and roles. A taxonomy editor reviews possible synonyms and issuer-scoped grades. A media editor approves rights and subject identity. Public counts are calculated from published eligible records. A dashboard exposes missing sources, stale contacts, broken links, untranslated critical controls and pending ownership disputes.</p>
+<h2 id="5-8-jobs-caching-and-reliability">5.8 Jobs, caching and reliability</h2>
+<p>Recommended jobs: approved catalog/media ingestion; current link checks with a polite rate limit; source review reminders; subscription reconciliation; public search reindex; sitemap generation; cache invalidation; RFQ verification/expiry; outbox dispatch/retry; withdrawal propagation; attachment scan; privacy retention/deletion and backup verification.</p>
+<p>Jobs are idempotent and have retry limits, backoff, a dead-letter queue and an operator alert. A duplicate payment event cannot charge twice or activate twice. A notification retry cannot consume another recipient slot. A withdrawn grant is rechecked at dispatch, not only when a job is enqueued.</p>
+<p>Backups are encrypted, access-restricted and restore-tested. Define recovery objectives with the owner; proposed starting targets are recovery point no more than one hour for critical transactional data and restoration within four hours, subject to budget and validation. These are engineering targets, not achieved service guarantees. Document how deletions/suppressions propagate when backups are restored.</p>
+<h2 id="5-9-performance-and-accessibility-tests">5.9 Performance and accessibility tests</h2>
+<p>Use actual field data after launch to evaluate Core Web Vitals. Current Google good-experience thresholds reference LCP within 2.5 seconds, INP within 200 milliseconds and CLS no more than 0.1; assessment requires suitable field measurements, not a claim based solely on a local build. [<a href="#source-g10">G10</a>]</p>
+<p>Control large media, maps, tag managers and third-party embeds. No map in the critical path; no image without dimensions; no unnecessary client JavaScript for static articles. Suggested engineering budgets are tested on realistic mobile conditions and real directory datasets, not treated as ranking guarantees. Load tests include country/category queries, large profile inventories, simultaneous quote submissions, subscription events and consent withdrawal during dispatch.</p>
+<p>Accessibility testing includes keyboard-only use, screen-reader field announcements, RTL, zoom/reflow, focus after dialog close, errors and loading/empty states. Automated scans supplement rather than replace human tests. [<a href="#source-w01">W01</a>]</p>
+<h2 id="5-10-deployment-and-rollout">5.10 Deployment and rollout</h2>
+<p>Maintain development, staging and production with distinct credentials, data and integrations. Staging is access-controlled and noindex; never copy real buyer contacts into local seeds. Use synthetic test data marked non-production. CI validates routes, links, schema/contracts, permissions, data migrations, accessibility and contact-leak fixtures. Database migrations are reversible where possible and accompanied by backups for destructive changes.</p>
+<p>Launch with a reviewed corpus and end-to-end matched-introduction tests rather than the entire route seed. Canary release new templates, monitor errors and provide rollback. Verify DNS/TLS, preferred hostname, redirects, emails, payment callbacks, approved external destinations, robots, sitemaps, monitoring and restore runbooks. The owner approves actual data region, policies, branding and merchant integrations before production.</p>
+<hr/>
+<h1 id="6-editorial-brief-formation-and-publishing-operations">6. Editorial brief formation and publishing operations</h1>
+<h2 id="6-1-the-complete-brief-structure">6.1 The complete brief structure</h2>
+<p>Every content item uses these fields: stable ID; intended route; page template; locale; primary question; audience stage; geographic role; related entities; primary query cluster; alternative spellings; measured-demand source or <code>not measured</code>; existing page overlap; unique value; scope exclusions; evidence requirements; facts and claims; proposed headings; tables/examples; image rights; related directory module; internal links; external evidence links; commercial link choice; author/reviewer; review date; acceptance gate; update triggers and owner.</p>
+<p>The route manifest gives each of 772 named English candidates a title/H1 brief, family, phase, intent, parent, required sections, publication gate, evidence brief, internal-link plan, commercial behavior and image policy. These are <strong>briefs</strong>, not 772 completed articles. Candidate countries and term variants are held until researched. The template registry supplies the page-specific component order and acceptance checks; the writer must enrich each brief with real facts.</p>
+<h2 id="6-2-worked-brief-origin-country">6.2 Worked brief: origin country</h2>
+<p><strong>Candidate:</strong> India origin guide. <strong>Intent:</strong> understand documented Indian agarwood context and distinguish origin from seller location. <strong>Audience:</strong> learners and sourcing buyers. <strong>Required research:</strong> accepted botanical references; documented country/region industry context; relevant official trade sources if regulatory claims are included; native terminology review; attributable merchant examples.</p>
+<p><strong>Heading formation:</strong> what the guide covers; Indian/Hindi terminology; documented regions and their different roles; material origin versus trading location; product and trade labels; grade and treatment claims; questions to ask about provenance; where to explore next. A region index links only reviewed regional pages. A supplier module offers two explicitly different pathways: physically based in India and handling India-origin material.</p>
+<p><strong>Do not write without evidence:</strong> countrywide aroma rules, exact species of any listed batch, nationwide current shipping/export permission, universal age, guaranteed authenticity or supplier counts. Al Mutalib product photographs can illustrate clearly named merchant selections, not prove forest origin. The reference competitor is a topic lead; primary research supports the resulting article.</p>
+<h2 id="6-3-worked-brief-assam-region">6.3 Worked brief: Assam region</h2>
+<p><strong>Candidate route:</strong> <code>/en/guides/origins/india/assam/</code>. <strong>Distinct value:</strong> region-specific context, documented local terms and actual relevant businesses, not a country page with names replaced. <strong>Required sections:</strong> place identity; connection to India; documented production/processing/trade roles; local terminology; evidence behind specific origin claims; sampling and comparison questions; related source/business guides.</p>
+<p>Link to India, the relevant trade glossary, grade limitations, sample-to-bulk guidance and researched local directory results. If Hojai is discussed, distinguish a locality/business location from a blanket origin claim for all material sold there. Avoid exposing wild-tree coordinates or confidential suppliers. No photo is preferable to a generic photograph falsely labelled as an Assam forest.</p>
+<h2 id="6-4-worked-brief-hindi-muri-term">6.4 Worked brief: Hindi Muri term</h2>
+<p><strong>Candidate route:</strong> <code>/en/glossary/hindi-muri/</code>. <strong>Purpose:</strong> explain documented usage and how buyers should interpret a named selection. Collect exact English/Arabic spellings, named merchant examples, market of usage, photographs with known product association and reviewer comments. Mori and other spellings remain candidate aliases until checked.</p>
+<p>Suggested sections: documented usage; what the name does not establish; issuer-specific selections such as Super labels; how physical form should be described; comparing real products and quantities; sample questions; related terms. Separate a general term from each seller's specific product or batch. Do not claim the term always has one shape, grade, botanical identity or exact region without support. Relevant commercial examples are attributed, not the entire definition.</p>
+<h2 id="6-5-worked-brief-wholesalers-in-dubai">6.5 Worked brief: wholesalers in Dubai</h2>
+<p><strong>Candidate route:</strong> <code>/en/directory/wholesalers/in/united-arab-emirates/dubai/</code>. <strong>Intent:</strong> find businesses physically operating in Dubai, not every foreign supplier willing to ship there. <strong>Required data:</strong> reviewed location and wholesale role; relevant product families; source/verification date; public non-contact summary; contact entitlement; optional destination capability with scope.</p>
+<p>Lead with searchable results and concise local context. Filters distinguish product origin and buyer destination. The page can link to Deira only after meaningful neighborhood-specific coverage exists. If the buyer actually wants suppliers delivering to Dubai, offer that separate search; do not merge the two lists without explanation. No fake branches and no Google Business Profile for each portal-covered city.</p>
+<h2 id="6-6-worked-brief-oud-buyers-in-the-united-kingdom">6.6 Worked brief: oud buyers in the United Kingdom</h2>
+<p><strong>Candidate:</strong> buyer-country guide or destination directory, depending on primary intent. <strong>Distinct purpose:</strong> choosing locally based sellers versus overseas suppliers and understanding questions about the exact product class and delivery. <strong>Required evidence:</strong> real local coverage and owner-declared destination capabilities; current competent-authority sources for any legal guidance; dates and limitations.</p>
+<p>Never imply a global Al Mutalib shipping promise from a UAE storefront. An approved retail link can be shown as a named shopping option with eligibility to confirm. The wholesale matching form asks destination and product class, then may hold the request for policy review. Exact customs obligations need item/jurisdiction review, not country-name boilerplate.</p>
+<h2 id="6-7-worked-brief-comparing-supplier-quotes">6.7 Worked brief: comparing supplier quotes</h2>
+<p><strong>Candidate route:</strong> <code>/en/guides/sourcing/comparing-supplier-quotes/</code>. <strong>Purpose:</strong> a practical worksheet comparing what is actually quoted. Include a clearly hypothetical table with product identity, seller-defined grade, origin claim/evidence, treatment declaration, sample/batch relationship, net amount, currency, price basis, packaging, shipping inclusions, validity period and payment/returns terms. Never fabricate real supplier quotes or combine grams and millilitres as equivalent.</p>
+<p>Offer the sample plan and quantity guide as internal links. The action is <strong>Prepare a supplier requirement</strong>. A commercial explanation says suppliers may pay for introductions, and the buyer controls the recipients. This page is useful even when a buyer never submits a form.</p>
+<h2 id="6-8-content-quality-checklist">6.8 Content quality checklist</h2>
+<p>A reviewer should be able to answer: What user need is served? What is newly useful compared with existing portal pages? Which claims are established, seller-declared, opinion or uncertain? Do titles and counts match the body? Is an origin claim actually about a batch? Are monetary amounts dated and comparable? Are the sources appropriate? Are all cited links live? Do pictures show what captions claim? Does the page link to a real next step? Is the commercial relationship visible? Are translations and aliases accurate? Does the page remain helpful without a sales click?</p>
+<p>Reject name-swapped location text, universal scent stereotypes, guaranteed testing shortcuts, fabricated expert biographies, fake original testing, copied competitor prose, misleading review stars, false counters and automatically generated product-region combinations. Do not convert a merchant's marketing comparison into an independent finding about competitors.</p>
+<h2 id="6-9-refresh-and-retirement">6.9 Refresh and retirement</h2>
+<p>Assign a responsible owner and trigger rather than a fake universal freshness date. Trigger review when a source is replaced, a claim changes, a business corrects data, a destination policy expires, a product/offer moves, an image license changes, a translation diverges or a user reports a meaningful error. Record what changed and why.</p>
+<p>Merge overlapping terms/articles only after preserving meaning and redirects. A closed business can retain a clear historical profile when useful, but cannot continue to appear as an active buying match. Profiles with unresolved identity disputes are held or annotated, not sold as trusted. Deleted personal details are removed from public cache/index projections and downstream approved exports as applicable.</p>
+<h2 id="6-10-people-permissions-and-capacity">6.10 People, permissions and capacity</h2>
+<p>Recommended roles are product owner; editorial lead; oud-domain reviewer; native-language reviewer; directory researcher; verification/moderation operator; matching operator; lead sales partner administrator; engineer; finance; privacy/security reviewer. One person may hold multiple roles initially, but permissions remain separated. Paid affiliate sales staff should not secretly edit independent ranking outcomes or obtain all leads by admin access.</p>
+<p>Plan research and publication in batches with observed completion rates. Do not schedule thousands of unique factual pages on the assumption that a template makes all factual research automatic. A released geography page needs actual local utility. A full world registry can exist from day one while public evidence grows progressively.</p>
+<hr/>
+<h1 id="7-page-counts-rollout-and-definition-of-done">7. Page counts, rollout and definition of done</h1>
+<h2 id="7-1-what-the-page-numbers-actually-mean">7.1 What the page numbers actually mean</h2>
+<p>The v3 route register contains <strong>772 named English route candidates</strong>. This includes public page candidates and private/noindex utilities. It does not mean 772 written articles, 772 indexable pages, or 772 pages suitable to publish now. Geography seeds and local directories require evidence before publication. The seven dynamic entity templates create additional routes only for genuine researched records.</p>
+<p>The sizing model is:</p>
+<p><strong>Potential English routes = 772 named candidates + B + L + R + F + M + E + V</strong>, less candidates that are merged, abandoned or kept unpublished.</p>
+<p>B = real business profiles; L = separately useful real branch pages; R = real brand references; F = actual fragrance/product reference pages; M = publishable actual material-batch records; E = documented professional person pages; V = real event pages. Do not use invented entities to reach a target. A French translation of an existing page is a locale version, not a new business or new subject.</p>
+<p><strong>Indexable public URLs</strong> are only the approved published subset of that model. <strong>Translated URLs</strong> are counted separately for the actual reviewed published locale set; they are not automatically the total multiplied by every language. Utility/account pages are never counted as SEO content. This distinction is built into the workbook.</p>
+<h2 id="7-2-candidate-families">7.2 Candidate families</h2>
+<p>The companion page-count register is the source of truth for exact family totals. Its major groups include 249 buyer country/territory candidates; 15 origin-country candidates; 41 origin-region candidates; 83 editorial-guide candidates; 12 editorial hubs; 32 trade-term candidates; 24 product-family candidates; 24 business categories; 72 physically-located country directories; 64 physically-located city directories; 16 neighborhood directories; 36 wholesale destination directories; 36 destination buying guides; 15 origin-handling directories; six origin comparisons; and supporting indexes, policy, account and inquiry routes.</p>
+<p>Countries/territories not in the initial 36 destination-market shortlist remain in the world seed. The architecture supports expansion worldwide without fabricating local seller evidence. Retail destination filtering is required from the initial data model; standalone retail-serving landing pages are added only after reviewed capability data and distinct local utility exist. The named seed is a first planning portfolio, not an assertion that it enumerates all future combinations.</p>
+<h2 id="7-3-release-sequence">7.3 Release sequence</h2>
+<p><strong>Foundation release:</strong> approve legal operator, neutral-matching copy, contact visibility versus verification rules, billing cadence, image rights process, partner/data-sharing terms and first market/channel policies. Implement the database, permissions, publishing pipeline, lead grants and source registry. The output is a working platform in staging with synthetic fixtures, not thousands of published pages.</p>
+<p><strong>Representative public release:</strong> publish a coherent reviewed learning corpus, real origin/destination examples, useful business profiles, the free correction/claim process and working retail referrals. Each visitor journey should work end to end. Public no-results states explain coverage. The supplier form may accept inquiries only in legally reviewed operational scope; unapproved data release remains held.</p>
+<p><strong>Paid-directory release:</strong> activate subscription checkout only after feature entitlement, owner proof, cancellation/refund terms, tax handling and webhook reconciliation pass tests. A business must see the actual public contact capability it is buying.</p>
+<p><strong>Partner-introduction release:</strong> enable approved suppliers to review safe briefs, buyer recipient approval, commercial reservations, controlled release and misuse/refund workflows. Manual matching is the recommended starting point. No unrestricted lead export or opaque automatic affiliate routing.</p>
+<p><strong>Global expansion:</strong> add researched markets, regions and terms; reviewed translations; more real businesses and products; additional channels only when policy/operational support exists. Use observed lead quality, user search failures and content gaps to prioritize, not arbitrary page targets.</p>
+<h2 id="7-4-required-teams-and-deliverable-boundaries">7.4 Required teams and deliverable boundaries</h2>
+<p>Engineering owns data boundaries, rendering, search, security, APIs, billing integration and reliability. Editorial owns factual research, sources, unique article content, translations and cross-page consistency. Directory operations own business research, corrections and claims. Matching operations own qualification, supplier capability checks and buyer introductions. Legal/privacy and finance approve applicable rules and terms. The product owner approves brand, commercial rules, scope and cost decisions.</p>
+<p>The handoff supplies an audit, route/content brief portfolio, proposed link graph, page templates, lead workflow, field registry, source/media examples, core schema, API reference, acceptance register and a tested pure permission helper. It does <strong>not</strong> supply a deployed portal, a verified global business database, production-ready legal terms, complete original prose for every candidate page, original-resolution image downloads, real keyword metrics or completed end-to-end app tests.</p>
+<p>Those boundaries are intentional. A developer should not replace unresolved operational facts with plausible guesses. The decision register assigns each such question to an owner and an appropriate release gate.</p>
+<h2 id="7-5-definition-of-done">7.5 Definition of done</h2>
+<p>A release is ready only when: the relevant decisions are approved; the intended pages have real reviewed content; routes and metadata agree; internal links resolve to published useful content; search and geography behave correctly; disabled contacts are absent from every public projection; lead recipients match buyer approvals; payment events cannot bypass permission; media is authorized and accurately labelled; private data is protected; relevant jurisdiction/channel gates exist; accessibility and RTL are tested; monitored email/payment/dispatch work; backups restore; and a rollback has been rehearsed.</p>
+<p>The 110 acceptance tests are a pre-launch checklist, all marked <strong>NOT RUN</strong> against a portal because no portal was built in this task. Eighteen unit tests were executed for the included pure release-policy helper and passed. That is a narrow code check, not certification of app security or legal compliance.</p>
+<h2 id="7-6-immediate-build-handoff">7.6 Immediate build handoff</h2>
+<p>Read this playbook, import the CSV/JSON planning registers into the team's project system, review the 20 decision items and finalize the contracts. Start with one origin, one buyer destination, one useful business profile and one permission-controlled inquiry to demonstrate all relationships. Expand after that vertical slice works; do not front-load thousands of generated pages around an untested lead and entitlement system.</p>
+<hr/>
+<h1 id="8-page-template-build-cards">8. Page-template build cards</h1>
+<p>These 45 formation cards complement the route manifest. Components are ordered intentionally. The full register also includes external-link classification and content-length policies. A route with no reviewed content is not automatically publishable.</p>
+<h2 id="t01-home">T01 · Home</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Purpose + search; learning/retail/wholesale paths; product families; origins; buyer markets; reviewed guides; directory; matching explanation; disclosures</p>
+<p><strong>Publication gate:</strong> Published navigation, helpful records, no fake counters</p>
+<p><strong>Metadata and schema:</strong> Home / Organization; no fabricated ratings</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t02-guide-index">T02 · Guide index</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Scope; 12 hubs; starter pathways; searchable guide list; evidence policy; contextual directory action</p>
+<p><strong>Publication gate:</strong> Only published children; grouped/paginated index</p>
+<p><strong>Metadata and schema:</strong> CollectionPage + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t03-directory-root">T03 · Directory root</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Role/product search; seller location; material origin; destination; readable results; coverage gaps; how matching works</p>
+<p><strong>Publication gate:</strong> SSR cards, independent selectors, accurate counts</p>
+<p><strong>Metadata and schema:</strong> CollectionPage; ItemList semantics only as appropriate</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t04-world-index">T04 · World index</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Country search; region grouping; country/territory labels; coverage status; buying versus origin explanation</p>
+<p><strong>Publication gate:</strong> Reviewed labels; not every country a producer</p>
+<p><strong>Metadata and schema:</strong> CollectionPage + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t05-product-index">T05 · Product index</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Format definitions; grouped product families; distinction from fragrance notes; directory and learning paths</p>
+<p><strong>Publication gate:</strong> No automatic note-to-ingredient inference</p>
+<p><strong>Metadata and schema:</strong> CollectionPage</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t06-glossary-index">T06 · Glossary index</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Term search; alphabet/native labels; alias status; ambiguity guidance; reviewed entries</p>
+<p><strong>Publication gate:</strong> No one URL for every unverified misspelling</p>
+<p><strong>Metadata and schema:</strong> CollectionPage</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t07-brand-index">T07 · Brand index</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Brand search; country role; actual documented brands; owner/manufacturer distinction</p>
+<p><strong>Publication gate:</strong> No empty invented brands</p>
+<p><strong>Metadata and schema:</strong> CollectionPage</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t08-public-policy">T08 · Public policy</h2>
+<p><strong>Candidate count / generation:</strong> 9</p>
+<p><strong>Page formation:</strong> Policy purpose; operator; scope; definitions; actions; responsible team; version/date; help</p>
+<p><strong>Publication gate:</strong> Actual approved operating policy; no placeholders public</p>
+<p><strong>Metadata and schema:</strong> WebPage</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t09-contact-form">T09 · Contact form</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Purpose; short relevant fields; permission/notice; validation; safe acknowledgement; support</p>
+<p><strong>Publication gate:</strong> Noindex, spam controls, correct recipient and no PII leaks</p>
+<p><strong>Metadata and schema:</strong> No public structured data</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t10-correction-form">T10 · Correction form</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Purpose; short relevant fields; permission/notice; validation; safe acknowledgement; support</p>
+<p><strong>Publication gate:</strong> Noindex, spam controls, correct recipient and no PII leaks</p>
+<p><strong>Metadata and schema:</strong> No public structured data</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t11-business-intake">T11 · Business intake</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Purpose; short relevant fields; permission/notice; validation; safe acknowledgement; support</p>
+<p><strong>Publication gate:</strong> Noindex, spam controls, correct recipient and no PII leaks</p>
+<p><strong>Metadata and schema:</strong> No public structured data</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t12-claim-flow">T12 · Claim flow</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Purpose; short relevant fields; permission/notice; validation; safe acknowledgement; support</p>
+<p><strong>Publication gate:</strong> Noindex, spam controls, correct recipient and no PII leaks</p>
+<p><strong>Metadata and schema:</strong> No public structured data</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t13-membership">T13 · Membership</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Feature matrix; AED1200 annual assumption; who pays; no verification sale; terms; cancellation; checkout</p>
+<p><strong>Publication gate:</strong> Billing schedule and taxes approved; real features</p>
+<p><strong>Metadata and schema:</strong> Service/WebPage only as supported</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t14-legal">T14 · Legal</h2>
+<p><strong>Candidate count / generation:</strong> 4</p>
+<p><strong>Page formation:</strong> Actual operator/controller; relevant terms; rights; commercial/data practices; version; contact</p>
+<p><strong>Publication gate:</strong> Qualified jurisdiction review and product-owner approval</p>
+<p><strong>Metadata and schema:</strong> WebPage</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t15-rfq">T15 · RFQ</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> OudGuide service notice; conditional steps; relevant fields; safe uploads; chosen channel; confirmation</p>
+<p><strong>Publication gate:</strong> Noindex; separate recipient approval before release</p>
+<p><strong>Metadata and schema:</strong> No commercial Product schema</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t16-retail-handoff">T16 · Retail handoff</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Explain retail choice; named merchant; relevant destination; eligibility note; return-to-guide link</p>
+<p><strong>Publication gate:</strong> No auto-redirect; no implied global fulfillment</p>
+<p><strong>Metadata and schema:</strong> WebPage</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t17-search">T17 · Search</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Query; grouped meaningful results; filters; empty state; related guidance</p>
+<p><strong>Publication gate:</strong> Noindex; sanitize queries; no private data</p>
+<p><strong>Metadata and schema:</strong> No invented search rich-result entitlement</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t18-comparison-utility">T18 · Comparison utility</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> User shortlist; comparable fields; unknowns; sources; next actions</p>
+<p><strong>Publication gate:</strong> Noindex unless a separate reviewed static comparison</p>
+<p><strong>Metadata and schema:</strong> No fabricated Product/AggregateRating</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t19-editorial-hub">T19 · Editorial hub</h2>
+<p><strong>Candidate count / generation:</strong> 12</p>
+<p><strong>Page formation:</strong> Scope; beginner order; grouped children; definitions; related hubs; relevant businesses; sources</p>
+<p><strong>Publication gate:</strong> Useful hierarchy, not repeated home page</p>
+<p><strong>Metadata and schema:</strong> CollectionPage + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t20-editorial-guide">T20 · Editorial guide</h2>
+<p><strong>Candidate count / generation:</strong> 83</p>
+<p><strong>Page formation:</strong> Answer; scope; author/reviewer; TOC; evidence sections; table/checklist; limitations; sources; related reading; appropriate action</p>
+<p><strong>Publication gate:</strong> Original question-specific value; claim review</p>
+<p><strong>Metadata and schema:</strong> Article + BreadcrumbList when suitable</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t21-origin-country">T21 · Origin country</h2>
+<p><strong>Candidate count / generation:</strong> 15</p>
+<p><strong>Page formation:</strong> Country identity; documented role; terminology; regions; material versus seller location; claims; source-based trade context; relevant sellers</p>
+<p><strong>Publication gate:</strong> Country role evidence; no nationwide product guarantee</p>
+<p><strong>Metadata and schema:</strong> Article / CollectionPage + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t22-origin-region">T22 · Origin region</h2>
+<p><strong>Candidate count / generation:</strong> 41</p>
+<p><strong>Page formation:</strong> Place identity; relation to country; unique regional evidence; terms; local roles; source claims; actual businesses; sources</p>
+<p><strong>Publication gate:</strong> Region-specific information; not renamed country prose</p>
+<p><strong>Metadata and schema:</strong> Article + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t23-buyer-country-territory">T23 · Buyer country / territory</h2>
+<p><strong>Candidate count / generation:</strong> 249</p>
+<p><strong>Page formation:</strong> Place identity; local versus overseas options; directory coverage; product choices; language; dated buyer resources; gaps</p>
+<p><strong>Publication gate:</strong> Actual local/buyer utility; otherwise keep seed unpublished</p>
+<p><strong>Metadata and schema:</strong> CollectionPage + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t24-located-in-country-directory">T24 · Located-in country directory</h2>
+<p><strong>Candidate count / generation:</strong> 72</p>
+<p><strong>Page formation:</strong> Location definition; role results; product/origin/destination filters; cities; local context; corrections; sources</p>
+<p><strong>Publication gate:</strong> Actual physical business records</p>
+<p><strong>Metadata and schema:</strong> CollectionPage / ItemList + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t25-destination-directory">T25 · Destination directory</h2>
+<p><strong>Candidate count / generation:</strong> 36</p>
+<p><strong>Page formation:</strong> Who serves destination; product-class limits; current capability evidence; shipping origin; buyer guide; RFQ</p>
+<p><strong>Publication gate:</strong> Service capability dated and scoped; not inferred from office</p>
+<p><strong>Metadata and schema:</strong> CollectionPage + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t26-destination-buying-guide">T26 · Destination buying guide</h2>
+<p><strong>Candidate count / generation:</strong> 36</p>
+<p><strong>Page formation:</strong> Destination scope; product class; local/overseas choice; documentation questions; sources/date; sellers; sampling</p>
+<p><strong>Publication gate:</strong> Jurisdiction review for legal claims; no universal shipping</p>
+<p><strong>Metadata and schema:</strong> Article + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t27-origin-handling-directory">T27 · Origin-handling directory</h2>
+<p><strong>Candidate count / generation:</strong> 15</p>
+<p><strong>Page formation:</strong> Meaning of origin claim; suppliers regardless of office location; sources/status; product filters; destination; origin guide</p>
+<p><strong>Publication gate:</strong> Attributable seller/material relationships</p>
+<p><strong>Metadata and schema:</strong> CollectionPage + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t28-located-in-city-directory">T28 · Located-in city directory</h2>
+<p><strong>Candidate count / generation:</strong> 64</p>
+<p><strong>Page formation:</strong> City scope; local results; relevant neighborhoods; distinct destination search; local buying notes; corrections</p>
+<p><strong>Publication gate:</strong> Physical locations, no fabricated branches</p>
+<p><strong>Metadata and schema:</strong> CollectionPage / ItemList + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t29-neighborhood-directory">T29 · Neighborhood directory</h2>
+<p><strong>Candidate count / generation:</strong> 16</p>
+<p><strong>Page formation:</strong> Neighborhood identity; meaningful nearby results; parent city; access context; broader search option</p>
+<p><strong>Publication gate:</strong> Distinct neighborhood utility, not keyword-only URL</p>
+<p><strong>Metadata and schema:</strong> CollectionPage + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t30-business-category">T30 · Business category</h2>
+<p><strong>Candidate count / generation:</strong> 24</p>
+<p><strong>Page formation:</strong> Role definition; businesses; product/location filters; adjacent roles; useful knowledge; submission</p>
+<p><strong>Publication gate:</strong> Actual relevant businesses; sponsorship separate</p>
+<p><strong>Metadata and schema:</strong> CollectionPage + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t31-product-family">T31 · Product family</h2>
+<p><strong>Candidate count / generation:</strong> 24</p>
+<p><strong>Page formation:</strong> Format definition; not-the-same-as; fields to compare; uses; related materials; actual references; sellers; guides</p>
+<p><strong>Publication gate:</strong> No invented composition or unsafe usage instructions</p>
+<p><strong>Metadata and schema:</strong> CollectionPage / Article, not fake Product offer</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t32-trade-terminology">T32 · Trade terminology</h2>
+<p><strong>Candidate count / generation:</strong> 32</p>
+<p><strong>Page formation:</strong> Exact spelling; language/market; documented usage; alternative meanings; issuer scope; examples; unknowns; related terms</p>
+<p><strong>Publication gate:</strong> Qualified terminology review; aliases not automatic synonyms</p>
+<p><strong>Metadata and schema:</strong> Article / DefinedTerm semantics where valid</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t33-origin-comparison">T33 · Origin comparison</h2>
+<p><strong>Candidate count / generation:</strong> 6</p>
+<p><strong>Page formation:</strong> Comparison scope; sourced facts side by side; overlaps; uncertainty; comparing real samples; next steps</p>
+<p><strong>Publication gate:</strong> Distinct need and actual evidence; no scent hierarchy</p>
+<p><strong>Metadata and schema:</strong> Article + BreadcrumbList</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t34-private-utility">T34 · Private/utility</h2>
+<p><strong>Candidate count / generation:</strong> 14</p>
+<p><strong>Page formation:</strong> Authenticated purpose; relevant state; safe actions; errors; support; audit</p>
+<p><strong>Publication gate:</strong> Authorization + no-store + noindex; tenant isolation</p>
+<p><strong>Metadata and schema:</strong> No public structured data</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t35-partner-programme">T35 · Partner programme</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Matching role; fees; eligibility; redacted opportunities; recipient permission; limits; apply</p>
+<p><strong>Publication gate:</strong> No promised lead volume or sales guarantee</p>
+<p><strong>Metadata and schema:</strong> WebPage</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t36-partner-intake">T36 · Partner intake</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Purpose; short relevant fields; permission/notice; validation; safe acknowledgement; support</p>
+<p><strong>Publication gate:</strong> Noindex, spam controls, correct recipient and no PII leaks</p>
+<p><strong>Metadata and schema:</strong> No public structured data</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t37-consent-utility">T37 · Consent utility</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Request identity; actual supplier identities; affiliation; field/channel scope; approvals; refusal; withdrawal</p>
+<p><strong>Publication gate:</strong> Buyer authorization; current grant; no payment override</p>
+<p><strong>Metadata and schema:</strong> No public structured data</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="t38-privacy-utility">T38 · Privacy utility</h2>
+<p><strong>Candidate count / generation:</strong> 1</p>
+<p><strong>Page formation:</strong> Identity verification; requested right; scope; acknowledgement; state; escalation</p>
+<p><strong>Publication gate:</strong> Jurisdiction workflow; no public identifiers</p>
+<p><strong>Metadata and schema:</strong> No public structured data</p>
+<p><strong>Internal links:</strong> Parent and useful related entities; form utility links only for tasks</p>
+<p><strong>External links:</strong> Primary sources where relevant; paid/owned commercial links clearly classified</p>
+<p><strong>Content length:</strong> Fit the user purpose; no automatic SEO word minimum</p>
+<p><strong>Implementation note:</strong> Specification only; reviewed facts required</p>
+<h2 id="d01-business-profile">D01 · Business profile</h2>
+<p><strong>Candidate count / generation:</strong> Variable B</p>
+<p><strong>Page formation:</strong> name; roles; places; attributed claims; contact eligibility; how inquiry works; corrections</p>
+<p><strong>Publication gate:</strong> One independently researched organization; repeat by branches only when meaningful</p>
+<p><strong>Metadata and schema:</strong> Accurate type matched to visible content and current feature eligibility</p>
+<p><strong>Internal links:</strong> Organization/place/role/guide relations; no fake associations</p>
+<p><strong>External links:</strong> Entitlement-aware business contact; ordinary primary evidence remains allowed</p>
+<p><strong>Content length:</strong> Fit purpose; no filler</p>
+<p><strong>Implementation note:</strong> Dynamic entity template; no fabricated seeded entities</p>
+<h2 id="d02-branch">D02 · Branch</h2>
+<p><strong>Candidate count / generation:</strong> Variable L</p>
+<p><strong>Page formation:</strong> checked location; opening hours where current; access; parent; verified media or no image</p>
+<p><strong>Publication gate:</strong> Real independently useful physical branch; otherwise section on main profile</p>
+<p><strong>Metadata and schema:</strong> Accurate type matched to visible content and current feature eligibility</p>
+<p><strong>Internal links:</strong> Organization/place/role/guide relations; no fake associations</p>
+<p><strong>External links:</strong> Entitlement-aware business contact; ordinary primary evidence remains allowed</p>
+<p><strong>Content length:</strong> Fit purpose; no filler</p>
+<p><strong>Implementation note:</strong> Dynamic entity template; no fabricated seeded entities</p>
+<h2 id="d03-brand">D03 · Brand</h2>
+<p><strong>Candidate count / generation:</strong> Variable R</p>
+<p><strong>Page formation:</strong> identity; documented credits; formats; related references; current sources</p>
+<p><strong>Publication gate:</strong> Distinct brand; ownership and brand/organization relationships</p>
+<p><strong>Metadata and schema:</strong> Accurate type matched to visible content and current feature eligibility</p>
+<p><strong>Internal links:</strong> Organization/place/role/guide relations; no fake associations</p>
+<p><strong>External links:</strong> Entitlement-aware business contact; ordinary primary evidence remains allowed</p>
+<p><strong>Content length:</strong> Fit purpose; no filler</p>
+<p><strong>Implementation note:</strong> Dynamic entity template; no fabricated seeded entities</p>
+<h2 id="d04-fragrance-reference">D04 · Fragrance reference</h2>
+<p><strong>Candidate count / generation:</strong> Variable F</p>
+<p><strong>Page formation:</strong> declared notes; composition evidence separately; release/credits sources; variants; seller offers</p>
+<p><strong>Publication gate:</strong> Identifiable actual released product, not imagined variants</p>
+<p><strong>Metadata and schema:</strong> Accurate type matched to visible content and current feature eligibility</p>
+<p><strong>Internal links:</strong> Organization/place/role/guide relations; no fake associations</p>
+<p><strong>External links:</strong> Entitlement-aware business contact; ordinary primary evidence remains allowed</p>
+<p><strong>Content length:</strong> Fit purpose; no filler</p>
+<p><strong>Implementation note:</strong> Dynamic entity template; no fabricated seeded entities</p>
+<h2 id="d05-material-batch">D05 · Material batch</h2>
+<p><strong>Candidate count / generation:</strong> Variable M</p>
+<p><strong>Page formation:</strong> seller; batch; claim status; grade issuer; quantity; photos; offers; evidence dates</p>
+<p><strong>Publication gate:</strong> Public, sufficiently evidenced batch; no private stock leakage</p>
+<p><strong>Metadata and schema:</strong> Accurate type matched to visible content and current feature eligibility</p>
+<p><strong>Internal links:</strong> Organization/place/role/guide relations; no fake associations</p>
+<p><strong>External links:</strong> Entitlement-aware business contact; ordinary primary evidence remains allowed</p>
+<p><strong>Content length:</strong> Fit purpose; no filler</p>
+<p><strong>Implementation note:</strong> Dynamic entity template; no fabricated seeded entities</p>
+<h2 id="d06-expert-person">D06 · Expert/person</h2>
+<p><strong>Candidate count / generation:</strong> Variable E</p>
+<p><strong>Page formation:</strong> roles; publications; credits; editorial disclosures</p>
+<p><strong>Publication gate:</strong> Consenting/public professional identity, relevant work documented</p>
+<p><strong>Metadata and schema:</strong> Accurate type matched to visible content and current feature eligibility</p>
+<p><strong>Internal links:</strong> Organization/place/role/guide relations; no fake associations</p>
+<p><strong>External links:</strong> Entitlement-aware business contact; ordinary primary evidence remains allowed</p>
+<p><strong>Content length:</strong> Fit purpose; no filler</p>
+<p><strong>Implementation note:</strong> Dynamic entity template; no fabricated seeded entities</p>
+<h2 id="d07-event">D07 · Event</h2>
+<p><strong>Candidate count / generation:</strong> Variable V</p>
+<p><strong>Page formation:</strong> date; location; status; official booking source; no invented events</p>
+<p><strong>Publication gate:</strong> Real event; dates and organizers checked</p>
+<p><strong>Metadata and schema:</strong> Accurate type matched to visible content and current feature eligibility</p>
+<p><strong>Internal links:</strong> Organization/place/role/guide relations; no fake associations</p>
+<p><strong>External links:</strong> Entitlement-aware business contact; ordinary primary evidence remains allowed</p>
+<p><strong>Content length:</strong> Fit purpose; no filler</p>
+<p><strong>Implementation note:</strong> Dynamic entity template; no fabricated seeded entities</p>
+<h1 id="9-sources-and-evidence-register">9. Sources and evidence register</h1>
+<p>Source IDs in the text point to the following primary references and owned merchant pages. Merchant material substantiates what a merchant publishes, not independent proof of all origin, age or quality claims. Row-level competitor evidence is separately available in the Reference Audit workbook sheet and <code>data/competitor_page_audit.csv</code>. Retrieval limits and later errors are retained rather than concealed.</p>
+<p><a id="source-g01"></a></p>
+<h3 id="g01-google-spam-policies">G01 · Google spam policies</h3>
+<p>Doorway, scaled content, paid link and affiliation rules.</p>
+<p>Source: <a href="https://developers.google.com/search/docs/essentials/spam-policies" rel="noopener noreferrer">https://developers.google.com/search/docs/essentials/spam-policies</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g02"></a></p>
+<h3 id="g02-google-crawlable-link-guidance">G02 · Google crawlable link guidance</h3>
+<p>Crawlable anchors and descriptive link text.</p>
+<p>Source: <a href="https://developers.google.com/search/docs/crawling-indexing/links-crawlable" rel="noopener noreferrer">https://developers.google.com/search/docs/crawling-indexing/links-crawlable</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g03"></a></p>
+<h3 id="g03-google-facet-crawling">G03 · Google facet crawling</h3>
+<p>Control unbounded query combinations.</p>
+<p>Source: <a href="https://developers.google.com/crawling/docs/faceted-navigation" rel="noopener noreferrer">https://developers.google.com/crawling/docs/faceted-navigation</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g04"></a></p>
+<h3 id="g04-google-outbound-link-qualification">G04 · Google outbound link qualification</h3>
+<p>Sponsored and user-generated links.</p>
+<p>Source: <a href="https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links" rel="noopener noreferrer">https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g05"></a></p>
+<h3 id="g05-google-ai-features">G05 · Google AI features</h3>
+<p>Normal SEO eligibility; no special AI schema guarantee.</p>
+<p>Source: <a href="https://developers.google.com/search/docs/appearance/ai-features" rel="noopener noreferrer">https://developers.google.com/search/docs/appearance/ai-features</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g06"></a></p>
+<h3 id="g06-google-image-guidance">G06 · Google image guidance</h3>
+<p>Useful images, metadata and discovery.</p>
+<p>Source: <a href="https://developers.google.com/search/docs/appearance/google-images" rel="noopener noreferrer">https://developers.google.com/search/docs/appearance/google-images</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g07"></a></p>
+<h3 id="g07-google-structured-data-policies">G07 · Google structured data policies</h3>
+<p>Visible accurate content and feature-specific eligibility.</p>
+<p>Source: <a href="https://developers.google.com/search/docs/appearance/structured-data/sd-policies" rel="noopener noreferrer">https://developers.google.com/search/docs/appearance/structured-data/sd-policies</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g08"></a></p>
+<h3 id="g08-google-localized-versions">G08 · Google localized versions</h3>
+<p>Reciprocal language variants.</p>
+<p>Source: <a href="https://developers.google.com/search/docs/specialty/international/localized-versions" rel="noopener noreferrer">https://developers.google.com/search/docs/specialty/international/localized-versions</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g09"></a></p>
+<h3 id="g09-google-sitemap-guidance">G09 · Google sitemap guidance</h3>
+<p>Canonical URL submission and accurate modification timestamps.</p>
+<p>Source: <a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" rel="noopener noreferrer">https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g10"></a></p>
+<h3 id="g10-google-core-web-vitals">G10 · Google Core Web Vitals</h3>
+<p>Field experience metrics, not ranking guarantees.</p>
+<p>Source: <a href="https://developers.google.com/search/docs/appearance/core-web-vitals" rel="noopener noreferrer">https://developers.google.com/search/docs/appearance/core-web-vitals</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-g11"></a></p>
+<h3 id="g11-google-updates-faq-retirement">G11 · Google updates / FAQ retirement</h3>
+<p>FAQ rich results removed from 7 May 2026; current doc change log.</p>
+<p>Source: <a href="https://developers.google.com/search/updates" rel="noopener noreferrer">https://developers.google.com/search/updates</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-o01"></a></p>
+<h3 id="o01-openai-crawler-documentation">O01 · OpenAI crawler documentation</h3>
+<p>OAI-SearchBot vs GPTBot controls.</p>
+<p>Source: <a href="https://developers.openai.com/api/docs/bots" rel="noopener noreferrer">https://developers.openai.com/api/docs/bots</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-w01"></a></p>
+<h3 id="w01-w3c-wcag-2-2">W01 · W3C WCAG 2.2</h3>
+<p>Accessibility conformance target.</p>
+<p>Source: <a href="https://www.w3.org/TR/WCAG22/" rel="noopener noreferrer">https://www.w3.org/TR/WCAG22/</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-s01"></a></p>
+<h3 id="s01-owasp-file-upload-guidance">S01 · OWASP file upload guidance</h3>
+<p>Allowlisting, quarantine and safe storage.</p>
+<p>Source: <a href="https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html" rel="noopener noreferrer">https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-s02"></a></p>
+<h3 id="s02-stripe-webhook-documentation">S02 · Stripe webhook documentation</h3>
+<p>Illustrative provider integration: verify signature and handle duplicates.</p>
+<p>Source: <a href="https://docs.stripe.com/webhooks" rel="noopener noreferrer">https://docs.stripe.com/webhooks</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-t01"></a></p>
+<h3 id="t01-next-js-metadata-documentation">T01 · Next.js metadata documentation</h3>
+<p>Illustrative rendering stack, not selected deployment account.</p>
+<p>Source: <a href="https://nextjs.org/docs/app/getting-started/metadata-and-og-images" rel="noopener noreferrer">https://nextjs.org/docs/app/getting-started/metadata-and-og-images</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-m01"></a></p>
+<h3 id="m01-al-mutalib-wholesale-reference">M01 · Al Mutalib wholesale reference</h3>
+<p>Merchant vocabulary and commercial reference; claims need separate evidence.</p>
+<p>Source: <a href="https://almutalib.com/" rel="noopener noreferrer">https://almutalib.com/</a></p>
+<p>Checked: 2026-10-19. Status: Earlier retrieval recorded; repeated later fetch timed out. Recheck before configuring images or deep links..</p>
+<p><a id="source-m02"></a></p>
+<h3 id="m02-al-mutalib-uae-reference">M02 · Al Mutalib UAE reference</h3>
+<p>Retail reference and image source, not global fulfillment proof.</p>
+<p>Source: <a href="https://ae.almutalib.com/" rel="noopener noreferrer">https://ae.almutalib.com/</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-m03"></a></p>
+<h3 id="m03-al-mutalib-wood-collection">M03 · Al Mutalib wood collection</h3>
+<p>Verified retail collection destination.</p>
+<p>Source: <a href="https://ae.almutalib.com/collections/oud" rel="noopener noreferrer">https://ae.almutalib.com/collections/oud</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-m04"></a></p>
+<h3 id="m04-al-mutalib-oil-collection">M04 · Al Mutalib oil collection</h3>
+<p>Verified retail oil destination.</p>
+<p>Source: <a href="https://ae.almutalib.com/collections/dehnal-oudh" rel="noopener noreferrer">https://ae.almutalib.com/collections/dehnal-oudh</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-m05"></a></p>
+<h3 id="m05-zura-yaumi-product">M05 · Zura Yaumi product</h3>
+<p>Observed merchant pack labels and product image sources; no independent origin certification.</p>
+<p>Source: <a href="https://ae.almutalib.com/products/zura-yaumi" rel="noopener noreferrer">https://ae.almutalib.com/products/zura-yaumi</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-p01"></a></p>
+<h3 id="p01-ico-data-broker-guidance">P01 · ICO data-broker guidance</h3>
+<p>UK-specific transparency, lawful basis and due diligence; review notice on guidance; not worldwide approval.</p>
+<p>Source: <a href="https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/organisations-using-marketing-services-of-data-brokers/" rel="noopener noreferrer">https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/organisations-using-marketing-services-of-data-brokers/</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-p02"></a></p>
+<h3 id="p02-ico-electronic-marketing-rules">P02 · ICO electronic marketing rules</h3>
+<p>Named third-party consent where applicable; solicited quote response versus ongoing marketing; not one worldwide rule.</p>
+<p>Source: <a href="https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-direct-marketing-using-electronic-mail/how-do-we-comply-with-the-pecr-electronic-mail-marketing-rules/" rel="noopener noreferrer">https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-direct-marketing-using-electronic-mail/how-do-we-comply-with-the-pecr-electronic-mail-marketing-rules/</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-m06"></a></p>
+<h3 id="m06-al-mutalib-observed-wood-photo">M06 · Al Mutalib observed wood photo</h3>
+<p>Observed Zura Yaumi photo; no visual certification of origin, age, treatment or grade.</p>
+<p>Source: <a href="https://ae.almutalib.com/cdn/shop/files/o31.jpg?v=1772876614&amp;width=800" rel="noopener noreferrer">https://ae.almutalib.com/cdn/shop/files/o31.jpg?v=1772876614&amp;width=800</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<p><a id="source-m07"></a></p>
+<h3 id="m07-al-mutalib-observed-packaging-photo">M07 · Al Mutalib observed packaging photo</h3>
+<p>Packaging image; supplier-photo policy, not another business photo.</p>
+<p>Source: <a href="https://ae.almutalib.com/cdn/shop/files/Burgundy_Al_Mutalib_Oud_Box.png?v=1792012648&amp;width=800" rel="noopener noreferrer">https://ae.almutalib.com/cdn/shop/files/Burgundy_Al_Mutalib_Oud_Box.png?v=1792012648&amp;width=800</a></p>
+<p>Checked: 2026-10-19. Status: Public source retrieved.</p>
+<footer>OudGuide developer handoff v3. Reference research and proposed implementation. Not a live website, a legal opinion, or a completed worldwide seller census.</footer></main></body></html>

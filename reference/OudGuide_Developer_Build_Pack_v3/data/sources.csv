@@ -1,0 +1,26 @@
+﻿source_id,title,url,use,checked_on,status
+G01,Google spam policies,https://developers.google.com/search/docs/essentials/spam-policies,"Doorway, scaled content, paid link and affiliation rules",2026-10-19,Public source retrieved
+G02,Google crawlable link guidance,https://developers.google.com/search/docs/crawling-indexing/links-crawlable,Crawlable anchors and descriptive link text,2026-10-19,Public source retrieved
+G03,Google facet crawling,https://developers.google.com/crawling/docs/faceted-navigation,Control unbounded query combinations,2026-10-19,Public source retrieved
+G04,Google outbound link qualification,https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links,Sponsored and user-generated links,2026-10-19,Public source retrieved
+G05,Google AI features,https://developers.google.com/search/docs/appearance/ai-features,Normal SEO eligibility; no special AI schema guarantee,2026-10-19,Public source retrieved
+G06,Google image guidance,https://developers.google.com/search/docs/appearance/google-images,"Useful images, metadata and discovery",2026-10-19,Public source retrieved
+G07,Google structured data policies,https://developers.google.com/search/docs/appearance/structured-data/sd-policies,Visible accurate content and feature-specific eligibility,2026-10-19,Public source retrieved
+G08,Google localized versions,https://developers.google.com/search/docs/specialty/international/localized-versions,Reciprocal language variants,2026-10-19,Public source retrieved
+G09,Google sitemap guidance,https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap,Canonical URL submission and accurate modification timestamps,2026-10-19,Public source retrieved
+G10,Google Core Web Vitals,https://developers.google.com/search/docs/appearance/core-web-vitals,"Field experience metrics, not ranking guarantees",2026-10-19,Public source retrieved
+G11,Google updates / FAQ retirement,https://developers.google.com/search/updates,FAQ rich results removed from 7 May 2026; current doc change log,2026-10-19,Public source retrieved
+O01,OpenAI crawler documentation,https://developers.openai.com/api/docs/bots,OAI-SearchBot vs GPTBot controls,2026-10-19,Public source retrieved
+W01,W3C WCAG 2.2,https://www.w3.org/TR/WCAG22/,Accessibility conformance target,2026-10-19,Public source retrieved
+S01,OWASP file upload guidance,https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html,"Allowlisting, quarantine and safe storage",2026-10-19,Public source retrieved
+S02,Stripe webhook documentation,https://docs.stripe.com/webhooks,Illustrative provider integration: verify signature and handle duplicates,2026-10-19,Public source retrieved
+T01,Next.js metadata documentation,https://nextjs.org/docs/app/getting-started/metadata-and-og-images,"Illustrative rendering stack, not selected deployment account",2026-10-19,Public source retrieved
+M01,Al Mutalib wholesale reference,https://almutalib.com/,Merchant vocabulary and commercial reference; claims need separate evidence,2026-10-19,Earlier retrieval recorded; repeated later fetch timed out. Recheck before configuring images or deep links.
+M02,Al Mutalib UAE reference,https://ae.almutalib.com/,"Retail reference and image source, not global fulfillment proof",2026-10-19,Public source retrieved
+M03,Al Mutalib wood collection,https://ae.almutalib.com/collections/oud,Verified retail collection destination,2026-10-19,Public source retrieved
+M04,Al Mutalib oil collection,https://ae.almutalib.com/collections/dehnal-oudh,Verified retail oil destination,2026-10-19,Public source retrieved
+M05,Zura Yaumi product,https://ae.almutalib.com/products/zura-yaumi,Observed merchant pack labels and product image sources; no independent origin certification,2026-10-19,Public source retrieved
+P01,ICO data-broker guidance,https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/organisations-using-marketing-services-of-data-brokers/,"UK-specific transparency, lawful basis and due diligence; review notice on guidance; not worldwide approval",2026-10-19,Public source retrieved
+P02,ICO electronic marketing rules,https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-direct-marketing-using-electronic-mail/how-do-we-comply-with-the-pecr-electronic-mail-marketing-rules/,Named third-party consent where applicable; solicited quote response versus ongoing marketing; not one worldwide rule,2026-10-19,Public source retrieved
+M06,Al Mutalib observed wood photo,https://ae.almutalib.com/cdn/shop/files/o31.jpg?v=1772876614&width=800,"Observed Zura Yaumi photo; no visual certification of origin, age, treatment or grade",2026-10-19,Public source retrieved
+M07,Al Mutalib observed packaging photo,https://ae.almutalib.com/cdn/shop/files/Burgundy_Al_Mutalib_Oud_Box.png?v=1792012648&width=800,"Packaging image; supplier-photo policy, not another business photo",2026-10-19,Public source retrieved

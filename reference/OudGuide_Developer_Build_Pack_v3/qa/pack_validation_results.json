@@ -1,0 +1,57 @@
+{
+  "scope": "Offline file/register checks only; no SQL execution, live HTTP crawl or portal E2E run",
+  "checks": [
+    {
+      "check": "Unique route paths",
+      "passed": true
+    },
+    {
+      "check": "Unique route IDs",
+      "passed": true
+    },
+    {
+      "check": "All semantic parents exist",
+      "passed": true
+    },
+    {
+      "check": "No merchant-headline wholesale policy remains",
+      "passed": true
+    },
+    {
+      "check": "All proposed internal links resolve",
+      "passed": true
+    },
+    {
+      "check": "Every named family has a template",
+      "passed": true
+    },
+    {
+      "check": "Exactly 48 reference guides recorded",
+      "passed": true
+    },
+    {
+      "check": "Country IDs unique",
+      "passed": true
+    },
+    {
+      "check": "All app acceptance tests explicitly not run",
+      "passed": true
+    },
+    {
+      "check": "OpenAPI schema references resolve",
+      "passed": true
+    },
+    {
+      "check": "OpenAPI operation IDs unique",
+      "passed": true
+    },
+    {
+      "check": "SQL declared table names unique",
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "named_routes": 772,
+  "sql_tables": 50,
+  "api_operations": 25
+}

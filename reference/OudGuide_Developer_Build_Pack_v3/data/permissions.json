@@ -1,0 +1,86 @@
+[
+  {
+    "role": "Anonymous reader",
+    "scope": "Published guides/profiles",
+    "allowed": "Read public fields",
+    "blocked": "No private contacts, drafts, leads or uploads"
+  },
+  {
+    "role": "Basic business owner",
+    "scope": "Claimed own profile",
+    "allowed": "Propose updates and free corrections",
+    "blocked": "Cannot self-verify or publish contacts without entitlement"
+  },
+  {
+    "role": "Subscribed owner",
+    "scope": "Own profile and team",
+    "allowed": "Approved contact publication; owned direct inquiry access",
+    "blocked": "Payment cannot unlock unrelated leads or verification"
+  },
+  {
+    "role": "Approved partner",
+    "scope": "Redacted opportunities",
+    "allowed": "View approved coarse briefs and express interest",
+    "blocked": "No buyer PII before grant; no public export"
+  },
+  {
+    "role": "Authorized recipient",
+    "scope": "Purchased/direct approved introduction",
+    "allowed": "Approved fields and channels for this request",
+    "blocked": "No onward resale, marketing reuse or other recipients"
+  },
+  {
+    "role": "Buyer",
+    "scope": "Own request",
+    "allowed": "Edit requirements, choose recipients, withdraw, close",
+    "blocked": "Cannot see supplier private account/security data"
+  },
+  {
+    "role": "Directory researcher",
+    "scope": "Business source records",
+    "allowed": "Research and draft factual data",
+    "blocked": "No buyer contacts or payment overrides"
+  },
+  {
+    "role": "Subject reviewer",
+    "scope": "Claims/articles",
+    "allowed": "Approve evidence scope and corrections",
+    "blocked": "Cannot create commercial lead grants"
+  },
+  {
+    "role": "Matching operator",
+    "scope": "Necessary inquiry details",
+    "allowed": "Qualify and propose recipients as OudGuide",
+    "blocked": "No affiliate sales reuse without approval"
+  },
+  {
+    "role": "Affiliate salesperson",
+    "scope": "Assigned approved introductions",
+    "allowed": "Respond as own actual business",
+    "blocked": "No privileged visibility into all portal inquiries"
+  },
+  {
+    "role": "Finance operator",
+    "scope": "Invoices and entitlements",
+    "allowed": "Reconcile payments, approved credits",
+    "blocked": "Cannot approve buyer sharing or edit authenticity"
+  },
+  {
+    "role": "Security/privacy admin",
+    "scope": "Necessary case scope",
+    "allowed": "Investigate, suppress, fulfill rights requests",
+    "blocked": "Privileged access logged and reviewed"
+  },
+  {
+    "role": "Content public service",
+    "scope": "Published projection",
+    "allowed": "Render/cache approved content",
+    "blocked": "No direct private-table browser access"
+  },
+  {
+    "role": "Release worker",
+    "scope": "Approved outbox job",
+    "allowed": "Recheck grant and dispatch field-limited payload",
+    "blocked": "No stale approval, duplicate release or expired grant"
+  }
+]
