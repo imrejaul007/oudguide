@@ -1,6 +1,9 @@
 import Link from 'next/link';
-import { domain, seed } from '@/lib/data';
-
+import { domain } from '@/lib/data';
+import { BusinessCard } from '@/components/business/business-card';
+import { Search, MapPin, Filter, ShieldCheck, Lock, Compass } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 export default async function DirectoryPage({
   params,
@@ -20,39 +23,41 @@ export default async function DirectoryPage({
   });
 
   return (
-    <div>
+    <div style={{ padding: '10px 0 60px' }}>
       {/* DIRECTORY HERO BANNER */}
-      <div className="luxury-hero" style={{ padding: '48px 36px', marginBottom: '32px' }}>
+      <div className="luxury-hero" style={{ padding: '52px 40px', marginBottom: '36px' }}>
         <div className="hero-tag">
-          <span>🏛️</span>
-          <span>{isAr ? 'دليل المصانع والمزارع المعتمدة دولياً' : 'Verified Distillers, Plantations & Wholesalers'}</span>
+          <Compass className="h-3.5 w-3.5 text-[#dfba55]" />
+          <span>{isAr ? 'دليل المصانع والمزار�� المعتمدة دولياً' : 'Verified Distillers, Plantations & Wholesalers'}</span>
         </div>
-        <h1 className="hero-headline font-display" style={{ fontSize: '36px', margin: '0 0 10px' }}>
+        <h1 className="hero-headline font-display" style={{ fontSize: '38px', margin: '0 0 12px' }}>
           {isAr ? 'دليل الموردين والمقطرين العالميين' : 'The Global Directory of Natural Oud Producers'}
         </h1>
-        <p className="hero-lead" style={{ fontSize: '16px', margin: 0, maxWidth: '780px' }}>
+        <p className="hero-lead" style={{ fontSize: '16.5px', margin: 0, maxWidth: '820px' }}>
           {isAr
-            ? 'اكتشف المقطرين الحرفيين والمزارع المستدامة ��ي أسام، تايلاند، كمبوديا، وإندونيسيا. تطبق المنصة سياسة حجب الاتصال الصارمة للملفات الأساسية لمنع الرسائل غير المرغوبة والجمع الآلي للبيانات.'
+            ? 'اكتشف المقطرين الحرفيين والمزارع المستدامة في أسام، تايلاند، كمبوديا، وإندونيسيا. تطبق المنصة سياسة حجب الاتصال الصارمة للملفات الأساسية لمنع الرسائل غير المرغوبة والجمع الآلي للبيانات.'
             : 'Independent discovery of traditional distillers and certified plantations. Direct phone, email, and address records remain hidden on basic profiles to protect producers from automated scraping and spam.'}
         </p>
       </div>
 
       {/* SEARCH & MULTI-FACET FILTER BAR */}
-      <div className="form-card" style={{ padding: '20px 24px', marginBottom: '32px' }}>
-        <form method="GET" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
-          <div style={{ flex: '2 1 240px' }}>
-            <label className="form-label">{isAr ? 'البحث بالاسم أو المدينة أو الصنف' : 'Search by name, city, or origin'}</label>
-            <input
+      <div className="form-card" style={{ padding: '24px 28px', marginBottom: '32px' }}>
+        <form method="GET" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+          <div style={{ flex: '2 1 260px' }}>
+            <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Search className="h-4 w-4 text-[#8c6a15]" />
+              <span>{isAr ? 'البحث بالاسم أو المدينة أو الصنف' : 'Search by name, city, or origin terroir'}</span>
+            </label>
+            <Input
               type="text"
               name="search"
-              className="form-input"
               placeholder={isAr ? 'مثال: Al Mutalib, Assam, Trat, Koh Kong...' : 'e.g. Al Mutalib, Assam, Trat, Koh Kong...'}
               defaultValue={search || ''}
             />
           </div>
 
           <div style={{ flex: '1 1 180px' }}>
-            <label className="form-label">{isAr ? 'الدور التجاري' : 'Business Role'}</label>
+            <label className="form-label">{isAr ? 'الدور التجاري' : 'Commercial Role'}</label>
             <select name="role" className="form-select" defaultValue={role || ''}>
               <option value="">{isAr ? 'جميع الأدوار' : 'All Commercial Roles'}</option>
               <option value="distiller">{isAr ? 'مقطر / منتج' : 'Distiller / Producer'}</option>
@@ -73,17 +78,20 @@ export default async function DirectoryPage({
             </select>
           </div>
 
-          <div style={{ alignSelf: 'flex-end', flex: '0 0 auto' }}>
-            <button type="submit" className="btn-gold" style={{ padding: '12px 24px', height: '46px' }}>
-              <span>{isAr ? 'تصفية النتائج' : 'Apply Filters'}</span>
-            </button>
+          <div style={{ flex: '0 0 auto' }}>
+            <Button type="submit" variant="gold" className="h-10 px-6">
+              <Filter className="h-4 w-4 mr-1.5" />
+              <span>{isAr ? 'تصفية النتائج' : 'Filter'}</span>
+            </Button>
           </div>
         </form>
       </div>
 
       {/* PRIVACY GATING EXPLANATION BANNER */}
       <div className="privacy-shield">
-        <div className="privacy-shield-icon">🛡️</div>
+        <div className="privacy-shield-icon">
+          <ShieldCheck className="h-6 w-6 text-[#c59b27]" />
+        </div>
         <div className="privacy-shield-text">
           <strong>{isAr ? 'معيار حماية بيانات الاتصال (QA-007, QA-008):' : 'Public Contact Protection Protocol (QA-007, QA-008):'}</strong>{' '}
           {isAr
@@ -92,92 +100,23 @@ export default async function DirectoryPage({
         </div>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '24px 0 16px' }}>
-        <p style={{ color: 'var(--color-text-muted)', fontSize: '14.5px', margin: 0 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '28px 0 18px', flexWrap: 'wrap', gap: '10px' }}>
+        <p style={{ color: 'var(--color-text-muted)', fontSize: '15px', margin: 0 }}>
           {isAr
-            ? `عرض ${businesses.length} شركة ومؤسسة موثقة`
-            : `Displaying ${businesses.length} documented producer${businesses.length === 1 ? '' : 's'}`}
+            ? `عرض ${businesses.length} شركة ومؤسسة موثقة في الدليل`
+            : `Showing ${businesses.length} documented producer${businesses.length === 1 ? '' : 's'} in directory`}
         </p>
-        <Link href={`/${locale}/for-businesses`} className="btn-outline" style={{ fontSize: '13px', padding: '6px 14px' }}>
-          {isAr ? 'هل أنت صاحب معمل تقطير؟ وثق ملفك مجاناً' : 'Own a distillery? Claim your profile for free →'}
+        <Link href={`/${locale}/for-businesses`}>
+          <Button variant="outline" size="sm" className="text-xs">
+            {isAr ? 'هل أنت صاحب معمل تقطير؟ وثق ملفك مجاناً' : 'Own a distillery? Claim your profile for free →'}
+          </Button>
         </Link>
       </div>
 
-      {/* SUPPLIER CARDS GRID */}
-      <div className="grid-2">
+      {/* SUPPLIER CARDS GRID WITH BUSINESS-CARD COMPONENT */}
+      <div className="grid-3" style={{ gap: '24px' }}>
         {businesses.map((biz) => (
-          <div key={biz.id} className="luxury-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '14px' }}>
-                <div>
-                  <span className="badge-forest">📍 {biz.country_name || biz.country_id}</span>
-                  <span style={{ fontSize: '12.5px', color: 'var(--color-text-muted)', marginInlineStart: '8px' }}>
-                    {biz.city}
-                  </span>
-                </div>
-                <div>
-                  {biz.is_claimed && <span className="badge-crimson" style={{ marginInlineEnd: '4px' }}>{isAr ? 'موثق' : 'Claimed'}</span>}
-                  {biz.contact_unlocked ? (
-                    <span className="badge-gold">{isAr ? 'عضو سنوي معتمد' : 'Verified Member'}</span>
-                  ) : (
-                    <span className="badge-locked">{isAr ? 'ملف أساسي محمي' : 'Basic Protected'}</span>
-                  )}
-                </div>
-              </div>
-
-              <h3 className="card-title" style={{ fontSize: '22px', margin: '0 0 6px' }}>
-                <Link href={`/${locale}/directory/${biz.slug}`}>{biz.name}</Link>
-              </h3>
-              <p style={{ fontSize: '13.5px', color: 'var(--color-gold-dark)', fontWeight: 600, margin: '0 0 12px' }}>
-                {biz.category || biz.business_type}
-                {biz.established_year ? ` · Est. ${biz.established_year}` : ''}
-              </p>
-
-              <p className="card-desc" style={{ fontSize: '14px' }}>
-                {biz.description}
-              </p>
-
-              {biz.verified_origins && biz.verified_origins.length > 0 && (
-                <div style={{ fontSize: '13px', margin: '10px 0', background: '#fbf9f4', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--color-border)' }}>
-                  <strong style={{ color: 'var(--color-crimson)' }}>{isAr ? 'مناطق التوريد المعتمدة:' : 'Documented Terroirs:'}</strong>{' '}
-                  {biz.verified_origins.join(' · ')}
-                </div>
-              )}
-            </div>
-
-            <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--color-border)' }}>
-              {/* STRICT CONTACT GATING CHECK */}
-              {biz.contact_unlocked ? (
-                <div style={{ fontSize: '13px', marginBottom: '16px', background: '#f5fbf7', padding: '10px 14px', borderRadius: '8px', border: '1px solid #cce5d6' }}>
-                  <div style={{ color: '#1b4d3e', fontWeight: 700, marginBottom: '4px' }}>
-                    ✓ {isAr ? 'بيانات الاتصال المباشرة متاحة' : 'Direct Contact Unlocked'}
-                  </div>
-                  <div>📧 <a href={`mailto:${biz.email}`} style={{ textDecoration: 'underline' }}>{biz.email}</a></div>
-                  {biz.phone && <div>📞 {biz.phone}</div>}
-                  {biz.whatsapp && <div>💬 WhatsApp: {biz.whatsapp}</div>}
-                </div>
-              ) : (
-                <div style={{ fontSize: '12.5px', color: 'var(--color-text-muted)', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>🔒</span>
-                  <span>{isAr ? 'أرقام الاتصال والبريد محجوبة لحماية المورد.' : 'Direct contact details protected under non-contact policy.'}</span>
-                </div>
-              )}
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-                <span style={{ fontSize: '12.5px', color: 'var(--color-text-muted)' }}>
-                  MOQ: <strong>{biz.minimum_order_quantity || 'Flexible'}</strong>
-                </span>
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  <Link href={`/${locale}/directory/${biz.slug}`} className="btn-outline" style={{ padding: '7px 14px', fontSize: '13px' }}>
-                    {isAr ? 'عرض الملف الكامل' : 'View Profile'}
-                  </Link>
-                  <Link href={`/${locale}/rfq?profile=${encodeURIComponent(biz.slug)}`} className="btn-gold" style={{ padding: '7px 16px', fontSize: '13px' }}>
-                    {isAr ? 'طلب تسعير' : 'Request Quote'}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <BusinessCard key={biz.id} business={biz} locale={locale} />
         ))}
       </div>
     </div>

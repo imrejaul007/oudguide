@@ -3,7 +3,8 @@
 **Current Stage:** Stage B, C, D, E, F & Luxury UI Completed & Live on Vercel Production  
 **Handoff Date:** 19 October 2026  
 **Build Identifier:** v4.0.0-production-vercel-luxury
-**Live Production URL:** https://oudguide-9mobx62dq-re-z.vercel.app
+**Live Production URL:** https://oudguide-6cv9yixhg-re-z.vercel.app
+**Custom Domain:** https://www.oudguide.com
 **GitHub Repository:** https://github.com/imrejaul007/oudguide
 
 ---

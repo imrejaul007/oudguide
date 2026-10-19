@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { domain, seed } from '@/lib/data';
+import { domain } from '@/lib/data';
+import { HeroSearch } from '@/components/home/hero-search';
+import { FeaturedCarousel } from '@/components/business/featured-carousel';
+import { Award, ShieldCheck, Compass, Sparkles, AlertTriangle, ArrowRight } from 'lucide-react';
 
 export default async function HomePage({
   params,
@@ -21,7 +23,7 @@ export default async function HomePage({
 
         <div style={{ position: 'relative', zIndex: 1, maxWidth: '960px' }}>
           <div className="hero-tag">
-            <span>✨</span>
+            <Sparkles className="h-3.5 w-3.5 text-[#dfba55]" />
             <span>{isAr ? 'المرجع التوثيقي العالمي لتجارة العود والزيوت العطرية النادرة' : 'The Global Authority on Natural Oud & Fragrance Sourcing'}</span>
           </div>
 
@@ -33,28 +35,12 @@ export default async function HomePage({
 
           <p className="hero-lead" style={{ fontSize: '18px', color: '#dedbd2', maxWidth: '820px', margin: '0 0 36px', lineHeight: 1.65 }}>
             {isAr
-              ? 'نربط دور العطور والمشترين التجاريين والمقتنين بأفضل المقطرين والمزارع المعتمدة في أسام، كمبوديا، تايلاند، وإندونيسيا. حماية تامة لبيانات المشترين مع اشتراط الموافقة الصريحة قبل تسليم معلومات الاتصال.'
+              ? 'نربط دور العطور والمشترين التجاريين والمقتنين بأفضل المقطرين والمزارع المعتمدة في أسام، كمبوديا، تايلاند، وإندونيسيا. حماية تامة لبيانات المشترين مع اشتراط الموافقة الصريحة قبل تسليم معلومات الا��صال.'
               : 'Connecting bespoke perfume houses, institutional buyers, and luxury collectors directly with certified distillers and sustainable estates across Assam, Indochina, and the Malay Archipelago. Zero contact leakage with mandatory buyer approval.'}
           </p>
 
-          {/* DUAL-MODE QUICK SEARCH BAR */}
-          <div className="search-box-hero" style={{ padding: '10px 14px', borderRadius: '14px' }}>
-            <input
-              type="text"
-              placeholder={isAr ? 'ابحث بالصنف، المنطقة، أو فصيلة الشجرة (مثل Aquilaria Agallocha)...' : 'Search by material, region (Assam, Trat, Koh Kong), or botanical species...'}
-              style={{ fontSize: '16px' }}
-            />
-            <select defaultValue="Oud oil" style={{ fontSize: '14px', padding: '10px 16px' }}>
-              <option value="Oud wood">{isAr ? 'خشب عود وبخور' : 'Oud Wood / Chips'}</option>
-              <option value="Oud oil">{isAr ? 'دهن عود خالص' : 'Pure Dehn Al Oud'}</option>
-              <option value="Attar">{isAr ? 'عطور شرقية وزيوت' : 'Artisan Attars'}</option>
-              <option value="Finished perfume">{isAr ? 'تصنيع عطور خاص' : 'Private Label Fragrance'}</option>
-            </select>
-            <Link href={`/${locale}/rfq`} className="btn-gold" style={{ padding: '12px 28px', whiteSpace: 'nowrap' }}>
-              <span>{isAr ? 'طلب تسعير' : 'Find Suppliers'}</span>
-              <span>{isAr ? '←' : '→'}</span>
-            </Link>
-          </div>
+          {/* INTERACTIVE GEOLOCATED HERO SEARCH */}
+          <HeroSearch locale={locale} />
         </div>
       </section>
 
@@ -82,7 +68,7 @@ export default async function HomePage({
       <section style={{ marginBottom: '70px' }}>
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <div className="hero-tag" style={{ background: '#fcf6e8', color: 'var(--color-gold-dark)', border: '1px solid rgba(197, 155, 39, 0.4)' }}>
-            <span>🏺</span>
+            <Compass className="h-3.5 w-3.5 text-[#c59b27]" />
             <span>{isAr ? 'التصنيفات الأربعة المعتمدة' : 'Four Core Sourcing Disciplines'}</span>
           </div>
           <h2 className="font-display" style={{ fontSize: '36px', margin: '8px 0 12px', color: 'var(--color-crimson)' }}>
@@ -112,7 +98,7 @@ export default async function HomePage({
               </h3>
               <p className="card-desc" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
                 {isAr
-                  ? 'رقائق غابات طبيعية، عود غطاس (Sinking Grade)، وخشب مستزرع مستدام من أسام وكاليمانتان وكمبوديا.'
+                  ? 'رقائق غابات طبيعية، ع��د غطاس (Sinking Grade)، وخشب مستزرع مستدام من أسام وكاليمانتان وكمبوديا.'
                   : 'Wild forest heartwood, sinking underwater grades, and sustainably inoculated plantation chips with certified resin density.'}
               </p>
               <div style={{ fontSize: '12.5px', color: 'var(--color-gold-dark)', fontWeight: 700, borderTop: '1px solid #f0ece1', paddingTop: '10px' }}>
@@ -202,7 +188,8 @@ export default async function HomePage({
       <section className="form-card" style={{ padding: '44px 40px', marginBottom: '70px', background: '#fffdf9', borderColor: 'var(--color-gold)' }}>
         <div style={{ maxWidth: '820px', margin: '0 auto', textAlign: 'center', marginBottom: '32px' }}>
           <span className="badge-crimson" style={{ fontSize: '12px', padding: '6px 14px' }}>
-            ⚠️ {isAr ? 'دليل كشف الغش والتزييف التجاري' : 'Counterfeit Awareness & Authenticity Standard'}
+            <AlertTriangle className="h-3 w-3 inline mr-1" />
+            {isAr ? 'دليل كشف الغش والتزييف التجاري' : 'Counterfeit Awareness & Authenticity Standard'}
           </span>
           <h2 className="font-display" style={{ fontSize: '32px', margin: '14px 0 10px', color: 'var(--color-crimson)' }}>
             {isAr ? 'معظم ما يباع كـ "عود طبيعي" عبر الإنترنت ليس حقيقياً' : 'Much of the Agarwood Sold Online Isn’t Authentic.'}
@@ -263,7 +250,8 @@ export default async function HomePage({
       <section className="luxury-hero" style={{ padding: '60px 48px', marginBottom: '70px', background: 'linear-gradient(145deg, #181415 0%, #221a1e 50%, #120e10 100%)' }}>
         <div style={{ maxWidth: '820px', marginBottom: '36px' }}>
           <div className="hero-tag" style={{ color: '#dfba55', borderColor: 'rgba(223, 186, 85, 0.4)' }}>
-            🗺️ {isAr ? 'الخريطة الشمية الإقليمية' : 'Regional Olfactory Terroirs & Botanical Taxa'}
+            <Compass className="h-3.5 w-3.5 text-[#dfba55]" />
+            <span>{isAr ? 'الخريطة الشمية الإقليمية' : 'Regional Olfactory Terroirs & Botanical Taxa'}</span>
           </div>
           <h2 className="font-display" style={{ fontSize: '36px', color: '#ffffff', margin: '0 0 14px' }}>
             {isAr ? 'الأقاليم الجغرافية وبصماتها الشمية المميزة' : 'Distinct Geographic Terroirs of the Oud World'}
@@ -316,67 +304,9 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* 6. VERIFIED DISTILLER DIRECTORY HIGHLIGHTS */}
+      {/* 6. FEATURED PRODUCER SHOWCASE WITH BUSINESS CARDS */}
       <section style={{ marginBottom: '70px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px', flexWrap: 'wrap', gap: '14px' }}>
-          <div>
-            <span className="badge-forest" style={{ marginBottom: '8px' }}>Verified Producer Network</span>
-            <h2 className="font-display" style={{ fontSize: '32px', margin: '6px 0 6px', color: 'var(--color-crimson)' }}>
-              {isAr ? 'دليل المنتجين والمقطرين المعتمدين' : 'Documented Distillers & Producer Directory'}
-            </h2>
-            <p style={{ color: 'var(--color-text-muted)', margin: 0, fontSize: '15px' }}>
-              {isAr
-                ? 'ملفات موثقة للمنتجين والمزارع مع حماية تامة لبيانات الاتصال لغير المشتركين.'
-                : 'Independently researched distilleries with contact gating protection on all basic profiles.'}
-            </p>
-          </div>
-          <Link href={`/${locale}/directory`} className="btn-outline">
-            {isAr ? 'عرض كامل الدليل ←' : 'Browse All Distillers →'}
-          </Link>
-        </div>
-
-        <div className="grid-3">
-          {businesses.map((biz) => (
-            <div key={biz.id} className="luxury-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '28px' }}>
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
-                  <span className="badge-forest">📍 {biz.country_name}</span>
-                  <div>
-                    {biz.contact_unlocked ? (
-                      <span className="badge-gold">{isAr ? 'عضوية معتمدة' : 'Subscribed Member'}</span>
-                    ) : (
-                      <span className="badge-locked">{isAr ? 'ملف أساسي محمي' : 'Basic Protected'}</span>
-                    )}
-                  </div>
-                </div>
-
-                <h3 className="card-title font-display" style={{ fontSize: '20px' }}>
-                  <Link href={`/${locale}/directory/${biz.slug}`}>{biz.name}</Link>
-                </h3>
-                <p style={{ fontSize: '13px', color: 'var(--color-gold-dark)', fontWeight: 600, margin: '0 0 12px' }}>
-                  {biz.category} · {biz.city}
-                </p>
-                <p className="card-desc" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
-                  {biz.description}
-                </p>
-
-                <div style={{ fontSize: '12.5px', color: '#555', marginBottom: '16px', background: '#fbf9f4', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--color-border)' }}>
-                  <strong>{isAr ? 'المصادر المعتمدة:' : 'Documented Origins:'}</strong>{' '}
-                  {(biz.verified_origins || []).join(', ')}
-                </div>
-              </div>
-
-              <div style={{ paddingTop: '16px', borderTop: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '12.5px', color: 'var(--color-text-muted)' }}>
-                  MOQ: <strong>{biz.minimum_order_quantity || 'Flexible'}</strong>
-                </span>
-                <Link href={`/${locale}/rfq?profile=${encodeURIComponent(biz.slug)}`} className="btn-gold" style={{ padding: '7px 16px', fontSize: '12.5px' }}>
-                  {isAr ? 'طلب تسعير' : 'Request Quote'}
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+        <FeaturedCarousel businesses={businesses} locale={locale} />
       </section>
 
       {/* 7. FOUR-STEP NEUTRAL MATCHING PROTOCOL */}
