@@ -1,0 +1,140 @@
+[
+  {
+    "event": "search_submitted",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "directory_filter_changed",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "profile_viewed",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "evidence_expanded",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "retail_referral_clicked",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "rfq_started",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "rfq_submitted",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "contact_verified",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "brief_qualified",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "recipient_proposed",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "recipient_approved",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "recipient_declined",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "introduction_delivered",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "supplier_response_received",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "request_closed",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "consent_withdrawn",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "membership_checkout_started",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "membership_activated",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "membership_renewed",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "lead_order_captured",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "lead_order_credited",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "correction_submitted",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  },
+  {
+    "event": "privacy_request_received",
+    "allowed_fields": "opaque event/session IDs where permitted; page/entity IDs; category; locale; non-sensitive state",
+    "prohibited": "name,email,phone,street address,free-text requirements,attachments,recipient contact,raw query with PII",
+    "consent": "Apply approved analytics/cookie policy; do not bundle with RFQ marketing"
+  }
+]

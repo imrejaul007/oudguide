@@ -1,0 +1,192 @@
+[
+  {
+    "family": "Home",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Guide index",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Directory root",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "World index",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Product index",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Glossary index",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Brand index",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Public policy",
+    "candidate_routes": 9,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Contact form",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Correction form",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Business intake",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Claim flow",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Membership",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Legal",
+    "candidate_routes": 4,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "RFQ",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Retail handoff",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Search",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Comparison utility",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Editorial hub",
+    "candidate_routes": 12,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Editorial guide",
+    "candidate_routes": 83,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Origin country",
+    "candidate_routes": 15,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Origin region",
+    "candidate_routes": 41,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Buyer country / territory",
+    "candidate_routes": 249,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Located-in country directory",
+    "candidate_routes": 72,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Destination directory",
+    "candidate_routes": 36,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Destination buying guide",
+    "candidate_routes": 36,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Origin-handling directory",
+    "candidate_routes": 15,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Located-in city directory",
+    "candidate_routes": 64,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Neighborhood directory",
+    "candidate_routes": 16,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Business category",
+    "candidate_routes": 24,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Product family",
+    "candidate_routes": 24,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Trade terminology",
+    "candidate_routes": 32,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Origin comparison",
+    "candidate_routes": 6,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Private/utility",
+    "candidate_routes": 14,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Partner programme",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Partner intake",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Consent utility",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  },
+  {
+    "family": "Privacy utility",
+    "candidate_routes": 1,
+    "meaning": "Named English planning routes; not live, written, verified or guaranteed indexable"
+  }
+]

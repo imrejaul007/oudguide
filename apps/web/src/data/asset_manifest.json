@@ -1,0 +1,50 @@
+[
+  {
+    "asset_id": "IMG-001",
+    "label": "Zura Yaumi wood",
+    "source_page": "https://ae.almutalib.com/products/zura-yaumi",
+    "observed_image_url": "https://ae.almutalib.com/cdn/shop/files/o31.jpg?v=1772876614&width=800",
+    "resolution_note": "800-wide observed derivative",
+    "alt_draft": "Irregular elongated dark wood pieces on a white background",
+    "usage_scope": "Illustrate this merchant selection; no forest/origin proof",
+    "rights_status": "User authorizes owned-site source; individual copyright/brand scope not audited",
+    "production_status": "REVIEW_REQUIRED; observed link only; file bytes not bundled",
+    "source_checked": "2026-10-19"
+  },
+  {
+    "asset_id": "IMG-002",
+    "label": "Al Mutalib packaging",
+    "source_page": "https://ae.almutalib.com/products/zura-yaumi",
+    "observed_image_url": "https://ae.almutalib.com/cdn/shop/files/Burgundy_Al_Mutalib_Oud_Box.png?v=1792012648&width=800",
+    "resolution_note": "800-wide observed derivative",
+    "alt_draft": "Burgundy Al Mutalib presentation box on a stone surface",
+    "usage_scope": "Al Mutalib packaging only; not proof of physical item inclusion",
+    "rights_status": "User authorizes owned-site source; individual copyright/brand scope not audited",
+    "production_status": "REVIEW_REQUIRED; observed link only; file bytes not bundled",
+    "source_checked": "2026-10-19"
+  },
+  {
+    "asset_id": "IMG-003",
+    "label": "Oil application thumbnail",
+    "source_page": "https://ae.almutalib.com/products/zura-yaumi",
+    "observed_image_url": "https://ae.almutalib.com/cdn/shop/files/antik-posts11.jpg?v=1772876230&width=120",
+    "resolution_note": "120-wide thumbnail only",
+    "alt_draft": "Applicator above a small fragrance bottle",
+    "usage_scope": "Do not upscale as hero; identify original product and confirm brand/rights",
+    "rights_status": "User authorizes owned-site source; individual copyright/brand scope not audited",
+    "production_status": "REVIEW_REQUIRED; observed link only; file bytes not bundled",
+    "source_checked": "2026-10-19"
+  },
+  {
+    "asset_id": "IMG-004",
+    "label": "Hindi mini Muri thumbnail",
+    "source_page": "https://ae.almutalib.com/products/zura-yaumi",
+    "observed_image_url": "https://ae.almutalib.com/cdn/shop/files/Photoroom_20260128_144411.jpg?v=1772876248&width=120",
+    "resolution_note": "120-wide thumbnail only",
+    "alt_draft": "Small irregular wood pieces against a white background",
+    "usage_scope": "Product example only; original resolution and current identity required",
+    "rights_status": "User authorizes owned-site source; individual copyright/brand scope not audited",
+    "production_status": "REVIEW_REQUIRED; observed link only; file bytes not bundled",
+    "source_checked": "2026-10-19"
+  }
+]

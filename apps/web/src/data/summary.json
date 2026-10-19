@@ -1,0 +1,21 @@
+{
+  "audit_urls": 68,
+  "guide_articles": 48,
+  "observed_edges": 403,
+  "observed_edge_source_pages": 49,
+  "named_english_routes": 772,
+  "proposed_internal_links": 1553,
+  "countries_territories": 249,
+  "dynamic_templates": 7,
+  "rfq_fields": 67,
+  "images_observed": 4,
+  "scope": "68 discoverable/reference URLs, no complete raw or rendered site crawl",
+  "routes_status": "planning only",
+  "page_templates": 45,
+  "acceptance_tests": 110,
+  "permissions": 14,
+  "keyword_patterns": 45,
+  "api_operations": 25,
+  "decisions": 20,
+  "policy_unit_tests": 18
+}
