@@ -154,8 +154,10 @@ export function isFieldVisible(fieldId: string, values: RfqFormValues): boolean 
     // Matching mode fields: Q60 - Q66
     case 'Q60': case 'Q61':
       return true;
-    case 'Q62': // Selected supplier ID (only if selected_supplier mode)
-      return mode === 'selected_supplier';
+    case 'Q62': // Maximum supplier introductions — shown in the matching flow.
+      // The buyer caps how many producers may be introduced; the lead
+      // policy enforces the same cap server-side via `recipient_cap`.
+      return mode === 'matching';
     case 'Q63': case 'Q64': case 'Q65': case 'Q66':
       return true;
 

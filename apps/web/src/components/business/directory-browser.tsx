@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, Filter, MapPin, X, Loader2, SlidersHorizontal } from 'lucide-react';
 import { BusinessCard } from './business-card';
+import { ComparisonDrawer, type ComparableProducer } from './comparison-drawer';
 
 export interface DirectoryBusiness {
   id: string;
@@ -230,6 +231,13 @@ export function DirectoryBrowser({
               <BusinessCard key={b.id} business={b as any} locale={locale} />
             ))}
           </div>
+
+          {/* COMPARISON DRAWER — reads the shared shortlist */}
+          <ComparisonDrawer
+            locale={locale}
+            isAr={isAr}
+            producers={businesses as unknown as ComparableProducer[]}
+          />
 
           {/* PAGINATION */}
           {totalPages > 1 && (

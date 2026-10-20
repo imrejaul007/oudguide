@@ -69,11 +69,15 @@ describe('67 Conditional RFQ Fields Evaluator (V4-RFQ-02)', () => {
     assert.equal(isFieldVisible('Q54', waPref), true);
   });
 
-  test('Direct selected supplier field (Q62) only visible in selected_supplier mode', () => {
+  test('Maximum supplier introductions (Q62) is visible in matching mode', () => {
+    // Q62 is "Maximum supplier introductions", shown in the matching flow —
+    // the buyer caps how many producers may be introduced. The direct
+    // supplier is chosen through Q61 (request mode) plus the pre-selected
+    // supplier, not through a separate picker field.
     const matchingMode: RfqFormValues = { request_mode: 'matching' };
     const directMode: RfqFormValues = { request_mode: 'selected_supplier' };
 
-    assert.equal(isFieldVisible('Q62', matchingMode), false);
-    assert.equal(isFieldVisible('Q62', directMode), true);
+    assert.equal(isFieldVisible('Q62', matchingMode), true);
+    assert.equal(isFieldVisible('Q62', directMode), false);
   });
 });

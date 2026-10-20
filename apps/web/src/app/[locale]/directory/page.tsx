@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { domain } from '@/lib/data';
 import { DirectoryBrowser } from '@/components/business/directory-browser';
-import { Compass, ShieldCheck, Map as MapIcon, Sparkles } from 'lucide-react';
+import { Compass, ShieldCheck, Map as MapIcon, Sparkles, Bookmark } from 'lucide-react';
 
 export default async function DirectoryPage({
   params,
@@ -48,6 +48,10 @@ export default async function DirectoryPage({
               <Link href={`/${locale}/sourcing`} className="btn btn-outline btn-sm">
                 <Sparkles size={14} />
                 {isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}
+              </Link>
+              <Link href={`/${locale}/shortlist`} className="btn btn-outline btn-sm">
+                <Bookmark size={14} />
+                {isAr ? 'قائمة الحفظ' : 'Shortlist'}
               </Link>
             </div>
 
