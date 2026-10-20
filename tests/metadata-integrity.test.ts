@@ -277,9 +277,8 @@ describe('Per-page metadata', () => {
     const guide = readFileSync(join(APP_DIR, 'guides/[...slug]/page.tsx'), 'utf8');
     assert.ok(guide.includes('export async function generateMetadata'));
     // The guide resolves through the content layer: a reviewed article if
-    // one exists, and a research brief otherwise. The manifest's
-    // `findRouteRecord` only knows manifest paths and is no longer the
-    // resolver.
+    // one exists, and a research brief otherwise. The manifest resolver
+    // only knows manifest paths, so it cannot answer this on its own.
     assert.ok(
       guide.includes('getArticle'),
       'the guide page must resolve its own article through the content layer'
