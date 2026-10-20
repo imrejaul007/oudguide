@@ -8,6 +8,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const isAr = locale === 'ar';
   return buildMetadata({
     path: `/${locale}/for-businesses`,
     title: isAr ? "للمقطرين والمزارعين — وثّق ملفك في دليل العود" : "For Distillers & Producers — Claim Your OudGuide Profile",

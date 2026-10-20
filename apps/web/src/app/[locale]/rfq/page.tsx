@@ -9,6 +9,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const isAr = locale === 'ar';
   return buildMetadata({
     path: `/${locale}/rfq`,
     title: isAr ? "تقديم طلب توريد عود بالجملة" : "Submit a Wholesale Oud Requirement",

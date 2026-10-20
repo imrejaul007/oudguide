@@ -7,6 +7,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const isAr = locale === 'ar';
   return buildMetadata({
     path: `/${locale}/corrections`,
     title: isAr ? "تقديم طلب تصحيح أو تدقيق تحريري" : "Submit a Correction or Editorial Review",

@@ -8,6 +8,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const isAr = locale === 'ar';
   return buildMetadata({
     path: `/${locale}/guides`,
     title: isAr ? "الموسوعة — 83 دليلاً عن العود والعطور" : "Encyclopedia — 83 Guides on Oud, Agarwood & Fragrance",

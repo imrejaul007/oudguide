@@ -10,6 +10,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const isAr = locale === 'ar';
   return buildMetadata({
     path: `/${locale}/directory`,
     title: isAr ? "دليل المنتجين — مقطرون ومزارع عود معتمدة" : "Producer Directory — Verified Oud Distillers & Plantations",

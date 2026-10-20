@@ -8,6 +8,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const isAr = locale === 'ar';
   return buildMetadata({
     path: `/${locale}/sourcing`,
     title: isAr ? "مساعد التوريد — اسأل عن إمداد العود" : "Sourcing Assistant — Ask About Oud Supply",
