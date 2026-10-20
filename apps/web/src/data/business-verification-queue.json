@@ -1,0 +1,140 @@
+{
+  "_note": "Business verification work queue. These are candidates, not published records. Every field is a claim made by the business itself, recorded with where the claim came from, so that an owner can be asked to confirm it. Nothing here is published in the directory or on the producer map until an owner has claimed the profile and the facts have been checked. The descriptions on the legacy site are that site's prose and are not copied here (EDITORIAL_RUNBOOK 1.3); the legacy page and the business's own site are recorded as the sources to re-verify against.",
+  "_source": "https://agarwoodguide.com/listings/ — the legacy directory's own business listings, each with a link to the business's own website",
+  "_observed_on": "2026-10-20",
+  "_state": "unverified",
+  "_publishable": false,
+  "_todo_per_record": [
+    "Ask the owner to claim the profile and confirm they are the business named here.",
+    "Confirm the location: where the business is actually based, which may not be where the material originates.",
+    "Confirm whether the business is a producer, a processor, a packer, a retailer, or a trader of other producers' material.",
+    "Record a documented facility only if there is one, with evidence, so the producer map can plot it.",
+    "Confirm the product families actually offered.",
+    "Confirm the minimum order quantity and whether samples are supplied, with evidence for each.",
+    "Confirm the founding year only if the business can evidence it.",
+    "Record the destinations it ships to, per product and route, rather than a blanket list."
+  ],
+  "candidates": [
+    {
+      "slug": "agar-aura",
+      "legacy_name": "Agar Aura",
+      "claimed_country_iso2": "MY",
+      "claimed_country_name": "Malaysia",
+      "claimed_city": null,
+      "claimed_specialty": "Pure oud oils, attars",
+      "owner_website": "https://agaraura.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/agar-aura/",
+      "notes": "The legacy description records a relocation to Malaysia and a first distillation there, so the country of operation and any earlier country of origin are two different facts. Ask which."
+    },
+    {
+      "slug": "agarwood-international",
+      "legacy_name": "Agarwood International",
+      "claimed_country_iso2": "LA",
+      "claimed_country_name": "Laos",
+      "claimed_city": "Vientiane",
+      "claimed_specialty": "Lao agarwood oud oils, incense",
+      "owner_website": null,
+      "legacy_source_url": "https://agarwoodguide.com/listing/agarwood-international/",
+      "notes": "No website link on the legacy listing, so the identity itself is unconfirmed. Establish the business before anything else."
+    },
+    {
+      "slug": "amouage",
+      "legacy_name": "Amouage",
+      "claimed_country_iso2": "OM",
+      "claimed_country_name": "Oman",
+      "claimed_city": "Muscat",
+      "claimed_specialty": "Niche eau de parfum, attars, oud-themed fragrances",
+      "owner_website": "https://www.amouage.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/amouage/",
+      "notes": "A perfume house and brand, not a distiller of oud. The legacy listing records that natural oud and oud accords are used inconsistently across the range, so 'sells oud products' and 'produces oud material' are different claims. Classify accordingly, and do not list it as a producer of agarwood."
+    },
+    {
+      "slug": "assam-aromas",
+      "legacy_name": "Assam Aromas (Assam Aromas Distillery)",
+      "claimed_country_iso2": "IN",
+      "claimed_country_name": "India",
+      "claimed_city": "Nagaon District, Assam",
+      "claimed_specialty": "Agarwood oil, TajOud, agar hydrosol, agarwood dust, chips",
+      "owner_website": "https://www.assamaromas.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/assam-aromas/",
+      "notes": "A distillery with a stated founding year and a stated distillation method. Both are claims to be evidenced, not facts to publish."
+    },
+    {
+      "slug": "citra-karya-agarwood",
+      "legacy_name": "Citra Karya Agarwood",
+      "claimed_country_iso2": "ID",
+      "claimed_country_name": "Indonesia",
+      "claimed_city": "North Jakarta",
+      "claimed_specialty": "Natural oud, oud oil, sanai oud, oud powder",
+      "owner_website": "https://www.agarwood-oud-oil.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/citra-karya-agarwood/",
+      "notes": "A producer and exporter. The legacy description claims more than twenty years of trade; treat that as a claim to evidence."
+    },
+    {
+      "slug": "ensar-oud-oriscent",
+      "legacy_name": "Ensar Oud (Oriscent)",
+      "claimed_country_iso2": "GB",
+      "claimed_country_name": "United Kingdom",
+      "claimed_city": "London",
+      "claimed_specialty": "Artisanal oud oil, attars, perfumes",
+      "owner_website": "https://www.ensaroud.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/ensar-oud-oriscent/",
+      "notes": "The clearest case of the three facts coming apart: registered in London, distilling on location across Southeast Asia, sourcing by trip and micro-lot. Its location is London; its material is Southeast Asian; neither tells us where it distils. A documented facility record, if one exists, would be in the distillation country, not the registration country."
+    },
+    {
+      "slug": "haga-oud",
+      "legacy_name": "HAGA Oud (Hoang Giang Agarwood Ltd.)",
+      "claimed_country_iso2": "VN",
+      "claimed_country_name": "Vietnam",
+      "claimed_city": "Binh Thuan Province",
+      "claimed_specialty": "Agarwood essential oil; seedlings through finished oil",
+      "owner_website": "https://hgagarwood.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/haga-oud/",
+      "notes": "Covers seedling supply through distillation, so the production chain is claimed end to end. The legacy listing also carries a conflicting province between its own text and its structured data, and a market-leadership claim with no source. Both need resolving before publication."
+    },
+    {
+      "slug": "iba-botanicals-inc",
+      "legacy_name": "Iba Botanicals Inc.",
+      "claimed_country_iso2": "PH",
+      "claimed_country_name": "Philippines",
+      "claimed_city": "Zambales",
+      "claimed_specialty": "Agarwood plantation and cultivation; seedlings and inoculum",
+      "owner_website": "https://www.ibabotanicals.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/iba-botanicals-inc/",
+      "notes": "The legacy listing claims this is the first company in the Philippines to receive government authorisation to cultivate Aquilaria malaccensis, and cites a BusinessMirror piece and DENR and PIA statements without a single link to any of them. That claim needs a link to a primary record or it does not get published."
+    },
+    {
+      "slug": "masantara-oud",
+      "legacy_name": "Masantara Oud",
+      "claimed_country_iso2": "ID",
+      "claimed_country_name": "Indonesia",
+      "claimed_city": "Medan, North Sumatra",
+      "claimed_specialty": "Wild and plantation agarwood chips (multiple grades), oud oil, bakhoor, oud perfume",
+      "owner_website": "https://masantaraoud.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/masantara-oud/",
+      "notes": "A wholesaler and retailer with a production and packaging facility in Medan and a registered office in Jakarta Selatan. The two addresses are one business in two places; a facility record belongs to Medan, and the office address does not make it a Jakarta producer. The legacy listing also asserts a GC-MS result with no laboratory named, and states a founding year with no source."
+    },
+    {
+      "slug": "oud-arabia",
+      "legacy_name": "Oud Arabia",
+      "claimed_country_iso2": "IN",
+      "claimed_country_name": "India",
+      "claimed_city": null,
+      "claimed_specialty": "Oud perfumes, dakhoon, attars",
+      "owner_website": "https://oudarabiadubai.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/oud-arabia/",
+      "notes": "A retailer whose name and domain reference Dubai while the business is India-based, and the legacy listing makes that contrast explicitly. A brand's name is not its location. The listing also asserts natural ambergris, which is CITES-controlled, without addressing the permit; that claim needs removing or substantiating."
+    },
+    {
+      "slug": "oud-vietnam",
+      "legacy_name": "OUD Vietnam",
+      "claimed_country_iso2": "VN",
+      "claimed_country_name": "Vietnam",
+      "claimed_city": "Huong Khe District, Ha Tinh Province",
+      "claimed_specialty": "Agarwood oil, chips, plantation-grown agarwood",
+      "owner_website": "https://oudvietnam.com",
+      "legacy_source_url": "https://agarwoodguide.com/listing/oud-vietnam/",
+      "notes": "Claims a vertically integrated chain from planting through processing to distribution, with the plantation and processing facility in Ha Tinh. The legacy listing also gives three different locations across its visible text and its structured data, so the location needs one answer."
+    }
+  ]
+}

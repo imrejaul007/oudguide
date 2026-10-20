@@ -14,17 +14,27 @@ export default async function ProducerMapPage({
   const isAr = locale === 'ar';
 
   const businesses = domain.listBusinesses();
+  const facilities = domain.listDocumentedFacilities();
 
-  // Attach registered producers to their region, matching on country and on
-  // the free-text region names carried in each producer's verified_origins.
+  // A producer is plotted only where a documented facility says material is
+  // actually handled. Matching on the business's own country, or on the
+  // origins it says it works with, would place a Dubai reseller of
+  // Cambodian agarwood in Cambodia — a claim about where the material was
+  // made that no record supports.
   const regions: MapRegion[] = (centroids as any).regions.map((r: any) => {
-    const producers = businesses.filter((b: any) => {
-      if (b.country_id?.toUpperCase() === r.iso2) return true;
-      const origins = (b.verified_origins ?? []).join(' ').toLowerCase();
-      const name = String(r.name).toLowerCase();
-      const regionWord = name.split(',')[0].trim();
-      return origins.includes(regionWord);
-    });
+    const producers = facilities
+      .filter((f) => f.facility.country_id?.toUpperCase() === r.iso2)
+      .map((f) => {
+        const b = businesses.find((x) => x.id === f.business_id);
+        return {
+          id: f.business_id,
+          slug: f.slug,
+          name: f.name,
+          city: f.facility.city ?? b?.city ?? null,
+          country_name: f.facility.country_name ?? b?.country_name ?? null,
+          category: b?.category ?? null,
+        };
+      });
 
     return {
       key: r.key,
@@ -48,6 +58,7 @@ export default async function ProducerMapPage({
   const producerRegions = regions.filter((r) => r.role === 'producer');
   const marketRegions = regions.filter((r) => r.role === 'market');
   const linkedProducers = regions.filter((r) => r.producers && r.producers.length > 0);
+  const documentedFacilityCount = facilities.length;
 
   return (
     <div className="section">

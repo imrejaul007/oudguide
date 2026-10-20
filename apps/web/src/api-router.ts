@@ -85,11 +85,34 @@ export function handleApiRequest(
   }
 
   // 4. POST /v1/businesses/{id}/membership-checkout
+  //
+  // A membership is activated by a provider-confirmed payment and by
+  // nothing else (OG-A19). A request without one is refused rather than
+  // granting the entitlement.
   const memMatch = path.match(/^\/v1\/businesses\/([^/]+)\/membership-checkout$/);
   if (memMatch && method === 'POST') {
     const id = memMatch[1];
-    const result = domain.purchaseMembership(id);
-    sendJson(result.success ? 200 : 400, result);
+    readJsonBody()
+      .then((body) => {
+        const confirmedAt = body.confirmed_at ? new Date(body.confirmed_at) : undefined;
+        if (!confirmedAt || isNaN(confirmedAt.getTime())) {
+          sendJson(402, {
+            error: 'payment_not_confirmed',
+            message:
+              'A confirmed payment is required. A payment page, a success URL or a browser request does not activate a membership.',
+          });
+          return;
+        }
+        const result = domain.purchaseMembership(id, {
+          reference: String(body.reference ?? '').trim(),
+          amount: Number(body.amount ?? 0),
+          currency: String(body.currency ?? 'AED').toUpperCase(),
+          confirmed_at: confirmedAt,
+          provider: String(body.provider ?? 'unconfirmed'),
+        });
+        sendJson(result.success ? 200 : 400, result);
+      })
+      .catch(() => sendJson(400, { error: 'invalid_json' }));
     return true;
   }
 

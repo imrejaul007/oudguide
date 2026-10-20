@@ -57,8 +57,8 @@ export function Footer({ locale }: { locale: string }) {
                 : 'The global independent reference for natural agarwood, artisanal Dehn Al Oud, heritage attars, and neutral wholesale B2B matching for commercial perfumers.'}
             </p>
             <div className="footer-col-trust">
-              <span className="badge badge-emerald">🌿 CITES Appendix II</span>
-              <span className="badge badge-gold">🔒 Zero Contact Leakage</span>
+              <span className="badge badge-emerald">🌿 CITES Appendix II documented</span>
+              <span className="badge badge-gold">🔒 Contact fields withheld by default</span>
             </div>
           </div>
 

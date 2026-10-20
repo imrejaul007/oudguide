@@ -243,7 +243,7 @@ function renderBusinessProfile(slug: string): string | null {
 
     <div class="step-section">
       <h3>Documented material origins</h3>
-      <p>${(biz.verified_origins || []).map((o) => escapeHtml(o)).join(', ')}</p>
+      <p>${(biz.handles_origins || []).map((o) => escapeHtml(o)).join(', ')}</p>
     </div>
 
     ${contactSection}

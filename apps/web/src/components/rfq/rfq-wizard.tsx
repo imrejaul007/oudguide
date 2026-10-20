@@ -8,6 +8,7 @@ import {
   RFQ_FIELD_STAGES,
   RFQ_BUYER_STAGES,
 } from '../../../../../packages/contracts/src/rfq-field-map.ts';
+import { publicLabel, publicHelp } from '../../../../../packages/contracts/src/rfq-public-copy.ts';
 import rfqFieldDefs from '@/data/rfq_fields.json';
 import { useDebounce } from '@/lib/hooks';
 import {
@@ -246,7 +247,9 @@ export function RfqWizard({
               : `Stage ${stageNumber} of ${visibleStages.length}`}
           </span>
           <span className="meta" style={{ textTransform: 'none', letterSpacing: '0.02em' }}>
-            {isAr ? `${totalVisible} حقلاً من 67 ظاهراً` : `${totalVisible} of 67 fields applicable`}
+            {isAr
+              ? `${totalVisible} حقلاً منطبقاً على إجاباتك`
+              : `${totalVisible} fields apply to your answers`}
           </span>
         </div>
         <div
@@ -352,7 +355,9 @@ export function RfqWizard({
         <div className="cluster" style={{ gap: 8 }}>
           <span className="meta" style={{ textTransform: 'none', letterSpacing: '0.02em' }}>
             <Lock size={11} style={{ display: 'inline', verticalAlign: 'middle', marginInlineEnd: 4 }} />
-            {isAr ? 'بياناتك مشفرة ولا تُعرض للموردين' : 'Your data is encrypted and never shown to suppliers'}
+            {isAr
+              ? 'تبقى بياناتك محجوبة حتى تعتمد على مستلم محدد بالاسم'
+              : 'Your contact details stay withheld until you approve a named recipient'}
           </span>
         </div>
 
@@ -396,7 +401,8 @@ function RfqField({
   const choices = parseChoices(field['Validation / choices']);
   const id = field.ID;
   const name = keyOf(field) ?? id;
-  const label = field.Field;
+  const label = publicLabel(field.ID, field.Field, isAr);
+  const help = publicHelp(field.ID, isAr);
   const isChoice = ['Select', 'Radio', 'Multi-select', 'Choice'].includes(field['Input type']);
 
   // Affirmative controls (consent, opt-ins, redaction permission) must be
@@ -416,8 +422,8 @@ function RfqField({
           <h4>{label}</h4>
           <p>
             {isAr
-              ? 'عند اعتمادك لطلب، يُرسل موجز فني مشفر إلى الموردين المؤهلين. تُعرض أسماء الموردين على شاشتك قبل الموافقة النهائية، ولا تُشارك بيانات اتصالك إلا بعد اعتمادك الصريح برمز OTP.'
-              : 'When you approve a request, an encrypted technical brief is sent to qualified producers. Producer names are shown on your screen before final approval, and your contact details are shared only after your explicit approval with OTP verification.'}
+              ? 'عند اعتمادك لطلب، يُرسل موجز فني خالٍ من أي هوية للمشتري إلى الموردين الذين تعتمدهم. تُعرض أسماء الموردين على شاشتك قبل الموافقة النهائية، ولا تُسلَّم بيانات اتصالك إلا لمورد تعتمد عليه بالاسم لهذا الطلب.'
+              : 'When you approve a request, a technical brief with no buyer identity in it is sent to the suppliers you approve. Producer names are shown on your screen before final approval, and your contact details are released only to a supplier you approve by name for that request.'}
           </p>
         </div>
       </div>
@@ -443,15 +449,12 @@ function RfqField({
           <span>
             {label}
             {required && <span style={{ color: 'var(--terracotta)', marginInlineStart: 4 }}>*</span>}
-            <span className="meta" style={{ marginInlineStart: 8, textTransform: 'none', letterSpacing: '0.02em' }}>
-              {id}
-            </span>
           </span>
         </label>
-        {field['Privacy / interpretation'] && (
+        {help && (
           <p className="form-help">
             <Lock size={10} style={{ display: 'inline', verticalAlign: 'middle', marginInlineEnd: 4 }} />
-            {field['Privacy / interpretation']}
+            {help}
           </p>
         )}
       </div>
@@ -463,9 +466,6 @@ function RfqField({
       <label className="form-label" htmlFor={id}>
         {label}
         {required && <span style={{ color: 'var(--terracotta)', marginInlineStart: 4 }}>*</span>}
-        <span className="meta" style={{ marginInlineStart: 8, textTransform: 'none', letterSpacing: '0.02em' }}>
-          {id}
-        </span>
       </label>
 
       {isChoice && choices.length > 0 ? (
@@ -534,11 +534,10 @@ function RfqField({
         />
       )}
 
-      {/* Privacy note — the schema records a handling rule per field. */}
-      {field['Privacy / interpretation'] && (
+      {help && (
         <p className="form-help">
           <Lock size={10} style={{ display: 'inline', verticalAlign: 'middle', marginInlineEnd: 4 }} />
-          {field['Privacy / interpretation']}
+          {help}
         </p>
       )}
     </div>

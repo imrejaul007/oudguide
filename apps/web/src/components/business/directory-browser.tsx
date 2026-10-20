@@ -19,7 +19,11 @@ export interface DirectoryBusiness {
   is_claimed: boolean;
   has_active_membership: boolean;
   contact_unlocked: boolean;
-  verified_origins?: string[];
+  verification_state?: 'owner_verified' | 'seller_declared' | 'unverified';
+  verified_fields?: string[];
+  demo?: boolean;
+  handles_origins?: string[];
+  serves_destinations?: string[];
   product_families?: string[];
   sample_availability?: boolean;
   minimum_order_quantity?: string | null;
@@ -43,16 +47,18 @@ export function DirectoryBrowser({
   isAr,
   initialSearch = '',
   initialCountry = '',
+  initialFamily = 'all',
 }: {
   businesses: DirectoryBusiness[];
   locale: string;
   isAr: boolean;
   initialSearch?: string;
   initialCountry?: string;
+  initialFamily?: string;
 }) {
   const [query, setQuery] = useState(initialSearch);
   const [debounced, setDebounced] = useState(initialSearch);
-  const [family, setFamily] = useState('all');
+  const [family, setFamily] = useState(initialFamily);
   const [country, setCountry] = useState(initialCountry);
   const [page, setPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
@@ -80,6 +86,8 @@ export function DirectoryBrowser({
       if (family !== 'all') {
         if (!(b.product_families ?? []).includes(family)) return false;
       }
+      // A fixture record is never shown in the public listing.
+      if (b.demo) return false;
       if (country && b.country_id !== country) return false;
       if (!q) return true;
       const hay = [
@@ -87,7 +95,7 @@ export function DirectoryBrowser({
         b.description ?? '',
         b.city ?? '',
         b.country_name ?? '',
-        (b.verified_origins ?? []).join(' '),
+        (b.handles_origins ?? []).join(' '),
         (b.product_families ?? []).join(' '),
       ]
         .join(' ')
@@ -103,7 +111,7 @@ export function DirectoryBrowser({
   const resetFilters = () => {
     setQuery('');
     setDebounced('');
-    setFamily('all');
+    setFamily(initialFamily);
     setCountry('');
     setPage(1);
   };

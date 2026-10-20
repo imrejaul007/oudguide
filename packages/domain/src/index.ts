@@ -11,6 +11,7 @@ import {
   isContactDisplayEntitled,
   type RawBusinessProfile,
   type PublicBusinessProjection,
+  type BusinessFacility,
 } from '../../permissions/src/contact-policy.ts';
 import { isFieldVisible, type RfqFormValues } from '../../contracts/src/rfq-fields.ts';
 
@@ -54,6 +55,29 @@ export interface MatchBrief {
   // Strictly NO buyer PII
 }
 
+/**
+ * A payment that has been confirmed by the billing provider.
+ *
+ * The membership is not activated by the act of asking for it. It is
+ * activated by a provider-confirmed payment, and the record of that
+ * payment is what the platform keeps.
+ */
+export interface MembershipPayment {
+  /** The provider's reference for the charge. */
+  reference: string;
+  /** The amount charged, in `currency`. */
+  amount: number;
+  /** ISO 4217 currency code. The annual price is quoted in AED. */
+  currency: string;
+  /** When the provider confirmed the charge. */
+  confirmed_at: Date;
+  /** Which provider confirmed it. */
+  provider: string;
+}
+
+/** The one approved figure: AED 1,200 per year (DEC02, DEC03, DEC13). */
+export const MEMBERSHIP_ANNUAL_AED = 1200;
+
 export interface RecipientGrant {
   grant_id: string;
   inquiry_id: string;
@@ -95,25 +119,81 @@ export class OudGuideDomainService {
   // DIRECTORY
   // -------------------------------------------------------------
 
+  /**
+   * List businesses.
+   *
+   * `role`, `product_family`, `origin` and `destination` are independent
+   * selectors, and they mean different things:
+   *
+   *   role         — what the business does (distiller, wholesaler, retailer)
+   *   product_family — what it sells (oud wood, oud oil, perfume oil, …)
+   *   origin       — the origin of the material it handles
+   *   destination  — a country it is documented to ship to
+   *
+   * A business that handles Cambodian agarwood matches `origin=kh` whether
+   * or not it is located in Cambodia. Its own country is matched by
+   * `location`, not by `origin`, so the two never blur.
+   *
+   * Fixture records are returned unless `excludeDemo` is set, so every
+   * public surface states its intent rather than relying on a default
+   * that could be changed by accident.
+   */
   public listBusinesses(filters?: {
     search?: string;
     role?: string;
+    product_family?: string;
     country_id?: string;
     origin?: string;
+    destination?: string;
+    /**
+     * Exclude the development fixtures.
+     *
+     * Publication is a public-surface decision, so the default is to
+     * return the whole register and let the caller state its intent. A
+     * caller that does not pass this flag will surface a fixture, which
+     * is why every public surface passes it explicitly.
+     */
+    excludeDemo?: boolean;
   }): PublicBusinessProjection[] {
     let list = Array.from(this.businesses.values());
 
+    if (filters?.excludeDemo) {
+      list = list.filter((b) => !b.demo);
+    }
+
     if (filters?.country_id) {
-      list = list.filter((b) => b.country_id.toUpperCase() === filters.country_id!.toUpperCase());
+      const code = filters.country_id.toUpperCase();
+      list = list.filter(
+        (b) =>
+          b.country_id.toUpperCase() === code ||
+          (b.facilities ?? []).some((f) => f.country_id.toUpperCase() === code) ||
+          (b.serves_destinations ?? []).some((d) => d.toUpperCase() === code)
+      );
     }
 
     if (filters?.role) {
-      list = list.filter((b) => b.business_type?.toLowerCase() === filters.role!.toLowerCase());
+      const role = filters.role.toLowerCase();
+      list = list.filter((b) => b.business_type?.toLowerCase() === role);
+    }
+
+    if (filters?.product_family) {
+      const family = filters.product_family.toLowerCase();
+      list = list.filter((b) =>
+        (b.product_families ?? []).some((f) => f.toLowerCase().includes(family))
+      );
     }
 
     if (filters?.origin) {
+      const origin = filters.origin.toLowerCase();
       list = list.filter((b) =>
-        b.verified_origins?.some((o) => o.toLowerCase().includes(filters.origin!.toLowerCase()))
+        (b.handles_origins ?? []).some((o) => o.toLowerCase().includes(origin))
+      );
+    }
+
+    if (filters?.destination) {
+      const destination = filters.destination.toUpperCase();
+      list = list.filter((b) =>
+        (b.serves_destinations ?? []).some((d) => d.toUpperCase() === destination)
       );
     }
 
@@ -131,6 +211,43 @@ export class OudGuideDomainService {
     return list.map((b) => projectPublicBusiness(b));
   }
 
+  /**
+   * The documented facilities across every business.
+   *
+   * The producer map plots these and not the profile locations: a business
+   * that resells Cambodian oud from Dubai has no Cambodian facility, and
+   * plotting its address in Cambodia would be a false claim about where
+   * material is made.
+   */
+  public listDocumentedFacilities(): Array<{
+    business_id: string;
+    slug: string;
+    name: string;
+    facility: BusinessFacility;
+  }> {
+    const out: Array<{
+      business_id: string;
+      slug: string;
+      name: string;
+      facility: BusinessFacility;
+    }> = [];
+
+    for (const b of this.businesses.values()) {
+      if (b.demo) continue;
+      for (const f of b.facilities ?? []) {
+        if (!f.documented) continue;
+        out.push({
+          business_id: b.id,
+          slug: b.slug,
+          name: b.name,
+          facility: f,
+        });
+      }
+    }
+
+    return out;
+  }
+
   public getBusinessBySlug(slug: string): PublicBusinessProjection | null {
     for (const b of this.businesses.values()) {
       if (b.slug === slug) {
@@ -142,6 +259,45 @@ export class OudGuideDomainService {
 
   public getRawBusiness(id: string): RawBusinessProfile | null {
     return this.businesses.get(id) || null;
+  }
+
+  /**
+   * The raw record for a business slug.
+   *
+   * The verification record is built from the raw record, because the
+   * public projection deliberately drops the evidence trail and the
+   * fixture flag. A page that claims to show what was checked must be
+   * reading the record that holds the check.
+   */
+  public getRawBusinessBySlug(slug: string): RawBusinessProfile | null {
+    for (const b of this.businesses.values()) {
+      if (b.slug === slug) return b;
+    }
+    return null;
+  }
+
+  /**
+   * Resolve a supplier reference to a business id.
+   *
+   * The RFQ form carries a supplier *slug* in the URL and in the posted
+   * form, but the lead policy compares a *business id*. Before this
+   * existed, a selected-supplier request could never be released: the
+   * policy saw `al-mutalib-perfumes` where it expected `biz_almutalib_01`
+   * and refused with `supplier_substitution` — a refusal that looked like
+   * a security control but was actually a type mismatch.
+   */
+  public resolveBusinessId(reference: string): string | null {
+    if (!reference) return null;
+
+    // Already an id.
+    if (this.businesses.has(reference)) return reference;
+
+    // A slug.
+    for (const b of this.businesses.values()) {
+      if (b.slug === reference) return b.id;
+    }
+
+    return null;
   }
 
   public claimProfile(businessId: string, claimantEmail: string): { success: boolean; message: string } {
@@ -156,16 +312,67 @@ export class OudGuideDomainService {
     };
   }
 
-  public purchaseMembership(businessId: string): { success: boolean; message: string } {
+  /**
+   * Activate an annual membership.
+   *
+   * A membership is activated by a confirmed payment, and by nothing else.
+   * The audit found the checkout activating membership on a plain form
+   * post, which meant a success URL was enough to grant a paying
+   * entitlement — and the decision register has the billing cadence, the
+   * tax treatment and the renewal terms still marked as awaiting owner
+   * approval (DEC02, DEC03, DEC13).
+   *
+   * The payment must be a provider-confirmed record, carrying a
+   * reference, an amount in AED, and the moment it was confirmed. A
+   * caller with no payment record is refused, and a payment below the
+   * approved annual price is refused.
+   */
+  public purchaseMembership(
+    businessId: string,
+    payment?: MembershipPayment
+  ): { success: boolean; message: string; reference?: string } {
     const biz = this.businesses.get(businessId);
     if (!biz) return { success: false, message: 'Business not found' };
     if (!biz.is_claimed) return { success: false, message: 'Must claim profile before purchasing membership' };
 
+    if (!payment) {
+      return {
+        success: false,
+        message:
+          'A confirmed payment is required to activate a membership. A payment page, a success URL or a browser request does not activate one.',
+      };
+    }
+
+    if (!payment.reference || !payment.confirmed_at) {
+      return {
+        success: false,
+        message: 'A payment reference and a confirmation time are required.',
+      };
+    }
+
+    if (payment.currency !== 'AED') {
+      return {
+        success: false,
+        message: `Membership is priced in AED; a payment in ${payment.currency} cannot activate it.`,
+      };
+    }
+
+    if (!(payment.amount >= MEMBERSHIP_ANNUAL_AED)) {
+      return {
+        success: false,
+        message: `The annual membership price is AED ${MEMBERSHIP_ANNUAL_AED.toLocaleString('en-US')}.`,
+      };
+    }
+
     biz.has_active_membership = true;
-    biz.contact_display_enabled = true; // by default unlocked upon paid subscription
+    // The owner may still switch contact publication off from the
+    // workspace; membership is what unlocks it, not the other way round.
+    biz.contact_display_enabled = true;
+
     return {
       success: true,
-      message: `Annual membership activated for ${biz.name} (AED 1,200/year). Contact display unlocked.`,
+      message: `Annual membership activated for ${biz.name} (AED ${MEMBERSHIP_ANNUAL_AED.toLocaleString('en-US')}/year). Contact display unlocked.`,
+      reference: payment.reference,
     };
   }
 
@@ -209,6 +416,39 @@ export class OudGuideDomainService {
       required_date: values.required_date,
       form_values: values,
     };
+
+    // A selected-supplier request names its recipient. The reference may
+    // arrive as a slug, so it is resolved to a business id here. An
+    // unresolvable reference is rejected outright: a request that says
+    // "send this to a supplier we cannot identify" must not become a
+    // generic matching request by accident.
+    if (record.form_values.request_mode === 'selected_supplier') {
+      const reference =
+        (values.selected_supplier_id as string) ||
+        (values.selected_supplier_slug as string) ||
+        '';
+
+      if (!reference) {
+        this.inquiries.delete(id);
+        return {
+          inquiry_id: '',
+          verification_token: '',
+          state: 'rejected_no_supplier',
+        };
+      }
+
+      const businessId = this.resolveBusinessId(reference);
+      if (!businessId) {
+        this.inquiries.delete(id);
+        return {
+          inquiry_id: '',
+          verification_token: '',
+          state: 'rejected_unknown_supplier',
+        };
+      }
+
+      record.form_values.selected_supplier_id = businessId;
+    }
 
     this.inquiries.set(id, record);
 
@@ -289,14 +529,16 @@ export class OudGuideDomainService {
       return { success: false, error: 'Recipient cap reached (maximum 3 approved suppliers)' };
     }
 
-    const biz = this.businesses.get(targetBusinessId);
-    if (!biz) return { success: false, error: 'Target business not found' };
+    const businessId = this.resolveBusinessId(targetBusinessId);
+    if (!businessId) return { success: false, error: 'Target business not found' };
 
-    const grantId = `grant_${inquiryId}_${targetBusinessId}`;
+    const biz = this.businesses.get(businessId)!;
+
+    const grantId = `grant_${inquiryId}_${businessId}`;
     const grant: RecipientGrant = {
       grant_id: grantId,
       inquiry_id: inquiryId,
-      target_business_id: targetBusinessId,
+      target_business_id: businessId,
       granted_at: new Date(),
       expires_at: inq.expires_at,
       granted_fields: new Set(['email', 'requirements']),
@@ -317,10 +559,12 @@ export class OudGuideDomainService {
     const inq = this.inquiries.get(inquiryId);
     if (!inq) return { success: false, reason: 'inquiry_not_found' };
 
-    const biz = this.businesses.get(targetBusinessId);
-    if (!biz) return { success: false, reason: 'business_not_found' };
+    const businessId = this.resolveBusinessId(targetBusinessId);
+    if (!businessId) return { success: false, reason: 'business_not_found' };
 
-    const grantId = `grant_${inquiryId}_${targetBusinessId}`;
+    const biz = this.businesses.get(businessId)!;
+
+    const grantId = `grant_${inquiryId}_${businessId}`;
     const grant = this.recipientGrants.get(grantId);
     if (!grant) return { success: false, reason: 'recipient_or_request_mismatch' };
 
@@ -357,7 +601,10 @@ export class OudGuideDomainService {
       granted_purpose: grant.granted_purpose,
       released_business_ids: releasedIds,
       recipient_cap: 3,
-      commercial_entitlement: true,
+      // The commercial entitlement is a property of the business, not a
+      // constant. Hard-coding it true meant the policy's own
+      // `no_commercial_entitlement` branch could never fire.
+      commercial_entitlement: Boolean(biz.commercial_entitlement),
       exclusive: false,
     };
 
@@ -366,7 +613,7 @@ export class OudGuideDomainService {
       return { success: false, reason };
     }
 
-    const releaseId = `rel_${Date.now()}_${targetBusinessId}`;
+    const releaseId = `rel_${Date.now()}_${businessId}`;
     const releaseRecord: IntroductionRelease = {
       release_id: releaseId,
       inquiry_id: inq.id,

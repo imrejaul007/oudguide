@@ -5,7 +5,6 @@ import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle
 import { BookmarkButton, ShareButton, ViewTracker } from '@/components/business/interactive-tools';
 import { ReportButton } from '@/components/business/report-button';
 import { ProfileFaq } from '@/components/business/profile-faq';
-import { getAvailabilityStatus, DEFAULT_WORKING_HOURS } from '@/lib/format';
 
 const producerCovers: Record<string, string> = {
   'al-mutalib-perfumes': '/images/hero-attar-still.svg',
@@ -27,12 +26,8 @@ export default async function BusinessProfilePage({
   }
 
   const coverImage = producerCovers[slug] || '/images/hero-oud-chip.svg';
-  const allBusinesses = domain.listBusinesses();
+  const allBusinesses = domain.listBusinesses({ excludeDemo: true });
   const similar = allBusinesses.filter((b) => b.slug !== slug).slice(0, 4);
-
-  // Live distillery availability — the OudGuide analogue of IndexOrbit's
-  // "Open · Closes in 2h 15m" retail status.
-  const availability = getAvailabilityStatus(DEFAULT_WORKING_HOURS);
 
   return (
     <div className="section">
@@ -94,7 +89,10 @@ export default async function BusinessProfilePage({
               </h1>
               <p className="display-serif" style={{ fontSize: '1.05rem', color: '#d4c8b0', margin: 0, fontStyle: 'italic' }}>
                 {biz.city ? `${biz.city}, ` : ''}{biz.country_name || biz.country_id}
-                {biz.established_year && <> · {isAr ? 'تأسست' : 'Est.'} {biz.established_year}</>}
+                {biz.established_year &&
+                  (biz.verified_fields ?? []).includes('established_year') && (
+                    <> · {isAr ? 'تأسست' : 'Est.'} {biz.established_year}</>
+                  )}
               </p>
             </div>
           </div>
@@ -108,23 +106,14 @@ export default async function BusinessProfilePage({
                   {isAr ? 'ملكية موثقة' : 'Verified Claim'}
                 </span>
               )}
-              {biz.sample_availability && (
-                <span className="badge badge-crimson">{isAr ? 'عينات متاحة' : 'Samples Available'}</span>
-              )}
+              {biz.sample_availability &&
+                (biz.verified_fields ?? []).includes('sample_availability') && (
+                  <span className="badge badge-crimson">
+                    {isAr ? 'عينات متاحة' : 'Samples Available'}
+                  </span>
+                )}
               {biz.has_active_membership && (
                 <span className="badge badge-charcoal">{isAr ? 'عضوية نشطة' : 'Active Membership'}</span>
-              )}
-              {availability.label && (
-                <span
-                  className="status-line"
-                  style={{ color: availability.label === 'Open' ? '#2d9e6b' : '#c78b2a' }}
-                >
-                  <span className={`status-dot status-dot-${availability.label === 'Open' ? 'open' : 'closed'}`} />
-                  <Clock size={12} />
-                  {isAr
-                    ? (availability.label === 'Open' ? 'المعمل مفتوح' : 'المعطل مغلق')
-                    : (availability.label === 'Open' ? 'Distillery open' : 'Distillery closed')}
-                </span>
               )}
             </div>
             <div className="cluster" style={{ gap: 8 }}>
@@ -153,8 +142,8 @@ export default async function BusinessProfilePage({
             </h2>
             <p className="lede" style={{ marginBottom: 16 }}>
               {isAr
-                ? 'يتم توثيق كل مورد عبر زيارات ميدانية ومقابلات ومراجعة وثائق المنشأ من الإدارات الحرجية الوطنية في بلد المنشأ.'
-                : 'Every producer is documented through field visits, distiller interviews, and origin document cross-checks against national forestry registries.'}
+                ? 'يملك بعض الموردين ملفاً موثقاً من المالك، وتُعرض الحقول التي لم تُتحقق بعد بوصفها معلومات يقدّمها المورد نفسه.'
+                : 'Some producers have an owner-verified record. Any field without a verification record is shown as supplier-declared, not as a checked fact.'}
             </p>
             {biz.product_families && biz.product_families.length > 0 && (
               <div style={{ marginTop: 16 }}>
@@ -183,29 +172,46 @@ export default async function BusinessProfilePage({
               </div>
             </div>
 
-            {biz.verified_origins && biz.verified_origins.length > 0 && (
+            {biz.handles_origins && biz.handles_origins.length > 0 && (
               <div className="card" style={{ padding: 24, marginTop: 20 }}>
                 <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
-                  {isAr ? 'الأقاليم الموثقة' : 'Verified Terroirs'}
+                  {isAr ? 'الأقاليم التي يتعامل معها' : 'Origins Handled'}
                 </span>
+                <p
+                  className="meta"
+                  style={{
+                    margin: '0 0 10px',
+                    textTransform: 'none',
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  {(biz.verified_fields ?? []).includes('handles_origins')
+                    ? isAr
+                      ? 'مصدرها سجل موثق.'
+                      : 'Sourced from a verified record.'
+                    : isAr
+                      ? 'أقاليم يصرّح بها المورد ولا تعني منشأ إنتاج.'
+                      : 'Declared by the supplier. This is not a statement of where the material was produced.'}
+                </p>
                 <div className="cluster">
-                  {biz.verified_origins.map((o) => (
+                  {biz.handles_origins.map((o) => (
                     <span key={o} className="chip">{o}</span>
                   ))}
                 </div>
               </div>
             )}
 
-            {biz.minimum_order_quantity && (
-              <div className="card" style={{ padding: 24, marginTop: 20 }}>
-                <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
-                  {isAr ? 'الحد الأدنى للطلب' : 'Minimum Order'}
-                </span>
-                <span className="display-serif" style={{ fontSize: '1.3rem', color: 'var(--color-crimson)', fontStyle: 'italic', fontWeight: 600 }}>
-                  {biz.minimum_order_quantity}
-                </span>
-              </div>
-            )}
+            {biz.minimum_order_quantity &&
+              (biz.verified_fields ?? []).includes('minimum_order_quantity') && (
+                <div className="card" style={{ padding: 24, marginTop: 20 }}>
+                  <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
+                    {isAr ? 'الحد الأدنى للطلب' : 'Minimum Order'}
+                  </span>
+                  <span className="display-serif" style={{ fontSize: '1.3rem', color: 'var(--color-crimson)', fontStyle: 'italic', fontWeight: 600 }}>
+                    {biz.minimum_order_quantity}
+                  </span>
+                </div>
+              )}
 
             {/* Report a profile (editorial correction channel) */}
             <div
@@ -228,8 +234,8 @@ export default async function BusinessProfilePage({
             {
               question: isAr ? 'كيف أتحقق من مصداقية هذا المورد؟' : 'How do I verify this producer’s provenance?',
               answer: isAr
-                ? 'كل مورد في الدليل يُوثَّق عبر زيارات ميدانية ومقابلات ومراجعة وثائق المنشأ من الإدارات الحرجية الوطنية. مدخل "الأقاليم الموثقة" أعلاه يسرد الأقاليم التي زارها فريقنا الميداني directly.'
-                : 'Every producer in the directory is documented through field visits, distiller interviews, and origin document cross-checks against national forestry registries. The "Verified Terroirs" panel above lists the origins our field team has visited directly.',
+                ? 'تظهر مدخلات «الأقاليم التي يتعامل معها» بوصفها معلومات يقدّمها المورد ما لم يكن هناك سجل تحقق. الأصل الذي يقدّمه المورد يخبرك بما يقول المورد إنه يعمل معه، وهو ليس دليلاً على مكان نمو المادة أو تقطيرها.'
+                : 'Entries under Origins Handled are supplier-declared unless the record carries a verification entry. A supplier-declared origin tells you what the business says it works with; it is not evidence of where the material was grown or distilled.',
             },
             {
               question: isAr ? 'لماذا لا تظهر بيانات الاتصال مباشرة؟' : 'Why are contact details not shown directly?',

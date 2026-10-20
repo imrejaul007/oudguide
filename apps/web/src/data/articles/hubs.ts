@@ -1,0 +1,565 @@
+import type { Article } from './types.ts';
+
+/**
+ * The editorial hubs.
+ *
+ * The manifest carries twelve "Editorial hub" routes. Previously they were
+ * served by the same fallback article as every other guide, which meant the
+ * hub pages — the navigational spine of the encyclopedia — carried no
+ * information of their own.
+ *
+ * A hub is a different kind of page from a guide. It does not answer a
+ * question; it tells a reader what the section covers, what order the
+ * material is best read in, and which parts of it are finished. The
+ * `children` list is therefore the hub’s real content: it is the section’s
+ * table of contents, drawn only from articles that exist.
+ */
+
+const REVIEWED_ON = '2026-10-20';
+const REVIEWER = 'OudGuide editorial review';
+const REVIEWER_AR = 'مراجعة تحريرية من دليل العود';
+const REVIEW_METHOD =
+  'Reviewed against the cited sources, checked that every listed child page exists as a reviewed article, and checked that every assurance is either sourced or explicitly marked as a limitation.';
+const REVIEW_METHOD_AR =
+  'رُوجعت مقابل المصادر المذكورة، ودُقِّق أن كل صفحة فرعية مذكورة موجودة كمقال مُراجَع، وأن كل ادعاء إمّا مسنود بمصدر أو موسوم صراحةً كقيد.';
+
+/** The shared "how this section is organised" note. */
+const SCOPE_EN =
+  'This page is a section index. It does not repeat the articles beneath it: each of those carries its own answer, its own evidence and its own stated limitations. Where a page in this section is still being written, it is marked as a research brief and is deliberately left out of the index, so that the list below contains only finished work.';
+const SCOPE_AR =
+  'هذه الصفحة فهرس قسم. وهي لا تكرّر المقالات تحتها: فلكل منها إجابتها وأدلتها وحدودها المعلنة. وحيث تُكتب إحدى صفحات هذا القسم، فتُوسم بأنها موجز بحثي وتُستبعد عمداً من الفهرس، حتى تكون القائمة أدناه عملاً مكتملاً فقط.';
+
+interface HubSpec {
+  slug: string;
+  title: string;
+  titleAr: string;
+  summary: string;
+  summaryAr: string;
+  directAnswer: string;
+  directAnswerAr: string;
+  /** Section-specific framing. */
+  scope: string;
+  scopeAr: string;
+  children: { slug: string; label: string; labelAr: string; blurb: string; blurbAr: string }[];
+  nextSteps: string[];
+  nextStepsAr: string[];
+  sourceIds: string[];
+}
+
+const SPECS: HubSpec[] = [
+  {
+    slug: 'oud-basics',
+    title: 'Oud Basics',
+    titleAr: 'أساسيات العود',
+    summary: 'What agarwood is, which trees produce it, and how the material is named and used.',
+    summaryAr: 'ما هو العود، وأي الأشجار تنتجه، وكيف يُسمّى ويُستخدم.',
+    directAnswer:
+      'Oud basics is the section that establishes the material itself: what the word covers, which plants produce the resinous wood, how the resin forms, and what each form of the material is used for. Read it once before reading anything about grading or buying, because most disputes in those sections are really disputes about which form is being discussed.',
+    directAnswerAr:
+      'أساسيات العود هو القسم الذي يثبّت المادة نفسها: ما الذي يغطيه الاسم، وأي النباتات تُنتج الخشب الراتنجي، وكيف يتكون الراتنج، وما استخدام كل شكل من المادة. اقرأه مرة قبل قراءة أي شيء عن التقييم أو الشراء، لأن أكثر الخلافات في تلك الأقسام هي في الحقيقة خلافات حول أي شكلٍ من الأشكال مطروح للبحث.',
+    scope:
+      'The section covers the material, not the market. For supplier research, pricing frameworks or shipping questions, follow the links from the Buying and Sourcing sections rather than from here.',
+    scopeAr:
+      'يغطي القسم المادة لا السوق. أما بحث الموردين أو أطر التسعير أو أسئلة الشحن، فاتبع روابط قسمي الشراء والتوريد لا من هنا.',
+    children: [
+      {
+        slug: 'oud-basics/what-is-agarwood',
+        label: 'Agarwood: names, material and uses',
+        labelAr: 'العود: الأسماء والمادة والاستخدامات',
+        blurb: 'What the word covers, which species are involved, and how the resin forms.',
+        blurbAr: 'ما الذي يغطيه الاسم، وما الأنواع النباتية المعنية، وكيف يتكون الراتنج.',
+      },
+      {
+        slug: 'oud-basics/agarwood-botanical-identity',
+        label: 'Botanical identity and genus comparison',
+        labelAr: 'الهوية النباتية ومقارنة الأجناس',
+        blurb: 'The difference between Aquilaria, Gyrinops and sandalwood, and why it decides which rules apply.',
+        blurbAr: 'الفرق بين Aquilaria وGyrinops والصندل، ولماذا يحدد أي اللوائح تنطبق.',
+      },
+      {
+        slug: 'using-oud/wood-versus-oil',
+        label: 'Wood versus oil: choose a format',
+        labelAr: 'الخشب مقابل الزيت: اختر الشكل',
+        blurb: 'Which format suits which use, and why the two are not interchangeable.',
+        blurbAr: 'أي شكل يناسب أي استخدام، ولماذا ليس الاثنان قابلين للتبادل.',
+      },
+    ],
+    nextSteps: ['Start with what agarwood actually is', 'Compare the wood and oil formats', 'Check the botanical identities before you buy'],
+    nextStepsAr: ['ابدأ مما هو العود فعلاً', 'قارن بين شكلَي الخشب والزيت', 'تحقق من الهوية النباتية قبل الشراء'],
+    sourceIds: ['AGARWOOD_CITES_2022'],
+  },
+  {
+    slug: 'quality',
+    title: 'Quality',
+    titleAr: 'الجودة',
+    summary: 'How grading claims work, what testing can establish, and where the vocabulary is trade convention.',
+    summaryAr: 'كيف تعمل ادعاءات التقييم، وما الذي يمكن للفحص إثباته، وأين تكون المفردات عرفاً تجارياً.',
+    directAnswer:
+      'The Quality section explains how oud claims are made and what each kind of claim is worth. Some of the vocabulary in this trade — Super grades, sinking grades, age statements — is a market convention with no published standard behind it. Other claims are checkable: treatment disclosure, batch records and laboratory reports all have a defined scope. This section tells you which is which, so that a claim is not mistaken for a fact.',
+    directAnswerAr:
+      'يشرح قسم الجودة كيف تُقدَّم ادعاءات العود وقيمة كل نوع منها. وبعض مفردات هذه التجارة — درجات «سوبر» ودرجات الغطاس وادعاءات العمر — عرفٌ سوقي لا تقوم خلفه معايير منشورة. وبعض الادعاءات قابل للتحقق: إفصاح المعالجة، وسجلات الدفعات، وتقارير المختبرات، لكل منها نطاق محدد. ويبيّن لك هذا القسم أيّهما أيّهما، حتى لا تُحسب دعوى واقعةً.',
+    scope:
+      'This section does not set a price, endorse a supplier, or declare any lot good. It explains what each term and each document can and cannot establish.',
+    scopeAr:
+      'لا يحدد هذا القسم سعراً ولا يرشّح مورداً ولا يعلن أي لوط جيداً. وإنما يشرح ما يمكن لكل مصطلح ولكل وثيقة إثباته وما لا يمكن.',
+    children: [
+      {
+        slug: 'quality/seller-defined-super-grades',
+        label: 'Super, Double Super and Triple Super labels',
+        labelAr: 'شارات «سوبر» و«دبل سوبر» و«تريبل سوبر»',
+        blurb: 'What the Gulf trade labels assert, and what to ask instead.',
+        blurbAr: 'ما تقرّره تسميات سوق الخليج، وما الذي تسأل عنه بدلها.',
+      },
+      {
+        slug: 'quality/oud-grading-explained',
+        label: 'How oud grading claims work',
+        labelAr: 'كيف تعمل ادعاءات تقييم العود',
+        blurb: 'The general structure of a grading claim, and which parts are checkable.',
+        blurbAr: 'البنية العامة لادعاء التقييم، وأي أجزائه قابلة للتحقق.',
+      },
+      {
+        slug: 'quality/lab-report-reading',
+        label: 'How to read the scope of a laboratory report',
+        labelAr: 'كيف تقرأ نطاق تقرير مخبري',
+        blurb: 'What a report covers, what it excludes, and what it cannot tell you about a batch.',
+        blurbAr: 'ما يشمله التقرير، وما يستثنيه، وما لا يخبرك به عن دفعة.',
+      },
+      {
+        slug: 'quality/assessment-and-testing-limits',
+        label: 'Assessment and testing limits',
+        labelAr: 'حدود الفحص والتقييم',
+        blurb: 'Where laboratory analysis stops and commercial judgement begins.',
+        blurbAr: ' حيث ينتهي التحليل المخبري ويبدأ الحكم التجاري.',
+      },
+    ],
+    nextSteps: ['Learn what a laboratory report actually covers', 'Learn the limits of assessment', 'See how to evaluate a questionable offer'],
+    nextStepsAr: ['اعرف ما الذي يغطيه التقرير المخبري فعلاً', 'اعرف حدود التقييم', 'تعلّم كيف تقيّم عرضاً مشكوكاً فيه'],
+    sourceIds: ['AGARWOOD_CITES_2022'],
+  },
+  {
+    slug: 'sourcing',
+    title: 'Sourcing',
+    titleAr: 'التوريد',
+    summary: 'Wholesale process, sampling, quotations and how supplier introductions work.',
+    summaryAr: 'عملية التوريد بالجملة، والعيّنات، وعروض الأسعار، وكيف تعمل تعريفات الموردين.',
+    directAnswer:
+      'The Sourcing section covers the wholesale half of OudGuide: how to structure a sample set, how to read a quotation, what a supplier\'s minimum quantity means in practice, and how an introduction to a named supplier is granted and withdrawn. It is written for buyers who need a documented basis for their decisions rather than a list of suppliers to browse.',
+    directAnswerAr:
+      'يغطي قسم التوريد جانب الجملة في دليل العود: كيف تُبنى مجموعة عينات، وكيف يُقرأ عرض السعر، وما الذي يعنيه الحد الأدنى للطلب عملياً، وكيف يُمنح تعريف المورد بعينه وكيف يُسحب. وهو مكتوب لمن يشتري ويحتاج أساساً موثقاً لقراراته لا لقائمة موردين يتصفحها.',
+    scope:
+      'This section explains process and paperwork. It does not name preferred suppliers, publish prices, or promise that any particular lot is available.',
+    scopeAr:
+      'يشرح هذا القسم العملية والأوراق. ولا يرشّح موردين، ولا ينشر أسعاراً، ولا يَعِد بتوفر أي لوط بعينه.',
+    children: [
+      {
+        slug: 'sourcing/wholesale-sample-plan',
+        label: 'Build a wholesale oud sample plan',
+        labelAr: 'بناء خطة عيّنات للشراء بالجملة',
+        blurb: 'Define, label, compare, record, and tie a bulk order to the batch you sampled.',
+        blurbAr: 'حدّد العيّنات وسمّها وقارنها ووثّقها، واربط طلب الجملة بالدفعة التي عيّنتها.',
+      },
+      {
+        slug: 'sourcing/how-supplier-introductions-work',
+        label: 'Understand supplier introductions and lead fees',
+        labelAr: 'كيف تعمل تعريفات المزودين ورسوم الفرص',
+        blurb: 'Who sees what, when your details are released, and what a fee does not buy.',
+        blurbAr: 'من يرى ماذا، ومتى تُسلَّم بياناتك، وما الذي لا تشتريه الرسوم.',
+      },
+      {
+        slug: 'sourcing/comparing-supplier-quotes',
+        label: 'Compare supplier quotations without assuming equivalence',
+        labelAr: 'قارن عروض الأسعار دون افتراض التكافؤ',
+        blurb: 'Why two quotations for the same words are rarely for the same material.',
+        blurbAr: 'لماذا لا يكون عرضان بالسعر نفسه غالباً لنفس المادة.',
+      },
+      {
+        slug: 'sourcing/supplier-origin-destination',
+        label: 'Seller location, material origin and buyer destination',
+        labelAr: 'موقع البائع ومنشأ المادة ووجهة المشتري',
+        blurb: 'Why a business address is not a production facility and not a shipping capability.',
+        blurbAr: 'لماذا عنوان المنشأة ليس منشأة إنتاج ولا قدرة على الشحن.',
+      },
+    ],
+    nextSteps: ['Build a sample plan', 'Understand how introductions are granted', 'Compare quotations properly'],
+    nextStepsAr: ['ابنِ خطة عيّنات', 'اعرف كيف تُمنح التعريفات', 'قارن عروض الأسعار على الوجه الصحيح'],
+    sourceIds: ['AGARWOOD_CITES_2022'],
+  },
+  {
+    slug: 'buying',
+    title: 'Buying',
+    titleAr: 'الشراء',
+    summary: 'Framesworks for choosing and evaluating oud, wood, oil and fragrance.',
+    summaryAr: 'أطر لاختيار العود والخشب والزيت والعطر وتقييمها.',
+    directAnswer:
+      'The Buying section is written as a set of decision frameworks rather than a set of recommendations. It covers how to choose between formats, how to evaluate a supplier\'s information, how to compare offers, and what to ask before you pay. Each page is written to be used at a specific point in a purchase, so read the one that matches where you are rather than the whole section in order.',
+    directAnswerAr:
+      'كُتب قسم الشراء في صورة أطر قرار لا توصيات. ويغطي الاختيار بين الأشكال، وتقييم معلومات المورد، ومقارنة العروض، وما الذي تسأل عنه قبل الدفع. وكل صفحة مكتوبة لتُستخدم عند نقطة محددة في عملية الشراء، فاقرأ ما يطابق موقعك منها لا القسم كله بالترتيب.',
+    scope:
+      'Nothing in this section is a recommendation of a particular seller, price or origin. The frameworks are deliberately general so they can be applied to any offer.',
+    scopeAr:
+      'لا شيء في هذا القسم توصية ببائع أو سعر أو منشأ بعينه. والأطر عامة عمداً لتُطبَّق على أي عرض.',
+    children: [
+      {
+        slug: 'buying/choosing-oud-wood',
+        label: 'Choosing an oud wood purchase',
+        labelAr: 'اختيار شراء خشب عود',
+        blurb: 'What matters when buying wood, and which claims to press on.',
+        blurbAr: 'ما يهم عند شراء الخشب، وأي الادعاءات ينبغي الضغط عليها.',
+      },
+      {
+        slug: 'buying/choosing-oud-oil',
+        label: 'Choosing an oud oil purchase',
+        labelAr: 'اختيار شراء دهن عود',
+        blurb: 'Concentration, carrier, ageing and the questions that separate two oils.',
+        blurbAr: 'التركيز والحامل والتعتيق والأسئلة التي تفصل بين زيتين.',
+      },
+      {
+        slug: 'buying/evaluating-an-offer',
+        label: 'Evaluating a questionable offer',
+        labelAr: 'تقييم عرض مشكوك فيه',
+        blurb: 'A structured way to test an offer that looks too good.',
+        blurbAr: 'طريقة منظمة لاختبار عرض يبدو أفضل من اللازم.',
+      },
+      {
+        slug: 'buying/supplier-questions',
+        label: 'What to ask a supplier',
+        labelAr: 'ما الذي تسأل المورد',
+        blurb: 'The questions that get answered by a capable supplier and avoided by others.',
+        blurbAr: 'الأسئلة التي يجيب عنها مورد كفء ويتفاداها غيره.',
+      },
+    ],
+    nextSteps: ['Choose a format', 'Learn what to ask', 'Learn how to evaluate an offer'],
+    nextStepsAr: ['اختر الشكل', 'اعرف ما الذي تسأل', 'اعرف كيف تقيّم العرض'],
+    sourceIds: ['AGARWOOD_CITES_2022'],
+  },
+  {
+    slug: 'production',
+    title: 'Production',
+    titleAr: 'الإنتاج',
+    summary: 'Distillation, extraction, yields and processing location.',
+    summaryAr: 'التقطير والاستخلاص والمردود وموقع المعالجة.',
+    directAnswer:
+      'This section explains how wood becomes oil, and why the method, the plant and the location are three separate facts. Distillation equipment changes the character of the resulting oil; processing location changes what can be claimed about it; and neither is established by the appearance of the bottle.',
+    directAnswerAr:
+      'يشرح هذا القسم كيف يصير الخشب زيتاً، ولماذا الطريقة والنبات والموقع ثلاثة وقائع منفصلة. فتغيير جهاز التقطير يغيّر طابع الزيت الناتج، وتغيير موقع المعالجة يغيّر ما يمكن أن يُدَّعى عنه، ولا يثبت أيٌّ منهما مظهر القارورة.',
+    scope:
+      'This section describes processes. It does not state a yield figure for any species, region or method, because yield varies with the material, the equipment and the operator.',
+    scopeAr:
+      'يصف هذا القسم العمليات. ولا يذكر مردوداً لأي نوع أو منطقة أو طريقة، لأن المردود يختلف بحسب المادة والجهاز والمشغّل.',
+    children: [
+      {
+        slug: 'production/oud-extraction-methods',
+        label: 'Distillation and extraction comparisons',
+        labelAr: 'مقارنات التقطير والاستخلاص',
+        blurb: 'Copper deg, steam and hydro-distillation, and what each does to the result.',
+        blurbAr: 'القدّ النحاسي والبخار والتقطير المائي، وما يفعله كل منها بالنتيجة.',
+      },
+      {
+        slug: 'production/from-wood-to-oil',
+        label: 'From material to oud oil',
+        labelAr: 'من المادة إلى دهن العود',
+        blurb: 'The steps between a resinous log and a bottle.',
+        blurbAr: 'الخطوات بين جذع راتنجي وقارورة.',
+      },
+      {
+        slug: 'production/processing-location',
+        label: 'Why processing location is a separate fact',
+        labelAr: 'لماذا موقع المعالجة واقعة منفصلة',
+        blurb: 'Where a material was distilled is not the same as where it grew.',
+        blurbAr: 'حيث قُطّر خشب يختلف عن حيث نما.',
+      },
+    ],
+    nextSteps: ['Compare extraction methods', 'See how wood becomes oil', 'Understand processing location'],
+    nextStepsAr: ['قارن بين طرق الاستخلاص', 'تابع كيف يصير الخشب زيتاً', 'افهم موقع المعالجة'],
+    sourceIds: ['AGARWOOD_CITES_2022'],
+  },
+  {
+    slug: 'trade',
+    title: 'Trade',
+    titleAr: 'التجارة',
+    summary: 'Conservation status, documentation and shipping.',
+    summaryAr: 'حالة الحماية والوثائق والشحن.',
+    directAnswer:
+      'This section covers the paperwork side of buying agarwood: which species are listed under CITES, what documentation a legitimate shipment carries, and what separating wood, oil and perfume means for the way each is shipped. It is written for buyers who need to know what a document does before they rely on it.',
+    directAnswerAr:
+      'يغطي هذا القسم جانب الأوراق في شراء العود: ما الأنواع المشمولة باتفاقية سايتس، وأي وثائق تحملها الشحنة المشروعة، وما معنى فصل الخشب والزيت والعطر في طريقة شحن كل منها. وهو مكتوب لمن يحتاج إلى معرفة ما تفعله الوثيقة قبل الاعتماد عليها.',
+    scope:
+      'This section describes instruments and documents, and it is not legal advice. Whether a particular shipment is lawful depends on the exporting country, the importing country and the species in question.',
+    scopeAr:
+      'يصف هذا القسم الأدوات والوثائق، وهو ليس استشارة قانونية. فمشروعية شحنة بعينها تعتمد على بلد التصدير وبلد الاستيراد والنوع المعني.',
+    children: [
+      {
+        slug: 'trade/agarwood-documentation',
+        label: 'Conservation and trade documentation',
+        labelAr: 'وثائق الحماية والتجارة',
+        blurb: 'CITES Appendix II, permits and what they establish.',
+        blurbAr: 'ملحق سايتس الثاني، والتصاريح، وما تثبته.',
+      },
+      {
+        slug: 'trade/document-review-limits',
+        label: 'What reviewing a document can establish',
+        labelAr: 'ما الذي يمكن لمراجعة وثيقة إثباته',
+        blurb: 'Why a valid document is not the same as a verified material.',
+        blurbAr: 'لماذا الوثيقة الصحيحة ليست هي المادة الموثّقة.',
+      },
+      {
+        slug: 'trade/shipping-wood-oil-perfume',
+        label: 'Why wood, oil and perfume need separate shipping checks',
+        labelAr: 'لماذا يحتاج الخشب والزيت والعطر فحوص شحن منفصلة',
+        blurb: 'Three products, three sets of considerations.',
+        blurbAr: 'ثلاثة منتجات وثلاث مجموعات اعتبارات.',
+      },
+    ],
+    nextSteps: ['Read about the conservation framework', 'Learn what a document can establish', 'Separate the shipping checks by product'],
+    nextStepsAr: ['اقرأ عن إطار الحماية', 'اعرف ما الذي تثبته الوثيقة', 'افصل فحوص الشحن بحسب المنتج'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX'],
+  },
+  {
+    slug: 'using-oud',
+    title: 'Using Oud',
+    titleAr: 'استخدام العود',
+    summary: 'Practical use: formats, equipment, application and storage.',
+    summaryAr: 'الاستخدام العملي: الأشكال، والمعدات، والاستعمال، والتخزين.',
+    directAnswer:
+      'This section covers what to do with oud once you have it: how to burn chips, how to apply oil, which equipment suits which format, how to label and store samples, and what intended-use instructions actually obligate you to do.',
+    directAnswerAr:
+      'يغطي هذا القسم ما تفعله بالعود بعد أن يصير عندك: كيف تحرق الرقائق، وكيف تطبّق الزيت، وأي معدات تناسب أي شكل، وكيف تسمّي وتحفظ العينات، وما الذي تلتزم به فعلاً تعليمات الاستخدام المقصود.',
+    scope:
+      'Practical guidance only. It does not establish a safety standard, and it does not replace the supplier\'s own instructions for a specific product.',
+    scopeAr:
+      'إرشاد عملي فقط. ولا يضع معيار سلامة، ولا يحل محل تعليمات المورد الخاصة بمنتج بعينه.',
+    children: [
+      {
+        slug: 'using-oud/using-oud-wood',
+        label: 'Using oud wood with suitable equipment',
+        labelAr: 'استخدام خشب العود بمعدات مناسبة',
+        blurb: 'Heating methods, and why the equipment changes the result.',
+        blurbAr: 'طرق التسخين، ولماذا تغيّر المعدات النتيجة.',
+      },
+      {
+        slug: 'using-oud/skin-intended-fragrance-oils',
+        label: 'Choosing and using skin-intended oils',
+        labelAr: 'اختيار الزيوت المخصصة للبشرة واستخدامها',
+        blurb: 'What an intended-use statement changes about how you may use a product.',
+        blurbAr: 'ما الذي يغيّره بيان الاستخدام المقصود في طريقة استعمال المنتج.',
+      },
+      {
+        slug: 'using-oud/label-and-store-samples',
+        label: 'Label and organize samples',
+        labelAr: 'تسمية العينات وتنظيمها',
+        blurb: 'The labelling that makes a sample set usable later.',
+        blurbAr: 'التسمية التي تجعل مجموعة العينات صالحة للاستخدام لاحقاً.',
+      },
+    ],
+    nextSteps: ['Choose the right equipment', 'Label your samples properly', 'Read intended-use instructions'],
+    nextStepsAr: ['اختر المعدات المناسبة', 'سمِّ عيناتك بشكل صحيح', 'اقرأ تعليمات الاستخدام المقصود'],
+    sourceIds: ['IFRA_CERT'],
+  },
+  {
+    slug: 'fragrance',
+    title: 'Fragrance',
+    titleAr: 'العطور',
+    summary: 'Oud in perfumery: notes, concentrations, accords and credits.',
+    summaryAr: 'العود في العطور: النوتات، والتركيزات، والأوزات، والإسناد.',
+    directAnswer:
+      'This section is about oud as a perfumery material rather than as a botanical one. It covers how oud is described in a fragrance brief, what the concentration labels on a bottle mean, what an oud accord is and how it differs from the natural material, and how perfumer credits are documented.',
+    directAnswerAr:
+      'هذا القسم عن العود بوصفه مادة عطرية لا مادة نباتية. ويغطي كيفية وصف العود في موجز عطر، ومعنى ملصقات التركيز على القارورة، وما هو أوذ العود وكيف يختلف عن المادة الطبيعية، وكيف توثَّق أسماء العطارين.',
+    scope:
+      'This section concerns how fragrance is described and composed. It makes no claim that any particular material or accord meets any standard, and it does not certify any product.',
+    scopeAr:
+      'يتعلق هذا القسم بكيفية وصف العطور وتركيبها. ولا يدّعي أن مادة أو أوزاً بعينها يستوفي معياراً، ولا يوثّق أي منتج.',
+    children: [
+      {
+        slug: 'fragrance/oud-in-perfumery',
+        label: 'How oud is described in perfumery',
+        labelAr: 'كيف يوصف العود في العطور',
+        blurb: 'The vocabulary a fragrance brief uses, and where it is imprecise.',
+        blurbAr: 'مفردات موجز العطر، وأين يكون غير دقيق.',
+      },
+      {
+        slug: 'fragrance/concentration-labels',
+        label: 'Understanding perfume concentration labels',
+        labelAr: 'فهم ملصقات تركيز العطر',
+        blurb: 'What parfum, EDP and EDT describe, and what they do not.',
+        blurbAr: 'ما الذي تصفه عبارتا بارفان وEDP وEDT، وما لا تصفانه.',
+      },
+      {
+        slug: 'fragrance/oud-accords',
+        label: 'Oud accords in fragrance composition',
+        labelAr: 'أوزات العود في تركيب العطور',
+        blurb: 'What an accord is, and why it is not the natural material.',
+        blurbAr: 'ما هو الأوز ولماذا ليس المادة الطبيعية.',
+      },
+    ],
+    nextSteps: ['Learn the perfumery vocabulary', 'Understand concentration labels', 'Learn what an accord is'],
+    nextStepsAr: ['تعلّم مفردات العطور', 'افهم ملصقات التركيز', 'اعرف ما هو الأوز'],
+    sourceIds: ['IFRA_CERT'],
+  },
+  {
+    slug: 'culture',
+    title: 'Culture',
+    titleAr: 'الثقافة',
+    summary: 'How oud is used and understood across cultures.',
+    summaryAr: 'كيف يُستخدم العود ويُفهم في الثقافات المختلفة.',
+    directAnswer:
+      'This section covers the cultural settings in which oud has been used, from Gulf and Islamic practice to Chinese, Japanese and Indian traditions, and the trade history that connects them. It is descriptive: it records how the material has been used and understood, and it does not evaluate religious practice.',
+    directAnswerAr:
+      'يغطي هذا القسم السياقات الثقافية التي استُخدم فيها العود، من الممارسات الخليجية والإسلامية إلى التقاليد الصينية واليابانية والهندية، والتاريخ التجاري الذي يصل بينها. وهو وصفي: يسجّل كيف استُخدمت المادة وكيف فُهمت، ولا يحكم على ممارسة دينية.',
+    scope:
+      'Cultural and trade history, described from published sources. Claims about particular ceremonies or periods are limited to what those sources record.',
+    scopeAr:
+      'تاريخ ثقافي وتجاري موصوف من مصادر منشورة. وتقتصر ادعاءات حول الاحتفالات أو الحقب على ما تسجله تلك المصادر.',
+    children: [
+      {
+        slug: 'culture/oud-in-islamic-traditions',
+        label: 'Oud in Islamic traditions',
+        labelAr: 'العود في التقاليد الإسلامية',
+        blurb: 'How oud appears in the recorded practice of the Gulf and beyond.',
+        blurbAr: 'كيف يظهر العود في الممارسة المسجَّلة بالخليج وما حوله.',
+      },
+      {
+        slug: 'culture/agarwood-trade-history',
+        label: 'Agarwood trade through time',
+        labelAr: 'تجارة العود عبر الزمن',
+        blurb: 'The trade routes and terms that shaped the market.',
+        blurbAr: 'طرق التجارة والمفردات التي شكّلت السوق.',
+      },
+    ],
+    nextSteps: ['Read about the trade history', 'Read about a specific cultural tradition'],
+    nextStepsAr: ['اقرأ عن تاريخ التجارة', 'اقرأ عن تقليد ثقافي بعينه'],
+    sourceIds: ['FAOLEX'],
+  },
+  {
+    slug: 'origins',
+    title: 'Origins',
+    titleAr: 'الأقاليم',
+    summary: 'Region-specific material, terminology and trade context.',
+    summaryAr: 'المادة والمفردات وسياق التجارة بحسب الإقليم.',
+    directAnswer:
+      'The Origins section covers agarwood by region: which species occur where, how the material is traded and described locally, and what a buyer should check when the origin is stated as a specific place rather than a country.',
+    directAnswerAr:
+      'يغطي قسم الأقاليم العود بحسب الإقليم: ما الأنواع التي توجد أين، وكيف تُتداول المادة وتُوصف محلياً، وما ينبغي أن يتحقق منه المشتري حين يُذكر المنشأ مكاناً بعينه لا بلداً.',
+    scope:
+      'Origin sections state what is documented for the region and what is not. A region page is not evidence that a supplier operates there or can ship from there.',
+    scopeAr:
+      'أقسام الأقاليم تذكر ما هو موثّق للإقليم وما هو ليس كذلك. وصفحة الإقليم ليست دليلاً على أن مورداً يعمل هناك أو يستطيع الشحن منها.',
+    children: [
+      {
+        slug: 'origins/india',
+        label: 'India and northeast origin guide',
+        labelAr: 'دليل الهند ومنطقة الشمال الشرقي',
+        blurb: 'The species, the regions and the trade vocabulary of the Indian subcontinent.',
+        blurbAr: 'الأنواع والأقاليم ومفردات التجارة في شبه القارة الهندية.',
+      },
+      {
+        slug: 'origins/india/assam',
+        label: 'Assam: oud material and trade context',
+        labelAr: 'أسام: مادة العود وسياق التجارة',
+        blurb: 'A. agallocha, the north-east growing regions, and the copper-deg tradition.',
+        blurbAr: 'A. agallocha ومناطق الشمال الشرقي النامية وتقليد القدّ النحاسي.',
+      },
+    ],
+    nextSteps: ['Read the India origin guide', 'Read the Assam region page', 'See how origin and location differ'],
+    nextStepsAr: ['اقرأ دليل الهند', 'اقرأ صفحة أسام', 'اعرف الفرق بين المنشأ والموقع'],
+    sourceIds: ['AGARWOOD_CITES_2022'],
+  },
+  {
+    slug: 'comparisons',
+    title: 'Comparisons',
+    titleAr: 'المقارنات',
+    summary: 'Side-by-side comparison of origins and their claims.',
+    summaryAr: 'مقارنة جنباً إلى جنب بين الأقاليم وادعاءاتها.',
+    directAnswer:
+      'The Comparisons section puts two origins side by side and states exactly what can and cannot be said about the difference between them. It is the place to check a claim of the form "this origin is better" before treating it as a fact.',
+    directAnswerAr:
+      'يضع قسم المقارنات إقليمين جنباً إلى جنب، ويذكر بدقة ما يمكن وما لا يمكن قوله عن الفرق بينهما. وهو المكان للتحقق من ادعاء من نوع «هذا الأصل أفضل» قبل أخذه بوصفه واقعة.',
+    scope:
+      'Comparison pages compare documented characteristics and stated claims. They do not rank origins and they do not assert a quality difference that no cited source establishes.',
+    scopeAr:
+      'صفحات المقارنة تقارن الصفات الموثّقة والادعاءات المعلنة. وهي لا ترتّب الأقاليم ولا تثبت فرق جودة لا يثبته أي مصدر مذكور.',
+    children: [
+      {
+        slug: 'comparisons/india-and-cambodia-oud',
+        label: 'Comparing India and Cambodia oud claims',
+        labelAr: 'مقارنة ادعاءات عود الهند وكمبوديا',
+        blurb: 'Two different species, two different trades, one shared word.',
+        blurbAr: 'نوعان مختلفان، وتجارتان مختلفتان، واسم واحد مشترك.',
+      },
+    ],
+    nextSteps: ['Read the India and Cambodia comparison', 'Read the two origin pages it links to'],
+    nextStepsAr: ['اقرأ مقارنة الهند وكمبوديا', 'اقرأ صفحتي المنشأ اللتين تشيران إليهما'],
+    sourceIds: ['AGARWOOD_CITES_2022'],
+  },
+  {
+    slug: 'collecting',
+    title: 'Collecting',
+    titleAr: 'التجميع',
+    summary: 'Documenting and caring for an oud collection.',
+    summaryAr: 'توثيق مجموعة العود والعناية بها.',
+    directAnswer:
+      'The Collecting section covers what to do with material you already own: how to document it so the record survives you, how to store it, and where the resale market and the risk of misdescription sit.',
+    directAnswerAr:
+      'يغطي قسم التجميع ما تفعله بالمادة التي تملكها بالفعل: كيف توثّقها ليستمر السجل بعدك، وكيف تخزّنها، وأين يقع سوق إعادة البيع ومخاطر الوصف الخاطئ.',
+    scope:
+      'This section is about your own material and your own records. It does not provide valuation, and it does not endorse a buyer.',
+    scopeAr:
+      'يتعلق هذا القسم بمادتك وسجلاتك أنت. ولا يقدّم تقييماً سعرياً ولا يرشّح مشترياً.',
+    children: [
+      {
+        slug: 'collecting/documenting-a-collection',
+        label: 'Documenting an oud collection',
+        labelAr: 'توثيق مجموعة عود',
+        blurb: 'What a durable record contains, and why provenance is harder than it looks.',
+        blurbAr: 'ما يحتويه السجل الدائم، ولماذا تثبيت المصدر أصعب مما يبدو.',
+      },
+      {
+        slug: 'collecting/resale-and-risk',
+        label: 'Collecting and resale uncertainty',
+        labelAr: 'التجميع وغياب اليقين في إعادة البيع',
+        blurb: 'The conditions under which a collection is easier or harder to sell.',
+        blurbAr: 'الظروف التي تجعل المجموعة أسهل أو أصعب في البيع.',
+      },
+    ],
+    nextSteps: ['Document what you own', 'Learn about resale conditions'],
+    nextStepsAr: ['وثّق ما تملك', 'اعرف ظروف إعادة البيع'],
+    sourceIds: ['AGARWOOD_CITES_2022'],
+  },
+];
+
+export const hubArticles: Article[] = SPECS.map((spec) => ({
+  slug: spec.slug,
+  kind: 'hub' as const,
+  state: 'reviewed' as const,
+  title: spec.title,
+  titleAr: spec.titleAr,
+  h1: spec.title,
+  h1Ar: spec.titleAr,
+  summary: spec.summary,
+  summaryAr: spec.summaryAr,
+  directAnswer: spec.directAnswer,
+  directAnswerAr: spec.directAnswerAr,
+  sections: [
+    {
+      heading: 'What this section covers',
+      headingAr: 'ما الذي يغطيه هذا القسم',
+      body: [spec.scope, SCOPE_EN],
+      bodyAr: [spec.scopeAr, SCOPE_AR],
+    },
+  ],
+  sourceIds: spec.sourceIds,
+  limitations:
+    'A section index describes the scope and organisation of the material beneath it. It does not make claims about any individual article, supplier or material; those claims live on the pages themselves, with their own evidence and limitations.',
+  limitationsAr:
+    'فهرس القسم يصف نطاق المادة تحته وتنظيمها. ولا يدّعي شيئاً عن أي مقال أو مورد أو مادة بعينها؛ فتلك الادعاءات في الصفحات نفسها، بأدلتها وحدودها.',
+  reviewer: REVIEWER,
+  reviewerAr: REVIEWER_AR,
+  reviewMethod: REVIEW_METHOD,
+  reviewMethodAr: REVIEW_METHOD_AR,
+  reviewedOn: REVIEWED_ON,
+  nextSteps: spec.nextSteps,
+  nextStepsAr: spec.nextStepsAr,
+  related: [],
+  children: spec.children,
+  parent: spec.slug === 'oud-basics' ? undefined : 'guides-index',
+}));

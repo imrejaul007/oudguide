@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { domain } from '@/lib/data';
+import { domain, directoryCounts } from '@/lib/data';
+import { articleCounts } from '@/lib/articles';
 import { HeroSearch } from '@/components/home/hero-search';
 import { FeaturedCarousel } from '@/components/business/featured-carousel';
 import { Sparkles, AlertTriangle, Compass, ShieldCheck, ArrowRight, Map as MapIcon } from 'lucide-react';
@@ -67,8 +68,8 @@ export default async function HomePage({
 
               <p className="hero-lead">
                 {isAr
-                  ? 'نربط دور العطور والمشترين التجاريين بأفضل المقطرين والمزارع المعتمدة في أسام، كمبوديا، تايلاند، وإندونيسيا. حماية تامة لبيانات المشترين مع اشتراط الموافقة الصريحة قبل تسليم بيانات الاتصال.'
-                  : 'Connecting bespoke perfume houses, institutional buyers, and collectors with certified distillers and sustainable estates across Assam, Indochina, and the Malay Archipelago. Zero contact leakage, with mandatory buyer approval before any introduction.'}
+                  ? 'نربط دور العطور والمشترين التجاريين بالمقطرين والمزارع الموثّقة في أسام وكمبوديا وتايلاند وإندونيسيا. ينشر المورد بيانات اتصاله هو حيث اختار ذلك، ولا تُسلَّم بيانات المشتري إلا لمورد يعتمده المشتري بالاسم.'
+                  : 'Connecting bespoke perfume houses, institutional buyers, and collectors with documented distillers and estates across Assam, Indochina, and the Malay Archipelago. A supplier publishes its own contact details only where it has chosen to; a buyer\u2019s details are released only to a supplier they approve by name.'}
               </p>
 
               <HeroSearch locale={locale} />
@@ -105,20 +106,20 @@ export default async function HomePage({
       <div className="container">
         <div className="metrics">
           <div className="metric">
-            <div className="metric-value">772</div>
-            <div className="metric-label">{isAr ? 'مسار بحثي معتمد' : 'Researched Route Briefs'}</div>
+            <div className="metric-value">{articleCounts.reviewed}</div>
+            <div className="metric-label">{isAr ? 'مقالاً مُراجَعاً' : 'Reviewed articles'}</div>
           </div>
           <div className="metric">
             <div className="metric-value">249</div>
-            <div className="metric-label">{isAr ? 'دولة وإقليم' : 'Documented Territories'}</div>
+            <div className="metric-label">{isAr ? 'دولة وإقليم في السجل' : 'Territories in the register'}</div>
           </div>
           <div className="metric">
-            <div className="metric-value">83</div>
-            <div className="metric-label">{isAr ? 'دليل علمي متعمق' : 'Editorial & Sourcing Guides'}</div>
+            <div className="metric-value">{directoryCounts.published}</div>
+            <div className="metric-label">{isAr ? 'سجلاً منشوراً في الدليل' : 'Published directory records'}</div>
           </div>
           <div className="metric">
-            <div className="metric-value">100<span className="unit">%</span></div>
-            <div className="metric-label">{isAr ? 'حماية بيانات الاتصال' : 'Zero Contact Leakage'}</div>
+            <div className="metric-value">{articleCounts.briefs}</div>
+            <div className="metric-label">{isAr ? 'موجزاً بحثياً قيد الإعداد' : 'Research briefs in preparation'}</div>
           </div>
         </div>
       </div>
@@ -201,7 +202,7 @@ export default async function HomePage({
             <article className="discipline-card">
               <div className="discipline-cover">
                 <div className="discipline-cover-badges">
-                  <span className="badge badge-glass-light">IFRA Certified</span>
+                  <span className="badge badge-glass-light">IFRA standards</span>
                 </div>
                 <img src="/images/hero-private-label.svg" alt={isAr ? 'التصنيع الخاص' : 'Private Label & Flacons'} />
               </div>
@@ -210,10 +211,10 @@ export default async function HomePage({
                 <h3 className="discipline-title">{isAr ? 'التصنيع الخاص والتعبئة' : 'Private Label & Flacons'}</h3>
                 <p className="discipline-desc">
                   {isAr
-                    ? 'تركيب وتصنيع العطور الفاخرة، مع مطابقة معايير إفرا العالمية وزجاجات كريستال مخصصة.'
-                    : 'Custom formulation, IFRA safety compliance, bespoke crystal flacons, and low-MOQ luxury production runs.'}
+                    ? 'تركيب وتصنيع العطور الفاخرة، مع مطابقة موثّقة لمنتج بعينه لاستخدام بعينه، وزجاجات كريستال مخصصة.'
+                    : 'Custom formulation, documented conformity for a specific product and intended use, bespoke crystal flacons, and low-MOQ luxury production runs.'}
                 </p>
-                <div className="discipline-notes">IFRA · GC-MS · Crystal Flacons</div>
+                <div className="discipline-notes">Documented conformity · Crystal flacons</div>
               </div>
             </article>
           </div>
@@ -234,11 +235,11 @@ export default async function HomePage({
 
           <div className="tile-grid">
             {[
-              { icon: '🪵', title: isAr ? 'خشب العود الطبيعي' : 'Natural Agarwood', desc: isAr ? 'رقائق برية ومزارع مستدامة' : 'Wild forest chips & plantations', href: '?role=distiller' },
-              { icon: '🧪', title: isAr ? 'دهن العود الخالص' : 'Pure Dehn Al Oud', desc: isAr ? 'تقطير نحاسي وبخار' : 'Copper deg & steam extraction', href: '?role=wholesaler' },
-              { icon: '🌹', title: isAr ? 'العطور الشرقية' : 'Heritage Attars', desc: isAr ? 'قاعدة صندل نقية' : 'Pure sandalwood base', href: '?role=wholesaler' },
-              { icon: '✨', title: isAr ? 'التصنيع الخاص' : 'Private Label', desc: isAr ? 'تركيب وزجاجات مخصصة' : 'Formulation & bespoke flacons', href: '?role=wholesaler' },
-              { icon: '🔥', title: isAr ? 'بخور وعود مبخّر' : 'Bakhoor & Incense', desc: isAr ? 'رقائق معتّقة' : 'Cured resin chips', href: '?role=wholesaler' },
+              { icon: '🪵', title: isAr ? 'خشب العود الطبيعي' : 'Natural Agarwood', desc: isAr ? 'رقائق برية ومزارع مستدامة' : 'Wild forest chips & plantations', href: '?family=Oud%20wood' },
+              { icon: '🧪', title: isAr ? 'دهن العود الخالص' : 'Pure Dehn Al Oud', desc: isAr ? 'تقطير نحاسي وبخار' : 'Copper deg & steam extraction', href: '?family=Oud%20oil' },
+              { icon: '🌹', title: isAr ? 'العطور الشرقية' : 'Heritage Attars', desc: isAr ? 'قاعدة صندل نقية' : 'Pure sandalwood base', href: '?family=Perfume%20oil' },
+              { icon: '✨', title: isAr ? 'التصنيع الخاص' : 'Private Label', desc: isAr ? 'تركيب وزجاجات مخصصة' : 'Formulation & bespoke flacons', href: '?family=Finished%20perfume' },
+              { icon: '🔥', title: isAr ? 'بخور وعود مبخّر' : 'Bakhoor & Incense', desc: isAr ? 'رقائق معتّقة' : 'Cured resin chips', href: '?family=Bakhoor%2Fincense' },
               { icon: '🗺', title: isAr ? 'خريطة الأقاليم' : 'Origins Map', desc: isAr ? '249 دولة موثقة' : '249 documented territories', href: `/${locale}/world` },
             ].map((tile) => (
               <Link
@@ -347,8 +348,8 @@ export default async function HomePage({
               </h2>
               <p className="lede">
                 {isAr
-                  ? 'يعمل المساعد مباشرة على سجل OudGuide الموثق: 249 دولة و772 مساراً بحثياً و67 مواصفة RFQ شرطية. يطابق متطلباتك مع المنتجين المؤهلين ويشرح الأقاليم والتقطير وسياسات سايتس — دون كشف أي بيانات اتصال.'
-                  : 'The assistant reads OudGuide\'s documented register directly: 249 territories, 772 route briefs, and 67 conditional RFQ specifications. It matches your requirements against qualified producers and explains terroirs, distillation, and CITES policy — without exposing a single contact detail.'}
+                  ? 'يعمل المساعد مباشرة على سجل OudGuide الموثق: 249 دولة ومقالات مُراجَعة و67 مواصفة RFQ شرطية. يطابق متطلباتك مع المنتجين المسجلين ويشرح الأقاليم والتقطير وسياسات سايتس. ويعمل على النسخة العلنية التي حُذفت منها حقول الاتصال على الخادم.'
+                  : 'The assistant reads OudGuide\'s documented register directly: 249 territories, reviewed articles, and 67 conditional RFQ specifications. It matches your requirements against listed producers and explains terroirs, distillation, and CITES policy. It operates on the public projection, in which contact fields have already been removed on the server.'}
               </p>
               <div className="cluster" style={{ marginTop: 28 }}>
                 <Link href={`/${locale}/sourcing`} className="btn btn-gold btn-lg">
@@ -467,8 +468,8 @@ export default async function HomePage({
           </h2>
           <p className="lede" style={{ margin: '0 auto 30px' }}>
             {isAr
-              ? 'اكتشف 772 مساراً بحثياً و249 دولة و83 دليلاً معمارياً متعمقاً. كل ذلك مع حماية بيانات اتصال صارمة.'
-              : 'Discover 772 researched route briefs, 249 documented countries, and 83 in-depth editorial guides. All under strict contact data protection.'}
+              ? `اكتشف ${articleCounts.reviewed} مقالاً مُراجَعاً و${directoryCounts.published} سجلاً منشوراً في الدليل، و${articleCounts.briefs} موجزاً بحثياً قيد الإعداد. وتُحجب بيانات الاتصال افتراضياً، ولا تُسلَّم بيانات المشتري إلا لمورد يعتمده المشتري بالاسم.`
+              : `Explore ${articleCounts.reviewed} reviewed articles and ${directoryCounts.published} published directory records, with ${articleCounts.briefs} research briefs in preparation. Contact fields are withheld by default, and a buyer’s details are released only to a supplier they approve by name.`}
           </p>
           <div className="cluster" style={{ justifyContent: 'center' }}>
             <Link href={`/${locale}/rfq`} className="btn btn-primary btn-lg">

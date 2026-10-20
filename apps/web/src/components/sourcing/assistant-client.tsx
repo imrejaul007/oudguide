@@ -12,7 +12,7 @@ interface AssistantProducer {
   country_name?: string | null;
   category?: string | null;
   product_families?: string[];
-  verified_origins?: string[];
+  handles_origins?: string[];
   contact_unlocked: boolean;
   minimum_order_quantity?: string | null;
   /** Why this producer matched — surfaced so the buyer can judge the fit. */

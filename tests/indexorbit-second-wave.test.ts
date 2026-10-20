@@ -40,7 +40,7 @@ const RAW_PROFILES: RawBusinessProfile[] = [
     whatsapp: '+971501112233',
     street_address: 'Al Sabkha Road, Deira Perfume Souk, Dubai',
     website_url: 'https://almutalib.com',
-    verified_origins: ['India (Assam)', 'Cambodia (Koh Kong)', 'Indonesia (Kalimantan)'],
+    handles_origins: ['India (Assam)', 'Cambodia (Koh Kong)', 'Indonesia (Kalimantan)'],
     product_families: ['Oud wood', 'Oud oil', 'Perfume oil', 'Finished perfume', 'Bakhoor/incense'],
     sample_availability: true,
     minimum_order_quantity: '5 tolas / 100g chips',
@@ -67,7 +67,7 @@ const RAW_PROFILES: RawBusinessProfile[] = [
     whatsapp: '+919864000000',
     street_address: 'Agarwood Processing Zone, Hojai, Assam',
     website_url: 'https://assamheritageoud.in',
-    verified_origins: ['India (Assam)', 'India (Meghalaya)'],
+    handles_origins: ['India (Assam)', 'India (Meghalaya)'],
     product_families: ['Oud wood', 'Oud oil'],
     sample_availability: true,
     minimum_order_quantity: '1 kg wood / 500g oil',
@@ -99,7 +99,7 @@ describe('Match reasons (IndexOrbit service-layer pattern)', () => {
     assert.ok(assam, 'expected the Assam producer to match');
     assert.ok(assam.match_reasons && assam.match_reasons.length > 0, 'expected match reasons');
     assert.ok(
-      assam.match_reasons.some((r) => /Origin/i.test(r)),
+      assam.match_reasons.some((r) => /Handles origins/i.test(r)),
       `expected an origin reason, got ${JSON.stringify(assam.match_reasons)}`
     );
   });
@@ -155,7 +155,10 @@ describe('Match reasons (IndexOrbit service-layer pattern)', () => {
   test('the rendered answer includes the why-section', () => {
     const result = assistant.answerQuery('Which distillers ship aged Assam oud oil?', 'en');
     assert.ok(result.answer.includes('Why each matched'), 'expected the why-section heading');
-    assert.ok(result.answer.includes('Origin:'), 'expected an origin reason in the answer');
+    assert.ok(
+      result.answer.includes('Handles origins:'),
+      'expected a handles-origins reason in the answer'
+    );
   });
 
   test('the Arabic answer includes the Arabic why-section', () => {

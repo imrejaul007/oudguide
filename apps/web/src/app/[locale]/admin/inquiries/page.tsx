@@ -46,20 +46,41 @@ export default async function AdminInquiriesPage({
             Inquiries with verified contact channels ready for matching brief evaluation.
           </p>
 
-          <div style={{ border: '1px solid var(--color-border)', borderRadius: '4px', padding: '10px', marginTop: '10px' }}>
+          {/*
+            There are no live inquiries in this environment. The domain
+            holds inquiries in memory, so a record only exists for the
+            lifetime of one serverless invocation. The entry below is a
+            worked example so the dispatch simulator has something to
+            evaluate against — it is labelled as one, and it is not a
+            buyer, not a live requirement and not an authorisation.
+          */}
+          <div
+            style={{
+              border: '1px dashed var(--color-border)',
+              borderRadius: '4px',
+              padding: '10px',
+              marginTop: '10px',
+              opacity: 0.92,
+            }}
+          >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <strong>inq_assamm_wood_01</strong>
-              <span className="badge badge-unlocked">AUTHORIZED</span>
+              <strong style={{ opacity: 0.75 }}>inq_assamm_wood_01</strong>
+              <span className="badge badge-locked">DEMONSTRATION RECORD</span>
             </div>
-            <p style={{ margin: '4px 0', fontSize: '13px' }}>
+            <p style={{ margin: '4px 0', fontSize: '13px', opacity: 0.75 }}>
               <strong>Buyer:</strong> Fatima Al Mansoori · <strong>Destination:</strong> UAE
             </p>
-            <p style={{ margin: '4px 0', fontSize: '13px' }}>
+            <p style={{ margin: '4px 0', fontSize: '13px', opacity: 0.75 }}>
               <strong>Item:</strong> 50 tolas Oud oil (Target: 350 AED/tola)
+            </p>
+            <p style={{ margin: '6px 0 0', fontSize: '12px', color: 'var(--color-muted)' }}>
+              {isAr
+                ? 'سجل توضيحي لأغراض اختبار سياسة الإصدار. لا يوجد طلب حقيقي مرتبط به، ولا يوجد مشترٍ فعلي خلف هذه البيانات.'
+                : 'A worked example for exercising the release policy. No live inquiry is attached to it, and the buyer, destination and requirement above are illustrative rather than real.'}
             </p>
             <div style={{ marginTop: '10px', display: 'flex', gap: '8px' }}>
               <Link href={`/${locale}/inquiries/inq_assamm_wood_01`} className="btn-secondary" style={{ padding: '4px 10px', fontSize: '12px' }}>
-                View Buyer Status
+                View Demonstration Record
               </Link>
             </div>
           </div>
@@ -68,7 +89,8 @@ export default async function AdminInquiriesPage({
         <div className="card">
           <h3>Lead Policy Dispatch Simulator</h3>
           <p style={{ fontSize: '14px', color: 'var(--color-muted)' }}>
-            Simulate release verification against <code>canRelease(ctx)</code>.
+            Evaluate a release against <code>canRelease(ctx)</code>. The check runs
+            the real policy and reports its real verdict — it does not grant anything.
           </p>
           <form method="POST" action="/api/v1/internal/releases/dispatch-form">
             <input type="hidden" name="locale" value={locale} />

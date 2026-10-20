@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { seed } from '@/lib/data';
 import { buildMetadata } from '@/lib/metadata';
+import { editorialCopy, pick } from '@/lib/copy/policy';
 
 /**
  * Per-territory metadata.
@@ -56,9 +57,10 @@ export default async function CountryDetailPage({
     notFound();
   }
 
-  // Find businesses located in or associated with this country
-  const businesses = seed.businesses.filter(
-    (b: any) => b.country_id.toUpperCase() === code
+  // The businesses physically located in this country. Development
+  // fixtures are excluded: a fixture is not a producer in a country.
+  const businesses = (seed.businesses as any[]).filter(
+    (b: any) => !b.demo && b.country_id.toUpperCase() === code
   );
 
   // Find routes associated with this country
@@ -92,8 +94,8 @@ export default async function CountryDetailPage({
         </h1>
         <p className="hero-lead" style={{ marginBottom: 24 }}>
           {isAr
-            ? `الملف الجغرافي والتوثيقي المعتمد لدولة ${country.arabic_seed} في شبكة التوريد والبحث الخاصة بدليل العود.`
-            : `Territorial sourcing, regulatory compliance, and market evaluation profile for ${country.english_seed} in the international fragrance directory.`}
+            ? `إقليم مسجَّل في دليل العود ضمن 249 دولة وإقليماً. حالة التقييم المعروضة أدناه هي ما يحمله السجل لهذا الإقليم.`
+            : `A registered territory in the OudGuide reference, covering ${country.english_seed}. The assessment status below is what the register actually records for it.`}
         </p>
 
         <div className="masthead-actions">
@@ -155,7 +157,7 @@ export default async function CountryDetailPage({
             <div className="privacy-shield-text">
               {isAr
                 ? `لا توجد شركات مدرجة بشكل مستقل في ${country.arabic_seed} حالياً. يمكنك تقديم طلب توريد وسيقوم فريقنا بربطك بموردين دوليين معتمدين يشحنون بانتظام إلى هذه الوجهة مع شهادات سايتس والتخليص الجمركي.`
-                : `No standalone producer profiles are currently documented in ${country.english_seed}. You can submit an RFQ requirement and OudGuide will connect you with verified international distillers who hold active export quotas and provide CITES Appendix II clearance to this destination.`}
+                : `${pick(editorialCopy.coverageGap, locale)} You can submit an RFQ requirement and OudGuide will introduce you to suppliers that have agreed to work with this destination — a supplier is introduced to a destination only where it has documented one.`}
             </div>
           </div>
         )}
@@ -185,12 +187,14 @@ export default async function CountryDetailPage({
       {/* CTA SECTION */}
       <div className="luxury-hero" style={{ padding: '36px', textAlign: 'center' }}>
         <h3 className="font-display" style={{ fontSize: '24px', color: '#fff', margin: '0 0 10px' }}>
-          {isAr ? `تأمين شحنات العود المعتمدة لوجهة ${country.arabic_seed}` : `Source CITES-Certified Fragrance Materials for ${country.english_seed}`}
+          {isAr
+            ? `طلب توريد إلى ${country.arabic_seed}`
+            : `Request a supplier introduction for ${country.english_seed}`}
         </h3>
         <p style={{ color: '#d0ccc3', fontSize: '15px', maxWidth: '640px', margin: '0 auto 18px' }}>
           {isAr
-            ? 'حدد متطلباتك وسنربطك بموردين مؤهلين يشحنون بانتظام إلى هذه الدولة مع كافة وثائق الفحص المخبري وشهادات التصدير.'
-            : 'Specify your volume requirement and OudGuide will connect you with qualified producers with verified laboratory documentation and legal shipping.'}
+              ? 'حدد متطلباتك. يتولى دليل العود مطابقتك مع موردين، ولا يقدّم طلبك إلا لمن تعتمدهم بالاسم. وتُراجع متطلبات التوثيق لكل منتج ومسار ووجهة على حدة.'
+              : 'Specify your requirement. OudGuide matches you with suppliers, and nothing is sent to one unless you approve them by name. Documentation requirements are assessed per product, route and destination.'}
         </p>
         <Link href={`/${locale}/rfq?country=${encodeURIComponent(country.english_seed)}`} className="btn-gold" style={{ padding: '12px 28px', fontSize: '15px' }}>
           <span>{isAr ? 'تقديم طلب توريد لهذه الوجهة' : `Submit RFQ for ${country.english_seed}`}</span>

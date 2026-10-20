@@ -167,6 +167,23 @@ describe('Per-page metadata', () => {
     }
   });
 
+  test('every page route still has a page component', () => {
+    // A route module with no `export default` has no component to render.
+    // Next.js reports it as "Functions cannot be passed directly to Client
+    // Components", which points at nothing near the real cause, and it
+    // happens when a scripted edit rewrites a page file and leaves only
+    // the metadata behind. The build passes and the tests pass, because a
+    // page with no component is still a valid TypeScript module — so this
+    // has to be asserted, not assumed.
+    for (const file of files) {
+      const source = readFileSync(file, 'utf8');
+      assert.ok(
+        /export\s+default\s/.test(source),
+        `${file} has no default export — the page component is missing`
+      );
+    }
+  });
+
   test('a metadata function never references a variable it does not declare', () => {
     // The `isAr` mistake: declared inside the page component, referenced
     // inside generateMetadata, where it does not exist. It throws a

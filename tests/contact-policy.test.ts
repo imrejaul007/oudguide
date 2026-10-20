@@ -32,7 +32,7 @@ function createSampleBusiness(): RawBusinessProfile {
     tax_id: 'TRN-100200300',
     internal_notes: 'High priority VIP lead source',
     website_url: 'https://arabianoud.example',
-    verified_origins: ['India (Assam)', 'Cambodia (Koh Kong)'],
+    handles_origins: ['India (Assam)', 'Cambodia (Koh Kong)'],
     product_families: ['Dehn Al Oud', 'Agarwood Chips'],
     sample_availability: true,
     minimum_order_quantity: '10 tolas',
@@ -59,7 +59,7 @@ describe('Contact Projection & Leakage Prevention Policy (QA-007, QA-008, QA-010
     assert.equal(projected.name, 'Arabian Oud Masters');
     assert.equal(projected.city, 'Dubai');
     assert.equal(projected.country_name, 'United Arab Emirates');
-    assert.deepEqual(projected.verified_origins, ['India (Assam)', 'Cambodia (Koh Kong)']);
+    assert.deepEqual(projected.handles_origins, ['India (Assam)', 'Cambodia (Koh Kong)']);
   });
 
   test('Claimed but unpaid profile: still hides contacts', () => {

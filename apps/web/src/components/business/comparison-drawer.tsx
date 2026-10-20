@@ -12,7 +12,7 @@ export interface ComparableProducer {
   country_name?: string | null;
   category?: string | null;
   product_families?: string[];
-  verified_origins?: string[];
+  handles_origins?: string[];
   contact_unlocked: boolean;
   minimum_order_quantity?: string | null;
   established_year?: number | null;
@@ -95,12 +95,12 @@ export function ComparisonDrawer({
       ),
     },
     {
-      key: 'verified_origins',
+      key: 'handles_origins',
       label: 'Verified origins',
       labelAr: 'الأقاليم الموثقة',
       render: (p) => (
         <div className="cluster" style={{ gap: 4 }}>
-          {(p.verified_origins ?? []).map((o) => (
+          {(p.handles_origins ?? []).map((o) => (
             <span key={o} className="chip chip-gold" style={{ fontSize: '0.66rem', padding: '2px 7px' }}>{o}</span>
           ))}
         </div>
@@ -300,8 +300,8 @@ export function ComparisonDrawer({
               >
                 <span style={{ fontSize: '0.82rem', color: 'var(--green-800)' }}>
                   {isAr
-                    ? 'المقارنة تعرض الصفات التجارية فقط. بيانات الاتصال لا تُعرض إلا بعد موافقتك الصريحة والتحقق برمز OTP.'
-                    : 'This comparison shows commercial attributes only. Contact details are never displayed until you explicitly approve a producer and verify by OTP.'}
+                    ? 'المقارنة تعرض الصفات التجارية فقط. بيانات اتصال المورد تظهر على ملفه عندما يمنحها هو، وبيانات المشتري تُسلَّم للمورد الذي تعتمده أنت بالاسم.'
+                    : 'This comparison shows commercial attributes only. A producer\u2019s own contact details appear on its profile when it publishes them, and a buyer\u2019s details are released only to a supplier that buyer approves by name.'}
                 </span>
               </div>
             </div>

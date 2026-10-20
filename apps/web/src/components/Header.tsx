@@ -90,11 +90,17 @@ export function Header({ locale }: HeaderProps) {
       {/* 1. Green ribbon — the one dark band above the header */}
       <div className="ribbon">
         <div className="container ribbon-inner">
-          <span className="ribbon-item">🌿 {isAr ? 'مرجع سايتس (CITES Appendix II)' : 'CITES Appendix II Verified'}</span>
+          <span className="ribbon-item">
+            🌿 {isAr ? 'وثائق سايتس — الملحق الثاني' : 'CITES Appendix II documented'}
+          </span>
           <span className="ribbon-sep">•</span>
-          <span className="ribbon-item">🌍 {isAr ? '249 دولة وإقليماً' : '249 Global Terroirs'}</span>
+          <span className="ribbon-item">
+            🌍 {isAr ? '249 دولة وإقليماً في السجل' : '249 territories in the register'}
+          </span>
           <span className="ribbon-sep">•</span>
-          <span className="ribbon-item">🔒 {isAr ? 'حماية تامة لبيانات الاتصال' : 'Zero Contact Leakage'}</span>
+          <span className="ribbon-item">
+            🔒 {isAr ? 'بيانات الاتصال تُحجب افتراضياً' : 'Contact fields withheld by default'}
+          </span>
         </div>
       </div>
 

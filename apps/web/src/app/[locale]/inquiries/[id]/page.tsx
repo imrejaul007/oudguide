@@ -2,6 +2,12 @@ import Link from 'next/link';
 import { domain } from '@/lib/data';
 import { loadInquiry } from '@/lib/inquiry-session';
 import { ArrowRight, CheckCircle2, AlertTriangle, ExternalLink, ShieldCheck } from 'lucide-react';
+import {
+  buyerApprovalCopy,
+  contactPolicyCopy,
+  securityClaimCopy,
+  pick,
+} from '@/lib/copy/policy';
 
 /**
  * Buyer inquiry status.
@@ -32,7 +38,8 @@ export default async function InquiryStatusPage({
   const isAr = locale === 'ar';
 
   const inq = await loadInquiry(id);
-  const candidateSuppliers = domain.listBusinesses();
+  // A buyer may only approve a supplier that is actually published.
+  const candidateSuppliers = domain.listBusinesses({ excludeDemo: true });
 
   /* ---------------------------------------------------------------- */
   /* NOT FOUND                                                       */
@@ -248,10 +255,16 @@ export default async function InquiryStatusPage({
               {isAr ? 'الموردون المؤهلون وموافقة المشتري الصريحة' : 'Matching Candidate Suppliers & Buyer Approval'}
             </h2>
           </div>
-          <p className="text-body" style={{ marginBottom: 24 }}>
+          <p className="text-body" style={{ marginBottom: 12 }}>
             {isAr
-              ? 'راجع الموردين المرشحين أدناه. لن يتم تسليم معلوماتك لأي مورد إلا بالضغط على "اعتماد هذا المورد". الحد الأقصى للموافقة هو 3 موردين.'
-              : 'Review matching producers below. No supplier receives your contact details until you explicitly approve them. Maximum 3 approved recipients per inquiry.'}
+              ? 'راجع الموردين المرشحين أدناه. لا يتلقى أي مورد معلوماتك إلا بعد الضغط على "اعتماد هذا المورد". الحد الأقصى ثلاثة موردين معتمدين لكل طلب.'
+              : 'Review matching producers below. No supplier receives your contact details until you approve them by name. Maximum 3 approved recipients per inquiry.'}
+          </p>
+          <p className="text-body" style={{ marginBottom: 12, color: 'var(--ink-muted)' }}>
+            {pick(securityClaimCopy.noAbsoluteSecurity, locale)}
+          </p>
+          <p className="text-body" style={{ marginBottom: 24, color: 'var(--ink-muted)' }}>
+            {pick(buyerApprovalCopy.additionalRecipientRequiresApproval, locale)}
           </p>
 
           <div className="stack-4">
@@ -279,8 +292,15 @@ export default async function InquiryStatusPage({
                       {biz.category} · {biz.city}
                     </p>
                     <p style={{ margin: 0, fontSize: '0.82rem' }}>
-                      <strong>{isAr ? 'الأقاليم:' : 'Terroirs:'}</strong> {(biz.verified_origins || []).join(', ')} ·{' '}
-                      <strong>MOQ:</strong> {biz.minimum_order_quantity || 'Flexible'}
+                      <strong>{isAr ? 'الأقاليم التي يتعامل معها:' : 'Origins handled:'}</strong>{' '}
+                      {(biz.handles_origins || []).join(', ') || (isAr ? 'غير مذكورة' : 'not stated')}
+                      {biz.minimum_order_quantity &&
+                        (biz.verified_fields || []).includes('minimum_order_quantity') && (
+                          <>
+                            {' · '}
+                            <strong>MOQ:</strong> {biz.minimum_order_quantity}
+                          </>
+                        )}
                     </p>
                   </div>
 

@@ -65,8 +65,40 @@ describe('Stage B: End-to-End Connected Journey', () => {
     assert.equal(trat?.email, undefined);
 
     // 2. Purchase membership (AED 1,200/year)
-    const memRes = domain.purchaseMembership('biz_trat_botanicals_03');
+    //
+    // A membership is activated by a provider-confirmed payment, not by
+    // the act of asking for it (OG-A19). A request with no payment is
+    // refused.
+    const noPayment = domain.purchaseMembership('biz_trat_botanicals_03');
+    assert.equal(noPayment.success, false, 'a membership must not activate without a confirmed payment');
+
+    const underpaid = domain.purchaseMembership('biz_trat_botanicals_03', {
+      reference: 'pay_too_small',
+      amount: 100,
+      currency: 'AED',
+      confirmed_at: new Date(),
+      provider: 'test',
+    });
+    assert.equal(underpaid.success, false, 'a payment below the annual price must be refused');
+
+    const wrongCurrency = domain.purchaseMembership('biz_trat_botanicals_03', {
+      reference: 'pay_wrong_ccy',
+      amount: 1200,
+      currency: 'USD',
+      confirmed_at: new Date(),
+      provider: 'test',
+    });
+    assert.equal(wrongCurrency.success, false, 'a payment in another currency must be refused');
+
+    const memRes = domain.purchaseMembership('biz_trat_botanicals_03', {
+      reference: 'pay_confirmed_001',
+      amount: 1200,
+      currency: 'AED',
+      confirmed_at: new Date(),
+      provider: 'test',
+    });
     assert.equal(memRes.success, true);
+    assert.equal(memRes.reference, 'pay_confirmed_001');
 
     trat = domain.getBusinessBySlug('siam-trat-agarwood-co');
     assert.equal(trat?.has_active_membership, true);

@@ -18,6 +18,32 @@ const ADMIN_KEY = process.env.OUDGUIDE_ADMIN_KEY || 'oudguide-operator';
 const COOKIE_NAME = 'og_admin_session';
 const LOCALES = ['en', 'ar'];
 
+/**
+ * The route roots the site serves.
+ *
+ * A path that begins with one of these and has no locale prefix is a
+ * request for a real page that was reached without its prefix, so it is
+ * redirected to the default locale. A path that begins with anything
+ * else is a genuine 404 and must be answered with one.
+ */
+const KNOWN_UNPREFIXED_ROOTS = new Set([
+  'guides',
+  'directory',
+  'world',
+  'products',
+  'glossary',
+  'rfq',
+  'sourcing',
+  'shortlist',
+  'membership',
+  'for-businesses',
+  'policies',
+  'privacy',
+  'corrections',
+  'partners',
+  'inquiries',
+]);
+
 function hex(buffer: ArrayBuffer): string {
   return Array.from(new Uint8Array(buffer))
     .map((b) => b.toString(16).padStart(2, '0'))
@@ -102,7 +128,22 @@ export async function middleware(request: NextRequest) {
     url.pathname = '/en';
     return NextResponse.redirect(url);
   }
+  // A first segment that is not a real locale is not a locale-prefixed
+  // path at all. It is a malformed URL — the audit found one in search
+  // results at /%24/directory/al-mutalib-perfumes, which the old code
+  // "normalised" into /en/%24/directory/al-mutalib-perfumes: a path with
+  // a literal "$24" segment that can never match a route.
+  //
+  // The fix is not to rename the segment but to stop pretending it is a
+  // locale. A path whose root is one of the site's own routes is a real
+  // page reached without its prefix, and is redirected to the default
+  // locale. Anything else is a genuine 404 and must stay a 404 — a
+  // search engine is not sent to a URL that cannot exist.
   if (!LOCALES.includes(segments[0])) {
+    if (!KNOWN_UNPREFIXED_ROOTS.has(segments[0])) {
+      return NextResponse.next();
+    }
+
     const url = request.nextUrl.clone();
     url.pathname = `/en${pathname === '/' ? '' : pathname}`;
     return NextResponse.redirect(url);

@@ -1,94 +1,117 @@
-import { seed, domain } from '@/lib/data';
-import { isRouteServable, servableRoutes, territoryPath } from '@/lib/route-coverage';
 import { MetadataRoute } from 'next';
+import { seed } from '@/lib/data';
+import { listReviewedArticles } from '@/lib/articles';
+import { isPublishedPath, normalizePath } from '@/lib/route-resolver';
 
 const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL || 'https://www.oudguide.com'
 ).replace(/\/$/, '');
 
 /**
- * Sitemap.
+ * The sitemap.
  *
- * Two corrections over the previous version:
+ * A sitemap is an explicit promise that every URL in it resolves and is
+ * worth indexing. Two corrections over the previous version:
  *
- * 1. It only publishes routes the app can actually serve. The manifest
- *    holds 772 routes but the app implements a subset of the shapes, so
- *    the old sitemap published 572 URLs that returned 404. A sitemap is
- *    an explicit promise that every URL resolves; keeping it honest is
- *    worth far more than inflating the URL count.
+ * 1. It publishes only what is genuinely published. The manifest's 772
+ *    routes are route *candidates* — every one of them still carries
+ *    `content_status: "Research/planning; no finished article supplied"`.
+ *    Publishing them produced 572 URLs that returned 404.
  *
- * 2. It publishes trailing-slash-free URLs. The app runs with
- *    `trailingSlash: false`, so every manifest path (which carries a
- *    trailing slash) produced a 308 redirect hop before resolving.
+ * 2. It publishes only what is genuinely worth indexing. The 249
+ *    territory pages are ISO registry records: they establish that a
+ *    place exists and is a valid destination for a customs form, and
+ *    nothing about agarwood. They remain reachable and honest, but they
+ *    are not answers, so they are not offered to search engines as
+ *    answers. The same reasoning applies to the research briefs.
+ *
+ * Every URL below is checked against the published-route resolver, so
+ * the sitemap and the app cannot disagree about what exists.
  */
+
+/** The static pages the site serves and that are worth indexing. */
+const STATIC_PAGES: string[] = [
+  '/en',
+  '/en/guides',
+  '/en/directory',
+  '/en/directory/map',
+  '/en/world',
+  '/en/sourcing',
+  '/en/rfq',
+  '/en/shortlist',
+  '/en/membership',
+  '/en/for-businesses',
+  '/en/policies',
+  '/en/privacy',
+  '/en/corrections',
+  '/en/partners/opportunities',
+];
+
+/**
+ * The Arabic tree.
+ *
+ * An Arabic page is published only where the Arabic version actually
+ * exists. The article layer carries a reviewed Arabic body for every
+ * published article, so the Arabic encyclopedia is real; the static
+ * Arabic pages are published because their shells are translated.
+ */
+const ARABIC_STATIC_PAGES: string[] = [
+  '/ar',
+  '/ar/guides',
+  '/ar/directory',
+  '/ar/directory/map',
+  '/ar/world',
+  '/ar/sourcing',
+  '/ar/rfq',
+  '/ar/shortlist',
+  '/ar/membership',
+  '/ar/for-businesses',
+  '/ar/policies',
+  '/ar/privacy',
+  '/ar/corrections',
+  '/ar/partners/opportunities',
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const urls: MetadataRoute.Sitemap = [];
+  const seen = new Set<string>();
 
-  for (const route of servableRoutes() as any[]) {
-    // The manifest's territory paths are country-name slugs, but the
-    // route resolves on the ISO2 code. Publish the servable form.
-    let path = route.path;
-
-    if (route.family === 'Buyer country / territory') {
-      const match = route.path.match(/\/world\/([a-z-]+)\/$/);
-      if (match) {
-        const country = (seed.countries as any[]).find(
-          (c: any) => c.proposed_slug === match[1]
-        );
-        if (!country) continue;
-        path = territoryPath(country.iso2);
-      }
-    }
-
-    const clean = path.replace(/\/$/, '');
-
+  const push = (path: string, priority: number, changeFrequency: 'weekly' | 'monthly') => {
+    const clean = normalizePath(path);
+    if (!clean || seen.has(clean)) return;
+    if (!isPublishedPath(clean)) return;
+    seen.add(clean);
     urls.push({
       url: `${siteUrl}${clean}`,
       lastModified: new Date('2026-10-20'),
-      changeFrequency: route.family === 'Editorial guide' ? 'weekly' : 'monthly',
-      priority: route.family === 'Editorial guide' ? 0.9 : 0.7,
+      changeFrequency,
+      priority,
     });
+  };
+
+  // The home page and the utility pages.
+  for (const path of STATIC_PAGES) {
+    push(path, path === '/en' ? 0.9 : 0.7, 'monthly');
   }
 
-  // The live utility pages the app serves that the manifest does not
-  // cover. These are real, reachable, and worth indexing.
-  for (const path of [
-    '/en/directory',
-    '/en/directory/map',
-    '/en/world',
-    '/en/sourcing',
-    '/en/shortlist',
-    '/en/rfq',
-    '/en/membership',
-    '/en/for-businesses',
-    '/en/guides',
-    '/en/policies',
-    '/en/privacy',
-    '/en/corrections',
-    '/en/partners/opportunities',
-  ]) {
-    const url = `${siteUrl}${path}`;
-    if (urls.some((u) => u.url === url)) continue;
-    urls.push({
-      url,
-      lastModified: new Date('2026-10-20'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    });
+  // The published articles.
+  for (const article of listReviewedArticles()) {
+    push(`/en/guides/${article.slug}`, 0.8, 'weekly');
+    push(`/ar/guides/${article.slug}`, 0.6, 'weekly');
   }
 
-  // The Arabic tree. The app serves the same content in Arabic, so each
-  // Arabic page gets a sibling entry with `alternates.languages`.
-  for (const entry of [...urls]) {
-    if (!entry.url.startsWith(`${siteUrl}/en/`)) continue;
-    const arUrl = entry.url.replace(`${siteUrl}/en/`, `${siteUrl}/ar/`);
-    if (urls.some((u) => u.url === arUrl)) continue;
-    urls.push({
-      ...entry,
-      url: arUrl,
-      priority: 0.6,
-    });
+  // The Arabic utility pages.
+  for (const path of ARABIC_STATIC_PAGES) {
+    push(path, 0.6, 'monthly');
   }
 
   return urls;
 }
+
+/**
+ * The territory pages are reachable but not indexed.
+ *
+ * They are listed here so the reason is recorded in one place rather
+ * than being re-decided by each consumer of the route manifest.
+ */
+export const NON_INDEXABLE_TERRITORY_COUNT = (seed.countries as any[]).length;

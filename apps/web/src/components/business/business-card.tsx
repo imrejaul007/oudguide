@@ -24,7 +24,11 @@ interface BusinessCardProps {
     is_claimed: boolean;
     has_active_membership: boolean;
     contact_unlocked: boolean;
-    verified_origins?: string[];
+    verification_state?: 'owner_verified' | 'seller_declared' | 'unverified';
+    verified_fields?: string[];
+    demo?: boolean;
+    handles_origins?: string[];
+    serves_destinations?: string[];
     product_families?: string[];
     sample_availability?: boolean;
     minimum_order_quantity?: string | null;
@@ -64,9 +68,10 @@ export function BusinessCard({ business, locale }: BusinessCardProps) {
       <div className="biz-body">
         <div className="cluster" style={{ marginBottom: 8, gap: 6 }}>
           <span className="badge badge-locked">{business.business_type || business.category || 'Producer'}</span>
-          {business.established_year && (
-            <span className="badge badge-locked">Est. {business.established_year}</span>
-          )}
+          {business.established_year &&
+            (business.verified_fields ?? []).includes('established_year') && (
+              <span className="badge badge-locked">Est. {business.established_year}</span>
+            )}
         </div>
 
         <h3 className="biz-name">

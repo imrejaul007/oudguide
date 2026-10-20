@@ -15,7 +15,7 @@ import {
 
 export const sourcingAssistant = createSourcingAssistant({
   listProducers: () =>
-    domain.listBusinesses() as unknown as AssistantProducer[],
+    domain.listBusinesses({ excludeDemo: true }) as unknown as AssistantProducer[],
   listTerritories: () => seed.countries as unknown as AssistantTerritory[],
 });
 

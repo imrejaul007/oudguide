@@ -42,7 +42,7 @@ export interface AssistantProducer {
   country_name?: string | null;
   category?: string | null;
   product_families?: string[];
-  verified_origins?: string[];
+  handles_origins?: string[];
   contact_unlocked: boolean;
   minimum_order_quantity?: string | null;
   /**
@@ -236,7 +236,7 @@ export function rankProducers(
       b.description ?? '',
       b.city ?? '',
       b.country_name ?? '',
-      (b.verified_origins ?? []).join(' '),
+      (b.handles_origins ?? []).join(' '),
       (b.product_families ?? []).join(' '),
     ]
       .join(' ')
@@ -247,12 +247,12 @@ export function rankProducers(
 
     // Origin match — the strongest signal for a terroir-driven trade.
     for (const hint of originHits) {
-      const matchedOrigin = (b.verified_origins ?? []).find((o) =>
+      const matchedOrigin = (b.handles_origins ?? []).find((o) =>
         o.toLowerCase().includes(hint.key)
       );
       if (matchedOrigin) {
         score += 10;
-        reasons.push(`Origin: ${matchedOrigin}`);
+        reasons.push(`Handles origins: ${matchedOrigin}`);
       } else if (haystack.includes(hint.key)) {
         score += 10;
         reasons.push(`Located in ${hint.label}`);
@@ -458,7 +458,7 @@ export function createSourcingAssistant(data: AssistantDataSource) {
 
         const lines = producers.map((p) => {
           const families = p.product_families?.slice(0, 3).join(', ') || '—';
-          const origins = p.verified_origins?.slice(0, 2).join(' · ') || '—';
+          const origins = p.handles_origins?.slice(0, 2).join(' · ') || '—';
           return `${p.name} — ${p.city ?? ''}${p.city ? ', ' : ''}${p.country_name ?? ''} · ${families} · ${origins}`;
         });
 
