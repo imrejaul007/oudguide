@@ -269,6 +269,44 @@ function ReviewedArticle({
         ))}
       </div>
 
+      {/* WORKED EXAMPLE — the manifest's required section for a guide */}
+      {article.workedExample && (
+        <section style={{ marginTop: 44 }}>
+          <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
+            {isAr ? 'مثال تطبيقي' : 'A worked example'}
+          </span>
+          <div
+            style={{
+              border: '1px solid var(--line)',
+              borderRadius: 6,
+              padding: '24px 28px',
+              background: 'var(--bg-pearl)',
+            }}
+          >
+            <p style={{ marginTop: 0, fontWeight: 600 }}>
+              {isAr && article.workedExample.situationAr
+                ? article.workedExample.situationAr
+                : article.workedExample.situation}
+            </p>
+            <ol style={{ paddingInlineStart: '20px', margin: '16px 0', lineHeight: 1.7 }}>
+              {(isAr && article.workedExample.stepsAr
+                ? article.workedExample.stepsAr
+                : article.workedExample.steps
+              ).map((step, index) => (
+                <li key={index} style={{ marginBottom: '8px' }}>
+                  {step}
+                </li>
+              ))}
+            </ol>
+            <p style={{ marginBottom: 0 }}>
+              {isAr && article.workedExample.takeawayAr
+                ? article.workedExample.takeawayAr
+                : article.workedExample.takeaway}
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* LIMITATIONS — what this page does not establish */}
       <section
         style={{

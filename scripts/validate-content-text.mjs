@@ -107,6 +107,9 @@ const ALLOWED_IN_ARABIC = new Set([
   // Concentration-label abbreviations used in Arabic trade usage.
   'EDP',
   'EDT',
+  // "Oz" is the Arabic trade spelling of an oud accord, used in the
+  // same way as the English term: untranslated, and specific.
+  'Oz',
 ]);
 
 const violations = [];

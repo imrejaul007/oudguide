@@ -8,6 +8,8 @@ import { qualityBuyingArticles } from './guides-quality.ts';
 import { productionTradeArticles } from './guides-sourcing.ts';
 import { usingFragranceArticles } from './guides-using.ts';
 import { fragranceSourcingArticles } from './guides-fragrance.ts';
+import { WORKED_EXAMPLES } from './worked-examples.ts';
+import { CHECKLISTS } from './checklists.ts';
 
 /**
  * The reviewed content layer.
@@ -31,6 +33,35 @@ import { fragranceSourcingArticles } from './guides-fragrance.ts';
  *     guarantee. Those were the unsupported assurances the audit found.
  */
 
+/**
+ * The corpus.
+ *
+ * The worked example and the checklist are attached here, at the one
+ * place the corpus is assembled, so that an article cannot be published
+ * without the section the manifest requires for it — whichever file
+ * happens to define it.
+ */
+function withRequiredSections(article: Article): Article {
+  const workedExample = article.workedExample ?? WORKED_EXAMPLES[article.slug];
+  const checklist = CHECKLISTS[article.slug];
+
+  if (!workedExample && !checklist) return article;
+
+  const sections = checklist
+    ? article.sections.map((section, index) =>
+        index === 0
+          ? {
+              ...section,
+              list: [...(section.list ?? []), ...checklist.items],
+              listAr: [...(section.listAr ?? []), ...(checklist.itemsAr ?? [])],
+            }
+          : section
+      )
+    : article.sections;
+
+  return { ...article, workedExample, sections };
+}
+
 export const articles: Article[] = [
   ...basicsArticles,
   ...hubArticles,
@@ -41,4 +72,4 @@ export const articles: Article[] = [
   ...productionTradeArticles,
   ...usingFragranceArticles,
   ...fragranceSourcingArticles,
-];
+].map(withRequiredSections);

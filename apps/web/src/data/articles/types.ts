@@ -86,6 +86,31 @@ export interface ArticleRelated {
   labelAr?: string;
 }
 
+/**
+ * A worked hypothetical example.
+ *
+ * The route manifest's `required_sections` for an Editorial guide
+ * includes "worked hypothetical example" for 40 of the 41 editorial
+ * guide routes. A guide that explains a method has to show the method
+ * being applied, or the reader has to reconstruct it themselves.
+ *
+ * The example is hypothetical by design. It uses an invented buyer and
+ * an invented lot, and it says so, because a worked example that
+ * presented invented specifics as a real transaction would be exactly
+ * the fabrication the audit found.
+ */
+export interface WorkedExample {
+  /** The situation, stated plainly. */
+  situation: string;
+  situationAr?: string;
+  /** The steps, each one showing the method being applied. */
+  steps: string[];
+  stepsAr?: string[];
+  /** What the example shows, including what it does not show. */
+  takeaway: string;
+  takeawayAr?: string;
+}
+
 export interface Article {
   /** Path under `/en/guides/` with no leading or trailing slash. */
   slug: string;
@@ -110,6 +135,13 @@ export interface Article {
   summaryAr?: string;
 
   sections: ArticleSection[];
+
+  /**
+   * A worked example, where the manifest's required_sections asks for
+   * one. It is what turns an explanation into a method the reader can
+   * repeat.
+   */
+  workedExample?: WorkedExample;
 
   /**
    * Sources for the page, as IDs into the shared source registry.

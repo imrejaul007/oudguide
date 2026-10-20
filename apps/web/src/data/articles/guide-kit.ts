@@ -1,4 +1,5 @@
-import type { Article, ArticleRelated, ArticleSection } from './types.ts';
+import type { Article, ArticleRelated, ArticleSection, WorkedExample } from './types.ts';
+import { WORKED_EXAMPLES } from './worked-examples.ts';
 
 /**
  * A compact constructor for a reviewed guide.
@@ -39,6 +40,7 @@ export interface SimpleGuideSpec {
     callout?: { title: string; titleAr: string; body: string; bodyAr: string };
   }>;
   sourceIds: string[];
+  workedExample?: WorkedExample;
   limitations: string;
   limitationsAr: string;
   nextSteps: string[];
@@ -72,6 +74,9 @@ export function simpleGuide(spec: SimpleGuideSpec): Article {
     directAnswerAr: spec.directAnswerAr,
     sections,
     sourceIds: spec.sourceIds,
+    // A worked example is looked up by slug so that the example lives in
+    // one table rather than being duplicated into each article.
+    workedExample: spec.workedExample ?? WORKED_EXAMPLES[spec.slug],
     limitations: spec.limitations,
     limitationsAr: spec.limitationsAr,
     reviewer: REVIEWER,
