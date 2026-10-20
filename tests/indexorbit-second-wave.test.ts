@@ -162,6 +162,18 @@ describe('Match reasons (IndexOrbit service-layer pattern)', () => {
     const result = assistant.answerQuery('أي مقطر في أسام', 'ar');
     assert.ok(result.answer.includes('لماذا تطابق'), 'expected the Arabic why-section heading');
   });
+
+  test('ISO codes do not match as bare substrings', () => {
+    // Regression guard: "assam" contains "AS" (American Samoa) and "AM"
+    // (Armenia). A plain `includes` on the ISO code returned four unrelated
+    // countries for the query "Assam oud oil".
+    const ranked = assistant.answerQuery('Assam oud oil', 'en');
+    assert.ok(
+      !ranked.answer.includes('American Samoa'),
+      'American Samoa must not match "assam"'
+    );
+    assert.ok(!ranked.answer.includes('Armenia'), 'Armenia must not match "assam"');
+  });
 });
 
 /* ==========================================================================

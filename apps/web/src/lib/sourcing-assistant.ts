@@ -353,11 +353,23 @@ export function rankTerritories(
   limit = 5
 ): AssistantTerritory[] {
   const q = query.toLowerCase();
+
+  /**
+   * ISO codes are 2-3 characters, so a plain `includes` would match them
+   * anywhere in the query — "assam" contains "AS" (American Samoa) and
+   * "AM" (Armenia). Require a word boundary instead.
+   */
+  const hasCode = (code: string) => {
+    const c = code.toLowerCase();
+    const pattern = new RegExp(`(^|[^a-z0-9])${c}([^a-z0-9]|$)`, 'i');
+    return pattern.test(q);
+  };
+
   return territories
     .map((c) => {
       let score = 0;
-      const hay = `${c.english_seed} ${c.arabic_seed} ${c.iso2} ${c.iso3}`.toLowerCase();
-      if (q.includes(String(c.iso2).toLowerCase())) score += 10;
+      if (hasCode(c.iso2)) score += 10;
+      else if (hasCode(c.iso3)) score += 8;
       if (q.includes(String(c.english_seed).toLowerCase())) score += 8;
       if (q.includes(String(c.arabic_seed).toLowerCase())) score += 8;
       return { c, score };
