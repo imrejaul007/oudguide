@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { seed } from '@/lib/data';
 import { findRouteRecord, pageDescription, pageTitle } from '@/lib/route-coverage';
+import { buildMetadata } from '@/lib/metadata';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
 const SITE_URL = (
@@ -34,32 +35,15 @@ export async function generateMetadata({
 
   const title = pageTitle(guide);
   const description = pageDescription(guide);
-  const canonical = `${SITE_URL}/${locale}/guides/${fullSlug}`;
 
-  return {
+  return buildMetadata({
+    path: `/${locale}/guides/${fullSlug}`,
     title,
     description,
-    alternates: {
-      canonical,
-      languages: {
-        en: `${SITE_URL}/en/guides/${fullSlug}`,
-        ar: `${SITE_URL}/ar/guides/${fullSlug}`,
-      },
-    },
-    openGraph: {
-      title,
-      description,
-      url: canonical,
-      siteName: 'OudGuide',
-      type: 'article',
-      locale: locale === 'ar' ? 'ar_AE' : 'en_US',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
-  };
+    locale,
+    type: 'article',
+    alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}/guides/${fullSlug}`,
+  });
 }
 
 export default async function GuideArticlePage({
