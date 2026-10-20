@@ -8,13 +8,21 @@ import { Compass, MapPin, Search, ArrowRight } from 'lucide-react';
  * Next.js's default unbranded error page with a directory-specific one that
  * keeps the header/footer chrome and offers search alternatives rather than
  * a dead end.
+ *
+ * NOTE: `params` is OPTIONAL here. Next.js does not pass the route
+ * parameters to a not-found boundary — it renders it outside the matched
+ * route. Destructuring them unconditionally threw
+ * "Cannot destructure property 'locale' of '(intermediate value)'", which
+ * turned every real error into an opaque 500. The locale therefore falls
+ * back to the default.
  */
 export default async function NotFound({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params?: Promise<{ locale?: string }>;
 }) {
-  const { locale } = await params;
+  const resolved = await params?.catch(() => undefined);
+  const locale = resolved?.locale ?? 'en';
   const isAr = locale === 'ar';
 
   const alternatives = [

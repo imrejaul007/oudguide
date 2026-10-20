@@ -36,12 +36,25 @@ const COOKIE_PREFIX = 'og_inq_';
 
 /** Read every inquiry cookie the browser is carrying. */
 export async function readPersistedInquiries(): Promise<PersistedInquiry[]> {
-  const store = await cookies();
+  let store: Awaited<ReturnType<typeof cookies>>;
+  try {
+    store = await cookies();
+  } catch {
+    // `cookies()` is unavailable outside a request scope — during static
+    // prerendering, or in a module evaluated outside a request. That is not
+    // an error: it simply means there is no buyer session to read.
+    return [];
+  }
+
   const out: PersistedInquiry[] = [];
-  for (const [name, value] of store.entries()) {
-    if (!name.startsWith(COOKIE_PREFIX)) continue;
-    const decoded = decodeInquiry(value.value);
-    if (decoded) out.push(decoded);
+  try {
+    for (const [name, value] of store.entries()) {
+      if (!name.startsWith(COOKIE_PREFIX)) continue;
+      const decoded = decodeInquiry(value.value);
+      if (decoded) out.push(decoded);
+    }
+  } catch {
+    return out;
   }
   return out;
 }
