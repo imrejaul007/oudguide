@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { domain } from '@/lib/data';
 import { HeroSearch } from '@/components/home/hero-search';
-import { BusinessCard } from '@/components/business/business-card';
+import { FeaturedCarousel } from '@/components/business/featured-carousel';
 import { Sparkles, AlertTriangle, Compass, Award, ShieldCheck, ArrowRight } from 'lucide-react';
 
 export default async function HomePage({
@@ -321,30 +321,56 @@ export default async function HomePage({
       </section>
 
       {/* ==============================================================
-          7. FEATURED PRODUCERS
+          7. FEATURED PRODUCERS — scroll-snap showcase carousel
           ============================================================== */}
-      <section className="section section-pearl">
+      <FeaturedCarousel
+        businesses={businesses as any}
+        locale={locale}
+        title={isAr ? 'نخبة معامل التقطير والمزارع المستدامة' : 'Featured Distillers & Accredited Plantations'}
+        subtitle={
+          isAr
+            ? 'اسحب لاستكشاف شبكة المنتجين المعتمدين — كل ملف موثّق ميدانياً.'
+            : 'Scroll through the verified producer network — every profile is field-documented.'
+        }
+      />
+
+      {/* ==============================================================
+          7b. SOURCE BY MATERIAL — tile grid (IndexOrbit category pattern)
+          ============================================================== */}
+      <section className="section-tight" style={{ background: 'var(--bg-sandstone)' }}>
         <div className="container">
-          <div className="row-between" style={{ marginBottom: 36 }}>
+          <div className="row-between" style={{ marginBottom: 28 }}>
             <div>
-              <div style={{ marginBottom: 8 }}>
-                <span className="badge badge-gold">
-                  <Award size={11} />
-                  {isAr ? 'المقطرون المعتمدون' : 'Verified Producer Network'}
-                </span>
-              </div>
+              <span className="eyebrow eyebrow-crimson" style={{ display: 'block', marginBottom: 8 }}>
+                {isAr ? 'تصفح حسب الصنف' : 'Browse by Material'}
+              </span>
               <h2 className="h2 text-crimson">
-                {isAr ? 'نخبة معامل التقطير والمزارع المستدامة' : 'Featured Distillers & Accredited Plantations'}
+                {isAr ? 'اختر خط الإنتاج الذي تبحث عنه' : 'Choose the Production Line You Need'}
               </h2>
             </div>
-            <Link href={`/${locale}/directory`} className="btn btn-outline">
-              {isAr ? 'كل الدليل ←' : 'Full Directory →'}
+            <Link href={`/${locale}/directory`} className="btn btn-outline btn-sm">
+              {isAr ? 'الكل ←' : 'All materials →'}
             </Link>
           </div>
 
-          <div className="grid-3">
-            {businesses.slice(0, 3).map((biz) => (
-              <BusinessCard key={biz.id} business={biz} locale={locale} />
+          <div className="tile-grid">
+            {[
+              { icon: '🪵', title: isAr ? 'خشب العود الطبيعي' : 'Natural Agarwood', desc: isAr ? 'رقائق برية ومزارع مستدامة' : 'Wild forest chips & plantations', href: '?role=distiller' },
+              { icon: '🧪', title: isAr ? 'دهن العود الخالص' : 'Pure Dehn Al Oud', desc: isAr ? 'تقطير نحاسي و بخار' : 'Copper deg & steam extraction', href: '?role=wholesaler' },
+              { icon: '🌹', title: isAr ? 'العطور الشرقية' : 'Heritage Attars', desc: isAr ? 'قاعدة صندل نقية' : 'Pure sandalwood base', href: '?role=wholesaler' },
+              { icon: '✨', title: isAr ? 'التصنيع الخاص' : 'Private Label', desc: isAr ? 'تركيب وزجاجات مخصصة' : 'Formulation & bespoke flacons', href: '?role=wholesaler' },
+              { icon: '🔥', title: isAr ? 'بخور وعود مبخّر' : 'Bakhoor & Incense', desc: isAr ? 'رقائق معتّقة' : 'Cured resin chips', href: '?role=wholesaler' },
+              { icon: '🗺', title: isAr ? 'خريطة الأقاليم' : 'Origins Map', desc: isAr ? '249 دولة موثقة' : '249 documented territories', href: `/${locale}/world` },
+            ].map((tile) => (
+              <Link
+                key={tile.title}
+                href={tile.href.startsWith('/') ? tile.href : `/${locale}/directory${tile.href}`}
+                className="tile"
+              >
+                <div className="tile-icon">{tile.icon}</div>
+                <h3 className="tile-title">{tile.title}</h3>
+                <p className="tile-count">{tile.desc}</p>
+              </Link>
             ))}
           </div>
         </div>
@@ -412,6 +438,60 @@ export default async function HomePage({
             <Link href={`/${locale}/rfq`} className="btn btn-gold btn-lg">
               {isAr ? 'تقديم طلب توريد بالجملة الآن ←' : 'Start Your Wholesale Requirement →'}
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ==============================================================
+          8b. SOURCING ASSISTANT CTA
+          ============================================================== */}
+      <section className="section section-dark">
+        <div className="container">
+          <div className="grid-2" style={{ gap: 40, alignItems: 'center' }}>
+            <div>
+              <div className="hero-eyebrow-line" style={{ justifyContent: 'flex-start' }}>
+                <span><Sparkles size={14} style={{ display: 'inline', verticalAlign: 'middle', marginInlineEnd: 6 }} />{isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}</span>
+              </div>
+              <h2 className="h2" style={{ color: '#f5e1a4' }}>
+                {isAr ? 'اطرح سؤالك واحصل على ترشيح فوري' : 'Ask a Question, Get a Matched Answer'}
+              </h2>
+              <p className="lede" style={{ color: '#a8a094' }}>
+                {isAr
+                  ? 'يعمل المساعد مباشرة على سجل OudGuide الموثق: 249 دولة و772 مساراً بحثياً و67 مواصفة RFQ شرطية. يطابق متطلباتك مع المنتجين المؤهلين ويشرح الأقاليم والتقطير وسياسات سايتس — دون كشف أي بيانات اتصال.'
+                  : 'The assistant reads OudGuide\'s documented register directly: 249 territories, 772 route briefs, and 67 conditional RFQ specifications. It matches your requirements against qualified producers and explains terroirs, distillation, and CITES policy — without exposing a single contact detail.'}
+              </p>
+              <div className="cluster" style={{ marginTop: 24 }}>
+                <Link href={`/${locale}/sourcing`} className="btn btn-gold btn-lg">
+                  {isAr ? 'ابدأ المحادثة ←' : 'Start the conversation →'}
+                </Link>
+                <Link href={`/${locale}/directory/map`} className="btn btn-dark btn-lg">
+                  {isAr ? 'خريطة المنتجين' : 'Producer Map'}
+                </Link>
+              </div>
+            </div>
+
+            <div className="stack-3">
+              {[
+                { q: isAr ? 'أي مقطر يوفّر دهن عود معتقاً؟' : 'Which distillers ship aged oud oil?', a: isAr ? 'يطابق المساعد الإقليم ونوع الصنف ودرجة الطلب.' : 'Matches terroir, product family, and volume band.' },
+                { q: isAr ? 'كيف أكشف العود المزيف؟' : 'How do I spot fake agarwood?', a: isAr ? 'يلخص أشكال الغش الأربعة وطرق الكشف المخبرية.' : 'Summarises the four fraud types and lab detection methods.' },
+                { q: isAr ? 'هل أحتاج تصريح سايتس؟' : 'Do I need a CITES permit?', a: isAr ? 'يشرح متطلبات الملحق الثاني والتقييم غير الضار.' : 'Explains Appendix II duties and Non-Detriment Findings.' },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  style={{
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid rgba(197,155,39,0.25)',
+                    borderRadius: 12,
+                    padding: '18px 20px',
+                  }}
+                >
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 600, color: '#f5ede0', marginBottom: 4 }}>
+                    “{item.q}”
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: '#a8a094', lineHeight: 1.55 }}>{item.a}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

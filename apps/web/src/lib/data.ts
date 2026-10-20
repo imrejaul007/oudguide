@@ -1,12 +1,12 @@
-import countries from '@/data/country_registry.json';
-import routes from '@/data/route_manifest.json';
-import templates from '@/data/page_templates.json';
-import rfqFields from '@/data/rfq_fields.json';
-import decisions from '@/data/decisions.json';
-import permissions from '@/data/permissions.json';
-import analytics from '@/data/analytics_events.json';
-import sources from '@/data/sources.json';
-import links from '@/data/proposed_internal_links.json';
+import countries from '../data/country_registry.json';
+import routes from '../data/route_manifest.json';
+import templates from '../data/page_templates.json';
+import rfqFields from '../data/rfq_fields.json';
+import decisions from '../data/decisions.json';
+import permissions from '../data/permissions.json';
+import analytics from '../data/analytics_events.json';
+import sources from '../data/sources.json';
+import links from '../data/proposed_internal_links.json';
 
 import { OudGuideDomainService } from '../../../../packages/domain/src/index.ts';
 

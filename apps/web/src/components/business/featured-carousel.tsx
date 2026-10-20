@@ -1,65 +1,132 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, Award, ShieldCheck, ArrowRight } from 'lucide-react';
-import { BusinessCard } from './business-card';
+import { ChevronLeft, ChevronRight, Award } from 'lucide-react';
+import { ShowcaseCard, type ShowcaseBusiness } from './showcase-card';
 
 interface FeaturedCarouselProps {
-  businesses: any[];
+  businesses: ShowcaseBusiness[];
   locale: string;
+  title?: string;
+  subtitle?: string;
 }
 
-export function FeaturedCarousel({ businesses, locale }: FeaturedCarouselProps) {
+/**
+ * Scroll-snap producer carousel with autoplay and hover-pause.
+ *
+ * Implementation ported from IndexOrbit's `featured-carousel.tsx`: the track
+ * is a native horizontal scroller with `scroll-snap-type: x mandatory`,
+ * advanced programmatically via `scrollBy({ behavior: 'smooth' })`, with a
+ * 4-second autoplay interval that pauses while the pointer is over the track.
+ */
+export function FeaturedCarousel({
+  businesses,
+  locale,
+  title,
+  subtitle,
+}: FeaturedCarouselProps) {
   const isAr = locale === 'ar';
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const prev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? businesses.length - 1 : prev - 1));
+  const scrollPrev = () => {
+    trackRef.current?.scrollBy({ left: -340, behavior: 'smooth' });
   };
 
-  const next = () => {
-    setCurrentIndex((prev) => (prev === businesses.length - 1 ? 0 : prev + 1));
+  const scrollNext = () => {
+    trackRef.current?.scrollBy({ left: 340, behavior: 'smooth' });
   };
+
+  const updateArrows = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    setCanPrev(el.scrollLeft > 8);
+    setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 8);
+  };
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    updateArrows();
+    el.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    return () => {
+      el.removeEventListener('scroll', updateArrows);
+      window.removeEventListener('resize', updateArrows);
+    };
+  }, [businesses.length]);
+
+  useEffect(() => {
+    if (isHovered) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      return;
+    }
+    intervalRef.current = setInterval(() => {
+      const el = trackRef.current;
+      if (!el) return;
+      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 10) {
+        el.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        el.scrollBy({ left: 340, behavior: 'smooth' });
+      }
+    }, 4000);
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isHovered]);
+
+  if (!businesses || businesses.length === 0) return null;
 
   return (
-    <div className="relative">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="badge-gold">
-              <Award className="h-3 w-3 inline mr-1 fill-amber-500 text-amber-500" />
-              {isAr ? 'المقطرون المعتمدون' : 'Verified Producer Network'}
-            </span>
+    <section className="section-tight">
+      <div className="container">
+        <div className="row-between" style={{ marginBottom: 28 }}>
+          <div>
+            <div style={{ marginBottom: 8 }}>
+              <span className="badge badge-gold">
+                <Award size={11} />
+                {isAr ? 'شبكة المنتجين المعتمدين' : 'Verified Producer Network'}
+              </span>
+            </div>
+            <h2 className="h2 text-crimson">
+              {title || (isAr ? 'نخبة معامل التقطير والمزارع' : 'Featured Distillers & Plantations')}
+            </h2>
+            {subtitle && <p className="lede" style={{ marginTop: 6 }}>{subtitle}</p>}
           </div>
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#5c161d]">
-            {isAr ? 'نخبة معامل التقطير والمزارع المستدامة' : 'Featured Distillers & Accredited Plantations'}
-          </h2>
+
+          <div className="cluster">
+            <button onClick={scrollPrev} disabled={!canPrev} className="carousel-btn" aria-label="Previous">
+              <ChevronLeft size={18} />
+            </button>
+            <button onClick={scrollNext} disabled={!canNext} className="carousel-btn" aria-label="Next">
+              <ChevronRight size={18} />
+            </button>
+            <Link href={`/${locale}/directory`} className="btn btn-outline btn-sm" style={{ marginInlineStart: 8 }}>
+              {isAr ? 'كل الدليل ←' : 'Full Directory →'}
+            </Link>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={prev}
-            className="p-2 rounded-full border border-[#e6dfd1] bg-white hover:bg-[#fcfaf6] hover:border-[#c59b27] transition-colors"
-            aria-label="Previous"
+        <div className="carousel-wrap">
+          <div
+            ref={trackRef}
+            className="carousel-track"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <ChevronLeft className="h-4 w-4 text-[#14161d]" />
-          </button>
-          <button
-            onClick={next}
-            className="p-2 rounded-full border border-[#e6dfd1] bg-white hover:bg-[#fcfaf6] hover:border-[#c59b27] transition-colors"
-            aria-label="Next"
-          >
-            <ChevronRight className="h-4 w-4 text-[#14161d]" />
-          </button>
+            {businesses.map((business) => (
+              <div key={business.id} className="carousel-item">
+                <ShowcaseCard business={business} locale={locale} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {businesses.map((biz) => (
-          <BusinessCard key={biz.id} business={biz} locale={locale} />
-        ))}
-      </div>
-    </div>
+    </section>
   );
 }

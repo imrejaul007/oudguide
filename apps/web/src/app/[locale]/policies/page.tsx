@@ -18,7 +18,7 @@ export default async function PoliciesPage({
     {
       title: isAr ? 'الإفصاح عن الروابط التجارية وشراكة متجر المطلب' : 'Commercial Affiliation & Referral Disclosure',
       body: isAr
-        ? 'قد تتضمن بعض الأدلة المعرفية روابط إ��الة تسويقية واضحة لمتجر المطلب للتجزئة في دبي (ae.almutalib.com) لتوفير عينات مفحوصة. تحمل جميع هذه الروابط وسوم rel="sponsored" القانونية.'
+        ? 'قد تتضمن بعض الأدلة المعرفية روابط إحالة تسويقية واضحة لمتجر المطلب للتجزئة في دبي (ae.almutalib.com) لتوفير عينات مفحوصة. تحمل جميع هذه الروابط وسوم rel="sponsored" القانونية.'
         : 'Certain educational guides include clearly identified retail referral modules to our authorized merchant partner, Al Mutalib Perfumes in Dubai (ae.almutalib.com), for personal retail sampling. All referral links carry standard rel="sponsored" attributes.',
     },
     {

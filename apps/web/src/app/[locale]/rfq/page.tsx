@@ -47,7 +47,7 @@ export default async function RfqPage({
               <h4>{isAr ? `طلب تسعير موجه لشركة محددة: ${profile}` : `Direct Inquiry Target: ${profile}`}</h4>
               <p>
                 {isAr
-                  ? 'سيتم تقديم هذا الطلب لهذه المنشأة كمرشح رئيسي م�� إمكانية ربطك ببدائل مؤهلة في حال عدم توفر المخزون.'
+                  ? 'سيتم تقديم هذا الطلب لهذه المنشأة كمرشح رئيسي مع إمكانية ربطك ببدائل مؤهلة في حال عدم توفر المخزون.'
                   : 'This requirement will be routed to this producer as primary recipient with automated fallback matching if required.'}
               </p>
             </div>

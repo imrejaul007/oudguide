@@ -1,0 +1,27 @@
+{
+  "_note": "Approximate geographic centroids for major agarwood producing and trading regions. Used for the producer map. Coordinates are region-level, never facility-level, to avoid disclosing producer locations.",
+  "regions": [
+    { "key": "IN", "iso2": "IN", "name": "Assam & Hojai, India", "name_ar": "أسام وحوجاي، الهند", "lat": 26.1445, "lng": 91.7362, "role": "producer" },
+    { "key": "IN-MEG", "iso2": "IN", "name": "Meghalaya, India", "name_ar": "ميغالايا، الهند", "lat": 25.4670, "lng": 91.3662, "role": "producer" },
+    { "key": "KH", "iso2": "KH", "name": "Koh Kong, Cambodia", "name_ar": "كوه كونغ، كمبوديا", "lat": 10.9920, "lng": 104.9260, "role": "producer" },
+    { "key": "TH", "iso2": "TH", "name": "Trat, Thailand", "name_ar": "ترات، تايلاند", "lat": 12.1926, "lng": 99.9300, "role": "producer" },
+    { "key": "TH-PRI", "iso2": "TH", "name": "Prachinburi, Thailand", "name_ar": "براتشينبوري، تايلاند", "lat": 13.9810, "lng": 101.0770, "role": "producer" },
+    { "key": "ID-KAL", "iso2": "ID", "name": "Kalimantan, Indonesia", "name_ar": "كاليمانتان، إندونيسيا", "lat": -0.7893, "lng": 113.9213, "role": "producer" },
+    { "key": "ID-MER", "iso2": "ID", "name": "Merauke, Indonesia", "name_ar": "مروكي، إندونيسيا", "lat": -8.4664, "lng": 140.3937, "role": "producer" },
+    { "key": "ID-SUM", "iso2": "ID", "name": "Sumatra, Indonesia", "name_ar": "سومترا، إندونيسيا", "lat": -0.7893, "lng": 101.2613, "role": "producer" },
+    { "key": "MY", "iso2": "MY", "name": "Malay Peninsula, Malaysia", "name_ar": "شبه جزيرة الملايو، ماليزيا", "lat": 4.2105, "lng": 101.9758, "role": "producer" },
+    { "key": "VN", "iso2": "VN", "name": "Central Highlands, Vietnam", "name_ar": "المرتفعات الوسطى، فيتنام", "lat": 13.0000, "lng": 108.3000, "role": "producer" },
+    { "key": "LA", "iso2": "LA", "name": "Khammouane, Laos", "name_ar": "خاموان، لاوس", "lat": 17.6159, "lng": 104.4860, "role": "producer" },
+    { "key": "AE", "iso2": "AE", "name": "Deira, Dubai, UAE", "name_ar": "ديرة، دبي، الإمارات", "lat": 25.2697, "lng": 55.3095, "role": "market" },
+    { "key": "SA", "iso2": "SA", "name": "Riyadh, Saudi Arabia", "name_ar": "الرياض، السعودية", "lat": 24.7136, "lng": 46.6753, "role": "market" },
+    { "key": "OM", "iso2": "OM", "name": "Muscat, Oman", "name_ar": "مسقط، عُمان", "lat": 23.5880, "lng": 58.3829, "role": "market" },
+    { "key": "QA", "iso2": "QA", "name": "Doha, Qatar", "name_ar": "الدوحة، قطر", "lat": 25.2854, "lng": 51.5310, "role": "market" },
+    { "key": "KW", "iso2": "KW", "name": "Kuwait City, Kuwait", "name_ar": "مدينة الكويت، الكويت", "lat": 29.3759, "lng": 47.9774, "role": "market" },
+    { "key": "IR", "iso2": "IR", "name": "Tehran, Iran", "name_ar": "طهران، إيران", "lat": 35.6892, "lng": 51.3890, "role": "market" },
+    { "key": "TR", "iso2": "TR", "name": "Istanbul, Türkiye", "name_ar": "إسطنبول، تركيا", "lat": 41.0082, "lng": 28.9784, "role": "market" },
+    { "key": "GB", "iso2": "GB", "name": "London, United Kingdom", "name_ar": "لندن، المملكة المتحدة", "lat": 51.5074, "lng": -0.1278, "role": "market" },
+    { "key": "FR", "iso2": "FR", "name": "Paris, France", "name_ar": "باريس، فرنسا", "lat": 48.8566, "lng": 2.3522, "role": "market" },
+    { "key": "JP", "iso2": "JP", "name": "Tokyo, Japan", "name_ar": "طوكيو، اليابان", "lat": 35.6762, "lng": 139.6503, "role": "market" },
+    { "key": "CN", "iso2": "CN", "name": "Guangzhou, China", "name_ar": "قوانغتشو، الصين", "lat": 23.1291, "lng": 113.2644, "role": "market" }
+  ]
+}

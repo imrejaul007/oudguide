@@ -52,7 +52,7 @@ export default async function CountryDetailPage({
         </h1>
         <p className="hero-lead" style={{ fontSize: '16px', margin: '0 0 24px', maxWidth: '800px' }}>
           {isAr
-            ? `الملف الجغرافي والتوثيقي المعتمد لدولة ${country.arabic_seed} في شبكة التوريد والبحث الخاصة بدلي�� العود.`
+            ? `الملف الجغرافي والتوثيقي المعتمد لدولة ${country.arabic_seed} في شبكة التوريد والبحث الخاصة بدليل العود.`
             : `Territorial sourcing, regulatory compliance, and market evaluation profile for ${country.english_seed} in the international fragrance directory.`}
         </p>
 

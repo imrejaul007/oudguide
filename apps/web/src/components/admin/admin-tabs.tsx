@@ -1,0 +1,216 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { CheckCircle2, XCircle, ShieldCheck, Users, Star, ArrowRight } from 'lucide-react';
+
+export interface ClaimRow {
+  id: string;
+  slug: string;
+  name: string;
+  category: string | null;
+  city: string | null;
+  country_name: string | null;
+  is_claimed: boolean;
+  has_active_membership: boolean;
+  contact_unlocked: boolean;
+  established_year: number | null;
+}
+
+export interface MembershipRow {
+  id: string;
+  slug: string;
+  name: string;
+  country_name: string | null;
+  has_active_membership: boolean;
+  contact_unlocked: boolean;
+}
+
+export function AdminTabs({
+  locale,
+  claims,
+  memberships,
+  inquiryCount,
+  isAr,
+}: {
+  locale: string;
+  claims: ClaimRow[];
+  memberships: MembershipRow[];
+  inquiryCount: number;
+  isAr: boolean;
+}) {
+  const [tab, setTab] = useState<'claims' | 'membership'>('claims');
+  const [busy, setBusy] = useState<string | null>(null);
+  const [flash, setFlash] = useState<string | null>(null);
+
+  const handleAction = async (businessId: string, action: 'approve' | 'reject') => {
+    setBusy(businessId);
+    setFlash(null);
+    try {
+      const res = await fetch('/api/v1/admin/claims', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ business_id: businessId, action }),
+      });
+      const data = await res.json();
+      setFlash(data.message || data.error || 'Completed');
+      // Reload so the queue reflects the new state.
+      window.location.reload();
+    } catch {
+      setFlash(isAr ? 'تعذّر تنفيذ الإجراء' : 'Action failed');
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  return (
+    <div>
+      {/* Flash */}
+      {flash && (
+        <div
+          className="privacy-shield"
+          style={{ borderLeftColor: 'var(--color-emerald)', background: 'linear-gradient(135deg, #f0faf5, #e3f2ea)' }}
+        >
+          <ShieldCheck size={22} className="privacy-shield-icon" style={{ color: 'var(--color-emerald)' }} />
+          <div className="privacy-shield-body">
+            <h4 style={{ color: 'var(--color-emerald)' }}>{isAr ? 'تم تنفيذ الإجراء' : 'Action completed'}</h4>
+            <p>{flash}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Tabs */}
+      <div className="admin-tabs">
+        <Link href={`/${locale}/admin/inquiries`} className="admin-tab">
+          {isAr ? `الطلبات (${inquiryCount})` : `Inquiries (${inquiryCount})`}
+        </Link>
+        <button
+          className={`admin-tab ${tab === 'claims' ? 'active' : ''}`}
+          onClick={() => setTab('claims')}
+        >
+          {isAr ? `طلبات التوثيق (${claims.length})` : `Profile Claims (${claims.length})`}
+        </button>
+        <button
+          className={`admin-tab ${tab === 'membership' ? 'active' : ''}`}
+          onClick={() => setTab('membership')}
+        >
+          {isAr ? `العضويات (${memberships.length})` : `Memberships (${memberships.length})`}
+        </button>
+      </div>
+
+      {/* CLAIMS QUEUE */}
+      {tab === 'claims' && (
+        <div className="stack-4">
+          {claims.length === 0 && (
+            <div className="card-frame text-center" style={{ padding: 48 }}>
+              <h3 className="h3">{isAr ? 'لا توجد طلبات توثيق' : 'No claims in the queue'}</h3>
+              <p className="lede" style={{ marginTop: 8 }}>
+                {isAr
+                  ? 'كل الملفات مملوكة وموثقة حالياً.'
+                  : 'Every profile is currently claimed and verified.'}
+              </p>
+            </div>
+          )}
+
+          {claims.map((c) => (
+            <div key={c.id} className="admin-row">
+              <div style={{ flex: 1, minWidth: 240 }}>
+                <div className="cluster" style={{ gap: 8, marginBottom: 8 }}>
+                  <span className={`badge ${c.is_claimed ? 'badge-emerald' : 'badge-crimson'}`}>
+                    {c.is_claimed ? (isAr ? 'موثّق' : 'Claimed') : (isAr ? 'غير موثّق' : 'Unclaimed')}
+                  </span>
+                  {c.has_active_membership && (
+                    <span className="badge badge-gold">
+                      <Star size={10} />
+                      {isAr ? 'عضوية نشطة' : 'Active membership'}
+                    </span>
+                  )}
+                  {c.contact_unlocked && (
+                    <span className="badge badge-charcoal">
+                      {isAr ? 'الاتصال مفتوح' : 'Contact unlocked'}
+                    </span>
+                  )}
+                </div>
+                <h3 className="admin-row-title">
+                  <Link href={`/${locale}/directory/${c.slug}`}>{c.name}</Link>
+                </h3>
+                <p className="admin-row-meta">
+                  {c.category || 'Producer'} · {c.city ? `${c.city}, ` : ''}{c.country_name}
+                  {c.established_year ? ` · Est. ${c.established_year}` : ''}
+                </p>
+              </div>
+
+              <div className="admin-actions">
+                {!c.is_claimed ? (
+                  <button
+                    onClick={() => handleAction(c.id, 'approve')}
+                    disabled={busy === c.id}
+                    className="btn btn-emerald btn-sm"
+                  >
+                    <CheckCircle2 size={14} />
+                    {isAr ? 'اعتماد' : 'Approve'}
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleAction(c.id, 'reject')}
+                    disabled={busy === c.id}
+                    className="btn btn-outline btn-sm"
+                  >
+                    <XCircle size={14} />
+                    {isAr ? 'سحب التوثيق' : 'Revoke claim'}
+                  </button>
+                )}
+                <Link href={`/${locale}/directory/${c.slug}`} className="btn btn-ghost btn-sm">
+                  {isAr ? 'عرض' : 'View'}
+                  <ArrowRight size={13} />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* MEMBERSHIP QUEUE */}
+      {tab === 'membership' && (
+        <div className="stack-4">
+          {memberships.length === 0 && (
+            <div className="card-frame text-center" style={{ padding: 48 }}>
+              <h3 className="h3">{isAr ? 'لا توجد عضويات' : 'No memberships yet'}</h3>
+            </div>
+          )}
+
+          {memberships.map((m) => (
+            <div key={m.id} className="admin-row">
+              <div style={{ flex: 1, minWidth: 240 }}>
+                <div className="cluster" style={{ gap: 8, marginBottom: 8 }}>
+                  <span className={`badge ${m.has_active_membership ? 'badge-gold' : 'badge-locked'}`}>
+                    <Users size={10} />
+                    {m.has_active_membership ? (isAr ? 'عضوية سنوية نشطة' : 'Annual membership active') : (isAr ? 'غير مشترك' : 'Not subscribed')}
+                  </span>
+                  {m.contact_unlocked && (
+                    <span className="badge badge-charcoal">
+                      {isAr ? 'الاتصال مفتوح' : 'Contact unlocked'}
+                    </span>
+                  )}
+                </div>
+                <h3 className="admin-row-title">
+                  <Link href={`/${locale}/directory/${m.slug}`}>{m.name}</Link>
+                </h3>
+                <p className="admin-row-meta">{m.country_name}</p>
+              </div>
+
+              <div className="admin-actions">
+                <Link
+                  href={`/${locale}/membership?success=${encodeURIComponent(m.slug)}`}
+                  className="btn btn-outline btn-sm"
+                >
+                  {isAr ? 'إدارة العضوية' : 'Manage membership'}
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

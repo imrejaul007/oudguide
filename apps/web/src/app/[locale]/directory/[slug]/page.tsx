@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { domain } from '@/lib/data';
-import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe } from 'lucide-react';
-import { BookmarkButton, ShareButton } from '@/components/business/interactive-tools';
+import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe, Clock } from 'lucide-react';
+import { BookmarkButton, ShareButton, ViewTracker } from '@/components/business/interactive-tools';
+import { ProfileFaq } from '@/components/business/profile-faq';
+import { getAvailabilityStatus, DEFAULT_WORKING_HOURS } from '@/lib/format';
 
 const producerCovers: Record<string, string> = {
   'al-mutalib-perfumes': '/images/hero-attar-still.svg',
@@ -27,9 +29,14 @@ export default async function BusinessProfilePage({
   const allBusinesses = domain.listBusinesses();
   const similar = allBusinesses.filter((b) => b.slug !== slug).slice(0, 4);
 
+  // Live distillery availability — the OudGuide analogue of IndexOrbit's
+  // "Open · Closes in 2h 15m" retail status.
+  const availability = getAvailabilityStatus(DEFAULT_WORKING_HOURS);
+
   return (
     <div className="section">
       <div className="container" style={{ maxWidth: 1080 }}>
+        <ViewTracker slug={slug} />
         {/* BREADCRUMB */}
         <nav className="cluster" style={{ justifyContent: 'space-between', marginBottom: 28 }}>
           <div style={{ fontSize: '0.88rem', color: 'var(--color-text-muted)' }}>
@@ -97,6 +104,18 @@ export default async function BusinessProfilePage({
               )}
               {biz.has_active_membership && (
                 <span className="badge badge-charcoal">{isAr ? 'عضوية نشطة' : 'Active Membership'}</span>
+              )}
+              {availability.label && (
+                <span
+                  className="status-line"
+                  style={{ color: availability.label === 'Open' ? '#2d9e6b' : '#c78b2a' }}
+                >
+                  <span className={`status-dot status-dot-${availability.label === 'Open' ? 'open' : 'closed'}`} />
+                  <Clock size={12} />
+                  {isAr
+                    ? (availability.label === 'Open' ? 'المعمل مفتوح' : 'المعطل مغلق')
+                    : (availability.label === 'Open' ? 'Distillery open' : 'Distillery closed')}
+                </span>
               )}
             </div>
             <div className="cluster" style={{ gap: 8 }}>
@@ -180,6 +199,41 @@ export default async function BusinessProfilePage({
             )}
           </aside>
         </div>
+
+        {/* SOURCING FAQ */}
+        <ProfileFaq
+          locale={locale}
+          items={[
+            {
+              question: isAr ? 'كيف أتحقق من مصداقية هذا المورد؟' : 'How do I verify this producer’s provenance?',
+              answer: isAr
+                ? 'كل مورد في الدليل يُوثَّق عبر زيارات ميدانية ومقابلات ومراجعة وثائق المنشأ من الإدارات الحرجية الوطنية. مدخل "الأقاليم الموثقة" أعلاه يسرد الأقاليم التي زارها فريقنا الميداني directly.'
+                : 'Every producer in the directory is documented through field visits, distiller interviews, and origin document cross-checks against national forestry registries. The "Verified Terroirs" panel above lists the origins our field team has visited directly.',
+            },
+            {
+              question: isAr ? 'لماذا لا تظهر بيانات الاتصال مباشرة؟' : 'Why are contact details not shown directly?',
+              answer: isAr
+                ? 'سياسة حماية البيانات في OudGuide (QA-007) تحجب أرقام الهواتف والبريد الإلكتروني وعناوين الشوارع في جميع الملفات الأساسية. تظهر البيانات الكاملة فقط لمورد عضو سنوي معتمد، وبعد موافقتك الصريحة عليه بالاسم والتحقق عبر OTP.'
+                : 'OudGuide’s contact-projection policy (QA-007) strips phone, email, and street address from every basic profile. Full contact details appear only for an annual member, and only after you explicitly approve them by name following OTP verification.',
+            },
+            {
+              question: isAr ? 'كيف أطلب عينة؟' : 'How do I request a sample?',
+              answer: isAr
+                ? 'أرسل طلب توريد عبر نموذج RFQ المحايد مع تفعيل خيار العينات. سيصل المورد الموثّق موجزاً فنياً مشفراً دون أي بيانات تعريفية عنك، وتتم الموافقة على الاتصال في ثلاث خطوات منفصلة.'
+                : 'Submit a wholesale RFQ with the samples option enabled. The matched producer receives a redacted technical brief containing no buyer identifying data, and contact introduction requires three separate approvals.',
+            },
+            {
+              question: isAr ? 'ما الحد الأدنى للطلب؟' : 'What is the minimum order quantity?',
+              answer: biz.minimum_order_quantity
+                ? isAr
+                  ? `الحد الأدنى المعلن لهذا المورد هو ${biz.minimum_order_quantity}. يمكن تجاوزه في الطلبات الأولى التي تتضمن عينات فحوص مخبرية.`
+                  : `The stated minimum for this producer is ${biz.minimum_order_quantity}. It can be waived on first orders that include laboratory sample testing.`
+                : (isAr
+                  ? 'يتم تحديد الحد الأدنى لكل مورد. يُنصح بطلب تسعير عبر نموذج RFQ للحصول على المتطلبات الدقيقة.'
+                  : 'Minimum order quantities are set per producer. Request a quote through the RFQ form for exact requirements.'),
+            },
+          ]}
+        />
 
         {/* SIMILAR VERIFIED DISTILLERS */}
         {similar.length > 0 && (

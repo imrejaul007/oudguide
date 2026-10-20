@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { domain } from '@/lib/data';
-import { BusinessCard } from '@/components/business/business-card';
-import { Compass, Filter, MapPin, ShieldCheck } from 'lucide-react';
+import { DirectoryBrowser } from '@/components/business/directory-browser';
+import { Compass, ShieldCheck, Map as MapIcon, Sparkles } from 'lucide-react';
 
 export default async function DirectoryPage({
   params,
@@ -14,16 +14,12 @@ export default async function DirectoryPage({
   const { country, role, search } = await searchParams;
   const isAr = locale === 'ar';
 
-  const businesses = domain.listBusinesses({
-    country_id: country,
-    role: role,
-    search: search,
-  });
+  const businesses = domain.listBusinesses();
 
   return (
     <div className="section">
-      {/* MASTHEAD */}
       <div className="container">
+        {/* MASTHEAD */}
         <section className="hero" style={{ padding: 'clamp(48px, 6vw, 80px) clamp(24px, 4vw, 56px)' }}>
           <div className="hero-content" style={{ textAlign: 'left', maxWidth: 920, margin: 0 }}>
             <div className="hero-tag">
@@ -43,7 +39,19 @@ export default async function DirectoryPage({
                 ? 'اكتشف المقطرين الحرفيين والمزارع المستدامة في أسام، تايلاند، كمبوديا، وإندونيسيا. تطبق المنصة سياسة حجب الاتصال الصارمة للملفات الأساسية لمنع الرسائل غير المرغوبة والجمع الآلي للبيانات.'
                 : 'Independent discovery of traditional distillers and certified plantations. Direct phone, email, and address records remain hidden on basic profiles to protect producers from automated scraping and spam.'}
             </p>
-            <div className="privacy-shield">
+
+            <div className="cluster" style={{ marginTop: 24, gap: 10 }}>
+              <Link href={`/${locale}/directory/map`} className="btn btn-gold btn-sm">
+                <MapIcon size={14} />
+                {isAr ? 'خريطة المنتجين' : 'Producer Map'}
+              </Link>
+              <Link href={`/${locale}/sourcing`} className="btn btn-outline btn-sm">
+                <Sparkles size={14} />
+                {isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}
+              </Link>
+            </div>
+
+            <div className="privacy-shield" style={{ marginTop: 28 }}>
               <ShieldCheck size={24} className="privacy-shield-icon" />
               <div className="privacy-shield-body">
                 <h4>{isAr ? 'سياسة حجب الاتصال التلقائية' : 'Automatic Contact Redaction Policy'}</h4>
@@ -56,50 +64,17 @@ export default async function DirectoryPage({
             </div>
           </div>
         </section>
-      </div>
 
-      {/* RESULTS GRID */}
-      <div className="container" style={{ marginTop: 56 }}>
-        <div className="row-between" style={{ marginBottom: 28 }}>
-          <div className="cluster">
-            <span className="badge badge-gold">
-              <Filter size={11} />
-              {businesses.length} {isAr ? 'مورد' : 'Producers'}
-            </span>
-            {search && (
-              <span className="badge badge-locked">{isAr ? `بحث: ${search}` : `Search: ${search}`}</span>
-            )}
-            {country && (
-              <span className="badge badge-locked">
-                <MapPin size={11} />
-                {country}
-              </span>
-            )}
-          </div>
-          <Link href={`/${locale}/world`} className="btn btn-outline btn-sm">
-            {isAr ? '← خريطة الأقاليم' : '← Origins Map'}
-          </Link>
+        {/* RESULTS */}
+        <div style={{ marginTop: 56 }}>
+          <DirectoryBrowser
+            businesses={businesses as any}
+            locale={locale}
+            isAr={isAr}
+            initialSearch={search ?? ''}
+            initialCountry={country ?? ''}
+          />
         </div>
-
-        {businesses.length === 0 ? (
-          <div className="card-frame text-center" style={{ padding: 56 }}>
-            <h3 className="h3">{isAr ? 'لا توجد نتائج' : 'No matching producers'}</h3>
-            <p className="lede" style={{ marginBottom: 24 }}>
-              {isAr
-                ? 'جرب توسيع معايير البحث أو استكشف الدليل الكامل.'
-                : 'Try widening your search criteria or browse the full directory.'}
-            </p>
-            <Link href={`/${locale}/directory`} className="btn btn-gold">
-              {isAr ? 'إعادة تعيين البحث' : 'Reset Search'}
-            </Link>
-          </div>
-        ) : (
-          <div className="grid-3">
-            {businesses.map((biz) => (
-              <BusinessCard key={biz.id} business={biz} locale={locale} />
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );

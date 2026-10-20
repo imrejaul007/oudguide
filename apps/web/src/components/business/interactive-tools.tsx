@@ -7,9 +7,10 @@ interface BookmarkButtonProps {
   slug: string;
   locale?: string;
   label?: string;
+  variant?: 'pill' | 'floating';
 }
 
-export function BookmarkButton({ slug, locale, label }: BookmarkButtonProps) {
+export function BookmarkButton({ slug, locale, label, variant = 'pill' }: BookmarkButtonProps) {
   const [bookmarked, setBookmarked] = useState(false);
   const isAr = locale === 'ar';
 
@@ -20,10 +21,12 @@ export function BookmarkButton({ slug, locale, label }: BookmarkButtonProps) {
     } catch {}
   }, [slug]);
 
-  const toggleBookmark = () => {
+  const toggleBookmark = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     try {
       const saved = JSON.parse(localStorage.getItem('oudguide_shortlist') || '[]');
-      let updated;
+      let updated: string[];
       if (saved.includes(slug)) {
         updated = saved.filter((s: string) => s !== slug);
         setBookmarked(false);
@@ -35,13 +38,28 @@ export function BookmarkButton({ slug, locale, label }: BookmarkButtonProps) {
     } catch {}
   };
 
+  if (variant === 'floating') {
+    return (
+      <button
+        type="button"
+        onClick={toggleBookmark}
+        className={`floating-bookmark ${bookmarked ? 'saved' : ''}`}
+        title={bookmarked ? (isAr ? 'محفوظ في القائمة' : 'Saved in shortlist') : (isAr ? 'حفظ في القائمة' : 'Save supplier')}
+        aria-label="Bookmark"
+        aria-pressed={bookmarked}
+      >
+        <Bookmark size={15} fill={bookmarked ? 'currentColor' : 'none'} />
+      </button>
+    );
+  }
+
   return (
     <button
       type="button"
       onClick={toggleBookmark}
       className={`icon-tool ${bookmarked ? 'active' : ''}`}
-      title={bookmarked ? 'Saved' : 'Save supplier'}
-      aria-label="Bookmark"
+      title={bookmarked ? (isAr ? 'محفوظ' : 'Saved') : (isAr ? 'حفظ' : 'Save')}
+      aria-pressed={bookmarked}
     >
       <Bookmark size={13} fill={bookmarked ? 'currentColor' : 'none'} />
       <span>{bookmarked ? (isAr ? 'محفوظ' : 'Saved') : (label || (isAr ? 'حفظ' : 'Save'))}</span>
@@ -59,7 +77,9 @@ export function ShareButton({ title, locale, url }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
   const isAr = locale === 'ar';
 
-  const handleShare = async () => {
+  const handleShare = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     const targetUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
@@ -79,11 +99,36 @@ export function ShareButton({ title, locale, url }: ShareButtonProps) {
       type="button"
       onClick={handleShare}
       className={`icon-tool ${copied ? 'active' : ''}`}
-      title="Share profile"
+      title={isAr ? 'مشاركة الملف' : 'Share profile'}
       aria-label="Share"
     >
       {copied ? <Check size={13} /> : <Share2 size={13} />}
       <span>{copied ? (isAr ? 'تم النسخ!' : 'Link Copied!') : (isAr ? 'مشاركة' : 'Share')}</span>
     </button>
   );
+}
+
+/**
+ * Fire-and-forget profile view tracker.
+ *
+ * Pattern ported from IndexOrbit's `view-tracker.tsx`. Renders nothing;
+ * it records a page view for analytics without blocking render.
+ */
+export function ViewTracker({ slug, endpoint }: { slug: string; endpoint?: string }) {
+  useEffect(() => {
+    const track = async () => {
+      try {
+        await fetch(endpoint || `/api/v1/directory/businesses/${slug}/view`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug }),
+        });
+      } catch {
+        // Analytics must never surface an error to the visitor.
+      }
+    };
+    track();
+  }, [slug, endpoint]);
+
+  return null;
 }

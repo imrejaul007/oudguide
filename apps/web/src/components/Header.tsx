@@ -1,13 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X, ChevronDown, Clock, MapPin, Compass, BookOpen, Crown } from 'lucide-react';
+import { getNavGroups, getPrimaryNav, siteSettings } from '@/lib/constants';
 
 interface HeaderProps {
   locale: string;
 }
+
+const groupIcons: Record<string, typeof Compass> = {
+  book: BookOpen,
+  compass: Compass,
+  crown: Crown,
+};
 
 export function Header({ locale }: HeaderProps) {
   const router = useRouter();
@@ -18,6 +25,13 @@ export function Header({ locale }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const navGroups = getNavGroups(locale);
+  const primaryNav = getPrimaryNav(locale);
+  const popularSearches = isAr ? siteSettings.popularSearchesAr : siteSettings.popularSearches;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -25,34 +39,51 @@ export function Header({ locale }: HeaderProps) {
         e.preventDefault();
         setIsSearchOpen((prev) => !prev);
       }
+      if (e.key === 'Escape') {
+        setIsSearchOpen(false);
+        setOpenGroup(null);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('oudguide_recent_searches');
+      if (saved) setRecentSearches(JSON.parse(saved));
+    } catch {}
+  }, []);
+
   const handleSearchSubmit = (query: string) => {
+    const trimmed = query.trim();
+    if (!trimmed) return;
+    const next = [trimmed, ...recentSearches.filter((s) => s !== trimmed)].slice(0, 5);
+    setRecentSearches(next);
+    try {
+      localStorage.setItem('oudguide_recent_searches', JSON.stringify(next));
+    } catch {}
     setIsSearchOpen(false);
     setIsMenuOpen(false);
-    if (query.trim()) {
-      router.push(`/${locale}/directory?search=${encodeURIComponent(query)}`);
-    }
+    router.push(`/${locale}/directory?search=${encodeURIComponent(trimmed)}`);
   };
 
-  const navItems = [
-    { href: `/${locale}/guides`, label: isAr ? 'الموسوعة' : 'Encyclopedia' },
-    { href: `/${locale}/directory`, label: isAr ? 'الدليل' : 'Directory' },
-    { href: `/${locale}/world`, label: isAr ? 'خريطة الأقاليم' : 'Origins Map' },
-    { href: `/${locale}/for-businesses`, label: isAr ? 'لأصحاب الأعمال' : 'For Distillers' },
-    { href: `/${locale}/partners/opportunities`, label: isAr ? 'بوابة الشركاء' : 'Partner Portal' },
-  ];
+  const clearRecent = () => {
+    setRecentSearches([]);
+    try {
+      localStorage.removeItem('oudguide_recent_searches');
+    } catch {}
+  };
 
-  const quickLinks = [
-    { label: isAr ? 'خشب عود غطاس' : 'Sinking-Grade Agarwood', query: 'wood', icon: '🪵' },
-    { label: isAr ? 'دهن عود هندي معتق' : 'Aged Assam Oud Oil', query: 'Assam', icon: '🧪' },
-    { label: isAr ? 'عود كوه كونغ كمبودي' : 'Cambodian Koh Kong', query: 'Cambodia', icon: '🇰🇭' },
-    { label: isAr ? 'عود ترات تايلاندي' : 'Trat Sweet Distillation', query: 'Trat', icon: '🇹🇭' },
-    { label: isAr ? 'عطور شرقية' : 'Traditional Sandalwood Attars', query: 'Attar', icon: '🪔' },
-  ];
+  const handleGroupEnter = (key: string) => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    setOpenGroup(key);
+  };
+
+  const handleGroupLeave = () => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    hoverTimeout.current = setTimeout(() => setOpenGroup(null), 160);
+  };
 
   return (
     <>
@@ -70,15 +101,12 @@ export function Header({ locale }: HeaderProps) {
       {/* 2. Sticky glass nav */}
       <header className="site-header">
         <div className="container site-header-row">
-          {/* Brand */}
           <Link href={`/${locale}`} className="brand" aria-label="OudGuide home">
             <div className="brand-mark">
               <img
                 src="/logo.png"
                 alt="OudGuide"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
               />
             </div>
             <div className="brand-text">
@@ -89,11 +117,55 @@ export function Header({ locale }: HeaderProps) {
             </div>
           </Link>
 
-          {/* Primary nav (desktop) */}
+          {/* Primary nav with mega menu (IndexOrbit pattern) */}
           <nav className="primary-nav hidden-mobile">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>{item.label}</Link>
-            ))}
+            {primaryNav.map((item) => {
+              const group = item.groupKey ? navGroups.find((g) => g.key === item.groupKey) : undefined;
+              if (!group) {
+                return (
+                  <Link key={item.href} href={item.href}>{item.label}</Link>
+                );
+              }
+              const Icon = groupIcons[group.icon] ?? Compass;
+              const isOpen = openGroup === group.key;
+              return (
+                <div
+                  key={item.href}
+                  className={`nav-group ${isOpen ? 'open' : ''}`}
+                  onMouseEnter={() => handleGroupEnter(group.key)}
+                  onMouseLeave={handleGroupLeave}
+                >
+                  <Link href={item.href} className="nav-group-trigger">
+                    <Icon size={14} style={{ color: 'var(--color-gold-dark)' }} />
+                    {item.label}
+                    <ChevronDown size={13} style={{ opacity: 0.6 }} />
+                  </Link>
+
+                  {isOpen && (
+                    <div className="mega-menu" onMouseEnter={() => handleGroupEnter(group.key)}>
+                      <div className="mega-menu-grid">
+                        {group.columns.map((col) => (
+                          <Link key={col.href + col.label} href={col.href} className="mega-menu-item">
+                            <span className="mega-menu-item-label">{isAr ? col.labelAr : col.label}</span>
+                            <span className="mega-menu-item-desc">
+                              {isAr ? col.descriptionAr : col.description}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="mega-menu-footer">
+                        <Link href={`/${locale}/guides`} className="btn-link" style={{ fontSize: '0.85rem' }}>
+                          {isAr ? 'تصفح كل الأدلة' : 'Browse the full encyclopedia'}
+                        </Link>
+                        <Link href={`/${locale}/directory`} className="display-serif" style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
+                          {isAr ? 'دليل المنتجين ←' : 'Producer directory →'}
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
           {/* CTA cluster */}
@@ -131,11 +203,17 @@ export function Header({ locale }: HeaderProps) {
         {/* Mobile drawer */}
         {isMenuOpen && (
           <div className="mobile-drawer">
-            {navItems.map((item) => (
+            {primaryNav.map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setIsMenuOpen(false)}>
                 {item.label}
               </Link>
             ))}
+            <Link href={`/${locale}/sourcing`} onClick={() => setIsMenuOpen(false)}>
+              ✦ {isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}
+            </Link>
+            <Link href={`/${locale}/directory/map`} onClick={() => setIsMenuOpen(false)}>
+              🗺 {isAr ? 'خريطة المنتجين' : 'Producer Map'}
+            </Link>
             <div className="cluster" style={{ marginTop: 16, borderTop: '1px solid var(--color-border)', paddingTop: 16 }}>
               <Link href={`/${otherLocale}`} className="btn btn-outline btn-sm">{otherLocaleLabel}</Link>
               <Link href={`/${locale}/rfq`} className="btn btn-gold btn-sm">{isAr ? 'طلب توريد' : 'Start RFQ'}</Link>
@@ -144,23 +222,23 @@ export function Header({ locale }: HeaderProps) {
         )}
       </header>
 
-      {/* 3. Mihrab search modal */}
+      {/* 3. Mihrab search modal with recent searches (IndexOrbit pattern) */}
       {isSearchOpen && (
         <div className="mihrab-modal" onClick={() => setIsSearchOpen(false)}>
           <div className="mihrab-modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="mihrab-modal-header">
               <div className="cluster" style={{ gap: 14 }}>
-                <Search size={20} style={{ color: 'var(--color-gold-dark)' }} />
+                <Search size={20} style={{ color: 'var(--color-gold-dark)', flexShrink: 0 }} />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' && searchQuery.trim()) {
-                      handleSearchSubmit(searchQuery);
-                    }
+                    if (e.key === 'Enter') handleSearchSubmit(searchQuery);
                   }}
-                  placeholder={isAr ? 'ابحث عن المقطرين، الأقاليم، الأخشاب...' : 'Search distillers, terroirs, wood grades...'}
+                  placeholder={isAr
+                    ? 'ابحث عن المقطرين، الأقاليم، الأخشاب، أو الأدلة...'
+                    : 'Search distillers, terroirs, wood grades, guides...'}
                   className="form-input"
                   style={{ border: 'none', padding: 0, fontSize: '1.1rem', background: 'transparent' }}
                   autoFocus
@@ -172,23 +250,47 @@ export function Header({ locale }: HeaderProps) {
             </div>
 
             <div className="mihrab-modal-body">
-              <div style={{ marginBottom: 24 }}>
-                <span className="eyebrow" style={{ marginBottom: 12, display: 'block' }}>
-                  {isAr ? 'عمليات بحث شائعة' : 'Popular Sourcing Searches'}
-                </span>
-                <div className="search-pills">
-                  {quickLinks.map((item, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleSearchSubmit(item.query)}
-                      className="search-pill"
-                    >
-                      <span>{item.icon}</span>
-                      <span>{item.label}</span>
+              {/* Recent searches */}
+              {recentSearches.length > 0 && !searchQuery && (
+                <div style={{ marginBottom: 24 }}>
+                  <div className="row-between" style={{ marginBottom: 10 }}>
+                    <span className="eyebrow">{isAr ? 'عمليات بحث سابقة' : 'Recent Searches'}</span>
+                    <button onClick={clearRecent} className="btn-link" style={{ fontSize: '0.8rem' }}>
+                      {isAr ? 'مسح' : 'Clear'}
                     </button>
-                  ))}
+                  </div>
+                  <div className="stack-2">
+                    {recentSearches.map((search, i) => (
+                      <button
+                        key={i}
+                        onClick={() => handleSearchSubmit(search)}
+                        className="search-pill"
+                        style={{ width: '100%', textAlign: 'start' }}
+                      >
+                        <Clock size={13} style={{ color: 'var(--color-text-soft)' }} />
+                        <span>{search}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Popular searches */}
+              {!searchQuery && (
+                <div style={{ marginBottom: 24 }}>
+                  <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
+                    {isAr ? 'عمليات بحث شائعة' : 'Popular Sourcing Searches'}
+                  </span>
+                  <div className="search-pills">
+                    {popularSearches.map((query, idx) => (
+                      <button key={idx} onClick={() => handleSearchSubmit(query)} className="search-pill">
+                        <MapPin size={13} style={{ color: 'var(--color-text-soft)' }} />
+                        <span>{query}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div className="privacy-shield">
                 <div className="privacy-shield-icon" style={{ fontSize: 24 }}>✦</div>

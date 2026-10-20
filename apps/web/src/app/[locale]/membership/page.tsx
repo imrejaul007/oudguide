@@ -42,7 +42,7 @@ export default async function MembershipCheckoutPage({
             <CheckCircle2 size={28} className="privacy-shield-icon" style={{ color: 'var(--color-emerald)' }} />
             <div className="privacy-shield-body">
               <h4 style={{ color: 'var(--color-emerald)' }}>
-                {isAr ? 'ت�� تفعيل العضوية السنوية بنجاح!' : 'Annual Membership Activated!'}
+                {isAr ? 'تم تفعيل العضوية السنوية بنجاح!' : 'Annual Membership Activated!'}
               </h4>
               <p>
                 {isAr

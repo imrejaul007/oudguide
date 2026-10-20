@@ -58,7 +58,7 @@ export default async function PrivacyPage({
         <div className="grid-2" style={{ marginTop: 40, gap: 28 }}>
           <article className="card-frame" style={{ padding: 36 }}>
             <span className="eyebrow eyebrow-crimson" style={{ display: 'block', marginBottom: 8 }}>{isAr ? 'الحقوق' : 'Your Rights'}</span>
-            <h2 className="h3 text-crimson" style={{ marginBottom: 16 }}>{isAr ? 'حقوقك الق��نونية' : 'Your Privacy Rights'}</h2>
+            <h2 className="h3 text-crimson" style={{ marginBottom: 16 }}>{isAr ? 'حقوقك القانونية' : 'Your Privacy Rights'}</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }} className="stack-4">
               {rights.map((r, i) => (
                 <li key={i}>
