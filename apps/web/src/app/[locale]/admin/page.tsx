@@ -40,17 +40,17 @@ export default async function AdminPage({
     <div className="section">
       <div className="container" style={{ maxWidth: 1080 }}>
         {/* HERO */}
-        <section className="hero" style={{ padding: 'clamp(32px, 4vw, 48px) clamp(24px, 4vw, 44px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 800 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <ShieldCheck size={13} />
               <span>{isAr ? 'مساحة المشغّل' : 'Operator Workspace'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.6rem, 3.2vw, 2.4rem)' }}>
+            <h1>
               {isAr ? 'لوحة إدارة دليل العود' : 'OudGuide Operator Dashboard'}
               <span className="accent">{isAr ? 'التوثيق · العضويات · الطلبات' : 'Claims · Memberships · Inquiries'}</span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'مساحة المشغّل لمراجعة طلبات التوثيق، وإدارة العضويات السنوية، ومراجعة طلبات التوريد الصادرة. كل عمليات التعديل تستدعي سياسة canRelease الفاشلة-الإغلاق نفسها المستخدمة في الإنتاج.'
                 : 'The operator workspace for reviewing ownership claims, managing annual memberships, and auditing outbound sourcing inquiries. Every mutation calls the same fail-closed lead policy used in production.'}

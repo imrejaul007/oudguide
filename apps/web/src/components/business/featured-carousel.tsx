@@ -88,7 +88,7 @@ export function FeaturedCarousel({
         <div className="row-between" style={{ marginBottom: 28 }}>
           <div>
             <div style={{ marginBottom: 8 }}>
-              <span className="badge badge-gold">
+              <span className="badge badge-emerald">
                 <Award size={11} />
                 {isAr ? 'شبكة المنتجين المعتمدين' : 'Verified Producer Network'}
               </span>

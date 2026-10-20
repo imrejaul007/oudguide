@@ -27,13 +27,13 @@ export default async function ForBusinessesPage({
     <div className="section">
       <div className="container" style={{ maxWidth: 1100 }}>
         {/* HERO */}
-        <section className="hero" style={{ padding: 'clamp(40px, 6vw, 72px) clamp(24px, 4vw, 56px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 820 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <Building2 size={13} />
               <span>{isAr ? 'منظومة المنتجين والمقطرين' : 'Distiller & Producer Commercial System'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.9rem, 4vw, 3rem)' }}>
+            <h1>
               {isAr
                 ? 'خدمات دليل العود لشركات التقطير'
                 : 'Grow Your Wholesale Reach with Institutional Perfumers'}
@@ -43,7 +43,7 @@ export default async function ForBusinessesPage({
                   : 'Free ownership claim or annual gold membership.'}
               </span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'احصل على ظهور تجاري دولي وتواصل مع المشترين ومصممي العطور في الخليج وأوروبا. اختر بين توثيق ملفك الأساسي مجاناً أو تفعيل العضوية السنوية لإتاحة بيانات الاتصال.'
                 : 'Establish international provenance, receive qualified buyer match briefs, and publish verified laboratory testing.'}

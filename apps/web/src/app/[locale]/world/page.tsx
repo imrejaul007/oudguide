@@ -42,17 +42,17 @@ export default async function WorldExplorerPage({
     <div className="section">
       <div className="container" style={{ maxWidth: 1180 }}>
         {/* HERO */}
-        <section className="hero" style={{ padding: 'clamp(40px, 6vw, 72px) clamp(24px, 4vw, 56px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 820 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <span>🌍</span>
               <span>{isAr ? 'السجل الجغرافي العالمي الشامل' : 'Global Geographic & Botanical Registry'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.9rem, 4vw, 3rem)' }}>
+            <h1>
               {isAr ? 'خريطة دول ومناطق العود العالمية' : 'The Global Geography of Natural Agarwood & Fragrance'}
               <span className="accent">{isAr ? '249 دولة وإقليم موثق.' : '249 documented countries and territories.'}</span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'دليل استكشافي شامل يغطي 249 دولة وإقليماً، يفصل بين بيئات الغابات المنتجة والمراكز التجارية وأسواق الاستهلاك الدولية.'
                 : 'Comprehensive territorial directory precisely categorizing indigenous producing terroirs from international trading and consumer souks.'}

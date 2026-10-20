@@ -53,19 +53,19 @@ export default async function ProducerMapPage({
     <div className="section">
       <div className="container">
         {/* HERO */}
-        <section className="hero" style={{ padding: 'clamp(36px, 5vw, 56px) clamp(24px, 4vw, 48px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 820 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <MapIcon size={13} />
               <span>{isAr ? 'خريطة جغرافية' : 'Geographic Distribution'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)' }}>
+            <h1>
               {isAr ? 'خريطة منتجي العود حول العالم' : 'The Global Map of Oud Producers'}
               <span className="accent">
                 {isAr ? `${producerRegions.length} إقليماً منتجاً · ${marketRegions.length} مركزاً تجارياً` : `${producerRegions.length} producing terroirs · ${marketRegions.length} trading hubs`}
               </span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'تعرض الخريطة الأقاليم المنتجة ومراكز التجارة الموثقة عبر 249 دولة. الإحداثيات على مستوى الإقليم عمداً، حفاظاً على خصوصية مواقع المنشآت.'
                 : 'The map plots documented producing terroirs and trading hubs across 249 countries. Coordinates are deliberately region-level to preserve the privacy of individual facilities.'}

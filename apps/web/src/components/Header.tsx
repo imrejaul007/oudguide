@@ -87,7 +87,7 @@ export function Header({ locale }: HeaderProps) {
 
   return (
     <>
-      {/* 1. Saffron ribbon */}
+      {/* 1. Green ribbon — the one dark band above the header */}
       <div className="ribbon">
         <div className="container ribbon-inner">
           <span className="ribbon-item">🌿 {isAr ? 'مرجع سايتس (CITES Appendix II)' : 'CITES Appendix II Verified'}</span>
@@ -98,7 +98,7 @@ export function Header({ locale }: HeaderProps) {
         </div>
       </div>
 
-      {/* 2. Sticky glass nav */}
+      {/* 2. Sticky white nav */}
       <header className="site-header">
         <div className="container site-header-row">
           <Link href={`/${locale}`} className="brand" aria-label="OudGuide home">
@@ -112,19 +112,17 @@ export function Header({ locale }: HeaderProps) {
             <div className="brand-text">
               <div className="brand-name">OudGuide</div>
               <div className="brand-tagline">
-                {isAr ? 'دَلِيلُ العُود' : 'Heritage & Wholesale Reference'}
+                {isAr ? 'دَلِيلُ العُود' : 'Heritage & Wholesale'}
               </div>
             </div>
           </Link>
 
-          {/* Primary nav with mega menu (IndexOrbit pattern) */}
+          {/* Primary nav with mega menu */}
           <nav className="primary-nav hidden-mobile">
             {primaryNav.map((item) => {
               const group = item.groupKey ? navGroups.find((g) => g.key === item.groupKey) : undefined;
               if (!group) {
-                return (
-                  <Link key={item.href} href={item.href}>{item.label}</Link>
-                );
+                return <Link key={item.href} href={item.href}>{item.label}</Link>;
               }
               const Icon = groupIcons[group.icon] ?? Compass;
               const isOpen = openGroup === group.key;
@@ -136,9 +134,9 @@ export function Header({ locale }: HeaderProps) {
                   onMouseLeave={handleGroupLeave}
                 >
                   <Link href={item.href} className="nav-group-trigger">
-                    <Icon size={14} style={{ color: 'var(--color-gold-dark)' }} />
+                    <Icon size={14} style={{ color: 'var(--green-600)' }} />
                     {item.label}
-                    <ChevronDown size={13} style={{ opacity: 0.6 }} />
+                    <ChevronDown size={12} style={{ opacity: 0.55 }} />
                   </Link>
 
                   {isOpen && (
@@ -154,10 +152,10 @@ export function Header({ locale }: HeaderProps) {
                         ))}
                       </div>
                       <div className="mega-menu-footer">
-                        <Link href={`/${locale}/guides`} className="btn-link" style={{ fontSize: '0.85rem' }}>
+                        <Link href={`/${locale}/guides`} className="btn-link" style={{ fontSize: '0.84rem' }}>
                           {isAr ? 'تصفح كل الأدلة' : 'Browse the full encyclopedia'}
                         </Link>
-                        <Link href={`/${locale}/directory`} className="display-serif" style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
+                        <Link href={`/${locale}/directory`} className="display-serif" style={{ fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
                           {isAr ? 'دليل المنتجين ←' : 'Producer directory →'}
                         </Link>
                       </div>
@@ -173,7 +171,7 @@ export function Header({ locale }: HeaderProps) {
             <button
               onClick={() => setIsSearchOpen(true)}
               className="search-trigger hidden-mobile"
-              title="Search (⌘K)"
+              title="Search"
               aria-label="Open search"
             >
               <Search size={14} />
@@ -185,7 +183,7 @@ export function Header({ locale }: HeaderProps) {
               {otherLocale === 'ar' ? 'العربية' : 'EN'}
             </Link>
 
-            <Link href={`/${locale}/rfq`} className="btn btn-gold btn-sm hidden-mobile">
+            <Link href={`/${locale}/rfq`} className="btn btn-primary btn-sm hidden-mobile">
               {isAr ? 'طلب توريد' : 'Start RFQ'}
             </Link>
 
@@ -214,21 +212,21 @@ export function Header({ locale }: HeaderProps) {
             <Link href={`/${locale}/directory/map`} onClick={() => setIsMenuOpen(false)}>
               🗺 {isAr ? 'خريطة المنتجين' : 'Producer Map'}
             </Link>
-            <div className="cluster" style={{ marginTop: 16, borderTop: '1px solid var(--color-border)', paddingTop: 16 }}>
+            <div className="cluster" style={{ marginTop: 16, borderTop: '1px solid var(--line)', paddingTop: 16 }}>
               <Link href={`/${otherLocale}`} className="btn btn-outline btn-sm">{otherLocaleLabel}</Link>
-              <Link href={`/${locale}/rfq`} className="btn btn-gold btn-sm">{isAr ? 'طلب توريد' : 'Start RFQ'}</Link>
+              <Link href={`/${locale}/rfq`} className="btn btn-primary btn-sm">{isAr ? 'طلب توريد' : 'Start RFQ'}</Link>
             </div>
           </div>
         )}
       </header>
 
-      {/* 3. Mihrab search modal with recent searches (IndexOrbit pattern) */}
+      {/* 3. Search dialog */}
       {isSearchOpen && (
         <div className="mihrab-modal" onClick={() => setIsSearchOpen(false)}>
           <div className="mihrab-modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="mihrab-modal-header">
               <div className="cluster" style={{ gap: 14 }}>
-                <Search size={20} style={{ color: 'var(--color-gold-dark)', flexShrink: 0 }} />
+                <Search size={19} style={{ color: 'var(--green-600)', flexShrink: 0 }} />
                 <input
                   type="text"
                   value={searchQuery}
@@ -240,7 +238,7 @@ export function Header({ locale }: HeaderProps) {
                     ? 'ابحث عن المقطرين، الأقاليم، الأخشاب، أو الأدلة...'
                     : 'Search distillers, terroirs, wood grades, guides...'}
                   className="form-input"
-                  style={{ border: 'none', padding: 0, fontSize: '1.1rem', background: 'transparent' }}
+                  style={{ border: 'none', padding: 0, fontSize: '1.05rem', background: 'transparent' }}
                   autoFocus
                 />
                 <button onClick={() => setIsSearchOpen(false)} className="icon-button" aria-label="Close">
@@ -250,12 +248,11 @@ export function Header({ locale }: HeaderProps) {
             </div>
 
             <div className="mihrab-modal-body">
-              {/* Recent searches */}
               {recentSearches.length > 0 && !searchQuery && (
                 <div style={{ marginBottom: 24 }}>
                   <div className="row-between" style={{ marginBottom: 10 }}>
-                    <span className="eyebrow">{isAr ? 'عمليات بحث سابقة' : 'Recent Searches'}</span>
-                    <button onClick={clearRecent} className="btn-link" style={{ fontSize: '0.8rem' }}>
+                    <span className="meta">{isAr ? 'عمليات بحث سابقة' : 'Recent Searches'}</span>
+                    <button onClick={clearRecent} className="btn-link" style={{ fontSize: '0.78rem' }}>
                       {isAr ? 'مسح' : 'Clear'}
                     </button>
                   </div>
@@ -265,9 +262,9 @@ export function Header({ locale }: HeaderProps) {
                         key={i}
                         onClick={() => handleSearchSubmit(search)}
                         className="search-pill"
-                        style={{ width: '100%', textAlign: 'start' }}
+                        style={{ width: '100%' }}
                       >
-                        <Clock size={13} style={{ color: 'var(--color-text-soft)' }} />
+                        <Clock size={13} style={{ color: 'var(--ink-soft)' }} />
                         <span>{search}</span>
                       </button>
                     ))}
@@ -275,16 +272,15 @@ export function Header({ locale }: HeaderProps) {
                 </div>
               )}
 
-              {/* Popular searches */}
               {!searchQuery && (
                 <div style={{ marginBottom: 24 }}>
-                  <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
+                  <span className="meta" style={{ display: 'block', marginBottom: 12 }}>
                     {isAr ? 'عمليات بحث شائعة' : 'Popular Sourcing Searches'}
                   </span>
                   <div className="search-pills">
                     {popularSearches.map((query, idx) => (
                       <button key={idx} onClick={() => handleSearchSubmit(query)} className="search-pill">
-                        <MapPin size={13} style={{ color: 'var(--color-text-soft)' }} />
+                        <MapPin size={13} style={{ color: 'var(--ink-soft)' }} />
                         <span>{query}</span>
                       </button>
                     ))}
@@ -292,13 +288,13 @@ export function Header({ locale }: HeaderProps) {
                 </div>
               )}
 
-              <div className="privacy-shield">
-                <div className="privacy-shield-icon" style={{ fontSize: 24 }}>✦</div>
+              <div className="privacy-shield" style={{ margin: 0 }}>
+                <div className="privacy-shield-icon" style={{ fontSize: 22 }}>✦</div>
                 <div className="privacy-shield-body">
                   <h4>{isAr ? 'هل تحتاج متطلبات خاصة أو كميات تجارية؟' : 'Need custom volume or private label?'}</h4>
                   <p>{isAr ? 'أرسل طلبك عبر استمارة التوريد المحايدة مع حماية تامة للبيانات.' : 'Submit an anonymous RFQ across 67 conditional specifications.'}</p>
                 </div>
-                <Link href={`/${locale}/rfq`} onClick={() => setIsSearchOpen(false)} className="btn btn-gold btn-sm">
+                <Link href={`/${locale}/rfq`} onClick={() => setIsSearchOpen(false)} className="btn btn-primary btn-sm">
                   {isAr ? 'طلب تسعير' : 'Start RFQ →'}
                 </Link>
               </div>

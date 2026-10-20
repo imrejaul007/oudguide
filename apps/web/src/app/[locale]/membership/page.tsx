@@ -19,17 +19,17 @@ export default async function MembershipCheckoutPage({
     <div className="section">
       <div className="container" style={{ maxWidth: 1080 }}>
         {/* HERO */}
-        <section className="hero" style={{ padding: 'clamp(40px, 6vw, 72px) clamp(24px, 4vw, 56px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 820 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <Crown size={13} />
               <span>{isAr ? 'تفعيل العضوية التجارية السنوية' : 'Annual Commercial Membership'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.9rem, 4vw, 3rem)' }}>
+            <h1>
               {isAr ? 'ترقية الملف التجاري' : 'Unlock Direct Commercial Contact Display'}
               <span className="accent">{isAr ? '1,200 درهم/سنة.' : 'AED 1,200 per year.'}</span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'تتيح العضوية السنوية عرض البريد الإلكتروني الرسمي، أرقام الهواتف، والواتساب التجاري مباشرة على ملف شركتك لجميع المشترين الدوليين.'
                 : 'Subscribed membership activates direct telephone, WhatsApp, official email, and physical facility coordinates on your directory profile.'}

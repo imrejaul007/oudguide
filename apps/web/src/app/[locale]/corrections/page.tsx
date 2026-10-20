@@ -14,17 +14,17 @@ export default async function CorrectionsPage({
   return (
     <div className="section">
       <div className="container" style={{ maxWidth: 760 }}>
-        <section className="hero" style={{ padding: 'clamp(36px, 5vw, 56px) clamp(24px, 4vw, 48px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 700 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <FileEdit size={13} />
               <span>{isAr ? 'تصحيحات' : 'Corrections'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)' }}>
+            <h1>
               {isAr ? 'تقديم طلب تصحيح أو تدقيق علمي' : 'Submit an Editorial or Directory Correction'}
               <span className="accent">{isAr ? 'سجل تصحيحات شفاف.' : 'A transparent correction register.'}</span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'نرحب بملاحظات الخبراء والموردين والباحثين لتصحيح أو تحديث أي معلومات نباتية أو جغرافية أو تجارية.'
                 : 'OudGuide maintains a transparent public correction register. If you notice inaccurate botanical terminology, outdated supplier details, or invalid links, submit a correction below.'}

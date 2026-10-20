@@ -18,20 +18,20 @@ export function Footer({ locale }: { locale: string }) {
       title: isAr ? 'الدليل والأقاليم' : 'Origins & Directory',
       links: [
         { href: `/${locale}/directory`, label: isAr ? 'دليل المقطرين' : 'Distillers Directory' },
+        { href: `/${locale}/directory/map`, label: isAr ? 'خريطة المنتجين' : 'Producer Map' },
         { href: `/${locale}/world`, label: isAr ? 'خريطة 249 دولة' : '249 Country Map' },
         { href: `/${locale}/world/IN`, label: isAr ? 'الهند (أسام)' : 'India (Assam Estates)' },
         { href: `/${locale}/world/KH`, label: isAr ? 'كمبوديا (كوه كونغ)' : 'Cambodia (Koh Kong)' },
-        { href: `/${locale}/world/TH`, label: isAr ? 'تايلاند (ترات)' : 'Thailand (Trat)' },
       ],
     },
     {
-      title: isAr ? 'للشركات والموردين' : 'For Distillers & Buyers',
+      title: isAr ? 'للموردين والمشترين' : 'For Distillers & Buyers',
       links: [
+        { href: `/${locale}/sourcing`, label: isAr ? 'مساعد التوريد' : 'Sourcing Assistant' },
         { href: `/${locale}/rfq`, label: isAr ? 'طلب توريد محايد' : 'Submit a Wholesale RFQ' },
         { href: `/${locale}/for-businesses`, label: isAr ? 'انضم كعضو سنوي' : 'Annual Membership (AED 1,200)' },
         { href: `/${locale}/partners/opportunities`, label: isAr ? 'بوابة الشركاء' : 'Partner Portal' },
         { href: `/${locale}/membership`, label: isAr ? 'مزايا العضوية' : 'Membership Benefits' },
-        { href: `/${locale}/inquiries`, label: isAr ? 'تتبع الطلبات' : 'Track Your Inquiries' },
       ],
     },
   ];
@@ -85,7 +85,7 @@ export function Footer({ locale }: { locale: string }) {
             <Link href={`/${locale}/policies`}>{isAr ? 'الشروط والسياسات' : 'Policies'}</Link>
             <Link href={`/${locale}/privacy`}>{isAr ? 'الخصوصية' : 'Privacy'}</Link>
             <Link href={`/${locale}/corrections`}>{isAr ? 'تصحيحات' : 'Corrections'}</Link>
-            <Link href={`/${locale}/admin/inquiries`}>{isAr ? 'بوابة الإدارة' : 'Admin Portal'}</Link>
+            <Link href={`/${locale}/admin`}>{isAr ? 'بوابة الإدارة' : 'Admin Portal'}</Link>
           </div>
         </div>
       </div>

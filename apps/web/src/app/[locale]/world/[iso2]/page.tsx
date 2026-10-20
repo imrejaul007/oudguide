@@ -40,29 +40,28 @@ export default async function CountryDetailPage({
       </nav>
 
       {/* LUXURY COUNTRY HERO */}
-      <div className="luxury-hero" style={{ padding: '48px 36px', marginBottom: '36px' }}>
+      <section className="masthead" style={{ marginBottom: 36 }}>
         <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
           <span className="badge-forest">ISO: {country.iso2} / {country.iso3}</span>
           <span className="badge-gold">{country.role_status}</span>
           <span className="badge-locked">{country.public_readiness}</span>
         </div>
 
-        <h1 className="hero-headline font-display" style={{ fontSize: '38px', margin: '0 0 10px' }}>
+        <h1>
           {isAr ? country.arabic_seed : country.english_seed}
         </h1>
-        <p className="hero-lead" style={{ fontSize: '16px', margin: '0 0 24px', maxWidth: '800px' }}>
+        <p className="hero-lead" style={{ marginBottom: 24 }}>
           {isAr
             ? `الملف الجغرافي والتوثيقي المعتمد لدولة ${country.arabic_seed} في شبكة التوريد والبحث الخاصة بدليل العود.`
             : `Territorial sourcing, regulatory compliance, and market evaluation profile for ${country.english_seed} in the international fragrance directory.`}
         </p>
 
-        <div>
-          <Link href={`/${locale}/rfq?country=${encodeURIComponent(country.english_seed)}`} className="btn-gold">
-            <span>{isAr ? `طلب توريد لهذه الوجهة (${country.arabic_seed})` : `Submit Wholesale RFQ for ${country.english_seed}`}</span>
-            <span>{isAr ? '←' : '→'}</span>
+        <div className="masthead-actions">
+          <Link href={`/${locale}/rfq?country=${encodeURIComponent(country.english_seed)}`} className="btn btn-primary">
+            {isAr ? `طلب توريد لهذه الوجهة (${country.arabic_seed})` : `Submit Wholesale RFQ for ${country.english_seed}`}
           </Link>
         </div>
-      </div>
+      </section>
 
       {/* METADATA PROFILE */}
       <div className="form-card" style={{ marginBottom: '32px' }}>

@@ -55,17 +55,17 @@ export default async function GuidesIndexPage({
     <div className="section">
       <div className="container">
         {/* HERO */}
-        <section className="hero" style={{ padding: 'clamp(40px, 6vw, 72px) clamp(24px, 4vw, 56px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 820 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <span>📚</span>
               <span>{isAr ? 'الموسوعة العلمية التوثيقية' : 'Peer-Reviewed Knowledge Base'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.9rem, 4vw, 3rem)' }}>
+            <h1>
               {isAr ? 'الموسوعة المعرفية للعود والعطور' : 'The Compendium of Natural Agarwood & Distillations'}
               <span className="accent">{isAr ? '83 دليلاً علمياً وثقافياً.' : '83 independent editorial and scientific guides.'}</span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'أكثر من 80 دليلاً توثيقياً مستقلاً يغطي علم النبات، الفحوصات المخبرية، أساليب التقطير الحرفية، والأنظمة الدولية لتجارة خشب العود.'
                 : '83 independent editorial and scientific guides covering botanical taxa, laboratory chromatography, traditional alembic extraction, and international CITES trade compliance.'}

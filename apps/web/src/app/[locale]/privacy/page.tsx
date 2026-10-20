@@ -21,17 +21,17 @@ export default async function PrivacyPage({
   return (
     <div className="section">
       <div className="container" style={{ maxWidth: 1000 }}>
-        <section className="hero" style={{ padding: 'clamp(36px, 5vw, 56px) clamp(24px, 4vw, 48px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 760 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <Lock size={13} />
               <span>{isAr ? 'الخصوصية' : 'Privacy'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)' }}>
+            <h1>
               {isAr ? 'سياسة الخصوصية وحقوق حماية البيانات' : 'Privacy Policy & Data Subject Rights'}
               <span className="accent">GDPR · UAE PDPL</span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'نلتزم بحماية بياناتك الشخصية والتجارية وفقاً لأعلى معايير الخصوصية وأنظمة حماية البيانات في الإمارات والاتحاد الأوروبي.'
                 : 'OudGuide complies with international data protection principles (GDPR / UAE PDPL). You retain full control over your contact data, consent withdrawal, and record erasure.'}

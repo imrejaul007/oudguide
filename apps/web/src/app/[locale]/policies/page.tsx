@@ -32,19 +32,19 @@ export default async function PoliciesPage({
   return (
     <div className="section">
       <div className="container" style={{ maxWidth: 920 }}>
-        <section className="hero" style={{ padding: 'clamp(36px, 5vw, 56px) clamp(24px, 4vw, 48px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 760 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <Scale size={13} />
               <span>{isAr ? 'السياسات' : 'Editorial Policies'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)' }}>
+            <h1>
               {isAr ? 'سياسات النزاهة والعمليات التحريرية' : 'OudGuide Operating & Editorial Policies'}
               <span className="accent">
                 {isAr ? 'حيادية · شفافية · حماية بيانات' : 'Neutrality · Transparency · Data Protection'}
               </span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'المعايير المعتمدة لضمان حيادية المعلومات، حماية بيانات المشترين، والشفافية التامة في الروابط التجارية التابعة.'
                 : 'Operational principles governing editorial neutrality, buyer privacy protection, and transparent commercial affiliations.'}

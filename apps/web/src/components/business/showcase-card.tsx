@@ -55,7 +55,7 @@ export function ShowcaseCard({ business, locale }: { business: ShowcaseBusiness;
       <div className="biz-showcase-top">
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {business.contact_unlocked && (
-            <span className="badge badge-gold">
+            <span className="badge badge-emerald">
               <Award size={11} />
               {isAr ? 'عضو معتمد' : 'Verified Member'}
             </span>

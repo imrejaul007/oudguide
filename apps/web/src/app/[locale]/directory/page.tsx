@@ -20,13 +20,13 @@ export default async function DirectoryPage({
     <div className="section">
       <div className="container">
         {/* MASTHEAD */}
-        <section className="hero" style={{ padding: 'clamp(48px, 6vw, 80px) clamp(24px, 4vw, 56px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', maxWidth: 920, margin: 0 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <Compass size={13} />
               <span>{isAr ? 'دليل المصانع والمزارع المعتمدة دولياً' : 'Verified Distillers, Plantations & Wholesalers'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}>
+            <h1>
               {isAr ? 'دليل الموردين والمقطرين العالميين' : 'The Global Directory of Natural Oud Producers'}
               <span className="accent">
                 {isAr
@@ -34,7 +34,7 @@ export default async function DirectoryPage({
                   : 'Independent discovery across four major producing regions.'}
               </span>
             </h1>
-            <p className="hero-lead" style={{ marginLeft: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'اكتشف المقطرين الحرفيين والمزارع المستدامة في أسام، تايلاند، كمبوديا، وإندونيسيا. تطبق المنصة سياسة حجب الاتصال الصارمة للملفات الأساسية لمنع الرسائل غير المرغوبة والجمع الآلي للبيانات.'
                 : 'Independent discovery of traditional distillers and certified plantations. Direct phone, email, and address records remain hidden on basic profiles to protect producers from automated scraping and spam.'}

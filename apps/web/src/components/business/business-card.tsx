@@ -47,7 +47,7 @@ export function BusinessCard({ business, locale }: BusinessCardProps) {
             {business.country_name || business.country_id}
           </span>
           {business.contact_unlocked ? (
-            <span className="badge badge-gold">
+            <span className="badge badge-emerald">
               <Award size={11} />
               {isAr ? 'عضو معتمد' : 'Verified Member'}
             </span>
@@ -63,7 +63,7 @@ export function BusinessCard({ business, locale }: BusinessCardProps) {
 
       <div className="biz-body">
         <div className="cluster" style={{ marginBottom: 8, gap: 6 }}>
-          <span className="badge badge-crimson">{business.business_type || business.category || 'Producer'}</span>
+          <span className="badge badge-locked">{business.business_type || business.category || 'Producer'}</span>
           {business.established_year && (
             <span className="badge badge-locked">Est. {business.established_year}</span>
           )}

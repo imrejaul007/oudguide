@@ -16,13 +16,13 @@ export default async function RfqPage({
     <div className="section">
       <div className="container" style={{ maxWidth: 920 }}>
         {/* HERO */}
-        <section className="hero" style={{ padding: 'clamp(40px, 6vw, 72px) clamp(24px, 4vw, 56px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 820 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <span>⚖</span>
               <span>{isAr ? 'خدمة الربط التجاري المحايدة' : 'Neutral Wholesale Sourcing Engine'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.9rem, 4vw, 3rem)' }}>
+            <h1>
               {isAr
                 ? 'تقديم متطلبات توريد العود بالجملة'
                 : 'Wholesale Fragrance & Raw Material Requirement Intake'}
@@ -32,7 +32,7 @@ export default async function RfqPage({
                   : '67 conditional specifications, OTP-gated.'}
               </span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'يتم تحويل متطلباتك إلى موجز فني مشفر ومحايد يُعرض للموردين المؤهلين. حماية تامة لبياناتك الشخصية.'
                 : 'Your specifications are synthesized into an anonymous technical brief. Zero buyer personal data is disclosed until you explicitly approve selected suppliers by name.'}

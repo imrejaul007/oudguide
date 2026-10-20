@@ -56,7 +56,7 @@ export default async function BusinessProfilePage({
         <div className="card" style={{ padding: 0, overflow: 'hidden', marginBottom: 32 }}>
           <div style={{ height: 320, position: 'relative', background: 'var(--bg-majlis)' }}>
             <img src={coverImage} alt={biz.name} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 30%, rgba(13,10,8,0.85) 100%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,42,32,0.20) 0%, rgba(14,42,32,0.88) 100%)' }} />
 
             <div className="cluster" style={{ position: 'absolute', top: 18, left: 18, right: 18, justifyContent: 'space-between' }}>
               <span className="badge badge-glass-light">
@@ -80,7 +80,15 @@ export default async function BusinessProfilePage({
               <span className="badge badge-gold" style={{ marginBottom: 12 }}>
                 {biz.business_type || biz.category || 'Producer'}
               </span>
-              <h1 className="hero-title" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', margin: '4px 0 6px', color: '#f5e1a4' }}>
+              <h1 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.7rem, 3.2vw, 2.5rem)',
+                fontWeight: 300,
+                lineHeight: 1.1,
+                letterSpacing: '-0.022em',
+                margin: '4px 0 6px',
+                color: '#ffffff',
+              }}>
                 {biz.name}
               </h1>
               <p className="display-serif" style={{ fontSize: '1.05rem', color: '#d4c8b0', margin: 0, fontStyle: 'italic' }}>

@@ -12,19 +12,19 @@ export default async function SourcingPage({
   return (
     <div className="section">
       <div className="container container-narrow">
-        <section className="hero" style={{ padding: 'clamp(36px, 5vw, 56px) clamp(24px, 4vw, 48px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 760 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <Sparkles size={13} />
               <span>{isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)' }}>
+            <h1>
               {isAr ? 'اسأل عن العود والتوريد' : 'Ask About Oud Sourcing'}
               <span className="accent">
                 {isAr ? '249 دولة · 772 مسار · 67 مواصفة' : '249 territories · 772 briefs · 67 specs'}
               </span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'يعمل المساعد مباشرة على سجل OudGuide الموثق بالكامل. يطابق متطلباتك مع المنتجين المؤهلين، ويشرح أقطال التقطير ودرجات التقييم وسياسات سايتس، دون كشف أي بيانات اتصال للموردين.'
                 : 'The assistant reads OudGuide\'s complete documented register directly. It matches your requirements against qualified producers and explains distillation, grading, and CITES policy — without ever exposing a supplier\'s contact details.'}

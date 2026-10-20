@@ -21,14 +21,17 @@ export default async function AdminInquiriesPage({
 
   return (
     <div>
-      <div className="hero">
-        <h2>{isAr ? 'لوحة تحكم إدارة التوريد والربط التجاري' : 'Admin Sourcing & Introduction Dispatch Dashboard'}</h2>
-        <p>
-          {isAr
-            ? 'لوحة إدارة مشغلي دليل العود لمراجعة الطلبات، التحقق من القنوات، واعتماد إصدار مقدمات التعريف للموردين وفق سياسة canRelease.'
-            : 'Operator workspace for qualifying inquiries, auditing consent, and executing introduction releases via the pure fail-closed lead policy.'}
-        </p>
-      </div>
+      <section className="masthead">
+        <div className="masthead-inner">
+          <span className="hero-tag">{isAr ? 'مساحة المشغّل' : 'Operator Workspace'}</span>
+          <h1>{isAr ? 'لوحة تحكم إدارة التوريد والربط التجاري' : 'Admin Sourcing & Introduction Dispatch Dashboard'}</h1>
+          <p className="hero-lead">
+            {isAr
+              ? 'لوحة إدارة مشغلي دليل العود لمراجعة الطلبات، التحقق من القنوات، واعتماد إصدار مقدمات التعريف للموردين وفق سياسة canRelease.'
+              : 'Operator workspace for qualifying inquiries, auditing consent, and executing introduction releases via the pure fail-closed lead policy.'}
+          </p>
+        </div>
+      </section>
 
       {action && (
         <div className="banner-success">

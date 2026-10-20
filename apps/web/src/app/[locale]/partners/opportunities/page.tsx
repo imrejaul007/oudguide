@@ -50,17 +50,17 @@ export default async function PartnerOpportunitiesPage({
   return (
     <div className="section">
       <div className="container" style={{ maxWidth: 1100 }}>
-        <section className="hero" style={{ padding: 'clamp(36px, 5vw, 56px) clamp(24px, 4vw, 48px)' }}>
-          <div className="hero-content" style={{ textAlign: 'left', margin: 0, maxWidth: 820 }}>
+        <section className="masthead">
+          <div className="masthead-inner">
             <div className="hero-tag">
               <Briefcase size={13} />
               <span>{isAr ? 'بوابة الشركاء' : 'Supplier Portal'}</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)' }}>
+            <h1>
               {isAr ? 'بوابة الموردين: فرص التوريد' : 'Supplier Partner Portal: Live Wholesale Opportunities'}
               <span className="accent">{isAr ? 'موجزات مشفرة.' : 'Redacted match briefs.'}</span>
             </h1>
-            <p className="hero-lead" style={{ margin: 0, textAlign: 'left' }}>
+            <p className="hero-lead">
               {isAr
                 ? 'موجز مشفر ومحايد للمتطلبات التجارية الواردة. لا تحتوي هذه الموجزات على أي بيانات شخصية للمشتري حتى يتم اختياره واعتماده رسمياً.'
                 : 'Redacted match briefs for verified suppliers. All buyer personal data remains strictly confidential until you are explicitly approved by the buyer.'}
