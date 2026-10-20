@@ -90,6 +90,12 @@ export async function middleware(request: NextRequest) {
   // 2. Locale normalisation -------------------------------------------
   // A bare "/" or a non-locale first segment gets sent to the default
   // locale, preserving the rest of the path.
+  // API routes are NOT locale-prefixed, so they must be left untouched —
+  // redirecting /api/v1/... to /en/api/v1/... would 307 every API call.
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+
   const segments = pathname.split('/').filter(Boolean);
   if (segments.length === 0) {
     const url = request.nextUrl.clone();

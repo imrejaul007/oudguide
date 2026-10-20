@@ -257,4 +257,24 @@ describe('Operator session gate', () => {
     assert.ok(!isExempt('/api/v1/admin/session/delete'), 'only the exact session path is exempt');
     assert.ok(!isExempt('/en/admin/inquiries'), 'admin pages must stay gated');
   });
+
+  test('API routes are not locale-prefixed by the middleware', () => {
+    // Regression guard: the locale-normalisation step must skip /api/*.
+    // Redirecting /api/v1/... to /en/api/v1/... would 307 every API call
+    // and make the session endpoint unreachable.
+    const isApi = (p: string) => p.startsWith('/api/');
+
+    for (const path of [
+      '/api/v1/admin/session',
+      '/api/v1/admin/claims',
+      '/api/v1/directory/businesses',
+      '/api/v1/sourcing/assistant',
+    ]) {
+      assert.ok(isApi(path), `${path} is an API path`);
+    }
+
+    // Page paths are still locale-prefixed.
+    assert.ok(!isApi('/en/directory'));
+    assert.ok(!isApi('/ar/admin'));
+  });
 });
