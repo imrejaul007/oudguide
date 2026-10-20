@@ -12,7 +12,18 @@ import {
   ShieldCheck,
   Clock,
   CheckCircle2,
+  type LucideIcon,
 } from 'lucide-react';
+
+/** Icon name -> component. Resolved inside the client component. */
+const STAT_ICONS: Record<AdminStat['icon'], LucideIcon> = {
+  building: Building2,
+  users: Users,
+  flag: Flag,
+  award: Award,
+  file: FileText,
+  shield: ShieldCheck,
+};
 
 /**
  * Operator dashboard.
@@ -30,7 +41,12 @@ export interface AdminStat {
   label: string;
   labelAr: string;
   value: number;
-  icon: typeof Building2;
+  /**
+   * Icon NAME, not a component.
+   * A server component cannot pass a React component across the
+   * server→client boundary — it is not serialisable and the page 500s.
+   */
+  icon: 'building' | 'users' | 'flag' | 'award' | 'file' | 'shield';
   href: string;
   tone: 'green' | 'brass' | 'neutral';
 }
@@ -106,7 +122,10 @@ export function AdminDashboard({
                     flexShrink: 0,
                   }}
                 >
-                  <stat.icon size={18} />
+                  {(() => {
+                    const Icon = STAT_ICONS[stat.icon] ?? Building2;
+                    return <Icon size={18} />;
+                  })()}
                 </div>
               </div>
             </Link>

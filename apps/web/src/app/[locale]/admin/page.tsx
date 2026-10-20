@@ -1,4 +1,4 @@
-import { ShieldCheck, ArrowLeft, Building2, Users, FileText } from 'lucide-react';
+import { ShieldCheck, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { domain } from '@/lib/data';
 import { AdminTabs } from '@/components/admin/admin-tabs';
@@ -102,7 +102,7 @@ export default async function AdminPage({
                 label: 'Registered producers',
                 labelAr: 'منتجون مسجلون',
                 value: businesses.length,
-                icon: Building2,
+                icon: 'building',
                 href: `/${locale}/directory`,
                 tone: 'green',
               },
@@ -111,7 +111,7 @@ export default async function AdminPage({
                 label: 'Claimed profiles',
                 labelAr: 'ملفات موثّقة',
                 value: businesses.filter((b: any) => b.is_claimed).length,
-                icon: ShieldCheck,
+                icon: 'shield',
                 href: `/${locale}/admin`,
                 tone: 'green',
               },
@@ -120,7 +120,7 @@ export default async function AdminPage({
                 label: 'Annual members',
                 labelAr: 'أعضاء سنويون',
                 value: businesses.filter((b: any) => b.has_active_membership).length,
-                icon: Users,
+                icon: 'users',
                 href: `/${locale}/admin`,
                 tone: 'brass',
               },
@@ -129,7 +129,7 @@ export default async function AdminPage({
                 label: 'Contact records unlocked',
                 labelAr: 'سجلات اتصال مفتوحة',
                 value: businesses.filter((b: any) => b.contact_unlocked).length,
-                icon: FileText,
+                icon: 'file',
                 href: `/${locale}/admin`,
                 tone: 'neutral',
               },
