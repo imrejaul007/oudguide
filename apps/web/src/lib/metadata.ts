@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { ARABIC_HUMAN_REVIEW_COMPLETE } from './articles.ts';
+
 /**
  * Shared metadata builders.
  *
@@ -43,6 +45,18 @@ export function buildMetadata({
   alternateLocalePath,
   noindex = false,
 }: PageMetaInput): Metadata {
+  /**
+   * The Arabic tree is not yet indexable.
+   *
+   * The editorial runbook's bilingual_review gate requires a human
+   * editorial review of the Arabic before public indexation, and that
+   * review has not been carried out. The gate is enforced here, in the
+   * one place every page's metadata is built, rather than in each
+   * renderer — a noindex that lives in exactly one file is easy to lose
+   * in the next refactor, and a page reached by an internal link is
+   * indexable on its own regardless of what the sitemap says.
+   */
+  const localeNotIndexable = locale === 'ar' && !ARABIC_HUMAN_REVIEW_COMPLETE;
   const cleanPath = path.replace(/\/$/, '');
   const canonical = `${SITE_URL}${cleanPath}`;
 
@@ -54,12 +68,33 @@ export function buildMetadata({
         ? description
         : description;
 
+  /**
+   * The hreflang pair.
+   *
+   * The two languages must point at their own pages. The previous
+   * implementation derived the sibling from the alternate path by a
+   * string replacement, which meant the English page declared its
+   * alternate as the Arabic page AND declared the Arabic page as
+   * Arabic — both entries pointed at the same URL, so a crawler was
+   * told the two pages were the same page in two languages.
+   *
+   * The sibling is now derived by swapping the locale prefix, and the
+   * alternate path is used only for the language it actually names.
+   */
   const languages: Record<string, string> = {};
   if (alternateLocalePath) {
-    languages[locale === 'ar' ? 'ar' : 'en'] = `${SITE_URL}${alternateLocalePath.replace(/\/$/, '')}`;
-    languages[locale === 'ar' ? 'en' : 'ar'] = `${SITE_URL}${
-      alternateLocalePath.replace(/\/$/, '')
-    }`.replace('/en/', '/ar/');
+    const alt = alternateLocalePath.replace(/\/$/, '');
+    const altLocale = alt.startsWith('/ar/') ? 'ar' : 'en';
+    const sibling = alt.startsWith('/ar/') ? alt.replace(/^\/ar\//, '/en/') : alt.replace(/^\/en\//, '/ar/');
+
+    languages[locale] = `${SITE_URL}${cleanPath}`;
+    languages[altLocale] = `${SITE_URL}${alt}`;
+    // Both entries are present only when the sibling is a genuinely
+    // different URL; otherwise a single self-referential entry would
+    // tell a crawler the page is its own alternate.
+    if (sibling !== cleanPath) {
+      languages[altLocale === 'en' ? 'ar' : 'en'] = `${SITE_URL}${sibling}`;
+    }
   }
 
   return {
@@ -82,6 +117,8 @@ export function buildMetadata({
       title: trimmedTitle,
       description: trimmedDesc,
     },
-    ...(noindex ? { robots: { index: false, follow: false } } : {}),
+    ...(noindex || localeNotIndexable
+      ? { robots: { index: false, follow: false } }
+      : {}),
   };
 }
