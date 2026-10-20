@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { ToasterProvider } from '@/components/ui/use-toast';
 
 export default async function LocaleLayout({
   children,
@@ -24,9 +25,11 @@ export default async function LocaleLayout({
         />
       </head>
       <body>
-        <Header locale={locale} />
-        <main style={{ minHeight: '80vh' }}>{children}</main>
-        <Footer locale={locale} />
+        <ToasterProvider>
+          <Header locale={locale} />
+          <main style={{ minHeight: '80vh' }}>{children}</main>
+          <Footer locale={locale} />
+        </ToasterProvider>
       </body>
     </html>
   );

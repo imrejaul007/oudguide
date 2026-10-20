@@ -45,6 +45,12 @@ export interface AssistantProducer {
   verified_origins?: string[];
   contact_unlocked: boolean;
   minimum_order_quantity?: string | null;
+  /**
+   * Why this producer matched the query.
+   * Ported from IndexOrbit's `matchReasons: string[]` in the service layer —
+   * a search result that cannot explain itself forces the buyer to guess.
+   */
+  match_reasons?: string[];
 }
 
 export interface AssistantTerritory {
@@ -79,32 +85,51 @@ const INTENT_RULES: { intent: AssistantIntent; patterns: RegExp[] }[] = [
     patterns: [
       /authentic|fake|counterfeit|adulterat|synthetic|how to (tell|verify)|real oud|spoof/i,
       /\b(scams?|bogus)\b/i,
-      /مزيف|تزييف|أصالة|حقيقي|غش|احتيال/i,
+      /مزيف|تزييف|أصالة|حقيقي|غش|احتيال|مضلل|(original|authentic)/i,
+      /كيف (أتحقق|أتعرف|أعرف)|كيفية التحقق/i,
     ],
   },
   {
     intent: 'cites',
-    patterns: [/cites|appendix|export (permit|licen|regulat)|quota|permissible/i],
+    patterns: [
+      /cites|appendix|export (permit|licen|regulat)|quota|permissible/i,
+      /سايتس|تصدير|تصريح|حصة|ملحق الثاني/i,
+    ],
   },
   {
     intent: 'pricing',
-    patterns: [/price|pricing|cost|how much|per (kg|tola|kilo)|rate|budget|expensive/i],
+    patterns: [
+      /price|pricing|cost|how much|per (kg|tola|kilo)|rate|budget|expensive/i,
+      /سعر|أسعار|تكلفة|بكم|كم يكلف|ميزانية/i,
+    ],
   },
   {
     intent: 'rfq_guidance',
-    patterns: [/rfq|inquir|request|quote|order|bulk|wholesale|supplier|distiller|manufacturer|want to buy|looking for/i],
+    patterns: [
+      /rfq|inquir|request|quote|order|bulk|wholesale|supplier|distiller|manufacturer|want to buy|looking for/i,
+      /طلب|توريد|تسعير|عرض سعر|مورد|مقطر|جملة|كمية|أريد|أحتاج|أبحث/i,
+    ],
   },
   {
     intent: 'origin_lookup',
-    patterns: [/\b(assam|bengal|khmerk|koh kong|trat|thailand|cambodia|indonesia|kalimantan|malaysia|laos|vietnam)\b/i],
+    patterns: [
+      /\b(assam|bengal|khmerk|koh kong|trat|thailand|cambodia|indonesia|kalimantan|malaysia|laos|vietnam)\b/i,
+      /أسام|بنغلاديش|كمبوديا|كوه كونغ|تايلاند|ترات|إندونيسيا|كاليمانتان|ماليزيا|لاوس|فيتنام/i,
+    ],
   },
   {
     intent: 'producer_lookup',
-    patterns: [/\b(who|which|where|find|search|directory|list|available|producer|farm|plantation)\b/i],
+    patterns: [
+      /\b(who|which|where|find|search|directory|list|available|producer|farm|plantation)\b/i,
+      /من|أين|ابحث|دليل|قائمة|متوفر|منتج|مزرعة|مستزرع/i,
+    ],
   },
   {
     intent: 'guide_lookup',
-    patterns: [/guide|learn|read|what is|how (do|does|to)|explain|documentation|methodolog/i],
+    patterns: [
+      /guide|learn|read|what is|how (do|does|to)|explain|documentation|methodolog/i,
+      /دليل|اقرأ|تعلّم|ما هو|كيف|اشرح|توثيق|طريقة/i,
+    ],
   },
 ];
 
@@ -120,17 +145,48 @@ export function detectIntent(query: string): AssistantIntent {
 /* Matching                                                            */
 /* ------------------------------------------------------------------ */
 
-const ORIGIN_HINTS = [
-  'assam', 'hijai', 'hojai', 'bengal', 'meghalaya', 'india',
-  'koh kong', 'khmerk', 'cambodia',
-  'trat', 'prachinburi', 'thailand',
-  'kalimantan', 'borneo', 'merauke', 'sumatra', 'indonesia',
-  'malaysia', 'malay', 'laos', 'vietnam', 'deira', 'dubai', 'oman', 'muscat',
+/**
+ * Origin hints used for matching.
+ *
+ * The producer records store origin strings in English ("India (Assam)",
+ * "Cambodia (Koh Kong)"), so an Arabic query like "أسام" would match
+ * nothing. Each hint therefore carries an English `key` used to test the
+ * producer record, plus the Arabic/English aliases used to detect the term
+ * in the user's query.
+ */
+const ORIGIN_HINTS: { key: string; label: string; aliases: string[] }[] = [
+  { key: 'assam', label: 'Assam', aliases: ['assam', 'hijai', 'hojai', 'أسام', 'حوجاي', 'هوجاي'] },
+  { key: 'meghalaya', label: 'Meghalaya', aliases: ['meghalaya', 'ميغالايا'] },
+  { key: 'india', label: 'India', aliases: ['india', 'indian', 'هند', 'هندي', 'ال印度', 'الهند'] },
+  { key: 'koh kong', label: 'Koh Kong', aliases: ['koh kong', 'khmerk', 'كوه كونغ', 'كمبوديا', 'كمبودي'] },
+  { key: 'cambodia', label: 'Cambodia', aliases: ['cambodia', 'cambodian', 'كمبوديا'] },
+  { key: 'trat', label: 'Trat', aliases: ['trat', 'ترات'] },
+  { key: 'thailand', label: 'Thailand', aliases: ['thailand', 'thai', 'تايلاند', 'تايلاندي'] },
+  { key: 'prachinburi', label: 'Prachinburi', aliases: ['prachinburi', 'براتشينبوري'] },
+  { key: 'kalimantan', label: 'Kalimantan', aliases: ['kalimantan', 'borneo', 'كاليمانتان', 'بورنيو'] },
+  { key: 'indonesia', label: 'Indonesia', aliases: ['indonesia', 'indonesian', 'إندونيسيا', 'اندونيسيا'] },
+  { key: 'merauke', label: 'Merauke', aliases: ['merauke', 'مروكي'] },
+  { key: 'sumatra', label: 'Sumatra', aliases: ['sumatra', 'سومترا'] },
+  { key: 'malaysia', label: 'Malaysia', aliases: ['malaysia', 'malay', 'ماليزيا', 'ملايو'] },
+  { key: 'laos', label: 'Laos', aliases: ['laos', 'لاوس'] },
+  { key: 'vietnam', label: 'Vietnam', aliases: ['vietnam', 'vietnamese', 'فيتنام'] },
+  { key: 'deira', label: 'Deira, Dubai', aliases: ['deira', 'dubai', 'ديرة', 'دبي'] },
+  { key: 'oman', label: 'Muscat, Oman', aliases: ['oman', 'muscat', 'omán', 'عُمان', 'مسقط'] },
 ];
 
-const FAMILY_HINTS = [
-  'wood', 'chip', 'sinking', 'resin', 'oil', 'dehn', 'attar', 'perfume',
-  'private label', 'incense', 'bakhoor', 'chips', 'oud',
+/**
+ * Product-family hints. Same structure: `key` is the English fragment to
+ * test against the producer's `product_families`, `aliases` detect the term
+ * in the query.
+ */
+const FAMILY_HINTS: { key: string; label: string; aliases: string[] }[] = [
+  { key: 'oud wood', label: 'Oud wood & chips', aliases: ['wood', 'chip', 'sinking', 'resin', 'خشب', 'رقائق', 'غطاس', 'راتنج'] },
+  { key: 'oud oil', label: 'Pure Dehn Al Oud', aliases: ['oil', 'dehn', 'دهن', 'زيوت', 'زيت'] },
+  { key: 'attar', label: 'Heritage attars', aliases: ['attar', 'عطر شرقي', 'عطور شرقية', 'مخلط'] },
+  { key: 'perfume oil', label: 'Perfume oils', aliases: ['perfume oil', 'زيت عطر', 'زيوت عطرية'] },
+  { key: 'finished perfume', label: 'Finished perfume', aliases: ['finished perfume', 'perfume', 'عطر منتهي', 'منتهية', 'تصنيع خاص'] },
+  { key: 'bakhoor', label: 'Bakhoor & incense', aliases: ['incense', 'bakhoor', 'بخور', 'عود مبخر', 'مبخر'] },
+  { key: 'oud', label: 'Oud (any form)', aliases: ['oud', 'عود'] },
 ];
 
 /**
@@ -167,8 +223,9 @@ export function rankProducers(
   limit = 4
 ): AssistantProducer[] {
   const q = query.toLowerCase();
-  const originHits = ORIGIN_HINTS.filter((h) => q.includes(h));
-  const familyHits = FAMILY_HINTS.filter((h) => q.includes(h));
+  // A hint "hits" when any of its aliases appears in the query.
+  const originHits = ORIGIN_HINTS.filter((h) => h.aliases.some((a) => q.includes(a)));
+  const familyHits = FAMILY_HINTS.filter((h) => h.aliases.some((a) => q.includes(a)));
 
   const scored = producers.map((raw) => {
     // Strip contacts BEFORE any matching or output so they can never leak.
@@ -185,22 +242,69 @@ export function rankProducers(
       .join(' ')
       .toLowerCase();
 
+    const reasons: string[] = [];
     let score = 0;
-    for (const hint of originHits) if (haystack.includes(hint)) score += 10;
-    for (const hint of familyHits) if (haystack.includes(hint)) score += 6;
-    if (b.contact_unlocked) score += 3;
 
+    // Origin match — the strongest signal for a terroir-driven trade.
+    for (const hint of originHits) {
+      const matchedOrigin = (b.verified_origins ?? []).find((o) =>
+        o.toLowerCase().includes(hint.key)
+      );
+      if (matchedOrigin) {
+        score += 10;
+        reasons.push(`Origin: ${matchedOrigin}`);
+      } else if (haystack.includes(hint.key)) {
+        score += 10;
+        reasons.push(`Located in ${hint.label}`);
+      }
+    }
+
+    // Product family match.
+    for (const hint of familyHits) {
+      const matchedFamily = (b.product_families ?? []).find((f) =>
+        f.toLowerCase().includes(hint.key)
+      );
+      if (matchedFamily) {
+        score += 6;
+        reasons.push(`Produces ${matchedFamily}`);
+      } else if (haystack.includes(hint.key)) {
+        score += 6;
+        reasons.push(`Produces ${hint.label}`);
+      }
+    }
+
+    // Availability of commercial samples.
+    if (b.minimum_order_quantity) {
+      score += 2;
+      reasons.push(`MOQ: ${b.minimum_order_quantity}`);
+    }
+
+    // Entitled members can be contacted directly after buyer approval.
+    if (b.contact_unlocked) {
+      score += 3;
+      reasons.push('Verified annual member — contact released after buyer approval');
+    }
+
+    // Weak term overlap.
     const terms = q.split(/[^a-z0-9]+/).filter((t) => t.length > 3);
-    for (const t of terms) if (haystack.includes(t)) score += 2;
+    for (const t of terms) {
+      if (haystack.includes(t)) {
+        score += 2;
+        if (reasons.length < 4) reasons.push(`Matches "${t}"`);
+      }
+    }
 
-    return { b, score };
+    return { b, score, reasons };
   });
 
   return scored
     .filter((s) => s.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
-    .map((s) => s.b);
+    .map((s) => ({
+      ...s.b,
+      match_reasons: Array.from(new Set(s.reasons)).slice(0, 4),
+    }));
 }
 
 const GUIDE_CATALOG: { label: string; href: string; keywords: string[] }[] = [
@@ -346,11 +450,25 @@ export function createSourcingAssistant(data: AssistantDataSource) {
           return `${p.name} — ${p.city ?? ''}${p.city ? ', ' : ''}${p.country_name ?? ''} · ${families} · ${origins}`;
         });
 
+        // Match reasons — a result that cannot explain itself forces the
+        // buyer to guess why it surfaced.
+        const reasonBlocks = producers
+          .filter((p) => p.match_reasons && p.match_reasons.length > 0)
+          .map(
+            (p) =>
+              `• ${p.name}\n${p.match_reasons!.map((r) => `    — ${r}`).join('\n')}`
+          )
+          .join('\n');
+
+        const reasonsText = isAr
+          ? '\n\nلماذا تطابق كل منتج:\n\n'
+          : '\n\nWhy each matched:\n\n';
+
         return {
           intent,
           answer: isAr
-            ? `وجدت ${producers.length} منتجين مطابقين. جميع البيانات أدناه مصدرها من السجل العام الموثق:\n\n${lines.map((l) => `• ${l}`).join('\n')}\n\nلعرض بيانات الاتصال الكاملة، يجب أن يكون المورد عضواً سنوياً معتمداً، ويجب أن توافق على اسمه صراحةً بعد التحقق برمز OTP.`
-            : `I found ${producers.length} matching producers. All of the below comes from the public verified registry:\n\n${lines.map((l) => `• ${l}`).join('\n')}\n\nFull contact details are only released to a supplier holding an active annual membership, and only after you explicitly approve them by name following OTP verification.`,
+            ? `وجدت ${producers.length} منتجين مطابقين. جميع البيانات أدناه مصدرها من السجل العام الموثق:\n\n${lines.map((l) => `• ${l}`).join('\n')}${reasonsText}${reasonBlocks}\n\nلعرض بيانات الاتصال الكاملة، يجب أن يكون المورد عضواً سنوياً معتمداً، ويجب أن توافق على اسمه صراحةً بعد التحقق برمز OTP.`
+            : `I found ${producers.length} matching producers. All of the below comes from the public verified registry:\n\n${lines.map((l) => `• ${l}`).join('\n')}${reasonsText}${reasonBlocks}\n\nFull contact details are only released to a supplier holding an active annual membership, and only after you explicitly approve them by name following OTP verification.`,
           suggestions,
           producers,
         };

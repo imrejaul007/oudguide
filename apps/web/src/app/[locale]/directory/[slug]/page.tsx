@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { domain } from '@/lib/data';
 import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe, Clock } from 'lucide-react';
 import { BookmarkButton, ShareButton, ViewTracker } from '@/components/business/interactive-tools';
+import { ReportButton } from '@/components/business/report-button';
 import { ProfileFaq } from '@/components/business/profile-faq';
 import { getAvailabilityStatus, DEFAULT_WORKING_HOURS } from '@/lib/format';
 
@@ -205,6 +206,18 @@ export default async function BusinessProfilePage({
                 </span>
               </div>
             )}
+
+            {/* Report a profile (editorial correction channel) */}
+            <div
+              style={{
+                marginTop: 20,
+                paddingTop: 16,
+                borderTop: '1px solid var(--line)',
+                textAlign: 'center',
+              }}
+            >
+              <ReportButton slug={slug} producerName={biz.name} locale={locale} />
+            </div>
           </aside>
         </div>
 

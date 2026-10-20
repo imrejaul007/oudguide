@@ -15,6 +15,8 @@ interface AssistantProducer {
   verified_origins?: string[];
   contact_unlocked: boolean;
   minimum_order_quantity?: string | null;
+  /** Why this producer matched — surfaced so the buyer can judge the fit. */
+  match_reasons?: string[];
 }
 
 interface AssistantResponse {
@@ -168,8 +170,8 @@ export function SourcingAssistant({ locale }: { locale: string }) {
                         style={{
                           fontFamily: 'var(--font-display)',
                           fontSize: '0.92rem',
-                          fontWeight: 700,
-                          color: 'var(--color-crimson)',
+                          fontWeight: 500,
+                          color: 'var(--green-800)',
                         }}
                       >
                         {p.name}
@@ -177,7 +179,7 @@ export function SourcingAssistant({ locale }: { locale: string }) {
                       <div
                         style={{
                           fontSize: '0.78rem',
-                          color: 'var(--color-text-muted)',
+                          color: 'var(--ink-muted)',
                           display: 'flex',
                           alignItems: 'center',
                           gap: 4,
@@ -188,6 +190,34 @@ export function SourcingAssistant({ locale }: { locale: string }) {
                         {p.city ? `${p.city}, ` : ''}{p.country_name}
                         {p.minimum_order_quantity && ` · MOQ: ${p.minimum_order_quantity}`}
                       </div>
+
+                      {/* Match reasons — why this producer surfaced */}
+                      {p.match_reasons && p.match_reasons.length > 0 && (
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: 4,
+                            marginTop: 7,
+                          }}
+                        >
+                          {p.match_reasons.map((reason, ri) => (
+                            <span
+                              key={ri}
+                              className="chip"
+                              style={{
+                                fontSize: '0.68rem',
+                                padding: '2px 8px',
+                                background: 'var(--green-50)',
+                                borderColor: 'var(--green-100)',
+                                color: 'var(--green-700)',
+                              }}
+                            >
+                              {reason}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     <ArrowRight size={15} style={{ color: 'var(--color-gold-dark)', flexShrink: 0 }} />
                   </Link>

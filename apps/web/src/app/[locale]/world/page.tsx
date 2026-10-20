@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { seed } from '@/lib/data';
+import { TerritoryBrowser } from '@/components/world/territory-browser';
 
 export default async function WorldExplorerPage({
   params,
@@ -100,28 +101,32 @@ export default async function WorldExplorerPage({
           })}
         </div>
 
-        {/* ALL COUNTRIES REGISTER */}
-        <section className="card-frame" style={{ marginTop: 48, padding: 36 }}>
-          <span className="eyebrow eyebrow-crimson" style={{ display: 'block', marginBottom: 8 }}>{isAr ? 'سجل شامل' : 'Complete Register'}</span>
-          <h2 className="h2 text-crimson" style={{ marginBottom: 12 }}>
-            {isAr ? 'جميع الدول والأقاليم المسجلة (249)' : 'Complete World Register of 249 Nations'}
-          </h2>
-          <p className="lede" style={{ marginBottom: 24 }}>
-            {isAr
-              ? 'سجل مرجعي مشتق من المواصفة الدولية ISO 3166-1 لضمان دقة الشحن والتخليص الجمركي وتوثيق أذونات سايتس.'
-              : 'Standardized territorial reference derived from ISO 3166-1 for export compliance, customs freight clearance, and CITES non-detriment verification.'}
-          </p>
-          <div className="cluster">
-            {countries.map((c: any) => (
-              <Link
-                key={c.iso2}
-                href={`/${locale}/world/${c.iso2}`}
-                className="chip"
-              >
-                {isAr ? c.arabic_seed : c.english_seed} ({c.iso2})
-              </Link>
-            ))}
+        {/* ALL COUNTRIES REGISTER — grid/list browser with infinite scroll */}
+        <section style={{ marginTop: 48 }}>
+          <div className="section-head">
+            <span className="eyebrow">{isAr ? 'سجل شامل' : 'Complete Register'}</span>
+            <h2 className="h2" style={{ marginBottom: 10 }}>
+              {isAr ? 'جميع الدول والأقاليم المسجلة (249)' : 'Complete World Register of 249 Nations'}
+            </h2>
+            <p className="lede">
+              {isAr
+                ? 'سجل مرجعي مشتق من المواصفة الدولية ISO 3166-1 لضمان دقة الشحن والتخليص الجمركي وتوثيق أذونات سايتس.'
+                : 'Standardized territorial reference derived from ISO 3166-1 for export compliance, customs freight clearance, and CITES non-detriment verification.'}
+            </p>
           </div>
+
+          <TerritoryBrowser
+            locale={locale}
+            isAr={isAr}
+            territories={countries.map((c: any) => ({
+              iso2: c.iso2,
+              iso3: c.iso3,
+              name: c.english_seed,
+              nameAr: c.arabic_seed,
+              role_status: c.role_status ?? 'Documented',
+              public_readiness: c.public_readiness ?? 'Research only',
+            }))}
+          />
         </section>
       </div>
     </div>

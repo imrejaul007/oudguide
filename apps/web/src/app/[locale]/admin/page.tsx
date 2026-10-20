@@ -1,7 +1,8 @@
-import { ShieldCheck, ArrowLeft } from 'lucide-react';
+import { ShieldCheck, ArrowLeft, Building2, Users, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { domain } from '@/lib/data';
 import { AdminTabs } from '@/components/admin/admin-tabs';
+import { AdminDashboard } from '@/components/admin/admin-dashboard';
 
 export default async function AdminPage({
   params,
@@ -36,6 +37,33 @@ export default async function AdminPage({
     contact_unlocked: !!b.contact_unlocked,
   }));
 
+  // Pending work surfaces as an explicit call-out, mirroring IndexOrbit's
+  // "Pending Actions" card which only renders when there is something to do.
+  const unclaimed = businesses.filter((b: any) => !b.is_claimed).length;
+  const pendingActions = [
+    {
+      label: 'unclaimed profiles awaiting a claim decision',
+      labelAr: 'ملفات غير موثّقة تنتظر قرار التوثيق',
+      count: unclaimed,
+      href: `/${locale}/admin`,
+    },
+    {
+      label: 'introduction releases in the dispatch outbox',
+      labelAr: 'إصدارات تعريف في طابور الإرسال',
+      count: outbox.length,
+      href: `/${locale}/admin/inquiries`,
+    },
+  ].filter((a) => a.count > 0);
+
+  const recentProducers = businesses.map((b: any) => ({
+    id: b.id,
+    name: b.name,
+    slug: b.slug,
+    country_name: b.country_name ?? null,
+    is_claimed: !!b.is_claimed,
+    contact_unlocked: !!b.contact_unlocked,
+  }));
+
   return (
     <div className="section">
       <div className="container" style={{ maxWidth: 1080 }}>
@@ -65,13 +93,60 @@ export default async function AdminPage({
         </section>
 
         <div style={{ marginTop: 40 }}>
-          <AdminTabs
+          <AdminDashboard
             locale={locale}
-            claims={claims}
-            memberships={memberships}
-            inquiryCount={outbox.length}
             isAr={isAr}
+            stats={[
+              {
+                key: 'producers',
+                label: 'Registered producers',
+                labelAr: 'منتجون مسجلون',
+                value: businesses.length,
+                icon: Building2,
+                href: `/${locale}/directory`,
+                tone: 'green',
+              },
+              {
+                key: 'claimed',
+                label: 'Claimed profiles',
+                labelAr: 'ملفات موثّقة',
+                value: businesses.filter((b: any) => b.is_claimed).length,
+                icon: ShieldCheck,
+                href: `/${locale}/admin`,
+                tone: 'green',
+              },
+              {
+                key: 'members',
+                label: 'Annual members',
+                labelAr: 'أعضاء سنويون',
+                value: businesses.filter((b: any) => b.has_active_membership).length,
+                icon: Users,
+                href: `/${locale}/admin`,
+                tone: 'brass',
+              },
+              {
+                key: 'contacts',
+                label: 'Contact records unlocked',
+                labelAr: 'سجلات اتصال مفتوحة',
+                value: businesses.filter((b: any) => b.contact_unlocked).length,
+                icon: FileText,
+                href: `/${locale}/admin`,
+                tone: 'neutral',
+              },
+            ]}
+            pendingActions={pendingActions}
+            recentProducers={recentProducers}
           />
+
+          <div style={{ marginTop: 40 }}>
+            <AdminTabs
+              locale={locale}
+              claims={claims}
+              memberships={memberships}
+              inquiryCount={outbox.length}
+              isAr={isAr}
+            />
+          </div>
         </div>
       </div>
     </div>

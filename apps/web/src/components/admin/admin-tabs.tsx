@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { CheckCircle2, XCircle, ShieldCheck, Users, Star, ArrowRight } from 'lucide-react';
+import { CheckCircle2, XCircle, Users, ArrowRight } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 
 export interface ClaimRow {
   id: string;
@@ -28,7 +29,7 @@ export interface MembershipRow {
 
 export function AdminTabs({
   locale,
-  claims,
+  claims: initialClaims,
   memberships,
   inquiryCount,
   isAr,
@@ -39,13 +40,28 @@ export function AdminTabs({
   inquiryCount: number;
   isAr: boolean;
 }) {
+  const { toast } = useToast();
   const [tab, setTab] = useState<'claims' | 'membership'>('claims');
+  const [claims, setClaims] = useState(initialClaims);
   const [busy, setBusy] = useState<string | null>(null);
-  const [flash, setFlash] = useState<string | null>(null);
 
+  /**
+   * Approve or revoke a claim.
+   *
+   * Uses an optimistic local update so the queue reflects the decision
+   * immediately, with a toast for confirmation. IndexOrbit's version does a
+   * full page reload, which loses the operator's scroll position and tab
+   * selection — poor for a moderation queue.
+   */
   const handleAction = async (businessId: string, action: 'approve' | 'reject') => {
     setBusy(businessId);
-    setFlash(null);
+
+    const previous = claims;
+    // Optimistic: flip the flag immediately, roll back on failure.
+    setClaims((prev) =>
+      prev.map((c) => (c.id === businessId ? { ...c, is_claimed: action === 'approve' } : c))
+    );
+
     try {
       const res = await fetch('/api/v1/admin/claims', {
         method: 'POST',
@@ -53,11 +69,31 @@ export function AdminTabs({
         body: JSON.stringify({ business_id: businessId, action }),
       });
       const data = await res.json();
-      setFlash(data.message || data.error || 'Completed');
-      // Reload so the queue reflects the new state.
-      window.location.reload();
+
+      if (!res.ok) {
+        setClaims(previous);
+        toast({
+          title: isAr ? 'تعذّر تنفيذ الإجراء' : 'Action failed',
+          description: data.error,
+          variant: 'error',
+        });
+        return;
+      }
+
+      toast({
+        title: action === 'approve'
+          ? (isAr ? 'تم اعتماد التوثيق' : 'Claim approved')
+          : (isAr ? 'تم سحب التوثيق' : 'Claim revoked'),
+        description: data.message,
+        variant: 'success',
+      });
     } catch {
-      setFlash(isAr ? 'تعذّر تنفيذ الإجراء' : 'Action failed');
+      setClaims(previous);
+      toast({
+        title: isAr ? 'تعذّر تنفيذ الإجراء' : 'Action failed',
+        description: isAr ? 'يرجى المحاولة بعد قليل.' : 'Please try again shortly.',
+        variant: 'error',
+      });
     } finally {
       setBusy(null);
     }
@@ -65,20 +101,6 @@ export function AdminTabs({
 
   return (
     <div>
-      {/* Flash */}
-      {flash && (
-        <div
-          className="privacy-shield"
-          style={{ borderLeftColor: 'var(--color-emerald)', background: 'linear-gradient(135deg, #f0faf5, #e3f2ea)' }}
-        >
-          <ShieldCheck size={22} className="privacy-shield-icon" style={{ color: 'var(--color-emerald)' }} />
-          <div className="privacy-shield-body">
-            <h4 style={{ color: 'var(--color-emerald)' }}>{isAr ? 'تم تنفيذ الإجراء' : 'Action completed'}</h4>
-            <p>{flash}</p>
-          </div>
-        </div>
-      )}
-
       {/* Tabs */}
       <div className="admin-tabs">
         <Link href={`/${locale}/admin/inquiries`} className="admin-tab">
@@ -121,7 +143,6 @@ export function AdminTabs({
                   </span>
                   {c.has_active_membership && (
                     <span className="badge badge-gold">
-                      <Star size={10} />
                       {isAr ? 'عضوية نشطة' : 'Active membership'}
                     </span>
                   )}
@@ -145,7 +166,7 @@ export function AdminTabs({
                   <button
                     onClick={() => handleAction(c.id, 'approve')}
                     disabled={busy === c.id}
-                    className="btn btn-emerald btn-sm"
+                    className="btn btn-primary btn-sm"
                   >
                     <CheckCircle2 size={14} />
                     {isAr ? 'اعتماد' : 'Approve'}
@@ -185,7 +206,9 @@ export function AdminTabs({
                 <div className="cluster" style={{ gap: 8, marginBottom: 8 }}>
                   <span className={`badge ${m.has_active_membership ? 'badge-gold' : 'badge-locked'}`}>
                     <Users size={10} />
-                    {m.has_active_membership ? (isAr ? 'عضوية سنوية نشطة' : 'Annual membership active') : (isAr ? 'غير مشترك' : 'Not subscribed')}
+                    {m.has_active_membership
+                      ? (isAr ? 'عضوية سنوية نشطة' : 'Annual membership active')
+                      : (isAr ? 'غير مشترك' : 'Not subscribed')}
                   </span>
                   {m.contact_unlocked && (
                     <span className="badge badge-charcoal">

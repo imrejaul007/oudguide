@@ -3266,3 +3266,86 @@ a.btn-crimson {
   border: 1px solid var(--line);
   background: var(--bg-eggshell);
 }
+
+/* ============================================================================
+   21. SCROLL REVEAL
+   Pattern ported from IndexOrbit's lazy-revealing taxonomy sections
+   (IntersectionObserver + opacity/translateY transition).
+   ============================================================================ */
+
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-pending { opacity: 1; transform: none; }
+  .reveal-in { transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================================
+   22. GRID / LIST VIEW TOGGLE
+   Pattern ported from IndexOrbit's business-types page.
+   ============================================================================ */
+
+.view-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  background: var(--bg-eggshell);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+}
+
+.view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.view-toggle-btn:hover { color: var(--green-700); }
+
+.view-toggle-btn.active {
+  background: var(--bg);
+  color: var(--green-700);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Ranked badge — gold / silver / bronze, used for ranked producer lists */
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--bg-majlis);
+  background: var(--line-strong);
+  flex-shrink: 0;
+}
+
+.rank-1 { background: linear-gradient(135deg, #f5e1a4, #c59b27); }
+.rank-2 { background: linear-gradient(135deg, #e8ebee, #b8c0c7); }
+.rank-3 { background: linear-gradient(135deg, #e2c5a4, #b98a5e); }
+
+/* ============================================================== */
