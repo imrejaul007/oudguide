@@ -53,8 +53,16 @@ function isAdminApi(pathname: string): boolean {
   return pathname.startsWith('/api/v1/admin') || pathname.startsWith('/api/admin');
 }
 
-function isLoginPath(pathname: string): boolean {
-  return LOCALES.some((locale) => pathname === `/${locale}/admin/login`);
+/**
+ * Paths that must stay reachable while unauthenticated, otherwise the
+ * operator could never sign in: the login page itself and the session
+ * endpoint that mints the cookie.
+ */
+function isExemptPath(pathname: string): boolean {
+  if (LOCALES.some((locale) => pathname === `/${locale}/admin/login`)) return true;
+  // The session endpoint is the way IN — gating it would lock everyone out.
+  if (pathname === '/api/v1/admin/session') return true;
+  return false;
 }
 
 export async function middleware(request: NextRequest) {
@@ -62,7 +70,7 @@ export async function middleware(request: NextRequest) {
 
   // 1. Admin gating ---------------------------------------------------
   const needsGate = isAdminPath(pathname) || isAdminApi(pathname);
-  if (needsGate && !isLoginPath(pathname)) {
+  if (needsGate && !isExemptPath(pathname)) {
     const session = request.cookies.get(COOKIE_NAME)?.value;
     const expected = await digest(ADMIN_KEY);
 

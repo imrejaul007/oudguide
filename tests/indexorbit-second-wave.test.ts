@@ -241,4 +241,20 @@ describe('Operator session gate', () => {
     assert.ok(isLogin('/ar/admin/login'));
     assert.ok(!isLogin('/en/admin/inquiries'));
   });
+
+  test('the session endpoint is exempt — gating it would lock everyone out', () => {
+    // Regression guard: the session endpoint is the way IN. If the middleware
+    // gated it, an operator could never obtain a cookie and the admin
+    // workspace would be permanently unreachable.
+    const isExempt = (p: string) =>
+      /^\/(en|ar)\/admin\/login$/.test(p) || p === '/api/v1/admin/session';
+
+    assert.ok(isExempt('/api/v1/admin/session'), 'session endpoint must be reachable');
+    assert.ok(isExempt('/en/admin/login'), 'login page must be reachable');
+
+    // Everything else under admin must stay gated.
+    assert.ok(!isExempt('/api/v1/admin/claims'), 'claims API must stay gated');
+    assert.ok(!isExempt('/api/v1/admin/session/delete'), 'only the exact session path is exempt');
+    assert.ok(!isExempt('/en/admin/inquiries'), 'admin pages must stay gated');
+  });
 });
