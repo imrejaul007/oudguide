@@ -2,6 +2,12 @@
 
 import { useState, useMemo } from 'react';
 import { isFieldVisible } from '../../../../../packages/contracts/src/rfq-fields.ts';
+import {
+  RFQ_FIELD_KEYS,
+  RFQ_FIELD_EXTRA_KEYS,
+  RFQ_FIELD_STAGES,
+  RFQ_BUYER_STAGES,
+} from '../../../../../packages/contracts/src/rfq-field-map.ts';
 import rfqFieldDefs from '@/data/rfq_fields.json';
 import { useDebounce } from '@/lib/hooks';
 import {
@@ -47,17 +53,7 @@ type FieldDef = {
 const FIELDS = rfqFieldDefs as unknown as FieldDef[];
 
 /** Stages the buyer walks through, in order. System stages are server-side. */
-const BUYER_STAGES = [
-  'Start',
-  'Wood',
-  'Oil',
-  'Perfume',
-  'Sample',
-  'Delivery',
-  'Contact',
-  'Consent',
-  'Matching',
-];
+const BUYER_STAGES = RFQ_BUYER_STAGES as readonly string[];
 
 const STAGE_LABELS: Record<string, { en: string; ar: string }> = {
   Start: { en: 'Requirements', ar: 'المتطلبات' },
@@ -73,6 +69,12 @@ const STAGE_LABELS: Record<string, { en: string; ar: string }> = {
 
 /** Stages that only appear when their branch is triggered. */
 const CONDITIONAL_STAGES = new Set(['Wood', 'Oil', 'Perfume', 'Sample']);
+
+/** The stage a field belongs to, from the canonical map. */
+const stageOf = (f: FieldDef) => RFQ_FIELD_STAGES[f.ID] ?? f['Form stage'];
+
+/** The semantic key a field's answer is stored under. */
+const keyOf = (f: FieldDef) => RFQ_FIELD_KEYS[f.ID];
 
 /**
  * Parse the semicolon-delimited "Validation / choices" column into a
@@ -116,7 +118,7 @@ export function RfqWizard({
     return BUYER_STAGES.filter((stage) => {
       if (!CONDITIONAL_STAGES.has(stage)) return true;
       return FIELDS.some(
-        (f) => f['Form stage'] === stage && isFieldVisible(f.ID, values as any)
+        (f) => stageOf(f) === stage && isFieldVisible(f.ID, values as any)
       );
     });
   }, [values]);
@@ -124,17 +126,27 @@ export function RfqWizard({
   const currentStage = visibleStages[Math.min(stageIndex, visibleStages.length - 1)];
 
   const stageFields = useMemo(
-    () => FIELDS.filter((f) => f['Form stage'] === currentStage && isFieldVisible(f.ID, values as any)),
+    () => FIELDS.filter((f) => stageOf(f) === currentStage && isFieldVisible(f.ID, values as any)),
     [currentStage, values]
   );
 
   const totalVisible = useMemo(
-    () => FIELDS.filter((f) => isFieldVisible(f.ID, values as any) && f['Form stage'] !== 'System').length,
+    () => FIELDS.filter((f) => isFieldVisible(f.ID, values as any) && stageOf(f) !== 'System').length,
     [values]
   );
 
   const setValue = (id: string, value: any) => {
-    setValues((prev) => ({ ...prev, [id]: value }));
+    // Store under the semantic key the domain service reads, not the
+    // schema's Q-number. The two vocabularies had drifted apart, which
+    // meant every answer the buyer gave was discarded on submit.
+    const field = FIELDS.find((f) => f.ID === id) as FieldDef;
+    const key = keyOf(field) ?? id;
+    const extras = RFQ_FIELD_EXTRA_KEYS[id] ?? [];
+    setValues((prev) => {
+      const next: Record<string, any> = { ...prev, [key]: value };
+      for (const extra of extras) next[extra] = value;
+      return next;
+    });
   };
 
   const isRequired = (f: FieldDef) =>
@@ -160,12 +172,21 @@ export function RfqWizard({
       const body = new URLSearchParams();
       body.set('locale', locale);
       for (const [k, v] of Object.entries(values)) {
-        if (v !== undefined && v !== null && v !== '') {
-          body.set(k, Array.isArray(v) ? v.join(', ') : String(v));
+        if (v === undefined || v === null || v === '') continue;
+        if (typeof v === 'boolean') {
+          body.set(k, v ? 'true' : 'false');
+          continue;
         }
+        body.set(k, Array.isArray(v) ? v.join(', ') : String(v));
       }
+      // "advice needed" is a valid answer that is NOT a request for samples,
+      // so the answer must be compared against the Yes/no options rather
+      // than tested for truthiness.
+      const sampleAnswer = values.samples_requested;
+      const wantsSamples =
+        sampleAnswer === true || sampleAnswer === 'Yes' || sampleAnswer === 'yes';
+      body.set('samples_requested', wantsSamples ? 'true' : 'false');
       body.set('preferred_contact_channel', values.preferred_contact_channel || 'email');
-      body.set('samples_requested', values.samples_requested ? 'true' : 'false');
       if (selectedSupplier) body.set('selected_supplier_slug', selectedSupplier);
 
       const res = await fetch('/api/v1/inquiries/form', {
@@ -278,7 +299,7 @@ export function RfqWizard({
             <RfqField
               key={f.ID}
               field={f}
-              value={values[f.ID]}
+              value={values[keyOf(f)]}
               onChange={(v) => setValue(f.ID, v)}
               isAr={isAr}
               required={isRequired(f)}
@@ -374,8 +395,68 @@ function RfqField({
 }) {
   const choices = parseChoices(field['Validation / choices']);
   const id = field.ID;
+  const name = keyOf(field) ?? id;
   const label = field.Field;
   const isChoice = ['Select', 'Radio', 'Multi-select', 'Choice'].includes(field['Input type']);
+
+  // Affirmative controls (consent, opt-ins, redaction permission) must be
+  // unticked checkboxes, never free text.
+  const isAffirmative = /Unticked|Affirmative/.test(field['Input type']);
+
+  // The processing notice is a read-only recipient banner, not an input.
+  const isNotice = /Read-only/.test(field['Input type']);
+
+  if (isNotice) {
+    return (
+      <div
+        className="privacy-shield"
+        style={{ margin: 0, display: 'block' }}
+      >
+        <div className="privacy-shield-body">
+          <h4>{label}</h4>
+          <p>
+            {isAr
+              ? 'عند اعتمادك لطلب، يُرسل موجز فني مشفر إلى الموردين المؤهلين. تُعرض أسماء الموردين على شاشتك قبل الموافقة النهائية، ولا تُشارك بيانات اتصالك إلا بعد اعتمادك الصريح برمز OTP.'
+              : 'When you approve a request, an encrypted technical brief is sent to qualified producers. Producer names are shown on your screen before final approval, and your contact details are shared only after your explicit approval with OTP verification.'}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isAffirmative) {
+    return (
+      <div className="form-field" style={{ marginBottom: 0 }}>
+        <label
+          className="form-label"
+          htmlFor={id}
+          style={{ display: 'flex', alignItems: 'flex-start', gap: 10, cursor: 'pointer' }}
+        >
+          <input
+            id={id}
+            name={name}
+            type="checkbox"
+            checked={value === true || value === 'true'}
+            onChange={(e) => onChange(e.target.checked)}
+            style={{ marginTop: 3, width: 16, height: 16, accentColor: 'var(--green-700)', flexShrink: 0 }}
+          />
+          <span>
+            {label}
+            {required && <span style={{ color: 'var(--terracotta)', marginInlineStart: 4 }}>*</span>}
+            <span className="meta" style={{ marginInlineStart: 8, textTransform: 'none', letterSpacing: '0.02em' }}>
+              {id}
+            </span>
+          </span>
+        </label>
+        {field['Privacy / interpretation'] && (
+          <p className="form-help">
+            <Lock size={10} style={{ display: 'inline', verticalAlign: 'middle', marginInlineEnd: 4 }} />
+            {field['Privacy / interpretation']}
+          </p>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="form-field" style={{ marginBottom: 0 }}>
@@ -390,7 +471,7 @@ function RfqField({
       {isChoice && choices.length > 0 ? (
         <select
           id={id}
-          name={id}
+          name={name}
           value={value ?? ''}
           onChange={(e) => onChange(e.target.value)}
           className="form-select"
@@ -406,7 +487,7 @@ function RfqField({
       ) : field['Input type'] === 'Textarea' ? (
         <textarea
           id={id}
-          name={id}
+          name={name}
           value={value ?? ''}
           onChange={(e) => onChange(e.target.value)}
           className="form-textarea"
@@ -416,7 +497,7 @@ function RfqField({
       ) : field['Input type'] === 'Number' || field['Input type'] === 'Integer' ? (
         <input
           id={id}
-          name={id}
+          name={name}
           type="number"
           value={value ?? ''}
           onChange={(e) => onChange(e.target.value)}
@@ -426,7 +507,7 @@ function RfqField({
       ) : field['Input type'] === 'Date' ? (
         <input
           id={id}
-          name={id}
+          name={name}
           type="date"
           value={value ?? ''}
           onChange={(e) => onChange(e.target.value)}
@@ -436,7 +517,7 @@ function RfqField({
       ) : field['Input type'] === 'File' || field['Input type'] === 'Private upload' ? (
         <input
           id={id}
-          name={id}
+          name={name}
           type="file"
           className="form-input"
           style={{ padding: 8 }}
@@ -444,7 +525,7 @@ function RfqField({
       ) : (
         <input
           id={id}
-          name={id}
+          name={name}
           type="text"
           value={value ?? ''}
           onChange={(e) => onChange(e.target.value)}

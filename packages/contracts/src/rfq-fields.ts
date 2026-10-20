@@ -101,71 +101,83 @@ export interface RfqFormValues {
  */
 export function isFieldVisible(fieldId: string, values: RfqFormValues): boolean {
   const family = (values.product_family || '').toLowerCase();
-  const samplesRequested = values.samples_requested === true || values.samples_requested === 'Yes' || values.samples_requested === 'yes';
+  const purpose = (values.purchase_purpose || '').toLowerCase();
+  const samplesRequested =
+    values.samples_requested === true ||
+    values.samples_requested === 'Yes' ||
+    values.samples_requested === 'yes';
   const contactChannel = (values.preferred_contact_channel || '').toLowerCase();
   const mode = values.request_mode || 'matching';
 
-  switch (fieldId) {
-    // Start stage: Q01 - Q12 visible on all requests
-    case 'Q01': case 'Q02': case 'Q03': case 'Q04': case 'Q05':
-    case 'Q06': case 'Q07': case 'Q08': case 'Q09': case 'Q10':
-    case 'Q11': case 'Q12':
-      return true;
-
-    // Wood & Incense specific: Q13 - Q21
-    case 'Q13': case 'Q14': case 'Q15': case 'Q16': case 'Q17':
-    case 'Q18': case 'Q19': case 'Q20': case 'Q21':
-      return family.includes('wood') || family.includes('bakhoor') || family.includes('incense');
-
-    // Oil specific: Q22 - Q29
-    case 'Q22': case 'Q23': case 'Q24': case 'Q25': case 'Q26':
-    case 'Q27': case 'Q28': case 'Q29':
-      return family.includes('oil') || family.includes('attar');
-
-    // Finished Perfume & Private Label: Q30 - Q37
-    case 'Q30': case 'Q31': case 'Q32': case 'Q33': case 'Q34':
-    case 'Q35': case 'Q36': case 'Q37':
-      return family.includes('perfume') || family.includes('finished') || family.includes('related');
-
-    // Sample fields: Q38 always visible, Q39 - Q43 only if samples requested
-    case 'Q38':
-      return true;
-    case 'Q39': case 'Q40': case 'Q41': case 'Q42': case 'Q43':
-      return samplesRequested;
-
-    // Delivery fields: Q44 - Q49 visible on all requests
-    case 'Q44': case 'Q45': case 'Q46': case 'Q47': case 'Q48': case 'Q49':
-      return true;
-
-    // Contact fields: Q50 (channel selector), Q51 (buyer name), Q55 (company), Q58 (consent) always visible
-    case 'Q50': case 'Q51': case 'Q55': case 'Q58':
-      return true;
-
-    // Conditional contact channels
-    case 'Q52': // Email
-      return contactChannel === 'email' || !contactChannel;
-    case 'Q53': // Phone
-      return contactChannel === 'phone';
-    case 'Q54': // WhatsApp
-      return contactChannel === 'whatsapp';
-    case 'Q56': case 'Q57': case 'Q59':
-      return true;
-
-    // Matching mode fields: Q60 - Q66
-    case 'Q60': case 'Q61':
-      return true;
-    case 'Q62': // Maximum supplier introductions — shown in the matching flow.
-      // The buyer caps how many producers may be introduced; the lead
-      // policy enforces the same cap server-side via `recipient_cap`.
-      return mode === 'matching';
-    case 'Q63': case 'Q64': case 'Q65': case 'Q66':
-      return true;
-
-    // System fields
-    case 'Q67':
-      return false; // internal only
-
-    default:
-      return true;
+  // Server-owned and partner-owned fields are never buyer-facing.
+  if (fieldId === 'Q58' || fieldId === 'Q59' || fieldId === 'Q60' || fieldId === 'Q66' || fieldId === 'Q67') {
+    return false;
   }
+
+  // Start stage — always visible on every request.
+  if (['Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q07', 'Q08', 'Q09', 'Q10', 'Q11', 'Q12'].includes(fieldId)) {
+    return true;
+  }
+
+  // Wood & incense branch (Q13-Q22).
+  if (['Q13', 'Q14', 'Q15', 'Q16', 'Q17', 'Q18', 'Q19', 'Q20', 'Q21', 'Q22'].includes(fieldId)) {
+    return family.includes('wood') || family.includes('bakhoor') || family.includes('incense');
+  }
+
+  // Oil & attar branch (Q23-Q29).
+  if (['Q23', 'Q24', 'Q25', 'Q26', 'Q27', 'Q28', 'Q29'].includes(fieldId)) {
+    return family.includes('oil') || family.includes('attar') || family.includes('perfume oil');
+  }
+
+  // Finished perfume & private label branch (Q30-Q35).
+  if (['Q30', 'Q31', 'Q32', 'Q33', 'Q34', 'Q35'].includes(fieldId)) {
+    return family.includes('perfume') || family.includes('finished') || family.includes('related');
+  }
+
+  // Sample branch (Q36-Q41) — opens once samples are requested.
+  if (['Q36', 'Q37', 'Q38', 'Q39', 'Q40', 'Q41'].includes(fieldId)) {
+    return samplesRequested;
+  }
+
+  // Delivery (Q42-Q47). Postal code and cross-border questions only
+  // matter for a shipment, so they follow the commercial purpose.
+  if (fieldId === 'Q42') return purpose !== 'retail/personal' && purpose !== 'gifting';
+  if (fieldId === 'Q43') return true;
+  if (['Q44', 'Q45', 'Q46'].includes(fieldId)) {
+    return purpose.includes('wholesale') || purpose.includes('manufactur') || purpose.includes('private label');
+  }
+  if (fieldId === 'Q47') return purpose.includes('wholesale');
+
+  // Contact (Q48-Q53).
+  if (fieldId === 'Q48') return true; // Buyer name — always required
+  if (fieldId === 'Q49') {
+    // Company name — only for a business buyer.
+    return purpose.includes('wholesale') || purpose.includes('manufactur') || purpose.includes('private label');
+  }
+  if (fieldId === 'Q50') return true; // Channel selector — always required
+  if (fieldId === 'Q51') return contactChannel === 'email'; // Email
+  if (fieldId === 'Q52') return contactChannel === 'phone' || contactChannel === 'whatsapp';
+  if (fieldId === 'Q53') return true; // Language & time zone
+
+  // Consent (Q54-Q57).
+  if (fieldId === 'Q54') return true; // Processing notice — required display
+  if (fieldId === 'Q55') return true; // Acknowledgment — required control
+  if (fieldId === 'Q56') {
+    // Additional supplier matching permission — only for a supplier-specific request.
+    return mode === 'selected_supplier';
+  }
+  if (fieldId === 'Q57') return true; // Marketing opt-in
+
+  // Matching (Q61-Q63) and Approval (Q64-Q65).
+  if (fieldId === 'Q61') return true; // Request mode
+  if (fieldId === 'Q62') {
+    // Maximum supplier introductions — a matching-flow concept. The lead
+    // policy enforces the same cap server-side via `recipient_cap`.
+    return mode === 'matching';
+  }
+  if (fieldId === 'Q63') return true; // Redacted brief permission
+  if (fieldId === 'Q64') return true; // Named recipient set
+  if (fieldId === 'Q65') return true; // Consent withdrawal — always accessible
+
+  return true;
 }

@@ -406,4 +406,104 @@ export class OudGuideDomainService {
   public getOutbox() {
     return [...this.outbox];
   }
+
+  /**
+   * Restore an inquiry (and its recipient grants) from a plain object.
+   *
+   * The domain keeps state in memory, which does not survive between
+   * serverless invocations. A buyer carries their own inquiry state in a
+   * signed cookie; when a request needs the domain to reason about that
+   * inquiry — verifying the OTP, approving a recipient, executing a
+   * release — the record is hydrated back into this instance first, so
+   * the fail-closed policy is evaluated against the real request rather
+   * than skipped because the map came up empty.
+   */
+  public hydrateInquiry(
+    record: {
+      id: string;
+      created_at: Date;
+      expires_at: Date;
+      state: InquiryRecord['state'];
+      verification_token: string;
+      channel_verified: boolean;
+      preferred_channel: string;
+      buyer_name: string;
+      buyer_email?: string;
+      buyer_phone?: string;
+      buyer_whatsapp?: string;
+      company_name?: string;
+      destination_country: string;
+      product_family: string;
+      quantity?: string | number;
+      quantity_unit?: string;
+      target_price_per_unit?: string | number;
+      origin_preference?: string;
+      samples_requested: boolean;
+      required_date?: string;
+      form_values: RfqFormValues;
+    },
+    grants: Array<{ target_business_id: string; grant_id: string }> = []
+  ): InquiryRecord {
+    const restored: InquiryRecord = {
+      id: record.id,
+      created_at: record.created_at,
+      expires_at: record.expires_at,
+      state: record.state,
+      verification_token: record.verification_token,
+      channel_verified: record.channel_verified,
+      preferred_channel: record.preferred_channel,
+      buyer_name: record.buyer_name,
+      buyer_email: record.buyer_email,
+      buyer_phone: record.buyer_phone,
+      buyer_whatsapp: record.buyer_whatsapp,
+      company_name: record.company_name,
+      destination_country: record.destination_country,
+      product_family: record.product_family,
+      quantity: record.quantity,
+      quantity_unit: record.quantity_unit,
+      target_price_per_unit: record.target_price_per_unit,
+      origin_preference: record.origin_preference,
+      samples_requested: record.samples_requested,
+      required_date: record.required_date,
+      form_values: record.form_values,
+    };
+
+    this.inquiries.set(restored.id, restored);
+
+    // Restore the approved recipients, preserving the cap semantics.
+    for (const grant of grants) {
+      const grantId = grant.grant_id;
+      this.recipientGrants.set(grantId, {
+        grant_id: grantId,
+        inquiry_id: restored.id,
+        target_business_id: grant.target_business_id,
+        granted_at: restored.created_at,
+        expires_at: restored.expires_at,
+        granted_fields: new Set(['email', 'requirements']),
+        granted_channels: new Set([restored.preferred_channel]),
+        granted_purpose: 'requested_quotation',
+        approved_by_buyer: true,
+        withdrawn: false,
+      });
+    }
+
+    // Rebuild the redacted brief when the inquiry is already authorized.
+    if (restored.state === 'authorized' || restored.state === 'dispatch_pending') {
+      this.matchBriefs.set(restored.id, {
+        inquiry_id: restored.id,
+        created_at: restored.created_at,
+        expires_at: restored.expires_at,
+        product_family: restored.product_family,
+        quantity: restored.quantity,
+        quantity_unit: restored.quantity_unit,
+        target_price_per_unit: restored.target_price_per_unit,
+        destination_country: restored.destination_country,
+        origin_preference: restored.origin_preference,
+        samples_requested: restored.samples_requested,
+        required_date: restored.required_date,
+      });
+    }
+
+    return restored;
+  }
 }

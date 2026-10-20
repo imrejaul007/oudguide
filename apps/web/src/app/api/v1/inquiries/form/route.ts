@@ -1,5 +1,6 @@
 import { domain } from '@/lib/data';
 import { NextResponse } from 'next/server';
+import { inquiryCookieHeader, type PersistedInquiry } from '@/lib/inquiry-store';
 
 import type { RfqFormValues } from '../../../../../../../packages/contracts/src/rfq-fields.ts';
 
@@ -55,5 +56,55 @@ export async function POST(request: Request) {
   };
 
   const result = domain.submitInquiry(values);
-  return NextResponse.redirect(new URL(`/${locale}/inquiries/${result.inquiry_id}`, request.url), 303);
+
+  /**
+   * Persist the inquiry to the buyer's own signed cookie.
+   *
+   * The domain service holds inquiries in memory, which does not survive
+   * between serverless invocations. Without this, the status page cannot
+   * find the inquiry the buyer just created and falls back to a synthetic
+   * record. The cookie is HMAC-signed, so the buyer cannot tamper with
+   * their own verification token or approved-recipient set.
+   */
+  const record = domain.getInquiry(result.inquiry_id);
+  let persisted: PersistedInquiry | null = null;
+
+  if (record) {
+    persisted = {
+      id: record.id,
+      created_at: record.created_at.toISOString(),
+      expires_at: record.expires_at.toISOString(),
+      state: record.state,
+      verification_token: record.verification_token,
+      channel_verified: record.channel_verified,
+      preferred_channel: record.preferred_channel,
+      buyer_name: record.buyer_name,
+      buyer_email: record.buyer_email,
+      buyer_phone: record.buyer_phone,
+      buyer_whatsapp: record.buyer_whatsapp,
+      company_name: record.company_name,
+      destination_country: record.destination_country,
+      product_family: record.product_family,
+      quantity: record.quantity,
+      quantity_unit: record.quantity_unit,
+      target_price_per_unit: record.target_price_per_unit,
+      origin_preference: record.origin_preference,
+      samples_requested: record.samples_requested,
+      required_date: record.required_date,
+      form_values: record.form_values as Record<string, any>,
+      grants: [],
+      releases: [],
+    };
+  }
+
+  const response = NextResponse.redirect(
+    new URL(`/${locale}/inquiries/${result.inquiry_id}`, request.url),
+    303
+  );
+
+  if (persisted) {
+    response.headers.append('Set-Cookie', inquiryCookieHeader(persisted));
+  }
+
+  return response;
 }

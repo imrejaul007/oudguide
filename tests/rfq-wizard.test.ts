@@ -57,13 +57,14 @@ describe('67-field conditional RFQ wizard', () => {
   });
 
   test('the Wood branch opens only for wood / bakhoor / incense', () => {
+    // The reference schema places Q13-Q22 in the Wood stage.
     const woodIds = visible({ product_family: 'Oud wood' });
-    for (const id of ['Q13', 'Q14', 'Q15', 'Q16', 'Q17', 'Q18', 'Q19', 'Q20', 'Q21']) {
+    for (const id of ['Q13', 'Q14', 'Q15', 'Q16', 'Q17', 'Q18', 'Q19', 'Q20', 'Q21', 'Q22']) {
       assert.ok(woodIds.includes(id), `${id} must be visible for Oud wood`);
     }
 
     const oilIds = visible({ product_family: 'Oud oil' });
-    for (const id of ['Q13', 'Q14', 'Q15', 'Q21']) {
+    for (const id of ['Q13', 'Q14', 'Q15', 'Q22']) {
       assert.ok(!oilIds.includes(id), `${id} must be hidden for Oud oil`);
     }
   });
@@ -93,8 +94,9 @@ describe('67-field conditional RFQ wizard', () => {
   });
 
   test('the Sample branch opens only once samples are requested', () => {
+    // The reference schema places Q36-Q41 in the Sample stage.
     const withoutSamples = visible({ product_family: 'Oud wood' });
-    for (const id of ['Q39', 'Q40', 'Q41', 'Q42', 'Q43']) {
+    for (const id of ['Q36', 'Q37', 'Q38', 'Q39', 'Q40', 'Q41']) {
       assert.ok(!withoutSamples.includes(id), `${id} must be hidden without samples`);
     }
 
@@ -102,21 +104,23 @@ describe('67-field conditional RFQ wizard', () => {
       product_family: 'Oud wood',
       samples_requested: 'Yes',
     });
-    for (const id of ['Q39', 'Q40', 'Q41', 'Q42', 'Q43']) {
+    for (const id of ['Q36', 'Q37', 'Q38', 'Q39', 'Q40', 'Q41']) {
       assert.ok(withSamples.includes(id), `${id} must be visible with samples`);
     }
   });
 
   test('the contact branch follows the chosen channel', () => {
+    // Q51 is the email field, Q52 the phone/WhatsApp field.
     const email = visible({ preferred_contact_channel: 'email' });
-    assert.ok(email.includes('Q52'), 'email branch must show the email field');
+    assert.ok(email.includes('Q51'), 'email branch must show the email field');
+    assert.ok(!email.includes('Q52'), 'email branch must hide the phone field');
 
     const phone = visible({ preferred_contact_channel: 'phone' });
-    assert.ok(phone.includes('Q53'), 'phone branch must show the phone field');
-    assert.ok(!phone.includes('Q52'), 'phone branch must hide the email field');
+    assert.ok(phone.includes('Q52'), 'phone branch must show the phone field');
+    assert.ok(!phone.includes('Q51'), 'phone branch must hide the email field');
 
     const whatsapp = visible({ preferred_contact_channel: 'whatsapp' });
-    assert.ok(whatsapp.includes('Q54'), 'whatsapp branch must show its field');
+    assert.ok(whatsapp.includes('Q52'), 'whatsapp branch must show the phone field');
   });
 
   test('system fields are never buyer-visible', () => {
