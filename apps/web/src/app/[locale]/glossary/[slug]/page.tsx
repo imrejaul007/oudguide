@@ -14,7 +14,8 @@ import {
   listReviewedArticles,
   resolvedRelated,
 } from '@/lib/articles';
-import { buildMetadata } from '@/lib/metadata';
+import { buildMetadata, SITE_URL } from '@/lib/metadata';
+import { jsonLdScript } from '@/lib/jsonld';
 import { resolveSources } from '@/data/articles/sources';
 
 /**
@@ -70,6 +71,27 @@ export default async function GlossaryTermPage({
 
   return (
     <article className="container container-narrow" style={{ paddingTop: 40, paddingBottom: 60 }}>
+      {/* STRUCTURED DATA — built from the same record the page renders from */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html:
+            jsonLdScript(
+              {
+                path: `/${locale}/glossary/${slug}`,
+                article,
+                title: articleTitle(article, locale),
+                description: articleSummary(article, locale),
+                breadcrumbs: articleBreadcrumbs(article, locale).map((crumb) => ({
+                  label: crumb.label,
+                  href: crumb.href,
+                })),
+              },
+              SITE_URL
+            ) ?? '',
+        }}
+      />
+
       <nav
         className="meta"
         style={{ marginBottom: 28, textTransform: 'none', letterSpacing: '0.02em' }}

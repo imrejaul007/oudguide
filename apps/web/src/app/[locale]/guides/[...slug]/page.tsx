@@ -19,6 +19,8 @@ import {
   resolvedRelated,
 } from '@/lib/articles';
 import { buildMetadata } from '@/lib/metadata';
+import { jsonLdScript } from '@/lib/jsonld';
+import { SITE_URL } from '@/lib/metadata';
 import { editorialCopy } from '@/lib/copy/policy';
 import { pick } from '@/lib/copy/policy';
 import { resolveSources } from '@/data/articles/sources';
@@ -135,6 +137,9 @@ function ReviewedArticle({
 
   return (
     <article className="container container-narrow" style={{ paddingTop: 40, paddingBottom: 60 }}>
+      {/* STRUCTURED DATA — built from the same record the page renders from */}
+      <ArticleJsonLd article={article} locale={locale} />
+
       {/* BREADCRUMB — parent hubs, then the article */}
       <nav
         className="meta"
@@ -672,4 +677,43 @@ function neighboursFor(slug: string, locale: string): Array<{
       summary: target ? articleSummary(target, locale) : child.blurb,
     };
   });
+}
+
+/**
+ * The JSON-LD script for a reviewed article.
+ *
+ * It is rendered inside the article so that the schema sits in the same
+ * document as the content it describes, and so that it is built from
+ * the same record the page renders from.
+ */
+function ArticleJsonLd({
+  article,
+  locale,
+}: {
+  article: NonNullable<ReturnType<typeof getArticle>>;
+  locale: string;
+}) {
+  const path = `/${locale}/guides/${article.slug}`;
+  const script = jsonLdScript(
+    {
+      path,
+      article,
+      title: articleTitle(article, locale),
+      description: articleSummary(article, locale),
+      breadcrumbs: articleBreadcrumbs(article, locale).map((crumb) => ({
+        label: crumb.label,
+        href: crumb.href,
+      })),
+    },
+    SITE_URL
+  );
+
+  if (!script) return null;
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: script }}
+    />
+  );
 }
