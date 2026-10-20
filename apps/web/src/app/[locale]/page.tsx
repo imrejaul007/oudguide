@@ -3,6 +3,27 @@ import { domain } from '@/lib/data';
 import { HeroSearch } from '@/components/home/hero-search';
 import { FeaturedCarousel } from '@/components/business/featured-carousel';
 import { Sparkles, AlertTriangle, Compass, ShieldCheck, ArrowRight, Map as MapIcon } from 'lucide-react';
+import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/metadata';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMetadata({
+    path: `/${locale}`,
+    title: isAr
+      ? 'دليل العود — العود الطبيعي وتوريد العطور بالجملة'
+      : 'OudGuide — Natural Oud, Agarwood & Wholesale Fragrance Sourcing',
+    description: isAr
+      ? 'المرجع المستقل للعود الطبيعي ودهن العود والعطور الشرقية، مع دليل منتجين معتمدين وخدمة ربط تجاري محايدة.'
+      : 'The independent reference for natural agarwood, Dehn Al Oud and heritage attars, with a directory of verified producers and a neutral wholesale matching service.',
+    locale,
+    alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}`,
+  });
+}
 
 export default async function HomePage({
   params,

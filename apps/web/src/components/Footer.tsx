@@ -8,9 +8,9 @@ export function Footer({ locale }: { locale: string }) {
       title: isAr ? 'الموسوعة المعرفية' : 'Encyclopedia',
       links: [
         { href: `/${locale}/guides/oud-basics/what-is-agarwood`, label: isAr ? 'ما هو العود؟' : 'What is Agarwood' },
-        { href: `/${locale}/guides/wild-vs-cultivated`, label: isAr ? 'البرّي والمستزرع' : 'Wild vs Plantation' },
-        { href: `/${locale}/guides/copper-deg-distillation`, label: isAr ? 'تقطير الدِّق النحاسي' : 'Copper-Deg Alembics' },
-        { href: `/${locale}/guides/cites-regulations`, label: isAr ? 'لوائح سايتس' : 'CITES & Export Laws' },
+        { href: `/${locale}/guides/sourcing/wild-and-cultivated-oud`, label: isAr ? 'البرّي والمستزرع' : 'Wild vs Plantation' },
+        { href: `/${locale}/guides/production/oud-extraction-methods`, label: isAr ? 'تقطير الدِّق النحاسي' : 'Copper-Deg Alembics' },
+        { href: `/${locale}/guides/trade/agarwood-documentation`, label: isAr ? 'لوائح سايتس' : 'CITES & Export Laws' },
         { href: `/${locale}/guides`, label: isAr ? 'كل الأدلة الـ83 ←' : 'All 83 Guides →' },
       ],
     },
@@ -85,7 +85,6 @@ export function Footer({ locale }: { locale: string }) {
             <Link href={`/${locale}/policies`}>{isAr ? 'الشروط والسياسات' : 'Policies'}</Link>
             <Link href={`/${locale}/privacy`}>{isAr ? 'الخصوصية' : 'Privacy'}</Link>
             <Link href={`/${locale}/corrections`}>{isAr ? 'تصحيحات' : 'Corrections'}</Link>
-            <Link href={`/${locale}/admin`}>{isAr ? 'بوابة الإدارة' : 'Admin Portal'}</Link>
           </div>
         </div>
       </div>

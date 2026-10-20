@@ -1,7 +1,66 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { seed } from '@/lib/data';
+import { findRouteRecord, pageDescription, pageTitle } from '@/lib/route-coverage';
 import { ArrowRight, ExternalLink } from 'lucide-react';
+
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.oudguide.com'
+).replace(/\/$/, '');
+
+/**
+ * Per-page metadata.
+ *
+ * Every guide previously shared one site-wide title and description, which
+ * made 83 pages indistinguishable to a search engine. The manifest carries
+ * an `h1_brief` for each guide (21-56 characters) and a
+ * `meta_description_brief` that is an instruction to a writer rather than a
+ * finished description — so the description is composed from the record's
+ * own intent instead of publishing the instruction verbatim.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string[] }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const fullSlug = slug.join('/');
+  const guide = findRouteRecord(`/${locale}/guides/${fullSlug}/`);
+
+  if (!guide) {
+    return { title: 'Guide not found · OudGuide' };
+  }
+
+  const title = pageTitle(guide);
+  const description = pageDescription(guide);
+  const canonical = `${SITE_URL}/${locale}/guides/${fullSlug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        en: `${SITE_URL}/en/guides/${fullSlug}`,
+        ar: `${SITE_URL}/ar/guides/${fullSlug}`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: 'OudGuide',
+      type: 'article',
+      locale: locale === 'ar' ? 'ar_AE' : 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+  };
+}
 
 export default async function GuideArticlePage({
   params,
@@ -49,7 +108,9 @@ export default async function GuideArticlePage({
       <header style={{ marginBottom: 40 }}>
         <div className="cluster" style={{ gap: 8, marginBottom: 18 }}>
           <span className="badge badge-emerald">🌿 Botanical Taxa</span>
-          <span className="badge badge-gold">✓ {guide.publication_gate.split('+')[0] || 'Peer Reviewed'}</span>
+          <span className="badge badge-locked">
+            {guide.phase === 'P1' ? 'Core reference' : guide.phase === 'P2' ? 'Extended reference' : 'Specialised reference'}
+          </span>
           <span className="badge badge-locked">⏱ 5 min read</span>
         </div>
 
@@ -169,7 +230,7 @@ export default async function GuideArticlePage({
                   {link.target_path.replace(/^\/(en|ar)\//, '').replace(/\/$/, '').replace(/-/g, ' ')}
                 </Link>
                 <span className="meta" style={{ textTransform: 'none', letterSpacing: '0.02em' }}>
-                  Intent: {link.intent}
+                  {link.suggested_anchor}
                 </span>
               </div>
             ))}

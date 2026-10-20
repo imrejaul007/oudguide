@@ -1,6 +1,46 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { seed } from '@/lib/data';
+import { buildMetadata } from '@/lib/metadata';
+
+/**
+ * Per-territory metadata.
+ *
+ * The territory page was reachable but said nothing: it inherited the
+ * site-wide title and description, so 249 pages looked identical to a
+ * search engine. The title comes from the registry's own country name and
+ * the description states what the page actually covers.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; iso2: string }>;
+}): Promise<Metadata> {
+  const { locale, iso2 } = await params;
+  const country = (seed.countries as any[]).find(
+    (c: any) => c.iso2.toUpperCase() === iso2.toUpperCase()
+  );
+
+  if (!country) {
+    return { title: 'Territory not found · OudGuide' };
+  }
+
+  const name = locale === 'ar' ? country.arabic_seed : country.english_seed;
+  const title = `${name} — Oud and Fragrance Territory · OudGuide`;
+  const description =
+    locale === 'ar'
+      ? `صفحة الإقليم لـ ${country.arabic_seed}: تغطية العود والعطور، ومنشأ المنتجين، وخيارات التوريد للمشترين الذين يشحنون إلى ${country.arabic_seed}.`
+      : `Territory reference for ${country.english_seed}: agarwood and fragrance coverage, producer origin, and wholesale sourcing options for buyers shipping to ${country.english_seed}.`;
+
+  return buildMetadata({
+    path: `/${locale}/world/${country.iso2.toUpperCase()}`,
+    title,
+    description,
+    locale,
+    alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}/world/${country.iso2.toUpperCase()}`,
+  });
+}
 
 export default async function CountryDetailPage({
   params,

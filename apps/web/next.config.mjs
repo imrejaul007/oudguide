@@ -7,6 +7,10 @@ const __dirname = path.dirname(__filename);
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // The app serves slash-free URLs. Without this the default also strips
+  // the slash, but stating it makes the policy explicit and keeps the
+  // sitemap from publishing paths that cost a 308 redirect hop.
+  trailingSlash: false,
   eslint: {
     ignoreDuringBuilds: true,
   },
