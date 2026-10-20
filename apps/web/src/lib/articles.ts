@@ -190,6 +190,40 @@ const BRIEFABLE_FAMILIES = new Set([
 ]);
 
 /**
+ * Whether a page's Arabic version is ready for public indexation.
+ *
+ * The editorial runbook's publication gate for the Arabic tree is
+ * "bilingual_review: Arabic translation must be reviewed by a human
+ * editor before public indexation".
+ *
+ * The Arabic bodies in this layer are written as reviewed copy, not as
+ * machine output, and the content validator rejects the failure modes
+ * that make a translation visibly unfinished — replacement characters,
+ * stray characters from other scripts, and untranslated Latin fragments
+ * inside an Arabic sentence. That is a mechanical check, not a human
+ * editorial review, and the runbook asks for the human review.
+ *
+ * So the honest position is: the Arabic pages are published and
+ * readable, and they are NOT yet cleared for indexation. This flag
+ * keeps the distinction explicit rather than asserting a review that
+ * has not happened.
+ */
+export const ARABIC_HUMAN_REVIEW_COMPLETE = false;
+
+/**
+ * Whether a page should be indexed in the given locale.
+ *
+ * An English page is indexable when its article is reviewed. An Arabic
+ * page additionally requires the bilingual editorial review the runbook
+ * specifies, which has not been carried out by a human editor.
+ */
+export function isIndexableInLocale(article: Article | null, locale: string): boolean {
+  if (!isIndexable(article)) return false;
+  if (locale === 'ar') return ARABIC_HUMAN_REVIEW_COMPLETE;
+  return true;
+}
+
+/**
  * The locale-aware title of an article.
  */
 export function articleTitle(article: Article, locale: string): string {

@@ -10,6 +10,7 @@ import {
   articleSummary,
   articleTitle,
   getArticle,
+  isIndexableInLocale,
   listReviewedArticles,
   resolvedRelated,
 } from '@/lib/articles';
@@ -44,6 +45,7 @@ export async function generateMetadata({
     locale,
     type: 'article',
     alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}/glossary/${slug}`,
+    noindex: !isIndexableInLocale(article, locale),
   });
 }
 

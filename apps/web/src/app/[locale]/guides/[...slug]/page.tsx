@@ -14,6 +14,7 @@ import {
   articleTitle,
   hubChildren,
   isIndexable,
+  isIndexableInLocale,
   manifestRouteFor,
   resolvedRelated,
 } from '@/lib/articles';
@@ -63,7 +64,7 @@ export async function generateMetadata({
       locale,
       type: 'article',
       alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}/guides/${fullSlug}`,
-      noindex: !isIndexable(article),
+      noindex: !isIndexableInLocale(article, locale),
     });
   }
 

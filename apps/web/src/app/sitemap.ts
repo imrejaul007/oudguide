@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { seed } from '@/lib/data';
-import { listReviewedArticles } from '@/lib/articles';
+import { ARABIC_HUMAN_REVIEW_COMPLETE, listReviewedArticles } from '@/lib/articles';
 import { isPublishedPath, normalizePath } from '@/lib/route-resolver';
 
 const siteUrl = (
@@ -97,12 +97,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // The published articles.
   for (const article of listReviewedArticles()) {
     push(`/en/guides/${article.slug}`, 0.8, 'weekly');
-    push(`/ar/guides/${article.slug}`, 0.6, 'weekly');
   }
 
-  // The Arabic utility pages.
-  for (const path of ARABIC_STATIC_PAGES) {
-    push(path, 0.6, 'monthly');
+  // The Arabic tree is published and readable, but the editorial
+  // runbook's bilingual_review gate asks for a human editorial review
+  // before public indexation, and that review has not been carried out.
+  // The Arabic pages therefore carry a noindex directive and stay out
+  // of the sitemap until a human editor has signed them off. They
+  // remain reachable and linked from the Arabic navigation.
+  if (ARABIC_HUMAN_REVIEW_COMPLETE) {
+    for (const article of listReviewedArticles()) {
+      push(`/ar/guides/${article.slug}`, 0.6, 'weekly');
+    }
+    for (const path of ARABIC_STATIC_PAGES) {
+      push(path, 0.6, 'monthly');
+    }
   }
 
   return urls;
