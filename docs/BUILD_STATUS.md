@@ -1,11 +1,45 @@
 # OudGuide.com — Implementation Build Status
 
-**Current Stage:** Stage B, C, D, E, F & Luxury UI Completed & Live on Vercel Production  
-**Handoff Date:** 19 October 2026  
-**Build Identifier:** v4.0.0-production-vercel-luxury
-**Live Production URL:** https://oudguide-6cv9yixhg-re-z.vercel.app
-**Custom Domain:** https://www.oudguide.com
+**Current Stage:** Stages A-H implemented, audited and remediated (20-21 October 2026)
+**Handoff Date:** 21 October 2026
+**Build Identifier:** v4.1.0-audit-remediation
+**Live Production URL:** https://www.oudguide.com
 **GitHub Repository:** https://github.com/imrejaul007/oudguide
+**Audit of record:** `docs/AUDIT_AGARWOODGUIDE_2026-10-20.md` (full crawl of agarwoodguide.com and oudguide.com)
+**Remediation matrix:** `docs/AUDIT_REMEDIATION_MATRIX.csv` (27 findings; 26 fixed-local, 1 blocked)
+**Gap plan:** `docs/GAP_PLAN_2026-10-20.md`
+
+### What the 20-21 October audit changed
+
+The audit found three things the build status above did not record.
+
+- **The site was published with 570 of 775 sitemap URLs returning 404.** The sitemap
+  published the manifest's 772 route *candidates*; the app served a subset. It now
+  publishes only routes that resolve and are worth indexing — 178 URLs, every one
+  verified to return 200 against a production build.
+- **All 193 guide pages rendered one shared fallback body.** The guide renderer now
+  resolves through a content layer: 75 reviewed articles with their own answers,
+  sources, reviewer, review date and stated limitations, and 157 research briefs
+  that state what still has to be established. Measured: 75 published guide pages,
+  75 distinct body fingerprints, zero duplicate bodies.
+- **Twelve page files lost their `default` export in commit 59b2d2b** and seven core
+  routes returned 500 in production. The bodies are restored, and
+  `tests/metadata-integrity.test.ts` now fails the suite if a route file loses its
+  page component.
+
+Also remediated: the locked-profile website leak, the conflation of business
+location with material origin and shipping destination, membership activation
+without a payment, the Q identifiers and internal notes in the customer-facing
+RFQ, the absolute security phrasing, and the partner workspace labelling
+development fixtures as live opportunities.
+
+**Not yet done, and recorded as such:** the published article corpus is below the
+600-word guide gate in the editorial runbook (REGRESSION-04); the Arabic tree is
+published but not cleared for indexation pending a human bilingual review
+(`ARABIC_HUMAN_REVIEW_COMPLETE = false`); browser, mobile and performance
+verification is outstanding (OG-A22, blocked on tooling and approved-media
+records); and no live billing configuration is approved, so checkout stays
+disabled.
 
 ---
 
