@@ -46,6 +46,17 @@ export interface DirectoryGeographyFiltersProps {
   /** The names of the countries the published records are located in. */
   locationNames: Record<string, string>;
 
+  /**
+   * Whether to show the filter CHOICES.
+   *
+   * The badge that states the active filters is always shown: a reader
+   * who arrived at a published path is looking at a filtered list, and
+   * the panel is collapsed by default, so a badge behind the panel
+   * would be a badge nobody sees. The choices are only useful when the
+   * panel is open.
+   */
+  showChoices?: boolean;
+
   /** The choices for each filter. */
   locationCountries: DirectoryFilterOption[];
   cityOptions: DirectoryFilterOption[];
@@ -122,13 +133,14 @@ export function DirectoryGeographyFilters({
   cityOptions,
   originCountries,
   destinationCountries,
+  showChoices = true,
   onCountry,
   onCity,
   onOrigin,
   onDestination,
 }: DirectoryGeographyFiltersProps) {
   const hasAny = Boolean(country || city || area || origin || destination);
-  if (!hasAny && locationCountries.length === 0) return null;
+  if (!hasAny && (!showChoices || locationCountries.length === 0)) return null;
 
   return (
     <>
@@ -178,6 +190,8 @@ export function DirectoryGeographyFilters({
         </div>
       )}
 
+      {showChoices && (
+      <>
       <ChipRow
         title="Located in"
         titleAr="موقع الشركة"
@@ -224,6 +238,8 @@ export function DirectoryGeographyFilters({
         onSelect={onDestination}
         isAr={isAr}
       />
+      </>
+      )}
     </>
   );
 }

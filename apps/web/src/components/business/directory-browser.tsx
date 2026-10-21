@@ -302,11 +302,20 @@ export function DirectoryBrowser({
           </div>
         )}
 
-        {/* The geography filters: where it is, what origin it handles, where it ships. */}
-        {showFilters && (
-          <DirectoryGeographyFilters
+        {/*
+          The geography filters: where it is, what origin it handles,
+          where it ships.
+
+          The badge that states the active filters is always shown. The
+          choices sit behind the "Filters" toggle, because a reader
+          who arrived at a published path is looking at a filtered list
+          and needs to know what filtered it — not a panel of choices
+          they did not open.
+        */}
+        <DirectoryGeographyFilters
             locale={locale}
             isAr={isAr}
+            showChoices={showFilters}
             country={country}
             city={city}
             area={area}
@@ -322,7 +331,6 @@ export function DirectoryBrowser({
             onOrigin={(value) => { setOrigin(value); setPage(1); }}
             onDestination={(value) => { setDestination(value); setPage(1); }}
           />
-        )}
       </div>
 
       {/* EMPTY STATE */}
