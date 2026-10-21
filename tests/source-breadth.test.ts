@@ -11,7 +11,7 @@ import { SOURCE_REGISTRY } from '../apps/web/src/data/articles/sources.ts';
    OG-A23 recorded that the corpus is long enough but rests on a thin
    evidentiary base. The corpus-level numbers looked healthier than the
    reality: 8 of 10 registry entries were cited, which teaches nothing,
-   while 67 of 102 articles cited exactly ONE source. Two thirds of the
+   while 67 of 118 articles cited exactly ONE source. Two thirds of the
    corpus rested on a single document.
 
    The thinness is a per-article fact, and this test measures it there.
@@ -19,10 +19,16 @@ import { SOURCE_REGISTRY } from '../apps/web/src/data/articles/sources.ts';
    Two assertions, and the distinction between them matters.
 
    THE FIRST is the gate: every published article must cite at least two
-   distinct sources. It is red today, on 67 of 102 articles, and it names
-   the work precisely. It is red on purpose: a test that names every
+   distinct sources. It was red on 67 of 118 articles, and it named the
+   work precisely. It was red on purpose: a test that names every
    article that rests on one document is more useful than a test that
    passes and measures nothing.
+
+   It is green now, on all 128 published articles, because the second
+   source on each was chosen by what that source's scope establishes —
+   not by what would move the number. A second citation that carries
+   nothing is OG-A18's failure in reverse: decoration dressed as
+   breadth.
 
    THE SECOND holds today: every published article must cite at least one
    source of kind `primary` or `regulatory`. A `tertiary` or `trade`

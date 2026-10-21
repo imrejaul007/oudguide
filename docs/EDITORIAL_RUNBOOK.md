@@ -29,10 +29,12 @@ count is the same defect as a fallback body repeated across every URL.
   scoped, and on the limitations being stated. A 200-word hub with four sourced
   child links is not thin; a 600-word hub padded with prose is.
 
-The current corpus did not meet the article tier: 49 of 53 guide articles were
-below 600 words of main content. That is recorded as REGRESSION-04 in
-`docs/AUDIT_REMEDIATION_MATRIX.csv`, and extending the articles is the outstanding
-work. The gate is not lowered to match what was produced.
+The corpus did not meet the article tier: 49 of 53 guide articles were below
+600 words of main content. That is recorded as REGRESSION-04 in
+`docs/AUDIT_REMEDIATION_MATRIX.csv`. The articles have since been extended and
+the corpus now clears the floor — 54 published guides, minimum 608 words, median
+765, maximum 1374 — and the floor is asserted by a test rather than read. The
+gate was not lowered to match what was produced.
 
 **The floor is now enforced, not just written down.** `tests/article-tier.test.ts`
 asserts it, and the measure it uses is defined once, in `mainWordCount()` in

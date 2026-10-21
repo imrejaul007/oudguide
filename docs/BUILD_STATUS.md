@@ -52,8 +52,37 @@ first audit had measured the shell; this one measured the catalogue.
   swallowed the new roles, and the six role pages that already returned 200
   did not filter at all — every one of them rendered the same unfiltered
   directory.
-- **The corpus is 102 published articles** across 54 guides, 24 product
-  families, 14 hubs, 7 glossary entries, 2 origin pages, 1 destination page.
+- **The corpus is 128 published articles** across 54 guides, 24 product
+  families, 14 hubs, 33 glossary entries, 2 origin pages, 1 destination page.
+  All 32 of the manifest's trade-terminology routes now have an article of
+  their own; none is merged into another, because the manifest records
+  these as candidate variants whose relationship is unconfirmed, and merging
+  one into another would publish a synonymy claim no source supports.
+- **The evidentiary base now carries its own gate.** `tests/source-breadth.test.ts`
+  asserts that every published article cites at least two distinct sources,
+  that every article cites at least one `primary` or `regulatory` source,
+  and that every source able to carry a claim is cited by some article. The
+  first assertion was red on 67 of 118 articles; it is now green on all
+  128. The second source on each article was chosen by what its scope
+  establishes, not by what would move the number.
+
+| Family | Manifest routes | With a published article |
+|---|---:|---:|
+| Editorial guide | 83 | 53 |
+| Editorial hub | 12 | 12 |
+| Trade terminology | 32 | 32 |
+| Product family | 24 | 24 |
+| Business category | 24 | 24 |
+| Public policy | 9 | 9 |
+| Legal | 4 | 4 |
+| Origin country | 15 | 1 |
+| Origin region | 41 | 1 |
+| Destination buying guide | 36 | 1 |
+| Origin comparison | 6 | 1 |
+
+The geography families are the remaining work: 94 routes, and the
+coverage audit's own verdict is that the material is a template with the
+country name substituted rather than a page about that country.
 
 Also remediated: the locked-profile website leak, the conflation of business
 location with material origin and shipping destination, membership activation
