@@ -180,7 +180,7 @@ export const WORKED_EXAMPLES: Record<string, WorkedExample> = {
       'يفحص المشتري الصور من ناحية الشكل: حجم الرقائق، وطريقة القطع، وكيف تتكسر القطع.',
       'يفحصها من ناحية الحالة: هل السطح نظيف أم متشقق أم مشبع بالزيت.',
       'يلاحظ أن الصور لا تثبت نسبة الراتنج، وأن الصورة لا تُظهر راتنجاً طبيعياً من راتنج مُضاف.',
-      'يطلب صورةtaken وقت الشحن، وبطاقة الدفعة ظاهرة فيها، ويطلب وزن قطعة واحدة ليقارنه بالصور.',
+      'يطلب صورةً وقت الشحن، وبطاقة الدفعة ظاهرة فيها، ويطلب وزن قطعة واحدة ليقارنه بالصور.',
       'يتعامل مع الصور كدليل على المظهر وكقائمة أسئلة، لا كبديل عن قياس أو سجل.',
     ],
     takeaway:
@@ -311,7 +311,7 @@ export const WORKED_EXAMPLES: Record<string, WorkedExample> = {
     takeaway:
       'Every document in the file is genuine, and together they still do not answer the question the buyer actually has. The example shows the distinction that matters commercially: a document establishes what it says about the consignment, and the contents of the parcel are established separately, or not at all.',
     takeawayAr:
-      'كل وثيقة في الملف صحيحة، ومع ذلك لا تجيبcollectively عن السؤال الذي يحمله المشتري. ويُظهر المثال التمييز الذي يهم تجارياً: الوثيقة تثبت ما تذكره عن الشحنة، ومحتوى الطرد يُثبت على حدة أو لا يُثبت.',
+      'كل وثيقة في الملف صحيحة، ومع ذلك لا تجيب مجتمعةً عن السؤال الذي يحمله المشتري. ويُظهر المثال التمييز الذي يهم تجارياً: الوثيقة تثبت ما تذكره عن الشحنة، ومحتوى الطرد يُثبت على حدة أو لا يُثبت.',
   },
 
   'trade/shipping-wood-oil-perfume': {
@@ -531,12 +531,12 @@ export const WORKED_EXAMPLES: Record<string, WorkedExample> = {
       'يسأل عن نسبة المادة العطرية في كل منهما، ويعلم أن الأرقام تقريبية.',
       'يسأل عن المواد الفعلية، وهل يحتوي أيٌّ منهما دهن عود أم مزيجاً أم Ozاً.',
       'يلاحظ أن ماء تويليت جيد الصنع قد يدوم أطول من بارفان سيئ، فالتسمية لا تحسم أداء المنتج.',
-      'يقارن بين بتجربته، ويتعامل مع التسمية كمرشّح أول لا كنتيجة.',
+      'يقارن بين الاثنين بتجربته، ويتعامل مع التسمية كمرشّح أول لا كنتيجة.',
     ],
     takeaway:
       'The example shows the label doing the job it is good at and being unable to do a job it is not. Concentration predicts rough performance; it says nothing about the materials, the formulation or whether the oud in it is oud at all.',
     takeawayAr:
-      'يُظهر مثال التسميةDoing ما تصلح له وعجزها عن ما لا تصلح له. فالتركيز يتنبّأ بأداء تقريبي، ولا يقول شيئاً عن المواد ولا عن التركيب ولا عمّا إذا كان العود فيه عوداً أصلاً.',
+      'يُظهر مثال التسمية ما تصلح له وعجزها عن ما لا تصلح له. فالتركيز يتنبّأ بأداء تقريبي، ولا يقول شيئاً عن المواد ولا عن التركيب ولا عمّا إذا كان العود فيه عوداً أصلاً.',
   },
 
   'fragrance/notes-versus-ingredients': {
@@ -561,7 +561,7 @@ export const WORKED_EXAMPLES: Record<string, WorkedExample> = {
     takeaway:
       'The example resolves a question the word "oud" on a label cannot. Nothing deceptive has happened: an accord, an accord, and the note pyramid are all accurate descriptions of different things, and a buyer who wanted agarwood had to ask.',
     takeawayAr:
-      'يُحسم مثال سؤالاً لا يستطيعه لفظ «عود» على ملصق. فلم يحدث تضليل: الـOz هو أوز، وهرم النوتات وصف دقيق لأشياء مختلفة، ومن أراد خشب عود كان عليه أن يسأل.',
+      'يُحسم مثال سؤالاً لا يستطيعه لفظ «عود» على ملصق. فلم يحدث تضليل: الأوز هو أوز، وهرم النوتات وصف دقيق لأشياء مختلفة، ومن أراد خشب عود كان عليه أن يسأل.',
   },
 
   'fragrance/oud-accords': {
@@ -605,13 +605,13 @@ export const WORKED_EXAMPLES: Record<string, WorkedExample> = {
       'يكسر المشتري قطعة، ويلاحظ أن الرائحة قوية على السطح وضعيفة في الداخل.',
       'يزن عبوة مغلقة ويقارن وزنها بما يمكن أن تفسّره رقائق بهذا الحجم، فيجد وزناً أكبر.',
       'يستنتج أن المادة بخور — خشب مُشبَّع بالزيت — لا خشب خام راتنجي.',
-      'يسأل هلCETILLOUTILS كان الزيت المستعمل تقطيراً أم Ozاً، ويسجّل الإجابة بوصفها المادة التي ستُقطَّر فعلاً.',
+      'يسأل هل كان الزيت المستعمل تقطيراً أم Ozاً، ويسجّل الإجابة بوصفها المادة التي ستُقطَّر فعلاً.',
       'لا يواصل التقطير كما خطّط، لأن البخور قد أعطى معظم ما كان الخشب الخام سيعطيه.',
     ],
     takeaway:
       'The example shows a material arriving as one thing and being another, caught by three cheap observations. It also shows the cost: buying bakhoor when you wanted raw wood means paying for oil you cannot distil out of it.',
     takeawayAr:
-      'يُظهر مثال مادة تصل شيئاً وتكون آخر،-three اكتشافات رخيصة. ويُظهر أيضاً الكلفة: شراء البخور وأنت تريد الخشب الخام يعني دفع ثمن زيت لا تستطيع تقطيره منه.',
+      'يُظهر مثال مادة تصل شيئاً وتكون آخر، بثلاثة اكتشافات رخيصة. ويُظهر أيضاً الكلفة: شراء البخور وأنت تريد الخشب الخام يعني دفع ثمن زيت لا تستطيع تقطيره منه.',
   },
 
   'fragrance/brand-and-manufacturing-origin': {
@@ -656,7 +656,7 @@ export const WORKED_EXAMPLES: Record<string, WorkedExample> = {
       'يسأل هل يشمل الإسناد الخط كله أم هذا المنتج، وهل بقي بعد إعادة الصياغة.',
       'يسأل ما العمل الذي أداه المسمّى وكيف وصل الإسناد.',
       'يتعامل مع الإسناد على أنه اعتراف بالمؤلفية ضمن أعراف الصناعة، لا بيان عن المواد أو العملية.',
-      'يسجّل من ذُكر وبأيBasis، حتى لا تمر إعادة صياغة تغيّر الإسناد دون ملاحظة.',
+      'يسجّل من ذُكر وبأي أساس، حتى لا تمر إعادة صياغة تغيّر الإسناد دون ملاحظة.',
     ],
     takeaway:
       'The example shows a credit answering a narrow question — who is acknowledged — and leaving the commercial ones open. It also shows the one thing worth watching over time: whether the credit still matches the product.',
@@ -678,7 +678,7 @@ export const WORKED_EXAMPLES: Record<string, WorkedExample> = {
     ],
     stepsAr: [
       'يمرّ المشتري على المجموعة قطعةً قطعة، ويسجّل لكل قطعة ما هي بالقدر الذي يمكن معرفةه.',
-      'Dans le cas du origine يسجّل الدرجة لا الادعاء: ما هو موثّق، وما هو متذكَّر، وما هو مفترض.',
+      'وأما المنشأ فيسجّل الدرجة لا الادعاء: ما هو موثّق، وما هو متذكَّر، وما هو مفترض.',
       'يجد أن بعض القطع تحمل مرجع دفعة وبعضها لا يحمل سوى اسم المحل الذي جاءت منه، ويسجّل الأمرين كما هما.',
       'يسجّل ما حدث لكل قطعة منذ حيازتها — أين حُفظت، وهل عولجت أو امتزجت.',
       'يقبل أن القطعة ذات الرائحة القوية بلا سجل تساوي أقل من قطعة متواضعة بسجل كامل، ويضع الفرق في أي بيع.',
@@ -702,7 +702,7 @@ export const WORKED_EXAMPLES: Record<string, WorkedExample> = {
       'The buyer draws no ranking from the comparison, because a difference in character between two materials is not a judgement of which is better.',
     ],
     stepsAr: [
-      'يقرّر المشتري أولاً النوعBehind كل تسمية، فالتسميات أسماء تجارية والأنواع هي الوقائع.',
+      'يقرّر المشتري أولاً النوع خلف كل تسمية، فالتسميات أسماء تجارية والأنواع هي الوقائع.',
       'يفحص منطقة النمو وطريقة التقطير لكل منهما، فهما يختلفان وكلاهما له صلة بطابع الزيت.',
       'يقيّم العيّنتين في اليوم نفسه وبنفس الشخص وبمقاييس نفسها.',
       'يسجّل المقارنة، ويسجّل ادعاءات المنشأ على حدة كادعاءات، مع ذكر أساس كل منها.',

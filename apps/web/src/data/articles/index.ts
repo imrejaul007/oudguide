@@ -11,6 +11,7 @@ import { fragranceSourcingArticles } from './guides-fragrance.ts';
 import { WORKED_EXAMPLES } from './worked-examples.ts';
 import { CHECKLISTS } from './checklists.ts';
 import { DEEPENING } from './deepening.ts';
+import { DEEPENING_2 } from './deepening-2.ts';
 
 /**
  * The reviewed content layer.
@@ -45,7 +46,13 @@ import { DEEPENING } from './deepening.ts';
 function withRequiredSections(article: Article): Article {
   const workedExample = article.workedExample ?? WORKED_EXAMPLES[article.slug];
   const checklist = CHECKLISTS[article.slug];
-  const deepening = DEEPENING[article.slug];
+  // A slug may appear in more than one deepening batch; the
+  // batches are merged here, in file order, so a later batch
+  // never silently drops an earlier batch's sections.
+  const deepening = [DEEPENING, DEEPENING_2].find((batch) =>
+    batch[article.slug]
+  );
+  const deepeningSections = deepening ? deepening[article.slug].sections : [];
 
   if (!workedExample && !checklist && !deepening) return article;
 
@@ -65,7 +72,7 @@ function withRequiredSections(article: Article): Article {
     // The deepening sections go after the article's own sections and
     // before the worked example, so the reasoning comes first and the
     // demonstration of it follows.
-    sections = [...sections, ...deepening.sections];
+    sections = [...sections, ...deepeningSections];
   }
 
   return { ...article, workedExample, sections };

@@ -126,7 +126,7 @@ export const glossaryArticles: Article[] = [
     whatItRefersTo:
       'The tola is part of the South Asian weight system and was in use for several centuries before it appears in oud trade; in this trade it has become the unit for both a quantity of oil and, in some usage, a quantity of wood. It survives in commercial use because the older unit it replaces is no longer in general use, not because it is the most convenient measure.',
     whatItRefersToAr:
-      'التولا جزء من نظام أوزان جنوب آسيوي استُعمل لقرون قبل ظهوره في تجارة العود؛ وفي هذه التجارة صارت الوحدة ل كمية الزيت، وأحياناً ل كمية الخشب. وقد بقيت في الاستعمال التجاري لأن الوحدة الأقدم التي حلّت محلها لم تعد مستعملة عموماً، لا لأنها أنسب مقياس.',
+      'التولا جزء من نظام أوزان جنوب آسيوي استُعمل لقرون قبل ظهوره في تجارة العود؛ وفي هذه التجارة صارت الوحدة لكمية الزيت، وأحياناً لكمية الخشب. وقد بقيت في الاستعمال التجاري لأن الوحدة الأقدم التي حلّت محلها لم تعد مستعملة عموماً، لا لأنها أنسب مقياس.',
     whatItDoesNotProve:
       'A price expressed per tola says nothing about the quality or the age of the material, and it does not guarantee the delivered weight. Confirm the gross and net weight basis and the container tare on the order.',
     whatItDoesNotProveAr:

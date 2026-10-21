@@ -162,7 +162,7 @@ export const qualityArticles: Article[] = [
           'Where a batch reference exists, photograph the label before it is sealed, and ask the supplier to state in writing that the sample and the bulk are from the same batch. Where no batch reference exists, that fact is itself the finding: a material with no lot identity cannot be matched to a later delivery, and a later delivery cannot be compared against the sample.',
         ],
         bodyAr: [
-          'تحمل كل عينة ملصقاً يحمل معرّفاً يستخدمه نظـمك وحدك، واسم المورد، ووصف المادة، والتاريخ، ومرجع اللوط أو الدفعة إن وُجد. احتفظ بنسخة من الملصق مع العينة؛ ولا تعتمد على تعليم المورد نفسه، فقد يُعاد استخدامه بين شحنات مختلفة.',
+          'تحمل كل عينة ملصقاً يحمل معرّفاً يستخدمه نظامك وحدك، واسم المورد، ووصف المادة، والتاريخ، ومرجع اللوط أو الدفعة إن وُجد. احتفظ بنسخة من الملصق مع العينة؛ ولا تعتمد على تعليم المورد نفسه، فقد يُعاد استخدامه بين شحنات مختلفة.',
           'وحيث يوجد مرجع دفعة، صوّر الملصق قبل ختمه، واطلب من المورد أن يذكر كتابةً أن العينة والجملة من الدفعة نفسها. وحيث لا يوجد مرجع دفعة، فهذه الحقيقة بذاتها هي النتيجة: مادة بلا هوية لوط لا يمكن مطابقتها بتسليم لاحق، ولا يمكن مقارنة التسليم اللاحق بالعينة.',
         ],
       },

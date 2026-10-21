@@ -194,7 +194,7 @@ export const usingFragranceArticles: Article[] = [
           'And separated from anything that might contaminate it — other fragrance materials, cleaning products, and wood of a different kind, whose scent migrates.',
         ],
         bodyAr: [
-          'مغلق، ومظلم، و بقدر ما تسمح به المادة من برودة. وللرقائق، وعاء محكم مع الملصق في داخله لا على غطائه. وللزيت، وعاء داكن، ومملوء بما يقلل منفذ الهواء قدر الإمكان، وبعيداً عن الحرارة والضوء.',
+          'مغلق، ومظلم، وبقدر ما تسمح به المادة من برودة. وللرقائق، وعاء محكم مع الملصق في داخله لا على غطائه. وللزيت، وعاء داكن، ومملوء بما يقلل منفذ الهواء قدر الإمكان، وبعيداً عن الحرارة والضوء.',
           'ومفصولاً عن أي شيء قد يلوثه — مواد عطرية أخرى، ومنظفات، وخشب من نوع آخر، تنتقل منه الرائحة.',
         ],
       },
@@ -386,7 +386,7 @@ export const usingFragranceArticles: Article[] = [
     directAnswer:
       'The top, heart and base notes on a fragrance describe how a composition unfolds over time, not what is in the bottle. "Top notes" are the materials perceived first, usually the most volatile; "heart" and "base" are what remains and what anchors the scent. A listed material may be present in a trace amount and still be named, and a material that forms the backbone of the scent may be unnamed. The pyramid is a way of describing an experience in a way that helps someone choose, and it is not an ingredient declaration.',
     directAnswerAr:
-      'النوتات العليا والقلب والقاعدة في العطر تصف كيف يتطور التركيب مع الوقت، لا ما في القارورة. فـ«النوتات العليا» هي المواد التي تُدرك أولاً وهي عادةً الأكثر ت تطايراً، و«القلب» و«القاعدة» ما يبقى وما يثبّت الرائحة. وقد تكون مادة مذكورة بكميات ضئيلة، وقد تكون مادة ها غير وارد وهي عماد الرائحة. والهرم وسيلة لوصف تجربة تساعد على الاختيار، وهو ليس بيان مكونات.',
+      'النوتات العليا والقلب والقاعدة في العطر تصف كيف يتطور التركيب مع الوقت، لا ما في القارورة. فـ«النوتات العليا» هي المواد التي تُدرك أولاً وهي عادةً الأكثر تطايراً، و«القلب» و«القاعدة» ما يبقى وما يثبّت الرائحة. وقد تكون مادة مذكورة بكميات ضئيلة، وقد تكون مادة غير مذكورة وهي عماد الرائحة. والهرم وسيلة لوصف تجربة تساعد على الاختيار، وهو ليس بيان مكونات.',
     sections: [
       {
         heading: 'A description, not a declaration',
@@ -763,7 +763,7 @@ export const usingFragranceArticles: Article[] = [
     directAnswer:
       'Indian oud and Cambodian oud are usually Aquilaria agallocha and Aquilaria crassna respectively, and they are different plants from different regions with different trade histories and different distillation traditions. What can be said is that the species differ, the material differs in character, and the commercial conventions around each are separate. What cannot be said is that one is better than the other, or that a seller calling a lot "Cambodian" has thereby established anything about the lot.',
     directAnswerAr:
-      'العود الهندي والعود الكمبودي هما عادةً Aquilaria agallocha وAquilaria crassna على التوالي، وهما نباتان من منطقتين مختلفتين بتاريخين تجاريين مختلفين وتقليدي تقطير مختلفين.. والممكن قوله إن النوعين مختلفان، والمادة تختلف في الطابع، والعادات التجارية حول كل منهما منفصلة. ولا يمكن القول إن أحدهما أفضل من الآخر، ولا أن قول البائع «كمبودي» لوطاً يثبت شيئاً عن اللوط.',
+      'العود الهندي والعود الكمبودي هما عادةً Aquilaria agallocha وAquilaria crassna على التوالي، وهما نباتان من منطقتين مختلفتين بتاريخين تجاريين مختلفين وتقليدي تقطير مختلفين. والممكن قوله إن النوعين مختلفان، والمادة تختلف في الطابع، والعادات التجارية حول كل منهما منفصلة. ولا يمكن القول إن أحدهما أفضل من الآخر، ولا أن قول البائع «كمبودي» لوطاً يثبت شيئاً عن اللوط.',
     sections: [
       {
         heading: 'The comparison that can be made',

@@ -97,7 +97,7 @@ const SPECS: HubSpec[] = [
     directAnswer:
       'The Quality section explains how oud claims are made and what each kind of claim is worth. Some of the vocabulary in this trade — Super grades, sinking grades, age statements — is a market convention with no published standard behind it. Other claims are checkable: treatment disclosure, batch records and laboratory reports all have a defined scope. This section tells you which is which, so that a claim is not mistaken for a fact.',
     directAnswerAr:
-      'يشرح قسم الجودة كيف تُقدَّم ادعاءات العود وقيمة كل نوع منها. وبعض مفردات هذه التجارة — درجات «سوبر» ودرجات الغطاس وادعاءات العمر — عرفٌ سوقي لا تقوم خلفه معايير منشورة. وبعض الادعاءات قابل للتحقق: إفصاح المعالجة، وسجلات الدفعات، وتقارير المختبرات، لكل منها نطاق محدد. ويبيّن لك هذا القسم أيّهما أيّهما، حتى لا تُحسب دعوى واقعةً.',
+      'يشرح قسم الجودة كيف تُقدَّم ادعاءات العود وقيمة كل نوع منها. وبعض مفردات هذه التجارة — درجات «سوبر» ودرجات الغطاس وادعاءات العمر — عرفٌ سوقي لا تقوم خلفه معايير منشورة. وبعض الادعاءات قابل للتحقق: إفصاح المعالجة، وسجلات الدفعات، وتقارير المختبرات، لكل منها نطاق محدد. ويبيّن لك هذا القسم أيّهما هو أيّهما، حتى لا تُحسب دعوى واقعةً.',
     scope:
       'This section does not set a price, endorse a supplier, or declare any lot good. It explains what each term and each document can and cannot establish.',
     scopeAr:

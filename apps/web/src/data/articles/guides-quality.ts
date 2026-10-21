@@ -305,7 +305,7 @@ export const qualityBuyingArticles: Article[] = [
     directAnswer:
       'A batch record exists to answer one question: is this delivery the same material as the one you assessed? To do that it needs an identifier, a date, a description of the material, and a link to the party that handled it. Without those four, a lot has no identity — and a lot with no identity cannot be matched to a sample, cannot be re-ordered against the same specification, and cannot be shown to have been the thing that was approved.',
     directAnswerAr:
-      'يوجد سجل الدفعة للإجابة على سؤال واحد: هل هذا التسليم هو المادة نفسها التي قيّمتها؟ ولهذا يحتاج إلى معرّف، وتاريخ، ووصف للمادة، وصلة بالجهة التي تعاملت معها. وبدون هذه الأربعة تكون اللوط بلا هوية — واللوط بلا هوية لا يُطابَق بعيّنة، ولا يمكن إعادة طلبه على المواصفة نفسها، ولا يمكن إثبات أنه هو الذي اعتُمد.',
+      'يوجد سجل الدفعة للإجابة على سؤال واحد: هل هذا التسليم هو المادة نفسها التي قيّمتها؟ ولهذا يحتاج إلى معرّف، وتاريخ، ووصف للمادة، وصلة بالجهة التي تعاملت معها. وبدون هذه الأربعة يكون اللوط بلا هوية — واللوط بلا هوية لا يُطابَق بعيّنة، ولا يمكن إعادة طلبه على المواصفة نفسها، ولا يمكن إثبات أنه هو الذي اعتُمد.',
     sections: [
       {
         heading: 'The minimum record, and why each part is there',
@@ -659,7 +659,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
         bodyAr: [
           'الكتلة الصافية هي المنتج وحده. والإجمالية تضيف الوعاء، وللزجاجة الصغيرة ليس الوعاء جزءاً تافهاً. والحجم هو ما يملأ الوعاء، وحجم الزيت يختلف عن كتلته بالكثافة.',
-          'والوحدة في تجارة العود هي التولا. اسأل عن أساس أي تحويل يقدّمه المورد: صافي أم إجمالي، عند أي درجة حرارة، و لأي زيت. ومن يحوّل دون ذكر الأساس فهو يخمّن، ومن يقبل تحويلاً بلا أساس يدفع ثمن التخمين.',
+          'والوحدة في تجارة العود هي التولا. اسأل عن أساس أي تحويل يقدّمه المورد: صافي أم إجمالي، عند أي درجة حرارة، ولأي زيت. ومن يحوّل دون ذكر الأساس فهو يخمّن، ومن يقبل تحويلاً بلا أساس يدفع ثمن التخمين.',
         ],
       },
     ],
