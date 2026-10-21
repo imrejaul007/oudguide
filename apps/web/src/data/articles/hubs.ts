@@ -131,6 +131,13 @@ const SPECS: HubSpec[] = [
         blurb: 'Where laboratory analysis stops and commercial judgement begins.',
         blurbAr: ' حيث ينتهي التحليل المخبري ويبدأ الحكم التجاري.',
       },
+      {
+        slug: 'quality/gulf-market-grade-labels',
+        label: 'Gulf-market oud grading vocabulary',
+        labelAr: 'مفردات تقييم العود في سوق الخليج',
+        blurb: 'The nine labels, which sit on a ladder and which do not.',
+        blurbAr: 'التسميات التسع، وأيها على سلم وأيها لا.',
+      },
     ],
     nextSteps: ['Learn what a laboratory report actually covers', 'Learn the limits of assessment', 'See how to evaluate a questionable offer'],
     nextStepsAr: ['اعرف ما الذي يغطيه التقرير المخبري فعلاً', 'اعرف حدود التقييم', 'تعلّم كيف تقيّم عرضاً مشكوكاً فيه'],

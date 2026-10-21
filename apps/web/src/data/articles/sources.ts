@@ -46,7 +46,7 @@ export const SOURCE_REGISTRY: Record<string, ArticleSource> = {
       'Describes what Google means by scaled content abuse and other spam policies, including producing many pages intended to manipulate rankings rather than to help readers. It does not establish any status for this particular site.',
     scopeAr:
       'يوضّح ما يقصده جوجل بإساءة استخدام المحتوى المكبّر وباقي سياسات المزعج، بما فيها إنتاج صفحات كثيرة بقصد التأثير على الترتيب لا لمساعدة القارئ. ولا يثبت أي حالة لهذا الموقع تحديداً.',
-    kind: 'regulatory',
+    kind: 'internal',
   },
 
   GOOGLE_LINKS: {
@@ -61,7 +61,7 @@ export const SOURCE_REGISTRY: Record<string, ArticleSource> = {
       'Sets out that link text should describe the destination so that readers and crawlers can understand it. It does not establish the content quality of any page.',
     scopeAr:
       'يوضّح أن نص الرابط ينبغي أن يصف الوجهة ليصل إليه القارئ والزاحف. ولا يثبت جودة محتوى أي صفحة.',
-    kind: 'regulatory',
+    kind: 'internal',
   },
 
   GOOGLE_TITLE: {
@@ -76,7 +76,7 @@ export const SOURCE_REGISTRY: Record<string, ArticleSource> = {
       'Explains how the title link is assembled from the page title, the site name and any breadcrumb, and that titles should be distinctive and descriptive. It does not guarantee a ranking outcome.',
     scopeAr:
       'يشرح كيف يُركَّب رابط العنوان من عنوان الصفحة واسم الموقع ومسار التنقّل، وأن العناوين يجب أن تكون مميّزة ووصفية. ولا يضمن نتيجة في الترتيب.',
-    kind: 'regulatory',
+    kind: 'internal',
   },
 
   AGARWOOD_CITES_2022: {
@@ -107,6 +107,36 @@ export const SOURCE_REGISTRY: Record<string, ArticleSource> = {
     scopeAr:
       'يفيد أن ملحق سايتس الثاني يشمل جميع أنواع Aquilaria وGyrinops، ويذكر خمسة عشر نوعاً من Aquilaria موزعة في المناطق المدارية وشبه المدارية في آسيا، من باكستان والهند عبر جنوب الصين إلى جنوب شرق آسيا. ولا يثبت الوضع القانوني لشحنة بعينها في أي اختصاص قضائي.',
     kind: 'primary',
+  },
+
+  CITES_APPENDICES: {
+    id: 'CITES_APPENDICES',
+    label: 'CITES Appendices — what each listing requires for trade',
+    labelAr: 'ملاحق سايتس — ما الذي يستلزمه كل إدراج في التجارة',
+    url: 'https://www.fws.gov/international-affairs/cites/cites-appendices',
+    publisher: 'U.S. Fish and Wildlife Service, International Affairs',
+    publisherAr: 'إدارة الأسماك والحياة البرية الأمريكية والشؤون الدولية',
+    retrievedOn: '2026-10-21',
+    scope:
+      'Establishes what each of the three CITES Appendices requires for trade. Appendix I: international trade is permitted only in exceptional circumstances and cannot be primarily for commercial use, and both an import and an export permit or re-export certificate are required. Appendix II: an export permit or re-export certificate from the country of export is required, and no import permit is needed unless a country\'s national law requires one. Appendix III: an export permit is required from the country that listed the species, and a certificate of origin is required for exports of a listed species from elsewhere. It does not name any particular species, it does not establish that a shipment complies, and it is not itself a permit.',
+    scopeAr:
+      'يثبت ما يستلزمه كل ملحق من ملاحق سايتس الثلاثة للتجارة. الملحق الأول:التجارة الدولية مسموح به في حالات استثنائية فقط ولا يجوز أن يكون في المقام الأول تجارياً، ويلزم تصريحا استيراد وتصدير أو شهادة إعادة تصدير. والملحق الثاني: يلزم تصريح تصدير أو شهادة إعادة تصدير من بلد التصدير، ولا يلزم تصريح استيراد إلا إذا اشترطته قوانين الدولة الوطنية. والملحق الثالث: يلزم تصريح تصدير من البلد الذي أدرج النوع، وتلزم شهادة منشأ لتصدير النوع المدرج من بلد آخر. ولا يسمّي أي نوع بعينه، ولا يثبت مطابقة شحنة، وليس تصريحاً بذاته.',
+    kind: 'regulatory',
+  },
+
+  CITES_AGARWOOD_2004: {
+    id: 'CITES_AGARWOOD_2004',
+    label: 'ITTO — CITES COP examines agarwood',
+    labelAr: 'المنظمة الدولية للأخشاب الاستوائية — مؤتمر سايتس يناقش العود',
+    url: 'https://www.itto.int/news/2022/11/22/cites_cop_examines_agarwood_after_release_of_itto_cites_report/',
+    publisher: 'International Tropical Timber Organization',
+    publisherAr: 'المنظمة الدولية للأخشاب الاستوائية',
+    retrievedOn: '2026-10-21',
+    scope:
+      'Establishes that all species of Aquilaria and Gyrinops have been listed in CITES Appendix II since 2004, and that the listing followed unsustainable extraction. Establishes that the report reviews wild and planted agarwood resources, processing technologies, products and regulatory practices, and that cultivation and inoculation of agarwood species are described as relieving pressure on wild populations in natural forests. It does not state what an Appendix II listing requires for trade, and it does not establish the origin, age or quality of any material.',
+    scopeAr:
+      'يثبت أن جميع أنواع جنسَي Aquilaria وGyrinops مدرجة في ملحق سايتس الثاني منذ عام 2004، وأن الإدراج جاء بعد استنزاف غير مستدام. ويثبت أن التقرير يراجع موارد العود البري والمزروع وتقنيات المعالجة والمنتجات والممارسات التنظيمية، وأن الزراعة والتلقيح في أنواع العود يوصفان بأنهما يخففان الضغط عن العود البري في الغابات الطبيعية. ولا يذكر ما يستلزمه الإدراج في الملحق الثاني من تصميم للتجارة، ولا يثبت منشأ أي مادة ولا عمرها ولا جودتها.',
+    kind: 'trade',
   },
 
   IFRA_STANDARDS: {

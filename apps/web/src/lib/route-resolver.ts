@@ -140,6 +140,28 @@ function territoryAlias(from: string): string | null {
  * reads the filters from the path, so each of them is a real page rather
  * than a redirect.
  */
+/**
+ * The public policy and legal pages.
+ *
+ * They are the manifest's own routes — OG-0008 to OG-0013, OG-0022,
+ * OG-0023 and OG-0761 — and every one of them returned 404 until the
+ * policy page renderers existed. Two of them live under /directory/,
+ * which is why they are checked before the business-profile shape.
+ */
+export const POLICY_PAGE_PATHS: ReadonlySet<string> = new Set([
+  'about',
+  'about/ownership',
+  'editorial-policy',
+  'verification',
+  'directory/how-it-works',
+  'directory/ranking-policy',
+  'terms',
+  'cookies',
+  'accessibility',
+  'advertising',
+  'how-supplier-matching-works',
+]);
+
 export const DIRECTORY_FILTER_SHAPES: RegExp[] = [
   new RegExp(`^/(en|ar)/directory/(${DIRECTORY_ROLE_PATTERN})$`),
   new RegExp(`^/(en|ar)/directory/(${DIRECTORY_ROLE_PATTERN})/in/[a-z0-9-]+$`),
@@ -176,6 +198,13 @@ export function isPublishedPath(path: string): boolean {
   if (!clean) return false;
 
   if (ALIASES.some((a) => a.from === clean)) return true;
+
+  // The public policy and legal pages. They are checked before the
+  // business-profile shape, because two of them live under /directory/
+  // and that shape matches any single-segment /directory/<slug> path:
+  // /en/directory/how-it-works would be read as a business profile named
+  // "how-it-works", and would 404 even with the page renderer in place.
+  if (POLICY_PAGE_PATHS.has(clean.replace(/^\/(en|ar)\//, ''))) return true;
 
   // The role filter shapes come FIRST. The business-profile shape below
   // matches any single-segment /directory/<slug> path, so a role checked

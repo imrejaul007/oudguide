@@ -1,0 +1,646 @@
+{
+ "_provenance": {
+  "source_site": "https://almutalib.com/",
+  "source_pages": [
+   "https://almutalib.com/all-categories/",
+   "https://almutalib.com/product-category/agarwood/",
+   "https://almutalib.com/all-categories/location-wise-agarwood/",
+   "https://almutalib.com/agarwood-wholesaler/"
+  ],
+  "additional_pages_read": [
+   "https://almutalib.com/all-categories/agarwood-quality/",
+   "https://almutalib.com/all-categories/agarwood-shapes/",
+   "https://almutalib.com/product-sitemap.xml",
+   "https://almutalib.com/page-sitemap.xml",
+   "https://almutalib.com/sitemap_index.xml"
+  ],
+  "observed_on": "2026-10-21",
+  "retrieval": "Live HTTP fetch of the public pages and XML sitemaps; taxonomy read from rendered anchor hrefs, not from prose.",
+  "platform": "WordPress + WooCommerce at almutalib.com; Shopify at ae.almutalib.com",
+  "use_restriction": "This register records the STRUCTURE of a third party's catalogue. It carries no prose, no prices, no product descriptions and no imagery, and it is not a source for editorial claims about any material. Editorial rules in docs/EDITORIAL_RUNBOOK.md section 1.3 still apply."
+ },
+ "counts": {
+  "product_category_nodes": 64,
+  "families": 12,
+  "grades": 9,
+  "shapes": 13,
+  "origins": 22,
+  "geography": 8,
+  "retail_city_slugs": 102,
+  "retail_countries": 7,
+  "family_subcategories": 2
+ },
+ "axes": {
+  "family": "The top level of the merchant catalogue: the product format.",
+  "grade": "A seller-defined quality label, not a published standard. No definition binds these labels to a measured quantity.",
+  "shape": "A form or size descriptor applied to wood or chips. Terms vary between markets and between sellers.",
+  "origin": "A growing region or an established trade name for material from it.",
+  "geography": "A destination page: where the merchant says it can deliver, not where the material grew.",
+  "family-subcategory": "A subcategory of a product family, carrying a narrower product type."
+ },
+ "nodes": [
+  {
+   "path": "product-category/agarwood",
+   "slug": "agarwood",
+   "label": "Agarwood",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/agarwood-and-oud",
+   "slug": "agarwood-and-oud",
+   "label": "agarwood and oud",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/agarwood-chips",
+   "slug": "agarwood-chips",
+   "label": "Agarwood Chips",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/agarwood/agarwood-in-bahrain",
+   "slug": "agarwood-in-bahrain",
+   "label": "Agarwood in Bahrain",
+   "depth": 3,
+   "axis": "geography"
+  },
+  {
+   "path": "product-category/agarwood/agarwood-in-india",
+   "slug": "agarwood-in-india",
+   "label": "Agarwood in India",
+   "depth": 3,
+   "axis": "geography"
+  },
+  {
+   "path": "product-category/agarwood/agarwood-in-kuwait",
+   "slug": "agarwood-in-kuwait",
+   "label": "Agarwood in Kuwait",
+   "depth": 3,
+   "axis": "geography"
+  },
+  {
+   "path": "product-category/agarwood/agarwood-in-oman",
+   "slug": "agarwood-in-oman",
+   "label": "Agarwood in Oman",
+   "depth": 3,
+   "axis": "geography"
+  },
+  {
+   "path": "product-category/agarwood/agarwood-in-qatar",
+   "slug": "agarwood-in-qatar",
+   "label": "Agarwood in Qatar",
+   "depth": 3,
+   "axis": "geography"
+  },
+  {
+   "path": "product-category/agarwood/agarwood-in-saudi-arabia",
+   "slug": "agarwood-in-saudi-arabia",
+   "label": "Agarwood in Saudi Arabia",
+   "depth": 3,
+   "axis": "geography"
+  },
+  {
+   "path": "product-category/agarwood/agarwood-in-united-arab-emirates",
+   "slug": "agarwood-in-united-arab-emirates",
+   "label": "Agarwood in United Arab Emirates",
+   "depth": 3,
+   "axis": "geography"
+  },
+  {
+   "path": "product-category/agarwood/agarwood-wholesale",
+   "slug": "agarwood-wholesale",
+   "label": "Agarwood Wholesale",
+   "depth": 3,
+   "axis": "geography"
+  },
+  {
+   "path": "product-category/agarwood/baby-salla-oud",
+   "slug": "baby-salla-oud",
+   "label": "Baby Salla Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/ball-muri-khaas-oud",
+   "slug": "ball-muri-khaas-oud",
+   "label": "Ball Muri Khaas Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/ball-muri-oud",
+   "slug": "ball-muri-oud",
+   "label": "Ball muri Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/burmese-agarwood",
+   "slug": "burmese-agarwood",
+   "label": "Burmese Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/cambodian-agarwood",
+   "slug": "cambodian-agarwood",
+   "label": "Cambodian Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/char-oud",
+   "slug": "char-oud",
+   "label": "Char Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/digga-oud",
+   "slug": "digga-oud",
+   "label": "Digga Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/double-super-oud",
+   "slug": "double-super-oud",
+   "label": "Double Super Oud",
+   "depth": 3,
+   "axis": "grade"
+  },
+  {
+   "path": "product-category/agarwood/girmit-oud",
+   "slug": "girmit-oud",
+   "label": "Girmit Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/hindi-agarwood",
+   "slug": "hindi-agarwood",
+   "label": "Hindi Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/hindi-agarwood/assam-agarwood",
+   "slug": "assam-agarwood",
+   "label": "Assam Agarwood",
+   "depth": 4,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/hindi-agarwood/kalakasi-agarwood",
+   "slug": "kalakasi-agarwood",
+   "label": "Kalakasi Agarwood",
+   "depth": 4,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/hindi-agarwood/kodumuri-agarwood",
+   "slug": "kodumuri-agarwood",
+   "label": "Kodumuri Agarwood",
+   "depth": 4,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/hindi-agarwood/manipuri-agarwood",
+   "slug": "manipuri-agarwood",
+   "label": "Manipuri Agarwood",
+   "depth": 4,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/hindi-agarwood/nagaland-agarwood",
+   "slug": "nagaland-agarwood",
+   "label": "Nagaland Agarwood",
+   "depth": 4,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/jayapura-agarwood",
+   "slug": "jayapura-agarwood",
+   "label": "Jayapura Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/jura-oud",
+   "slug": "jura-oud",
+   "label": "Jura Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/kalimantan-agarwood",
+   "slug": "kalimantan-agarwood",
+   "label": "Kalimantan Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/kalimantan-super-agarwood",
+   "slug": "kalimantan-super-agarwood",
+   "label": "Kalimantan Super Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/khaas-oud",
+   "slug": "khaas-oud",
+   "label": "Khaas Oud",
+   "depth": 3,
+   "axis": "grade"
+  },
+  {
+   "path": "product-category/agarwood/khasal-khaas-oud",
+   "slug": "khasal-khaas-oud",
+   "label": "khasal Khaas Oud",
+   "depth": 3,
+   "axis": "grade"
+  },
+  {
+   "path": "product-category/agarwood/laos-agarwood",
+   "slug": "laos-agarwood",
+   "label": "Laos agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/malaysia-puntiyana-agarwood",
+   "slug": "malaysia-puntiyana-agarwood",
+   "label": "Malaysia Puntiyana agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/malaysian-agarwood",
+   "slug": "malaysian-agarwood",
+   "label": "Malaysian Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/malino-agarwood",
+   "slug": "malino-agarwood",
+   "label": "Malino Agarwood",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/merauke-agarwood",
+   "slug": "merauke-agarwood",
+   "label": "Merauke Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/muri-malaki-oud",
+   "slug": "muri-malaki-oud",
+   "label": "Muri Malaki Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/muri-oud",
+   "slug": "muri-oud",
+   "label": "Muri Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/pakambera-agarwood",
+   "slug": "pakambera-agarwood",
+   "label": "Pakambera Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/papua-agarwood",
+   "slug": "papua-agarwood",
+   "label": "Papua Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/philippine-agarwood",
+   "slug": "philippine-agarwood",
+   "label": "Philippine Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/sailani-agarwood",
+   "slug": "sailani-agarwood",
+   "label": "Sailani Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/salla-khaas-oud",
+   "slug": "salla-khaas-oud",
+   "label": "Salla Khaas Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/salla-oud",
+   "slug": "salla-oud",
+   "label": "Salla Oud",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/agarwood/seufi-oud",
+   "slug": "seufi-oud",
+   "label": "Seufi Oud",
+   "depth": 3,
+   "axis": "grade"
+  },
+  {
+   "path": "product-category/agarwood/seyufi-oud",
+   "slug": "seyufi-oud",
+   "label": "Seyufi Oud",
+   "depth": 3,
+   "axis": "grade"
+  },
+  {
+   "path": "product-category/agarwood/south-thailand-agarwood",
+   "slug": "south-thailand-agarwood",
+   "label": "South Thailand Agarwood",
+   "depth": 3,
+   "axis": "origin"
+  },
+  {
+   "path": "product-category/agarwood/super-oud",
+   "slug": "super-oud",
+   "label": "Super Oud",
+   "depth": 3,
+   "axis": "grade"
+  },
+  {
+   "path": "product-category/agarwood/triple-super-oud",
+   "slug": "triple-super-oud",
+   "label": "Triple Super Oud",
+   "depth": 3,
+   "axis": "grade"
+  },
+  {
+   "path": "product-category/agarwood/vip-oud",
+   "slug": "vip-oud",
+   "label": "VIP Oud",
+   "depth": 3,
+   "axis": "grade"
+  },
+  {
+   "path": "product-category/agarwood/vvip-oud",
+   "slug": "vvip-oud",
+   "label": "VVIP Oud",
+   "depth": 3,
+   "axis": "grade"
+  },
+  {
+   "path": "product-category/agarwood/zura",
+   "slug": "zura",
+   "label": "Zura",
+   "depth": 3,
+   "axis": "shape"
+  },
+  {
+   "path": "product-category/air-freshener",
+   "slug": "air-freshener",
+   "label": "Air Freshener",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/bakhour",
+   "slug": "bakhour",
+   "label": "Bakhour",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/dehnal-oudh",
+   "slug": "dehnal-oudh",
+   "label": "Dehnal Oudh",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/incense",
+   "slug": "incense",
+   "label": "Incense",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/oud",
+   "slug": "oud",
+   "label": "Oud",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/oud-agar",
+   "slug": "oud-agar",
+   "label": "oud agar",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/oudh",
+   "slug": "oudh",
+   "label": "Oudh",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/perfume-oil",
+   "slug": "perfume-oil",
+   "label": "Perfume Oil",
+   "depth": 2,
+   "axis": "family"
+  },
+  {
+   "path": "product-category/perfume-oil/inspired-perfume-oils",
+   "slug": "inspired-perfume-oils",
+   "label": "Inspired Perfume Oils",
+   "depth": 3,
+   "axis": "family-subcategory"
+  },
+  {
+   "path": "product-category/perfume-oil/musk",
+   "slug": "musk",
+   "label": "Musk",
+   "depth": 3,
+   "axis": "family-subcategory"
+  },
+  {
+   "path": "product-category/perfumes",
+   "slug": "perfumes",
+   "label": "Perfumes",
+   "depth": 2,
+   "axis": "family"
+  }
+ ],
+ "retail_geography": {
+  "note": "Retail destination pages published by the merchant. A destination is where material can be shipped, not where agarwood grows.",
+  "countries": [
+   {
+    "country": "Bahrain",
+    "iso2": "BH",
+    "city_slugs": [
+     "agarwood-in-aali",
+     "agarwood-in-al-hidd",
+     "agarwood-in-al-malikiyah",
+     "agarwood-in-amwaj-islands",
+     "agarwood-in-arad",
+     "agarwood-in-budaiya",
+     "agarwood-in-diyar-al-muharraq",
+     "agarwood-in-durrat-al-bahrain",
+     "agarwood-in-gudaibiya",
+     "agarwood-in-hamad-town",
+     "agarwood-in-isa-town",
+     "agarwood-in-jid-ali",
+     "agarwood-in-jidhafs",
+     "agarwood-in-jurdab",
+     "agarwood-in-muharraq",
+     "agarwood-in-riffa",
+     "agarwood-in-salmabad",
+     "agarwood-in-sanabis",
+     "agarwood-in-sitra",
+     "agarwood-in-tubli"
+    ],
+    "city_count": 20
+   },
+   {
+    "country": "India",
+    "iso2": "IN",
+    "city_slugs": [],
+    "city_count": 0
+   },
+   {
+    "country": "Kuwait",
+    "iso2": "KW",
+    "city_slugs": [
+     "agarwood-in-abdulla-al-salem",
+     "agarwood-in-bnaid-al-qar",
+     "agarwood-in-dasma",
+     "agarwood-in-doha",
+     "agarwood-in-faiha",
+     "agarwood-in-jaber-al-ahmad-city",
+     "agarwood-in-kaifan",
+     "agarwood-in-kuwait-towers",
+     "agarwood-in-qadsiya",
+     "agarwood-in-qurtuba",
+     "agarwood-in-rawda",
+     "agarwood-in-shamiya",
+     "agarwood-in-sulaibikhat",
+     "agarwood-in-surra",
+     "agarwood-in-yarmouk"
+    ],
+    "city_count": 15
+   },
+   {
+    "country": "Oman",
+    "iso2": "OM",
+    "city_slugs": [
+     "agarwood-in-adam",
+     "agarwood-in-al-ashkharah",
+     "agarwood-in-al-batinah",
+     "agarwood-in-al-buraimi",
+     "agarwood-in-al-dakhiliyah",
+     "agarwood-in-al-hamra-agarwood-in-oman",
+     "agarwood-in-al-jabal-al-akhdar",
+     "agarwood-in-al-jazer",
+     "agarwood-in-al-madina-azarqa",
+     "agarwood-in-al-mudhaibi",
+     "agarwood-in-al-rustaq",
+     "agarwood-in-al-suwaiq",
+     "agarwood-in-al-wusta",
+     "agarwood-in-as-sib",
+     "agarwood-in-masirah-island",
+     "agarwood-in-muscat",
+     "agarwood-in-nizwa",
+     "agarwood-in-salalah",
+     "agarwood-in-sohar",
+     "agarwood-in-sur"
+    ],
+    "city_count": 20
+   },
+   {
+    "country": "Qatar",
+    "iso2": "QA",
+    "city_slugs": [
+     "agarwood-in-ad-dawhah-doha",
+     "agarwood-in-al-daayen",
+     "agarwood-in-al-khor",
+     "agarwood-in-al-rayyan",
+     "agarwood-in-al-shahaniya",
+     "agarwood-in-al-shamal",
+     "agarwood-in-al-wakrah",
+     "agarwood-in-umm-salal"
+    ],
+    "city_count": 8
+   },
+   {
+    "country": "Saudi Arabia",
+    "iso2": "SA",
+    "city_slugs": [
+     "agarwood-in-al-baha",
+     "agarwood-in-al-hail",
+     "agarwood-in-al-hasa",
+     "agarwood-in-al-hufuf",
+     "agarwood-in-al-kharj",
+     "agarwood-in-al-khobar",
+     "agarwood-in-al-qassim",
+     "agarwood-in-al-qatif",
+     "agarwood-in-al-zulfi",
+     "agarwood-in-buraidah",
+     "agarwood-in-dammam",
+     "agarwood-in-jazan",
+     "agarwood-in-jeddah",
+     "agarwood-in-jubail",
+     "agarwood-in-madinah",
+     "agarwood-in-makkah",
+     "agarwood-in-najran",
+     "agarwood-in-riyadh",
+     "agarwood-in-taif",
+     "agarwood-in-yanbu"
+    ],
+    "city_count": 20
+   },
+   {
+    "country": "United Arab Emirates",
+    "iso2": "AE",
+    "city_slugs": [
+     "agarwood-in-abu-dhabi",
+     "agarwood-in-ajman",
+     "agarwood-in-al-ain",
+     "agarwood-in-al-ain-city",
+     "agarwood-in-al-ain-oasis",
+     "agarwood-in-al-ain-zoo",
+     "agarwood-in-al-hamra",
+     "agarwood-in-dhaid",
+     "agarwood-in-dibba-al-fujairah",
+     "agarwood-in-dubai",
+     "agarwood-in-fujairah",
+     "agarwood-in-hatta",
+     "agarwood-in-jebel-hafeet",
+     "agarwood-in-kalba",
+     "agarwood-in-khorfakkan",
+     "agarwood-in-mleiha",
+     "agarwood-in-ras-al-khaimah",
+     "agarwood-in-sharjah",
+     "agarwood-in-umm-al-quwain"
+    ],
+    "city_count": 19
+   }
+  ]
+ }
+}

@@ -6,7 +6,8 @@
 **Live Production URL:** https://www.oudguide.com
 **GitHub Repository:** https://github.com/imrejaul007/oudguide
 **Audit of record:** `docs/AUDIT_AGARWOODGUIDE_2026-10-20.md` (full crawl of agarwoodguide.com and oudguide.com)
-**Remediation matrix:** `docs/AUDIT_REMEDIATION_MATRIX.csv` (27 findings; 26 fixed-local, 1 blocked)
+**Remediation matrix:** `docs/AUDIT_REMEDIATION_MATRIX.csv` (32 findings; 30 fixed-local, 1 open, 1 blocked)
+**Coverage audit:** `docs/AUDIT_COVERAGE_2026-10-21.md` (1,024 candidate URLs probed against the live site)
 **Gap plan:** `docs/GAP_PLAN_2026-10-20.md`
 
 ### What the 20-21 October audit changed
@@ -26,6 +27,33 @@ The audit found three things the build status above did not record.
   routes returned 500 in production. The bodies are restored, and
   `tests/metadata-integrity.test.ts` now fails the suite if a route file loses its
   page component.
+
+### What the 21 October coverage audit changed
+
+A second audit, run against the live site rather than the repository, probed
+1,024 candidate URLs and found 106 manifest routes still returning 404. The
+first audit had measured the shell; this one measured the catalogue.
+
+- **The 600-word article tier is now enforced, not just written down.**
+  `tests/article-tier.test.ts` asserts it, and `mainWordCount()` in
+  `apps/web/src/lib/articles.ts` is the single place the measure lives. All 53
+  published guides clear the floor: minimum 608 words, median 759, maximum
+  1188. The runbook gained §2.1a, on three instruments that reported clean
+  while a reader was being served a broken page.
+- **All 24 product families are published** at `/en/products/{family}`, with a
+  product index. They were 404 because the content layer had no
+  product-family article type at all.
+- **The glossary has an index** at `/en/glossary`, and a term is published at
+  the path the manifest declares. The guides catch-all used to serve the same
+  body at a second URL with a second canonical; that is now a redirect.
+- **All 24 business categories resolve**, from a controlled role vocabulary in
+  `packages/contracts/src/directory-roles.ts`. Two defects fixed in passing:
+  the role filter shapes were checked after the business-profile shape and
+  swallowed the new roles, and the six role pages that already returned 200
+  did not filter at all — every one of them rendered the same unfiltered
+  directory.
+- **The corpus is 102 published articles** across 54 guides, 24 product
+  families, 14 hubs, 7 glossary entries, 2 origin pages, 1 destination page.
 
 Also remediated: the locked-profile website leak, the conflation of business
 location with material origin and shipping destination, membership activation
