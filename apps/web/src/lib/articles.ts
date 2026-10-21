@@ -369,6 +369,86 @@ export function publishedArticlePaths(locale: string): string[] {
  * pages that differ only in their surroundings still collide. OG-A01's
  * acceptance criterion is exactly this comparison.
  */
+/**
+ * ==========================================================================
+   The article-tier word measure.
+   ==========================================================================
+
+   The editorial runbook sets a 600-word floor on the main content of a
+   question-specific guide. This is the one place that floor is measured,
+   so the runbook, the audit matrix and the test cannot drift apart.
+
+   The measure is the one recorded in `docs/AUDIT_REMEDIATION_MATRIX.csv`
+   for REGRESSION-04:
+
+     the direct answer, section headings and bodies, lists, callouts,
+     limitations and next steps,
+
+   and nothing else. Navigation, breadcrumbs, the sources block, the
+   referral call to action and the related links are excluded, because
+   they are chrome and would let a thin page pass a gate it has not
+   earned.
+
+   Two things are deliberately NOT counted, and the reason matters:
+
+     - The worked example. The runbook describes it as hypothetical and
+       the manifest-gate test requires it to say so. Counting it would
+       let a guide clear the gate on the strength of an illustration
+       rather than on the prose.
+     - The checklist. It is a list of questions to ask, not an answer.
+
+   Reference-tier pages — hubs, glossary entries, origin and destination
+   pages — have no word floor. They are judged on completeness, on
+   scoped sources and on stated limitations. `isReferenceTier` records
+   that distinction so the gate applies to exactly the pages it is
+   written for.
+   ========================================================================== */
+
+/** The article tier's floor, in words of main content. */
+export const ARTICLE_TIER_MIN_WORDS = 600;
+
+/** Count words the way the corpus counts them. */
+export function countWords(text: string | undefined | null): number {
+  return String(text ?? '')
+    .split(/\s+/)
+    .filter(Boolean).length;
+}
+
+/**
+ * Whether a page is judged on length (article tier) or on completeness
+ * (reference tier).
+ */
+export function isReferenceTier(article: Article): boolean {
+  return article.kind !== 'guide';
+}
+
+/**
+ * The main-content word count of an article, on the matrix measure.
+ *
+ * Sections are counted in full because the corpus merge in
+ * `data/articles/index.ts` folds the deepening sections into
+ * `article.sections` before the article is stored. An article that has
+ * been deepened is therefore measured on its deepened body.
+ */
+export function mainWordCount(article: Article): number {
+  let total = countWords(article.directAnswer);
+
+  for (const section of article.sections) {
+    total += countWords(section.heading);
+    total += countWords((section.body ?? []).join(' '));
+    total += (section.list ?? []).reduce((n, item) => n + countWords(item), 0);
+    if (section.callout) {
+      total += countWords(section.callout.title);
+      total += countWords(section.callout.body);
+    }
+  }
+
+  total += countWords(article.limitations);
+  total += (article.nextSteps ?? []).reduce((n, step) => n + countWords(step), 0);
+
+  return total;
+}
+
 export function bodyFingerprint(article: Article): string {
   const parts: string[] = [article.directAnswer];
 

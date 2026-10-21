@@ -27,7 +27,7 @@ export async function generateMetadata({
     path: `/${locale}/for-businesses`,
     title: isAr ? 'للمقطرين والمزارعين — وثّق ملفك في دليل العود' : 'For Distillers & Growers — Document Your OudGuide Profile',
     description: isAr
-      ? 'وثّق ملفك مجاناً كمالك. запишите ما تبيعه ومن أين يأتي، واقترح تصحيحات على ملفك. العضوية السنوية تتيح نشر بيانات اتصالك، لا التوثيق ولا الوصول إلى بيانات المشترين.'
+      ? 'وثّق ملفك مجاناً كمالك. سجّل ما تبيعه ومن أين يأتي، واقترح تصحيحات على ملفك. العضوية السنوية تتيح نشر بيانات اتصالك، لا التوثيق ولا الوصول إلى بيانات المشترين.'
       : 'Document your profile as the owner, free. Record what you sell and where it comes from, and propose corrections to your own listing. The annual membership enables publication of your contact details — it is not a verification, and it is not access to buyer data.',
     locale,
     alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}/for-businesses`,

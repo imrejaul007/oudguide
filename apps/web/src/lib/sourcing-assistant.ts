@@ -157,7 +157,7 @@ export function detectIntent(query: string): AssistantIntent {
 const ORIGIN_HINTS: { key: string; label: string; aliases: string[] }[] = [
   { key: 'assam', label: 'Assam', aliases: ['assam', 'hijai', 'hojai', 'أسام', 'حوجاي', 'هوجاي'] },
   { key: 'meghalaya', label: 'Meghalaya', aliases: ['meghalaya', 'ميغالايا'] },
-  { key: 'india', label: 'India', aliases: ['india', 'indian', 'هند', 'هندي', 'ال印度', 'الهند'] },
+  { key: 'india', label: 'India', aliases: ['india', 'indian', 'هند', 'هندي', 'الهند'] },
   { key: 'koh kong', label: 'Koh Kong', aliases: ['koh kong', 'khmerk', 'كوه كونغ', 'كمبوديا', 'كمبودي'] },
   { key: 'cambodia', label: 'Cambodia', aliases: ['cambodia', 'cambodian', 'كمبوديا'] },
   { key: 'trat', label: 'Trat', aliases: ['trat', 'ترات'] },
