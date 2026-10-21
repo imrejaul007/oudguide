@@ -6,6 +6,8 @@ import { join, relative } from 'node:path';
 
 import {
   DISALLOWED_SCRIPT_RANGES,
+  FILE_SCOPED_ALLOWED_IN_ARABIC,
+  GEOGRAPHY_CONTENT_FILES,
   REPLACEMENT_CHAR,
   extractStrings,
   scanString,
@@ -280,5 +282,83 @@ describe('Arabic copy in the page renderers carries no untranslated Latin fragme
         .map((v) => `${v.file}: ${v.detail}`)
         .join('\n  ')}`
     );
+  });
+});
+
+describe('The file-scoped allowlist cannot launder damage', () => {
+  /**
+   * The allowlist is a hole by construction: it names Latin tokens that
+   * are exempt from the Latin-in-Arabic rule. A hole that grows without a
+   * rule is a place where the generator damage hides.
+   *
+   * These tests do not check that the allowlist is right. They check the
+   * two things that make it safe to have one:
+   *
+   *   1. Every entry is a name, not a fragment of a damaged sentence.
+   *      The species list is closed on Table 1 of the ITTO review, so a
+   *      token that is not a species and not a body abbreviation is a
+   *      mistake, and the check below names it.
+   *   2. The allowance is scoped. A token allowed in one file must not
+   *      become allowed everywhere.
+   */
+
+  const BODY_ABBREVIATIONS = new Set(['ITTO', 'IUCN', 'TRAFFIC']);
+
+  test('every geography allowlist entry is a species name or a body abbreviation', () => {
+    for (const file of GEOGRAPHY_CONTENT_FILES) {
+      const allowed = FILE_SCOPED_ALLOWED_IN_ARABIC[file];
+      assert.ok(allowed, `${file} has no allowlist entry`);
+
+      for (const token of allowed) {
+        assert.ok(
+          BODY_ABBREVIATIONS.has(token) || /^[a-z]{4,}$/.test(token),
+          `${file}: ${JSON.stringify(token)} is neither a body abbreviation nor a lowercase species epithet`
+        );
+      }
+    }
+  });
+
+  test('the allowlist holds no token that looks like generator damage', () => {
+    // The damage in the geography lane is Latin-looking, because the
+    // generator bled English words into the Arabic. These are the tokens
+    // that were actually found in it, and none of them is a name.
+    const damage = [
+      'autCountries',
+      'subordinput',
+      'Vascoastically',
+      'ceryained',
+      'Parma',
+      'tension',
+      'cover',
+      'awake',
+      'countries',
+      'Position',
+      'China',
+    ];
+
+    for (const [file, allowed] of Object.entries(FILE_SCOPED_ALLOWED_IN_ARABIC)) {
+      for (const token of damage) {
+        assert.ok(
+          !allowed.has(token),
+          `${file}: the allowlist admits the generator damage ${JSON.stringify(token)}`
+        );
+      }
+    }
+  });
+
+  test('the geography allowance does not leak into other files', () => {
+    // The species names are allowed in the geography files because those
+    // files are naming species. They are not allowed in the source
+    // registry or in an article body, where an unexpected epithet is
+    // exactly the signal that something was pasted in by mistake.
+    const scoped = FILE_SCOPED_ALLOWED_IN_ARABIC['sources.ts'];
+    assert.ok(scoped, 'sources.ts has no allowlist entry');
+
+    for (const token of ['baillonii', 'filaria']) {
+      assert.ok(
+        !scoped.has(token),
+        `sources.ts: the geography allowance leaked ${JSON.stringify(token)} into the source registry`
+      );
+    }
   });
 });
