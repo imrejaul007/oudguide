@@ -109,6 +109,51 @@ export const SOURCE_REGISTRY: Record<string, ArticleSource> = {
     kind: 'primary',
   },
 
+  IFRA_STANDARDS: {
+    id: 'IFRA_STANDARDS',
+    label: 'IFRA — Understanding the IFRA Standards',
+    labelAr: 'IFRA — شرح معايير IFRA',
+    url: 'https://ifrafragrance.org/understanding-standards',
+    publisher: 'International Fragrance Association',
+    publisherAr: 'الجمعية الدولية للعطور',
+    retrievedOn: '2026-10-21',
+    scope:
+      'Establishes that the IFRA Standards operate through three kinds of control — prohibition of a material, restriction of the maximum quantity used, and specification of conditions on a material — and that quantitative limits are expressed as an upper concentration in the finished consumer product rather than in the fragrance mixture. Establishes that product types are set out in the guidance documents and that the applicable category is determined from the product\'s intended use. Establishes that IFRA itself does not issue certificates, does not authorise any third party to certify on its behalf, does not certify products, and that a Certificate of Conformity does not replace a safety assessment. It does not establish the safety of any particular product, the concentration of any material in any product, or compliance by any named supplier.',
+    scopeAr:
+      'يثبت أن معايير IFRA تعمل بثلاثة أنواع من التحكم — منع مادة، وتقييد أقصى كمية تستعمل، ومواصفات شروط على مادة — وأن الحدود الكمية تُحدَّد كحدّ أعلى لتركيز المادة العطرية في المنتج النهائي لا في الخصلة العطرية. ويثبت أن أنواع المنتجات مثبتة في أدلة المعايير وأن الفئة المنطبقة تُحدَّد من الاستخدام المقصود للمنتج. ويثبت أن IFRA لا تصدر هي شهادات ولا تفوّض أي طرف ثالث بالتصديق نيابةً عنها ولا تصدّق المنتجات، وأن شهادة المطابقة لا تُغني عن تقييم السلامة. ولا يثبت سلامة أي منتج بعينه ولا تركيز أي مادة في أي منتج ولا مطابقة أي مورد بعينه.',
+    kind: 'regulatory',
+  },
+
+  IFRA_LIBRARY: {
+    id: 'IFRA_LIBRARY',
+    label: 'IFRA — Standards library',
+    labelAr: 'IFRA — مكتبة المعايير',
+    url: 'https://ifrafragrance.org/standards-library',
+    publisher: 'International Fragrance Association',
+    publisherAr: 'الجمعية الدولية للعطور',
+    retrievedOn: '2026-10-21',
+    scope:
+      'Establishes that the IFRA Standards are held in a searchable database and that each record can be filtered by control type — restriction, specification or prohibition — as well as by amendment, CAS number and status. It is the place a specific limit is looked up. It does not establish which category a product belongs to, and it does not establish that any finished product conforms to any standard.',
+    scopeAr:
+      'يثبت أن معايير IFRA محفوظة في قاعدة بيانات قابلة للبحث، وأن كل سجل يمكن ترشيحه بنوع التحكم — تقييد أو مواصفة أو منع — وبالتعديل وبالرقم الكيميائي وبالحالة. وهو المكان الذي يُبحث فيه عن حدّ بعينه. ولا يثبت أي فئة ينتمي إليها منتج، ولا يثبت مطابقة أي منتج منتهٍ لأي معيار.',
+    kind: 'regulatory',
+  },
+
+  IFRA_APPLYING: {
+    id: 'IFRA_APPLYING',
+    label: 'IFRA — Using the IFRA Standards',
+    labelAr: 'IFRA — استعمال معايير IFRA',
+    url: 'https://ifrafragrance.org/using-the-standards',
+    publisher: 'International Fragrance Association',
+    publisherAr: 'الجمعية الدولية للعطور',
+    retrievedOn: '2026-10-21',
+    scope:
+      'Establishes that conformity for a fragrance mixture\'s intended use is established by the fragrance-mixture formulator or supplier, that a Certificate of Conformity applies exclusively to fragrance mixtures intended for incorporation into finished consumer products, and that IFRA Certificates are generally not issued for raw materials. Establishes that the final decision and responsibility for the finished product lies with the end consumer product manufacturer, and that conformity with the Standards does not exempt a company from applicable national or local regulation. It does not establish that any named supplier holds a certificate, nor what any certificate says about a finished product.',
+    scopeAr:
+      'يثبت أن مطابقة الخصلة العطرية لاستخدامها المقصود يثبتها مُركِّب الخصلة العطرية أو مورّدها، وأن شهادة المطابقة تنطبق حصراً على الخصلات العطرية المزمع إدخالها في منتجات استهلاكية منتهية، وأن شهادات IFRA لا تُصدر عادةً للمواد الخام. ويثبت أن القرار النهائي والمسؤولية عن المنتج المنتهي تقعان على الشركة المصنّعة للمنتج الاستهلاكي النهائي، وأن المطابقة مع المعايير لا تعفي الشركة من الأنظمة الوطنية أو المحلية المنطبقة. ولا يثبت أن أي مورد بعينه يحمل شهادة، ولا ما تقوله شهادة عن منتج منتهٍ.',
+    kind: 'regulatory',
+  },
+
   FAOLEX: {
     id: 'FAOLEX',
     label: 'FAOLEX — the FAO legal and policy database',

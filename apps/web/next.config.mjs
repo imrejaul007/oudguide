@@ -69,12 +69,6 @@ const ALIASES = [
     reason: 'The quote-journey alias. The RFQ form is the wholesale intake; there is no separate quote page.',
   },
   {
-    from: '/how-supplier-matching-works',
-    to: '/guides/sourcing/how-supplier-introductions-work',
-    reason:
-      'The supplier-matching explanation. The manifest carries it as an editorial guide with the same subject; the shorter path was linked from the wholesale sample-plan guide.',
-  },
-  {
     from: '/guides/cites-regulations',
     to: '/guides/trade/agarwood-documentation',
     reason: 'The footer "CITES & Export Laws" link. The conservation and trade documentation guide is the same subject.',
@@ -125,7 +119,25 @@ const nextConfig = {
     return config;
   },
   async redirects() {
-    return [...aliasRedirects, ...territoryRedirects];
+    /**
+     * The guides catch-all used to serve glossary terms and product
+     * families as well, so every one of them had two URLs, one body and
+     * two different canonicals. The manifest's path is the contract —
+     * `/en/glossary/{term}` and `/en/products/{family}` — so the guides
+     * path now points at it.
+     */
+    const sectionRedirects = [];
+    for (const locale of ['en', 'ar']) {
+      for (const section of ['glossary', 'products']) {
+        sectionRedirects.push({
+          source: `/${locale}/guides/${section}/:slug`,
+          destination: `/${locale}/${section}/:slug`,
+          permanent: true,
+        });
+      }
+    }
+
+    return [...aliasRedirects, ...territoryRedirects, ...sectionRedirects];
   },
   async rewrites() {
     /**
@@ -148,7 +160,19 @@ const nextConfig = {
      * profile such as /en/directory/al-mutalib-perfumes and the map at
      * /en/directory/map are never captured.
      */
-    const ROLES = 'wholesalers|retailers|growers|distillers|wood-processors|exporters';
+    // The controlled role vocabulary. It is the same list the published-
+    // route resolver uses, in the same order, because a role that exists
+    // in one and not the other produces a path that resolves in the
+    // sitemap and 404s in the browser, or the reverse.
+    const ROLES = [
+      'wholesalers', 'retailers', 'growers', 'distillers',
+      'wood-processors', 'exporters', 'importers', 'distributors',
+      'perfume-brands', 'perfume-manufacturers', 'private-label-manufacturers',
+      'perfume-oil-suppliers', 'attar-makers', 'bakhoor-makers',
+      'incense-makers', 'raw-material-suppliers', 'packaging-suppliers',
+      'bottle-suppliers', 'burner-suppliers', 'laboratories', 'perfumers',
+      'training-providers', 'museums', 'event-organizers',
+    ].join('|');
     const rules = [];
 
     for (const locale of ['en', 'ar']) {

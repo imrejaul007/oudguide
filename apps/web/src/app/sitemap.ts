@@ -1,6 +1,10 @@
 import { MetadataRoute } from 'next';
 import { seed } from '@/lib/data';
-import { ARABIC_HUMAN_REVIEW_COMPLETE, listReviewedArticles } from '@/lib/articles';
+import {
+  ARABIC_HUMAN_REVIEW_COMPLETE,
+  articlePath,
+  listReviewedArticles,
+} from '@/lib/articles';
 import { isPublishedPath, normalizePath } from '@/lib/route-resolver';
 
 const siteUrl = (
@@ -33,6 +37,8 @@ const siteUrl = (
 const STATIC_PAGES: string[] = [
   '/en',
   '/en/guides',
+  '/en/glossary',
+  '/en/products',
   '/en/directory',
   '/en/directory/map',
   '/en/world',
@@ -58,6 +64,8 @@ const STATIC_PAGES: string[] = [
 const ARABIC_STATIC_PAGES: string[] = [
   '/ar',
   '/ar/guides',
+  '/ar/glossary',
+  '/ar/products',
   '/ar/directory',
   '/ar/directory/map',
   '/ar/world',
@@ -94,9 +102,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     push(path, path === '/en' ? 0.9 : 0.7, 'monthly');
   }
 
-  // The published articles.
+  // The published articles. The path comes from the article record's own
+  // section, so a glossary term is published at /en/glossary/{term} and a
+  // product family at /en/products/{family} — the paths the manifest
+  // declares — rather than everything being forced under /en/guides.
   for (const article of listReviewedArticles()) {
-    push(`/en/guides/${article.slug}`, 0.8, 'weekly');
+    push(articlePath('en', article.slug), 0.8, 'weekly');
   }
 
   // The Arabic tree is published and readable, but the editorial
@@ -107,7 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // remain reachable and linked from the Arabic navigation.
   if (ARABIC_HUMAN_REVIEW_COMPLETE) {
     for (const article of listReviewedArticles()) {
-      push(`/ar/guides/${article.slug}`, 0.6, 'weekly');
+      push(articlePath('ar', article.slug), 0.6, 'weekly');
     }
     for (const path of ARABIC_STATIC_PAGES) {
       push(path, 0.6, 'monthly');

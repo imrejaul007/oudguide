@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import {
   DIRECTORY_ROLES,
+  DIRECTORY_ROLE_SLUGS,
   countryCodeForSlug,
   countrySlugForCode,
   isPublishedPath,
@@ -13,7 +14,13 @@ import {
   resolveRedirect,
   withLocale,
 } from '../apps/web/src/lib/route-resolver.ts';
-import { getArticle, isSupportedLocale, normaliseLocale } from '../apps/web/src/lib/articles.ts';
+import {
+  articlePath,
+  articleSection,
+  getArticle,
+  isSupportedLocale,
+  normaliseLocale,
+} from '../apps/web/src/lib/articles.ts';
 
 /**
  * ==========================================================================
@@ -77,10 +84,16 @@ describe('Redirects are only returned for a true equivalent', () => {
       '/en/rfq',
       'the quote-journey alias points at the RFQ form'
     );
+    // The supplier-matching path used to redirect here, to the
+    // introductions guide. It no longer does: the manifest lists it as
+    // a public policy route, and a policy page states what this site
+    // does where a guide explains how the trade works. The alias was
+    // removed so a redirect and a real page cannot both answer the same
+    // path, with one of them winning by accident.
     assert.equal(
       resolveRedirect('/en/how-supplier-matching-works'),
-      '/en/guides/sourcing/how-supplier-introductions-work',
-      'the matching explanation points at the introductions guide'
+      null,
+      'the matching-policy path is a real page now, not a redirect'
     );
     assert.equal(
       resolveRedirect('/en/guides/cites-regulations'),
@@ -173,6 +186,54 @@ describe('Published paths', () => {
     // link to one must resolve to null rather than to a 404 page.
     assert.ok(!isPublishedPath('/en/directory/siam-trat-agarwood-co'));
   });
+
+  test('every published business category resolves', () => {
+    // The role vocabulary is controlled and the resolver checks the role
+    // shapes BEFORE the business-profile shape, which would otherwise
+    // swallow /en/directory/importers and read it as a profile named
+    // "importers". That ordering is what makes all twenty-four roles
+    // reachable rather than six.
+    for (const role of DIRECTORY_ROLE_SLUGS) {
+      assert.ok(
+        isPublishedPath(`/en/directory/${role}`),
+        `${role} must be a published directory shape`
+      );
+      assert.ok(
+        isPublishedPath(`/ar/directory/${role}`),
+        `${role} must be published in Arabic too`
+      );
+    }
+  });
+
+  test('a role that is not in the vocabulary is not published', () => {
+    assert.ok(!isPublishedPath('/en/directory/not-a-real-role'));
+    assert.ok(!isPublishedPath('/en/directory/wholesaler'), 'a near-miss role must not resolve');
+  });
+});
+
+describe('The section a page lives in', () => {
+  test('a glossary term is not a guide and a family is not a guide', () => {
+    assert.equal(articleSection('oud-basics/what-is-agarwood'), 'guides');
+    assert.equal(articleSection('glossary/hindi-muri'), 'glossary');
+    assert.equal(articleSection('glossary'), 'glossary');
+    assert.equal(articleSection('products/oud-wood'), 'products');
+    assert.equal(articleSection('products'), 'products');
+  });
+
+  test('an article is published at the path its section declares', () => {
+    // The manifest declares /en/glossary/{term} and /en/products/{family}.
+    // The guides catch-all used to serve them as well, which gave one
+    // body two URLs and two canonicals.
+    assert.equal(articlePath('en', 'glossary/hindi-muri'), '/en/glossary/hindi-muri');
+    assert.equal(articlePath('en', 'products/oud-wood'), '/en/products/oud-wood');
+    assert.equal(articlePath('en', 'oud-basics/what-is-agarwood'), '/en/guides/oud-basics/what-is-agarwood');
+    assert.equal(articlePath('ar', 'glossary/hindi-muri'), '/ar/glossary/hindi-muri');
+  });
+
+  test('the guides path is not published for a term or a family', () => {
+    assert.ok(!isPublishedPath('/en/guides/glossary/hindi-muri'));
+    assert.ok(!isPublishedPath('/en/guides/products/oud-wood'));
+  });
 });
 
 describe('Directory filter paths', () => {
@@ -199,7 +260,7 @@ describe('Directory filter paths', () => {
   });
 
   test('the role segment is restricted to the published roles', () => {
-    for (const role of DIRECTORY_ROLES) {
+    for (const role of DIRECTORY_ROLE_SLUGS) {
       assert.ok(
         parseDirectoryFilterPath(`/en/directory/${role}`),
         `${role} must be a published directory shape`

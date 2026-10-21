@@ -235,6 +235,8 @@ export function getPrimaryNav(locale: string): { label: string; href: string; gr
     { label: isAr ? 'الموسوعة' : 'Encyclopedia', href: `/${locale}/guides`, groupKey: 'encyclopedia' },
     { label: isAr ? 'التوريد' : 'Sourcing', href: `/${locale}/directory`, groupKey: 'sourcing' },
     { label: isAr ? 'خريطة الأقاليم' : 'Origins', href: `/${locale}/world` },
+    { label: isAr ? 'الأصناف' : 'Products', href: `/${locale}/products` },
+    { label: isAr ? 'المفردات' : 'Glossary', href: `/${locale}/glossary` },
     { label: isAr ? 'لأصحاب الأعمال' : 'For Business', href: `/${locale}/for-businesses`, groupKey: 'business' },
     { label: isAr ? 'بوابة الشركاء' : 'Partner Portal', href: `/${locale}/partners/opportunities` },
   ];

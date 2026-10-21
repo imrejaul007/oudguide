@@ -53,6 +53,67 @@ While the corpus is below the floor, that test is red by design and names every
 guide still short and the words it still needs. A red test that names the
 remaining gap is more useful in the suite than a gate that is quietly absent.
 
+### 2.1a Three instruments that reported clean
+
+Three separate checks in this project's history reported that something was
+fine while a reader was being served a broken page. The three failures are
+recorded here because the pattern, not the individual bugs, is what will
+produce the next one.
+
+**A content-scoped validator reported PASS on four broken page renderers.**
+`scripts/validate-content-text.mjs` scanned `data/articles` and `lib/copy` and
+found no replacement characters. The four pages that were actually corrupted —
+the RFQ, privacy, corrections and verification renderers — were outside its
+scan roots. The validator was correct about what it looked at and silent about
+everything else.
+
+**A hand-written scanner reported PASS on a tree it had not read.** The
+string scanner in `lib/content/text-integrity.ts` treated an apostrophe
+inside a block comment as a string opener, which shifted every subsequent
+string boundary by one, so it skipped most of each file. It also read a
+literal `\n` as two characters, read regular-expression bodies as code, and
+mis-read a self-closing JSX tag as the start of a regex. Each of those is a
+silent skip. The scanner now uses the TypeScript parser, so it reads the
+actual literals.
+
+**A deploy command reported an error and left the old artifact serving.**
+`vercel deploy --prod --yes` returned `{"status": "error", "Error": "fetch
+failed"}` — no URL, no code, no indication of what had happened. A retry
+against the same commit succeeded. The command could not distinguish "nothing
+happened" from "the artifact changed and the receipt was lost", and both
+readings look identical from the reader's side, because in either case the
+old page kept serving.
+
+The rule these three point to is narrower than it first looks, and it is worth
+stating precisely:
+
+> **"PASS" from a tool means "nothing found in the place I looked". Only a
+> check that reads the whole tree can be trusted to say "nothing found".**
+
+So the three instruments have different obligations, and each has one:
+
+- A check that asserts on a **slice** — a directory, a file list, a family of
+  routes — must say which slice, and the gap between the slice and the whole
+  must be covered by something else.
+- A check that asserts on a **claim** — a manifest field, a label, a
+  directory record — can be wrong about the claim, and needs a reader who
+  checks the claim against the tree.
+- A check that asserts on **nothing** — a deploy command — must be confirmed
+  by an independent read: check that the alias moved, and probe the artifact
+  that is actually being served.
+
+Two operational habits follow, and both have already cost time:
+
+- **A URL that failed and a connection that failed are different claims.** A
+  sweep of 89 sitemap URLs with six parallel curls reported three connection
+  errors, which are not HTTP statuses at all. Re-probed one at a time, all
+  three were 200. A sweep that does not distinguish a `000` from a status
+  code will report a false outage, and the instinct to escalate on a sweep
+  failure is the instinct that produces a pointless rollback.
+- **After a deploy, confirm the alias moved and confirm the artifact serves,
+  before believing either the success or the failure.** The deployment list
+  and the alias are the independent read; the command's own output is not.
+
 ### 2.2 Indexation is a separate gate from publication
 
 A page can be published and not indexable. The Arabic tree is published, readable

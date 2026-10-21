@@ -27,7 +27,18 @@
 
 import { seed } from './data.ts';
 import { publishableBusinesses } from './data.ts';
-import { getArticle, isIndexable, listReviewedArticles, normaliseSlug } from './articles.ts';
+import {
+  articlePath,
+  getArticle,
+  isIndexable,
+  listReviewedArticles,
+  normaliseSlug,
+} from './articles.ts';
+import {
+  DIRECTORY_ROLES,
+  DIRECTORY_ROLE_PATTERN,
+  DIRECTORY_ROLE_SLUGS,
+} from '../../../../packages/contracts/src/directory-roles.ts';
 
 export interface PublishedRoute {
   /** The path that is actually served, without a trailing slash. */
@@ -64,12 +75,6 @@ const ALIASES: Alias[] = [
     from: '/en/request-quote',
     to: '/en/rfq',
     reason: 'The quote-journey alias. The RFQ form is the wholesale intake; no separate quote page exists.',
-  },
-  {
-    from: '/en/how-supplier-matching-works',
-    to: '/en/guides/sourcing/how-supplier-introductions-work',
-    reason:
-      'The supplier-matching explanation. The manifest carries it as an "Editorial guide" route with the same subject; the shorter public policy path was linked from the sample-plan guide.',
   },
   {
     from: '/en/world/united-arab-emirates',
@@ -136,12 +141,14 @@ function territoryAlias(from: string): string | null {
  * than a redirect.
  */
 export const DIRECTORY_FILTER_SHAPES: RegExp[] = [
-  /^\/(en|ar)\/directory\/(wholesalers|retailers|growers|distillers|wood-processors|exporters)$/,
-  /^\/(en|ar)\/directory\/(wholesalers|retailers)\/in\/[a-z0-9-]+$/,
-  /^\/(en|ar)\/directory\/(wholesalers|retailers)\/in\/[a-z0-9-]+\/[a-z0-9-]+$/,
-  /^\/(en|ar)\/directory\/(wholesalers|retailers)\/in\/[a-z0-9-]+\/[a-z0-9-]+\/[a-z0-9-]+$/,
-  /^\/(en|ar)\/directory\/(wholesalers|retailers)\/serving\/[a-z0-9-]+$/,
-  /^\/(en|ar)\/directory\/(wholesalers|retailers)\/by-origin\/[a-z0-9-]+$/,
+  new RegExp(`^/(en|ar)/directory/(${DIRECTORY_ROLE_PATTERN})$`),
+  new RegExp(`^/(en|ar)/directory/(${DIRECTORY_ROLE_PATTERN})/in/[a-z0-9-]+$`),
+  new RegExp(`^/(en|ar)/directory/(${DIRECTORY_ROLE_PATTERN})/in/[a-z0-9-]+/[a-z0-9-]+$`),
+  new RegExp(
+    `^/(en|ar)/directory/(${DIRECTORY_ROLE_PATTERN})/in/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+$`
+  ),
+  new RegExp(`^/(en|ar)/directory/(${DIRECTORY_ROLE_PATTERN})/serving/[a-z0-9-]+$`),
+  new RegExp(`^/(en|ar)/directory/(${DIRECTORY_ROLE_PATTERN})/by-origin/[a-z0-9-]+$`),
 ];
 
 /**
@@ -170,15 +177,19 @@ export function isPublishedPath(path: string): boolean {
 
   if (ALIASES.some((a) => a.from === clean)) return true;
 
+  // The role filter shapes come FIRST. The business-profile shape below
+  // matches any single-segment /directory/<slug> path, so a role checked
+  // after it would be swallowed: /en/directory/importers would be read as
+  // a business profile named "importers" and would 404. That ordering is
+  // what makes all twenty-four roles reachable rather than six.
+  if (DIRECTORY_FILTER_SHAPES.some((re) => re.test(clean))) return true;
+
   // A business profile resolves against the business register, so a
-  // quarantined fixture is not published. This check has to come before
-  // the generic filter shapes, which would otherwise match it.
+  // quarantined fixture is not published.
   if (BUSINESS_PROFILE_SHAPE.test(clean)) {
     const slug = clean.split('/')[3] ?? '';
     return isPublishedBusinessSlug(slug);
   }
-
-  if (DIRECTORY_FILTER_SHAPES.some((re) => re.test(clean))) return true;
 
   const locale = clean.split('/')[1];
   if (locale !== 'en' && locale !== 'ar') return false;
@@ -189,6 +200,12 @@ export function isPublishedPath(path: string): boolean {
   if (rest.startsWith('guides/')) {
     const slug = normaliseSlug(rest.slice('guides/'.length));
     if (!slug) return false;
+    // A glossary term and a product family are served at their own
+    // paths. The guides catch-all used to serve them too, which is how
+    // one body came to have two URLs and two canonicals; the guides
+    // path now redirects to the manifest path.
+    if (slug === 'glossary' || slug.startsWith('glossary/')) return false;
+    if (slug === 'products' || slug.startsWith('products/')) return false;
     const article = getArticle(slug);
     return Boolean(article && isIndexable(article));
   }
@@ -201,6 +218,22 @@ export function isPublishedPath(path: string): boolean {
     return Boolean(getArticle(`glossary/${slug}`));
   }
 
+  // The glossary index.
+  if (rest === 'glossary') {
+    return Boolean(getArticle('glossary'));
+  }
+
+  // Product families, and the product index. A family is served when
+  // it has a reviewed article; the index when it has a reviewed hub.
+  if (rest.startsWith('products/')) {
+    const slug = normaliseSlug(rest.slice('products/'.length));
+    return Boolean(getArticle(`products/${slug}`));
+  }
+
+  if (rest === 'products') {
+    return Boolean(getArticle('products'));
+  }
+
   // Static, always-published shells.
   const STATIC: string[] = [
     '',
@@ -208,6 +241,8 @@ export function isPublishedPath(path: string): boolean {
     'directory/map',
     'world',
     'guides',
+    'glossary',
+    'products',
     'rfq',
     'sourcing',
     'shortlist',
@@ -217,6 +252,20 @@ export function isPublishedPath(path: string): boolean {
     'privacy',
     'corrections',
     'partners/opportunities',
+    // The public policy and legal pages. They are the manifest's own
+    // routes — OG-0008 to OG-0013, OG-0022, OG-0023 and OG-0761 — and
+    // every one of them returned 404 until the policy pages existed.
+    'about',
+    'about/ownership',
+    'editorial-policy',
+    'verification',
+    'directory/how-it-works',
+    'directory/ranking-policy',
+    'terms',
+    'cookies',
+    'accessibility',
+    'advertising',
+    'how-supplier-matching-works',
   ];
   if (STATIC.includes(rest)) return true;
 
@@ -356,7 +405,7 @@ export function publishedPaths(): string[] {
   const out = new Set<string>();
 
   for (const article of listReviewedArticles()) {
-    out.add(`/en/guides/${article.slug}`);
+    out.add(articlePath('en', article.slug));
   }
 
   for (const path of [
@@ -365,6 +414,8 @@ export function publishedPaths(): string[] {
     '/en/directory/map',
     '/en/world',
     '/en/guides',
+    '/en/glossary',
+    '/en/products',
     '/en/rfq',
     '/en/sourcing',
     '/en/shortlist',
@@ -411,17 +462,29 @@ export function publishedLinkTargets(): string[] {
  * and its meaning.
  * ---------------------------------------------------------------------- */
 
-/** The business-role segments the directory publishes. */
-export const DIRECTORY_ROLES = [
-  'wholesalers',
-  'retailers',
-  'growers',
-  'distillers',
-  'wood-processors',
-  'exporters',
-] as const;
+/**
+ * The controlled role vocabulary.
+ *
+ * The list itself lives in `packages/contracts/src/directory-roles.ts`,
+ * because the domain package needs it and must not import app code. It
+ * is re-exported here so the resolver, the directory page and the
+ * browser component can all reach it from the place that already owns
+ * the published-route rules.
+ *
+ * `next.config.mjs` keeps its own copy of the list, because it is plain
+ * JavaScript and cannot import a TypeScript module. The three copies
+ * are asserted to agree by a test rather than by a comment.
+ */
+export {
+  DIRECTORY_ROLES,
+  DIRECTORY_ROLE_SLUGS,
+  DIRECTORY_ROLE_PATTERN,
+  directoryRoleLabel,
+  hasOnlyKnownRoles,
+  isDirectoryRole,
+} from '../../../../packages/contracts/src/directory-roles.ts';
 
-export type DirectoryRole = (typeof DIRECTORY_ROLES)[number];
+export type DirectoryRole = (typeof DIRECTORY_ROLE_SLUGS)[number];
 
 export interface DirectoryFilter {
   role?: string;
@@ -456,7 +519,7 @@ export function parseDirectoryFilterPath(path: string, locale = 'en'): ResolvedD
   if (!match) return null;
 
   const [, pathLocale, role, rest] = match;
-  if (!DIRECTORY_ROLES.includes(role as DirectoryRole)) return null;
+  if (!DIRECTORY_ROLE_SLUGS.includes(role)) return null;
 
   const loc = locale || pathLocale;
   const query: Record<string, string> = { role };

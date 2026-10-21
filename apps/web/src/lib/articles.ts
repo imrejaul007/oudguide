@@ -83,16 +83,43 @@ export function normaliseSlug(slug: string): string {
  * Look up an article by its public path, in either locale.
  */
 export function getArticleByPath(path: string): Article | null {
-  const match = String(path ?? '').match(/^\/(?:en|ar)\/guides\/([^?#]+)/i);
+  const match = String(path ?? '').match(
+    /^\/(?:en|ar)\/(guides|glossary|products)\/([^?#]+)/i
+  );
   if (!match) return null;
-  return getArticle(match[1]);
+
+  const section = match[1].toLowerCase();
+  const rest = normaliseSlug(match[2]);
+  const slug = section === 'guides' ? rest : `${section}/${rest}`;
+  return getArticle(slug);
+}
+
+/**
+ * The section an article belongs to, which is also its path prefix.
+ *
+ * The encyclopedia lives under `/guides/`. A glossary term and a product
+ * family do not: the manifest puts them at `/glossary/{term}` and
+ * `/products/{family}`, and those are the paths the site promised. The
+ * guides catch-all used to serve them as well, which gave every term and
+ * every family two URLs, one body, and two different canonicals.
+ */
+export function articleSection(slug: string): 'guides' | 'glossary' | 'products' {
+  const clean = normaliseSlug(slug);
+  if (clean === 'glossary' || clean.startsWith('glossary/')) return 'glossary';
+  if (clean === 'products' || clean.startsWith('products/')) return 'products';
+  return 'guides';
 }
 
 /**
  * The canonical path for an article, without a trailing slash.
  */
 export function articlePath(locale: string, slug: string): string {
-  return `/${locale}/guides/${normaliseSlug(slug)}`;
+  const clean = normaliseSlug(slug);
+  const section = articleSection(clean);
+
+  if (section === 'guides') return `/${locale}/guides/${clean}`;
+  if (clean === section) return `/${locale}/${section}`;
+  return `/${locale}/${section}/${clean.slice(section.length + 1)}`;
 }
 
 /**
@@ -173,10 +200,38 @@ export function articleCounts(): { reviewed: number; briefs: number } {
   let briefs = 0;
   for (const route of seed.routes as any[]) {
     if (!BRIEFABLE_FAMILIES.has(route.family)) continue;
-    if (getArticle(route.path.replace(/^\/en\/guides\//, '').replace(/\/$/, ''))) continue;
+    const slug = manifestPathToSlug(route.path);
+    if (slug === null) continue;
+    if (slug && getArticle(slug)) continue;
     briefs++;
   }
   return { reviewed: listReviewedArticles().length, briefs };
+}
+
+/**
+ * The content-layer slug a manifest path names, or null when the path
+ * is not an article path at all.
+ *
+ * The manifest declares a route under one of three article sections:
+ * `/en/guides/{slug}` for the encyclopedia, `/en/glossary/{term}` for the
+ * terminology, and `/en/products/{family}` for the product families. The
+ * brief count has to resolve all three, or it reports a written page as
+ * an unwritten brief — which is how a coverage number becomes wrong
+ * without anything failing.
+ */
+export function manifestPathToSlug(path: string): string | null {
+  const clean = String(path ?? '').split('#')[0].split('?')[0].replace(/\/+$/, '');
+  const match = clean.match(/^\/(?:en|ar)\/(.*)$/);
+  if (!match) return null;
+
+  const rest = match[1];
+  if (rest === 'guides') return '';
+  if (rest.startsWith('guides/')) return rest.slice('guides/'.length);
+  if (rest === 'glossary') return 'glossary';
+  if (rest.startsWith('glossary/')) return rest;
+  if (rest === 'products') return 'products';
+  if (rest.startsWith('products/')) return rest;
+  return null;
 }
 
 const BRIEFABLE_FAMILIES = new Set([
@@ -187,6 +242,7 @@ const BRIEFABLE_FAMILIES = new Set([
   'Destination buying guide',
   'Origin comparison',
   'Trade terminology',
+  'Product family',
 ]);
 
 /**
@@ -330,19 +386,41 @@ export function articleBreadcrumbs(
   article: Article,
   locale: string
 ): Array<{ label: string; href: string }> {
+  const section = articleSection(article.slug);
+
   const crumbs: Array<{ label: string; href: string }> = [
     { label: locale === 'ar' ? 'الرئيسية' : 'Home', href: `/${locale}` },
-    { label: locale === 'ar' ? 'الموسوعة' : 'Encyclopedia', href: `/${locale}/guides` },
   ];
 
-  if (article.parent) {
-    const parent = getArticle(article.parent);
-    if (parent) {
-      crumbs.push({
-        label: locale === 'ar' && parent.titleAr ? parent.titleAr : parent.title,
-        href: articlePath(locale, parent.slug),
-      });
+  if (section === 'guides') {
+    crumbs.push({
+      label: locale === 'ar' ? 'الموسوعة' : 'Encyclopedia',
+      href: `/${locale}/guides`,
+    });
+
+    if (article.parent) {
+      const parent = getArticle(article.parent);
+      if (parent) {
+        crumbs.push({
+          label: locale === 'ar' && parent.titleAr ? parent.titleAr : parent.title,
+          href: articlePath(locale, parent.slug),
+        });
+      }
     }
+  } else {
+    // A glossary term and a product family are not in the encyclopedia,
+    // so their trail is Home › the section › the page.
+    crumbs.push({
+      label:
+        section === 'glossary'
+          ? locale === 'ar'
+            ? 'المفردات'
+            : 'Glossary'
+          : locale === 'ar'
+            ? 'الأصناف'
+            : 'Products',
+      href: `/${locale}/${section}`,
+    });
   }
 
   crumbs.push({

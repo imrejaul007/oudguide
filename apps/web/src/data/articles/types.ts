@@ -13,7 +13,7 @@
  * presented as finished, never counted as coverage.
  */
 
-export type ArticleKind = 'guide' | 'hub' | 'origin' | 'destination' | 'glossary';
+export type ArticleKind = 'guide' | 'hub' | 'origin' | 'destination' | 'glossary' | 'product' | 'product-index';
 
 /**
  * The editorial state of a piece of content.

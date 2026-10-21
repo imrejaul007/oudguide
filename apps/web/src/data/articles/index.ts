@@ -18,6 +18,9 @@ import { DEEPENING_5 } from './deepening-5.ts';
 import { DEEPENING_6 } from './deepening-6.ts';
 import { DEEPENING_7 } from './deepening-7.ts';
 import { DEEPENING_8 } from './deepening-8.ts';
+import { sectionIndexArticles } from './section-indexes.ts';
+import { gradeLadderArticles } from './quality-grade-ladder.ts';
+import { productFamilyArticles } from './products.ts';
 
 /**
  * The reviewed content layer.
@@ -92,6 +95,9 @@ function withRequiredSections(article: Article): Article {
 }
 
 export const articles: Article[] = [
+  ...sectionIndexArticles,
+  ...gradeLadderArticles,
+  ...productFamilyArticles,
   ...basicsArticles,
   ...hubArticles,
   ...qualityArticles,
