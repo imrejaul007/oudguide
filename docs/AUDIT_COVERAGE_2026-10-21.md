@@ -1,7 +1,9 @@
 # OudGuide.com — Coverage Audit: Countries, Regions, Types of Oud, Everything
 
 **Audit date:** 21 October 2026
-**Suite state at end of audit:** 225/225 passing, article tier 53/53
+**Suite state at end of audit:** 287/287 passing, article tier 54/54 (the count rose from 225 to 287
+as the parser-based text-integrity scan was extended to the page renderers, the allowlist
+guards were added, and the fourteen origin-country pages were published)
 **Live host audited:** `https://www.oudguide.com`
 **Method:** 1,024 candidate URLs probed (every route in `route_manifest.json`, every ISO2
 code in `country_registry.json`, plus every static/utility path in the manifest). Status
@@ -28,6 +30,8 @@ are unfilled briefs, and 18 of 24 business categories 404.**
 | Routes returning 404 | 106 | 772 |
 | Editorial routes with a reviewed article | 68 | 225 |
 | Editorial routes still a research brief | 157 | 225 |
+| Reviewed articles in the corpus (21 Oct, after the geography lane) | 142 | — |
+| Distinct sources cited by the corpus (21 Oct) | 14 | 17 |
 | Sitemap URLs | 89 | all 200 |
 | Sitemap URLs with distinct bodies | 89 | 89 |
 | Territory pages linked from the world index | 42 | 249 |
@@ -171,7 +175,8 @@ These were checked and are sound. Do not disturb them.
   The OG-A01 shared-fallback defect is genuinely fixed.
 - **No broken internal links.** A crawl of all 89 sitemap pages found 127 distinct
   internal link targets, and **0 of them resolve to a 404**. The 106 missing routes are
-  not linked from anywhere live.
+  not linked from anywhere live. The rule that keeps this true when new pages land is
+  in the runbook at §3.1: a page may only name a target that is already published.
 - **The sitemap tells the truth.** 89 URLs, all 200. The earlier 570-of-775 false
   promise is gone; the sitemap now publishes only reviewed content and static shells.
 - **Territory pages are not indexed**, deliberately. They are register entries, not
@@ -211,15 +216,17 @@ written during the audit and closes the last five:
 | `using-oud/skin-intended-fragrance-oils` | 338 | +416 | 754 | 600 |
 | `using-oud/label-and-store-samples` | 391 | +368 | 759 | 600 |
 
-**All 53 guides clear the floor.** The batch set in `index.ts` now imports
+**All 54 guides clear the floor.** The batch set in `index.ts` now imports
 `deepening.ts` through `deepening-8.ts` and merges them in file order. Verified:
-`npm test` is **225/225 green**, article tier **53/53**, guide word counts 608 / 759 /
-1188 (min / median / max).
+`npm test` is **287/287 green**, article tier **54/54**, guide word counts 608 / 765 /
+1374 (min / median / max).
 
 ### 4.2 The source registry is too thin to support the word count
 
-75 articles are labelled "Reviewed article" and carry a "Verified sources" block. The
-registry has 7 entries. Across all 75 articles, exactly **three** are ever cited:
+**CLOSED. Measured 21 October 2026 against the committed corpus.**
+
+75 articles were labelled "Reviewed article" and carry a "Verified sources" block. The
+registry had 7 entries. Across all 75 articles, exactly **three** were ever cited:
 
 | Source | Kind | Articles citing it |
 |---|---|---:|
@@ -227,14 +234,46 @@ registry has 7 entries. Across all 75 articles, exactly **three** are ever cited
 | `FAOLEX` | regulatory | 17 |
 | `IFRA_CERT` | regulatory | 11 |
 
-`GOOGLE_SPAM`, `GOOGLE_LINKS`, `GOOGLE_TITLE` and `AGARWOOD_REVIEW_2014` are registered
-and never cited. Every claim in the corpus therefore rests on two regulatory sources
-plus one IFRA page, regardless of whether the claim is botanical, commercial,
-distillation-related, terminological or cultural. The legacy site mapped 151 external
-anchors; OudGuide has 3 distinct ones in use.
+`GOOGLE_SPAM`, `GOOGLE_LINKS`, `GOOGLE_TITLE` and `AGARWOOD_REVIEW_2014` were
+registered and never cited. Every claim in the corpus therefore rested on two
+regulatory sources plus one IFRA page, regardless of whether the claim was botanical,
+commercial, distillation-related, terminological or cultural. The legacy source site
+agarwoodguide.com mapped 151 external anchors; OudGuide had 3 distinct ones in use.
 
-This is the finding with the longest fuse. It is the difference between "reviewed" and
+This was the finding with the longest fuse. It is the difference between "reviewed" and
 "reviewed against three documents".
+
+**What closed it.** The corpus now holds 142 reviewed articles against a registry of 17
+entries, of which **14 are cited**. The three that are not are `GOOGLE_SPAM`,
+`GOOGLE_LINKS` and `GOOGLE_TITLE`, and they are `kind: internal` by design: they
+record what the site operator checked in the search-engine guidance, not any claim
+about oud, so no article cites them and the registry-hygiene test exempts them.
+
+The gate that matters is per-article, not corpus-level. `tests/source-breadth.test.ts`
+asserts that every published article cites at least two distinct sources, that it
+cites at least one `primary` or `regulatory` source that can carry a claim on its own,
+and that it does not list the same source twice. **No published article rests on a
+single source.** A corpus-level distinct-count gate would pass and teach nothing, and a
+concentration-share gate can be satisfied by a citation that carries nothing, so
+neither is asserted.
+
+What the corpus now rests on, per article rather than in aggregate:
+
+| Source | Kind | Carries |
+|---|---|---|
+| `AGARWOOD_CITES_2022` | regulatory | the CITES listing and its constraints |
+| `ITTO_AGARWOOD_REVIEW` | primary | the 28 accepted species, their IUCN status and their range states |
+| `TRAFFIC_AGARWOOD_TRADE_2000` | trade | the export series by country and year, and the legal position of each range State |
+| `TRAFFIC_PNG_AGARWOOD` | trade | the Papua New Guinea gaharu resource and its species |
+| `TRAFFIC_UAE_AGARWOOD_TRADE` | trade | the Gulf entrepôt structure and the import-control regime |
+| `POWO_AQUILARIA_CRASSNA` | primary | the accepted taxonomic record for *A. crassna* |
+| `CITES_APPENDICES`, `CITES_AGARWOOD_2004` | regulatory | what each listing requires for trade |
+| `AGARWOOD_REVIEW_2014`, `FAOLEX`, `IFRA_*` | tertiary / regulatory | the review literature, the commodity record, the fragrance standards |
+
+The geography lane was written with two primary citations from the start, and it is
+the lane that needed them: a species range is a botanical fact and not a production
+record, an export figure is not a quality claim, and a re-export route is not a
+growing region. Each of those distinctions needs its own source to be stated at all.
 
 ---
 
@@ -275,9 +314,11 @@ Ordered by how much of the question each closes, not by effort.
    referenced by the manifest, and several are legal or trust surfaces.
 7. **Reconcile the manifest with the routes that exist.** 14 private/utility routes
    need either an implementation or removal from the manifest.
-8. **Widen the source registry** to match the claim density of the corpus. This is
+8. **Widen the source registry** to match the claim density of the corpus. This was
    the last item on the list and the first one that should have been on it: 75 pages
-   labelled "Reviewed article" are resting on three distinct sources.
+   labelled "Reviewed article" were resting on three distinct sources. **Done** — the
+   registry holds 17 entries, 14 of them cited, and no published article rests on a
+   single source. See §4.2.
 
 ### A note on concurrent work
 

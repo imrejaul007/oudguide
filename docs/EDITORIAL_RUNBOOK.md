@@ -163,3 +163,62 @@ single switch; flipping it is the whole of the change.
 - Activate links only to routes that are in `published` status.
 - Never link to 404s, redirected paths, or unpublished draft routes.
 - Anchor text must be descriptive and varied, matching `data/proposed_internal_links.json`.
+
+### 3.1 A link may only be activated when its target is published
+
+The three rules above are read one at a time and produce the wrong answer to the
+question a page actually asks. "Which target may I link to?" is answered by the
+state of the target, and the state of the target is not known until the target
+exists. The rule that follows from that is the one to work to:
+
+**A page may not name a target that is not yet a published article.**
+
+That covers both ways a page can name something: a `related` entry and a
+`children` entry. The second is the one that bites, because a hub or a country
+page naturally lists the pages beneath it, and the pages beneath it are
+written afterwards. A country page that lists its own regions before those
+regions exist is a page of links to nowhere.
+
+The dependency runs in one direction, and the direction follows the reader.
+A region page links UP to its country page, and a country page links DOWN to
+its region pages. The country page is written first and is more likely to
+survive, so the country page waits: it publishes without its children, and
+the children are added to its `children` array as each one lands. The region
+page, written later, links to a country page that already exists.
+
+The established example is `origins/india`, which carries no `children` array
+at all, and whose `related` array points only at published targets. Its
+region page, `origins/india/assam`, links up to it and across to the
+published trade and sourcing pages.
+
+### 3.2 A fix applied to one surface of a defect class is not a fix
+
+This was found on 21 October 2026, and it is the rule behind §3.1.
+
+OG-A10 recorded that the RFQ form exposed internal `Q` identifiers and
+developer notes to customers. That defect was fixed on the surface OG-A10
+named: the RFQ wizard and the public-copy module. The same defect class
+existed on a surface no row covered — the business profile page at
+`/en/directory/[slug]` carried the tracking identifier `QA-007` in both the
+English and the Arabic text of its FAQ, in a sentence a reader sees. It was
+introduced by 719ab71, the directory integration, and it survived because
+OG-A10's remedy was correctly scoped to a different surface.
+
+**A matrix row that records "surface X fixed" does not imply "surface Y was
+checked."** The remedy for a class of defect is not a patch to one
+instance of it, and the evidence that closes such a row is not "the named
+file no longer contains the string" but "every customer-facing string has
+been scanned for the pattern."
+
+That is why the identifier rule is enforced by a scanner over every page
+renderer rather than by a checklist of files. `tests/content-text-integrity.test.ts`
+scans `apps/web/src/app`, `apps/web/src/lib`, `apps/web/src/components` and
+`packages/contracts/src`, and it found the `QA-007` leak only after the
+scan was extended from the content layer to the page renderers. A checklist
+would have missed it, because the checklist would have been written from the
+row, and the row did not mention the page.
+
+The same argument applies to any defect that is a property of a pattern
+rather than of a file: an untranslated fragment, a lost character, an
+internal identifier, a placeholder. Scan the pattern across the surface.
+Do not enumerate the files.
