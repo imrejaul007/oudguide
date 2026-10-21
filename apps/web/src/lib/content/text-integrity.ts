@@ -136,10 +136,94 @@ export interface Violation {
 }
 
 /**
- * Check one string a reader could see.
+ * The species names the geography content files are allowed to write in
+ * Latin script.
  *
- * Returns the violations it carries; an empty array means it is clean.
+ * The geography pages name the species of the two genera in Latin script,
+ * because that is how the sources name them and how the trade writes them.
+ * A binomial is a name, not an untranslated fragment: the Arabic sentence
+ * around it is complete, and the same reasoning applies here that applies
+ * to ITTO and IUCN above.
+ *
+ * The set is closed on purpose, and it is sourced. It is the twenty-eight
+ * rows of Table 1 in the ITTO review of the agarwood-producing genera
+ * (Wang et al. 2021; Turjaman 2022; POWO 2019), which lists the accepted
+ * Aquilaria and Gyrinops species with their IUCN status and their range
+ * states, plus the further names the sources give: A. acuminata and
+ * Gyrinops parviflora, which ITTO records as synonyms of A. filaria and
+ * A. parvifolia, and A. grandiflora, which the TRAFFIC 2000 study cites
+ * from Ng et al. (1997).
+ *
+ * A closed set is the whole point. An allowlist that accepted any Latin
+ * token would let the generator damage through as an allowed name — and
+ * the damage in this lane is Latin-looking: "autCountries",
+ * "subordinput", "cover", "China". Those are not names, and a name list
+ * built from the sources will never contain them.
  */
+export const GEOGRAPHY_SPECIES_NAMES = new Set([
+  // Aquilaria, Table 1 of the ITTO review.
+  'malaccensis',
+  'microcarpa',
+  'apiculata',
+  'baillonii',
+  'banaensis',
+  'beccariana',
+  'citrinicarpa',
+  'cumingiana',
+  'khasiana',
+  'parvifolia',
+  'rostrata',
+  'rugosa',
+  'subintegra',
+  'urdanetensis',
+  'yunnanensis',
+  'filaria',
+  'sinensis',
+  'crassna',
+  'hirta',
+  // Gyrinops, Table 1 of the ITTO review.
+  'decipiens',
+  'versteegii',
+  'walla',
+  'caudata',
+  'ledermannii',
+  'moluccana',
+  'salicifolia',
+  'vidalii',
+  // Named by the sources, as synonyms or as a separate accepted name.
+  'acuminata',
+  'parviflora',
+  'grandiflora',
+]);
+
+/**
+ * The geography content files.
+ *
+ * They are listed here rather than written out as five separate allowlist
+ * entries, because they all draw on the same closed list of names. Five
+ * copies of the list would be five lists to drift apart.
+ */
+export const GEOGRAPHY_CONTENT_FILES = [
+  'geography-kit.ts',
+  'origin-countries.ts',
+  'origin-regions.ts',
+  'destination-guides.ts',
+  'origin-comparisons.ts',
+];
+
+/**
+ * What the geography files may write in Latin script.
+ *
+ * The bodies they cite are named by their abbreviations, the way Arabic
+ * technical usage does: "المنظمة الدولية للتجارة الخشبية (ITTO)".
+ */
+export const GEOGRAPHY_ALLOWED_IN_ARABIC = new Set([
+  'ITTO',
+  'IUCN',
+  'TRAFFIC',
+  ...GEOGRAPHY_SPECIES_NAMES,
+]);
+
 /**
  * Tokens that are legitimate in a particular file only.
  *
@@ -376,4 +460,15 @@ export function extractStrings(source: string): ExtractedString[] {
   visit(sourceFile);
 
   return out;
+}
+
+/**
+ * The geography files share one allowance.
+ *
+ * This is written as a loop rather than as five literal entries so that
+ * a file added to the geography lane later cannot be added with a
+ * hand-copied list that has drifted from the sources.
+ */
+for (const name of GEOGRAPHY_CONTENT_FILES) {
+  FILE_SCOPED_ALLOWED_IN_ARABIC[name] = GEOGRAPHY_ALLOWED_IN_ARABIC;
 }
