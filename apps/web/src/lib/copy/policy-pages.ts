@@ -59,6 +59,17 @@ export interface PolicyPage {
   basis: PolicyPageCopy;
   /** The date the page's content was last reviewed. */
   reviewedOn: string;
+  /**
+   * True when the page states the directory's live record counts.
+   *
+   * A count written into the copy is a count that goes stale. The
+   * directory's published-record count changes the moment a second
+   * supplier is documented, and a policy page that still said "one
+   * record" would be making a claim the site had already outgrown. The
+   * figures are read from the register at render time, so the page
+   * cannot contradict the directory.
+   */
+  statesDirectoryCounts?: boolean;
   /** The sections the page is made of. */
   sections: PolicySection[];
 }
@@ -314,6 +325,7 @@ const editorialPolicy: PolicyPage = {
 
 const verification: PolicyPage = {
   path: 'verification',
+  statesDirectoryCounts: true,
   basis: {
     en: 'The contact projection policy, the verification record on each business, and the business register itself.',
     ar: 'سياسة إسقاط بيانات الاتصال، وسجل التحقق على كل عمل، وسجل الأعمال نفسه.',
@@ -366,13 +378,13 @@ const verification: PolicyPage = {
     },
     {
       heading: {
-        en: 'The directory holds one published record',
-        ar: 'الدليل يحمل سجلاً منشوراً واحداً',
+        en: 'The directory\u2019s published coverage',
+        ar: 'تغطية الدليل المنشورة',
       },
       body: [
         {
-          en: 'The directory says how many records it publishes and how many are still in review, rather than rounding up. At the time of writing one record has been published and two are held back as development fixtures. The others are records that have not been documented yet, and a directory that claims to hold hundreds of suppliers it cannot show is not a directory a buyer can rely on.',
-          ar: 'يقول الدليل كم سجلاً ينشر وكم قيد المراجعة، بدل تقريب العدد إلى الأعلى. وقد نُشر سجل واحد حتى تاريخه، وأُبقي اثنان كسجلات تطوير. وما عدا ذلك سجلات لم تُوثَّق بعد، والدليل الذي يدّعيأنه موردون بالمئات وهو لا يستطيع عرضهم ليس دليلاً يعتمد عليه المشتري.',
+          en: 'The directory says how many records it publishes and how many are still in review, rather than rounding up. The figures below are the live counts, read from the register when the page is rendered rather than written into this page, so they cannot go stale. The rest are records that have not been documented yet, and a directory that claims to hold hundreds of suppliers it cannot show is not a directory a buyer can rely on.',
+          ar: 'يقول الدليل كم سجلاً ينشر وكم قيد المراجعة، بدل تقريب العدد إلى الأعلى. والأرقام أدناه هي الأعداد الحيّة، مقروءة من السجل وقت العرض لا مكتوبة في هذه الصفحة. وما عدا ذلك سجلات لم تُوثَّق بعد، والدليل الذي يدّعيأنه موردون بالمئات وهو لا يستطيع عرضهم ليس دليلاً يعتمد عليه المشتري.',
         },
       ],
     },

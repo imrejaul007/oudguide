@@ -1,5 +1,6 @@
 import { Scale } from 'lucide-react';
 import type { PolicyPage } from '@/lib/copy/policy-pages';
+import { directoryCounts } from '@/lib/data';
 
 /**
  * The renderer for the eleven public policy pages.
@@ -47,6 +48,36 @@ export function PolicyPageView({
             </p>
           </div>
         </section>
+
+        {/*
+          The live counts, where the page quotes them.
+
+          Read from the register at render time rather than written into
+          the copy: the directory's published-record count changes the
+          moment a second supplier is documented, and a policy page that
+          still said "one record" would be making a claim the site had
+          already outgrown.
+        */}
+        {page.statesDirectoryCounts && (
+          <div className="metrics" style={{ marginTop: 28 }}>
+            <div className="metric">
+              <div className="metric-value">{directoryCounts.published}</div>
+              <div className="metric-label">
+                {isAr
+                  ? 'سجلاً منشوراً في الدليل'
+                  : directoryCounts.published === 1
+                    ? 'Published directory record'
+                    : 'Published directory records'}
+              </div>
+            </div>
+            <div className="metric">
+              <div className="metric-value">{directoryCounts.inResearchReview}</div>
+              <div className="metric-label">
+                {isAr ? 'قيد المراجعة' : 'In research review'}
+              </div>
+            </div>
+          </div>
+        )}
 
         <div style={{ marginTop: 40 }}>
           {page.sections.map((section) => (
