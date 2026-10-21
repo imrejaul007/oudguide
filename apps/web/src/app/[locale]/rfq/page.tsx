@@ -25,7 +25,7 @@ export async function generateMetadata({
 
   return buildMetadata({
     path: `/${locale}/rfq`,
-    title: isAr ? 'تقديم طلب تور��د عود بالجملة' : 'Submit a Wholesale Oud Requirement',
+    title: isAr ? 'تقديم طلب توريد عود بالجملة' : 'Submit a Wholesale Oud Requirement',
     description: isAr
       ? 'أرسل متطلباتك بالجملة. يصلك موجز مشفَّر دون بيانات المشتري، ولا تُسلَّم بيانات الاتصال إلا للمورد الذي تعتمده بالاسم.'
       : 'Send a wholesale agarwood, oud oil or attar requirement. Your brief reaches qualified suppliers redacted, and contact details release only to a supplier you approve by name.',

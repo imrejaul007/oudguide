@@ -60,7 +60,7 @@ export default async function PrivacyPage({
     {
       title: isAr ? 'الاطلاع والتصدير' : 'Access and portability',
       desc: isAr
-        ? 'طل�� نسخة من معاملاتك المسجلة.'
+        ? 'طلب نسخة من معاملاتك المسجلة.'
         : 'Request an export of your recorded transactions.',
     },
     {

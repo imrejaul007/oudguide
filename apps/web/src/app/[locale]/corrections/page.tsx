@@ -50,7 +50,7 @@ export default async function CorrectionsPage({
               <span>{isAr ? 'تصحيحات' : 'Corrections'}</span>
             </div>
             <h1>
-              {isAr ? 'تقديم تصحيح أو م��احظة تحريرية' : 'Submit a correction or an editorial note'}
+              {isAr ? 'تقديم تصحيح أو ملاحظة تحريرية' : 'Submit a correction or an editorial note'}
               <span className="accent">{isAr ? 'سجل تصحيحات شفاف.' : 'A transparent correction register.'}</span>
             </h1>
             <p className="hero-lead">

@@ -209,7 +209,7 @@ export default async function BusinessVerificationPage({
         {/* THE THREE FACTS */}
         <div className="card" style={{ padding: 28, marginBottom: 28 }}>
           <h2 className="h3" style={{ marginBottom: 6 }}>
-            {isAr ? 'ثلاثة أمور منفصل��' : 'Three separate things'}
+            {isAr ? 'ثلاثة أمور منفصلة' : 'Three separate things'}
           </h2>
           <p className="text-body" style={{ marginBottom: 18, color: 'var(--color-text-muted)' }}>
             {isAr

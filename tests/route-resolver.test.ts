@@ -23,7 +23,7 @@ import { getArticle, isSupportedLocale, normaliseLocale } from '../apps/web/src/
    one malformed locale path. These tests pin the three different answers
    the resolver now gives:
 
-     - a true equivalent exists  �� redirect to it
+     - a true equivalent exists  → redirect to it
      - a real journey             → the route is served
      - neither                    → a genuine 404, never a catch-all
    ========================================================================== */
