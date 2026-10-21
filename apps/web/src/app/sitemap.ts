@@ -51,6 +51,19 @@ const STATIC_PAGES: string[] = [
   '/en/privacy',
   '/en/corrections',
   '/en/partners/opportunities',
+  // The eleven public policy and legal pages. The audit found every one
+  // of them returning 404 while the manifest declared them published.
+  '/en/about',
+  '/en/about/ownership',
+  '/en/editorial-policy',
+  '/en/verification',
+  '/en/directory/how-it-works',
+  '/en/directory/ranking-policy',
+  '/en/terms',
+  '/en/cookies',
+  '/en/accessibility',
+  '/en/advertising',
+  '/en/how-supplier-matching-works',
 ];
 
 /**
@@ -78,6 +91,17 @@ const ARABIC_STATIC_PAGES: string[] = [
   '/ar/privacy',
   '/ar/corrections',
   '/ar/partners/opportunities',
+  '/ar/about',
+  '/ar/about/ownership',
+  '/ar/editorial-policy',
+  '/ar/verification',
+  '/ar/directory/how-it-works',
+  '/ar/directory/ranking-policy',
+  '/ar/terms',
+  '/ar/cookies',
+  '/ar/accessibility',
+  '/ar/advertising',
+  '/ar/how-supplier-matching-works',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { MapPin, Award, Lock, Star } from 'lucide-react';
 import { BookmarkButton, ShareButton } from './interactive-tools';
+import {
+  directoryRoleLabel,
+} from '../../../../../packages/contracts/src/directory-roles.ts';
 
 const producerCovers: Record<string, string> = {
   'al-mutalib-perfumes': '/images/hero-attar-still.svg',
@@ -18,6 +21,8 @@ interface BusinessCardProps {
     description?: string | null;
     category?: string | null;
     business_type?: string | null;
+    /** The controlled role slugs the directory filters on. */
+    roles?: string[];
     country_id: string;
     country_name?: string | null;
     city?: string | null;
@@ -67,7 +72,14 @@ export function BusinessCard({ business, locale }: BusinessCardProps) {
 
       <div className="biz-body">
         <div className="cluster" style={{ marginBottom: 8, gap: 6 }}>
-          <span className="badge badge-locked">{business.business_type || business.category || 'Producer'}</span>
+          {/* The roles, as the controlled slugs the directory filters on.
+              The display label comes from the vocabulary, not from the
+              record's free-text category. */}
+          {(business.roles ?? []).map((role) => (
+            <span key={role} className="badge badge-locked">
+              {directoryRoleLabel(role, locale)}
+            </span>
+          ))}
           {business.established_year &&
             (business.verified_fields ?? []).includes('established_year') && (
               <span className="badge badge-locked">Est. {business.established_year}</span>
