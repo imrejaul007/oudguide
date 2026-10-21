@@ -50,7 +50,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     limitations:
       'This page identifies which species are involved and how the genera differ. It does not establish the listing status of any specific specimen, nor the chemical composition, resin content or price of any material. A shipment\'s legal status is settled on the species and the documents, not on a description.',
     limitationsAr:
@@ -102,7 +102,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     limitations:
       'This page describes the structure of a grading claim. It does not define a grade, set a threshold, or endorse any label, and it does not establish the contents of any shipment.',
     limitationsAr:
@@ -145,7 +145,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page describes the density test and its known failure modes. It does not state a threshold, establish the resin content of any material, or assess any individual piece.',
     limitationsAr:
@@ -187,7 +187,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page separates the meanings of an age claim. It does not establish the age of any material, and it does not assert a relationship between age and quality, because the strength of that relationship is not established here.',
     limitationsAr:
@@ -238,7 +238,7 @@ export const qualityBuyingArticles: Article[] = [
         },
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page explains how to read the scope of a laboratory report. It does not interpret any particular report, does not endorse any laboratory, and does not establish that a material is authentic.',
     limitationsAr:
@@ -280,7 +280,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page draws a boundary between analytical and commercial questions. It does not assess any particular material or supplier, and it does not set a quality threshold.',
     limitationsAr:
@@ -324,7 +324,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page sets out what a batch record should contain. It does not establish that any particular batch has one, and it does not verify a record\'s contents.',
     limitationsAr:
@@ -368,7 +368,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page describes what a photograph can and cannot support. It does not assess any particular photograph, lot or listing.',
     limitationsAr:
@@ -420,7 +420,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page sets out what to settle and what to ask when buying wood. It does not recommend a supplier, publish a price, or state a resin threshold.',
     limitationsAr:
@@ -473,7 +473,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page sets out the questions that distinguish one oil from another. It does not recommend a supplier, publish a price, or state a concentration that constitutes quality.',
     limitationsAr:
@@ -520,7 +520,7 @@ export const qualityBuyingArticles: Article[] = [
         },
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014', 'IFRA_STANDARDS'],
     limitations:
       'This page gives a method for comparing quotations. It does not compare any particular offers, publish prices, or establish the quality of any oil.',
     limitationsAr:
@@ -566,7 +566,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page gives a checking sequence. It does not assess any particular offer, and it does not establish whether any supplier is genuine — that is a research task, not a checklist.',
     limitationsAr:
@@ -623,7 +623,7 @@ export const qualityBuyingArticles: Article[] = [
         },
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page lists questions and what each tests. It does not assess any supplier, and a good answer is not by itself proof of anything — it is a basis for further checking.',
     limitationsAr:
@@ -663,7 +663,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['FAOLEX'],
+    sourceIds: ['FAOLEX', 'CITES_APPENDICES'],
     limitations:
       'This page explains the difference between quantity measures. It does not state a density for any oil, and any conversion a supplier offers remains that supplier\'s figure until it is checked.',
     limitationsAr:
@@ -705,7 +705,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page explains what determines a bakhoor product. It does not assess any particular bakhoor, and it does not establish an infusion ratio that constitutes quality.',
     limitationsAr:
@@ -747,7 +747,7 @@ export const qualityBuyingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page compares two purchasing routes in general terms. It does not name a retailer or a wholesaler, and it does not set a price at which one route becomes cheaper.',
     limitationsAr:

@@ -326,7 +326,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'IFRA_STANDARDS', 'IFRA_APPLYING'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'IFRA_STANDARDS', 'IFRA_APPLYING', 'CITES_APPENDICES'],
     method: 'partial',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a concentration, a proportion, a yield, a price or an age, and it does not establish that any named supplier holds a certificate.',
@@ -428,7 +428,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_STANDARDS', 'IFRA_LIBRARY', 'IFRA_APPLYING'],
+    sourceIds: ['IFRA_STANDARDS', 'IFRA_LIBRARY', 'IFRA_APPLYING', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014'],
     method: 'ifra',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a concentration, a percentage, an ingredient list or a price, and it does not establish that any product conforms to any standard.',
@@ -836,7 +836,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_STANDARDS', 'IFRA_APPLYING', 'AGARWOOD_CITES_2022'],
+    sourceIds: ['IFRA_STANDARDS', 'IFRA_APPLYING', 'AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014'],
     method: 'partial',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a composition, a binder, a burn time, a longevity figure or a price, and it does not assess any stick or cone.',
@@ -938,7 +938,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_APPENDICES'],
     method: 'no-ifra',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a fineness grade, a resin content, a yield or a price, and it does not assess any powder.',
@@ -1042,7 +1042,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_APPENDICES'],
     method: 'no-ifra',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not assess any bead or strand, does not state a scent performance, and does not establish the species or the legal status of any particular item.',
@@ -1146,7 +1146,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     method: 'no-ifra',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not assess the workmanship, the aesthetic quality or the price of any carving, and it does not establish the species of any block.',
@@ -1248,7 +1248,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014'],
     method: 'no-ifra',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a temperature, a power rating, a burn time or a price, and it does not certify any device for any market.',
@@ -1350,7 +1350,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
     method: 'no-ifra',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a burn time, a temperature, a size or a price, and it does not assess any burner.',
@@ -1452,7 +1452,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
     method: 'no-ifra',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a heat tolerance, a capacity, a price or a durability, and it does not assess any vessel or tool.',
@@ -1860,7 +1860,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_STANDARDS', 'IFRA_APPLYING', 'IFRA_LIBRARY'],
+    sourceIds: ['IFRA_STANDARDS', 'IFRA_APPLYING', 'IFRA_LIBRARY', 'CITES_APPENDICES'],
     method: 'ifra',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a concentration, a propellant, a dispersal period or a price, and it does not establish that any product conforms to any standard.',
@@ -2166,7 +2166,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_STANDARDS', 'IFRA_APPLYING', 'IFRA_LIBRARY'],
+    sourceIds: ['IFRA_STANDARDS', 'IFRA_APPLYING', 'IFRA_LIBRARY', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     method: 'partial',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a composition, a yield, a price or a market level, and it does not establish the conservation status of any plant.',
@@ -2370,7 +2370,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_APPLYING', 'IFRA_STANDARDS', 'AGARWOOD_CITES_2022'],
+    sourceIds: ['IFRA_APPLYING', 'IFRA_STANDARDS', 'AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'TRAFFIC_AGARWOOD_TRADE_2000'],
     method: 'partial',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a sample price, a sample size or a shipping cost, and it does not establish that any sample corresponds to any bulk batch.',
@@ -2472,7 +2472,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_STANDARDS', 'IFRA_APPLYING', 'AGARWOOD_CITES_2022'],
+    sourceIds: ['IFRA_STANDARDS', 'IFRA_APPLYING', 'AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     method: 'partial',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a price, a quantity of any content, a packaging specification or a market level, and it does not assess any set.',
@@ -2574,7 +2574,7 @@ export const productFamilyArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'IFRA_APPLYING'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'IFRA_APPLYING', 'CITES_APPENDICES'],
     method: 'no-ifra',
     limitations:
       'This page defines the family and the fields a buyer should fill in. It does not state a price, a capacity, a tolerance or a transit standard, and it does not assess any pack or any filled product.',

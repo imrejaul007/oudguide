@@ -94,7 +94,7 @@ export const qualityArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX', 'ITTO_AGARWOOD_REVIEW'],
     limitations:
       'This page describes what the labels mean in the trade and what they leave unestablished. It does not state a resin threshold, a price, or an oil yield figure for any label, because no published standard defines one. A specific lot still has to be assessed on its own evidence.',
     limitationsAr:
@@ -221,7 +221,7 @@ export const qualityArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004', 'CITES_APPENDICES'],
     limitations:
       'This is a process for comparing and recording samples. It does not set a quality threshold, a price or a preferred supplier, and it does not establish that any particular material is good. Whether a sample passes is a judgement made against your own specification.',
     limitationsAr:
@@ -333,7 +333,7 @@ export const qualityArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'TRAFFIC_AGARWOOD_TRADE_2000'],
     limitations:
       'This page describes how the process is designed to work. It is not a report of a tested end-to-end dispatch, and the accompanying test suite exercises the release policy rather than a live delivery to a real supplier. The specific fee arrangements, if any, are a commercial matter between OudGuide and each supplier and are not published here.',
     limitationsAr:

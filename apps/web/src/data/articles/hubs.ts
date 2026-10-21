@@ -86,7 +86,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Start with what agarwood actually is', 'Compare the wood and oil formats', 'Check the botanical identities before you buy'],
     nextStepsAr: ['ابدأ مما هو العود فعلاً', 'قارن بين شكلَي الخشب والزيت', 'تحقق من الهوية النباتية قبل الشراء'],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004', 'CITES_APPENDICES'],
   },
   {
     slug: 'quality',
@@ -141,7 +141,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Learn what a laboratory report actually covers', 'Learn the limits of assessment', 'See how to evaluate a questionable offer'],
     nextStepsAr: ['اعرف ما الذي يغطيه التقرير المخبري فعلاً', 'اعرف حدود التقييم', 'تعلّم كيف تقيّم عرضاً مشكوكاً فيه'],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004', 'ITTO_AGARWOOD_REVIEW'],
   },
   {
     slug: 'sourcing',
@@ -189,7 +189,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Build a sample plan', 'Understand how introductions are granted', 'Compare quotations properly'],
     nextStepsAr: ['ابنِ خطة عيّنات', 'اعرف كيف تُمنح التعريفات', 'قارن عروض الأسعار على الوجه الصحيح'],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'POWO_AQUILARIA_CRASSNA'],
   },
   {
     slug: 'buying',
@@ -237,7 +237,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Choose a format', 'Learn what to ask', 'Learn how to evaluate an offer'],
     nextStepsAr: ['اختر الشكل', 'اعرف ما الذي تسأل', 'اعرف كيف تقيّم العرض'],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
   },
   {
     slug: 'production',
@@ -278,7 +278,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Compare extraction methods', 'See how wood becomes oil', 'Understand processing location'],
     nextStepsAr: ['قارن بين طرق الاستخلاص', 'تابع كيف يصير الخشب زيتاً', 'افهم موقع المعالجة'],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
   },
   {
     slug: 'trade',
@@ -360,7 +360,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Choose the right equipment', 'Label your samples properly', 'Read intended-use instructions'],
     nextStepsAr: ['اختر المعدات المناسبة', 'سمِّ عيناتك بشكل صحيح', 'اقرأ تعليمات الاستخدام المقصود'],
-    sourceIds: ['IFRA_CERT'],
+    sourceIds: ['IFRA_CERT', 'CITES_APPENDICES', 'IFRA_APPLYING'],
   },
   {
     slug: 'fragrance',
@@ -401,7 +401,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Learn the perfumery vocabulary', 'Understand concentration labels', 'Learn what an accord is'],
     nextStepsAr: ['تعلّم مفردات العطور', 'افهم ملصقات التركيز', 'اعرف ما هو الأوز'],
-    sourceIds: ['IFRA_CERT'],
+    sourceIds: ['IFRA_CERT', 'IFRA_STANDARDS', 'IFRA_APPLYING'],
   },
   {
     slug: 'culture',
@@ -435,7 +435,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Read about the trade history', 'Read about a specific cultural tradition'],
     nextStepsAr: ['اقرأ عن تاريخ التجارة', 'اقرأ عن تقليد ثقافي بعينه'],
-    sourceIds: ['FAOLEX'],
+    sourceIds: ['FAOLEX', 'TRAFFIC_UAE_AGARWOOD_TRADE'],
   },
   {
     slug: 'origins',
@@ -469,7 +469,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Read the India origin guide', 'Read the Assam region page', 'See how origin and location differ'],
     nextStepsAr: ['اقرأ دليل الهند', 'اقرأ صفحة أسام', 'اعرف الفرق بين المنشأ والموقع'],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
   },
   {
     slug: 'comparisons',
@@ -496,7 +496,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Read the India and Cambodia comparison', 'Read the two origin pages it links to'],
     nextStepsAr: ['اقرأ مقارنة الهند وكمبوديا', 'اقرأ صفحتي المنشأ اللتين تشيران إليهما'],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
   },
   {
     slug: 'collecting',
@@ -530,7 +530,7 @@ const SPECS: HubSpec[] = [
     ],
     nextSteps: ['Document what you own', 'Learn about resale conditions'],
     nextStepsAr: ['وثّق ما تملك', 'اعرف ظروف إعادة البيع'],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
   },
 ];
 

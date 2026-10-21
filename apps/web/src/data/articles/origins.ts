@@ -93,7 +93,7 @@ export const originArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     limitations:
       'This page states which species is involved and which regions are associated with it. It does not establish the resin content, oil yield or quality of any Indian material, and it does not establish that any particular supplier operates in India. Those require the batch documents and the supplier record.',
     limitationsAr:
@@ -187,7 +187,7 @@ export const originArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004', 'CITES_APPENDICES', 'POWO_AQUILARIA_CRASSNA'],
     limitations:
       'This page describes the region, the species and the distillation tradition associated with it. It does not establish the quality, resin content or yield of any Assam lot, does not certify any distillery, and does not confirm that a supplier named as operating in Assam does so.',
     limitationsAr:
@@ -271,7 +271,7 @@ export const originArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page describes how the UAE market functions and what a buyer can check locally. It does not list suppliers, does not publish prices, and does not establish that any particular seller is authorised or that any shipment has cleared any authority.',
     limitationsAr:

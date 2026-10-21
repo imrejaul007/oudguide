@@ -39,7 +39,7 @@ export const productionTradeArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page describes what each method does to the resulting oil. It does not state a yield figure for any species or method, and it does not establish that one method produces a better oil.',
     limitationsAr:
@@ -90,7 +90,7 @@ export const productionTradeArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     limitations:
       'This page describes the steps between wood and oil. It does not set a yield, a run length or a quality standard, and it does not assess any particular producer\'s process.',
     limitationsAr:
@@ -141,7 +141,7 @@ export const productionTradeArticles: Article[] = [
         },
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page separates the three locations and explains what each determines. It does not establish the processing location of any particular product or supplier.',
     limitationsAr:
@@ -199,7 +199,7 @@ export const productionTradeArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX', 'CITES_APPENDICES', 'POWO_AQUILARIA_CRASSNA'],
     limitations:
       'This page describes the trade instruments and what a buyer can check. It is not legal advice, and whether a specific shipment is lawful depends on the exporting country, the importing country and the species.',
     limitationsAr:
@@ -245,7 +245,7 @@ export const productionTradeArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     limitations:
       'This page describes what each kind of document establishes and does not. It does not review any specific document, and it does not establish the authenticity of any material.',
     limitationsAr:
@@ -287,7 +287,7 @@ export const productionTradeArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'FAOLEX', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page explains why the three product forms are handled differently. It does not give the requirements of any specific jurisdiction, and it is not legal or customs advice.',
     limitationsAr:
@@ -338,7 +338,7 @@ export const productionTradeArticles: Article[] = [
         },
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'IFRA_STANDARDS'],
     limitations:
       'This page describes what makes a sample traceable to a delivery. It does not establish that any particular supplier maintains this link, and it does not verify a claim that one does.',
     limitationsAr:
@@ -380,7 +380,7 @@ export const productionTradeArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'TRAFFIC_AGARWOOD_TRADE_2000'],
     limitations:
       'This page describes how to compare quotations. It does not compare any particular offers, and it does not publish prices.',
     limitationsAr:
@@ -426,7 +426,7 @@ export const productionTradeArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page explains the structure of a usable quotation. It does not interpret any particular quotation, and the legal effect of the terms is a matter for the parties and their jurisdiction.',
     limitationsAr:
@@ -468,7 +468,7 @@ export const productionTradeArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'TRAFFIC_AGARWOOD_TRADE_2000'],
     limitations:
       'This page describes what a minimum order quantity is and how to ask about it. It does not state any minimum, and it does not assess whether a particular supplier\'s minimum is reasonable.',
     limitationsAr:
@@ -519,7 +519,7 @@ export const productionTradeArticles: Article[] = [
         },
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'POWO_AQUILARIA_CRASSNA'],
     limitations:
       'This page explains the distinction between the three facts. It does not establish the facts for any particular business, and a directory entry is a starting point for a question rather than an answer to one.',
     limitationsAr:
@@ -563,7 +563,7 @@ export const productionTradeArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page describes what a business check can establish. It does not verify any particular organisation, and the states it defines are narrow by design.',
     limitationsAr:

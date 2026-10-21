@@ -80,7 +80,7 @@ export const fragranceSourcingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_CERT'],
+    sourceIds: ['IFRA_CERT', 'IFRA_STANDARDS', 'IFRA_APPLYING'],
     limitations:
       'This page explains what a credit is and how to read one. It does not assess any fragrance, any perfumer\'s work, or any brand\'s claims.',
     limitationsAr:
@@ -122,7 +122,7 @@ export const fragranceSourcingArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_AGARWOOD_2004', 'IFRA_STANDARDS'],
     limitations:
       'This page explains how wild and cultivated material are obtained and what the terms do and do not establish. It does not assess the quality of any lot, and it does not describe a specific plantation or wild stand.',
     limitationsAr:

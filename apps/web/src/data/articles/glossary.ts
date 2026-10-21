@@ -110,7 +110,7 @@ export const glossaryArticles: Article[] = [
       { slug: 'quality/seller-defined-super-grades', label: 'Super, Double Super and Triple Super labels' },
       { slug: 'origins/india', label: 'India and northeast origin guide' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
   }),
 
   glossaryEntry({
@@ -136,7 +136,7 @@ export const glossaryArticles: Article[] = [
       { slug: 'buying/comparing-oud-oil-offers', label: 'Comparing oud oil offers' },
       { slug: 'glossary/dehn-al-oud', label: 'Dehn Al Oud' },
     ],
-    sourceIds: ['FAOLEX'],
+    sourceIds: ['FAOLEX', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014'],
   }),
 
   glossaryEntry({
@@ -162,7 +162,7 @@ export const glossaryArticles: Article[] = [
       { slug: 'production/oud-extraction-methods', label: 'Distillation and extraction comparisons' },
       { slug: 'fragrance/oud-accords', label: 'Oud accords in fragrance composition' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
   }),
 
   glossaryEntry({
@@ -188,7 +188,7 @@ export const glossaryArticles: Article[] = [
       { slug: 'buying/buying-bakhoor', label: 'Buying bakhoor with clear composition information' },
       { slug: 'fragrance/oud-accords', label: 'Oud accords in fragrance composition' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014'],
   }),
 
   glossaryEntry({
@@ -213,7 +213,7 @@ export const glossaryArticles: Article[] = [
       { slug: 'oud-basics/agarwood-botanical-identity', label: 'Botanical identity and genus comparison' },
       { slug: 'quality/seller-defined-super-grades', label: 'Super, Double Super and Triple Super labels' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004', 'ITTO_AGARWOOD_REVIEW', 'TRAFFIC_PNG_AGARWOOD'],
   }),
 
   glossaryEntry({
@@ -239,7 +239,7 @@ export const glossaryArticles: Article[] = [
       { slug: 'fragrance/notes-versus-ingredients', label: 'Fragrance notes versus ingredients' },
       { slug: 'glossary/dehn-al-oud', label: 'Dehn Al Oud' },
     ],
-    sourceIds: ['IFRA_CERT'],
+    sourceIds: ['IFRA_CERT', 'IFRA_STANDARDS', 'IFRA_APPLYING'],
   }),
 
   glossaryEntry({
@@ -265,6 +265,6 @@ export const glossaryArticles: Article[] = [
       { slug: 'culture/agarwood-in-chinese-traditions', label: 'Agarwood in Chinese traditions' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
     ],
-    sourceIds: ['FAOLEX'],
+    sourceIds: ['FAOLEX', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
   }),
 ];

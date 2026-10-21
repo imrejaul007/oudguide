@@ -38,7 +38,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page compares the two formats in general terms. It does not state a price, a yield, or a distillation cost, and it does not assess any particular lot or supplier.',
     limitationsAr:
@@ -94,7 +94,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page describes general practice with heat sources. It does not specify a temperature, a duration or a result for any particular wood, and it does not assess any material.',
     limitationsAr:
@@ -143,7 +143,7 @@ export const usingFragranceArticles: Article[] = [
         },
       },
     ],
-    sourceIds: ['IFRA_CERT'],
+    sourceIds: ['IFRA_CERT', 'CITES_APPENDICES', 'IFRA_APPLYING'],
     limitations:
       'This page explains how to read an intended-use statement and a conformity reference. It does not certify any product, and it does not set dilution rates or safety limits.',
     limitationsAr:
@@ -199,7 +199,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'IFRA_STANDARDS', 'IFRA_APPLYING'],
     limitations:
       'This page describes how to label and store samples. It does not set a storage life for any material, and storage conditions that are right for wood are not right for every oil.',
     limitationsAr:
@@ -239,7 +239,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page describes storage practice and record-keeping. It does not set a storage life for any material, and it does not establish the storage conditions under which any particular batch was held.',
     limitationsAr:
@@ -279,7 +279,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_CERT'],
+    sourceIds: ['IFRA_CERT', 'CITES_APPENDICES'],
     limitations:
       'This page explains how to distinguish guidance from conditions and where to find them. It does not state the conditions for any product, and it does not certify any product.',
     limitationsAr:
@@ -319,7 +319,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_CERT'],
+    sourceIds: ['IFRA_CERT', 'IFRA_STANDARDS'],
     limitations:
       'This page describes the perfumery vocabulary for oud. It does not define a quality, a house style or a composition, and the character words it lists are impressionistic by nature.',
     limitationsAr:
@@ -361,7 +361,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_CERT'],
+    sourceIds: ['IFRA_CERT', 'IFRA_STANDARDS'],
     limitations:
       'This page explains what concentration labels describe. It does not state the percentage ranges that labels imply, and it does not assess any product.',
     limitationsAr:
@@ -401,7 +401,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['IFRA_CERT'],
+    sourceIds: ['IFRA_CERT', 'IFRA_STANDARDS'],
     limitations:
       'This page explains how a fragrance note list relates to the contents of a product. It does not establish the contents of any product, and a note list is not an ingredient declaration.',
     limitationsAr:
@@ -492,7 +492,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page distinguishes the two products and explains how to tell them apart. It does not assess any particular piece, and the heavier a piece is the more reliable the comparison becomes.',
     limitationsAr:
@@ -532,7 +532,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['FAOLEX'],
+    sourceIds: ['FAOLEX', 'CITES_APPENDICES'],
     limitations:
       'This page describes the recorded settings in which oud appears in Islamic traditions. It does not describe a religious practice, and it does not assess any religious claim.',
     limitationsAr:
@@ -612,7 +612,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['FAOLEX', 'AGARWOOD_CITES_2022'],
+    sourceIds: ['FAOLEX', 'AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     limitations:
       'This page describes the recorded place of agarwood in Chinese practice. It does not describe a medicinal effect, and it does not assess any material.',
     limitationsAr:
@@ -652,7 +652,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['FAOLEX'],
+    sourceIds: ['FAOLEX', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     limitations:
       'This page describes the Japanese grading vocabulary in general terms. It does not translate or define individual category names, and it does not assess any material.',
     limitationsAr:
@@ -694,7 +694,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004', 'CITES_APPENDICES'],
     limitations:
       'This page describes what a collection record should contain. It does not appraise a collection, and it does not establish the provenance of any particular piece.',
     limitationsAr:
@@ -738,7 +738,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES'],
     limitations:
       'This page describes what determines resale value. It does not value anything, and it does not address the tax, licensing or regulatory conditions that apply to reselling any particular material.',
     limitationsAr:
@@ -780,7 +780,7 @@ export const usingFragranceArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
     limitations:
       'This page compares two origin claims on their documented and claimed ground. It does not rank the two materials, and it does not establish that any particular lot is Indian or Cambodian.',
     limitationsAr:

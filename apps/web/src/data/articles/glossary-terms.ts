@@ -134,11 +134,11 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«موري» اسم لنوع من الخشب تستعمله تجارة الخليج وجنوب آسيا لفئة من العود. ويمكن قول المرجع العام: يسمّي مادةً من ذلك الصنف الذي يبيعه ويصفه البائعون المستعملون لهذه العائلة من الأسماء، مقروءاً إلى جانب أمثال «هندي موري» و«سلة». أما ما ينسبه الاسم — منشأً أو معالجةً أو مرتبة جودة — فيُحسم محلياً ويختلف بين البائعين، وليس مثبتاً هنا أن أيّ إملاء مجاور صورة منه.',
     spelling:
-      'The name is written in Latin script in invoices, listings and warehouse notes, as Mori, mori or MORI. No trade body fixes an orthography for it, and the same letters are rendered in Arabic script as موري in Gulf usage. Transliteration is not a fixed procedure, so a written form is evidence of the writer rather than of the material. The vocabulary it belongs to circulates between South Asian suppliers and Gulf buyers, and its terms travel with quotations rather than with specifications.',
+      'The name is written in Latin script in invoices, listings and warehouse notes, as Mori, mori or MORI. No trade body fixes an orthography for it, and the Gulf usage carries the same letters in Arabic script. Transliteration is not a fixed procedure, so a written form is evidence of the writer rather than of the material. The vocabulary it belongs to circulates between South Asian suppliers and Gulf buyers, and its terms travel with quotations rather than with specifications.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية في الفواتير وقوائم البيع وملاحظات المستودع، بأشكال إملائية مختلفة يتفاوت بينها كتاب البائع. ولا يثبّت أيّ جهاز تجاري إملاءً معيّناً له، وتُكتب حروفه بالحرف العربي «موري» في الاستعمال الخليجي. وليس الترحيم إجراءً ثابتاً، فالصيغة المكتوبة دليل على كاتبها لا على مادتها. وتدور المفردات التي ينتمي إليها بين موردي جنوب آسيا ومشتري الخليج، وتسير مصطلحاتها مع عروض الأسعار لا مع المواصفات.',
     usage:
-      'In use, the name appears in lists of wood types and in short descriptions of chips, dust and blocks offered for sale. Sellers commonly qualify it — by collection point, by whether the material was wild or cultivated, or by what it is intended for — so the bare word rarely travels alone in a serious transaction. The general referent is clear enough to state: a category of agarwood wood as named by sellers who use this vocabulary. The fine attribution is not. Where the name is the only description on a quotation, ask the counterparty what it means in that lot rather than assume a shared understanding.',
+      'In use, the name appears in lists of wood types and in short descriptions of chips, dust and blocks offered for sale. Sellers commonly qualify it — by collection point, by whether the material was wild or cultivated, or by what it is intended for — so the bare word rarely travels alone in a serious transaction. The general referent is clear enough to state: a category of agarwood wood as named by sellers who use this vocabulary. The fine attribution is not. Where the name is the only description on a quotation, ask the counterparty what it means in that lot.',
     usageAr:
       'في الاستعمال يظهر الاسم في قوائم أنواع الخشب وفي أوصاف قصيرة لرقائق ونشارة وقطع معروضة للبيع. ويقيده البائعون عادةً — بمكان الجمع، أو بكون المادة برية أم مستزرعة، أو باستعمالها المرتقب — فلا يسير الاسم وحده في صفقة جادة. فالمرجع العام واضح بما يكفي لقوله: فئة من خشب العود كما يسمّيها البائعون المستعملون لهذه المفردات. أما الإسناد الدقيق فليس كذلك. وحين يكون الاسم هو الوصف الوحيد في عرض سعر، فاسأل الطرف الآخر عن معناه في تلك الدفعة بدل افتراض فهم مشترك.',
     examples:
@@ -146,7 +146,7 @@ export const glossaryTermArticles: Article[] = [
     examplesAr:
       'يسجّل الاستعمال نفسه الصور المزوّنة «ميني موري» و«بال موري»، واسم «هندي موري» المسجَّل على حدة. وأمّا إن كانت هذه الصور تقسيمات لموري أم أسماء بيع للمادة نفسها أم تسميات مستعارة من مواضع أخرى في التجارة، فليس مثبتاً هنا. وما يحسم ذلك وثائقي عادي: صياغة المورد نفسه في فاتورتين، أو تعريف مكتوب من الطرف الآخر عند التسعير. وإل أن يواحد منهما تبقى الصلة بين الإملاءات مفتوحة، وتُوصف كل دفعة بشروطها هي.',
     alternatives:
-      'Outside the trade the same letters are common as a surname and as a given name in South Asian usage, and unrelated words are written the same way in other languages. A listing that carries a name and a name alone can be read in several ways, and the buyer should not assume the trade sense is the one intended. There is also the risk of over-reading a short word: in commerce generally a one-word label may denote a form, a treatment or a part rather than a category, and nothing in the word itself rules that out.',
+      'Outside the trade the same letters are common as a surname and as a given name in South Asian usage, and unrelated words are written the same way in other languages. A listing that carries a name and a name alone can be read in several ways, and the buyer should not assume the trade sense is the one intended. There is also the risk of over-reading a short word: in commerce generally a one-word label may denote a form, a treatment or a part rather than a category.',
     alternativesAr:
       'خارج التجارة تُكتب الحروف نفسها اسم عائلة واسم شخص شائعاً في جنوب آسيا، وتُكتب بها في لغات أخرى كلمات لا علاقة لها بها. فالعرض الذي يحمل اسماً بمفرده يمكن أن يُقرأ على وجوه، ولا ينبغي للمشتري أن يفترض أن المعنى التجاري هو المراد. وهناك أيضاً خطر الزيادة في قراءة كلمة قصيرة: في التجارة العامة قد تدل التسمية القصيرة على شكل أو معالجة أو جزء لا على فئة، ولا يمنع شيء من ذلك في بنية الكلمة نفسها.',
     doesNotProve:
@@ -164,7 +164,7 @@ export const glossaryTermArticles: Article[] = [
       { slug: 'quality/seller-defined-super-grades', label: 'Super, Double Super and Triple Super labels' },
       { slug: 'origins/india', label: 'India and northeast origin guide' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
   }),
 
   termEntry({
@@ -180,7 +180,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«ميني موري» هي الصورة المزوّنة بالمقاس من اسم نوع الخشب «موري»، وهي مسجَّلة في الاستعمال التجاري نفسه. والمؤهل في هذه الأسماء اسمٌ وصفيٌّ نسبي: يَضع المادة دون ما يدل عليه الاسم المجرَّد، على مقياس في ذهن البائع. ولا يثبَّت هذا المقياس في أي مكان، ولا تخصّص هذه المدخلة مقياساً بعينه. فالمرجع العام إذن فئة من خشب العود موصوفة بمؤهل، ويبقى الإسناد الدقيق سؤالاً للطرف الآخر.',
     spelling:
-      'The name is written with an English qualifier in front of the wood-type term: Mini Muri, mini muri, Mini-Muri. This is worth noting because the qualifier is not transliterated into Arabic script, which is unusual for this vocabulary; the Arabic rendering in Gulf usage is ميني موري. The English word is doing a job in the term that no other part of the name does, and it is doing it by comparison rather than by measurement.',
+      'The name is written with an English qualifier in front of the wood-type term: Mini Muri, mini muri, Mini-Muri. This is worth noting because the qualifier is not transliterated into Arabic script, which is unusual for this vocabulary; in Gulf usage the wood-type term is carried in Arabic script with the English word left in Latin letters in front of it. The English word is doing a job in the term that no other part of the name does, and it is doing it by comparison rather than by measurement.',
     spellingAr:
       'يُكتب الاسم بمؤهل إنجليزي يسبق اسم نوع الخشب، وتُكتب صوره في الفواتير بأشكال إملائية مختلفة. وهذا يستحق التنبيه لأن المؤهل لا يُرحَّم إلى الحرف العربي، وهو شاذ في هذه المفردات؛ فالصيغة العربية في الاستعمال الخليجي «ميني موري». والكلمة الإنجليزية تؤدّي في الاسم عملاً لا يقوم به أي جزء آخر منه، تؤدّيه بالمقارنة لا بالقياس.',
     usage:
@@ -210,7 +210,7 @@ export const glossaryTermArticles: Article[] = [
       { slug: 'quality/seller-defined-super-grades', label: 'Super, Double Super and Triple Super labels' },
       { slug: 'using-oud/wood-versus-oil', label: 'Wood against oil in use' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_APPENDICES'],
   }),
 
   termEntry({
@@ -226,7 +226,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«بال موري» هي الصورة المزوّنة بالشكل من اسم نوع الخشب «موري»، وهي مسجَّلة في الاستعمال التجاري نفسه. والمؤهل في هذه المفردات كلمة شكل عادةً، وهذه المدخلة لا تنسب شكلاً بعينه: فهل تدل على قطعة معالَجة مستديرة أم على شكل مقطوع أم على اسم صنعٍ لشيء آخر، فليس مثبتاً هنا. فالمرجع العام فئة من خشب العود موصوفة بمؤهل، وما يحدده المؤهل سؤال للطرف الآخر.',
     spelling:
-      'The name is written as Ball Muri, ball muri or Ball-Muri, with the English qualifier untransliterated and the wood-type term in Latin script. The Arabic rendering in Gulf usage is بال موري. The two أجزاء of the name are of different origins and behave differently: the base term belongs to a shared trade vocabulary, while the qualifier belongs to the general commercial language of the buyers who write the list.',
+      'The name is written as Ball Muri, ball muri or Ball-Muri, with the English qualifier untransliterated and the wood-type term in Latin script. In Gulf usage the same arrangement is kept in Arabic script, with the English word in Latin letters. The two parts of the name are of different origins and behave differently: the base term belongs to a shared trade vocabulary, while the qualifier belongs to the general commercial language of the buyers who write the list.',
     spellingAr:
       'يُكتب الاسم بمؤهل إنجليزي غير مُرحَّم واسم نوع الخشب بحروف لاتينية، وتختلف صوره الإملائية بين البائعين. والصيغة العربية في الاستعمال الخليجي «بال موري». وجزءا الاسم من أصلين وسلوكهما مختلف: فاسم الأساس من مفردات تجارية مشتركة، والمؤهل من اللغة التجارية العامة لمن يكتبون القائمة.',
     usage:
@@ -256,7 +256,7 @@ export const glossaryTermArticles: Article[] = [
       { slug: 'buying/choosing-oud-wood', label: 'Choosing oud wood' },
       { slug: 'using-oud/wood-versus-oil', label: 'Wood against oil in use' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_APPENDICES'],
   }),
 
   termEntry({
@@ -272,7 +272,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«سلة» اسم لنوع من الخشب تستعمله التجارة الخليجية لفئة من العود. وهو يظهر في قوائم أنواع الخشب وفي أوصاف المواد المعروضة للبيع، ويُستعمل فضفاضةً بما يكفي لقول المرجع العام دون القدرة على قول الإسناد. وقد سُجِّلت في الاستعمال نفسه صورة مزوّنة بالمقاس هي «بيبي سلة»، وإملاء قريب هو «سلدة». وأمّا إن كانت هذه كلمة واحدة تُكتب على ثلاث صور أم تقسيمات لاسم واحد أم أسماء متباينة، فليس مثبتاً هنا.',
     spelling:
-      'The name is written in Latin script in Gulf trade records and invoices, as Salla or salla, and in Arabic script as سلة. It is worth separating the script from the word: in ordinary Arabic سلة is a common noun meaning a basket, and a reader meeting the word in a trade list may carry that sense into it. That ordinary sense is not the trade referent, and the two should not be allowed to blur into one another.',
+      'The name is written in Latin script in Gulf trade records and invoices, as Salla or salla, and the Gulf usage carries the same letters in Arabic script. It is worth separating the script from the word: the same spelling, in ordinary Arabic, is a common noun meaning a basket, and a reader meeting the word in a trade list may carry that sense into it. That ordinary sense is not the trade referent, and the two should not be allowed to blur into one another.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية في سجلات التجارة الخليجية والفواتير، بأشكال إملائية تتفاوت، وبالحرف العربي «سلة». وفصل النص عن اللفظ يستحق عناية: فـ«سلة» في العربية العادية اسم شائع بمعنى قُفة، وقد يحمل قارئُ اللفظ ذلك المعنى إلى هنا. وذلك المعنى العادي ليس المرجع التجاري، ولا ينبغي أن يذوب أحدهما في الآخر.',
     usage:
@@ -302,7 +302,7 @@ export const glossaryTermArticles: Article[] = [
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
       { slug: 'origins/india', label: 'India and northeast origin guide' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
   }),
 
   termEntry({
@@ -318,7 +318,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«بيبي سلة» هي الصورة المزوّنة بالمقاس من اسم نوع الخشب «سلة»، وهي مسجَّلة في الاستعمال الخليجي. ومثل سائر الصور المزوّنة في هذه المفردات، المؤهل اسمٌ وصفيٌّ نسبي لا قياس: يَضع المادة دون ما يدل عليه الاسم المجرَّد، على مقياس في ذهن البائع لا ينشره. فالمرجع العام فئة من خشب العود موصوفة بمؤهل. أما المقياس نفسه فينبغي أن يُطلب.',
     spelling:
-      'The name is written with the English qualifier in front of the wood-type term: Baby Salla, baby salla, Baby-Salla. The qualifier is not transliterated, which is the pattern in this vocabulary for words borrowed from commercial English, and the Arabic rendering in Gulf usage is بيبي سلة. Baby and mini are used interchangeably by some sellers and not by others; the choice between them is not recorded anywhere and is not treated here as meaningful.',
+      'The name is written with the English qualifier in front of the wood-type term: Baby Salla, baby salla, Baby-Salla. The qualifier is not transliterated, which is the pattern in this vocabulary for words borrowed from commercial English, and in Gulf usage the English word is left in Latin letters in front of the term in Arabic script. Baby and mini are used interchangeably by some sellers and not by others; the choice between them is not recorded anywhere and is not treated here as meaningful.',
     spellingAr:
       'يُكتب الاسم بمؤهل إنجليزي يسبق اسم نوع الخشب، وتختلف صوره الإملائية بين البائعين. والمؤهل غير مُرحَّم، وهو النمط في هذه المفردات للكلمات المستعارة من الإنجليزية التجارية، والصيغة العربية في الاستعمال الخليجي «بيبي سلة». ويشيع استعمال «بيبي» و«ميني» كلمتين متبادلتين عند بعض البائعين دون غيرهم؛ ولا يُسجَّل هذا الاختيار في أي مكان، ولا يُعدّ هنا ذا معنى.',
     usage:
@@ -364,7 +364,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«سلدة» إملاء مسجَّل في الاستعمال التجاري نفسه كـ«سلة». وهو اسم لنوع من الخشب، ويحمل مرجعاً عاماً من المرتبة نفسها: فئة من خشب العود كما يسمّيها البائعون المستعملون لهذه المفردات. وأمّا إن كان صورةً وترحيماً لـ«سلة» أم اسماً مستقلاً أم إملاءً يستعمله سوق أو بائع بعينه، فليس مثبتاً هنا، ولا تدّعي هذه المدخلة أيّاً من الثلاثة.',
     spelling:
-      'The name is written Salda or salda, with the vowel written as in the Latin letter and the word otherwise in the same Latin script as the rest of this vocabulary. It is rendered in Arabic script as سلدة. The difference from Salla is a single vowel, and single-vowel differences in this trade carry no known weight: they may be a transliteration habit, a different source language, or a separate word.',
+      'The name is written Salda or salda, with the vowel written as in the Latin letter and the word otherwise in the same Latin script as the rest of this vocabulary. The Gulf usage carries the same letters in Arabic script. The difference from Salla is a single vowel, and single-vowel differences in this trade carry no known weight: they may be a transliteration habit, a different source language, or a separate word.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية، بحركة مكتوبة بحرفها اللاتيني وبالخط اللاتيني في بقيّة الاسم، كما سائر هذه المفردات. ويُكتب بالحرف العربي «سلدة». والفرق عن «سلة» حركة واحدة، واختلاف الحركة الواحدة في هذه التجارة لا يحمل وزناً معروفاً: فقد يكون عادة في الترحيم، أو لغة مصدر مختلفة، أو كلمةً مستقلة.',
     usage:
@@ -394,7 +394,7 @@ export const glossaryTermArticles: Article[] = [
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
       { slug: 'sourcing/reading-a-quotation', label: 'Reading a quotation' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_APPENDICES'],
   }),
   termEntry({
     slug: 'glossary/zawaya',
@@ -405,15 +405,15 @@ export const glossaryTermArticles: Article[] = [
     summaryAr:
       'اسم من مفردات أنواع الخشب في تجارة الخليج وجنوب آسيا، يُستعمل بإسناد متفاوت.',
     directAnswer:
-      'Zawaya is a wood-type name in the vocabulary Gulf and South Asian sellers use to name categories of agarwood. The general referent can be stated: it names a type of wood as sellers using this vocabulary describe it. What it attributes is a separate question, and one that this entry does not الجواب — a place, a treatment, a price tier and a quality judgement are all things a word of this kind may be doing, and they are settled locally rather than by any published rule.',
+      'Zawaya is a wood-type name in the vocabulary Gulf and South Asian sellers use to name categories of agarwood. The general referent can be stated: it names a type of wood as sellers using this vocabulary describe it. What it attributes is a separate question, and one that this entry does not answer — a place, a treatment, a price tier and a quality judgement are all things a word of this kind may be doing, and they are settled locally rather than by any published rule.',
     directAnswerAr:
       '«زوايا» اسم من مفردات أنواع الخشب التي يستعملها البائعون في الخليج وجنوب آسيا لتسمية فئات من العود. ويمكن قول المرجع العام: يسمّي نوعاً من الخشب كما يصفه البائعون المستعملون لهذه المفردات. أما ما ينسبه فسؤال آخر لا تجيب عنه هذه المدخلة: فمكان، ومعالجة، ومرتبة سعرية، وحكم على الجودة — كل هذه أشياء قد يكون يقومها هذا اللفظ، وهي تُحسم محلياً لا بأي قاعدة منشورة.',
     spelling:
-      'The name is written in Latin script in invoices and listings, as Zawaya, and in Arabic script as زوايا. It is one of the names in this vocabulary whose sense is least evident from the letters themselves, and a reader meeting it without trade context has little to go on. That is a reason to treat the word as a label to be defined rather than as a description to be interpreted.',
+      'The name is written in Latin script in invoices and listings, as Zawaya, and the Gulf usage carries the same letters in Arabic script. It is one of the names in this vocabulary whose sense is least evident from the letters themselves, and a reader meeting it without trade context has little to go on. That is a reason to treat the word as a label to be defined rather than as a description to be interpreted.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية في الفواتير وقوائم البيع، وبالحرف العربي «زوايا». وهو من الأسماء في هذه المفردات التي لا يكاد يظهر معنى اللفظ منها، فيبقى لقارئٍ يطالعه خارج سياق تجاري ما يعتمد عليه. وهذا سبب للتعامل مع الكلمة على أنها تسمية تُعرَّف لا وصفٌ يُفسَّر.',
     usage:
-      'The name appears in lists of wood types and in short sale descriptions, and it is qualified more often than not — by collection area, by treatment, or by what the material is wanted for. The general sense is a category of agarwood wood, and that is the most that can be relied on. Where a purchase depends on what the term rules in or out, the الجواب has to come from the counterparty in writing.',
+      'The name appears in lists of wood types and in short sale descriptions, and it is qualified more often than not — by collection area, by treatment, or by what the material is wanted for. The general sense is a category of agarwood wood, and that is the most that can be relied on. Where a purchase depends on what the term rules in or out, the answer has to come from the counterparty in writing.',
     usageAr:
       'يظهر الاسم في قوائم أنواع الخشب وفي أوصاف بيع قصيرة، ويقيده ما بعده في الغالب — بمكان الجمع، أو بالمعالجة، أو باستعمال المادة المرتقب. والمعنى العام فئة من خشب العود، وهو أبعد ما يمكن الاعتماد عليه. وحيث كان الشراء معتمداً على ما يدخله المصطلح وما يخرجه، فلا بد أن يأتي الجواب من الطرف الآخر كتابةً.',
     examples:
@@ -455,7 +455,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«جيرمي» اسم لنوع من الخشب مسجَّل في الاستعمال التجاري الخليجي لفئة من العود. ويمكن قول مرجعه العام. ولا يمكن قول إسناده: فالمصطلح يستعمله بائعون مختلفون لمادة مختلفة، وإملاء قريب هو «جيرميت» مسجَّل إلى جانبه. وهذه المدخلة لا تقرّر أن الكلمة واحدة ولا أن المنتجين مختلفان ولا أن أحدهما صورة من الآخر.',
     spelling:
-      'The name is written in Latin script in Gulf invoices and lists, as Girmi, and in Arabic script as جيرمي. The near-spelling differs in the ending consonant, and in a vocabulary transmitted largely through writing rather than speech, such a difference is worth as much attention as a difference in the middle of a word — and no more, since nothing in the trade records settles which is which.',
+      'The name is written in Latin script in Gulf invoices and lists, as Girmi, and the Gulf usage carries the same letters in Arabic script. The near-spelling differs in the ending consonant, and in a vocabulary transmitted largely through writing rather than speech, such a difference is worth as much attention as a difference in the middle of a word — and no more, since nothing in the trade records settles which is which.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية في فواتير الخليج وقوائمه، وبالحرف العربي «جيرمي». ويختلف الإملاء القريب في حرف النهاية، وفي مفردات تنتقل أكثر بالكتابة منها بالقول، يستحق اختلاف كهذا قدر اهتمام اختلاف في وسط الكلمة — ولا أكثر، إذ لا يحسم في سجلات التجارة أيّهما أرجح.',
     usage:
@@ -500,7 +500,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«جيرميت» إملاء قريب مسجَّل في الاستعمال التجاري الخليجي نفسه الذي فيه «جيرمي»، ويختلف في حرف النهاية. وهو اسم لنوع من الخشب له المرجع العام نفسه، ويُستعمل بالالفضاوة المفاوزة نفسها. وأمّا إن كان إملاءً آخر لجيرمي أم اسماً مستقلاً أم اسماً يستعمله سوقٌ حيث يستعمل آخر جيرمي، فليس مثبتاً هنا، ولا تاخذ هذه المدخلة موقفاً من أيّها.',
     spelling:
-      'The name is written in Latin script as Girmit and in Arabic script as جيرميت. In a trade that passes much of its vocabulary in writing, a difference in the final letters is the kind of variation that arises routinely — through a scribe, through a transliteration habit, through a supplier\'s house usage. That is a reason to record the difference carefully, not a reason to assume the words differ in meaning.',
+      'The name is written in Latin script as Girmit, and the Gulf usage carries the same letters in Arabic script. In a trade that passes much of its vocabulary in writing, a difference in the final letters is the kind of variation that arises routinely — through a scribe, through a transliteration habit, through a supplier\'s house usage. That is a reason to record the difference carefully, not a reason to assume the words differ in meaning.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية وبالحرف العربي «جيرميت». وفي تجارة تنقل جانباً كبيراً من مفرداتها كتابةً، اختلاف في الحروف الأخيرة هو نوع التنوع الذي ينشأ عادةً — من كاتب، أو من عادة في الترحيم، أو من استعمال دارٍ بعينها. وهذا سبب للتوثيق الدقيق للاختلاف، لا سبب للافتراض بأن المعنيين مختلفان.',
     usage:
@@ -529,7 +529,7 @@ export const glossaryTermArticles: Article[] = [
       { slug: 'buying/evaluating-an-offer', label: 'Evaluating an offer' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
     ],
-    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_APPENDICES'],
   }),
 
   termEntry({
@@ -545,7 +545,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«زورة» اسم لنوع من الخشب مسجَّل في الاستعمال التجاري الخليجي لفئة من العود. ويمكن قول المرجع العام؛ أما الإسناد فمحلي، وإملاء قريب هو «زورا» مسجَّل إلى جانبه. وهذه المدخلة لا تقرّر أن الإملاءين مترادفان، ولا تقرّر أنهما منتجان مختلفان، ولا تنسب إلى أيّ منهما شكلاً ولا موضعاً ولا درجة.',
     spelling:
-      'The name is written in Latin script in Gulf trade records, as Zura, and in Arabic script as زورة. The near-spelling differs in the second vowel. Whether the difference reflects two names, one name written two ways, or a market-level difference is a question the records do not الجواب.',
+      'The name is written in Latin script in Gulf trade records, as Zura, and the Gulf usage carries the same letters in Arabic script. The near-spelling differs in the second vowel. Whether the difference reflects two names, one name written two ways, or a market-level difference is a question the records do not answer.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية في سجلات التجارة الخليجية، وبالحرف العربي «زورة». ويختلف الإملاء القريب في حركة الحرف الثاني. وأمّا إن كان الاختلاف يعبّر عن اسمَين أو عن اسم واحد يُكتب على صورتين أو عن فرق بين سوقين، فهو سؤال لا تجيب عنه السجلات.',
     usage:
@@ -557,7 +557,7 @@ export const glossaryTermArticles: Article[] = [
     examplesAr:
       '«زورا» هو الإملاء القريب المسجَّل في الاستعمال نفسه، والكلمتان تُكتبان في القوائم نفسها. والوثائق الثلاث العادية التي تحسم الصلة هي: تعريف مكتوب من البائع، وسجل دفعة واحدة تحمل فيها مادة واحدة الصورتين، وعرض سعر تُستعمل فيه الكلمتان في دفعتين مختلفتين مع شرح الفرق.',
     alternatives:
-      'The same string is a common Arabic word for a visit or a pilgrimage, and a reader meeting it in an Arabic trade record may take that sense into it. It is also a place name in أجزاء of the Gulf, which invites a reading as an origin. Neither reading is what the trade usage means, and neither is excluded by the letters.',
+      'The same string is a common Arabic word for a visit or a pilgrimage, and a reader meeting it in an Arabic trade record may take that sense into it. It is also a place name in parts of the Gulf, which invites a reading as an origin. Neither reading is what the trade usage means, and neither is excluded by the letters.',
     alternativesAr:
       'اللفظ نفسه كلمة عربية شائعة بمعنى الزيارة أو الحج، فقد يحمل قارئُه في سجل تجاري عربي ذلك المعنى إليه. وهو أيضاً اسم موضع فيأجزاء من الخليج، وهو ما يدعو إلى قراءته منشأً. ولا من القراءتين هو المعنى التجاري، ولا يستبعده اللفظ.',
     doesNotProve:
@@ -590,11 +590,11 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«زورا» إملاء قريب مسجَّل في الاستعمال التجاري الخليجي نفسه الذي فيه «زورة»، ويختلف في حركة الحرف الثاني. ومرجعه العام من المرجع نفسه: فئة من خشب العود كما يصفها البائعون المستعملون لهذه المفردات. وأمّا إن كان الإملاءان صورتين لاسم واحد أم اسمين، فليس مثبتاً هنا، وتترك المدخلة السؤال مفتوحاً لا تُحسمه بالجزم.',
     spelling:
-      'The name is written in Latin script as Zora and in Arabic script as زورا. The difference from Zura is one vowel, and a single-vowel difference in a transposed vocabulary can be a naming distinction or a spelling habit. The Gulf trade records carry both forms, and they carry them without a note explaining which is which.',
+      'The name is written in Latin script as Zora, and the Gulf usage carries the same letters in Arabic script. The difference from Zura is one vowel, and a single-vowel difference in a transposed vocabulary can be a naming distinction or a spelling habit. The Gulf trade records carry both forms, and they carry them without a note explaining which is which.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية وبالحرف العربي «زورا». والفرق عن «زورة» حركة واحدة، وحركة واحدة في مفردات منقولَة قد تكون تمييزاً في التسمية أو عادة في الكتابة. وتسجل التجارة الخليجية الصورتين، وتسجلهما بلا حاشية تبيّن أيّهما أرجح.',
     usage:
-      'The name appears where Zura appears: in lists of wood types and in short sale descriptions. A buyer looking at such a list cannot tell from the list which term the seller intends in any given line, and the practical الجواب is to ask for the description in writing rather than to choose between the spellings.',
+      'The name appears where Zura appears: in lists of wood types and in short sale descriptions. A buyer looking at such a list cannot tell from the list which term the seller intends in any given line, and the practical answer is to ask for the description in writing rather than to choose between the spellings.',
     usageAr:
       'يظهر الاسم حيث يظهر «زورة»: في قوائم أنواع الخشب وفي أوصاف البيع القصيرة. والمشتري الذي يطالع قائمة كهذه لا يستطيع أن يعلم من القائمة أيّ المصطلحين يعني البائع في سطر بعينه، والالجواب العملي أن يطلب الوصف كتابةً لا أن يختار بين الإملاءين.',
     examples:
@@ -635,7 +635,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswerAr:
       '«كودي» مصطلح في مفردات أنواع الخشب في تجارة العود الخليجية وجنوب آسيوية. ويمكن قول المرجع العام: يُستعمل لتسمية فئة من الخشب، إلى جانب أمثال «موري» و«سلة». أما الإسناد فلا تُثبّته هذه المدخلة، ولا يُسجَّل للكلمة في الاستعمال نفسه صورة مزوّنة ولا إملاء قريب. وحيث كان الشراء معتمداً على ما يخرجه المصطلح كما على ما يدخله، فلا بد أن يأتي التعريف من الطرف الآخر.',
     spelling:
-      'The term is written in Latin script in trade records and quotations, and in Arabic script as كودي. It is a short word with no other settled sense in the languages of the region, and a buyer who meets it for the first time in an invoice has little to go on beyond the fact that it is a name in a familiar family.',
+      'The term is written in Latin script in trade records and quotations, and the Gulf usage carries the same letters in Arabic script. It is a short word with no other settled sense in the languages of the region, and a buyer who meets it for the first time in an invoice has little to go on beyond the fact that it is a name in a familiar family.',
     spellingAr:
       'تُكتب الكلمة بحروف لاتينية في سجلات التجارة وعروض الأسعار، وبالحرف العربي «كودي». وهي كلمة قصيرة لا معنى لها مستقراً آخر في لغات المنطقة، والمشتري الذي يلتقي بها لأول مرة في فاتورة لا يجد بين يديه إلا أنها اسم في عائلة مألوفة.',
     usage:
@@ -680,7 +680,7 @@ termEntry({
     directAnswerAr:
       '«بيسا» اسم تستعمله تجارة العود في الخليج وجنوب آسيا. ويمكن قول المرجع العام: يسمّي فئة من المواد، ويُدرَج في القوائم نفسها التي تُدرَج فيها أسماء أنواع الخشب. أما الإسناد الدقيق فمحلي ويختلف بين البائعين. وقد سُجِّلت في الاستعمال نفسه صورة مزوّنة بالمقاس هي «ميني بيسا»، وأمّا إن كانت تلك تقسيماً لاسم «بيسا» أم اسماً مستقلاً، فليس مثبتاً هنا.',
     spelling:
-      'The name is written in Latin script in Gulf invoices and sale listings, as Bisa, and in Arabic script as بيسا. No trade body fixes an orthography for it, and the letters are written in more than one form by different sellers. A written form is evidence of the writer rather than of the material. The vocabulary circulates between South Asian suppliers and Gulf buyers, and its terms travel with quotations rather than with specifications.',
+      'The name is written in Latin script in Gulf invoices and sale listings, as Bisa, and the Gulf usage carries the same letters in Arabic script. No trade body fixes an orthography for it, and the letters are written in more than one form by different sellers. A written form is evidence of the writer rather than of the material. The vocabulary circulates between South Asian suppliers and Gulf buyers, and its terms travel with quotations rather than with specifications.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية في فواتير الخليج وقوائم البيع، وتختلف صوره الإملائية بين البائعين. وتُكتب حروفه بالحرف العربي «بيسا» في الاستعمال الخليجي. ولا يثبّت أيّ جهاز تجاري إملاءً معيّناً له، فالصيغة المكتوبة دليل على كاتبها لا على مادّتها. وتدور هذه المفردات بين موردي جنوب آسيا ومشتري الخليج، وتسير مصطلحاتها مع عروض الأسعار لا مع المواصفات.',
     usage:
@@ -725,7 +725,7 @@ termEntry({
     directAnswerAr:
       '«ميني بيسا» هي الصورة المزوّنة بالمقاس المسجَّلة في الاستعمال التجاري نفسه الذي فيه «بيسا». والمؤهل في هذه الأسماء اسمٌ وصفيٌّ نسبي: يَضع المادة دون الاسم المجرَّد على مقياس في ذهن البائع، وذلك المقياس غير مثبَّت في أي مكان. ولا تنسب هذه المدخلة حجماً ولا شكلاً ولا وزناً. فالمرجع العام فئة من مواد موصوفة بمؤهل مقاس، ويبقى الإسناد الدقيق سؤالاً للطرف الآخر.',
     spelling:
-      'The name is written in Latin script with an English qualifier in front of the base name, and its spellings vary between sellers. The qualifier is not transliterated into Arabic script in the Gulf usage, which is unusual in this vocabulary, and the Arabic form in that usage is ميني بيسا. The English qualifier does a job no other part of the name does, and it does it by comparison rather than by measurement.',
+      'The name is written in Latin script with an English qualifier in front of the base name, and its spellings vary between sellers. The qualifier is not transliterated into Arabic script in the Gulf usage, which is unusual in this vocabulary: there the English word is left in Latin letters in front of the base name in Arabic script. The English qualifier does a job no other part of the name does, and it does it by comparison rather than by measurement.',
     spellingAr:
       'يُكتب الاسم بمؤهل إنجليزي يسبق اسم الأساس، وتختلف صوره الإملائية بين البائعين. والمؤهل لا يُرحَّم إلى الحرف العربي في الاستعمال الخليجي، وهو شاذ في هذه المفردات، فالصيغة العربية فيه «ميني بيسا». والكلمة الإنجليزية تؤدّي في الاسم عملاً لا يقوم به أي جزء آخر منه، تؤدّيه بالمقارنة لا بالقياس.',
     usage:
@@ -770,7 +770,7 @@ termEntry({
     directAnswerAr:
       '«سويفي» اسم في مفردات تجارة الخليج وجنوب آسيا لفئة من المواد. ويمكن قول المرجع العام: يسمّي مادةً يبيعها البائعون في هذه التجارة ويصفونها، إلى جانب أسماء أنواع الخشب وأنواع الراتنج. أما الإسناد الدقيق فلا تُثبّته هذه المدخلة، وقد سُجِّل في الاستعمال نفسه إملاء قريب هو «سيوفي». وهذه المدخلة لا تقرّر أن الكلمة واحدة، ولا تقرّر أنهما منتجان مختلفان.',
     spelling:
-      'The name is written in Latin script in trade documents, as Seufi, and the Arabic rendering used here is سويفي. The near-spelling differs in the vowel before the final consonant. Because a large part of this vocabulary travels in writing rather than in speech, a difference of that kind can arise from a scribe, from a transliteration habit, or from one house\'s usage, and the records do not say which it is here.',
+      'The name is written in Latin script in trade documents, as Seufi, and the Gulf usage carries the same letters in Arabic script. The near-spelling differs in the vowel before the final consonant. Because a large part of this vocabulary travels in writing rather than in speech, a difference of that kind can arise from a scribe, from a transliteration habit, or from one house\'s usage, and the records do not say which it is here.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية في الوثائق التجارية، والصورة العربية المستعملة هنا «سويفي». ويختلف الإملاء القريب في الحركة التي تسبق حرف النهاية. ولأن جانباً كبيراً من هذه المفردات تنتقل كتابةً لا قولاً، من امتداد الخط، أو من عادة في الترحيم، أو من استعمال دار بعينها. والسجلات لا تبيّن أيّها هنا.',
     usage:
@@ -815,7 +815,7 @@ termEntry({
     directAnswerAr:
       '«سيوفي» إملاء قريب مسجَّل في الاستعمال التجاري الخليجي وجنوب آسيوي نفسه الذي فيه «سويفي»، ويختلف بحركة واحدة. ومرجعه العام من المرجع نفسه: فئة من المواد يسمّيها البائعون في هذه التجارة. وأمّا إن كان الإملاءان صورتين لاسم واحد أم اسمين، فليس مثبتاً هنا، وتترك المدخلة السؤال مفتوحاً لا تُحسمه بالجزم.',
     spelling:
-      'The name is written in Latin script as Seyufi, and the Arabic rendering used here is سيوفي. The difference from Seufi is a single vowel, and in a transposed vocabulary a difference of that size can be a naming distinction or simply a spelling habit. The trade records carry both forms, and they carry them without a note explaining which is which.',
+      'The name is written in Latin script as Seyufi, and the Gulf usage carries the same letters in Arabic script. The difference from Seufi is a single vowel, and in a transposed vocabulary a difference of that size can be a naming distinction or simply a spelling habit. The trade records carry both forms, and they carry them without a note explaining which is which.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية، والصورة العربية المستعملة هنا «سيوفي». والفرق عن «سويفي» حركة واحدة، وحركة واحدة في مفردات منقولة قد تكون تمييزاً في التسمية أو عادة في الكتابة. وتسجل سجلات التجارة الصورتين، وتسجلهما بلا حاشية تبيّن أيّهما أرجح.',
     usage:
@@ -860,7 +860,7 @@ termEntry({
     directAnswerAr:
       '«ديغا» اسم تستعمله تجارة العود في الخليج وجنوب آسيا. ويمكن قول المرجع العام: يسمّي فئة من المواد، ويُدرَج بين سائر أسماء المواد وأسماء أنواع الخشب. أما الإسناد الدقيق فمحلي، وقد سُجِّل في الاستعمال نفسه إملاء قريب هو «دغا». وهذه المدخلة لا تقرّر أن الاسمين واحد ولا تقرّر أنهما مختلفان.',
     spelling:
-      'The name is written in Latin script in trade documents, as Digga, and in Arabic script as ديغا. A near-spelling, Dugga, is written with a different vowel in the second letter. The two forms appear in the same lists and the records carry them without a note saying which is meant where. No trade body fixes an orthography, so a written form is evidence of the writer rather than of the material.',
+      'The name is written in Latin script in trade documents, as Digga, and the Gulf usage carries the same letters in Arabic script. A near-spelling, Dugga, is written with a different vowel in the second letter. The two forms appear in the same lists and the records carry them without a note saying which is meant where. No trade body fixes an orthography, so a written form is evidence of the writer rather than of the material.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية في الوثائق التجارية، وتُكتب حروفه بالحرف العربي «ديغا» في الاستعمال الخليجي. ويكتب الإملاء القريب «دغا» بحركة مختلفة في الحرف الثاني. والصورتان تظهران في القوائم نفسها، وتسجلهما السجلات بلا حاشية تبيّن أيّهما هو المقصود في كل موضع. ولا يثبّت أي جهاز تجاري إملاءً معيّناً، فالصيغة المكتوبة دليل على كاتبها لا على مادّتها.',
     usage:
@@ -905,7 +905,7 @@ termEntry({
     directAnswerAr:
       '«دغا» إملاء قريب مسجَّل في الاستعمال التجاري الخليجي وجنوب الآسيوي نفسه الذي فيه «ديغا»، ويختلف في الحرف الثاني. ومرجعه العام من المرجع نفسه: فئة من المواد يسمّيها البائعون في هذه التجارة، مُدرجةً بين سائر أسماء المواد. وأمّا إن كان الإملاءان صورتين لاسم واحد أم اسمين، فليس مثبتاً هنا، وتترك المدخلة ذلك مفتوحاً لا تُحسمه بالجزم.',
     spelling:
-      'The name is written in Latin script as Dugga, and the Arabic rendering used here is دغا. The difference from Digga is one letter, and in a vocabulary that travels largely in writing, a difference of that size can carry a distinction or simply record a scribe\'s habit. The trade documents carry both forms, and they carry them without a note explaining which is which.',
+      'The name is written in Latin script as Dugga, and the Gulf usage carries the same letters in Arabic script. The difference from Digga is one letter, and in a vocabulary that travels largely in writing, a difference of that size can carry a distinction or simply record a scribe\'s habit. The trade documents carry both forms, and they carry them without a note explaining which is which.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية، والصورة العربية المستعملة هنا «دغا». والفرق عن «ديغا» حرف واحد، وحرف واحد في مفردات تنتقل في الغالب كتابةً قد يحمل تمييزاً في التسمية أو قد يسجّل عادة خطّاب. وتسجل الوثائق التجارية الصورتين، وتسجلهما بلا حاشية تبيّن أيّهما أرجح.',
     usage:
@@ -995,7 +995,7 @@ termEntry({
     directAnswerAr:
       '«مالينو» اسم مسجَّل في تجارة العود في الخليج وجنوب آسيا. ويمكن قول المرجع العام: يسمّي فئة من مواد، مُدرجاً بين سائر أسماء المواد وأسماء أنواع الخشب. وتشبه حروفه اسم مكان مُرحَّماً، وذلك التشابه إحدى القراءات التي يثيرها الاسم. ولا تعامل هذه المدخلة هذه القراءة بوصفها منشأً، والاستعمال التجاري المسجَّل هنا لا يجعل اللفظ اسماً لبلد.',
     spelling:
-      'The name is written in Latin script in trade documents, and in Arabic script as مالينو in Gulf usage. The letters are those of a European word, and the ending is a common one in South Asian transliteration practice, which makes the name easy to read as a place from a distance. Nothing in the trade record settles that reading, and a transliterated place name and a trade name can be spelled the same way.',
+      'The name is written in Latin script in trade documents, and the Gulf usage carries the same letters in Arabic script. The letters are those of a European word, and the ending is a common one in South Asian transliteration practice, which makes the name easy to read as a place from a distance. Nothing in the trade record settles that reading, and a transliterated place name and a trade name can be spelled the same way.',
     spellingAr:
       'يُكتب الاسم بحروف لاتينية في الوثائق التجارية، وتُكتب حروفه بالحرف العربي «مالينو» في الاستعمال الخليجي. والحروف هي حروف كلمة أوروبية، والنهاية منها شائعة في ممارسة الترحيم في جنوب آسيا، وهو ما يجعل الاسم يُقرأ بسهولة بوصفه مكاناً من بعيد. ولا يحسم سجل التجارة هذه القراءة، والاسم المُرحَّم لبلد والاسم التجاري قد يُكتبان بالشكل نفسه.',
     usage:
@@ -1022,6 +1022,276 @@ termEntry({
       { slug: 'glossary/seylani', label: 'Seylani' },
       { slug: 'glossary/silani', label: 'Silani' },
       { slug: 'origins/india', label: 'India and northeast origin guide' },
+      { slug: 'sourcing/wild-and-cultivated-oud', label: 'Wild and cultivated oud' },
+    ],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_AGARWOOD_2004'],
+  }),
+
+termEntry({
+    slug: 'glossary/silani',
+    title: 'Silani',
+    titleAr: 'سيلاني',
+    summary:
+      'A name recorded in Gulf and South Asian agarwood usage, with two neighbouring spellings in the same lists.',
+    summaryAr:
+      'اسم مسجَّل في استعمال العود الخليجي وجنوب الآسيوي، وإملاءات مجاورة ثلاثة في القوائم نفسها.',
+    directAnswer:
+      'Silani is a name recorded in Gulf and South Asian agarwood trade. The general referent can be stated: it is used to name a category of material, listed among the other material and wood-type names. Two neighbouring spellings appear in the same usage — Seylani and Malino — and neither their relation to this word nor to each other is established here. The letters suggest a place to an English reader, and that reading is available; it is not established as an origin.',
+    directAnswerAr:
+      '«سيلاني» اسم مسجَّل في تجارة العود في الخليج وجنوب آسيا. ويمكن قول المرجع العام: يسمّي فئة من مواد، مُدرجاً بين سائر أسماء المواد وأسماء أنواع الخشب. ويظهر في الاستعمال نفسه إملاءان مجاوران — «سيلاني» بإملاء آخر و«مالينو» — ولا تثبت صلة أيّ منهما بهذا الاسم ولا ببعضهما. وتشبه الحروف اسم مكان للقارئ الإنجليزي، وتلك القراءة متاحة، لكنها ليست مثبتة بوصفها منشأً.',
+    spelling:
+      'The name is written in Latin script in trade documents, as Silani, and the Gulf usage carries the same letters in Arabic script. A neighbouring form is written Seylani, and another is Malino. In a vocabulary that travels largely in writing, differences of this size can be a naming distinction, a transliteration habit, or a different house\'s usage, and the trade records carry the forms without a note saying which is which.',
+    spellingAr:
+      'يُكتب الاسم بحروف لاتينية في الوثائق التجارية، وتُكتب حروفه بالحرف العربي «سيلاني» في الاستعمال الخليجي. ويكتب إملاء مجاور «سييلاني»، وآخر «مالينو». وفي مفردات تنتقل في الغالب كتابةً، تكون الفروق من هذا الحجم تمييزاً في التسمية أو عادة في الترحيم أو استعمال دار بعينها. وتسجل سجلات التجارة هذه الصور بلا حاشية تبيّن أيّها أرجح.',
+    usage:
+      'The name appears in lists of material types and in short descriptions of material offered for sale, with the usual qualifiers attached — an area, a treatment, or a use. Sellers do not use it consistently across the trade, and a lot described with it in one market may be described differently in another. Where the word decides what the buyer is getting, the definition has to be obtained in writing.',
+    usageAr:
+      'يظهر الاسم في قوائم أنواع المواد وفي أوصاف قصيرة لما هو معروض للبيع، مع المؤهلات المعتادة — مكان، أو معالجة، أو استعمال. ولا يستعمله البائعون باتساق في التجارة كلها، فدفعة موصوفة به في سوق قد توصف على نحو مختلف في سوق آخر. وحيث كان اللفظ يحسم ما يحصل عليه المشتري، فلا بد من التعريف كتابةً.',
+    examples:
+      'Seylani and Malino are the neighbouring records, and the wider lists they sit in also contain Mori, Salla and Hindi Muri. Whether the three are subdivisions of one name or separate names is not established here. Three ordinary documents would settle it: the supplier\'s own written definition, a batch record in which one material carries more than one of the names, and a quotation in which two of them are used of different lots with the difference explained.',
+    examplesAr:
+      'الإملاءان المجاوران هما «سييلاني» و«مالينو»، والقوائم التي يجلسان فيها تضم أيضاً «موري» و«سلة» و«هندي موري». وأمّا إن كانت هذه الثلاثة تقسيمات لاسم واحد أم أسماء متباينة، فليس مثبتاً هنا. وثلاثة وثائق عادية تحسم ذلك: تعريف المورد المكتوب لنفسه، وسجل دفعة واحدة تحمل فيها مادة واحدة أكثر من اسم، وعرض سعر تُستعمل فيه اثنان منها في دفعتين مختلفتين مع شرح الفرق.',
+    alternatives:
+      'The string is close to a European place name, and to other names in the trade, so a reader may take it for an origin, a brand, a house name or a personal name. All of these readings are open on the letters alone. A trade name that happens to resemble a place is common in this vocabulary, and the resemblance carries no information about where the material came from.',
+    alternativesAr:
+      'يقرب اللفظ من اسم مكان أوروبي، ومن أسماء أخرى في التجارة، فقد يقرأه القارئ منشأً أو علامة تجارية أو اسم دار أو اسم شخص. وكل هذه القراءات مفتوحة على الحروف وحدها. والاسم التجاري الذي يشبه اسم مكان شائع في هذه المفردات، والتشابه لا يحمل معلومة عن مصدر المادة.',
+    doesNotProve:
+      'The name does not establish the country of origin, and it is not a protected designation. It does not establish the species, the resin content, the oil yield, the age, the size or form of the material, and it establishes no grade. It establishes no relationship to Seylani or to Malino.',
+    doesNotProveAr:
+      'لا يثبت الاسم بلد المنشأ، وليس اسماً محمياً. ولا يثبت نوع الخشب ولا نسبة الراتنج ولا مردود الزيت ولا العمر ولا الحجم ولا الشكل، ولا يثبت درجةً ما. ولا يثبت أي صلة بـ«سييلاني» ولا بـ«مالينو».',
+    limitations:
+      'This entry gives the general trade referent of the term. It does not establish a country of origin, a species, a grading, a composition or a quality for any material described with it, and it does not establish a relationship between the neighbouring spellings.',
+    limitationsAr:
+      'تعطي هذه المدخلة المرجع التجاري العام للمصطلح. ولا تثبت بلد منشأ، ولا نوعاً، ولا تقييماً، ولا تركيباً، ولا جودة لأي مادة يوصف بها، ولا تثبت صلة بين الإملاءات المجاورة.',
+    related: [
+      { slug: 'glossary/seylani', label: 'Seylani' },
+      { slug: 'glossary/malino', label: 'Malino' },
+      { slug: 'glossary/hindi-muri', label: 'Hindi Muri' },
+      { slug: 'sourcing/wild-and-cultivated-oud', label: 'Wild and cultivated oud' },
+    ],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+  }),
+
+  termEntry({
+    slug: 'glossary/seylani',
+    title: 'Seylani',
+    titleAr: 'سييلاني',
+    summary:
+      'A neighbouring spelling in Gulf and South Asian agarwood usage, and the records that would settle the relationship.',
+    summaryAr:
+      'إملاء مجاور في استعمال العود الخليجي وجنوب الآسيوي، والسجلات التي تحسم الصلة.',
+    directAnswer:
+      'Seylani is a spelling recorded in the same Gulf and South Asian trade usage as Silani, with a different vowel. Its general referent is of the same order: a category of material named by sellers in this trade, listed among the other material names. Whether it is a variant of Silani, a separate name, or a spelling used by one market is not established here, and the entry records the spelling rather than resolving it.',
+    directAnswerAr:
+      '«سييلاني» إملاء مسجَّل في الاستعمال التجاري الخليجي وجنوب الآسيوي نفسه الذي فيه «سيلاني»، ويختلف بحركة. ومرجعه العام من المرجع نفسه: فئة من مواد يسمّيها البائعون في هذه التجارة، مُدرجةً بين سائر أسماء المواد. وأمّا إن كان صورةً لـ«سيلاني» أم اسماً متبايناً أم إملاءً تستعمله سوق بعينها، فليس مثبتاً هنا، وتسجّل المدخلة الإملاء ولا تحسمه.',
+    spelling:
+      'The name is written in Latin script as Seylani, and the Gulf usage carries the same letters in Arabic script. The difference from Silani is one vowel, and a single vowel in a transposed vocabulary is small enough to carry a real distinction or small enough to be a habit. The trade documents carry both forms in the same lists, and they carry them without a note explaining which is which.',
+    spellingAr:
+      'يُكتب الاسم بحروف لاتينية، والصورة العربية المستعملة هنا «سييلاني». والفرق عن «سيلاني» حركة واحدة، والحركة الواحدة في مفردات منقولة صغيرة بما يكفي لتحمل تمييزاً حقيقياً أو صغيرة بما يكفي لتكون عادة. وتسجل الوثائق التجارية الصورتين في القوائم نفسها، بلا حاشية تبيّن أيّهما أرجح.',
+    usage:
+      'The name appears where Silani appears: in lists of material types and in short sale descriptions, with the usual qualifiers. A list carrying both spellings gives a reader no way to tell which is intended in a given line, and the practical answer is to ask for the description in writing rather than to choose between the spellings. The usage is loose, and the meaning a seller attaches to it has to be established from that seller.',
+    usageAr:
+      'يظهر الاسم حيث يظهر «سيلاني»: في قوائم أنواع المواد وفي أوصاف البيع القصيرة، مع المؤهلات المعتادة. والقائمة التي تحمل الإملاءين لا تعطي القارئ وسيلة لمعرفة أيّهما هو المقصود في سطر بعينه، والجواب العملي أن يطلب الوصف كتابةً لا أن يختار بين الإملاءين. والاستعمال فضفاض، والمعنى الذي يربطه البائع به لا بد من استخراجه منه.',
+    examples:
+      'The neighbouring record is Silani, and another is Malino, and all three appear in the same lists. A seller\'s own written definition, a batch record in which one material carries more than one of the names, and a quotation in which two of them are used of different lots with the difference explained are the three ordinary documents that would settle the question.',
+    examplesAr:
+      'السجل المجاور هو «سيلاني»، وآخر «مالينو»، والثلاثة تظهر في القوائم نفسها. وتعريف مكتوب من البائع، وسجل دفعة واحدة تحمل فيها مادة واحدة أكثر من اسم، وعرض سعر تُستعمل فيه اثنان منها في دفعتين مختلفتين مع شرح الفرق — هذه هي الوثائق الثلاث العادية التي تحسم السؤال.',
+    alternatives:
+      'The string is close to a European place name, and a reader may take it for an origin. The trade usage recorded here does not make it a designation of country. It may also be a house name, a brand, or a supplier\'s label for a parcel or a line of stock, and a label of that kind is real information about the seller and none about the material until somebody defines it.',
+    alternativesAr:
+      'يقرب اللفظ من اسم مكان أوروبي، فقد يقرأه القارئ منشأً، والاستعمال التجاري المسجَّل هنا لا يجعله اسماً لبلد. وقد يكون أيضاً اسم دار أو علامة تجارية أو تسمية يطلقها المورد على شحنة أو خط بعينه من المخزون. والتسمية من هذا النوع معلومات واقعة عن البائع لا عن المادة حتى يعرّفها أحد.',
+    doesNotProve:
+      'The name does not establish the country of origin, and it is not a protected designation. It does not establish the species, the resin content, the oil yield, the age, the size or form of the material, and it establishes no grade. It establishes no relationship to Silani or to Malino.',
+    doesNotProveAr:
+      'لا يثبت الاسم بلد المنشأ، وليس اسماً محمياً. ولا يثبت نوع الخشب ولا نسبة الراتنج ولا مردود الزيت ولا العمر ولا الحجم ولا الشكل، ولا يثبت درجةً ما. ولا يثبت أي صلة بـ«سيلاني» ولا بـ«مالينو».',
+    limitations:
+      'This entry gives the general trade referent of the term and the neighbouring spellings recorded with it. It does not establish a country of origin, a species, a grading, a composition or a quality for any material described with it, and it does not establish a synonymy between the spellings.',
+    limitationsAr:
+      'تعطي هذه المدخلة المرجع التجاري العام للمصطلح والإملاءات المجاورة المسجَّلة معه. ولا تثبت بلد منشأ، ولا نوعاً، ولا تقييماً، ولا تركيباً، ولا جودة لأي مادة يوصف بها، ولا تثبت ترادفاً بين الإملاءات.',
+    related: [
+      { slug: 'glossary/silani', label: 'Silani' },
+      { slug: 'glossary/malino', label: 'Malino' },
+      { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
+      { slug: 'sourcing/reading-a-quotation', label: 'Reading a quotation' },
+    ],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+  }),
+
+  termEntry({
+    slug: 'glossary/kynam',
+    title: 'Kynam',
+    titleAr: 'كينام',
+    summary:
+      'A spelling recorded in South Asian and Gulf agarwood usage, with a near-spelling in the same lists.',
+    summaryAr:
+      'إملاء مسجَّل في استعمال العود في جنوب آسيا والخليج، وإملاء قريب في القوائم نفسها.',
+    directAnswer:
+      'Kynam is a spelling recorded in South Asian and Gulf agarwood trade. The general referent can be stated: it is used to name a category of material, and it appears in the same lists as the wood-type names. A near-spelling, Kinam, is recorded in the same usage. This entry does not assert that the two are the same word, and does not assert that they are different products.',
+    directAnswerAr:
+      '«كينام» إملاء مسجَّل في تجارة العود في جنوب آسيا والخليج. ويمكن قول المرجع العام: يسمّي فئة من مواد، ويُدرَج في القوائم نفسها التي تُدرَج فيها أسماء أنواع الخشب. وقد سُجِّل في الاستعمال نفسه إملاء قريب هو «كيمام». وهذه المدخلة لا تقرّر أن الكلمتين واحدة ولا تقرّر أنهما منتجان مختلفان.',
+    spelling:
+      'The name is written in Latin script in trade documents, as Kynam, and the Gulf usage carries the same letters in Arabic script. The near-spelling Kinam differs in one letter, at a position where South Asian transliteration is not consistent. Because a large part of this vocabulary travels in writing, the difference can be a naming distinction, a scribe\'s habit, or a different house\'s usage, and the records do not say which it is here.',
+    spellingAr:
+      'يُكتب الاسم بحروف لاتينية في الوثائق التجارية، وتُكتب حروفه بالحرف العربي «كينام» في الاستعمال الخليجي. ويختلف الإملاء القريب «كيمام» بحرف واحد، في موضع لا يثبت فيه الترحيم في جنوب آسيا اتساقاً. ولأن جانباً كبيراً من هذه المفردات تنتقل كتابةً، فالفرق قد يكون تمييزاً في التسمية أو عادة خطّاب أو استعمال دار بعينها، والسجلات لا تبيّن أيّها هنا.',
+    usage:
+      'The name appears in lists of material types and in short descriptions of material offered for sale, and sellers qualify it in the usual way. The usage is loose, and the sense a seller attaches to it has to be established from that seller rather than inferred from the letters. Where the word decides what the buyer is getting, the definition has to be obtained in writing before the order.',
+    usageAr:
+      'يظهر الاسم في قوائم أنواع المواد وفي أوصاف قصيرة لما هو معروض للبيع، ويقيده البائعون بالطريقة المعتادة. والاستعمال فضفاض، والمعنى الذي يربطه البائع به لا بد من استخراجه منه لا استنباطه من الحروف. وحيث كان اللفظ يحسم ما يحصل عليه المشتري، فلا بد من التعريف كتابةً قبل الطلب.',
+    examples:
+      'Kinam is the near-spelling recorded in the same usage, and the neighbouring names in the same lists include Mori, Salla and Hindi Muri. Whether the two are subdivisions of one name or separate names is not established here. Three ordinary documents would settle it: the supplier\'s own written definition, a batch record in which one material carries both forms, and a quotation in which the two are used of different lots with the difference explained.',
+    examplesAr:
+      '«كيمام» هو الإملاء القريب المسجَّل في الاستعمال نفسه، والأسماء المجاورة في القوائم نفسها منها «موري» و«سلة» و«هندي موري». وأمّا إن كانا تقسيمين لاسم واحد أم اسمين متباينين، فليس مثبتاً هنا. وثلاثة وثائق عادية تحسم ذلك: تعريف المورد المكتوب لنفسه، وسجل دفعة واحدة تحمل فيها مادة واحدة الصورتين، وعرض سعر تُستعمل فيه الكلمتان في دفعتين مختلفتين مع شرح الفرق.',
+    alternatives:
+      'Outside the trade the same letters appear in South Asian personal names, and in other languages the same letters spell words with no connection to wood. A description carrying the name on its own may therefore be read as a brand, a house name or a person. A short trade word of this kind may also denote a form, a treatment or a part rather than a category, and nothing in the letters rules that out.',
+    alternativesAr:
+      'خارج التجارة تظهر الحروف نفسها في أسماء أشخاص في جنوب آسيا، وتُكتب بها في لغات أخرى كلمات لا علاقة لها بالخشب. فالوصف الذي يحمل الاسم وحده قد يُقرأ اسماً تجارياً أو اسم دار أو اسم شخص. وقد تدل الكلمة التجارية القصيرة من هذا النوع على شكل أو معالجة أو جزء لا على فئة، ولا يستبعده اللفظ نفسه.',
+    doesNotProve:
+      'The name does not establish the species, the resin content, the oil yield, the age, the size or form of the material, or the country of origin. It establishes no grade, and it is not a protected designation. It establishes no relationship to Kinam in either direction.',
+    doesNotProveAr:
+      'لا يثبت الاسم نوع الخشب ولا نسبة الراتنج فيه ولا مردود الزيت ولا العمر ولا الحجم ولا الشكل ولا بلد المنشأ. ولا يثبت درجةً ما، وليس اسماً محمياً. ولا يثبت أي صلة بـ«كيمام» في أي اتجاه.',
+    limitations:
+      'This entry gives the general trade referent of the term and the near-spelling recorded with it. It does not establish the species, grading, composition, origin or quality of any material described with it, and it does not establish a synonymy between the two spellings.',
+    limitationsAr:
+      'تعطي هذه المدخلة المرجع التجاري العام للمصطلح والإملاء القريب المسجَّل معه. ولا تثبت النوع ولا التقييم ولا التركيب ولا المنشأ ولا جودة أي مادة يوصف بها، ولا تثبت ترادفاً بين الإملاءين.',
+    related: [
+      { slug: 'glossary/kinam', label: 'Kinam' },
+      { slug: 'glossary/salla', label: 'Salla' },
+      { slug: 'origins/india', label: 'India and northeast origin guide' },
+      { slug: 'sourcing/reading-a-quotation', label: 'Reading a quotation' },
+    ],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+  }),
+
+  termEntry({
+    slug: 'glossary/kinam',
+    title: 'Kinam',
+    titleAr: 'كيمام',
+    summary:
+      'A near-spelling recorded alongside Kynam, and the documents that would settle the relationship.',
+    summaryAr:
+      'إملاء قريب مسجَّل مع «كينام»، والوثائق التي تحسم الصلة بينهما.',
+    directAnswer:
+      'Kinam is a near-spelling recorded in the same South Asian and Gulf trade usage as Kynam. Its general referent is of the same order: a category of material named by sellers in this trade, listed among the other material names. Whether it is a variant of Kynam, a separate name, or a spelling used by one market is not established here, and the entry records the spelling rather than resolving it.',
+    directAnswerAr:
+      '«كيمام» إملاء قريب مسجَّل في الاستعمال التجاري في جنوب آسيا والخليج نفسه الذي فيه «كينام». ومرجعه العام من المرجع نفسه: فئة من مواد يسمّيها البائعون في هذه التجارة، مُدرجةً بين سائر أسماء المواد. وأمّا إن كان صورةً لـ«كينام» أم اسماً متبايناً أم إملاءً تستعمله سوق بعينها، فليس مثبتاً هنا، وتسجّل المدخلة الإملاء ولا تحسمه.',
+    spelling:
+      'The name is written in Latin script as Kinam, and the Gulf usage carries the same letters in Arabic script. The difference from Kynam is one letter, and a single letter in a transposed vocabulary is small enough to carry a real distinction or small enough to be a habit. The trade documents carry both forms in the same lists, and they carry them without a note explaining which is which.',
+    spellingAr:
+      'يُكتب الاسم بحروف لاتينية، والصورة العربية المستعملة هنا «كيمام». والفرق عن «كينام» حرف واحد، والحرف الواحد في مفردات منقولة صغير بما يكفي ليحمل تمييزاً حقيقياً أو صغير بما يكفي ليكون عادة. وتسجل الوثائق التجارية الصورتين في القوائم نفسها، بلا حاشية تبيّن أيّهما أرجح.',
+    usage:
+      'The name appears where Kynam appears: in lists of material types and in short sale descriptions, with the usual qualifiers. A list carrying both spellings gives a reader no way to tell which is intended in a given line, and the practical answer is to ask for the description in writing rather than to choose between the spellings. The usage is loose, and the meaning a seller attaches to it has to be established from that seller.',
+    usageAr:
+      'يظهر الاسم حيث يظهر «كينام»: في قوائم أنواع المواد وفي أوصاف البيع القصيرة، مع المؤهلات المعتادة. والقائمة التي تحمل الإملاءين لا تعطي القارئ وسيلة لمعرفة أيّهما هو المقصود في سطر بعينه، والجواب العملي أن يطلب الوصف كتابةً لا أن يختار بين الإملاءين. والاستعمال فضفاض، والمعنى الذي يربطه البائع به لا بد من استخراجه منه.',
+    examples:
+      'The neighbouring record is Kynam, and the wider lists it sits in also contain Mori, Salla and Hindi Muri. A seller\'s own written definition, a batch record in which one material carries both forms, and a quotation in which the two are used of different lots with the difference explained are the three ordinary documents that would settle the question.',
+    examplesAr:
+      'السجل المجاور هو «كينام»، والقوائم التي يجلس فيها تضم أيضاً «موري» و«سلة» و«هندي موري». وتعريف مكتوب من البائع، وسجل دفعة واحدة تحمل فيها مادة واحدة الصورتين، وعرض سعر تُستعمل فيه الكلمتان في دفعتين مختلفتين مع شرح الفرق — هذه هي الوثائق الثلاث العادية التي تحسم السؤال.',
+    alternatives:
+      'As a word outside this trade the string carries no settled English or Arabic sense, so the available readings are narrow: a house name, a brand, or a supplier\'s label for a parcel or a line of stock. A label of that kind is real information about the seller and none about the material until somebody defines it. A short trade word also risks being read as a form or a treatment rather than a category.',
+    alternativesAr:
+      'خارج هذه التجارة لا يحمل اللفظ معنى إنجليزياً أو عربياً مستقراً، فالقراءات المتاحة ضيقة: اسم دار، أو علامة تجارية، أو تسمية يطلقها المورد على شحنة أو خط بعينه. والتسمية من هذا النوع معلومات واقعة عن البائع لا عن المادة حتى يعرّفها أحد. كما يحمل اللفظ التجاري القصير خطر أن يُقرأ شكلاً أو معالجة لا فئة.',
+    doesNotProve:
+      'The name does not establish the species, the resin content, the oil yield, the age, the size or form of the material, or the country of origin. It establishes no grade, and it is not a protected designation. It establishes no relationship to Kynam.',
+    doesNotProveAr:
+      'لا يثبت الاسم نوع الخشب ولا نسبة الراتنج ولا مردود الزيت ولا العمر ولا الحجم ولا الشكل ولا بلد المنشأ. ولا يثبت درجةً ما، وليس اسماً محمياً. ولا يثبت أي صلة بـ«كينام».',
+    limitations:
+      'This entry gives the general trade referent of the term and the near-spelling recorded with it. It does not establish the species, grading, composition, origin or quality of any material described with it, and it does not establish a synonymy between the two spellings.',
+    limitationsAr:
+      'تعطي هذه المدخلة المرجع التجاري العام للمصطلح والإملاء القريب المسجَّل معه. ولا تثبت النوع ولا التقييم ولا التركيب ولا المنشأ ولا جودة أي مادة يوصف بها، ولا تثبت ترادفاً بين الإملاءين.',
+    related: [
+      { slug: 'glossary/kynam', label: 'Kynam' },
+      { slug: 'glossary/seufi', label: 'Seufi' },
+      { slug: 'quality/seller-defined-super-grades', label: 'Super, Double Super and Triple Super labels' },
+      { slug: 'buying/evaluating-an-offer', label: 'Evaluating an offer' },
+    ],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+  }),
+
+  termEntry({
+    slug: 'glossary/kyara',
+    title: 'Kyara',
+    titleAr: 'كيا را',
+    summary:
+      'A name in the trade vocabulary whose letters read differently in different languages.',
+    summaryAr:
+      'اسم في مفردات التجارة، وحروفه تُقرأ على نحو مختلف في لغات مختلفة.',
+    directAnswer:
+      'Kyara is a name in the trade vocabulary for a category of material. The general referent can be stated: it is used to name a category that sellers in this trade sell and describe, and it is listed among the other material names. The spelling is the difficulty: the same letters are read differently in Gulf Arabic than they are in South Asian usage, and the reading a seller intends may differ from both. This entry does not fix a reading, and the term\'s referent has to be confirmed with the counterparty.',
+    directAnswerAr:
+      '«كيا را» اسم في مفردات التجارة لفئة من المواد. ويمكن قول المرجع العام: يسمّي فئة يبيعها ويصفها البائعون في هذه التجارة، وهو مُدرج بين سائر أسماء المواد. والصعوبة في الإملاء: بالحرف العربي تُقرأ الحروف نفسها «كيا را» على نحو مختلف عن قراءتها في الاستعمال الجنوبي، وقد يقصد البائع قراءً ثالثة. ولا تثبت هذه المدخلة قراءة بعينها، ولا بد من تأكيد المرجع مع الطرف الآخر.',
+    spelling:
+      'The name is written in Latin script as Kyara, and in Arabic script in Gulf usage the same letters carry a different pronunciation from the way the word is read in South Asian usage. Trade usage is largely a written usage, so the word survives the crossing between languages as a shape rather than as a sound, and the shape is what the buyer and the seller both hold. Nothing in the trade record fixes a single reading.',
+    spellingAr:
+      'يُكتب الاسم بحروف لاتينية، وبالحرف العربي في الاستعمال الخليجي تُقرأ الحروف نفسها «كيا را»، وهي قراءة تختلف عن قراءتها في الاستعمال الجنوبي. والممارسة التجارية في الغالب كتابة، فتنقل الكلمة بين اللغات شكلاً لا صوتاً، والشكل هو ما يمسك به البائع والمشتري معاً. ولا يثبّت السجل التجاري قراءة واحدة.',
+    usage:
+      'The name appears in lists of material types and in short descriptions of material offered for sale, with the usual qualifiers attached. The word crosses markets, and the sense a seller attaches to it travels with the word even where the reading of it has changed. Where the term decides what the buyer is getting, ask what the seller calls it, in the seller\'s own language, and ask for that in writing.',
+    usageAr:
+      'يظهر الاسم في قوائم أنواع المواد وفي أوصاف قصيرة لما هو معروض للبيع، مع المؤهلات المعتادة. والكلمة تعبر الأسواق، ومعنى البائع يسير مع الكلمة حيثما تغيّرت قراءتها. وحيث كان المصطلح يحسم ما يحصل عليه المشتري، فاسأل ماذا يسمّيه البائع، بلغته هو، واطلب ذلك كتابةً.',
+    examples:
+      'The neighbouring names in the same lists include Mori, Salla and Hindi Muri, and the wider set of material names in this vocabulary. A record in which the same lot is written in two languages is the most useful document here, because it shows the reading each side used. A seller\'s own written definition is the other one.',
+    examplesAr:
+      'الأسماء المجاورة في القوائم نفسها منها «موري» و«سلة» و«هندي موري»، ومجموعة أسماء المواد الأوسع في هذه المفردات. وأكثر ما يفيد هنا السجل الذي تُكتب فيه الدفعة نفسها بلغتين، لأنها تبيّن القراءة التي استعملها كل طرف. وتعريف البائع المكتوب هو الوثيقة الأخرى.',
+    alternatives:
+      'The same letters are an ordinary given name in several languages and spell unrelated words in others, so a description carrying the name on its own may be read as a person, a brand or a house name. None of these readings is excluded by the letters. The reading of the word in Arabic is itself a decision, and a party that has read it in one way may be hearing a different name from the party that has read it in another.',
+    alternativesAr:
+      'الحروف نفسها اسم جنس شائع في عدة لغات، وتكتب بها في غيرها كلمات لا علاقة لها بها، فالوصف الذي يحمل الاسم وحده قد يُقرأ اسم شخص أو علامة تجارية أو اسم دار. ولا يستبعد اللفظ أيّاً من هذه القراءات. كما أن قراءته بالحرف العربي قرار في ذاته، فقد يسمع الطرف الذي يقرأه على وجه ما اسماً مختلفاً مما يسمّيه الطرف الذي يقرأه على وجه آخر.',
+    doesNotProve:
+      'The name does not establish the species, the resin content, the oil yield, the age, the size or form of the material, or the country of origin. It establishes no grade, and it is not a protected designation. It establishes no reading of the word, and no relationship to any neighbouring name.',
+    doesNotProveAr:
+      'لا يثبت الاسم نوع الخشب ولا نسبة الراتنج فيه ولا مردود الزيت ولا العمر ولا الحجم ولا الشكل ولا بلد المنشأ. ولا يثبت درجةً ما، وليس اسماً محمياً. ولا يثبت قراءةً للكلمة، ولا صلة بأي اسم مجاور.',
+    limitations:
+      'This entry gives the general trade referent of the term and notes the difficulty of its reading across languages. It does not establish the species, grading, composition, origin or quality of any material described with it, and it does not fix a pronunciation.',
+    limitationsAr:
+      'تعطي هذه المدخلة المرجع التجاري العام للمصطلح، وتشير إلى صعوبة قراءته بين اللغات. ولا تثبت النوع ولا التقييم ولا التركيب ولا المنشأ ولا جودة أي مادة يوصف بها، ولا تثبت نطقاً بعينه.',
+    related: [
+      { slug: 'glossary/seufi', label: 'Seufi' },
+      { slug: 'glossary/bisa', label: 'Bisa' },
+      { slug: 'fragrance/oud-accords', label: 'Oud accords' },
+      { slug: 'buying/supplier-questions', label: 'Questions to ask a supplier' },
+    ],
+    sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014', 'CITES_APPENDICES'],
+  }),
+
+  termEntry({
+    slug: 'glossary/chenxiang',
+    title: 'Chenxiang',
+    titleAr: 'تشن شيانغ',
+    summary:
+      'The Chinese name for agarwood resin, which is also a trade word for a category of agarwood.',
+    summaryAr:
+      'الاسم الصيني لراتنج العود، وهو أيضاً كلمة تجارية لفئة من العود.',
+    directAnswer:
+      'Chenxiang is the Chinese name for the resin of agarwood, and the same name is used in trade for a category of agarwood. That is the one point here that is documented: the word is older than the modern trade that uses it, it appears in the classical Chinese materia medica as a valued material, and it is in use as a trade term. What the trade usage selects out of the name — which material, which form, which quality — is not fixed by the name itself and has to be confirmed with the counterparty.',
+    directAnswerAr:
+      '«تشن شيانغ» الاسم الصيني لراتنج العود، والاسم نفسه مستعمل في التجارة لفئة من العود. وهذه هي النقطة الوحيدة الموثّقة هنا: فالكلمة أقدم من التجارة الحديثة التي تستعملها، فقد وردت في كتب الصيدلة الصينية الكلاسيكية مادةً ثمينة، وهي في الاستعمال استعمالاً تجارياً. أما ما تختاره هذه الكلمة من المادة — أيّ مادة، وأيّ شكل، وأيّ جودة — فليس مثبتاً بالاسم نفسه، ويجب تأكيده مع الطرف الآخر.',
+    spelling:
+      'The name is written in Chinese characters in Chinese usage, and in Latin script as Chenxiang in trade documentation that circulates in English. A romanised Chinese trade term carries an ambiguity that a Chinese-script one does not: the romanisation is a convention, and the reading of the characters behind it is settled while the romanisation is one rendering of them. Where the term appears in a contract, the characters are the safer form to fix, because a romanised form can be read aloud in more than one way.',
+    spellingAr:
+      'يُكتب الاسم بالحروف الصينية في الاستعمال الصيني، وبالحروف اللاتينية «تشن شيانغ» في الوثائق التجارية التي تنتشر بالإنجليزية. ويحمل المصطلح التجاري الصيني المُرحَّم التباساً لا يحمله الاسم بالحروف الصينية: فالترحيم عرفٌ متعارَف عليه، وقراءة الحروف التي وراءه متفق عليها، أما الترحيم فهو صورة واحدة منها. وحين يظهر المصطلح في عقد، فالحروف الصينية هي الصورة الأوثى تثبيتاً، لأن الصورة المُرحَّمة يمكن أن تُقرأ على أكثر من وجه.',
+    usage:
+      'The name appears in Chinese incense and wood trade, and in international documentation that borrows the Chinese term. In the Chinese market the categories of agarwood are long established and are described in the market\'s own terms; a buyer outside that market should treat those descriptions as local rather than as a specification. A trade document that uses the word for a material without further description has not yet said what it is offering.',
+    usageAr:
+      'يظهر الاسم في تجارة البخور والخشب الصينية، وفي الوثائق الدولية التي تستعير المصطلح الصيني. وفي السوق الصينية مآخذ الانواع من العود راسخة منذ مدة وتُوصف بمصطلحات ذلك السوق؛ والمشتري من خارجه ينبغي أن يتعامل مع تلك الأوصاف بأنها محلية لا أنها مواصفة. والوثيقة التجارية التي تستعمل الاسم لمادة من دون وصف أعمق لم تبيّن بعد ما تعرضه.',
+    examples:
+      'The name is recorded in the cultural material as a term used for a category of agarwood, alongside the account of agarwood\'s place in Chinese practice and in incense. The nearest entries in this glossary are the wood-type and material names that a buyer is likely to meet in the same documents. Two ordinary documents would help: a Chinese-language description of the lot, and a record showing how the same lot is described on both sides of the trade.',
+    examplesAr:
+      'الاسم مسجَّل في المادة الثقافية مصطلحاً لفئة من العود، إلى جانب ما يرد فيها من مكانة العود في الممارسة الصينية وفي البخور. وأقرب المدخلات في هذا المعجم هي أسماء أنواع الخشب والمواد التي يلتقي بها المشتري في الوثائق نفسها. ووثيقتان عاديتان تفيدان: وصف للدفعة بالغة الصينية، وسجل يبيّن كيف يوصف الدفعة نفسها في جانبَي التجارة.',
+    alternatives:
+      'Read as a name rather than as a term, the string is used for people and for places in Chinese, so a reader may take it as naming a person or a place. It is also the ordinary Chinese word for the resin itself, which is the older sense and the one the trade usage is built on. Which of the two a trade document intends cannot be settled from the romanised form.',
+    alternativesAr:
+      'إذا قُرئ الاسم اسماً لا مصطلحاً، فالحروف نفسها تُستعمل في الصينية أسماء أشخاص وأسماء أماكن، فقد يقرأه القارئ تسميةً لشخص أو مكان. وهي أيضاً الكلمة الصينية العادية للراتنج نفسه، وهي المعنى الأقدم الذي بُني عليه الاستعمال التجاري. وأمّا أيّ المعنيين تقصد وثيقة تجارية، فلا يحسمه الإملاء المُرحَّم.',
+    doesNotProve:
+      'The name does not establish the species, the resin content, the oil yield, the age, the size or form of the material, or the country of origin. It establishes no grade, and it is not a protected designation. It does not establish which category the trade usage selects, and a romanised form of the name does not fix the characters behind it.',
+    doesNotProveAr:
+      'لا يثبت الاسم نوع الخشب ولا نسبة الراتنج ولا مردود الزيت ولا العمر ولا الحجم ولا الشكل ولا بلد المنشأ. ولا يثبت درجةً ما، وليس اسماً محمياً. ولا يثبت أيّ فئة يختارها الاستعمال التجاري، ولا يثبّت الإملاء المُرحَّم الحروف التي وراءه.',
+    limitations:
+      'This entry gives the documented referent of the term and its place in Chinese usage. It does not establish the species, grading, composition, origin or quality of any material described with it, and it does not establish a universal mapping between the name and any grading system.',
+    limitationsAr:
+      'تعطي هذه المدخلة المرجع الموثّق للمصطلح ومكانه في الاستعمال الصيني. ولا تثبت النوع ولا التقييم ولا التركيب ولا المنشأ ولا جودة أي مادة يوصف بها، ولا تثبت مقابلة عامة بين الاسم وأي نظام تقييم.',
+    related: [
+      { slug: 'culture/agarwood-in-chinese-traditions', label: 'Agarwood in Chinese traditions' },
+      { slug: 'glossary/jinko', label: 'Jinko' },
+      { slug: 'culture/japanese-incense-appreciation', label: 'Japanese incense appreciation' },
       { slug: 'sourcing/wild-and-cultivated-oud', label: 'Wild and cultivated oud' },
     ],
     sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
