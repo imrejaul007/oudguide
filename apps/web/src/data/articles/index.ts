@@ -10,6 +10,7 @@ import { usingFragranceArticles } from './guides-using.ts';
 import { fragranceSourcingArticles } from './guides-fragrance.ts';
 import { WORKED_EXAMPLES } from './worked-examples.ts';
 import { CHECKLISTS } from './checklists.ts';
+import { DEEPENING } from './deepening.ts';
 
 /**
  * The reviewed content layer.
@@ -44,10 +45,11 @@ import { CHECKLISTS } from './checklists.ts';
 function withRequiredSections(article: Article): Article {
   const workedExample = article.workedExample ?? WORKED_EXAMPLES[article.slug];
   const checklist = CHECKLISTS[article.slug];
+  const deepening = DEEPENING[article.slug];
 
-  if (!workedExample && !checklist) return article;
+  if (!workedExample && !checklist && !deepening) return article;
 
-  const sections = checklist
+  let sections = checklist
     ? article.sections.map((section, index) =>
         index === 0
           ? {
@@ -58,6 +60,13 @@ function withRequiredSections(article: Article): Article {
           : section
       )
     : article.sections;
+
+  if (deepening) {
+    // The deepening sections go after the article's own sections and
+    // before the worked example, so the reasoning comes first and the
+    // demonstration of it follows.
+    sections = [...sections, ...deepening.sections];
+  }
 
   return { ...article, workedExample, sections };
 }

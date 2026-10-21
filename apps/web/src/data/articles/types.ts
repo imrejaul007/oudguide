@@ -111,6 +111,18 @@ export interface WorkedExample {
   takeawayAr?: string;
 }
 
+/**
+ * Additional sections for an article.
+ *
+ * The editorial runbook's article tier asks for 600 words of main
+ * content on a question-specific guide. Where a guide falls short, the
+ * shortfall is closed with more of the thing the guide is about, not
+ * with prose that repeats it.
+ */
+export interface Deepening {
+  sections: ArticleSection[];
+}
+
 export interface Article {
   /** Path under `/en/guides/` with no leading or trailing slash. */
   slug: string;
