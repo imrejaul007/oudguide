@@ -152,6 +152,13 @@ export interface Violation {
  */
 export const FILE_SCOPED_ALLOWED_IN_ARABIC: Record<string, Set<string>> = {
   'rfq-public-schema.ts': new Set(['Super', 'Double']),
+  // The source registry keeps the Latin names of the instruments and
+  // bodies it cites, in parentheses, the way Arabic technical usage
+  // does: "المنظمة الدولية للتجارة الخشبية (ITTO)" and "القائمة الحمراء
+  // (IUCN)". These are names, not untranslated fragments, and
+  // translating them would misname the source.
+  'sources.ts': new Set(['ITTO', 'IUCN', 'TRAFFIC']),
+  'sources-geography.ts': new Set(['ITTO', 'IUCN', 'TRAFFIC']),
 };
 
 /**
