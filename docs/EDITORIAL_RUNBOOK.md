@@ -29,10 +29,29 @@ count is the same defect as a fallback body repeated across every URL.
   scoped, and on the limitations being stated. A 200-word hub with four sourced
   child links is not thin; a 600-word hub padded with prose is.
 
-The current corpus does not meet the article tier: 49 of 53 guide articles are
+The current corpus did not meet the article tier: 49 of 53 guide articles were
 below 600 words of main content. That is recorded as REGRESSION-04 in
 `docs/AUDIT_REMEDIATION_MATRIX.csv`, and extending the articles is the outstanding
 work. The gate is not lowered to match what was produced.
+
+**The floor is now enforced, not just written down.** `tests/article-tier.test.ts`
+asserts it, and the measure it uses is defined once, in `mainWordCount()` in
+`apps/web/src/lib/articles.ts`, so the runbook, the audit matrix and the test
+cannot drift apart. The measure is: the direct answer, section headings and
+bodies, lists, callouts, limitations and next steps — and nothing else.
+Navigation, breadcrumbs, the sources block, the referral call to action and the
+related links are chrome, and a page that passes the gate on chrome has not
+earned it.
+
+Two things are deliberately **not** counted. The worked example, because the
+runbook describes it as hypothetical and the manifest gate requires it to say so.
+And the checklist, because it is a list of questions to ask rather than an answer.
+Counting either would let a guide clear the floor on an illustration or a list
+instead of on the prose the floor exists to require.
+
+While the corpus is below the floor, that test is red by design and names every
+guide still short and the words it still needs. A red test that names the
+remaining gap is more useful in the suite than a gate that is quietly absent.
 
 ### 2.2 Indexation is a separate gate from publication
 
