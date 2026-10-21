@@ -116,6 +116,40 @@ Two operational habits follow, and both have already cost time:
   before believing either the success or the failure.** The deployment list
   and the alias are the independent read; the command's own output is not.
 
+### 2.1b Two more ways a published set and a live fact drift apart
+
+Both of these were found on 21 October 2026, in the same week as §2.1a and
+for the same underlying reason: something is true in one place and written
+down in another, and the two are never compared.
+
+**A hardcoded number in prose is a stored fact, and stored facts about a
+growing corpus are wrong by definition.** The `/en/verification` page said
+"the directory holds one published record" and that "one record has been
+published and two are held back as development fixtures". Both were true
+when they were written. Both go false the moment a second supplier is
+documented — and the site's whole premise is that the directory grows by
+one record at a time.
+
+The fix is not to update the number when it changes. The fix is to read it:
+the page now counts the register at render time and the copy points at the
+figures rather than quoting them. A page that quotes the corpus's coverage
+has to read it.
+
+**A new root has to be learned by every set that enumerates roots.** The
+eleven policy pages 404'd when they were reached without the locale prefix
+— `/terms`, `/about`, `/cookies` — while `/policies` and `/privacy` 307'd
+correctly. The cause was the middleware's set of known unprefixed roots:
+it listed every root the site serves, and a path whose first segment was
+not in the list was treated as a malformed URL and 404'd. The eleven policy
+pages were new roots, and the set was never updated.
+
+The general form: when a commit introduces a new top-level path, it has to
+teach the middleware in the same commit, or that URL 404s for anyone who
+types it without the prefix. This is the same defect as the resolver's
+business-profile shape swallowing the directory role pages, and as the
+policy paths being swallowed by that shape: a set of things that are
+recognised, and a set of things that exist, out of step.
+
 ### 2.2 Indexation is a separate gate from publication
 
 A page can be published and not indexable. The Arabic tree is published, readable
