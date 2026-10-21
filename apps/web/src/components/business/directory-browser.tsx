@@ -36,6 +36,24 @@ export interface DirectoryBusiness {
   country_id: string;
   country_name?: string | null;
   city?: string | null;
+  /**
+   * The neighbourhood or district, where the record states one.
+   *
+   * The area filter matches on this and on the published street
+   * address, so both have to be declared here: a filter that reads a
+   * field the interface does not declare is a filter that silently
+   * matches nothing.
+   */
+  region?: string | null;
+  /**
+   * The street address.
+   *
+   * Present only on a record whose owner published it. The projection
+   * puts it behind the same contact gate as the phone number, so a
+   * locked record does not carry one at all and cannot be claimed to be
+   * in a neighbourhood.
+   */
+  street_address?: string | null;
   is_claimed: boolean;
   has_active_membership: boolean;
   contact_unlocked: boolean;

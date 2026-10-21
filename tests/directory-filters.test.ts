@@ -168,6 +168,58 @@ describe('The three geography questions stay separate', () => {
     assert.equal(isInArea(b, ''), true);
   });
 
+  test('the area must lead the region or the address, not appear inside it', () => {
+    // The published record reads "Al Sabkha Road, Deira Perfume Souk,
+    // Dubai" with region "Deira Perfume Souk". A substring match on
+    // that also matches "road", "souk" and "perfume", and a whole-word
+    // match still matches all three, because they are all words in the
+    // address. A URL is a claim about a place, and "road" is not a
+    // place — so the area has to be the LEADING part of the record's
+    // region or address.
+    const b = alMutalib();
+    for (const notAPlace of ['road', 'souk', 'perfume', 'dubai', 'sabkha']) {
+      assert.equal(
+        isInArea(b, notAPlace),
+        false,
+        `"${notAPlace}" is not a place name and must not match the address`
+      );
+    }
+  });
+
+  test('the eight published area slugs resolve to the record, and only two do', () => {
+    // The area slugs the published links carry. Exactly two name a place
+    // this record is in, and the other six must not match it.
+    const b = alMutalib();
+    assert.equal(isInArea(b, 'al-sabkha'), true);
+    assert.equal(isInArea(b, 'deira'), true);
+
+    for (const otherArea of [
+      'bukit-bintang',
+      'bur-dubai',
+      'colaba',
+      'le-marais',
+      'mayfair',
+      'north-jakarta',
+    ]) {
+      assert.equal(
+        isInArea(b, otherArea),
+        false,
+        `${otherArea} is not a place this record is in`
+      );
+    }
+  });
+
+  test('a record with no published address is in no area', () => {
+    // The address is behind the contact gate. A locked record does not
+    // carry one, so it cannot be claimed to be in a neighbourhood.
+    const locked = alMutalib({
+      street_address: undefined,
+      region: undefined,
+    });
+    assert.equal(isInArea(locked, 'deira'), false);
+    assert.equal(isInArea(locked, 'al-sabkha'), false);
+  });
+
   test('a place name is compared the same way on both sides', () => {
     // The path carries a slug and the record carries a display name.
     assert.equal(normalisePlace('Kuala Lumpur'), normalisePlace('kuala-lumpur'));
