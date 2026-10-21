@@ -162,6 +162,16 @@ export class OudGuideDomainService {
     }
 
     if (filters?.country_id) {
+      // The broad country filter: a business that meets this country
+      // anywhere — it is located there, it has a facility there, or it
+      // is documented to ship there.
+      //
+      // This is deliberately NOT the location filter. The directory
+      // page's own country filter means "located in", and the two
+      // answers differ for a Dubai company that ships to Saudi Arabia:
+      // the broad filter includes it, the location filter does not. The
+      // page applies the location filter itself, from the record's own
+      // fields, because conflating the two is what OG-A09 was.
       const code = filters.country_id.toUpperCase();
       list = list.filter(
         (b) =>

@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Filter, MapPin, X, Loader2, SlidersHorizontal } from 'lucide-react';
+import { Search, Filter, X, Loader2, SlidersHorizontal } from 'lucide-react';
 import { BusinessCard } from './business-card';
 import { ComparisonDrawer, type ComparableProducer } from './comparison-drawer';
 import {
@@ -10,6 +10,19 @@ import {
   directoryRoleLabel,
   isDirectoryRole,
 } from '../../../../../packages/contracts/src/directory-roles.ts';
+import {
+  handlesOrigin,
+  holdsRole,
+  isInArea,
+  isInCity,
+  isLocatedIn,
+  servesDestination,
+  tradesFamily,
+} from '../../../../../packages/contracts/src/directory-filters.ts';
+import {
+  DirectoryGeographyFilters,
+  type DirectoryFilterOption,
+} from './directory-geography-filters';
 
 export interface DirectoryBusiness {
   id: string;
@@ -56,20 +69,48 @@ export function DirectoryBrowser({
   initialCountry = '',
   initialFamily = 'all',
   initialRole = '',
+  initialCity = '',
+  initialArea = '',
+  initialOrigin = '',
+  initialDestination = '',
+  locationCountries = [],
+  cityOptions = [],
+  originCountries = [],
+  destinationCountries = [],
+  locationNames = {},
 }: {
   businesses: DirectoryBusiness[];
   locale: string;
   isAr: boolean;
   initialSearch?: string;
+  /** An ISO2 code: where the business is located. */
   initialCountry?: string;
   initialFamily?: string;
   /** A role slug from the controlled vocabulary. */
   initialRole?: string;
+  /** A city slug. */
+  initialCity?: string;
+  /** A neighbourhood slug. */
+  initialArea?: string;
+  /** A country slug: the origin of the material the business handles. */
+  initialOrigin?: string;
+  /** An ISO2 code: a country the business is documented to ship to. */
+  initialDestination?: string;
+  locationCountries?: DirectoryFilterOption[];
+  cityOptions?: DirectoryFilterOption[];
+  originCountries?: DirectoryFilterOption[];
+  destinationCountries?: DirectoryFilterOption[];
+  /** The display name for each location code. */
+  locationNames?: Record<string, string>;
 }) {
   const [query, setQuery] = useState(initialSearch);
   const [debounced, setDebounced] = useState(initialSearch);
   const [family, setFamily] = useState(initialFamily);
   const [country, setCountry] = useState(initialCountry);
+  const [city, setCity] = useState(initialCity);
+  const [area, setArea] = useState(initialArea);
+  const [origin, setOrigin] = useState(initialOrigin);
+  const [destination, setDestination] = useState(initialDestination);
   // A role outside the vocabulary is ignored rather than applied, so a
   // hand-edited URL cannot put the browser into a state the directory
   // cannot explain.
@@ -86,27 +127,26 @@ export function DirectoryBrowser({
     return () => clearTimeout(timer);
   }, [query]);
 
-  const countries = useMemo(() => {
-    const set = new Map<string, string>();
-    for (const b of businesses) {
-      if (b.country_name) set.set(b.country_id, b.country_name);
-    }
-    return Array.from(set.entries()).sort((a, b) => a[1].localeCompare(b[1]));
-  }, [businesses]);
-
   const filtered = useMemo(() => {
     const q = debounced.trim().toLowerCase();
     return businesses.filter((b) => {
-      if (family !== 'all') {
-        if (!(b.product_families ?? []).includes(family)) return false;
-      }
       // A fixture record is never shown in the public listing.
       if (b.demo) return false;
-      if (country && b.country_id !== country) return false;
-      // The role filter reads the record's own role slugs. It does not
-      // read the `category` label, because a label's punctuation is not
-      // a data contract.
-      if (role && !(b.roles ?? []).includes(role)) return false;
+
+      // The filters are independent questions, and each one is answered
+      // by the record's own fields. Where the business is, what origin
+      // of material it handles and which destinations it serves are
+      // three separate facts: a Dubai company that ships to Saudi
+      // Arabia is not in Saudi Arabia, and one that handles Cambodian
+      // agarwood is not in Cambodia.
+      if (!tradesFamily(b, family)) return false;
+      if (!holdsRole(b, role)) return false;
+      if (!isLocatedIn(b, country)) return false;
+      if (!isInCity(b, city)) return false;
+      if (!isInArea(b, area)) return false;
+      if (!handlesOrigin(b, origin)) return false;
+      if (!servesDestination(b, destination)) return false;
+
       if (!q) return true;
       const hay = [
         b.name,
@@ -121,7 +161,7 @@ export function DirectoryBrowser({
         .toLowerCase();
       return hay.includes(q);
     });
-  }, [businesses, debounced, family, country, role]);
+  }, [businesses, debounced, family, country, city, area, origin, destination, role]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
@@ -262,31 +302,26 @@ export function DirectoryBrowser({
           </div>
         )}
 
-        {/* Country filter */}
+        {/* The geography filters: where it is, what origin it handles, where it ships. */}
         {showFilters && (
-          <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--color-border)' }}>
-            <span className="eyebrow" style={{ display: 'block', marginBottom: 10 }}>
-              {isAr ? 'بلد المنشأ' : 'Country of Origin'}
-            </span>
-            <div className="filter-chip-row">
-              <button
-                onClick={() => { setCountry(''); setPage(1); }}
-                className={`filter-chip ${country === '' ? 'active' : ''}`}
-              >
-                {isAr ? 'كل الدول' : 'All countries'}
-              </button>
-              {countries.map(([code, name]) => (
-                <button
-                  key={code}
-                  onClick={() => { setCountry(code); setPage(1); }}
-                  className={`filter-chip ${country === code ? 'active' : ''}`}
-                >
-                  <MapPin size={12} />
-                  {name}
-                </button>
-              ))}
-            </div>
-          </div>
+          <DirectoryGeographyFilters
+            locale={locale}
+            isAr={isAr}
+            country={country}
+            city={city}
+            area={area}
+            origin={origin}
+            destination={destination}
+            locationNames={locationNames}
+            locationCountries={locationCountries}
+            cityOptions={cityOptions}
+            originCountries={originCountries}
+            destinationCountries={destinationCountries}
+            onCountry={(value) => { setCountry(value); setCity(''); setArea(''); setPage(1); }}
+            onCity={(value) => { setCity(value); setArea(''); setPage(1); }}
+            onOrigin={(value) => { setOrigin(value); setPage(1); }}
+            onDestination={(value) => { setDestination(value); setPage(1); }}
+          />
         )}
       </div>
 

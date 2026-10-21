@@ -4,6 +4,7 @@ import { DirectoryBrowser } from '@/components/business/directory-browser';
 import { Compass, ShieldCheck, Map as MapIcon, Sparkles, Bookmark } from 'lucide-react';
 import type { Metadata } from 'next';
 import { buildMetadata } from '@/lib/metadata';
+import { countryCodeForSlug, countryNamesFor, countrySlugForCode } from '@/lib/country-registry';
 import { pick } from '@/lib/copy/policy';
 import { contactPolicyCopy } from '@/lib/copy/policy';
 
@@ -55,14 +56,108 @@ export default async function DirectoryPage({
     family?: string;
     origin?: string;
     destination?: string;
+    city?: string;
+    area?: string;
   }>;
 }) {
   const { locale } = await params;
-  const { country, role, search, family, origin, destination } = await searchParams;
+  const { country, role, search, family, origin, destination, city, area } =
+    await searchParams;
   const isAr = locale === 'ar';
 
   // The public register excludes the development fixtures.
   const businesses = domain.listBusinesses({ excludeDemo: true });
+
+  /**
+   * The country filters arrive as slugs and the records carry codes.
+   *
+   * `/en/directory/wholesalers/in/united-arab-emirates` carries a slug;
+   * the record's `country_id` is "AE". Comparing them raw finds
+   * nothing, so the slug is resolved here, on the server, and the code
+   * is what reaches the browser. A slug that resolves to no country is
+   * dropped rather than passed on, so a hand-edited URL cannot put the
+   * listing into a state the directory cannot explain.
+   */
+  const countryCode = country ? countryCodeForSlug(country) : null;
+  const destinationCode = destination ? countryCodeForSlug(destination) : null;
+
+  /**
+   * The names of the countries the published records serve.
+   *
+   * The destination filter is an ISO2 code and the record is the only
+   * thing that holds it, so the chip that offers it needs a name. The
+   * registry resolves it on the server rather than shipping 249
+   * territories into the browser bundle.
+   */
+  const destinationCountries = Array.from(
+    new Set(businesses.flatMap((b) => b.serves_destinations ?? []))
+  )
+    .map((code) => countryNamesFor(code))
+    .filter((c): c is { en: string; ar: string; iso2: string } => Boolean(c))
+    .map((c) => ({ key: c.iso2, label: c.en, labelAr: c.ar }));
+
+  /**
+   * The countries the published records are located in.
+   *
+   * The location filter is an ISO2 code, because the record carries one.
+   */
+  const locationCountries = Array.from(
+    new Set(businesses.map((b) => b.country_id).filter(Boolean))
+  )
+    .map((code) => countryNamesFor(code))
+    .filter((c): c is { en: string; ar: string; iso2: string } => Boolean(c))
+    .map((c) => ({ key: c.iso2, label: c.en, labelAr: c.ar }));
+
+  /**
+   * The countries the published records handle material from.
+   *
+   * The origin filter is a SLUG, because the published path carries one
+   * — /en/directory/wholesalers/by-origin/cambodia — and the record
+   * states its origins as display strings that carry the region too
+   * ("Cambodia (Koh Kong)"). The country part of the string is the slug.
+   */
+  const originCountries = Array.from(
+    new Set(
+      businesses.flatMap((b) =>
+        (b.handles_origins ?? []).map((o) => {
+          const country = o.split('(')[0]?.trim() ?? o;
+          return country.toLowerCase().replace(/\s+/g, '-');
+        })
+      )
+    )
+  )
+    .map((slug) => countryNamesFor(slug))
+    .filter((c): c is { en: string; ar: string; iso2: string } => Boolean(c))
+    .map((c) => ({
+      key: countrySlugForCode(c.iso2) ?? c.iso2.toLowerCase(),
+      label: c.en,
+      labelAr: c.ar,
+    }));
+
+  /**
+   * The cities the published records are in.
+   *
+   * The registry is a country register and carries no city names, so a
+   * city's name comes from the record that states it. The slug is
+   * derived from the name, and it is the slug the published paths carry.
+   */
+  const cityOptions = Array.from(
+    new Set(businesses.map((b) => (b.city ?? '').trim()).filter(Boolean))
+  ).map((city) => ({
+    key: city.toLowerCase().replace(/\s+/g, '-'),
+    label: city,
+    // The registry carries no Arabic city names, so the city is shown as
+    // the record writes it rather than invented in Arabic.
+    labelAr: city,
+  }));
+
+  /**
+   * The display name for each location code, for the badge that states
+   * the active filter.
+   */
+  const locationNames: Record<string, string> = Object.fromEntries(
+    locationCountries.map((c) => [c.key, c.label])
+  );
 
   return (
     <div className="section">
@@ -119,9 +214,18 @@ export default async function DirectoryPage({
             locale={locale}
             isAr={isAr}
             initialSearch={search ?? ''}
-            initialCountry={country ?? ''}
+            initialCountry={countryCode ?? ''}
             initialFamily={family ?? 'all'}
             initialRole={role ?? ''}
+            initialCity={city ?? ''}
+            initialArea={area ?? ''}
+            initialOrigin={origin ?? ''}
+            initialDestination={destinationCode ?? ''}
+            locationCountries={locationCountries}
+            cityOptions={cityOptions}
+            originCountries={originCountries}
+            destinationCountries={destinationCountries}
+            locationNames={locationNames}
           />
         </div>
       </div>
