@@ -10,6 +10,11 @@ import {
 import { articles } from '../apps/web/src/data/articles/index.ts';
 import { DEEPENING } from '../apps/web/src/data/articles/deepening.ts';
 import { DEEPENING_2 } from '../apps/web/src/data/articles/deepening-2.ts';
+import { DEEPENING_3 } from '../apps/web/src/data/articles/deepening-3.ts';
+import { DEEPENING_4 } from '../apps/web/src/data/articles/deepening-4.ts';
+import { DEEPENING_5 } from '../apps/web/src/data/articles/deepening-5.ts';
+import { DEEPENING_7 } from '../apps/web/src/data/articles/deepening-7.ts';
+import { DEEPENING_8 } from '../apps/web/src/data/articles/deepening-8.ts';
 
 /**
  * ==========================================================================
@@ -136,6 +141,11 @@ describe('Every deepening batch reaches the corpus', () => {
   const batches: Array<[string, Record<string, { sections: unknown[] }>]> = [
     ['deepening.ts', DEEPENING],
     ['deepening-2.ts', DEEPENING_2],
+    ['deepening-3.ts', DEEPENING_3],
+    ['deepening-4.ts', DEEPENING_4],
+    ['deepening-5.ts', DEEPENING_5],
+    ['deepening-7.ts', DEEPENING_7],
+    ['deepening-8.ts', DEEPENING_8],
   ];
 
   test('a deepening key is a real article slug', () => {
