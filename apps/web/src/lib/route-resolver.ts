@@ -28,6 +28,10 @@
 import { seed } from './data.ts';
 import { publishableBusinesses } from './data.ts';
 import {
+  countryCodeForSlug as registryCountryCodeForSlug,
+  countrySlugForCode as registryCountrySlugForCode,
+} from './country-registry.ts';
+import {
   articlePath,
   getArticle,
   isIndexable,
@@ -607,25 +611,19 @@ export function parseDirectoryFilterPath(path: string, locale = 'en'): ResolvedD
  *
  * The filter paths use country-name slugs; the data layer uses ISO2
  * codes. The two are kept apart here so a page never has to guess.
+ *
+ * The lookup itself lives in `lib/country-registry.ts`, because the
+ * directory page needs it on the server and the browser component needs
+ * the same answer, and two implementations of a slug-to-code lookup are
+ * two answers waiting to disagree.
  */
 export function countryCodeForSlug(slug: string): string | null {
-  if (!slug) return null;
-  const value = slug.toLowerCase();
-  const country = (seed.countries as any[]).find(
-    (c: any) =>
-      c.proposed_slug?.toLowerCase() === value ||
-      c.english_seed?.toLowerCase().replace(/\s+/g, '-') === value ||
-      c.iso2?.toLowerCase() === value
-  );
-  return country ? country.iso2.toUpperCase() : null;
+  return registryCountryCodeForSlug(slug);
 }
 
 /**
  * The country-name slug for an ISO2 code.
  */
 export function countrySlugForCode(iso2: string): string | null {
-  const country = (seed.countries as any[]).find(
-    (c: any) => c.iso2?.toUpperCase() === iso2?.toUpperCase()
-  );
-  return country ? country.proposed_slug : null;
+  return registryCountrySlugForCode(iso2);
 }
