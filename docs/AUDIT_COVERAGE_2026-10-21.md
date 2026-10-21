@@ -41,6 +41,22 @@ are unfilled briefs, and 18 of 24 business categories 404.**
 | Publishable directory businesses | 1 | — |
 | Guides clearing the 600-word article tier | 53 | 53 |
 
+**The rows above are the audit's own measurements, taken against the live site on
+21 October 2026. They are not the state of the repository.** Measured against the
+committed corpus at commit `a1b1082`:
+
+| Measure | Then (live, 21 Oct) | Now (committed) |
+|---|---:|---:|
+| Reviewed articles | 75 | 142 |
+| Distinct sources cited | 3 | 14 |
+| Registry entries | 7 | 17 |
+| Guides clearing the article tier | 53 | 54 |
+| Sitemap URLs | 89 | 167 |
+| Articles resting on a single source | 67 | 0 |
+
+The sitemap figure is from a production build at that commit: 167 URLs, every one
+returning 200 from a `next start` server.
+
 ---
 
 ## 2. The four questions, answered
@@ -172,12 +188,16 @@ These were checked and are sound. Do not disturb them.
 
 - **No duplicate bodies in the encyclopedia.** All 75 published guide pages were
   fingerprinted after stripping scripts, styles and SVG: **75 distinct fingerprints**.
-  The OG-A01 shared-fallback defect is genuinely fixed.
+  The OG-A01 shared-fallback defect is genuinely fixed. Re-checked against the
+  production build at `a1b1082`: the fifteen origin-country pages render fifteen
+  distinct fingerprints, and all 142 articles in the corpus are distinct. A new
+  batch that shares one body across fifteen URLs would fail the same way.
 - **No broken internal links.** A crawl of all 89 sitemap pages found 127 distinct
   internal link targets, and **0 of them resolve to a 404**. The 106 missing routes are
   not linked from anywhere live. The rule that keeps this true when new pages land is
   in the runbook at §3.1: a page may only name a target that is already published.
-- **The sitemap tells the truth.** 89 URLs, all 200. The earlier 570-of-775 false
+- **The sitemap tells the truth.** 89 URLs, all 200 at the time of the audit; 167 URLs,
+  all 200 against the production build at `a1b1082`. The earlier 570-of-775 false
   promise is gone; the sitemap now publishes only reviewed content and static shells.
 - **Territory pages are not indexed**, deliberately. They are register entries, not
   answers, and the sitemap reflects that.
