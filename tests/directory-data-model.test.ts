@@ -191,7 +191,11 @@ describe('The domain separates the selectors (OG-A09, OG-A15)', () => {
     const byDestination = domain.listBusinesses({ destination: 'SA' });
     assert.ok(byDestination.length >= 1, 'a destination filter must match a record');
 
-    const byRole = domain.listBusinesses({ role: 'distiller' });
+    // The role is a controlled slug from the vocabulary, not the
+    // record's single `business_type` display string. A business that
+    // does several things carries several slugs, so each of them is a
+    // filter that must find it.
+    const byRole = domain.listBusinesses({ role: 'distillers' });
     assert.ok(byRole.length >= 1, 'a role filter must match a record');
   });
 

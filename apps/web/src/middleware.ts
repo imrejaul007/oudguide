@@ -42,6 +42,20 @@ const KNOWN_UNPREFIXED_ROOTS = new Set([
   'corrections',
   'partners',
   'inquiries',
+  // The public policy and legal pages. A request that reaches one of
+  // these without its locale prefix is a request for a real page, and
+  // redirecting it to the default locale is the same treatment every
+  // other root gets. A root that is missing from this set 404s instead
+  // of redirecting, which is right for a malformed URL and wrong for a
+  // page the site actually serves.
+  'about',
+  'editorial-policy',
+  'verification',
+  'terms',
+  'cookies',
+  'accessibility',
+  'advertising',
+  'how-supplier-matching-works',
 ]);
 
 function hex(buffer: ArrayBuffer): string {

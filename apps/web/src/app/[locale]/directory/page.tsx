@@ -121,6 +121,7 @@ export default async function DirectoryPage({
             initialSearch={search ?? ''}
             initialCountry={country ?? ''}
             initialFamily={family ?? 'all'}
+            initialRole={role ?? ''}
           />
         </div>
       </div>

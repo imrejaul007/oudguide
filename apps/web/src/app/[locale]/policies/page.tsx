@@ -1,4 +1,5 @@
 import { Scale } from 'lucide-react';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { buildMetadata } from '@/lib/metadata';
 import { pick } from '@/lib/copy/policy';
@@ -9,6 +10,7 @@ import {
   securityClaimCopy,
   buyerApprovalCopy,
 } from '@/lib/copy/policy';
+import { POLICY_PAGES } from '@/lib/copy/policy-pages';
 
 /**
  * The operating policies.
@@ -122,6 +124,37 @@ export default async function PoliciesPage({
             </section>
           ))}
         </div>
+
+        {/*
+          The eleven policy pages.
+
+          Each of them is a real page with its own wording, and the
+          manifest declared all eleven published while the audit found
+          every one of them returning 404. This index is where they are
+          reachable from, rather than from a sitemap alone.
+        */}
+        <section style={{ marginTop: 40 }}>
+          <h2 className="h3" style={{ marginBottom: 12 }}>
+            {isAr ? 'صفحات السياسات' : 'The policy pages'}
+          </h2>
+          <div className="grid-2" style={{ gap: 12 }}>
+            {POLICY_PAGES.map((page) => (
+              <Link
+                key={page.path}
+                href={`/${locale}/${page.path}`}
+                className="card"
+                style={{ padding: 16, textDecoration: 'none', display: 'block' }}
+              >
+                <h3 style={{ margin: '0 0 4px', fontSize: '1rem' }}>
+                  {isAr ? page.title.ar : page.title.en}
+                </h3>
+                <p className="meta" style={{ margin: 0 }}>
+                  {isAr ? page.standfirst.ar : page.standfirst.en}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

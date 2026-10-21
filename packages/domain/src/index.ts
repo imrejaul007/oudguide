@@ -172,8 +172,14 @@ export class OudGuideDomainService {
     }
 
     if (filters?.role) {
+      // The role is a controlled slug, matched against the record's own
+      // `roles` list. It used to be compared against `business_type`,
+      // which is a single display string: a business that distills and
+      // wholesales had one business_type, so the other role could never
+      // match it and the directory silently dropped it from a listing
+      // its own category claimed.
       const role = filters.role.toLowerCase();
-      list = list.filter((b) => b.business_type?.toLowerCase() === role);
+      list = list.filter((b) => (b.roles ?? []).some((r) => r.toLowerCase() === role));
     }
 
     if (filters?.product_family) {

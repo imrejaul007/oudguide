@@ -34,6 +34,16 @@ export function Footer({ locale }: { locale: string }) {
         { href: `/${locale}/membership`, label: isAr ? 'مزايا العضوية' : 'Membership Benefits' },
       ],
     },
+    {
+      title: isAr ? 'السياسات' : 'Policies',
+      links: [
+        { href: `/${locale}/about`, label: isAr ? 'عن دليل العود' : 'About OudGuide' },
+        { href: `/${locale}/editorial-policy`, label: isAr ? 'سياسة التحرير' : 'Editorial Policy' },
+        { href: `/${locale}/verification`, label: isAr ? 'معنى شارات الملفات' : 'Profile Labels' },
+        { href: `/${locale}/how-supplier-matching-works`, label: isAr ? 'كيف يعمل الربط' : 'How Matching Works' },
+        { href: `/${locale}/accessibility`, label: isAr ? 'إمكانية الوصول' : 'Accessibility' },
+      ],
+    },
   ];
 
   return (

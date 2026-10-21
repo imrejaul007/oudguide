@@ -5,6 +5,11 @@ import Link from 'next/link';
 import { Search, Filter, MapPin, X, Loader2, SlidersHorizontal } from 'lucide-react';
 import { BusinessCard } from './business-card';
 import { ComparisonDrawer, type ComparableProducer } from './comparison-drawer';
+import {
+  DIRECTORY_ROLE_SLUGS,
+  directoryRoleLabel,
+  isDirectoryRole,
+} from '../../../../../packages/contracts/src/directory-roles.ts';
 
 export interface DirectoryBusiness {
   id: string;
@@ -13,6 +18,8 @@ export interface DirectoryBusiness {
   description?: string | null;
   category?: string | null;
   business_type?: string | null;
+  /** The controlled role slugs the directory filters on. */
+  roles?: string[];
   country_id: string;
   country_name?: string | null;
   city?: string | null;
@@ -48,6 +55,7 @@ export function DirectoryBrowser({
   initialSearch = '',
   initialCountry = '',
   initialFamily = 'all',
+  initialRole = '',
 }: {
   businesses: DirectoryBusiness[];
   locale: string;
@@ -55,11 +63,17 @@ export function DirectoryBrowser({
   initialSearch?: string;
   initialCountry?: string;
   initialFamily?: string;
+  /** A role slug from the controlled vocabulary. */
+  initialRole?: string;
 }) {
   const [query, setQuery] = useState(initialSearch);
   const [debounced, setDebounced] = useState(initialSearch);
   const [family, setFamily] = useState(initialFamily);
   const [country, setCountry] = useState(initialCountry);
+  // A role outside the vocabulary is ignored rather than applied, so a
+  // hand-edited URL cannot put the browser into a state the directory
+  // cannot explain.
+  const [role, setRole] = useState(isDirectoryRole(initialRole) ? initialRole : '');
   const [page, setPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
 
@@ -89,6 +103,10 @@ export function DirectoryBrowser({
       // A fixture record is never shown in the public listing.
       if (b.demo) return false;
       if (country && b.country_id !== country) return false;
+      // The role filter reads the record's own role slugs. It does not
+      // read the `category` label, because a label's punctuation is not
+      // a data contract.
+      if (role && !(b.roles ?? []).includes(role)) return false;
       if (!q) return true;
       const hay = [
         b.name,
@@ -97,12 +115,13 @@ export function DirectoryBrowser({
         b.country_name ?? '',
         (b.handles_origins ?? []).join(' '),
         (b.product_families ?? []).join(' '),
+        (b.roles ?? []).join(' '),
       ]
         .join(' ')
         .toLowerCase();
       return hay.includes(q);
     });
-  }, [businesses, debounced, family, country]);
+  }, [businesses, debounced, family, country, role]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
@@ -113,10 +132,27 @@ export function DirectoryBrowser({
     setDebounced('');
     setFamily(initialFamily);
     setCountry('');
+    setRole('');
     setPage(1);
   };
 
-  const hasFilters = Boolean(query || family !== 'all' || country);
+  const hasFilters = Boolean(query || family !== 'all' || country || role);
+
+  /**
+   * The roles that at least one published business actually holds.
+   *
+   * A chip for a role no record claims would be a filter that always
+   * returns nothing, which reads as "this directory is empty" rather than
+   * "no supplier in this category is documented yet".
+   */
+  const availableRoles = useMemo(() => {
+    const held = new Set<string>();
+    for (const b of businesses) {
+      if (b.demo) continue;
+      for (const r of b.roles ?? []) held.add(r);
+    }
+    return DIRECTORY_ROLE_SLUGS.filter((r) => held.has(r));
+  }, [businesses]);
 
   return (
     <div>
@@ -169,6 +205,23 @@ export function DirectoryBrowser({
           </div>
         </div>
 
+        {/*
+          The active role, stated outside the filter panel.
+
+          The role chips live behind the "Filters" toggle, so a reader who
+          arrives at /en/directory/wholesalers saw a filtered list with
+          no indication of what had filtered it. The role is a published
+          URL and a reader has to be able to see what it means.
+        */}
+        {role && (
+          <div className="cluster" style={{ marginBottom: 14 }}>
+            <span className="eyebrow" style={{ marginBottom: 0 }}>
+              {isAr ? 'الدور' : 'Role'}
+            </span>
+            <span className="chip">{directoryRoleLabel(role, locale)}</span>
+          </div>
+        )}
+
         {/* Material family chips */}
         <div className="filter-chip-row">
           {FAMILY_FILTERS.map((f) => (
@@ -182,6 +235,32 @@ export function DirectoryBrowser({
             </button>
           ))}
         </div>
+
+        {/* Role filter — the business's own roles, not a parsed label. */}
+        {showFilters && availableRoles.length > 0 && (
+          <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--color-border)' }}>
+            <span className="eyebrow" style={{ display: 'block', marginBottom: 10 }}>
+              {isAr ? 'دور المورد' : 'Business role'}
+            </span>
+            <div className="filter-chip-row">
+              <button
+                onClick={() => { setRole(''); setPage(1); }}
+                className={`filter-chip ${role === '' ? 'active' : ''}`}
+              >
+                {isAr ? 'كل الأدوار' : 'All roles'}
+              </button>
+              {availableRoles.map((r) => (
+                <button
+                  key={r}
+                  onClick={() => { setRole(r); setPage(1); }}
+                  className={`filter-chip ${role === r ? 'active' : ''}`}
+                >
+                  {directoryRoleLabel(r, locale)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Country filter */}
         {showFilters && (

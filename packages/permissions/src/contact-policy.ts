@@ -50,6 +50,16 @@ export interface RawBusinessProfile {
   description?: string | null;
   category?: string | null;
   business_type?: string | null; // retail, wholesale, distiller, manufacturer, etc.
+  /**
+   * The business's roles, as slugs from the controlled vocabulary.
+   *
+   * This is the field the directory filters on, and it is a list because
+   * a business can be several things at once — a distiller that also
+   * wholesales and sells retail. The slugs are the controlled values;
+   * `category` is a human-readable summary of them and is never parsed.
+   * See `packages/contracts/src/directory-roles.ts`.
+   */
+  roles?: string[];
   country_id: string;
   country_name?: string | null;
   city?: string | null;
@@ -114,6 +124,8 @@ export interface PublicBusinessProjection {
   description?: string | null;
   category?: string | null;
   business_type?: string | null;
+  /** The roles the directory filters on. The controlled slugs, not a label. */
+  roles?: string[];
   country_id: string;
   country_name?: string | null;
   city?: string | null;
@@ -195,6 +207,7 @@ export function projectPublicBusiness(business: RawBusinessProfile): PublicBusin
     description: business.description ?? null,
     category: business.category ?? null,
     business_type: business.business_type ?? null,
+    roles: business.roles ?? [],
     country_id: business.country_id,
     country_name: business.country_name ?? null,
     city: business.city ?? null,

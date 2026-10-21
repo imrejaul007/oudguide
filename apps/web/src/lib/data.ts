@@ -34,7 +34,7 @@ import type { RawBusinessProfile, VerificationState } from '../../../permissions
  * almutalib.com resolves and serves, assamheritageoud.in does not resolve,
  * and tratagarwood.example.th is an RFC 2606 reserved name.
  */
-const initialBusinesses: RawBusinessProfile[] = [
+export const initialBusinesses: RawBusinessProfile[] = [
   {
     id: 'biz_almutalib_01',
     slug: 'al-mutalib-perfumes',
@@ -44,6 +44,10 @@ const initialBusinesses: RawBusinessProfile[] = [
       'Specialist in rare aged Hindi and Cambodian oud oils, artisan attars, and premium agarwood chips. Wholesale sourcing partner and retail merchant.',
     category: 'Distiller, Wholesaler & Retailer',
     business_type: 'distiller',
+    // The controlled role slugs. The record says it distils, wholesales
+    // and sells retail, and it says nothing about exporting, so
+    // 'exporters' is not claimed here.
+    roles: ['distillers', 'wholesalers', 'retailers'],
     country_id: 'AE',
     country_name: 'United Arab Emirates',
     city: 'Dubai',
@@ -98,6 +102,9 @@ const initialBusinesses: RawBusinessProfile[] = [
       'Family-owned wild and plantation agarwood estate and copper-deg distillation distillery in Hojai, Assam.',
     category: 'Plantation & Distiller',
     business_type: 'distiller',
+    // A development fixture. It grows and it distils; the roles say so
+    // explicitly rather than being inferred from the category label.
+    roles: ['growers', 'distillers'],
     country_id: 'IN',
     country_name: 'India',
     city: 'Hojai',
@@ -149,6 +156,8 @@ const initialBusinesses: RawBusinessProfile[] = [
       'Sustainable Aquilaria crassna plantations in Trat and Chanthaburi. Organic steam and hydro-distilled Trat and Prachin oils.',
     category: 'Sustainable Plantation & Distiller',
     business_type: 'distiller',
+    // A development fixture: plantations and distillation.
+    roles: ['growers', 'distillers'],
     country_id: 'TH',
     country_name: 'Thailand',
     city: 'Trat',
