@@ -111,11 +111,20 @@ export function buildMetadata({
       siteName: SITE_NAME,
       type,
       locale: locale === 'ar' ? 'ar_AE' : 'en_US',
+      images: [
+        {
+          url: `${SITE_URL}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: 'OudGuide — Worldwide Oud & Fragrance Knowledge Portal',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: trimmedTitle,
       description: trimmedDesc,
+      images: [`${SITE_URL}/og-image.png`],
     },
     ...(noindex || localeNotIndexable
       ? { robots: { index: false, follow: false } }
