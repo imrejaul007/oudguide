@@ -80,7 +80,7 @@ export default async function AdminPage({
             </h1>
             <p className="hero-lead">
               {isAr
-                ? 'مساحة المشغّل لمراجعة طلبات التوثيق، وإدارة العضويات السنوية، ومراجعة طلبات التوريد الصادرة. كل عمليات التعديل تستدعي سياسة canRelease الفاشلة-الإغلاق نفسها المستخدمة في الإنتاج.'
+                ? 'مساحة المشغّل لمراجعة طلبات التوثيق، وإدارة العضويات السنوية، ومراجعة طلبات التوريد الصادرة. كل عمليات التعديل تستدعي سياسة الإفراج الفاشلة-الإغلاق نفسها المستخدمة في الإنتاج.'
                 : 'The operator workspace for reviewing ownership claims, managing annual memberships, and auditing outbound sourcing inquiries. Every mutation calls the same fail-closed lead policy used in production.'}
             </p>
             <div style={{ marginTop: 20 }}>

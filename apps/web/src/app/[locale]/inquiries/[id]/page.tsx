@@ -156,7 +156,7 @@ export default async function InquiryStatusPage({
             <h4>{isAr ? `تم اعتماد المورد (${approved})` : `Recipient Release Authorized: ${approved}`}</h4>
             <p>
               {isAr
-                ? 'تم اجتياز سياسة canRelease بالكامل، وأُدرج إشعار الربط في طابور الإرسال. ستصل بيانات التنسيق الرسمية للطرفين.'
+                ? 'تم اجتياز سياسة الإفراج بالكامل، وأُدرج إشعار الربط في طابور الإرسال. ستصل بيانات التنسيق الرسمية للطرفين.'
                 : 'The fail-closed lead policy was fully satisfied and the introduction has been queued for dispatch. Official coordination coordinates will reach both parties.'}
             </p>
           </div>
@@ -184,7 +184,7 @@ export default async function InquiryStatusPage({
             <span style={{ fontSize: 24 }}>🔐</span>
             <div>
               <h2 style={{ fontSize: '1.25rem', marginBottom: 6 }}>
-                {isAr ? 'خطوة التحقق من وسيلة الاتصال (OTP)' : 'Contact Channel Verification Required'}
+                {isAr ? 'خطوة التحقق من وسيلة الاتصال (رمز التحقق)' : 'Contact Channel Verification Required'}
               </h2>
               <p className="text-body" style={{ margin: 0, fontSize: '0.88rem' }}>
                 {isAr

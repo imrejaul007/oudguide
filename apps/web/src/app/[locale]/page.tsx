@@ -290,7 +290,7 @@ export default async function HomePage({
                 <h4>{isAr ? '❌ تخفيف بالبلاستيك والمواد الكيميائية' : '❌ Plasticizer & Booster Adulteration'}</h4>
                 <p>
                   {isAr
-                    ? 'زيوت العود مخففة بمذيبات صناعية عديمة الرائحة ومقواة بمواد كيميائية عطرية مقلدة. يُكشف بجهاز GC-MS.'
+                    ? 'زيوت العود مخففة بمذيبات صناعية عديمة الرائحة ومقواة بمواد كيميائية عطرية مقلدة. يُكشف بالتحليل الكروماتوغرافي.'
                     : 'Oud oils diluted with odorless synthetic solvents (dipropylene glycol) or fortified with chemical aromachemicals to fake longevity. Verified via GC-MS chromatography.'}
                 </p>
               </div>
@@ -348,7 +348,7 @@ export default async function HomePage({
               </h2>
               <p className="lede">
                 {isAr
-                  ? 'يعمل المساعد مباشرة على سجل OudGuide الموثق: 249 دولة ومقالات مُراجَعة و67 مواصفة RFQ شرطية. يطابق متطلباتك مع المنتجين المسجلين ويشرح الأقاليم والتقطير وسياسات سايتس. ويعمل على النسخة العلنية التي حُذفت منها حقول الاتصال على الخادم.'
+                  ? 'يعمل المساعد مباشرة على سجل OudGuide الموثق: 249 دولة ومقالات مُراجَعة و67 مواصفة توريد شرطية. يطابق متطلباتك مع المنتجين المسجلين ويشرح الأقاليم والتقطير وسياسات سايتس. ويعمل على النسخة العلنية التي حُذفت منها حقول الاتصال على الخادم.'
                   : 'The assistant reads OudGuide\'s documented register directly: 249 territories, reviewed articles, and 67 conditional RFQ specifications. It matches your requirements against listed producers and explains terroirs, distillation, and CITES policy. It operates on the public projection, in which contact fields have already been removed on the server.'}
               </p>
               <div className="cluster" style={{ marginTop: 28 }}>
@@ -419,7 +419,7 @@ export default async function HomePage({
             </div>
             <div className="step-tile">
               <div className="step-tile-num crimson">02</div>
-              <h3 className="step-tile-title">{isAr ? 'التحقق بـ OTP' : 'OTP Verification'}</h3>
+              <h3 className="step-tile-title">{isAr ? 'التحقق برمز التحقق' : 'OTP Verification'}</h3>
               <p className="step-tile-desc">
                 {isAr
                   ? 'رمز تحقق لمرة واحدة من 6 أرقام يؤكد ملكيتك لوسيلة الاتصال قبل أي خطوة.'

@@ -28,6 +28,8 @@
    human reviewer trust that the rest is sound.
    ========================================================================== */
 
+import ts from 'typescript';
+
 /** The character a lost codepoint leaves behind. */
 export const REPLACEMENT_CHAR = String.fromCharCode(0xfffd);
 
@@ -69,8 +71,6 @@ export const ALLOWED_IN_ARABIC = new Set([
   'OudGuide',
   'IFRA',
   'CITES',
-  'GC',
-  'MS',
   // Material and format names kept in Latin script in Arabic usage.
   'Dehn',
   'Al',
@@ -140,6 +140,62 @@ export interface Violation {
  *
  * Returns the violations it carries; an empty array means it is clean.
  */
+/**
+ * Tokens that are legitimate in a particular file only.
+ *
+ * A global allowlist is a hole: "Super" is a correct instruction in the
+ * RFQ help text, because the field asks the buyer to repeat the seller's
+ * own English grade words, and translating the word would make the
+ * instruction wrong. But "Super" appearing inside an article body is
+ * contamination. Scoping the allowance to the one file that needs it
+ * keeps the instruction correct without opening the hole everywhere.
+ */
+export const FILE_SCOPED_ALLOWED_IN_ARABIC: Record<string, Set<string>> = {
+  'rfq-public-copy.ts': new Set(['Super', 'Double']),
+};
+
+/**
+ * Split a string into the segments a reader would read as prose.
+ *
+ * A page mixes Arabic copy with English labels, HTML markup and style
+ * blocks. Applying the Latin rule to the whole string would flag an
+ * English navigation label on an Arabic page. Splitting on markup, on
+ * line breaks and on sentence terminators means the rule is applied to
+ * the sentence that contains the defect, and an English label is its own
+ * segment with no Arabic in it, so it is not examined.
+ */
+function proseSegments(text: string): string[] {
+  // Drop markup elements, the contents of style and script blocks, and HTML
+  // entities. An entity is markup that happens to be spelled with letters,
+  // and `&copy;` is not the English word "copy".
+  const withoutBlocks = text
+    .replace(/<(style|script)\b[^>]*>[\s\S]*?<\/\1>/gi, ' ')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&[#a-zA-Z0-9]+;/g, ' ');
+
+  return withoutBlocks
+    .split(/[\n\r]+|(?<=[.!?؟])\s+/)
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+}
+
+/**
+ * The proportion of a segment's letters that are Arabic.
+ *
+ * A segment that is mostly Latin is an English label inside an Arabic
+ * page, not an untranslated fragment inside an Arabic sentence, so it is
+ * not examined. The threshold is well below the lowest genuine Arabic
+ * sentence in the corpus, which measures 38% (a short phrase that names
+ * two regulations), and well above the markup and English-label
+ * segments, which measure under 10%.
+ */
+const MIN_ARABIC_SHARE = 0.3;
+
+/**
+ * Check one string a reader could see.
+ *
+ * Returns the violations it carries; an empty array means it is clean.
+ */
 export function scanString(
   file: string,
   text: string,
@@ -177,12 +233,40 @@ export function scanString(
 
   if (!ARABIC.test(text)) return violations;
 
-  const words = text.match(LATIN_WORD);
-  if (!words) return violations;
+  const scoped = FILE_SCOPED_ALLOWED_IN_ARABIC[
+    Object.keys(FILE_SCOPED_ALLOWED_IN_ARABIC).find((key) => file.endsWith(key)) ?? ''
+  ];
 
-  const offenders = words.filter(
-    (w) => !ALLOWED_IN_ARABIC.has(w) && !/^(EDP|EDT)$/.test(w)
-  );
+  const offenders: string[] = [];
+
+  for (const segment of proseSegments(text)) {
+    if (!ARABIC.test(segment)) continue;
+
+    const arabicLetters = (segment.match(/[؀-ۿ]/g) ?? []).length;
+    const latinLetters = (segment.match(/[A-Za-z]/g) ?? []).length;
+    if (arabicLetters + latinLetters === 0) continue;
+    if (arabicLetters / (arabicLetters + latinLetters) < MIN_ARABIC_SHARE) continue;
+
+    const words = segment.match(LATIN_WORD);
+    if (!words) continue;
+
+    for (const w of words) {
+      if (ALLOWED_IN_ARABIC.has(w)) continue;
+      if (scoped?.has(w)) continue;
+      if (/^(EDP|EDT)$/.test(w)) continue;
+
+      // The tail of a domain name — the "com" in "OudGuide.com" — is a
+      // domain, not an untranslated word. It is recognised by the dot in
+      // front of it and by a Latin word in front of that dot.
+      const at = segment.indexOf(w);
+      if (at > 1 && segment[at - 1] === '.' && /[A-Za-z0-9]$/.test(segment[at - 2])) {
+        continue;
+      }
+
+      if (!offenders.includes(w)) offenders.push(w);
+    }
+  }
+
   if (offenders.length) {
     violations.push({
       file,
@@ -206,66 +290,83 @@ export function scanString(
  * opener desynchronises the scanner for the rest of the file, which
  * silently skips the strings that follow.
  */
-export function extractStrings(source: string): Array<{ value: string; line: number }> {
-  const out: Array<{ value: string; line: number }> = [];
-  let i = 0;
-  let line = 1;
 
-  while (i < source.length) {
-    const ch = source[i];
 
-    if (ch === '\n') {
-      line++;
-      i++;
-      continue;
-    }
 
-    // Line comments run to the end of the line.
-    if (ch === '/' && source[i + 1] === '/') {
-      while (i < source.length && source[i] !== '\n') i++;
-      continue;
-    }
+/**
+ * A string a reader could see, and the line it was written on.
+ */
+export interface ExtractedString {
+  value: string;
+  line: number;
+}
 
-    // Block comments run to the closing marker.
-    if (ch === '/' && source[i + 1] === '*') {
-      const end = source.indexOf('*/', i + 2);
-      if (end === -1) {
-        line += source.slice(i).split('\n').length - 1;
-        i = source.length;
-        continue;
+/**
+ * Extract every string a reader could see from a TypeScript source file.
+ *
+ * This used to be a hand-written lexical scanner, and it was wrong in
+ * three separate ways, each of which hid a real defect:
+ *
+ *   - An apostrophe inside a comment was read as a string opener, which
+ *     desynchronised the scanner for the rest of the file.
+ *   - A template literal containing an interpolation was not tracked, so
+ *     a nested quote inside `${...}` was read as a string opener.
+ *   - A regular expression literal was not skipped, so the first quote in
+ *     a regex body was read as a string opener.
+ *
+ * Each of those produced a file that reported PASS without having been
+ * checked. The scanner now uses the TypeScript parser instead, which
+ * gives the exact string literals and the exact JSX text with no
+ * heuristics at all.
+ *
+ * The exported shape is unchanged: `{ value, line }`.
+ *
+ * The parser is a build-time and test-time dependency of this module. It
+ * is not imported by any application code, so it never reaches the
+ * client bundle.
+ */
+export function extractStrings(source: string): ExtractedString[] {
+  const out: ExtractedString[] = [];
+
+  const sourceFile = ts.createSourceFile(
+    'content.ts',
+    source,
+    ts.ScriptTarget.ESNext,
+    true,
+    ts.ScriptKind.TSX
+  );
+
+  const lineOf = (node: import('typescript').Node): number =>
+    sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile)).line + 1;
+
+  const push = (value: string, line: number): void => {
+    if (!value.trim()) return;
+    out.push({ value, line });
+  };
+
+  const visit = (node: import('typescript').Node): void => {
+    if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+      // `node.text` is the DECODED value: a literal "\n" in the source is
+      // a newline here, which is what a reader sees. The raw source form
+      // would leave the two characters backslash and "n", and the scanner
+      // would then read that "n" as an English word.
+      push(node.text, lineOf(node));
+    } else if (ts.isTemplateExpression(node)) {
+      // The literal chunks around the interpolations. The interpolation
+      // itself is code, not copy, and is not included.
+      push(node.head.text, lineOf(node.head));
+      for (const span of node.templateSpans) {
+        push(span.literal.text, lineOf(span.literal));
       }
-      line += source.slice(i, end + 2).split('\n').length - 1;
-      i = end + 2;
-      continue;
+    } else if (ts.isJsxText(node)) {
+      // Text between JSX tags is copy, and a reader sees it.
+      push(node.text, lineOf(node));
     }
 
-    if (ch === "'" || ch === '"' || ch === '`') {
-      const quote = ch;
-      const startLine = line;
-      i++;
-      let value = '';
+    ts.forEachChild(node, visit);
+  };
 
-      while (i < source.length) {
-        if (source[i] === '\\') {
-          value += source[i] + (source[i + 1] ?? '');
-          i += 2;
-          continue;
-        }
-        if (source[i] === '\n') line++;
-        if (source[i] === quote) {
-          i++;
-          break;
-        }
-        value += source[i];
-        i++;
-      }
-
-      out.push({ value, line: startLine });
-      continue;
-    }
-
-    i++;
-  }
+  visit(sourceFile);
 
   return out;
 }

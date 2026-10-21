@@ -97,8 +97,8 @@ export function getNavGroups(locale: string): NavGroup[] {
           label: pick('Grading', 'التقييم'),
           labelAr: 'التقييم',
           href: `/${locale}/guides`,
-          description: pick('Sinking grades and GC-MS', 'درجات الغطاس وتحليل GC-MS'),
-          descriptionAr: 'درجات الغطاس وتحليل GC-MS',
+          description: pick('Sinking grades and GC-MS', 'درجات الغطاس والتحليل الكروماتوغرافي'),
+          descriptionAr: 'درجات الغطاس والتحليل الكروماتوغرافي',
         },
         {
           label: pick('Authenticity', 'الأصالة'),

@@ -165,7 +165,7 @@ export default async function BusinessProfilePage({
               <div className="privacy-shield-body">
                 <h4>{isAr ? 'حماية بيانات الاتصال' : 'Contact Data Protection'}</h4>
                 {biz.contact_unlocked ? (
-                  <p>{isAr ? 'بيانات الاتصال الكاملة متاحة بعد موافقتك الصريحة عبر OTP.' : 'Full contact details are available after your explicit OTP approval.'}</p>
+                  <p>{isAr ? 'بيانات الاتصال الكاملة متاحة بعد موافقتك الصريحة برمز التحقق.' : 'Full contact details are available after your explicit OTP approval.'}</p>
                 ) : (
                   <p>{isAr ? 'يخضع هذا الملف لسياسة الحجب التلقائي. لا يتم عرض أي بيانات اتصال.' : 'This profile is auto-redacted. No contact data is exposed.'}</p>
                 )}
@@ -240,13 +240,13 @@ export default async function BusinessProfilePage({
             {
               question: isAr ? 'لماذا لا تظهر بيانات الاتصال مباشرة؟' : 'Why are contact details not shown directly?',
               answer: isAr
-                ? 'سياسة حماية البيانات في OudGuide (QA-007) تحجب أرقام الهواتف والبريد الإلكتروني وعناوين الشوارع في جميع الملفات الأساسية. تظهر البيانات الكاملة فقط لمورد عضو سنوي معتمد، وبعد موافقتك الصريحة عليه بالاسم والتحقق عبر OTP.'
-                : 'OudGuide’s contact-projection policy (QA-007) strips phone, email, and street address from every basic profile. Full contact details appear only for an annual member, and only after you explicitly approve them by name following OTP verification.',
+                ? 'سياسة حماية البيانات في OudGuide تحجب أرقام الهواتف والبريد الإلكتروني وعناوين الشوارع في جميع الملفات الأساسية. تظهر البيانات الكاملة فقط لمورد عضو سنوي معتمد، وبعد موافقتك الصريحة عليه بالاسم والتحقق برمز التحقق.'
+                : 'OudGuide’s contact-projection policy strips phone, email, and street address from every basic profile. Full contact details appear only for an annual member, and only after you explicitly approve them by name following verification by code.',
             },
             {
               question: isAr ? 'كيف أطلب عينة؟' : 'How do I request a sample?',
               answer: isAr
-                ? 'أرسل طلب توريد عبر نموذج RFQ المحايد مع تفعيل خيار العينات. سيصل المورد الموثّق موجزاً فنياً مشفراً دون أي بيانات تعريفية عنك، وتتم الموافقة على الاتصال في ثلاث خطوات منفصلة.'
+                ? 'أرسل طلب توريد عبر النموذج المحايد مع تفعيل خيار العينات. سيصل المورد الموثّق موجزاً فنياً مشفراً دون أي بيانات تعريفية عنك، وتتم الموافقة على الاتصال في ثلاث خطوات منفصلة.'
                 : 'Submit a wholesale RFQ with the samples option enabled. The matched producer receives a redacted technical brief containing no buyer identifying data, and contact introduction requires three separate approvals.',
             },
             {
@@ -256,7 +256,7 @@ export default async function BusinessProfilePage({
                   ? `الحد الأدنى المعلن لهذا المورد هو ${biz.minimum_order_quantity}. يمكن تجاوزه في الطلبات الأولى التي تتضمن عينات فحوص مخبرية.`
                   : `The stated minimum for this producer is ${biz.minimum_order_quantity}. It can be waived on first orders that include laboratory sample testing.`
                 : (isAr
-                  ? 'يتم تحديد الحد الأدنى لكل مورد. يُنصح بطلب تسعير عبر نموذج RFQ للحصول على المتطلبات الدقيقة.'
+                  ? 'يتم تحديد الحد الأدنى لكل مورد. يُنصح بطلب تسعير عبر نموذج طلب التوريد للحصول على المتطلبات الدقيقة.'
                   : 'Minimum order quantities are set per producer. Request a quote through the RFQ form for exact requirements.'),
             },
           ]}

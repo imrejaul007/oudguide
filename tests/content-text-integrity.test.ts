@@ -57,6 +57,28 @@ const CONTENT_DIRS = [
   'apps/web/src/lib/copy',
 ];
 
+/**
+ * The page renderers and the contract modules.
+ *
+ * The string-level scan used to be limited to the content directories,
+ * because the lexical scanner desynchronised on TSX template literals and
+ * produced false positives. The scanner is now built on the TypeScript
+ * parser, so it sees the exact string literals and the exact JSX text, and
+ * the page renderers can be scanned too.
+ *
+ * That matters because the page renderers are where the Arabic copy a
+ * reader actually sees lives. Three defects were found there and fixed:
+ * the internal identifier "canRelease" in the admin and inquiry pages, the
+ * internal identifier "QA-007" in the public directory FAQ, and the Latin
+ * abbreviations "OTP", "RFQ" and "GC-MS" inside Arabic sentences.
+ */
+const PAGE_DIRS = [
+  'apps/web/src/app',
+  'apps/web/src/lib',
+  'apps/web/src/components',
+  'packages/contracts/src',
+];
+
 /** Source extensions worth reading. */
 const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.mjs', '.js', '.json']);
 
@@ -210,6 +232,37 @@ describe('Arabic copy carries no untranslated Latin fragments', () => {
   });
 
   test('no Arabic string in the content layer contains a Latin fragment', () => {
+    const violations = [];
+
+    for (const file of files) {
+      const source = readFileSync(file, 'utf8');
+      for (const { value, line } of extractStrings(source)) {
+        if (!value.trim()) continue;
+        violations.push(...scanString(relative(process.cwd(), file), value, `line ${line}`));
+      }
+    }
+
+    assert.deepEqual(
+      violations.map((v) => `${v.file}: ${v.detail}`),
+      [],
+      `a Latin fragment inside an Arabic string is an untranslated fallback:\n  ${violations
+        .map((v) => `${v.file}: ${v.detail}`)
+        .join('\n  ')}`
+    );
+  });
+});
+
+describe('Arabic copy in the page renderers carries no untranslated Latin fragments', () => {
+  const files = contentFiles(PAGE_DIRS);
+
+  test('the scan found the page renderers', () => {
+    assert.ok(
+      files.length >= 40,
+      `expected to scan the page renderers, found ${files.length} files`
+    );
+  });
+
+  test('no Arabic string in a page renderer contains a Latin fragment', () => {
     const violations = [];
 
     for (const file of files) {

@@ -12,6 +12,12 @@ import { WORKED_EXAMPLES } from './worked-examples.ts';
 import { CHECKLISTS } from './checklists.ts';
 import { DEEPENING } from './deepening.ts';
 import { DEEPENING_2 } from './deepening-2.ts';
+import { DEEPENING_3 } from './deepening-3.ts';
+import { DEEPENING_4 } from './deepening-4.ts';
+import { DEEPENING_5 } from './deepening-5.ts';
+import { DEEPENING_6 } from './deepening-6.ts';
+import { DEEPENING_7 } from './deepening-7.ts';
+import { DEEPENING_8 } from './deepening-8.ts';
 
 /**
  * The reviewed content layer.
@@ -49,9 +55,16 @@ function withRequiredSections(article: Article): Article {
   // A slug may appear in more than one deepening batch; the
   // batches are merged here, in file order, so a later batch
   // never silently drops an earlier batch's sections.
-  const deepening = [DEEPENING, DEEPENING_2].find((batch) =>
-    batch[article.slug]
-  );
+  const deepening = [
+    DEEPENING,
+    DEEPENING_2,
+    DEEPENING_3,
+    DEEPENING_4,
+    DEEPENING_5,
+    DEEPENING_6,
+    DEEPENING_7,
+    DEEPENING_8,
+  ].find((batch) => batch[article.slug]);
   const deepeningSections = deepening ? deepening[article.slug].sections : [];
 
   if (!workedExample && !checklist && !deepening) return article;

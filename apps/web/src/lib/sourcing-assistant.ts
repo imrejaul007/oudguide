@@ -479,7 +479,7 @@ export function createSourcingAssistant(data: AssistantDataSource) {
         return {
           intent,
           answer: isAr
-            ? `وجدت ${producers.length} منتجين مطابقين. جميع البيانات أدناه مصدرها من السجل العام الموثق:\n\n${lines.map((l) => `• ${l}`).join('\n')}${reasonsText}${reasonBlocks}\n\nلعرض بيانات الاتصال الكاملة، يجب أن يكون المورد عضواً سنوياً معتمداً، ويجب أن توافق على اسمه صراحةً بعد التحقق برمز OTP.`
+            ? `وجدت ${producers.length} منتجين مطابقين. جميع البيانات أدناه مصدرها من السجل العام الموثق:\n\n${lines.map((l) => `• ${l}`).join('\n')}${reasonsText}${reasonBlocks}\n\nلعرض بيانات الاتصال الكاملة، يجب أن يكون المورد عضواً سنوياً معتمداً، ويجب أن توافق على اسمه صراحةً بعد التحقق برمز التحقق.`
             : `I found ${producers.length} matching producers. All of the below comes from the public verified registry:\n\n${lines.map((l) => `• ${l}`).join('\n')}${reasonsText}${reasonBlocks}\n\nFull contact details are only released to a supplier holding an active annual membership, and only after you explicitly approve them by name following OTP verification.`,
           suggestions,
           producers,
@@ -537,7 +537,7 @@ export function createSourcingAssistant(data: AssistantDataSource) {
         return {
           intent,
           answer: isAr
-            ? 'أشيع أربعة أشكال من الغش التجاري في العود:\n\n• خشب غطاس مزيف: حقن الرصاص أو الشمع في خشب منخفض الجودة. يُكشف بالأشعة السينية وفحص رائحة الاحتراق.\n• تخفيف بالبلاستيك (DPG) والمواد الكيميائية: يُكشف بتحليل GC-MS.\n• انتحال المنشأ النباتي: بيع A. crassna المستزرع على أنه A. agallocha البري من أسام.\n• وثائق تصدير سايتس مزورة: تُكشف بالمطابقة مع سجلات الغابات الوطنية.\n\nاطلب دائماً تحليل GC-MS ووثائق منشأ موثقة قبل أي دفعة كبيرة.'
+            ? 'أشيع أربعة أشكال من الغش التجاري في العود:\n\n• خشب غطاس مزيف: حقن الرصاص أو الشمع في خشب منخفض الجودة. يُكشف بالأشعة السينية وفحص رائحة الاحتراق.\n• تخفيف بمذيب صناعي (بروبيلين غلايكول ثنائي) ومواد كيميائية أخرى: يُكشف بالتحليل الكروماتوغرافي.\n• انتحال المنشأ النباتي: بيع A. crassna المستزرع على أنه A. agallocha البري من أسام.\n• وثائق تصدير سايتس مزورة: تُكشف بالمطابقة مع سجلات الغابات الوطنية.\n\nاطلب دائماً تحليلاً كروماتوغرافياً ووثائق منشأ موثقة قبل أي دفعة كبيرة.'
             : 'The four most common commercial deceptions in oud:\n\n• Fake sinking wood: lead or wax injected into low-grade timber. Detected by X-ray and burning-aroma testing.\n• Plasticizer (DPG) and chemical adulteration: detected by GC-MS chromatography.\n• Misrepresented botanical origin: plantation A. crassna sold as wild Assam A. agallocha.\n• Fabricated CITES export documents: caught by cross-checking national forestry registries.\n\nAlways request a GC-MS panel and documented origin before any sizeable payment.',
           suggestions,
           references: [{ label: isAr ? 'دليل الأصالة الكامل' : 'Full authenticity guide', href: '/guides' }],
@@ -547,7 +547,7 @@ export function createSourcingAssistant(data: AssistantDataSource) {
         return {
           intent,
           answer: isAr
-            ? 'تُدرج أنواع Aquilaria وGyrinops ضمن الملحق الثاني من اتفاقية سايتس. هذا يعني:\n\n• يلزم تصريح CITES قبل أي استيراد أو تصدير دولي.\n• يلزم تقييم «غيرضرار» (Non-Detriment Finding) لتأكيد أن الحصاد لا يهددبقاء النوع.\n• تُصدر بعض الدول حصصاً تصديرية سنوية تُدار مركزياً.\n\nنوثّق لوائح سايتس لكل من 249 دولة وإقليم في سجلنا.'
+            ? 'تُدرج أنواع Aquilaria وGyrinops ضمن الملحق الثاني من اتفاقية سايتس. هذا يعني:\n\n• يلزم تصريح سايتس قبل أي استيراد أو تصدير دولي.\n• يلزم تقييم «غير الضرر» لتأكيد أن الحصاد لا يهددبقاء النوع.\n• تُصدر بعض الدول حصصاً تصديرية سنوية تُدار مركزياً.\n\nنوثّق لوائح سايتس لكل من 249 دولة وإقليم في سجلنا.'
             : 'Aquilaria and Gyrinops species are listed on CITES Appendix II. In practice this means:\n\n• A CITES permit is required before any cross-border import or export.\n• A Non-Detriment Finding must confirm the harvest does not threaten the species.\n• Certain states administer annual export quotas centrally.\n\nWe document each CITES regulation across all 249 registered territories.',
           suggestions,
           references: [{ label: isAr ? 'لوائح سايتس' : 'CITES regulations', href: '/guides/cites-regulations' }],
@@ -557,7 +557,7 @@ export function createSourcingAssistant(data: AssistantDataSource) {
         return {
           intent,
           answer: isAr
-            ? 'تحدَّد أسعار العود عبر ثلاثة عوامل رئيسية:\n\n• كثافة الراتنج ودرجة الغطاس: الخشب الغاطس أثمن بكثير من الخشب الطافٍ في نفس منشأ الراتنج.\n• عمر التقطير وطريقة الاستخلاص: دهن النحاس التقليدي (Deg) أعلى قيمة من البخار الميكانيكي.\n• المنشأ وسجل التوثيق: المصدر الموثق بسجل CITES وسلسلة التوريد يرفع السعر.\n\nاطلب تسعيراً محدداً عبر نموذج RFQ المحايد للحصول على عروض من موردين مطابقين.'
+            ? 'تحدَّد أسعار العود عبر ثلاثة عوامل رئيسية:\n\n• كثافة الراتنج ودرجة الغطاس: الخشب الغاطس أثمن بكثير من الخشب الطافٍ في نفس منشأ الراتنج.\n• عمر التقطير وطريقة الاستخلاص: دهن النحاس التقليدي أعلى قيمة من البخار الميكانيكي.\n• المنشأ وسجل التوثيق: المصدر الموثق بسجل سايتس وسلسلة التوريد يرفع السعر.\n\nاطلب تسعيراً محدداً عبر نموذج طلب التوريد المحايد للحصول على عروض من موردين مطابقين.'
             : 'Oud pricing is driven by three primary factors:\n\n• Resin density and sinking grade: sinking wood commands far more than floating wood from the same resin-bearing source.\n• Age of distillation and extraction method: traditional copper-deg is valued above mechanical steam.\n• Provenance and documentation trail: CITES-traceable origin and a documented supply chain raise the price.\n\nSubmit a neutral RFQ to receive comparable quotes from matched suppliers.',
           suggestions,
           references: [{ label: isAr ? 'تقديم طلب تسعير' : 'Request a quote', href: '/rfq' }],
@@ -568,7 +568,7 @@ export function createSourcingAssistant(data: AssistantDataSource) {
         return {
           intent: 'help',
           answer: isAr
-            ? 'المساعد يعمل على سجل OudGuide الموثق بالكامل: 249 دولة وإقليماً، 772 مسار بحثي، 67 مواصفة RFQ شرطية، ودليل المنتجين.\n\nيمكنني مساعدتك في:\n• تحديد المنتجين المطابقين لمتطلباتك\n• مقارنة الأقاليم وبصماتها الشمية\n• شرح طرق التقطير ودرجات التقييم\n• توضيح سياسات سايتس وحماية البيانات\n\nجرّب أحد الاقتراحات أدناه.'
+            ? 'المساعد يعمل على سجل OudGuide الموثق بالكامل: 249 دولة وإقليماً، 772 مسار بحثي، 67 مواصفة توريد شرطية، ودليل المنتجين.\n\nيمكنني مساعدتك في:\n• تحديد المنتجين المطابقين لمتطلباتك\n• مقارنة الأقاليم وبصماتها الشمية\n• شرح طرق التقطير ودرجات التقييم\n• توضيح سياسات سايتس وحماية البيانات\n\nجرّب أحد الاقتراحات أدناه.'
             : 'The assistant reads OudGuide\'s complete documented register: 249 territories, 772 researched route briefs, 67 conditional RFQ specifications, and the producer directory.\n\nI can help you:\n• Match producers to your requirements\n• Compare terroirs and their olfactory signatures\n• Explain distillation methods and grading standards\n• Clarify CITES rules and the contact-protection policy\n\nTry one of the suggestions below.',
           suggestions,
         };

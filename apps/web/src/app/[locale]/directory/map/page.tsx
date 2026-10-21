@@ -97,7 +97,7 @@ export default async function ProducerMapPage({
           <div className="map-legend">
             <span className="map-legend-item">
               <span className="map-legend-dot map-legend-producer" />
-              {isAr ? 'إقليم منتج (Wood / Oil)' : 'Producing terroir (Wood / Oil)'}
+              {isAr ? 'إقليم منتج (خشب / زيت)' : 'Producing terroir (Wood / Oil)'}
             </span>
             <span className="map-legend-item">
               <span className="map-legend-dot map-legend-market" />

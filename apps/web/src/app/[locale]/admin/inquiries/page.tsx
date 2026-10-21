@@ -27,7 +27,7 @@ export default async function AdminInquiriesPage({
           <h1>{isAr ? 'لوحة تحكم إدارة التوريد والربط التجاري' : 'Admin Sourcing & Introduction Dispatch Dashboard'}</h1>
           <p className="hero-lead">
             {isAr
-              ? 'لوحة إدارة مشغلي دليل العود لمراجعة الطلبات، التحقق من القنوات، واعتماد إصدار مقدمات التعريف للموردين وفق سياسة canRelease.'
+              ? 'لوحة إدارة مشغلي دليل العود لمراجعة الطلبات، التحقق من القنوات، واعتماد إصدار مقدمات التعريف للموردين وفق سياسة الإفراج الفاشلة-الإغلاق.'
               : 'Operator workspace for qualifying inquiries, auditing consent, and executing introduction releases via the pure fail-closed lead policy.'}
           </p>
         </div>
