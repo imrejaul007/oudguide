@@ -241,8 +241,7 @@ export const FILE_SCOPED_ALLOWED_IN_ARABIC: Record<string, Set<string>> = {
   // does: "المنظمة الدولية للتجارة الخشبية (ITTO)" and "القائمة الحمراء
   // (IUCN)". These are names, not untranslated fragments, and
   // translating them would misname the source.
-  'sources.ts': new Set(['ITTO', 'IUCN', 'TRAFFIC']),
-  'sources-geography.ts': new Set(['ITTO', 'IUCN', 'TRAFFIC']),
+  'sources.ts': new Set(['ITTO', 'IUCN']),
 };
 
 /**
