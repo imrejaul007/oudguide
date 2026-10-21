@@ -84,6 +84,17 @@ export const ALLOWED_IN_ARABIC = new Set([
   'Gyrinops',
   'Aquilarera',
   'A',
+  /**
+   * The genus abbreviations, the way the sources write them.
+   *
+   * "A. microcarpa" and "G. versteegii" are how the ITTO review, the
+   * TRAFFIC studies and the trade literature name the species, and the
+   * Arabic sentences that cite them keep the binomial in Latin script
+   * for the same reason they keep "Aquilaria" and "Gyrinops" in Latin
+   * script: the abbreviation is part of the name, and an Arabic
+   * rendering of "G." would not name anything.
+   */
+  'G',
   'crassna',
   'malaccensis',
   'agallocha',

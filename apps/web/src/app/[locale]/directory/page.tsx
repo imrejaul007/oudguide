@@ -82,6 +82,12 @@ export default async function DirectoryPage({
   const destinationCode = destination ? countryCodeForSlug(destination) : null;
 
   /**
+   * The name of the country the path names, in the reader's language.
+   */
+  const locationName = countryCode ? countryNamesFor(countryCode) : null;
+
+
+  /**
    * The names of the countries the published records serve.
    *
    * The destination filter is an ISO2 code and the record is the only
@@ -155,9 +161,23 @@ export default async function DirectoryPage({
    * The display name for each location code, for the badge that states
    * the active filter.
    */
-  const locationNames: Record<string, string> = Object.fromEntries(
-    locationCountries.map((c) => [c.key, c.label])
-  );
+  const locationNames: Record<string, string> = {
+    ...Object.fromEntries(locationCountries.map((c) => [c.key, c.label])),
+    /**
+     * The country the PATH names, even when no published record sits
+     * there.
+     *
+     * `locationCountries` is built from the records, so it only holds
+     * the countries a business is actually in. A path like
+     * /en/directory/wholesalers/in/india names a country the register
+     * has nobody in, and without this the chip fell back to the raw
+     * code and read "Located in: IN" — a code, not a place, on a
+     * published page a reader can arrive at from a search result.
+     */
+    ...(countryCode && locationName
+      ? { [countryCode]: locationName.en }
+      : {}),
+  };
 
   return (
     <div className="section">

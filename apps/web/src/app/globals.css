@@ -3235,6 +3235,31 @@ a.btn-crimson {
   max-width: 20ch;
 }
 
+/*
+ * The masthead's second line.
+ *
+ * Ten pages carry an <span class="accent"> inside a masthead h1, but
+ * the only rule that styled it was `.hero-title .accent`. The masthead
+ * h1 is not a hero title, so the span fell through to the inherited
+ * h1 style: the same size, the same weight, and inline rather than on
+ * its own line. On the directory it read
+ *
+ *   The directory of oud suppliers1 published record · 2 in research review
+ *
+ * with the count welded to the end of the title. This gives the
+ * masthead the treatment the hero already has, and the count reads as
+ * the sub-line it was always meant to be.
+ */
+.masthead h1 .accent {
+  display: block;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--green-600);
+  font-size: 0.72em;
+  margin-top: 6px;
+  letter-spacing: -0.015em;
+}
+
 .masthead .hero-lead {
   font-family: var(--font-display);
   font-style: italic;
