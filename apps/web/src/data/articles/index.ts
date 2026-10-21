@@ -21,6 +21,7 @@ import { DEEPENING_8 } from './deepening-8.ts';
 import { sectionIndexArticles } from './section-indexes.ts';
 import { gradeLadderArticles } from './quality-grade-ladder.ts';
 import { productFamilyArticles } from './products.ts';
+import { glossaryTermArticles } from './glossary-terms.ts';
 
 /**
  * The reviewed content layer.
@@ -98,6 +99,7 @@ export const articles: Article[] = [
   ...sectionIndexArticles,
   ...gradeLadderArticles,
   ...productFamilyArticles,
+  ...glossaryTermArticles,
   ...basicsArticles,
   ...hubArticles,
   ...qualityArticles,
