@@ -399,8 +399,16 @@ function RfqField({
   required: boolean;
 }) {
   const choices = parseChoices(field['Validation / choices']);
-  const id = field.ID;
-  const name = keyOf(field) ?? id;
+  // The DOM id is the PUBLIC key, not the internal Q identifier.
+  //
+  // OG-A10 removed the Q identifiers from the customer-facing form, but the
+  // element ids still carried them, so `id="Q01"` and `for="Q01"` were in
+  // the served HTML and in the RSC payload. The internal schema id stays
+  // where it belongs — in the admin schema and in the field map — and the
+  // buyer-facing document carries only the public key. The key is also the
+  // field's form name, so the two were already the same string.
+  const name = keyOf(field) ?? field.ID;
+  const id = name;
   const label = publicLabel(field.ID, field.Field, isAr);
   const help = publicHelp(field.ID, isAr);
   const isChoice = ['Select', 'Radio', 'Multi-select', 'Choice'].includes(field['Input type']);
