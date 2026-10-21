@@ -97,87 +97,68 @@ export interface RfqFormValues {
 }
 
 /**
- * Determines whether a specific field should be displayed based on current form answers.
+ * ==========================================================================
+   The RFQ field visibility evaluator.
+   ==========================================================================
+   The rules live in `rfq-visibility.ts`, expressed against the PUBLIC KEYS
+   the buyer-facing form uses. That module has no dependency on the field
+   map, so a client component can import it without pulling the internal
+   `Q` identifiers into the browser.
+
+   This file keeps the internal vocabulary working for the server-side and
+   test callers that use it: `isFieldVisible('Q13', values)` translates the
+   identifier to a public key and delegates. There is ONE set of rules.
+   ==========================================================================
+ */
+
+import { RFQ_FIELD_KEYS } from './rfq-field-map.ts';
+import {
+  isFieldVisibleByKey as isFieldVisibleByKeyImpl,
+  type RfqVisibilityValues,
+} from './rfq-visibility.ts';
+
+/**
+ * The public keys of the fields no buyer ever sees.
+ *
+ * These are the server-owned and partner-owned records: the lead id and
+ * idempotency key, the context and recipient snapshot, the delivery state
+ * and access log, the partner access offer, and the jurisdiction and
+ * channel policy result. They have no public key in the field map, because
+ * no public form ever carries them, and they are never buyer-facing.
+ */
+const SERVER_OWNED_KEYS: Record<string, string> = {
+  Q58: 'lead_id',
+  Q59: 'context_snapshot',
+  Q60: 'delivery_state',
+  Q66: 'lead_access_offer',
+  Q67: 'jurisdiction_policy_result',
+};
+
+/**
+ * The public key for a schema field.
+ *
+ * A server-owned field has a key of its own, which is what the visibility
+ * rules test for. Every other field has the key the domain service reads.
+ */
+export function keyForFieldId(fieldId: string): string {
+  return SERVER_OWNED_KEYS[fieldId] ?? RFQ_FIELD_KEYS[fieldId] ?? fieldId;
+}
+
+/**
+ * Whether a field should be displayed, given the answers so far.
+ *
+ * The public-key form. Safe to call from a client component.
+ */
+export function isFieldVisibleByKey(key: string, values: RfqFormValues): boolean {
+  return isFieldVisibleByKeyImpl(key, values);
+}
+
+/**
+ * Whether a field should be displayed, given the answers so far.
+ *
+ * The internal form, kept for the server-side and test callers. It
+ * translates and delegates, so the two vocabularies cannot diverge.
  */
 export function isFieldVisible(fieldId: string, values: RfqFormValues): boolean {
-  const family = (values.product_family || '').toLowerCase();
-  const purpose = (values.purchase_purpose || '').toLowerCase();
-  const samplesRequested =
-    values.samples_requested === true ||
-    values.samples_requested === 'Yes' ||
-    values.samples_requested === 'yes';
-  const contactChannel = (values.preferred_contact_channel || '').toLowerCase();
-  const mode = values.request_mode || 'matching';
-
-  // Server-owned and partner-owned fields are never buyer-facing.
-  if (fieldId === 'Q58' || fieldId === 'Q59' || fieldId === 'Q60' || fieldId === 'Q66' || fieldId === 'Q67') {
-    return false;
-  }
-
-  // Start stage — always visible on every request.
-  if (['Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q07', 'Q08', 'Q09', 'Q10', 'Q11', 'Q12'].includes(fieldId)) {
-    return true;
-  }
-
-  // Wood & incense branch (Q13-Q22).
-  if (['Q13', 'Q14', 'Q15', 'Q16', 'Q17', 'Q18', 'Q19', 'Q20', 'Q21', 'Q22'].includes(fieldId)) {
-    return family.includes('wood') || family.includes('bakhoor') || family.includes('incense');
-  }
-
-  // Oil & attar branch (Q23-Q29).
-  if (['Q23', 'Q24', 'Q25', 'Q26', 'Q27', 'Q28', 'Q29'].includes(fieldId)) {
-    return family.includes('oil') || family.includes('attar') || family.includes('perfume oil');
-  }
-
-  // Finished perfume & private label branch (Q30-Q35).
-  if (['Q30', 'Q31', 'Q32', 'Q33', 'Q34', 'Q35'].includes(fieldId)) {
-    return family.includes('perfume') || family.includes('finished') || family.includes('related');
-  }
-
-  // Sample branch (Q36-Q41) — opens once samples are requested.
-  if (['Q36', 'Q37', 'Q38', 'Q39', 'Q40', 'Q41'].includes(fieldId)) {
-    return samplesRequested;
-  }
-
-  // Delivery (Q42-Q47). Postal code and cross-border questions only
-  // matter for a shipment, so they follow the commercial purpose.
-  if (fieldId === 'Q42') return purpose !== 'retail/personal' && purpose !== 'gifting';
-  if (fieldId === 'Q43') return true;
-  if (['Q44', 'Q45', 'Q46'].includes(fieldId)) {
-    return purpose.includes('wholesale') || purpose.includes('manufactur') || purpose.includes('private label');
-  }
-  if (fieldId === 'Q47') return purpose.includes('wholesale');
-
-  // Contact (Q48-Q53).
-  if (fieldId === 'Q48') return true; // Buyer name — always required
-  if (fieldId === 'Q49') {
-    // Company name — only for a business buyer.
-    return purpose.includes('wholesale') || purpose.includes('manufactur') || purpose.includes('private label');
-  }
-  if (fieldId === 'Q50') return true; // Channel selector — always required
-  if (fieldId === 'Q51') return contactChannel === 'email'; // Email
-  if (fieldId === 'Q52') return contactChannel === 'phone' || contactChannel === 'whatsapp';
-  if (fieldId === 'Q53') return true; // Language & time zone
-
-  // Consent (Q54-Q57).
-  if (fieldId === 'Q54') return true; // Processing notice — required display
-  if (fieldId === 'Q55') return true; // Acknowledgment — required control
-  if (fieldId === 'Q56') {
-    // Additional supplier matching permission — only for a supplier-specific request.
-    return mode === 'selected_supplier';
-  }
-  if (fieldId === 'Q57') return true; // Marketing opt-in
-
-  // Matching (Q61-Q63) and Approval (Q64-Q65).
-  if (fieldId === 'Q61') return true; // Request mode
-  if (fieldId === 'Q62') {
-    // Maximum supplier introductions — a matching-flow concept. The lead
-    // policy enforces the same cap server-side via `recipient_cap`.
-    return mode === 'matching';
-  }
-  if (fieldId === 'Q63') return true; // Redacted brief permission
-  if (fieldId === 'Q64') return true; // Named recipient set
-  if (fieldId === 'Q65') return true; // Consent withdrawal — always accessible
-
-  return true;
+  return isFieldVisibleByKeyImpl(keyForFieldId(fieldId), values);
 }

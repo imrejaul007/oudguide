@@ -1,15 +1,17 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { isFieldVisible } from '../../../../../packages/contracts/src/rfq-fields.ts';
 import {
-  RFQ_FIELD_KEYS,
-  RFQ_FIELD_EXTRA_KEYS,
-  RFQ_FIELD_STAGES,
-  RFQ_BUYER_STAGES,
-} from '../../../../../packages/contracts/src/rfq-field-map.ts';
-import { publicLabel, publicHelp } from '../../../../../packages/contracts/src/rfq-public-copy.ts';
-import rfqFieldDefs from '@/data/rfq_fields.json';
+  PUBLIC_FIELD_LIST,
+  PUBLIC_FIELD_EXTRA_KEYS,
+  PUBLIC_STAGES,
+  PUBLIC_STAGE_LABELS,
+  publicLabel,
+  publicHelp,
+  publicOptionLabel,
+  type PublicField,
+} from '../../../../../packages/contracts/src/rfq-public-schema.ts';
+import { isFieldVisibleByKey } from '../../../../../packages/contracts/src/rfq-visibility.ts';
 import { useDebounce } from '@/lib/hooks';
 import {
   ChevronRight,
@@ -40,60 +42,40 @@ import {
  *   - the Matching stage (request mode, recipient cap, redaction consent).
  */
 
-type FieldDef = {
-  ID: string;
-  'Form stage': string;
-  Field: string;
-  'Input type': string;
-  'When shown': string;
-  'Required?': string;
-  'Validation / choices': string;
-  'Privacy / interpretation': string;
-};
+/**
+ * The public projection of the form, and nothing else.
+ *
+ * The wizard used to import the reference schema and the field map, which
+ * put the internal `Q` identifiers and the internal handling notes into
+ * the browser bundle. It now imports the projection, which carries no
+ * internal vocabulary at all.
+ */
+const FIELDS = PUBLIC_FIELD_LIST;
 
-const FIELDS = rfqFieldDefs as unknown as FieldDef[];
+/** Stages the buyer walks through, in order. */
+const BUYER_STAGES = PUBLIC_STAGES as readonly string[];
 
-/** Stages the buyer walks through, in order. System stages are server-side. */
-const BUYER_STAGES = RFQ_BUYER_STAGES as readonly string[];
-
-const STAGE_LABELS: Record<string, { en: string; ar: string }> = {
-  Start: { en: 'Requirements', ar: 'المتطلبات' },
-  Wood: { en: 'Wood & Incense', ar: 'الخشب والبخور' },
-  Oil: { en: 'Oils & Attars', ar: 'الزيوت والعطور' },
-  Perfume: { en: 'Perfume & Private Label', ar: 'العطور والتصنيع الخاص' },
-  Sample: { en: 'Samples', ar: 'العينات' },
-  Delivery: { en: 'Delivery & Trade Terms', ar: 'الشحن وشروط التجارة' },
-  Contact: { en: 'Contact Channel', ar: 'وسيلة الاتصال' },
-  Consent: { en: 'Consent & Permissions', ar: 'الموافقة والصلاحيات' },
-  Matching: { en: 'Matching Preferences', ar: 'تفضيلات المطابقة' },
-};
+const STAGE_LABELS = PUBLIC_STAGE_LABELS;
 
 /** Stages that only appear when their branch is triggered. */
 const CONDITIONAL_STAGES = new Set(['Wood', 'Oil', 'Perfume', 'Sample']);
 
-/** The stage a field belongs to, from the canonical map. */
-const stageOf = (f: FieldDef) => RFQ_FIELD_STAGES[f.ID] ?? f['Form stage'];
-
-/** The semantic key a field's answer is stored under. */
-const keyOf = (f: FieldDef) => RFQ_FIELD_KEYS[f.ID];
-
 /**
- * Parse the semicolon-delimited "Validation / choices" column into a
- * clean option list. The column mixes real options with prose
- * instructions, so entries containing a comma or a colon are prose.
+ * The option values a field offers.
+ *
+ * These come from the projection, not from parsing the schema column. The
+ * schema column mixes real options with prose instructions, and parsing it
+ * produced three defects that were live: the acronyms "SDS" and "COA" were
+ * lower-cased, the contact channel collapsed to a single option so that
+ * neither the email nor the phone field ever appeared, and the request
+ * mode became a prose string the server could not read.
+ *
+ * An option's VALUE is machine data. The server reads it: the product
+ * branch tests `family.includes('wood')`, the introduction path tests
+ * `request_mode === 'selected_supplier'`. Only the display text is
+ * localised.
  */
-function parseChoices(raw: string): string[] {
-  if (!raw) return [];
-  return raw
-    .split(';')
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .filter((s) => !s.includes(':') || s.split(':').length === 2)
-    .filter((s) => s.length < 70)
-    .map((s) => s.replace(/^[A-Z][a-z]+ /, (m) => m))
-    .map((s) => s.charAt(0).toLowerCase() + s.slice(1))
-    .filter((s, i, arr) => arr.indexOf(s) === i);
-}
+const choicesOf = (field: PublicField) => field.options.map((o) => o.value);
 
 export function RfqWizard({
   locale,
@@ -119,7 +101,7 @@ export function RfqWizard({
     return BUYER_STAGES.filter((stage) => {
       if (!CONDITIONAL_STAGES.has(stage)) return true;
       return FIELDS.some(
-        (f) => stageOf(f) === stage && isFieldVisible(f.ID, values as any)
+        (f) => f.stage === stage && isFieldVisibleByKey(f.key, values as any)
       );
     });
   }, [values]);
@@ -127,22 +109,22 @@ export function RfqWizard({
   const currentStage = visibleStages[Math.min(stageIndex, visibleStages.length - 1)];
 
   const stageFields = useMemo(
-    () => FIELDS.filter((f) => stageOf(f) === currentStage && isFieldVisible(f.ID, values as any)),
+    () => FIELDS.filter((f) => f.stage === currentStage && isFieldVisibleByKey(f.key, values as any)),
     [currentStage, values]
   );
 
   const totalVisible = useMemo(
-    () => FIELDS.filter((f) => isFieldVisible(f.ID, values as any) && stageOf(f) !== 'System').length,
+    () => FIELDS.filter((f) => isFieldVisibleByKey(f.key, values as any)).length,
     [values]
   );
 
-  const setValue = (id: string, value: any) => {
-    // Store under the semantic key the domain service reads, not the
-    // schema's Q-number. The two vocabularies had drifted apart, which
-    // meant every answer the buyer gave was discarded on submit.
-    const field = FIELDS.find((f) => f.ID === id) as FieldDef;
-    const key = keyOf(field) ?? id;
-    const extras = RFQ_FIELD_EXTRA_KEYS[id] ?? [];
+  const setValue = (key: string, value: any) => {
+    // Store under the semantic key the domain service reads. The two
+    // vocabularies had drifted apart once — the wizard posted `Q01=…`
+    // while the domain read `product_family` — which meant every answer
+    // the buyer gave was discarded on submit. The projection carries the
+    // public key, so the two cannot drift apart again.
+    const extras = PUBLIC_FIELD_EXTRA_KEYS[key] ?? [];
     setValues((prev) => {
       const next: Record<string, any> = { ...prev, [key]: value };
       for (const extra of extras) next[extra] = value;
@@ -150,9 +132,7 @@ export function RfqWizard({
     });
   };
 
-  const isRequired = (f: FieldDef) =>
-    f['Required?'] === 'Required' ||
-    (f['Required?'] === 'Conditional' && f['When shown'] !== 'All requests');
+  const isRequired = (f: PublicField) => f.required;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -300,10 +280,10 @@ export function RfqWizard({
         <div className="stack-6">
           {stageFields.map((f) => (
             <RfqField
-              key={f.ID}
+              key={f.key}
               field={f}
-              value={values[keyOf(f)]}
-              onChange={(v) => setValue(f.ID, v)}
+              value={values[f.key]}
+              onChange={(v) => setValue(f.key, v)}
               isAr={isAr}
               required={isRequired(f)}
             />
@@ -392,13 +372,13 @@ function RfqField({
   isAr,
   required,
 }: {
-  field: FieldDef;
+  field: PublicField;
   value: any;
   onChange: (v: any) => void;
   isAr: boolean;
   required: boolean;
 }) {
-  const choices = parseChoices(field['Validation / choices']);
+  const choices = choicesOf(field);
   // The DOM id is the PUBLIC key, not the internal Q identifier.
   //
   // OG-A10 removed the Q identifiers from the customer-facing form, but the
@@ -407,18 +387,18 @@ function RfqField({
   // where it belongs — in the admin schema and in the field map — and the
   // buyer-facing document carries only the public key. The key is also the
   // field's form name, so the two were already the same string.
-  const name = keyOf(field) ?? field.ID;
+  const name = field.key;
   const id = name;
-  const label = publicLabel(field.ID, field.Field, isAr);
-  const help = publicHelp(field.ID, isAr);
-  const isChoice = ['Select', 'Radio', 'Multi-select', 'Choice'].includes(field['Input type']);
+  const label = publicLabel(field.key, isAr);
+  const help = publicHelp(field.key, isAr);
+  const isChoice = field.inputType === 'Select';
 
   // Affirmative controls (consent, opt-ins, redaction permission) must be
   // unticked checkboxes, never free text.
-  const isAffirmative = /Unticked|Affirmative/.test(field['Input type']);
+  const isAffirmative = field.inputType === 'Checkbox';
 
   // The processing notice is a read-only recipient banner, not an input.
-  const isNotice = /Read-only/.test(field['Input type']);
+  const isNotice = field.inputType === 'Read-only';
 
   if (isNotice) {
     return (
@@ -428,11 +408,7 @@ function RfqField({
       >
         <div className="privacy-shield-body">
           <h4>{label}</h4>
-          <p>
-            {isAr
-              ? 'عند اعتمادك لطلب، يُرسل موجز فني خالٍ من أي هوية للمشتري إلى الموردين الذين تعتمدهم. تُعرض أسماء الموردين على شاشتك قبل الموافقة النهائية، ولا تُسلَّم بيانات اتصالك إلا لمورد تعتمد عليه بالاسم لهذا الطلب.'
-              : 'When you approve a request, a technical brief with no buyer identity in it is sent to the suppliers you approve. Producer names are shown on your screen before final approval, and your contact details are released only to a supplier you approve by name for that request.'}
-          </p>
+          <p>{help}</p>
         </div>
       </div>
     );
@@ -488,11 +464,11 @@ function RfqField({
           <option value="">{isAr ? 'اختر...' : 'Select...'}</option>
           {choices.map((c) => (
             <option key={c} value={c}>
-              {c}
+              {publicOptionLabel(field.key, c, isAr)}
             </option>
           ))}
         </select>
-      ) : field['Input type'] === 'Textarea' ? (
+      ) : field.inputType === 'Textarea' ? (
         <textarea
           id={id}
           name={name}
@@ -502,7 +478,7 @@ function RfqField({
           rows={3}
           required={required}
         />
-      ) : field['Input type'] === 'Number' || field['Input type'] === 'Integer' ? (
+      ) : field.inputType === 'Number' ? (
         <input
           id={id}
           name={name}
@@ -512,7 +488,7 @@ function RfqField({
           className="form-input"
           required={required}
         />
-      ) : field['Input type'] === 'Date' ? (
+      ) : field.inputType === 'Date' ? (
         <input
           id={id}
           name={name}
@@ -522,7 +498,7 @@ function RfqField({
           className="form-input"
           required={required}
         />
-      ) : field['Input type'] === 'File' || field['Input type'] === 'Private upload' ? (
+      ) : field.inputType === 'File' ? (
         <input
           id={id}
           name={name}

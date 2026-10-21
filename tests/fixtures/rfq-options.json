@@ -1,0 +1,113 @@
+{
+  "_comment": "A snapshot of the option values the RFQ wizard rendered before the options were restated explicitly. These values are what the server reads, so they are machine values and not display text. A changed value must be recorded here with its reason.",
+  "fields": {
+    "Q01": [
+      "oud wood",
+      "oud oil",
+      "perfume oil",
+      "finished perfume",
+      "bakhoor/incense",
+      "related products",
+      "not sure"
+    ],
+    "Q02": [
+      "wholesale/resale",
+      "manufacturing",
+      "private label",
+      "retail/personal",
+      "gifting",
+      "not sure"
+    ],
+    "Q07": [
+      "any",
+      "specific countries",
+      "not sure"
+    ],
+    "Q10": [
+      "total order",
+      "per gram",
+      "per kg",
+      "per mL",
+      "per litre",
+      "per bottle"
+    ],
+    "Q12": [
+      "yes",
+      "no",
+      "advice needed"
+    ],
+    "Q15": [
+      "heating/burning",
+      "distillation",
+      "manufacture",
+      "collecting",
+      "carving",
+      "not sure"
+    ],
+    "Q16": [
+      "declared untreated",
+      "infused/scented acceptable",
+      "treatment disclosure required",
+      "not sure"
+    ],
+    "Q17": [
+      "cultivated",
+      "documented other source",
+      "no preference",
+      "advice needed"
+    ],
+    "Q23": [
+      "declared oud oil",
+      "attar blend",
+      "fragrance compound",
+      "diluted oil",
+      "not sure"
+    ],
+    "Q27": [
+      "sDS",
+      "applicable conformity information",
+      "cOA",
+      "batch test report",
+      "ingredient information"
+    ],
+    "Q28": [
+      "single batch",
+      "repeatable blend",
+      "natural batch variation accepted"
+    ],
+    "Q30": [
+      "existing branded product",
+      "private label",
+      "custom formulation",
+      "not sure"
+    ],
+    "Q39": [
+      "require bulk from sampled batch",
+      "acceptable variation",
+      "advice needed"
+    ],
+    "Q43": [
+      "courier",
+      "air cargo",
+      "other",
+      "seller advice"
+    ],
+    "Q47": [
+      "one-off",
+      "monthly",
+      "quarterly",
+      "other",
+      "not sure"
+    ],
+    "Q50": [
+      "email or phone/WhatsApp"
+    ],
+    "Q61": [
+      "oudGuide matching / chosen supplier only"
+    ],
+    "Q62": [
+      "1 or up to 3 default policy",
+      "configurable after approval"
+    ]
+  }
+}

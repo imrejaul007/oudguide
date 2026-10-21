@@ -151,7 +151,7 @@ export interface Violation {
  * keeps the instruction correct without opening the hole everywhere.
  */
 export const FILE_SCOPED_ALLOWED_IN_ARABIC: Record<string, Set<string>> = {
-  'rfq-public-copy.ts': new Set(['Super', 'Double']),
+  'rfq-public-schema.ts': new Set(['Super', 'Double']),
 };
 
 /**
