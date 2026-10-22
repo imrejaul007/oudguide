@@ -28,7 +28,7 @@ export default function RootNotFound() {
       href: '/en/guides',
       icon: Search,
       label: 'Encyclopedia',
-      hint: '83 documented scientific guides',
+      hint: 'Reviewed editorial guides',
     },
     {
       href: '/en/world',

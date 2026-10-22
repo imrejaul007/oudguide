@@ -12,7 +12,7 @@ export function Footer({ locale }: { locale: string }) {
         { href: `/${locale}/guides/sourcing/wild-and-cultivated-oud`, label: isAr ? 'البرّي والمستزرع' : 'Wild vs Plantation' },
         { href: `/${locale}/guides/production/oud-extraction-methods`, label: isAr ? 'تقطير الدِّق النحاسي' : 'Copper-Deg Alembics' },
         { href: `/${locale}/guides/trade/agarwood-documentation`, label: isAr ? 'لوائح سايتس' : 'CITES & Export Laws' },
-        { href: `/${locale}/guides`, label: isAr ? 'كل الأدلة الـ83 ←' : 'All 83 Guides →' },
+        { href: `/${locale}/guides`, label: isAr ? 'كل الأدلة ←' : 'All Guides →' },
       ],
     },
     {

@@ -36,7 +36,7 @@ export default async function NotFound({
       href: `/${locale}/guides`,
       icon: Search,
       label: isAr ? 'الموسوعة المعرفية' : 'Encyclopedia',
-      hint: isAr ? '83 دليلاً علمياً موثقاً' : '83 documented scientific guides',
+      hint: isAr ? 'أدلة تحريرية مُراجَعة' : 'Reviewed editorial guides',
     },
     {
       href: `/${locale}/world`,
