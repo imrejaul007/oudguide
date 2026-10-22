@@ -111,7 +111,7 @@ export function ComparisonDrawer({
       label: 'Minimum order',
       labelAr: 'الحد الأدنى للطلب',
       render: (p) => (
-        <span className="display-serif" style={{ fontSize: '0.92rem', fontStyle: 'italic' }}>
+        <span style={{ fontSize: '0.92rem', fontFamily: 'var(--font-sans)', color: 'var(--ink)' }}>
           {p.minimum_order_quantity || '—'}
         </span>
       ),
@@ -167,7 +167,7 @@ export function ComparisonDrawer({
             insetInlineStart: '50%',
             transform: 'translateX(-50%)',
             zIndex: 120,
-            background: 'var(--bg-majlis)',
+            background: 'var(--green-800)',
             color: '#fff',
             borderRadius: 999,
             padding: '10px 10px 10px 20px',
@@ -182,7 +182,7 @@ export function ComparisonDrawer({
           </span>
           <button
             onClick={() => setIsOpen(true)}
-            className="btn btn-gold btn-sm"
+            className="btn btn-primary btn-sm"
             style={{ borderRadius: 999 }}
           >
             <GitCompare size={14} />

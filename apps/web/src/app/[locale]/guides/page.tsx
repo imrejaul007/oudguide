@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { buildMetadata } from '@/lib/metadata';
-import { articleCounts, hubChildren, listReviewedArticles } from '@/lib/articles';
+import { articleCounts, hubChildren, listReviewedArticles, articlePath, articleTitle, articleSummary } from '@/lib/articles';
 import { getArticle } from '@/lib/articles';
-import { FileText, BookOpen, ArrowRight } from 'lucide-react';
+import { FileText, BookOpen, ArrowRight, Package, ScrollText, Globe } from 'lucide-react';
 
 /**
  * The encyclopedia index.
@@ -71,6 +71,12 @@ export default async function GuidesIndexPage({
     (a) => a.kind !== 'hub' && (!a.parent || a.parent === 'guides-index')
   );
 
+  // The most recently reviewed finished articles, newest first.
+  const recent = listReviewedArticles()
+    .filter((a) => a.kind !== 'hub')
+    .sort((a, b) => (b.reviewedOn || '').localeCompare(a.reviewedOn || ''))
+    .slice(0, 6);
+
   return (
     <div className="section">
       <div className="container">
@@ -93,6 +99,85 @@ export default async function GuidesIndexPage({
                 ? 'كل مقال هنا يحمل جوابه الخاص، ومصادره، وحدود ما يثبته. والموجزات البحثية صفحات لم تُكتب بعد، وهي موسومة بوضوح كموجزات وليست مقالات مكتملة.'
                 : 'Every article here carries its own answer, its sources, and the limits of what it establishes. The research briefs are pages that have not been written yet; they are labelled as briefs and are not presented as finished articles.'}
             </p>
+          </div>
+        </section>
+
+        {/* RECENTLY REVIEWED */}
+        <section style={{ marginTop: 40, marginBottom: 48 }}>
+          <div className="row-between" style={{ marginBottom: 18 }}>
+            <div>
+              <span className="eyebrow" style={{ display: 'block', marginBottom: 6 }}>
+                {isAr ? 'الأحدث مراجعةً' : 'Recently reviewed'}
+              </span>
+              <h2 className="h2" style={{ margin: 0 }}>
+                {isAr ? 'آخر ما أُنهي من المقالات' : 'The latest finished articles'}
+              </h2>
+            </div>
+          </div>
+          {recent.length > 0 ? (
+            <div className="grid-3">
+              {recent.map((a) => {
+                const Kind =
+                  a.kind === 'product' ? Package : a.kind === 'glossary' ? ScrollText : BookOpen;
+                const kindLabel =
+                  a.kind === 'product'
+                    ? (isAr ? 'صيغة' : 'Product')
+                    : a.kind === 'glossary'
+                      ? (isAr ? 'مصطلح' : 'Term')
+                      : (isAr ? 'دليل' : 'Guide');
+                return (
+                  <Link
+                    key={a.slug}
+                    href={articlePath(locale, a.slug)}
+                    className="card"
+                    style={{ padding: 20, textDecoration: 'none', display: 'block' }}
+                  >
+                    <div className="cluster" style={{ gap: 8, marginBottom: 10 }}>
+                      <span className="badge badge-crimson">
+                        <Kind size={11} />
+                        {kindLabel}
+                      </span>
+                      {a.reviewedOn && <span className="meta">{a.reviewedOn}</span>}
+                    </div>
+                    <h3 style={{ fontSize: '1rem', margin: '0 0 6px' }}>
+                      {articleTitle(a, locale)}
+                    </h3>
+                    <p
+                      className="text-body"
+                      style={{
+                        margin: 0,
+                        fontSize: '0.88rem',
+                        color: 'var(--ink-soft)',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      {articleSummary(a, locale)}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : null}
+        </section>
+
+        {/* CROSS-LINK STRIP: discovery is not hub-only */}
+        <section style={{ marginBottom: 48 }}>
+          <div className="cluster" style={{ gap: 10, flexWrap: 'wrap' }}>
+            <Link href={`/${locale}/glossary`} className="btn btn-outline btn-sm">
+              <ScrollText size={13} />
+              {isAr ? 'قاموس المصطلحات' : 'The glossary'}
+            </Link>
+            <Link href={`/${locale}/products`} className="btn btn-outline btn-sm">
+              <Package size={13} />
+              {isAr ? 'عائلات المنتجات' : 'Product families'}
+            </Link>
+            <Link href={`/${locale}/world`} className="btn btn-outline btn-sm">
+              <Globe size={13} />
+              {isAr ? 'السجل الجغرافي' : 'The geographic register'}
+            </Link>
           </div>
         </section>
 

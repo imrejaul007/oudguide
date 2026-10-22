@@ -274,7 +274,7 @@ export default async function PrivacyPage({
                 />
               </div>
 
-              <button type="submit" className="btn btn-gold" style={{ width: '100%', marginTop: 8 }}>
+              <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: 8 }}>
                 {isAr ? 'إرسال الطلب ←' : 'Submit the request →'}
               </button>
             </form>

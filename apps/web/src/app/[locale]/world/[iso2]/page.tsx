@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import { seed } from '@/lib/data';
 import { buildMetadata } from '@/lib/metadata';
 import { editorialCopy, pick } from '@/lib/copy/policy';
+import { resolvePublishedPath, publishedLabel } from '@/lib/route-resolver';
+import { MapPin, Info, BookOpen, Award, Lock, FileText, ArrowRight } from 'lucide-react';
 
 /**
  * Per-territory metadata.
@@ -63,143 +65,183 @@ export default async function CountryDetailPage({
     (b: any) => !b.demo && b.country_id.toUpperCase() === code
   );
 
-  // Find routes associated with this country
-  const routes = seed.routes.filter(
-    (r: any) =>
-      r.path.includes(`/${country.proposed_slug}/`) ||
-      r.title_brief.toLowerCase().includes(country.english_seed.toLowerCase())
-  ).slice(0, 8);
+  // Routes associated with this country. Only links that resolve to a
+  // published page are rendered — a related-brief list that points at
+  // 404s is worse than none.
+  const relatedRoutes = (seed.routes as any[])
+    .filter(
+      (r: any) =>
+        r.path.includes(`/${country.proposed_slug}/`) ||
+        r.title_brief.toLowerCase().includes(country.english_seed.toLowerCase())
+    )
+    .slice(0, 12)
+    .map((r: any) => {
+      const target = resolvePublishedPath(r.path, locale);
+      if (!target) return null;
+      return { href: target, label: publishedLabel(r.path, locale) };
+    })
+    .filter((r: any): r is { href: string; label: string } => Boolean(r && r.label));
 
   return (
-    <div style={{ maxWidth: '960px', margin: '0 auto', padding: '10px 0 60px' }}>
-      {/* BREADCRUMB */}
-      <nav style={{ margin: '20px 0 16px', fontSize: '13.5px', color: 'var(--color-text-muted)' }}>
-        <Link href={`/${locale}`}>Home</Link>
-        {' > '}
-        <Link href={`/${locale}/world`}>{isAr ? 'خريطة الأقاليم' : 'World Terroirs'}</Link>
-        {' > '}
-        <span>{isAr ? country.arabic_seed : country.english_seed}</span>
-      </nav>
+    <div className="section">
+      <div className="container" style={{ maxWidth: 960 }}>
+        {/* BREADCRUMB */}
+        <nav className="meta" style={{ margin: '20px 0 16px', color: 'var(--ink-soft)', textTransform: 'none', letterSpacing: '0.02em', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <Link href={`/${locale}`}>{isAr ? 'الرئيسية' : 'Home'}</Link>
+          <span>›</span>
+          <Link href={`/${locale}/world`}>{isAr ? 'سجل الأقاليم' : 'Territory Register'}</Link>
+          <span>›</span>
+          <span style={{ color: 'var(--ink)' }}>{isAr ? country.arabic_seed : country.english_seed}</span>
+        </nav>
 
-      {/* LUXURY COUNTRY HERO */}
-      <section className="masthead" style={{ marginBottom: 36 }}>
-        <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
-          <span className="badge-forest">ISO: {country.iso2} / {country.iso3}</span>
-          <span className="badge-gold">{country.role_status}</span>
-          <span className="badge-locked">{country.public_readiness}</span>
-        </div>
-
-        <h1>
-          {isAr ? country.arabic_seed : country.english_seed}
-        </h1>
-        <p className="hero-lead" style={{ marginBottom: 24 }}>
-          {isAr
-            ? `إقليم مسجَّل في دليل العود ضمن 249 دولة وإقليماً. حالة التقييم المعروضة أدناه هي ما يحمله السجل لهذا الإقليم.`
-            : `A registered territory in the OudGuide reference, covering ${country.english_seed}. The assessment status below is what the register actually records for it.`}
-        </p>
-
-        <div className="masthead-actions">
-          <Link href={`/${locale}/rfq?country=${encodeURIComponent(country.english_seed)}`} className="btn btn-primary">
-            {isAr ? `طلب توريد لهذه الوجهة (${country.arabic_seed})` : `Submit Wholesale RFQ for ${country.english_seed}`}
-          </Link>
-        </div>
-      </section>
-
-      {/* METADATA PROFILE */}
-      <div className="form-card" style={{ marginBottom: '32px' }}>
-        <h3 className="card-title font-display" style={{ fontSize: '20px', borderBottom: '1px solid var(--color-border)', paddingBottom: '10px', marginBottom: '14px' }}>
-          {isAr ? 'المواصفات الجغرافية والأنظمة القياسية' : 'Standard Territorial & Regulatory Specifications'}
-        </h3>
-        <div className="grid-3" style={{ fontSize: '14px' }}>
-          <div>
-            <strong>ISO 3166-1 Alpha-2:</strong> <code>{country.iso2}</code>
-          </div>
-          <div>
-            <strong>ISO 3166-1 Alpha-3:</strong> <code>{country.iso3}</code>
-          </div>
-          <div>
-            <strong>Standard Source:</strong> {country.source_version}
-          </div>
-        </div>
-      </div>
-
-      {/* DOCUMENTED DISTILLERS & PRODUCERS */}
-      <div className="luxury-card" style={{ marginBottom: '36px' }}>
-        <h3 className="card-title font-display" style={{ fontSize: '22px', borderBottom: '1px solid var(--color-border)', paddingBottom: '12px', marginBottom: '18px' }}>
-          🏛️ {isAr ? `المنتجون والمقطرون المسجلون في ${country.arabic_seed}` : `Documented Producers & Distillers in ${country.english_seed}`}
-        </h3>
-
-        {businesses.length > 0 ? (
-          <div className="grid-2">
-            {businesses.map((b: any) => (
-              <div key={b.id} className="luxury-card" style={{ padding: '20px', background: '#fdfcf9' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                  <h4 style={{ margin: 0, fontSize: '17px' }}>
-                    <Link href={`/${locale}/directory/${b.slug}`}>{b.name}</Link>
-                  </h4>
-                  {b.contact_unlocked ? <span className="badge-gold">Member</span> : <span className="badge-locked">Protected</span>}
-                </div>
-                <p style={{ margin: '0 0 10px', fontSize: '13px', color: 'var(--color-text-muted)' }}>
-                  📍 {b.city} · <strong>{b.category}</strong>
-                </p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '12px', color: '#666' }}>MOQ: {b.minimum_order_quantity || 'Flexible'}</span>
-                  <Link href={`/${locale}/directory/${b.slug}`} className="btn-outline" style={{ padding: '4px 10px', fontSize: '12px' }}>
-                    {isAr ? 'عرض الملف' : 'View Profile'}
-                  </Link>
-                </div>
+        {/* MASTHEAD */}
+        <section className="masthead" style={{ borderBottom: 'none', padding: '24px 0 28px' }}>
+          <div className="masthead-inner">
+            <div className="row-between" style={{ marginBottom: 14, gap: 10 }}>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                <span className="badge badge-forest">ISO {country.iso2} · {country.iso3}</span>
+                <span className="badge badge-crimson">{country.role_status}</span>
+                <span className="badge badge-locked">{country.public_readiness}</span>
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="privacy-shield" style={{ margin: 0 }}>
-            <div className="privacy-shield-icon">ℹ️</div>
-            <div className="privacy-shield-text">
+            </div>
+
+            <h1>
+              {isAr ? country.arabic_seed : country.english_seed}
+              <span className="accent">
+                {isAr
+                  ? `إقليم مسجّل من أصل ${(seed.countries as any[]).length} في السجل الجغرافي.`
+                  : `One of ${(seed.countries as any[]).length} territories in the geographic register.`}
+              </span>
+            </h1>
+
+            <p className="hero-lead">
               {isAr
-                ? `لا توجد شركات مدرجة بشكل مستقل في ${country.arabic_seed} حالياً. يمكنك تقديم طلب توريد وسيقوم فريقنا بربطك بموردين دوليين معتمدين يشحنون بانتظام إلى هذه الوجهة مع شهادات سايتس والتخليص الجمركي.`
-                : `${pick(editorialCopy.coverageGap, locale)} You can submit an RFQ requirement and OudGuide will introduce you to suppliers that have agreed to work with this destination — a supplier is introduced to a destination only where it has documented one.`}
+                ? 'حالة التقييم المعروضة أدناه هي ما يحمله السجل لهذا الإقليم فعلياً. وجود بلد في قاعدة البيانات لا يثبت أن العود ينمو فيه، ولا أن هناك مورداً، ولا أن الشحن إليه قانوني.'
+                : 'The assessment status below is what the register actually records for this territory. A country being in the database does not establish that oud grows there, that a supplier operates there, or that shipping to it is lawful.'}
+            </p>
+
+            <div className="masthead-actions">
+              <Link href={`/${locale}/rfq?country=${encodeURIComponent(country.english_seed)}`} className="btn btn-primary btn-sm">
+                <FileText size={13} />
+                {isAr ? `طلب توريد إلى ${country.arabic_seed}` : `Submit RFQ for ${country.english_seed}`}
+              </Link>
             </div>
           </div>
-        )}
-      </div>
+        </section>
 
-      {/* RELATED GUIDES */}
-      {routes.length > 0 && (
-        <div className="luxury-card" style={{ marginBottom: '40px' }}>
-          <h3 className="card-title font-display" style={{ fontSize: '20px', borderBottom: '1px solid var(--color-border)', paddingBottom: '10px', marginBottom: '14px' }}>
-            📚 {isAr ? 'الأدلة والتقارير المرتبطة بهذا السوق' : `Related Market Briefs & Research Guides`}
+        {/* METADATA PROFILE */}
+        <div className="card-frame" style={{ padding: 28, marginBottom: 28 }}>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 500, margin: '0 0 14px', borderBottom: '1px solid var(--line)', paddingBottom: 10 }}>
+            {isAr ? 'المواصفات القياسية' : 'Standard Specifications'}
           </h3>
-          <ul style={{ paddingInlineStart: '20px', margin: 0, fontSize: '14.5px' }}>
-            {routes.map((r: any) => (
-              <li key={r.route_id} style={{ marginBottom: '8px' }}>
-                <Link href={r.path} style={{ fontWeight: 600, color: 'var(--color-primary)' }}>
-                  {r.title_brief}
-                </Link>
-                <span style={{ fontSize: '12px', color: 'var(--color-text-muted)', marginInlineStart: '8px' }}>
-                  [{r.family}]
-                </span>
-              </li>
-            ))}
-          </ul>
+          <div className="grid-3" style={{ gap: 16 }}>
+            <div>
+              <span className="data-card-fact-label">ISO 3166-1 Alpha-2</span>
+              <span className="data-card-fact-value">{country.iso2}</span>
+            </div>
+            <div>
+              <span className="data-card-fact-label">ISO 3166-1 Alpha-3</span>
+              <span className="data-card-fact-value">{country.iso3}</span>
+            </div>
+            <div>
+              <span className="data-card-fact-label">{isAr ? 'المصدر القياسي' : 'Standard source'}</span>
+              <span className="data-card-fact-value" style={{ fontSize: '0.78rem' }}>{country.source_version}</span>
+            </div>
+          </div>
         </div>
-      )}
 
-      {/* CTA SECTION */}
-      <div className="luxury-hero" style={{ padding: '36px', textAlign: 'center' }}>
-        <h3 className="font-display" style={{ fontSize: '24px', color: '#fff', margin: '0 0 10px' }}>
-          {isAr
-            ? `طلب توريد إلى ${country.arabic_seed}`
-            : `Request a supplier introduction for ${country.english_seed}`}
-        </h3>
-        <p style={{ color: '#d0ccc3', fontSize: '15px', maxWidth: '640px', margin: '0 auto 18px' }}>
-          {isAr
+        {/* DOCUMENTED PRODUCERS */}
+        <div className="card-frame" style={{ padding: 28, marginBottom: 28, borderColor: 'var(--line-strong)' }}>
+          <div className="row-between" style={{ marginBottom: 18, gap: 10 }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', fontWeight: 500, margin: 0 }}>
+              {isAr
+                ? `المنتجون والمقطرون المسجلون في ${country.arabic_seed}`
+                : `Documented producers & distillers in ${country.english_seed}`}
+            </h3>
+          </div>
+
+          {businesses.length > 0 ? (
+            <div className="grid-2" style={{ gap: 16 }}>
+              {businesses.map((b: any) => (
+                <div key={b.id} className="card" style={{ padding: 20 }}>
+                  <div className="row-between" style={{ marginBottom: 8, gap: 8 }}>
+                    <h4 style={{ margin: 0, fontSize: '0.98rem' }}>
+                      <Link href={`/${locale}/directory/${b.slug}`}>{b.name}</Link>
+                    </h4>
+                    {b.contact_unlocked ? (
+                      <span className="badge badge-emerald"><Award size={10} /> {isAr ? 'عضو' : 'Member'}</span>
+                    ) : (
+                      <span className="badge badge-locked"><Lock size={10} /> {isAr ? 'محمي' : 'Protected'}</span>
+                    )}
+                  </div>
+                  <div className="biz-location" style={{ marginBottom: 8 }}>
+                    <MapPin size={11} />
+                    {b.city} · {b.category}
+                  </div>
+                  <div className="row-between" style={{ gap: 10 }}>
+                    <span style={{ fontSize: '0.76rem', color: 'var(--ink-soft)' }}>
+                      {isAr ? 'الحد الأدنى' : 'MOQ'}: {b.minimum_order_quantity || (isAr ? 'مرونة' : 'Flexible')}
+                    </span>
+                    <Link href={`/${locale}/directory/${b.slug}`} className="btn btn-outline btn-sm" style={{ padding: '4px 10px' }}>
+                      {isAr ? 'الملف' : 'Profile'}
+                      <ArrowRight size={11} />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="privacy-shield" style={{ margin: 0 }}>
+              <Info size={20} className="privacy-shield-icon" />
+              <div>
+                <p className="privacy-shield-text" style={{ margin: 0 }}>
+                  {isAr
+                    ? `لا توجد شركات مدرجة بشكل مستقل في ${country.arabic_seed} حالياً. يمكنك تقديم طلب توريد وسيتم ربطك بمورد وافق على العمل مع هذه الوجهة — لا يُعرّف مورد وجهة إلا بعد توثيقها له.`
+                    : `${pick(editorialCopy.coverageGap, locale)} You can submit an RFQ requirement and OudGuide will introduce you to suppliers that have documented this destination — a supplier is introduced to a destination only where it has documented one.`}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* RELATED GUIDES — only links that resolve to a published page */}
+        {relatedRoutes.length > 0 && (
+          <div className="card-frame" style={{ padding: 28, marginBottom: 32 }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 500, margin: '0 0 14px', display: 'flex', alignItems: 'center', gap: 8 }}>
+              <BookOpen size={15} style={{ color: 'var(--green-600)' }} />
+              {isAr ? 'الأدلة والتقارير المرتبطة بهذا السوق' : 'Related Market Briefs & Research Guides'}
+            </h3>
+            <ul style={{ paddingInlineStart: '20px', margin: 0, fontSize: '0.9rem', lineHeight: 1.7 }}>
+              {relatedRoutes.map((r) => (
+                <li key={r.href}>
+                  <Link href={r.href}>{r.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* CTA */}
+        <div className="card-frame card-frame-accent" style={{ background: 'var(--green-900)', color: 'var(--ink-on-green)', padding: 40, textAlign: 'center' }}>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 400, color: '#ffffff', margin: '0 0 10px' }}>
+            {isAr
+              ? `طلب توريد إلى ${country.arabic_seed}`
+              : `Request a supplier introduction for ${country.english_seed}`}
+          </h3>
+          <p style={{ color: 'rgba(232,239,233,0.72)', fontSize: '0.9rem', maxWidth: '640px', margin: '0 auto 18px', lineHeight: 1.65 }}>
+            {isAr
               ? 'حدد متطلباتك. يتولى دليل العود مطابقتك مع موردين، ولا يقدّم طلبك إلا لمن تعتمدهم بالاسم. وتُراجع متطلبات التوثيق لكل منتج ومسار ووجهة على حدة.'
               : 'Specify your requirement. OudGuide matches you with suppliers, and nothing is sent to one unless you approve them by name. Documentation requirements are assessed per product, route and destination.'}
-        </p>
-        <Link href={`/${locale}/rfq?country=${encodeURIComponent(country.english_seed)}`} className="btn-gold" style={{ padding: '12px 28px', fontSize: '15px' }}>
-          <span>{isAr ? 'تقديم طلب توريد لهذه الوجهة' : `Submit RFQ for ${country.english_seed}`}</span>
-          <span>{isAr ? '←' : '→'}</span>
-        </Link>
+          </p>
+          <Link
+            href={`/${locale}/rfq?country=${encodeURIComponent(country.english_seed)}`}
+            className="btn btn-primary btn-lg"
+            style={{ background: '#ffffff', color: 'var(--green-900)', borderColor: '#ffffff' }}
+          >
+            {isAr ? `تقديم طلب توريد إلى ${country.arabic_seed}` : `Submit RFQ for ${country.english_seed}`}
+            <ArrowRight size={14} />
+          </Link>
+        </div>
       </div>
     </div>
   );

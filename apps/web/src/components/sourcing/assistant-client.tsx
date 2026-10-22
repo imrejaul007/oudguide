@@ -105,14 +105,14 @@ export function SourcingAssistant({ locale }: { locale: string }) {
             width: 40,
             height: 40,
             borderRadius: 10,
-            background: 'linear-gradient(135deg, var(--color-gold-light), var(--color-gold-dark))',
+            background: 'var(--green-700)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
           }}
         >
-          <Sparkles size={20} style={{ color: 'var(--bg-majlis)' }} />
+          <Sparkles size={20} style={{ color: '#ffffff' }} />
         </div>
         <div>
           <h2 className="chat-head-title">{isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}</h2>
@@ -124,7 +124,7 @@ export function SourcingAssistant({ locale }: { locale: string }) {
         </div>
         <ShieldCheck
           size={18}
-          style={{ marginInlineStart: 'auto', color: 'var(--color-gold-light)', flexShrink: 0 }}
+          style={{ marginInlineStart: 'auto', color: 'var(--green-600)', flexShrink: 0 }}
         />
       </div>
 
@@ -219,7 +219,7 @@ export function SourcingAssistant({ locale }: { locale: string }) {
                         </div>
                       )}
                     </div>
-                    <ArrowRight size={15} style={{ color: 'var(--color-gold-dark)', flexShrink: 0 }} />
+                    <ArrowRight size={15} style={{ color: 'var(--green-600)', flexShrink: 0 }} />
                   </Link>
                 ))}
               </div>
@@ -240,7 +240,7 @@ export function SourcingAssistant({ locale }: { locale: string }) {
 
         {isLoading && (
           <div className="chat-msg chat-msg-bot" style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
-            <Loader2 size={14} style={{ color: 'var(--color-gold-dark)' }} className="spin" />
+            <Loader2 size={14} style={{ color: 'var(--green-600)' }} className="spin" />
             <span className="chat-typing">
               <span /><span /><span />
             </span>
@@ -273,7 +273,7 @@ export function SourcingAssistant({ locale }: { locale: string }) {
             : 'Ask about a material, terroir, or wholesale requirement...'}
           aria-label={isAr ? 'سؤال المساعد' : 'Ask the assistant'}
         />
-        <button onClick={() => ask(input)} disabled={isLoading || !input.trim()} className="btn btn-gold">
+        <button onClick={() => ask(input)} disabled={isLoading || !input.trim()} className="btn btn-primary">
           <Send size={15} />
           <span className="hidden-mobile">{isAr ? 'إرسال' : 'Ask'}</span>
         </button>

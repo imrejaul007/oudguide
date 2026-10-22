@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { domain } from '@/lib/data';
 import { loadInquiry } from '@/lib/inquiry-session';
-import { ArrowRight, CheckCircle2, AlertTriangle, ExternalLink, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, AlertTriangle, ExternalLink, ShieldCheck, Lock, Handshake, MapPin } from "lucide-react";
 import {
   buyerApprovalCopy,
   contactPolicyCopy,
@@ -181,7 +181,7 @@ export default async function InquiryStatusPage({
       {inq.state === 'pending_verification' && (
         <section className="card-frame card-frame-accent" style={{ marginBottom: 32 }}>
           <div className="cluster" style={{ alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
-            <span style={{ fontSize: 24 }}>🔐</span>
+            <Lock size={22} style={{ color: "var(--green-600)", flexShrink: 0, marginTop: 2 }} />
             <div>
               <h2 style={{ fontSize: '1.25rem', marginBottom: 6 }}>
                 {isAr ? 'خطوة التحقق من وسيلة الاتصال (رمز التحقق)' : 'Contact Channel Verification Required'}
@@ -250,7 +250,7 @@ export default async function InquiryStatusPage({
       {isAuthorized && (
         <section className="card-frame" style={{ marginBottom: 32 }}>
           <div className="cluster" style={{ gap: 12, marginBottom: 12 }}>
-            <span style={{ fontSize: 22 }}>🤝</span>
+            <Handshake size={20} style={{ color: "var(--green-600)", flexShrink: 0 }} />
             <h2 style={{ fontSize: '1.3rem', margin: 0 }}>
               {isAr ? 'الموردون المؤهلون وموافقة المشتري الصريحة' : 'Matching Candidate Suppliers & Buyer Approval'}
             </h2>
@@ -274,7 +274,7 @@ export default async function InquiryStatusPage({
                 <div key={biz.id} className="card" style={{ padding: 22, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
                   <div style={{ flex: '1 1 340px' }}>
                     <div className="cluster" style={{ gap: 8, marginBottom: 6 }}>
-                      <span className="badge badge-locked">📍 {biz.country_name}</span>
+                      <span className="badge badge-locked"><MapPin size={10} /> {biz.country_name}</span>
                       {biz.contact_unlocked && <span className="badge badge-emerald">Verified Member</span>}
                       {isApproved && (
                         <span className="badge badge-gold">

@@ -118,7 +118,7 @@ export default async function ProducerMapPage({
               <div className="hero-eyebrow-line" style={{ justifyContent: 'flex-start' }}>
                 <span><Compass size={14} style={{ display: 'inline', verticalAlign: 'middle', marginInlineEnd: 6 }} />{isAr ? 'الأقاليم المنتجة' : 'Producing Terroirs'}</span>
               </div>
-              <h2 className="h2 text-crimson">
+              <h2 className="h2">
                 {isAr ? 'مناطق إنتاج العود الموثقة' : 'Documented Agarwood-Producing Regions'}
               </h2>
             </div>
@@ -131,7 +131,7 @@ export default async function ProducerMapPage({
             {producerRegions.map((r) => (
               <article key={r.key} className="card" style={{ padding: 24 }}>
                 <div className="cluster" style={{ justifyContent: 'space-between', marginBottom: 12 }}>
-                  <span className="badge badge-gold">{r.iso2}</span>
+                  <span className="badge badge-crimson">{r.iso2}</span>
                   <span className="badge badge-locked">
                     {r.producers && r.producers.length > 0
                       ? `${r.producers.length} ${isAr ? 'منتج' : 'producers'}`
@@ -141,7 +141,7 @@ export default async function ProducerMapPage({
                 <h3 className="discipline-title" style={{ fontSize: '1.1rem', marginBottom: 6 }}>
                   {isAr ? r.name_ar : r.name}
                 </h3>
-                <p className="display-serif" style={{ fontSize: '0.9rem', fontStyle: 'italic', color: 'var(--color-text-muted)', margin: '0 0 14px' }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', margin: '0 0 14px', lineHeight: 1.55 }}>
                   {isAr ? 'إقليم موثق ضمن سجل OudGuide' : 'A documented terroir in the OudGuide register'}
                 </p>
                 {r.producers && r.producers.length > 0 ? (

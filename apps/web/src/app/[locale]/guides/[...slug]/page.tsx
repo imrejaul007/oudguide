@@ -469,7 +469,7 @@ function ReviewedArticle({
               ? 'يقدّم دليل العود خدمة الربط التجاري المحايدة. يعرض الموجز المشفَّر على الموردين المؤهلين دون بيانات المشتري، ولا تُسلَّم بيانات الاتصال إلا للمورد الذي تعتمده بالاسم.'
               : 'OudGuide provides a neutral matching service. A redacted brief reaches qualified suppliers without your identity, and your contact details are released only to a supplier you approve by name.'}
           </p>
-          <Link href={`/${locale}/rfq`} className="btn btn-gold btn-lg">
+          <Link href={`/${locale}/rfq`} className="btn btn-primary btn-lg">
             {isAr ? 'تقديم متطلبات التوريد بالجملة' : 'Submit a wholesale requirement'}
             <ArrowRight size={15} />
           </Link>

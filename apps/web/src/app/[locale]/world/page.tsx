@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { seed } from '@/lib/data';
+import { Globe, TreePine, Factory, Palmtree, Landmark } from 'lucide-react';
 import { TerritoryBrowser } from '@/components/world/territory-browser';
 import type { Metadata } from 'next';
 import { buildMetadata } from '@/lib/metadata';
@@ -49,13 +50,13 @@ export default async function WorldExplorerPage({
 
   const countries = seed.countries as any[];
 
-  const regionalHubs: Record<string, { title: string; desc: string; icon: string; codes: string[] }> = {
+  const regionalHubs: Record<string, { title: string; desc: string; icon: React.ComponentType<{ size?: number }>; codes: string[] }> = {
     indochina: {
       title: isAr ? 'فيتنام ولاوس وكمبوديا وتايلاند' : 'Cambodia, Thailand, Vietnam & Laos',
       desc: isAr
         ? 'منطقة Aquilaria crassna في جنوب شرق آسيا. كل صفحة الإقليم تبيّن ما هو موثّق عن الأنواع والتجارة.'
         : 'The Aquilaria crassna range in mainland Southeast Asia. Each territory page states what is documented about the species, the trade and the sellers there.',
-      icon: '🌿',
+      icon: TreePine,
       codes: ['KH', 'TH', 'VN', 'LA', 'MM'],
     },
     subcontinent: {
@@ -63,7 +64,7 @@ export default async function WorldExplorerPage({
       desc: isAr
         ? 'موطن Aquilaria agallocha وتقاليد التقطير بالقدّ النحاسي.'
         : 'The range of Aquilaria agallocha and the copper-deg distillation tradition.',
-      icon: '🪵',
+      icon: Factory,
       codes: ['IN', 'BD', 'BT', 'NP'],
     },
     malayArchipelago: {
@@ -71,7 +72,7 @@ export default async function WorldExplorerPage({
       desc: isAr
         ? 'نطاق Aquilaria malaccensis وGyrinops في بورنيو وسومطرة وبابوا.'
         : 'The range of Aquilaria malaccensis and Gyrinops across Borneo, Sumatra and Papua.',
-      icon: '🌴',
+      icon: Palmtree,
       codes: ['ID', 'MY', 'BN', 'PG', 'PH'],
     },
     gccMarkets: {
@@ -79,7 +80,7 @@ export default async function WorldExplorerPage({
       desc: isAr
         ? 'مراكز تجارة العود واستهلاكه. هذه مدن تجارة لا مناطق نمو، والمادة المباعة فيها مستوردة.'
         : 'The trading and consuming centres for oud. These are trading cities rather than growing regions, and the material sold there is imported.',
-      icon: '🏛',
+      icon: Landmark,
       codes: ['AE', 'SA', 'OM', 'KW', 'QA', 'BH'],
     },
   };
@@ -90,7 +91,7 @@ export default async function WorldExplorerPage({
         <section className="masthead">
           <div className="masthead-inner">
             <div className="hero-tag">
-              <span>🌍</span>
+              <Globe size={13} />
               <span>{isAr ? 'السجل الجغرافي' : 'The Geographic Register'}</span>
             </div>
             <h1>
@@ -116,8 +117,10 @@ export default async function WorldExplorerPage({
             return (
               <section key={key} style={{ marginBottom: 48 }}>
                 <div className="row-between" style={{ marginBottom: 8 }}>
-                  <div className="cluster" style={{ gap: 12 }}>
-                    <span style={{ fontSize: 28 }}>{hub.icon}</span>
+                  <div className="cluster" style={{ gap: 14 }}>
+                    <div className="portal-tile-icon" style={{ flexShrink: 0 }}>
+                      <hub.icon size={20} />
+                    </div>
                     <h2 className="h2" style={{ margin: 0 }}>{hub.title}</h2>
                   </div>
                 </div>
@@ -140,15 +143,15 @@ export default async function WorldExplorerPage({
                         </h3>
                         <p
                           style={{
-                            fontSize: '0.9rem',
-                            color: 'var(--color-text-muted)',
+                            fontSize: '0.85rem',
+                            color: 'var(--ink-muted)',
                             margin: '0 0 14px',
-                            lineHeight: 1.5,
+                            lineHeight: 1.55,
                           }}
                         >
-                          {isAr
-                            ? 'صفحة الإقليم: ما هو موثّق عن العود هنا.'
-                            : 'Territory page: what is documented about oud here.'}
+                          {(c.role_status || (isAr ? 'موثّقة في السجل الجغرافي' : 'Documented in the geographic register')) +
+                            ' · ' +
+                            (c.public_readiness || (isAr ? 'بحث فقط' : 'Research only'))}
                         </p>
                         <span className="btn-link" style={{ fontSize: '0.85rem' }}>
                           {isAr ? 'استعراض الإقليم' : 'View the territory'}

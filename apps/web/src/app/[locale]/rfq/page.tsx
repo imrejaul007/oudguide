@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ShieldCheck, Sparkles, Clock, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Sparkles, Clock, CheckCircle2, Target } from 'lucide-react';
 import { RfqWizard } from '@/components/rfq/rfq-wizard';
 import type { Metadata } from 'next';
 import { buildMetadata } from '@/lib/metadata';
@@ -90,7 +90,7 @@ export default async function RfqPage({
         {/* A REQUEST ADDRESSED TO A NAMED SUPPLIER */}
         {supplierSlug ? (
           <div className="privacy-shield" style={{ marginTop: 32 }}>
-            <span style={{ fontSize: 22 }} aria-hidden="true">🎯</span>
+            <Target size={20} style={{ color: 'var(--green-600)', flexShrink: 0, marginTop: 2 }} />
             <div className="privacy-shield-body">
               <h4>
                 {selectedName

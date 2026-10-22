@@ -50,7 +50,7 @@ export default async function BusinessProfilePage({
 
         {/* MAJLIS HERO COVER */}
         <div className="card" style={{ padding: 0, overflow: 'hidden', marginBottom: 32 }}>
-          <div style={{ height: 320, position: 'relative', background: 'var(--bg-majlis)' }}>
+          <div style={{ height: 320, position: 'relative', background: 'var(--green-900)' }}>
             <img src={coverImage} alt={biz.name} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,42,32,0.20) 0%, rgba(14,42,32,0.88) 100%)' }} />
 
@@ -72,7 +72,7 @@ export default async function BusinessProfilePage({
               )}
             </div>
 
-            <div style={{ position: 'absolute', bottom: 24, left: 28, right: 28, color: '#f5ede0' }}>
+            <div style={{ position: 'absolute', bottom: 24, left: 28, right: 28, color: 'var(--ink-on-green)' }}>
               <span className="badge badge-gold" style={{ marginBottom: 12 }}>
                 {biz.business_type || biz.category || 'Producer'}
               </span>
@@ -87,7 +87,7 @@ export default async function BusinessProfilePage({
               }}>
                 {biz.name}
               </h1>
-              <p className="display-serif" style={{ fontSize: '1.05rem', color: '#d4c8b0', margin: 0, fontStyle: 'italic' }}>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(232,239,233,0.72)', margin: 0, fontFamily: 'var(--font-sans)' }}>
                 {biz.city ? `${biz.city}, ` : ''}{biz.country_name || biz.country_id}
                 {biz.established_year &&
                   (biz.verified_fields ?? []).includes('established_year') && (
@@ -98,7 +98,7 @@ export default async function BusinessProfilePage({
           </div>
 
           {/* Quick actions bar */}
-          <div style={{ padding: '20px 28px', borderTop: '1px solid var(--color-border-warm)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+          <div style={{ padding: '20px 28px', borderTop: '1px solid var(--line-strong)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
             <div className="cluster" style={{ gap: 8 }}>
               {biz.is_claimed && (
                 <span className="badge badge-emerald">
@@ -124,7 +124,7 @@ export default async function BusinessProfilePage({
                   <ExternalLink size={11} />
                 </a>
               )}
-              <Link href={`/${locale}/rfq?supplier=${slug}`} className="btn btn-gold btn-sm">
+              <Link href={`/${locale}/rfq?supplier=${slug}`} className="btn btn-primary btn-sm">
                 {isAr ? 'طلب تسعير ←' : 'Request Quote →'}
               </Link>
             </div>
@@ -152,7 +152,7 @@ export default async function BusinessProfilePage({
                 </span>
                 <div className="cluster">
                   {biz.product_families.map((pf) => (
-                    <span key={pf} className="chip chip-gold">{pf}</span>
+                    <span key={pf} className="chip">{pf}</span>
                   ))}
                 </div>
               </div>
@@ -207,7 +207,7 @@ export default async function BusinessProfilePage({
                   <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
                     {isAr ? 'الحد الأدنى للطلب' : 'Minimum Order'}
                   </span>
-                  <span className="display-serif" style={{ fontSize: '1.3rem', color: 'var(--color-crimson)', fontStyle: 'italic', fontWeight: 600 }}>
+                  <span style={{ fontSize: '1.25rem', fontFamily: 'var(--font-display)', color: 'var(--green-700)', fontWeight: 500 }}>
                     {biz.minimum_order_quantity}
                   </span>
                 </div>
@@ -268,7 +268,7 @@ export default async function BusinessProfilePage({
             <div className="row-between" style={{ marginBottom: 24 }}>
               <div>
                 <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>{isAr ? 'موردون آخرون' : 'Other Producers'}</span>
-                <h2 className="h2 text-crimson">
+                <h2 className="h2">
                   {isAr ? 'موردون ومصانع أخرى في الدليل' : 'Other Verified Distillers in Registry'}
                 </h2>
               </div>
@@ -276,22 +276,26 @@ export default async function BusinessProfilePage({
                 {isAr ? 'كل الدليل ←' : 'Full Directory →'}
               </Link>
             </div>
-            <div className="grid-2">
+            <div className="grid-2" style={{ gap: 18 }}>
               {similar.map((s) => (
-                <Link key={s.id} href={`/${locale}/directory/${s.slug}`} className="biz-card" style={{ textDecoration: 'none' }}>
-                  <div className="biz-cover" style={{ height: 140 }}>
-                    <img src={producerCovers[s.slug] || '/images/hero-oud-chip.svg'} alt={s.name} />
+                <Link
+                  key={s.id}
+                  href={`/${locale}/directory/${s.slug}`}
+                  className="card"
+                  style={{ textDecoration: 'none', padding: 22, display: 'block' }}
+                >
+                  <div className="row-between" style={{ gap: 10, marginBottom: 4 }}>
+                    <h4 className="biz-name" style={{ margin: 0 }}>{s.name}</h4>
+                    <ArrowRight size={14} style={{ color: 'var(--green-600)', flexShrink: 0, marginTop: 4 }} />
                   </div>
-                  <div className="biz-body" style={{ padding: 20 }}>
-                    <h4 className="biz-name">{s.name}</h4>
-                    <p className="biz-location">
-                      <MapPin size={11} />
-                      {s.city ? `${s.city}, ` : ''}{s.country_name || s.country_id}
-                    </p>
-                    <p className="biz-desc" style={{ marginBottom: 0 }}>
-                      {s.description?.slice(0, 100)}…
-                    </p>
+                  <div className="biz-location" style={{ marginBottom: 8 }}>
+                    <MapPin size={11} />
+                    {s.city ? `${s.city}, ` : ''}{s.country_name || s.country_id}
                   </div>
+                  <p style={{ margin: 0, fontSize: '0.85rem', lineHeight: 1.55, color: 'var(--ink-muted)' }}>
+                    {s.description?.slice(0, 110)}
+                    {s.description && s.description.length > 110 ? '…' : ''}
+                  </p>
                 </Link>
               ))}
             </div>

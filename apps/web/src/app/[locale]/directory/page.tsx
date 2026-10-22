@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { domain, directoryCounts } from '@/lib/data';
-import { DirectoryBrowser } from '@/components/business/directory-browser';
+import { DirectoryBrowser, type DirectoryBusiness } from '@/components/business/directory-browser';
 import { Compass, ShieldCheck, Map as MapIcon, Sparkles, Bookmark } from 'lucide-react';
 import type { Metadata } from 'next';
 import { buildMetadata } from '@/lib/metadata';
@@ -65,8 +65,16 @@ export default async function DirectoryPage({
     await searchParams;
   const isAr = locale === 'ar';
 
-  // The public register excludes the development fixtures.
-  const businesses = domain.listBusinesses({ excludeDemo: true });
+  // The public register excludes the development fixtures — the register
+  // shows real, publishable records only.
+  const businesses = domain.listBusinesses({ excludeDemo: true }) as unknown as DirectoryBusiness[];
+
+  // Fixture records, shown in a labelled panel apart from the register so
+  // a reader can see the depth of a fully documented profile without
+  // mistaking them for live suppliers.
+  const sampleRecords = (domain.listBusinesses() as unknown as DirectoryBusiness[]).filter(
+    (b) => b.demo === true
+  );
 
   /**
    * The country filters arrive as slugs and the records carry codes.
@@ -203,7 +211,7 @@ export default async function DirectoryPage({
             </p>
 
             <div className="cluster" style={{ marginTop: 24, gap: 10 }}>
-              <Link href={`/${locale}/directory/map`} className="btn btn-gold btn-sm">
+              <Link href={`/${locale}/directory/map`} className="btn btn-primary btn-sm">
                 <MapIcon size={14} />
                 {isAr ? 'خريطة المنتجين' : 'Producer map'}
               </Link>
@@ -230,7 +238,8 @@ export default async function DirectoryPage({
         {/* RESULTS */}
         <div style={{ marginTop: 48 }}>
           <DirectoryBrowser
-            businesses={businesses as any}
+            businesses={businesses}
+            samples={sampleRecords}
             locale={locale}
             isAr={isAr}
             initialSearch={search ?? ''}

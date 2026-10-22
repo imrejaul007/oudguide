@@ -19,7 +19,7 @@ export function ProfileFaq({ items, locale }: { items: ProfileFaqItem[]; locale:
           <span className="eyebrow eyebrow-crimson" style={{ display: 'block', marginBottom: 8 }}>
             {isAr ? 'أسئلة شائعة' : 'Sourcing Questions'}
           </span>
-          <h2 className="h2 text-crimson">
+          <h2 className="h2">
             {isAr ? 'معلومات التعامل مع هذا المورد' : 'Working with this Producer'}
           </h2>
         </div>

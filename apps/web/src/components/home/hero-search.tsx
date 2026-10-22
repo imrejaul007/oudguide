@@ -124,7 +124,7 @@ export function HeroSearch({ locale }: HeroSearchProps) {
         <span>{locationName || (isAr ? 'موقعي' : 'My location')}</span>
       </button>
 
-      <button type="submit" className="btn btn-gold search-button">
+      <button type="submit" className="btn btn-primary search-button">
         {isAr ? 'بحث' : 'Search'}
         <ArrowRight size={14} />
       </button>

@@ -115,8 +115,8 @@ export function getNavGroups(locale: string): NavGroup[] {
           descriptionAr: 'أذونات التصدير والحصص',
         },
         {
-          label: pick('All 83 Guides', 'كل الأدلة الـ83'),
-          labelAr: 'كل الأدلة الـ83',
+          label: pick('All Guides', 'كل الأدلة'),
+          labelAr: 'كل الأدلة',
           href: `/${locale}/guides`,
           description: pick('Full editorial index', 'الفهرس التحريري الكامل'),
           descriptionAr: 'الفهرس التحريري الكامل',

@@ -164,7 +164,7 @@ export default async function CorrectionsPage({
               />
             </div>
 
-            <button type="submit" className="btn btn-gold" style={{ width: '100%', marginTop: 8 }}>
+            <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: 8 }}>
               {isAr ? 'إرسال الملاحظة ←' : 'Submit for review →'}
             </button>
           </form>

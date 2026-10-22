@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, Menu, X, ChevronDown, Clock, MapPin, Compass, BookOpen, Crown } from 'lucide-react';
+import { Search, Menu, X, ChevronDown, Clock, MapPin, Compass, BookOpen, Crown, Leaf, Globe, Lock, Sparkles, Map as MapIcon, ShieldCheck } from 'lucide-react';
 import { getNavGroups, getPrimaryNav, siteSettings } from '@/lib/constants';
 
 interface HeaderProps {
@@ -91,15 +91,18 @@ export function Header({ locale }: HeaderProps) {
       <div className="ribbon">
         <div className="container ribbon-inner">
           <span className="ribbon-item">
-            🌿 {isAr ? 'وثائق سايتس — الملحق الثاني' : 'CITES Appendix II documented'}
+            <Leaf size={11} style={{ color: 'var(--green-300)' }} />
+            {isAr ? 'وثائق سايتس — الملحق الثاني' : 'CITES Appendix II documented'}
           </span>
           <span className="ribbon-sep">•</span>
           <span className="ribbon-item">
-            🌍 {isAr ? '249 دولة وإقليماً في السجل' : '249 territories in the register'}
+            <Globe size={11} style={{ color: 'var(--green-300)' }} />
+            {isAr ? '249 دولة وإقليماً في السجل' : '249 territories in the register'}
           </span>
           <span className="ribbon-sep">•</span>
           <span className="ribbon-item">
-            🔒 {isAr ? 'بيانات الاتصال تُحجب افتراضياً' : 'Contact fields withheld by default'}
+            <Lock size={11} style={{ color: 'var(--green-300)' }} />
+            {isAr ? 'بيانات الاتصال تُحجب افتراضياً' : 'Contact fields withheld by default'}
           </span>
         </div>
       </div>
@@ -161,7 +164,7 @@ export function Header({ locale }: HeaderProps) {
                         <Link href={`/${locale}/guides`} className="btn-link" style={{ fontSize: '0.84rem' }}>
                           {isAr ? 'تصفح كل الأدلة' : 'Browse the full encyclopedia'}
                         </Link>
-                        <Link href={`/${locale}/directory`} className="display-serif" style={{ fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
+                        <Link href={`/${locale}/directory`} style={{ fontSize: '0.86rem', color: 'var(--ink-soft)', fontFamily: 'var(--font-sans)' }}>
                           {isAr ? 'دليل المنتجين ←' : 'Producer directory →'}
                         </Link>
                       </div>
@@ -213,10 +216,12 @@ export function Header({ locale }: HeaderProps) {
               </Link>
             ))}
             <Link href={`/${locale}/sourcing`} onClick={() => setIsMenuOpen(false)}>
-              ✦ {isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}
+              <Sparkles size={15} style={{ display: 'inline-block', marginRight: 8, verticalAlign: '-2px' }} />
+              {isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}
             </Link>
             <Link href={`/${locale}/directory/map`} onClick={() => setIsMenuOpen(false)}>
-              🗺 {isAr ? 'خريطة المنتجين' : 'Producer Map'}
+              <MapIcon size={15} style={{ display: 'inline-block', marginRight: 8, verticalAlign: '-2px' }} />
+              {isAr ? 'خريطة المنتجين' : 'Producer Map'}
             </Link>
             <div className="cluster" style={{ marginTop: 16, borderTop: '1px solid var(--line)', paddingTop: 16 }}>
               <Link href={`/${otherLocale}`} className="btn btn-outline btn-sm">{otherLocaleLabel}</Link>
@@ -295,7 +300,7 @@ export function Header({ locale }: HeaderProps) {
               )}
 
               <div className="privacy-shield" style={{ margin: 0 }}>
-                <div className="privacy-shield-icon" style={{ fontSize: 22 }}>✦</div>
+                <ShieldCheck size={20} className="privacy-shield-icon" />
                 <div className="privacy-shield-body">
                   <h4>{isAr ? 'هل تحتاج متطلبات خاصة أو كميات تجارية؟' : 'Need custom volume or private label?'}</h4>
                   <p>{isAr ? 'أرسل طلبك عبر استمارة التوريد المحايدة مع حماية تامة للبيانات.' : 'Submit an anonymous RFQ across 67 conditional specifications.'}</p>
