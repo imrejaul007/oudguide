@@ -22,6 +22,8 @@ import { sectionIndexArticles } from './section-indexes.ts';
 import { gradeLadderArticles } from './quality-grade-ladder.ts';
 import { productFamilyArticles } from './products.ts';
 import { originCountryArticles } from './origin-countries.ts';
+import { originRegionArticles } from './origin-regions.ts';
+import { originComparisonArticles } from './origin-comparisons.ts';
 import { glossaryTermArticles } from './glossary-terms.ts';
 
 /**
@@ -101,6 +103,8 @@ export const articles: Article[] = [
   ...gradeLadderArticles,
   ...productFamilyArticles,
   ...originCountryArticles,
+  ...originRegionArticles,
+  ...originComparisonArticles,
   ...glossaryTermArticles,
   ...basicsArticles,
   ...hubArticles,
