@@ -99,16 +99,71 @@ export function isInCity(business: FilterableBusiness, citySlug: string): boolea
  */
 export function isInArea(business: FilterableBusiness, areaSlug: string): boolean {
   if (!areaSlug) return true;
-  const needle = normalisePlace(areaSlug);
-  if (!needle) return true;
 
-  const region = normalisePlace(business.region);
-  if (region && (region === needle || region.includes(needle))) return true;
+  const needleWords = splitWords(areaSlug);
+  if (needleWords.length === 0) return true;
 
-  const address = normalisePlace(business.street_address);
-  if (address && (address === needle || address.includes(needle))) return true;
+  const region = (business.region ?? '').trim();
+  if (region && beginsWithPlace(region, needleWords)) return true;
+
+  const address = (business.street_address ?? '').trim();
+  if (address && beginsWithPlace(address, needleWords)) return true;
 
   return false;
+}
+
+/**
+ * Split a place name into its words, lowercased.
+ *
+ * The separators ARE the word boundaries, so they are read BEFORE any
+ * normalisation removes them. "Al Sabkha Road" has to become three
+ * words, and once the spaces are gone there is no way back.
+ */
+function splitWords(text: string): string[] {
+  return text.toLowerCase().split(/[^a-z0-9]+/i).filter(Boolean);
+}
+
+/**
+ * True when the place text BEGINS with the needle's words.
+ *
+ * A substring match is too loose for an address, and so is a whole-word
+ * match. The published record reads "Al Sabkha Road, Deira Perfume
+ * Souk, Dubai": a substring test on that matches "road", "souk" and
+ * "perfume", and a whole-word test still matches all three, because
+ * they are all words in the address. A hand-edited URL such as
+ * /in/united-arab-emirates/dubai/road would then return the record, and
+ * so would /souk and /perfume. A URL is a claim about a place, and
+ * "road" is not a place.
+ *
+ * The area is the LEADING part of the record's region or address — that
+ * is what makes it the area rather than a word somewhere inside the
+ * address. So the needle's words must be the first words of the text:
+ *
+ *   "deira"      against "Deira Perfume Souk"    -> matches, it leads
+ *   "al-sabkha"  against "Al Sabkha Road, ..."   -> matches, it leads
+ *   "road"       against "Al Sabkha Road, ..."   -> does not match
+ *   "souk"       against "Deira Perfume Souk"    -> does not match
+ *   "dubai"      against "Al Sabkha Road, ..."   -> does not match
+ *
+ * A multi-word needle matches a multi-word run, so "al-sabkha" matches
+ * "Al Sabkha" and not "Al".
+ *
+ * One consequence is accepted deliberately: "al" is the leading word of
+ * the published address, so a URL naming it resolves to the same
+ * record. It names a word that leads the address, and the record is in
+ * that address; the listing it returns is the same one, not a different
+ * place.
+ */
+function beginsWithPlace(text: string, needleWords: string[]): boolean {
+  if (needleWords.length === 0) return false;
+
+  const words = splitWords(text);
+  if (words.length < needleWords.length) return false;
+
+  for (let i = 0; i < needleWords.length; i++) {
+    if (words[i] !== needleWords[i]) return false;
+  }
+  return true;
 }
 
 /**
