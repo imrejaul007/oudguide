@@ -24,6 +24,7 @@ import { productFamilyArticles } from './products.ts';
 import { originCountryArticles } from './origin-countries.ts';
 import { originRegionArticles } from './origin-regions.ts';
 import { originComparisonArticles } from './origin-comparisons.ts';
+import { destinationGuideArticles } from './destination-guides.ts';
 import { glossaryTermArticles } from './glossary-terms.ts';
 
 /**
@@ -105,6 +106,7 @@ export const articles: Article[] = [
   ...originCountryArticles,
   ...originRegionArticles,
   ...originComparisonArticles,
+  ...destinationGuideArticles,
   ...glossaryTermArticles,
   ...basicsArticles,
   ...hubArticles,
