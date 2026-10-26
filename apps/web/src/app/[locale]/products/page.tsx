@@ -47,6 +47,29 @@ export async function generateMetadata({
   });
 }
 
+const familyImages: Record<string, string> = {
+  'oud-wood': '/images/hero-oud-wood.svg',
+  'raw-agarwood': '/images/hero-oud-wood.svg',
+  'sinking-grade-agarwood': '/images/hero-oud-wood.svg',
+  'agarwood-chips': '/images/hero-oud-chip.svg',
+  'incense-grade-chips': '/images/hero-oud-chip.svg',
+  'kynam-kyara': '/images/hero-oud-chip.svg',
+  'dehn-al-oud': '/images/hero-dehn-al-oud.svg',
+  'oud-oil': '/images/hero-dehn-al-oud.svg',
+  'pure-distillate': '/images/hero-dehn-al-oud.svg',
+  'vintage-aged-oud': '/images/hero-dehn-al-oud.svg',
+  'traditional-attars': '/images/hero-attar-still.svg',
+  'mukhallat': '/images/hero-attar-still.svg',
+  'sandalwood-distillate': '/images/hero-attar-still.svg',
+  'private-label': '/images/hero-private-label.svg',
+  'wholesale-bulk-oil': '/images/hero-private-label.svg',
+};
+
+function getFamilyCover(slug: string): string {
+  const clean = slug.replace(/^products\//, '');
+  return familyImages[clean] || '/images/hero-oud-wood.svg';
+}
+
 export default async function ProductsIndexPage({
   params,
 }: {
@@ -133,7 +156,11 @@ export default async function ProductsIndexPage({
                   style={{ padding: 22, textDecoration: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
                 >
                   <div>
-                    <div className="cluster" style={{ gap: 8, marginBottom: 12 }}>
+                    <div className="product-card-cover">
+                      <img src={getFamilyCover(family.slug)} alt={family.label} />
+                      <div className="product-card-cover-overlay" />
+                    </div>
+                    <div className="cluster" style={{ gap: 8, marginBottom: 10 }}>
                       <span className="badge badge-accent">
                         <Package size={11} />
                         {isAr ? 'صنف' : 'Family'}

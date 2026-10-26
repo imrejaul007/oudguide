@@ -176,6 +176,97 @@ export default async function HomePage({
             <HeroSearch locale={locale} />
           </div>
 
+          {/* THE 4 PILLARS OF NATURAL OUD — Rich Visual Editorial Gallery */}
+          <div className="visual-showcase-grid">
+            <Link href={`/${locale}/products/oud-wood`} className="visual-card">
+              <img src="/images/hero-oud-wood.svg" alt="Raw Agarwood Heartwood" className="visual-card-img" />
+              <div className="visual-card-overlay" />
+              <div className="visual-card-content">
+                <span className="visual-card-badge">
+                  {isAr ? 'خشب خام وغطاس' : 'Raw Heartwood'}
+                </span>
+                <h3 className="visual-card-title">
+                  {isAr ? 'خشب العود الطبيعي والغطاس' : 'Natural Agarwood & Sinking Wood'}
+                </h3>
+                <p className="visual-card-desc">
+                  {isAr
+                    ? 'كثافة الراتنج، درجات الغطاس الحقيقية، والتشريح النباتي لأشجار الأكويلاريا.'
+                    : 'Resin density, genuine sinking grades, and Aquilaria botanical verification.'}
+                </p>
+                <span className="visual-card-cta">
+                  <span>{isAr ? 'دليل الخشب' : 'Explore Heartwood'}</span>
+                  <ArrowRight size={12} className="icon-dir-flip" />
+                </span>
+              </div>
+            </Link>
+
+            <Link href={`/${locale}/products/dehn-al-oud`} className="visual-card">
+              <img src="/images/hero-dehn-al-oud.svg" alt="Artisan Dehn Al Oud" className="visual-card-img" />
+              <div className="visual-card-overlay" />
+              <div className="visual-card-content">
+                <span className="visual-card-badge">
+                  {isAr ? 'تقطير حرفي' : 'Artisan Distillate'}
+                </span>
+                <h3 className="visual-card-title">
+                  {isAr ? 'دهن العود المقطر والمُعتَّق' : 'Artisan Dehn Al Oud & Pure Oils'}
+                </h3>
+                <p className="visual-card-desc">
+                  {isAr
+                    ? 'التقطير المائي، التعتيم بالأشعة، والفحص بالكروماتوغرافيا للزيوت الأصيلة.'
+                    : 'Hydro-distillation, aging chemistry, and GC-MS purity profiles.'}
+                </p>
+                <span className="visual-card-cta">
+                  <span>{isAr ? 'دليل الزيوت' : 'Explore Oils'}</span>
+                  <ArrowRight size={12} className="icon-dir-flip" />
+                </span>
+              </div>
+            </Link>
+
+            <Link href={`/${locale}/products/agarwood-chips`} className="visual-card">
+              <img src="/images/hero-oud-chip.svg" alt="Wild Incense Chips" className="visual-card-img" />
+              <div className="visual-card-overlay" />
+              <div className="visual-card-content">
+                <span className="visual-card-badge">
+                  {isAr ? 'بخور ومباخر' : 'Incense Grade'}
+                </span>
+                <h3 className="visual-card-title">
+                  {isAr ? 'رقائق وبخور العود البري' : 'Wild Agarwood Chips & Shavings'}
+                </h3>
+                <p className="visual-card-desc">
+                  {isAr
+                    ? 'نقاء الاحتراق، النكهات العطرية حسب الإقليم، وكشف الشمع والرصاص.'
+                    : 'Burn aromas by terroir, zero-filler standards, and injection detection.'}
+                </p>
+                <span className="visual-card-cta">
+                  <span>{isAr ? 'دليل الرقائق' : 'Explore Chips'}</span>
+                  <ArrowRight size={12} className="icon-dir-flip" />
+                </span>
+              </div>
+            </Link>
+
+            <Link href={`/${locale}/products/traditional-attars`} className="visual-card">
+              <img src="/images/hero-attar-still.svg" alt="Traditional Copper Stills" className="visual-card-img" />
+              <div className="visual-card-overlay" />
+              <div className="visual-card-content">
+                <span className="visual-card-badge">
+                  {isAr ? 'تقاليد كانوج' : 'Heritage Stills'}
+                </span>
+                <h3 className="visual-card-title">
+                  {isAr ? 'العطور الشرقية وتقطير الديغ' : 'Heritage Attars & Deg Distillation'}
+                </h3>
+                <p className="visual-card-desc">
+                  {isAr
+                    ? 'تقطير النحاس التقليدي فوق قاعدة الصندل الطبيعي وتركيبات التوريد الخاصة.'
+                    : 'Centuries-old copper Deg & Bhapka distillation onto pure sandalwood bases.'}
+                </p>
+                <span className="visual-card-cta">
+                  <span>{isAr ? 'دليل التقطير' : 'Explore Stills'}</span>
+                  <ArrowRight size={12} className="icon-dir-flip" />
+                </span>
+              </div>
+            </Link>
+          </div>
+
           {/* THE PORTAL INDEX — six destinations with honest counts */}
           <div className="portal-grid">
             {tiles.map((tile) => {

@@ -45,6 +45,12 @@ interface BusinessCardProps {
   sampleLabel?: string | null;
 }
 
+const producerCovers: Record<string, string> = {
+  'al-mutalib-perfumes': '/images/hero-attar-still.svg',
+  'assam-artisan-distillers': '/images/hero-oud-chip.svg',
+  'siam-trat-agarwood-co': '/images/hero-dehn-al-oud.svg',
+};
+
 export function BusinessCard({ business, locale, variant = 'full', sampleLabel }: BusinessCardProps) {
   const isAr = locale === 'ar';
   const compact = variant === 'compact';
@@ -72,6 +78,13 @@ export function BusinessCard({ business, locale, variant = 'full', sampleLabel }
 
   return (
     <article className="data-card">
+      <div className="data-card-cover">
+        <img
+          src={producerCovers[business.slug] || '/images/hero-oud-chip.svg'}
+          alt={business.name}
+        />
+        <div className="data-card-cover-overlay" />
+      </div>
       <div className="data-card-head">
         <div style={{ flex: 1, minWidth: 0 }}>
           {business.contact_unlocked ? (
