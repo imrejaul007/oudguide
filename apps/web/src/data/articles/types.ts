@@ -206,4 +206,23 @@ export interface Article {
    * look up the related country record.
    */
   taxonomyKey?: string;
+
+  /**
+   * Declares that this article is also a structured data asset.
+   *
+   * The two original-data records — the grade-label catalogue and the
+   * price observation baseline — are not merely reviewed articles; they
+   * are dated, citable datasets. A `Dataset` schema (built here from the
+   * same record the page renders, so it cannot claim a variable the page
+   * does not record) says that to a crawler in a way an `Article`
+   * schema does not. It is additive: it stacks next to the Article
+   * schema, it does not replace it.
+   */
+  dataset?: {
+    /**
+     * The variables the data asset records, as short English labels.
+     * Each one must be a column the page actually publishes.
+     */
+    variableMeasured: string[];
+  };
 }

@@ -219,3 +219,132 @@ describe('The schema is rendered as a script tag', () => {
     }
   });
 });
+
+describe('Dataset JSON-LD', () => {
+  test('an original-data article declares a Dataset next to its Article', () => {
+    const baseline = getArticle('quality/gulf-price-baseline')!;
+    const graph = buildJsonLd(
+      {
+        path: '/en/guides/quality/gulf-price-baseline',
+        article: baseline,
+        dataset: {
+          name: baseline.title,
+          description: baseline.summary,
+          variableMeasured: baseline.dataset!.variableMeasured,
+          datePublished: baseline.reviewedOn,
+          dateModified: baseline.reviewedOn,
+        },
+        title: baseline.title,
+        description: baseline.summary,
+      },
+      SITE
+    );
+
+    const dataset = graph.find((g) => g['@type'] === 'Dataset') as any;
+    assert.ok(dataset, 'the baseline must produce a Dataset schema');
+    // The Article remains too: a dataset is an additive claim, not a
+    // replacement for the reviewed article.
+    assert.ok(graph.find((g) => g['@type'] === 'Article'), 'the Article schema remains');
+    assert.equal(dataset.name, baseline.title);
+    assert.deepEqual(
+      dataset.variableMeasured,
+      ['material', 'form', 'price band', 'currency', 'market', 'conditions recorded', 'date of observation'],
+      'the Dataset records only the variables the article declares'
+    );
+    // The dates are the record's review dates, not invented freshness.
+    assert.equal(dataset.datePublished, baseline.reviewedOn);
+    assert.equal(dataset.dateModified, baseline.reviewedOn);
+    assert.equal((dataset.publisher as any).name, 'OudGuide');
+  });
+
+  test('the grade-label dataset declares its own variables', () => {
+    const labels = getArticle('quality/grade-label-dataset')!;
+    assert.ok(labels.dataset, 'the grade-label catalogue must declare a dataset');
+    assert.ok(
+      labels.dataset.variableMeasured.includes('grade label (spelling)'),
+      'the catalogue records each label as it is printed'
+    );
+
+    const graph = buildJsonLd(
+      {
+        path: '/en/guides/quality/grade-label-dataset',
+        article: labels,
+        dataset: {
+          name: labels.title,
+          description: labels.summary,
+          variableMeasured: labels.dataset!.variableMeasured,
+          datePublished: labels.reviewedOn,
+          dateModified: labels.reviewedOn,
+        },
+        title: labels.title,
+        description: labels.summary,
+      },
+      SITE
+    );
+
+    const dataset = graph.find((g) => g['@type'] === 'Dataset') as any;
+    assert.ok(dataset, 'the grade-label catalogue must produce a Dataset schema');
+  });
+
+  test('a guide that declares no dataset produces no Dataset schema', () => {
+    const graph = buildJsonLd(
+      {
+        path: '/en/guides/oud-basics/what-is-agarwood',
+        article,
+        title: article.title,
+        description: article.summary,
+      },
+      SITE
+    );
+
+    assert.equal(
+      graph.find((g) => g['@type'] === 'Dataset'),
+      undefined,
+      'an ordinary guide must not claim to be a dataset'
+    );
+  });
+});
+
+describe('FAQPage JSON-LD', () => {
+  test('visible Q&As produce a FAQPage', () => {
+    const graph = buildJsonLd(
+      {
+        path: '/en/directory/al-mutalib-perfumes',
+        title: 'Al Mutalib Perfumes',
+        description: 'A producer profile.',
+        business: { name: 'Al Mutalib Perfumes' },
+        faq: [
+          { question: 'How do I verify this producer’s provenance?', answer: 'Supplier-declared unless verified.' },
+          { question: 'What is the minimum order quantity?', answer: 'Set per producer.' },
+        ],
+      },
+      SITE
+    );
+
+    const faq = graph.find((g) => g['@type'] === 'FAQPage') as any;
+    assert.ok(faq, 'a page with visible Q&As must produce a FAQPage');
+    assert.equal(faq.mainEntity.length, 2);
+    assert.equal(faq.mainEntity[0]['@type'], 'Question');
+    assert.equal(faq.mainEntity[0].name, 'How do I verify this producer’s provenance?');
+    assert.equal((faq.mainEntity[0].acceptedAnswer as any).text, 'Supplier-declared unless verified.');
+    // A directory FAQ must not leak contact fields either.
+    const lowered = JSON.stringify(faq).toLowerCase();
+    for (const field of ['email', 'whatsapp', 'telephone']) {
+      assert.ok(!lowered.includes(field), `the FAQPage must not carry ${field}`);
+    }
+  });
+
+  test('an empty FAQ produces no FAQPage', () => {
+    const graph = buildJsonLd(
+      {
+        path: '/en/membership',
+        title: 'Annual Membership',
+        description: 'A description.',
+        faq: [],
+      },
+      SITE
+    );
+
+    assert.equal(graph.find((g) => g['@type'] === 'FAQPage'), undefined);
+  });
+});

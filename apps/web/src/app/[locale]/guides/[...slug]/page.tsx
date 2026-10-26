@@ -727,6 +727,19 @@ function ArticleJsonLd({
       // list. A leaf has no children, so its list is empty and no
       // ItemList is emitted for it.
       itemList: children.length > 0 ? children : null,
+      // An original-data record (the grade-label catalogue, the price
+      // observation baseline) is also a dated dataset: the Dataset schema
+      // is built from the record's own declaration, so it records only the
+      // variables the page actually publishes.
+      dataset: article.dataset
+        ? {
+            name: articleTitle(article, locale),
+            description: articleSummary(article, locale),
+            variableMeasured: article.dataset.variableMeasured,
+            datePublished: article.reviewedOn,
+            dateModified: article.reviewedOn,
+          }
+        : null,
       title: articleTitle(article, locale),
       description: articleSummary(article, locale),
       breadcrumbs: articleBreadcrumbs(article, locale).map((crumb) => ({

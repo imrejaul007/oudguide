@@ -815,6 +815,14 @@ export const seoGapPageArticles: Article[] = [
       },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'CITES_AGARWOOD_2004'],
+    dataset: {
+      variableMeasured: [
+        'grade label (spelling)',
+        'catalogue position',
+        'catalogue of origin',
+        'date of recording',
+      ],
+    },
     limitations:
       'This is OudGuide\'s own dated record of grade-label usage in two named retail catalogues, and it is not a quality measurement. It does not establish the quality, grade, price, yield or authenticity of any lot, and it does not attach a threshold or a standard to a label, because none is published. It records commercial usage across two catalogues on 21 October 2026, not a global grading system.',
     limitationsAr:

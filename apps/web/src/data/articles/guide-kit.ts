@@ -41,6 +41,12 @@ export interface SimpleGuideSpec {
   }>;
   sourceIds: string[];
   workedExample?: WorkedExample;
+  /**
+   * For the two original-data records (the grade-label catalogue and the
+   * price observation baseline): declare them as data assets, so the page
+   * also emits a Dataset schema from the same record.
+   */
+  dataset?: { variableMeasured: string[] };
   limitations: string;
   limitationsAr: string;
   nextSteps: string[];
@@ -77,6 +83,7 @@ export function simpleGuide(spec: SimpleGuideSpec): Article {
     // A worked example is looked up by slug so that the example lives in
     // one table rather than being duplicated into each article.
     workedExample: spec.workedExample ?? WORKED_EXAMPLES[spec.slug],
+    dataset: spec.dataset,
     limitations: spec.limitations,
     limitationsAr: spec.limitationsAr,
     reviewer: REVIEWER,

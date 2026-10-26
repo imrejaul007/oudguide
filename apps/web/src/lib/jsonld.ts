@@ -77,6 +77,31 @@ export interface JsonLdOptions {
     name: string;
     description: string;
   } | null;
+  /**
+   * The FAQ Q&A pairs for an FAQPage schema.
+   *
+   * Extracted by RAG search and AI assistants to directly answer buyer
+   * questions. Only real Q&As visible in the DOM qualify.
+   */
+  faq?: Array<{
+    question: string;
+    answer: string;
+  }> | null;
+  /**
+   * The Dataset schema for an original data asset.
+   *
+   * Declares a structured, dated dataset such as the OudGuide price
+   * observation baseline.
+   */
+  dataset?: {
+    name: string;
+    description: string;
+    url?: string;
+    license?: string;
+    variableMeasured?: string[];
+    datePublished?: string;
+    dateModified?: string;
+  } | null;
 }
 
 /**
@@ -295,6 +320,68 @@ function businessSchema(
   };
 }
 
+/**
+ * The FAQPage schema for pages rendering visible Q&As.
+ */
+function faqSchema(
+  options: JsonLdOptions
+): Record<string, unknown> | null {
+  const faq = options.faq;
+  if (!faq || faq.length === 0) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+/**
+ * The Dataset schema for structured data assets.
+ */
+function datasetSchema(
+  options: JsonLdOptions,
+  siteUrl: string
+): Record<string, unknown> | null {
+  const ds = options.dataset;
+  if (!ds) return null;
+
+  const language = options.locale ?? localeOf(options.path);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: ds.name,
+    description: ds.description,
+    url: ds.url ?? `${siteUrl}${options.path}`,
+    ...(ds.license ? { license: ds.license } : {}),
+    ...(ds.variableMeasured && ds.variableMeasured.length > 0
+      ? { variableMeasured: ds.variableMeasured }
+      : {}),
+    creator: {
+      '@type': 'Organization',
+      name: 'OudGuide',
+      url: `${siteUrl}/en/about`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'OudGuide',
+      url: `${siteUrl}/en/about`,
+      logo: `${siteUrl}/icon.png`,
+    },
+    inLanguage: language === 'ar' ? 'ar' : 'en',
+    datePublished: ds.datePublished ?? (options.article?.reviewedOn ?? '2026-10-26'),
+    dateModified: ds.dateModified ?? (options.article?.reviewedOn ?? '2026-10-26'),
+  };
+}
+
 function localeOf(path: string): string {
   return path.startsWith('/ar/') || path === '/ar' ? 'ar' : 'en';
 }
@@ -321,9 +408,19 @@ export function buildJsonLd(
     graph.push(articleSchema(options, options.article, siteUrl));
   }
 
+  if (options.dataset) {
+    const ds = datasetSchema(options, siteUrl);
+    if (ds) graph.push(ds);
+  }
+
   if (options.business) {
     const schema = businessSchema(options, siteUrl);
     if (schema) graph.push(schema);
+  }
+
+  if (options.faq && options.faq.length > 0) {
+    const faq = faqSchema(options);
+    if (faq) graph.push(faq);
   }
 
   const items = itemListSchema(options, siteUrl);
