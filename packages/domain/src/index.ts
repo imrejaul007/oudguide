@@ -2,6 +2,7 @@
  * OudGuide Domain Layer: Directory, RFQ, Matching, Introductions & Membership
  */
 
+import crypto from 'node:crypto';
 import {
   canRelease,
   type ReleaseContext,
@@ -14,6 +15,41 @@ import {
   type BusinessFacility,
 } from '../../permissions/src/contact-policy.ts';
 import { isFieldVisible, type RfqFormValues } from '../../contracts/src/rfq-fields.ts';
+import {
+  type LeadStore,
+  type Lead,
+  type LeadRequirement,
+  type LeadContact,
+  type LeadStatus,
+  type LeadAssignment,
+  type AssignmentState,
+  type SupplierQuote,
+  type SupplierAccount,
+  type SupplierListing,
+  type ListingStatus,
+} from '../../db/src/lead-store.ts';
+import { InMemoryLeadStore } from '../../db/src/in-memory-lead-store.ts';
+
+export * from '../../db/src/lead-store.ts';
+
+export function hashSupplierPassword(password: string, salt?: string): { hash: string; salt: string } {
+  const s = salt || crypto.randomBytes(16).toString('hex');
+  const derived = crypto.scryptSync(password, s, 64);
+  return { hash: derived.toString('hex'), salt: s };
+}
+
+export function verifySupplierPassword(password: string, hash: string, salt: string): boolean {
+  try {
+    const derived = crypto.scryptSync(password, salt, 64);
+    const derivedHex = derived.toString('hex');
+    const bufA = Buffer.from(derivedHex, 'utf8');
+    const bufB = Buffer.from(hash, 'utf8');
+    if (bufA.length !== bufB.length) return false;
+    return crypto.timingSafeEqual(bufA, bufB);
+  } catch {
+    return false;
+  }
+}
 
 export interface InquiryRecord {
   id: string;
@@ -161,11 +197,20 @@ export class OudGuideDomainService {
   private releases: Map<string, IntroductionRelease> = new Map();
   private outbox: Array<{ id: string; event: string; payload: any; created_at: Date }> = [];
   private marketDataPoints: MarketDataPoint[] = [];
+  private leadStore: LeadStore;
 
-  constructor(initialBusinesses: RawBusinessProfile[] = []) {
+  constructor(
+    initialBusinesses: RawBusinessProfile[] = [],
+    leadStore?: LeadStore
+  ) {
     for (const b of initialBusinesses) {
       this.businesses.set(b.id, { ...b });
     }
+    this.leadStore = leadStore ?? new InMemoryLeadStore();
+  }
+
+  public getLeadStore(): LeadStore {
+    return this.leadStore;
   }
 
   // -------------------------------------------------------------
@@ -540,6 +585,39 @@ export class OudGuideDomainService {
       },
       created_at: now,
     });
+
+    // Record in the unified lead store so the operator lead queue
+    // sees both the quick form and the detailed RFQ wizard.
+    void this.leadStore.createLead({
+      id: `lead_${id}`,
+      source: 'rfq-wizard',
+      source_url: '/rfq',
+      locale: 'en',
+      status: 'new',
+      requirement: {
+        product_family: record.product_family,
+        quantity: record.quantity ? String(record.quantity) : undefined,
+        destination_country: record.destination_country,
+        timeline: record.required_date,
+        notes: typeof values.special_handling_notes === 'string' ? values.special_handling_notes : undefined,
+        samples_requested: record.samples_requested,
+        selected_supplier_id: (values.selected_supplier_id as string) || undefined,
+      },
+      contact: {
+        buyer_name: record.buyer_name,
+        buyer_email: record.buyer_email,
+        buyer_phone: record.buyer_phone,
+        buyer_whatsapp: record.buyer_whatsapp,
+        company_name: record.company_name,
+        preferred_channel: record.preferred_channel,
+      },
+      consent_to_contact: true,
+      consent_to_quote: true,
+      created_at: now,
+      updated_at: now,
+      delete_after: new Date(now.getTime() + 90 * 86400000),
+      max_recipients: 3,
+    }).catch(() => {});
 
     return { inquiry_id: id, verification_token: token, state: record.state };
   }
@@ -919,5 +997,442 @@ export class OudGuideDomainService {
     }
 
     return restored;
+  }
+
+  // -------------------------------------------------------------
+  // B2B WHOLESALE PORTAL & LEAD LOOP
+  // -------------------------------------------------------------
+
+  /**
+   * Submit a quick B2B quote request / lead.
+   *
+   * Unlike the 67-field RFQ wizard, this is the 1-minute quick intake
+   * designed for fast lead capture. It persists into the lead store
+   * (Postgres in production, in-memory for testing) so the lead is
+   * durable and immediately available for operator review.
+   */
+  public async submitLead(input: {
+    source?: string;
+    source_url?: string;
+    locale?: string;
+    product_family: string;
+    quantity?: string;
+    destination_country?: string;
+    timeline?: string;
+    notes?: string;
+    samples_requested?: boolean;
+    selected_supplier_id?: string;
+    buyer_name: string;
+    buyer_email?: string;
+    buyer_phone?: string;
+    buyer_whatsapp?: string;
+    company_name?: string;
+    preferred_channel?: string;
+    consent_to_contact?: boolean;
+    consent_to_quote?: boolean;
+  }): Promise<{ lead_id: string; status: LeadStatus }> {
+    const id = `lead_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    const now = new Date();
+    const deleteAfter = new Date(now.getTime() + 90 * 86400000); // 90-day retention
+
+    // Resolve selected supplier if provided by slug or id
+    let selectedSupplierId = input.selected_supplier_id;
+    if (selectedSupplierId) {
+      const resolved = this.resolveBusinessId(selectedSupplierId);
+      selectedSupplierId = resolved || selectedSupplierId;
+    }
+
+    const lead: Lead = {
+      id,
+      source: input.source || 'quick-rfq',
+      source_url: input.source_url,
+      locale: input.locale || 'en',
+      status: 'new',
+      requirement: {
+        product_family: input.product_family || 'Oud oil',
+        quantity: input.quantity,
+        destination_country: input.destination_country || 'United Arab Emirates',
+        timeline: input.timeline,
+        notes: input.notes,
+        samples_requested: Boolean(input.samples_requested),
+        selected_supplier_id: selectedSupplierId,
+      },
+      contact: {
+        buyer_name: input.buyer_name || 'Anonymous Buyer',
+        buyer_email: input.buyer_email,
+        buyer_phone: input.buyer_phone,
+        buyer_whatsapp: input.buyer_whatsapp,
+        company_name: input.company_name,
+        preferred_channel: input.preferred_channel || 'email',
+      },
+      consent_to_contact: input.consent_to_contact ?? true,
+      consent_to_quote: input.consent_to_quote ?? true,
+      created_at: now,
+      updated_at: now,
+      delete_after: deleteAfter,
+      max_recipients: 3,
+    };
+
+    await this.leadStore.createLead(lead);
+
+    this.outbox.push({
+      id: `outbox_lead_${id}`,
+      event: 'B2B_LEAD_SUBMITTED',
+      payload: {
+        lead_id: id,
+        product_family: lead.requirement.product_family,
+        destination: lead.requirement.destination_country,
+        buyer_name: lead.contact.buyer_name,
+        preferred_channel: lead.contact.preferred_channel,
+      },
+      created_at: now,
+    });
+
+    return { lead_id: id, status: lead.status };
+  }
+
+  public async listLeads(filter?: {
+    status?: LeadStatus;
+    product_family?: string;
+    limit?: number;
+  }): Promise<Lead[]> {
+    return this.leadStore.listLeads(filter);
+  }
+
+  public async getLeadForOperator(leadId: string): Promise<Lead | null> {
+    return this.leadStore.getLeadForOperator(leadId);
+  }
+
+  public async getLeadSummary(leadId: string): Promise<Lead | null> {
+    return this.leadStore.getLeadSummary(leadId);
+  }
+
+  /**
+   * Assign a lead to a matching supplier.
+   *
+   * Enforces:
+   *   1. Supplier exists and is published / registered.
+   *   2. Supplier is not suspended.
+   *   3. Supplier holds an active commercial entitlement (annual membership).
+   *   4. Recipient cap: maximum 3 approved suppliers per lead.
+   *   5. No duplicate assignments to the same supplier.
+   */
+  public async assignLeadToSupplier(
+    leadId: string,
+    targetBusinessIdOrSlug: string,
+    operatorId = 'operator',
+    matchReason = 'operator_matched'
+  ): Promise<{ success: boolean; error?: string; assignment_id?: string }> {
+    const lead = await this.leadStore.getLeadForOperator(leadId);
+    if (!lead) return { success: false, error: 'Lead not found' };
+
+    const businessId = this.resolveBusinessId(targetBusinessIdOrSlug);
+    if (!businessId) return { success: false, error: 'Supplier not found' };
+
+    const biz = this.businesses.get(businessId);
+    if (!biz) return { success: false, error: 'Supplier record missing' };
+
+    if (biz.is_suspended) {
+      return { success: false, error: 'Supplier account is currently suspended' };
+    }
+
+    // Commercial entitlement check: supplier must have paid annual membership
+    // or commercial entitlement flag enabled.
+    if (!biz.commercial_entitlement && !biz.has_active_membership) {
+      return {
+        success: false,
+        error: `Supplier "${biz.name}" lacks commercial entitlement (active membership required to receive buyer leads)`,
+      };
+    }
+
+    const existingAssignments = await this.leadStore.listAssignments(leadId);
+
+    // Duplicate check
+    if (existingAssignments.some((a) => a.business_id === businessId && a.state !== 'declined')) {
+      return { success: false, error: 'Supplier is already assigned to this lead' };
+    }
+
+    // Recipient cap (max 3 active assignments)
+    const activeAssignments = existingAssignments.filter((a) => a.state !== 'declined');
+    if (activeAssignments.length >= lead.max_recipients) {
+      return {
+        success: false,
+        error: `Recipient cap reached (maximum ${lead.max_recipients} suppliers per lead)`,
+      };
+    }
+
+    const assignmentId = `asgn_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    const now = new Date();
+
+    const assignment: LeadAssignment = {
+      id: assignmentId,
+      lead_id: leadId,
+      business_id: businessId,
+      state: 'pending',
+      assigned_by: operatorId,
+      assigned_at: now,
+      notified_at: now,
+      match_reason: matchReason,
+    };
+
+    await this.leadStore.createAssignment(assignment);
+
+    // Advance lead status if new
+    if (lead.status === 'new') {
+      await this.leadStore.updateLeadStatus(leadId, 'assigned');
+    }
+
+    // Enqueue outbox notification to supplier
+    this.outbox.push({
+      id: `outbox_asgn_${assignmentId}`,
+      event: 'B2B_LEAD_ASSIGNED',
+      payload: {
+        assignment_id: assignmentId,
+        lead_id: leadId,
+        business_id: businessId,
+        supplier_name: biz.name,
+        supplier_email: biz.email,
+        product_family: lead.requirement.product_family,
+        quantity: lead.requirement.quantity,
+        destination: lead.requirement.destination_country,
+      },
+      created_at: now,
+    });
+
+    return { success: true, assignment_id: assignmentId };
+  }
+
+  /**
+   * Post a wholesale quotation from a supplier against an assigned lead.
+   */
+  public async postQuote(input: {
+    assignment_id: string;
+    price?: number;
+    currency?: string;
+    unit?: string;
+    moq?: string;
+    lead_time?: string;
+    validity_days?: number;
+    note?: string;
+  }): Promise<{ success: boolean; error?: string; quote_id?: string }> {
+    const assignment = await this.leadStore.getAssignment(input.assignment_id);
+    if (!assignment) return { success: false, error: 'Assignment not found' };
+    if (assignment.state === 'declined') {
+      return { success: false, error: 'Cannot quote on a declined assignment' };
+    }
+
+    const quoteId = `quote_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    const now = new Date();
+
+    const quote: SupplierQuote = {
+      id: quoteId,
+      assignment_id: assignment.id,
+      lead_id: assignment.lead_id,
+      business_id: assignment.business_id,
+      price: input.price,
+      currency: (input.currency || 'USD').toUpperCase(),
+      unit: input.unit || 'kg',
+      moq: input.moq,
+      lead_time: input.lead_time,
+      validity_days: input.validity_days || 14,
+      note: input.note,
+      created_at: now,
+    };
+
+    await this.leadStore.createQuote(quote);
+    await this.leadStore.updateAssignmentState(assignment.id, 'quoted');
+    await this.leadStore.updateLeadStatus(assignment.lead_id, 'in_progress');
+
+    this.outbox.push({
+      id: `outbox_quote_${quoteId}`,
+      event: 'B2B_QUOTE_POSTED',
+      payload: {
+        quote_id: quoteId,
+        lead_id: assignment.lead_id,
+        business_id: assignment.business_id,
+        price: quote.price,
+        currency: quote.currency,
+        unit: quote.unit,
+      },
+      created_at: now,
+    });
+
+    return { success: true, quote_id: quoteId };
+  }
+
+  public async listQuotesForLead(leadId: string): Promise<SupplierQuote[]> {
+    return this.leadStore.listQuotes(leadId);
+  }
+
+  public async listQuotesForBusiness(businessId: string): Promise<SupplierQuote[]> {
+    return this.leadStore.listQuotesForBusiness(businessId);
+  }
+
+  public async listAssignmentsForLead(
+    leadId: string,
+    options?: { includeContact?: boolean }
+  ): Promise<Array<LeadAssignment & { contact?: LeadContact }>> {
+    return this.leadStore.listAssignments(leadId, options);
+  }
+
+  public async listAssignmentsForBusiness(
+    businessId: string,
+    options?: { includeContact?: boolean }
+  ): Promise<Array<LeadAssignment & { contact?: LeadContact }>> {
+    return this.leadStore.listAssignmentsForBusiness(businessId, options);
+  }
+
+  public async getAssignment(
+    assignmentId: string,
+    options?: { includeContact?: boolean }
+  ): Promise<(LeadAssignment & { contact?: LeadContact }) | null> {
+    return this.leadStore.getAssignment(assignmentId, options);
+  }
+
+  // --- Supplier Accounts & Authentication --------------------------------
+
+  public async registerSupplierAccount(
+    businessIdOrSlug: string,
+    email: string,
+    passwordPlain: string
+  ): Promise<SupplierAccount> {
+    const businessId = this.resolveBusinessId(businessIdOrSlug) || businessIdOrSlug;
+    const { hash, salt } = hashSupplierPassword(passwordPlain);
+
+    const account: SupplierAccount = {
+      business_id: businessId,
+      email: email.trim().toLowerCase(),
+      password_hash: hash,
+      password_salt: salt,
+      status: 'active',
+      created_at: new Date(),
+      must_change_password: false,
+    };
+
+    return this.leadStore.saveSupplierAccount(account);
+  }
+
+  public async authenticateSupplier(
+    email: string,
+    passwordPlain: string
+  ): Promise<{
+    success: boolean;
+    error?: string;
+    account?: SupplierAccount;
+    business?: RawBusinessProfile;
+  }> {
+    const account = await this.leadStore.getSupplierAccountByEmail(email);
+    if (!account) {
+      return { success: false, error: 'No account found with this email' };
+    }
+
+    if (account.status !== 'active') {
+      return { success: false, error: 'Supplier account is not active' };
+    }
+
+    const valid = verifySupplierPassword(passwordPlain, account.password_hash, account.password_salt);
+    if (!valid) {
+      return { success: false, error: 'Invalid password' };
+    }
+
+    const biz = this.businesses.get(account.business_id);
+    await this.leadStore.touchSupplierLogin(account.business_id, new Date());
+
+    return {
+      success: true,
+      account,
+      business: biz,
+    };
+  }
+
+  public async getSupplierAccount(businessId: string): Promise<SupplierAccount | null> {
+    return this.leadStore.getSupplierAccount(businessId);
+  }
+
+  // --- Supplier Product Listings -----------------------------------------
+
+  public async createSupplierListing(input: {
+    business_id: string;
+    product_family: string;
+    name: string;
+    description?: string;
+    moq?: string;
+    unit?: string;
+    sample_available?: boolean;
+    status?: ListingStatus;
+  }): Promise<SupplierListing> {
+    const id = `prod_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    const now = new Date();
+
+    const listing: SupplierListing = {
+      id,
+      business_id: input.business_id,
+      product_family: input.product_family,
+      name: input.name,
+      description: input.description,
+      moq: input.moq,
+      unit: input.unit || 'kg',
+      sample_available: Boolean(input.sample_available),
+      status: input.status || 'published',
+      created_at: now,
+      updated_at: now,
+    };
+
+    return this.leadStore.createListing(listing);
+  }
+
+  public async listPublishedListings(filter?: {
+    product_family?: string;
+    business_id?: string;
+  }): Promise<SupplierListing[]> {
+    return this.leadStore.listPublishedListings(filter);
+  }
+
+  public async listListingsForBusiness(businessId: string): Promise<SupplierListing[]> {
+    return this.leadStore.listListingsForBusiness(businessId);
+  }
+
+  public async updateListingStatus(
+    listingId: string,
+    status: ListingStatus
+  ): Promise<SupplierListing | null> {
+    return this.leadStore.updateListingStatus(listingId, status);
+  }
+
+  public async updateListing(
+    listingId: string,
+    patch: Partial<
+      Pick<
+        SupplierListing,
+        'name' | 'description' | 'moq' | 'unit' | 'sample_available' | 'product_family'
+      >
+    >
+  ): Promise<SupplierListing | null> {
+    return this.leadStore.updateListing(listingId, patch);
+  }
+
+  /** Every listing in every state — the operator's listing-review queue. */
+  public async listAllListings(filter?: {
+    status?: ListingStatus;
+    business_id?: string;
+  }): Promise<SupplierListing[]> {
+    return this.leadStore.listAllListings(filter);
+  }
+
+  /**
+   * The operator's supplier-account register.
+   *
+   * No hashes in the result: the store projects them out so the fact
+   * does not exist at the boundary.
+   */
+  public async listSupplierAccounts(): Promise<
+    Array<{
+      business_id: string;
+      email: string;
+      status: SupplierAccount['status'];
+      created_at: Date;
+    }>
+  > {
+    return this.leadStore.listSupplierAccounts();
   }
 }

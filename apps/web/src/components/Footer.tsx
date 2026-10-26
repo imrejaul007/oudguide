@@ -31,6 +31,8 @@ export function Footer({ locale }: { locale: string }) {
         { href: `/${locale}/sourcing`, label: isAr ? 'مساعد التوريد' : 'Sourcing Assistant' },
         { href: `/${locale}/rfq`, label: isAr ? 'طلب توريد محايد' : 'Submit a Wholesale RFQ' },
         { href: `/${locale}/for-businesses`, label: isAr ? 'انضم كعضو سنوي' : 'Annual Membership (AED 1,200)' },
+        { href: `/${locale}/b2b`, label: isAr ? 'بوابة الجملة' : 'Wholesale Portal' },
+        { href: `/${locale}/b2b/suppliers`, label: isAr ? 'معرضات الموردين' : 'Supplier Storefronts' },
         { href: `/${locale}/partners/opportunities`, label: isAr ? 'بوابة الشركاء' : 'Partner Portal' },
         { href: `/${locale}/membership`, label: isAr ? 'مزايا العضوية' : 'Membership Benefits' },
         { href: `/${locale}/shortlist`, label: isAr ? 'الموردون المحفوظون' : 'Saved suppliers' },

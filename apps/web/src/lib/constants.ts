@@ -205,6 +205,20 @@ export function getNavGroups(locale: string): NavGroup[] {
           descriptionAr: '1,200 درهم/سنة لإظهار الاتصال',
         },
         {
+          label: pick('Wholesale Portal', 'بوابة الجملة'),
+          labelAr: 'بوابة الجملة',
+          href: `/${locale}/b2b`,
+          description: pick('Quick requirements & supplier matching', 'طلبات سريعة ومطابقة الموردين'),
+          descriptionAr: 'طلبات سريعة ومطابقة الموردين',
+        },
+        {
+          label: pick('Supplier Storefronts', 'معرضات الموردين'),
+          labelAr: 'معرضات الموردين',
+          href: `/${locale}/b2b/suppliers`,
+          description: pick('Browse wholesale suppliers', 'تصفّح موردين الجملة'),
+          descriptionAr: 'تصفّح موردين الجملة',
+        },
+        {
           label: pick('Privacy Policy', 'سياسة الخصوصية'),
           labelAr: 'سياسة الخصوصية',
           href: `/${locale}/privacy`,

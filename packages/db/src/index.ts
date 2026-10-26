@@ -79,3 +79,8 @@ export class OudGuideDb {
 
 // Global singleton instance for local dev and tests
 export const db = new OudGuideDb();
+
+// B2B Lead Store exports
+export * from './lead-store.ts';
+export { InMemoryLeadStore } from './in-memory-lead-store.ts';
+export { PostgresLeadStore } from './postgres-lead-store.ts';

@@ -1,0 +1,13 @@
+{
+  "name": "@oudguide/db",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "description": "OudGuide persistence layer — the lead store, its in-memory implementation, and its Postgres implementation.",
+  "dependencies": {
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.10"
+  }
+}

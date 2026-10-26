@@ -308,6 +308,22 @@ export function isPublishedPath(path: string): boolean {
     return (seed.countries as any[]).some((c: any) => c.iso2.toUpperCase() === iso2);
   }
 
+  // The B2B wholesale portal. The landing, the quick-requirement page and
+  // the supplier storefront index are always-published; the receipt page
+  // (/b2b/quote/<id>) is served for a buyer to check their requirement;
+  // the supplier storefront detail is served for every publishable
+  // business slug, mirroring the directory profile shape; and the
+  // supplier console (/b2b/supplier[/login]) is served but gated by its
+  // own session, exactly as /inquiries/ is.
+  if (rest === 'b2b' || rest === 'b2b/quote' || rest === 'b2b/suppliers' || rest === 'b2b/supplier' || rest === 'b2b/supplier/login') {
+    return true;
+  }
+  if (rest.startsWith('b2b/quote/')) return true;
+  if (rest.startsWith('b2b/suppliers/')) {
+    const slug = rest.slice('b2b/suppliers/'.length);
+    return isPublishedBusinessSlug(slug);
+  }
+
   // The admin workspace is served but gated; it is never in the sitemap.
   if (rest === 'admin' || rest.startsWith('admin/')) return true;
 

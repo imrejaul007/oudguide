@@ -89,6 +89,9 @@ const CHROME_NON_ARTICLE_PATHS: string[] = [
   'about',
   'accessibility',
   'admin/inquiries',
+  // The B2B wholesale portal's public pages.
+  'b2b',
+  'b2b/suppliers',
   'corrections',
   'directory',
   'directory/map',

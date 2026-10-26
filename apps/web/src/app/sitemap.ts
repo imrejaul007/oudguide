@@ -47,6 +47,13 @@ const STATIC_PAGES: string[] = [
   '/en/shortlist',
   '/en/membership',
   '/en/for-businesses',
+  // The B2B wholesale portal's public pages: the landing, the quick
+  // requirement form, and the supplier storefront index. The per-buyer
+  // receipts (/b2b/quote/<id>) and the supplier console (/b2b/supplier)
+  // are dynamic/gated and are deliberately not listed.
+  '/en/b2b',
+  '/en/b2b/quote',
+  '/en/b2b/suppliers',
   '/en/policies',
   '/en/privacy',
   '/en/corrections',
@@ -87,6 +94,10 @@ const ARABIC_STATIC_PAGES: string[] = [
   '/ar/shortlist',
   '/ar/membership',
   '/ar/for-businesses',
+  // The B2B wholesale portal's public pages, mirroring the English tree.
+  '/ar/b2b',
+  '/ar/b2b/quote',
+  '/ar/b2b/suppliers',
   '/ar/policies',
   '/ar/privacy',
   '/ar/corrections',
@@ -105,17 +116,31 @@ const ARABIC_STATIC_PAGES: string[] = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const urls: MetadataRoute.Sitemap = [];
+  const urls: MetadataRoute.Sitemap[] = [];
   const seen = new Set<string>();
 
-  const push = (path: string, priority: number, changeFrequency: 'weekly' | 'monthly') => {
+  /**
+   * The last-modified date. Static pages carry no per-page review date, so
+   * they fall back to the corpus's publication date. Articles carry their
+   * own `reviewedOn`, and the sitemap reports that date rather than a single
+   * hard-coded value, so a page the team re-reviews shows a real, current
+   * date instead of a stale one that lies about freshness.
+   */
+  const fallbackLastModified = new Date('2026-10-20');
+
+  const push = (
+    path: string,
+    priority: number,
+    changeFrequency: 'weekly' | 'monthly',
+    lastModified: Date = fallbackLastModified
+  ) => {
     const clean = normalizePath(path);
     if (!clean || seen.has(clean)) return;
     if (!isPublishedPath(clean)) return;
     seen.add(clean);
     urls.push({
       url: `${siteUrl}${clean}`,
-      lastModified: new Date('2026-10-20'),
+      lastModified,
       changeFrequency,
       priority,
     });
@@ -129,9 +154,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // The published articles. The path comes from the article record's own
   // section, so a glossary term is published at /en/glossary/{term} and a
   // product family at /en/products/{family} — the paths the manifest
-  // declares — rather than everything being forced under /en/guides.
+  // declares — rather than everything being forced under /en/guides. The
+  // last-modified date is the article's own review date, not a constant.
   for (const article of listReviewedArticles()) {
-    push(articlePath('en', article.slug), 0.8, 'weekly');
+    const reviewedOn = article.reviewedOn
+      ? new Date(article.reviewedOn)
+      : fallbackLastModified;
+    push(articlePath('en', article.slug), 0.8, 'weekly', reviewedOn);
   }
 
   // The Arabic tree is published and readable, but the editorial

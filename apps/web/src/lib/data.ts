@@ -9,6 +9,9 @@ import sources from '../data/sources.json' with { type: 'json' };
 import links from '../data/proposed_internal_links.json' with { type: 'json' };
 
 import { OudGuideDomainService } from '../../../../packages/domain/src/index.ts';
+import { InMemoryLeadStore } from '../../../../packages/db/src/in-memory-lead-store.ts';
+import { PostgresLeadStore } from '../../../../packages/db/src/postgres-lead-store.ts';
+import { ensureB2bDemo } from './b2b-demo-seed.ts';
 import type { RawBusinessProfile, VerificationState } from '../../../permissions/src/contact-policy.ts';
 
 /**
@@ -215,7 +218,43 @@ export const seed = {
   businesses: initialBusinesses,
 };
 
-export const domain = new OudGuideDomainService(initialBusinesses);
+/**
+ * The lead store.
+ *
+ * The B2B lead loop (quick RFQ, operator assignment, supplier quotes,
+ * supplier accounts, product listings) needs persistence that survives
+ * serverless invocations. When `DATABASE_URL` is set — on Vercel with
+ * Vercel Postgres, or a local Postgres in development — the store is
+ * backed by Postgres via the tables in
+ * `packages/db/migrations/002_b2b_portal.sql`.
+ *
+ * Without it, the in-memory store is used: the portal still works end to
+ * end, and every test in the suite runs against exactly this path.
+ */
+function createLeadStore() {
+  const connectionString = process.env.DATABASE_URL;
+  if (connectionString) {
+    return new PostgresLeadStore(connectionString);
+  }
+  return new InMemoryLeadStore();
+}
+
+export const domain = new OudGuideDomainService(initialBusinesses, createLeadStore());
+
+/**
+ * Seed the B2B portal's demo supplier (sign-in + product listings) on
+ * first use. Idempotent and fire-and-forget: with the in-memory store it
+ * re-seeds on each cold invocation, which is the documented behaviour of
+ * the dev default.
+ *
+ * With a live database (DATABASE_URL set) the seed is SKIPPED: the demo
+ * sign-in must not be created in production, and an operator-created
+ * account is the supported path there. A `void ensureB2bDemo(domain)`
+ * call must not come back.
+ */
+if (!process.env.DATABASE_URL) {
+  void ensureB2bDemo(domain);
+}
 
 /**
  * The raw record for a slug.

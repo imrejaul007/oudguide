@@ -4730,3 +4730,88 @@ a.btn-crimson {
   flex-wrap: wrap;
   gap: 8px;
 }
+
+/* ==========================================================================
+   B2B Portal — Quick Lead Form, Supplier Console, Leads Queue
+   (white + forest green design system; RTL is handled by the `dir`
+   attribute, so the classes below are layout-only)
+   ========================================================================== */
+
+/* A short single-line note, the sibling of `.discipline-notes`. The
+   portal pages use the singular form; both must keep meaning the same
+   thing, which is why the singular is declared here and not duplicated
+   page by page. */
+.discipline-note {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+/* --- Quick lead form (the 1-minute intake) ----------------------------- */
+.quick-lead-form { display: grid; gap: 14px; }
+.quick-lead-grid { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 640px) { .quick-lead-grid { grid-template-columns: 1fr; } }
+
+.quick-lead-field { display: grid; gap: 6px; align-content: start; }
+.quick-lead-field > span,
+.quick-lead-field > label { font-size: 0.8rem; font-weight: 600; color: var(--ink-muted); }
+.quick-lead-field input,
+.quick-lead-field select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.quick-lead-field input:focus,
+.quick-lead-field select:focus {
+  outline: none;
+  border-color: var(--green-600);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--green-600) 15%, transparent);
+}
+
+.quick-lead-check {
+  display: flex; gap: 8px; align-items: flex-start;
+  font-size: 0.85rem; color: var(--ink-muted); line-height: 1.4;
+}
+.quick-lead-check input { margin-top: 3px; accent-color: var(--green-700); }
+.quick-lead-consent { padding: 12px; background: var(--bg-eggshell); border-radius: var(--r-sm); }
+
+.quick-lead-error { color: var(--brass); font-size: 0.85rem; margin: 0; }
+.quick-lead-submit { display: inline-flex; gap: 8px; align-items: center; }
+.quick-lead-privacy-note {
+  display: flex; gap: 6px; align-items: center;
+  font-size: 0.78rem; color: var(--ink-muted); margin: 0;
+}
+
+/* --- Receipt status rail ----------------------------------------------- */
+.status-rail { display: flex; gap: 24px; flex-wrap: wrap; }
+.status-step { display: inline-flex; gap: 6px; align-items: center; font-size: 0.85rem; font-weight: 600; }
+
+.receipt-requirement { display: grid; gap: 8px; margin: 10px 0 0; }
+.receipt-requirement div { display: flex; gap: 12px; }
+.receipt-requirement dt { font-size: 0.78rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.04em; min-width: 90px; }
+.receipt-requirement dd { margin: 0; font-size: 0.95rem; font-weight: 600; }
+
+.quote-card { border-inline-start: 3px solid var(--green-600); }
+
+/* --- Supplier storefronts ------------------------------------------------ */
+.supplier-card { transition: box-shadow 0.15s ease, transform 0.15s ease; }
+.supplier-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.supplier-back-link:hover { color: var(--green-700); }
+
+/* --- Supplier console ---------------------------------------------------- */
+.supplier-login-form input {
+  width: 100%; padding: 10px 12px;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  font-size: 0.9rem; background: var(--bg);
+}
+.supplier-lead-card { border-inline-start: 3px solid var(--green-600); }
+
+/* --- Admin leads queue ---------------------------------------------------- */
+.leads-queue { display: grid; gap: 14px; }
+.lead-row { display: grid; gap: 12px; }
+.lead-row-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.leads-filter-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }

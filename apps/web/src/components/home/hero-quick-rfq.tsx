@@ -21,7 +21,10 @@ export function HeroQuickRfq({ locale, isAr }: HeroQuickRfqProps) {
     if (material) params.set('family', material);
     if (quantity) params.set('volume', quantity);
     if (destination) params.set('country', destination);
-    router.push(`/${locale}/rfq?${params.toString()}`);
+    // The one-minute intake, not the 67-field wizard: the hero promises a
+    // fast submission, and the wizard stays reachable from the form's
+    // "detailed specification" link for buyers who want the full brief.
+    router.push(`/${locale}/b2b/quote?${params.toString()}`);
   };
 
   return (

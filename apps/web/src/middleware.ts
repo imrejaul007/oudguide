@@ -42,6 +42,10 @@ const KNOWN_UNPREFIXED_ROOTS = new Set([
   'corrections',
   'partners',
   'inquiries',
+  // The B2B wholesale portal. A bare /b2b request (no locale prefix) is a
+  // real page, so it redirects to the default locale like every other
+  // root instead of 404ing.
+  'b2b',
   // The public policy and legal pages. A request that reaches one of
   // these without its locale prefix is a request for a real page, and
   // redirecting it to the default locale is the same treatment every

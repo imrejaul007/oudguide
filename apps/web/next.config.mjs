@@ -247,6 +247,17 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'no-store, no-cache, must-revalidate, private' },
         ],
       },
+      // The B2B supplier console and its sign-in are session-gated,
+      // per-buyer views, the B2B equivalent of /inquiries/: no index, no
+      // shared cache. The indexable storefronts and the quick-requirement
+      // form are left to the default robots/sitemap treatment.
+      {
+        source: '/:locale/b2b/supplier/:path*',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex,nofollow' },
+          { key: 'Cache-Control', value: 'no-store, no-cache, must-revalidate, private' },
+        ],
+      },
     ];
   },
 };

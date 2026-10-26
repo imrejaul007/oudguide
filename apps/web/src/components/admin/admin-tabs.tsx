@@ -106,6 +106,12 @@ export function AdminTabs({
         <Link href={`/${locale}/admin/inquiries`} className="admin-tab">
           {isAr ? `الطلبات (${inquiryCount})` : `Inquiries (${inquiryCount})`}
         </Link>
+        <Link href={`/${locale}/admin/leads`} className="admin-tab">
+          {isAr ? 'طلبات الجملة' : 'Wholesale Leads'}
+        </Link>
+        <Link href={`/${locale}/admin/suppliers`} className="admin-tab">
+          {isAr ? 'حسابات الموردين' : 'Supplier Accounts'}
+        </Link>
         <button
           className={`admin-tab ${tab === 'claims' ? 'active' : ''}`}
           onClick={() => setTab('claims')}

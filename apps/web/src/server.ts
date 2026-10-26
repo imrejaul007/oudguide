@@ -8,6 +8,9 @@
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { handleApiRequest } from './api-router.ts';
 import { OudGuideDomainService } from '../../../packages/domain/src/index.ts';
+import { InMemoryLeadStore } from '../../../packages/db/src/in-memory-lead-store.ts';
+import { PostgresLeadStore } from '../../../packages/db/src/postgres-lead-store.ts';
+import { ensureB2bDemo } from './lib/b2b-demo-seed.ts';
 import { seedData } from '../../../scripts/seed.js';
 import { isFieldVisible, type RfqFormValues } from '../../../packages/contracts/src/rfq-fields.ts';
 import {
@@ -19,7 +22,19 @@ const PORT = Number(process.env.PORT || 3000);
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || `http://localhost:${PORT}`;
 
 const seed = seedData();
-const domain = new OudGuideDomainService(seed.businesses);
+const leadStore = process.env.DATABASE_URL
+  ? new PostgresLeadStore(process.env.DATABASE_URL)
+  : new InMemoryLeadStore();
+const domain = new OudGuideDomainService(seed.businesses, leadStore);
+
+// Seed the B2B demo supplier the same way the Next.js data layer does,
+// so the storefronts and supplier console have material in dev too. The
+// call is idempotent and no-ops if the dev register lacks the slug.
+// With a live DATABASE_URL the seed is skipped: the demo sign-in must
+// not land in a production database.
+if (!process.env.DATABASE_URL) {
+  void ensureB2bDemo(domain);
+}
 
 // ----------------------------------------------------------------
 // HTML Rendering (server-rendered, plain string templates)

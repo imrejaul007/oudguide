@@ -164,6 +164,17 @@ describe('Published paths', () => {
       '/en/for-businesses',
       '/en/shortlist',
       '/en/partners/opportunities',
+      // The B2B wholesale portal's indexable pages.
+      '/en/b2b',
+      '/en/b2b/quote',
+      '/en/b2b/suppliers',
+      // The receipt page and the supplier console are served but gated /
+      // dynamic — they resolve too, and the test asserts they do.
+      '/en/b2b/quote/lead_1',
+      '/en/b2b/supplier',
+      '/ar/b2b',
+      '/ar/b2b/quote',
+      '/ar/b2b/suppliers',
     ]) {
       assert.ok(isPublishedPath(path), `${path} must be published`);
     }
