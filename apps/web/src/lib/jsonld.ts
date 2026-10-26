@@ -40,6 +40,38 @@ export interface JsonLdOptions {
     description?: string | null;
     url?: string | null;
   } | null;
+  /**
+   * The locale the call site already knows.
+   *
+   * The schema's inLanguage should come from the page's own locale
+   * parameter, not be re-derived from the path string. The path-based
+   * derivation stays as the fallback for callers that do not pass it, but
+   * a caller that knows the locale passes it, so a path that ever
+   * changes shape cannot silently flip the language claim.
+   */
+  locale?: string;
+  /**
+   * The hub's children, for an ItemList next to the page's Article schema.
+   *
+   * A hub index page lists its children — the products page its families,
+   * the glossary its terms, the encyclopedia its sections — and an
+   * Article schema says nothing about that list. The ItemList is built
+   * from the same child array the page renders, so it cannot name a
+   * child the page does not link to.
+   */
+  itemList?: Array<{ label: string; href: string }> | null;
+  /**
+   * The DefinedTerm this page is about, for a glossary term page.
+   *
+   * A term page is a definition, not a story, and the schema type that
+   * says that is DefinedTerm, with the glossary hub as its term set.
+   * When one is passed, the term schema stands in for the Article
+   * schema: a page should not claim to be both an article and a term.
+   */
+  definedTerm?: {
+    name: string;
+    description: string;
+  } | null;
 }
 
 /**
@@ -50,38 +82,141 @@ export interface JsonLdOptions {
  * that claims a more recent modification than the page shows would be
  * the same class of defect the audit found in the copy.
  */
-function articleSchema(options: JsonLdOptions, article: Article): Record<string, unknown> {
+function articleSchema(
+  options: JsonLdOptions,
+  article: Article,
+  siteUrl: string
+): Record<string, unknown> {
   const sources = resolveSources(article.sourceIds);
-  const title = articleTitle(article, localeOf(options.path));
+  const language = options.locale ?? localeOf(options.path);
+  const title = articleTitle(article, language);
 
+  /**
+   * The headline is the title, trimmed at a word boundary.
+   *
+   * The previous `title.slice(0, 110)` cut mid-word with no ellipsis —
+   * the metadata layer already trims at word boundaries; the schema layer
+   * did not. Slice to 107, drop the partial word, and add the ellipsis
+   * only when something was actually cut, so a short title is published
+   * verbatim rather than decorated.
+   */
+  const headline =
+    title.length > 110
+      ? `${title.slice(0, 107).replace(/\s+\S*$/, '').trimEnd()}…`
+      : title;
+
+  /**
+   * Author and publisher are the OudGuide organization, not the record's
+   * reviewer string.
+   *
+   * `article.reviewer` is a descriptor — "OudGuide editorial review" —
+   * not an entity, and a schema author must be one. The rule this module
+   * opens with applies: a claim in the schema must be visible on the
+   * page, and the page does not present a named reviewer. The reviewer
+   * surface is added as a Person once the editorial register carries a
+   * real named reviewer; until then the organization is the only
+   * accountable entity the schema can honestly name.
+   */
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: title.slice(0, 110),
+    headline,
     description: article.summary,
-    inLanguage: localeOf(options.path) === 'ar' ? 'ar' : 'en',
+    inLanguage: language === 'ar' ? 'ar' : 'en',
     datePublished: article.reviewedOn,
     dateModified: article.reviewedOn,
     author: {
       '@type': 'Organization',
       name: article.reviewer,
+      url: `${siteUrl}/en/about`,
     },
     publisher: {
       '@type': 'Organization',
       name: 'OudGuide',
+      url: `${siteUrl}/en/about`,
+      logo: `${siteUrl}/icon.png`,
     },
+    /**
+     * The page this article describes. Without it a crawler has the
+     * content and no address for it; the canonical the page itself
+     * declares, so the two cannot drift.
+     */
+    mainEntityOfPage: { '@type': 'WebPage', url: `${siteUrl}${options.path}` },
     citation: sources.map((source) => ({
       '@type': 'CreativeWork',
       name: source.label,
       url: source.url,
       dateAccessed: source.retrievedOn,
     })),
-    about: article.title,
+    about: headline,
+  };
+}
+
+/**
+ * The DefinedTerm schema for a glossary term page.
+ *
+ * A term entry is a definition, and the schema type that says that is
+ * DefinedTerm: the term's name, the direct answer as its description
+ * (the definition is the page's lede, so the claim is visible), and the
+ * glossary hub as the set the term is defined in.
+ */
+function definedTermSchema(
+  options: JsonLdOptions,
+  siteUrl: string
+): Record<string, unknown> | null {
+  const term = options.definedTerm;
+  if (!term) return null;
+
+  const language = options.locale ?? localeOf(options.path);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTerm',
+    name: term.name,
+    description: term.description,
+    inDefinedTermSet: `${siteUrl}/${language === 'ar' ? 'ar' : 'en'}/glossary`,
+    inLanguage: language === 'ar' ? 'ar' : 'en',
+    mainEntityOfPage: { '@type': 'WebPage', url: `${siteUrl}${options.path}` },
+  };
+}
+
+/**
+ * The ItemList schema for a hub index page.
+ *
+ * Each item is one of the children the page actually links, from the same
+ * array the page renders. The URLs are absolute: a relative item in an
+ * ItemList is a URL a crawler has to guess at, and there is nothing to
+ * guess — the child href already carries the locale prefix.
+ */
+function itemListSchema(
+  options: JsonLdOptions,
+  siteUrl: string
+): Record<string, unknown> | null {
+  const items = options.itemList;
+  if (!items || items.length === 0) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      url: `${siteUrl}${item.href}`,
+    })),
   };
 }
 
 /**
  * The BreadcrumbList schema.
+ *
+ * A crumb href that does not carry the locale prefix is a latent 404:
+ * the audit verified the five current call sites all pass locale-prefixed
+ * crumbs, but the next caller has nothing to stop it passing `/products`
+ * where `/en/products` is meant, and a schema then points a crawler at a
+ * URL that answers 404 or redirects. The guard is the simplest correct
+ * behavior — a bare path gets the locale the page itself is in, so a
+ * crumb is always an absolute path of the same tree it renders in.
  */
 function breadcrumbSchema(
   options: JsonLdOptions,
@@ -90,6 +225,8 @@ function breadcrumbSchema(
   const crumbs = options.breadcrumbs;
   if (!crumbs || crumbs.length === 0) return null;
 
+  const locale = options.locale ?? localeOf(options.path);
+
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -97,18 +234,25 @@ function breadcrumbSchema(
       '@type': 'ListItem',
       position: index + 1,
       name: crumb.label,
-      item: `${siteUrl}${crumb.href}`,
+      item: `${siteUrl}${crumb.href.startsWith(`/${locale}`) ? crumb.href : `/${locale}${crumb.href === '/' ? '' : crumb.href}`}`,
     })),
   };
 }
 
 /**
- * The LocalBusiness schema for a profile page.
+ * The Organization schema for a business profile page.
  *
  * Only the fields the page actually publishes are included. Contact
  * details are deliberately left out: the page shows them only for an
  * entitled record, and a schema that published them to a crawler would
- * defeat the contact projection.
+ * defeat the contact projection. The `url` is the profile's own
+ * canonical, so a crawler resolving the entity lands on the page it
+ * describes and nowhere else.
+ *
+ * The type stays Organization rather than LocalBusiness: the page
+ * publishes no physical address — location, origins and destinations
+ * are business attributes, not a street address — and LocalBusiness
+ * would be claiming a type whose core property the data does not carry.
  */
 function businessSchema(
   options: JsonLdOptions,
@@ -132,6 +276,12 @@ function localeOf(path: string): string {
 
 /**
  * Build the JSON-LD graph for a page.
+ *
+ * A definedTerm and an article are two claims about the same page, and
+ * only one of them is true: a glossary term is a definition, so its
+ * DefinedTerm schema replaces the Article schema rather than joining it.
+ * An ItemList is a third, additive claim — the page lists children —
+ * and it stacks next to either of the others.
  */
 export function buildJsonLd(
   options: JsonLdOptions,
@@ -139,14 +289,20 @@ export function buildJsonLd(
 ): Record<string, unknown>[] {
   const graph: Record<string, unknown>[] = [];
 
-  if (options.article) {
-    graph.push(articleSchema(options, options.article));
+  if (options.definedTerm) {
+    const term = definedTermSchema(options, siteUrl);
+    if (term) graph.push(term);
+  } else if (options.article) {
+    graph.push(articleSchema(options, options.article, siteUrl));
   }
 
   if (options.business) {
     const schema = businessSchema(options, siteUrl);
     if (schema) graph.push(schema);
   }
+
+  const items = itemListSchema(options, siteUrl);
+  if (items) graph.push(items);
 
   const crumbs = breadcrumbSchema(options, siteUrl);
   if (crumbs) graph.push(crumbs);

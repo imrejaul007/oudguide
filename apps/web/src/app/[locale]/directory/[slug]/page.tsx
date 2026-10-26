@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { buildMetadata, SITE_URL } from '@/lib/metadata';
 import { jsonLdScript } from '@/lib/jsonld';
 import { notFound } from 'next/navigation';
-import { domain } from '@/lib/data';
+import { domain, businessRecordBySlug, businessSummaryBySlug } from '@/lib/data';
 import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe, Clock, Truck, FileCheck2 } from 'lucide-react';
 import { BookmarkButton, ShareButton, ViewTracker } from '@/components/business/interactive-tools';
 import { ReportButton } from '@/components/business/report-button';
@@ -15,6 +15,23 @@ const producerCovers: Record<string, string> = {
   'siam-trat-agarwood-co': '/images/hero-dehn-al-oud.svg',
 };
 
+/**
+ * The profile's metadata.
+ *
+ * The audit found these pages serving the generic site-wide title —
+ * the same title the 404 page answers with — with no canonical and no
+ * OG tags, so nothing about a profile was independently addressable.
+ *
+ * The title is the business name plus its location, and it is built to
+ * the search-result budget rather than left to the clamp: names are
+ * trimmed so the title never runs past 65 characters, and the
+ * " — OudGuide" suffix is appended only when the result still has room,
+ * because a suffix that forces the clamp to fire costs the business name
+ * its own tail. The description carries the location and the role, in
+ * the 70–160 range the result line displays, and it states the
+ * verification state honestly: a profile whose record is unverified is
+ * described as listed, not as verified.
+ */
 export async function generateMetadata({
   params,
 }: {
@@ -28,15 +45,69 @@ export async function generateMetadata({
     return { title: 'Producer not found · OudGuide' };
   }
 
-  const locationLabel = (biz.city ? `${biz.city}, ` : '') + (biz.country_name || biz.country_id);
-  const title = isAr
-    ? `${biz.name} — ${locationLabel} | دليل العود`
-    : `${biz.name} — ${biz.category || 'Oud Distiller & Wholesaler'} in ${locationLabel} | OudGuide`;
-  const description =
-    biz.description ||
-    (isAr
-      ? `الملف التجاري لـ ${biz.name}، المورد المعتمد للعود ودهن العود والمواد الطبيعية في ${locationLabel}.`
-      : `Commercial profile and verified firmographics for ${biz.name}, listed supplier in ${locationLabel}.`);
+  const locationLabel =
+    businessSummaryBySlug[slug]?.locationLabel ??
+    `${biz.city ? `${biz.city}, ` : ''}${biz.country_name || biz.country_id}`;
+  const role = biz.category || biz.business_type || 'Oud supplier';
+
+  const suffix = ' — OudGuide';
+  const locationPart = `${role} in ${locationLabel}`;
+
+  // The composed title, longest to shortest: the business name with the
+  // location and the site suffix. Once it fits in 65 characters, stop —
+  // dropping the suffix is a last resort, so the business name's own
+  // tail is never what gets cut.
+  let title = `${biz.name} — ${locationPart}${suffix}`;
+  if (title.length > 65) {
+    title = `${biz.name} — ${locationPart}`;
+  }
+  if (title.length > 65) {
+    // Still too long: trim the name at a word boundary and re-compose,
+    // the way the metadata layer trims its own strings. The ellipsis is
+    // added only when a word was actually cut.
+    const base = biz.name;
+    let cut = base;
+    while (cut.length > 30) {
+      const candidate = `${cut} — ${locationPart}`;
+      if (candidate.length <= 65) break;
+      const lastSpace = cut.lastIndexOf(' ');
+      cut = cut.slice(0, lastSpace > 1 ? lastSpace : 1).trimEnd();
+    }
+    title = cut.length < base.length ? `${cut}… — ${locationPart}` : `${cut} — ${locationPart}`;
+  }
+
+  // The description states what the profile actually shows: the role and
+  // location, and the verification state of the record. A record that is
+  // not owner-verified is described as pending, because a SERP line that
+  // implies verification the page does not carry is the same defect the
+  // audit found in the body copy.
+  const state = biz.verification_state;
+  const verificationCopy =
+    state === 'owner_verified'
+      ? isAr
+        ? 'ملكية موثّقة من المالك'
+        : 'owner-verified record'
+      : state === 'seller_declared'
+        ? isAr
+          ? 'حقول معلنة من البائع'
+          : 'seller-declared fields'
+        : isAr
+          ? 'سجل قيد التحقق'
+          : 'record pending verification';
+  const description = isAr
+    ? `${biz.name}: ${role} في ${locationLabel}. ${verificationCopy} — ملف OudGuide: عائلات المواد، الأدوار، الأقاليم المعالَجة والوجهات الموثّقة.`
+    : `${biz.name} is a ${role.toLowerCase()} in ${locationLabel} (${verificationCopy}). OudGuide profile: material families, roles, origins handled and documented destinations.`;
+
+  /**
+   * The sibling-locale alternate.
+   *
+   * Both locale trees render from the same business registry — there is
+   * no per-locale record — so the same slug answers in the other locale
+   * whenever it answers here, and the alternate is declared on the
+   * strength of the record existing. A slug with no record is already a
+   * 404 and declared nothing.
+   */
+  const alternateLocalePath = `/${isAr ? 'en' : 'ar'}/directory/${slug}`;
 
   return buildMetadata({
     path: `/${locale}/directory/${slug}`,
@@ -44,7 +115,7 @@ export async function generateMetadata({
     description,
     locale,
     type: 'article',
-    alternateLocalePath: `/${isAr ? 'en' : 'ar'}/directory/${slug}`,
+    alternateLocalePath,
   });
 }
 
@@ -75,12 +146,17 @@ export default async function BusinessProfilePage({
               jsonLdScript(
                 {
                   path: `/${locale}/directory/${slug}`,
+                  locale,
                   title: biz.name,
                   description: biz.description ?? '',
+                  // The Organization's url is this profile page — the
+                  // address a crawler resolving the entity should land
+                  // on. No contact fields: the schema must not leak
+                  // anything the contact projection strips from the page.
                   business: {
                     name: biz.name,
                     description: biz.description,
-                    url: biz.website_url,
+                    url: `${SITE_URL}/${locale}/directory/${slug}`,
                   },
                   breadcrumbs: [
                     { label: isAr ? 'الرئيسية' : 'Home', href: `/${locale}` },

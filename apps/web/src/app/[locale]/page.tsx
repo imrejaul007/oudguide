@@ -10,6 +10,7 @@ import {
   articleSummary,
 } from '@/lib/articles';
 import { HeroSearch } from '@/components/home/hero-search';
+import { MarketplaceExplorer } from '@/components/home/marketplace-explorer';
 import { BusinessCard } from '@/components/business/business-card';
 import {
   List,
@@ -31,6 +32,23 @@ import type { Metadata } from 'next';
 import { buildMetadata, SITE_URL } from '@/lib/metadata';
 import { websiteSchema, organizationSchema } from '@/lib/jsonld';
 
+/**
+ * The WebSite/Organization JSON-LD for the home page, as a script body.
+ *
+ * Emitted on the English home only, in English only. The Arabic tree is
+ * noindexed pending its human editorial review, and a SearchAction that
+ * tells a crawler where to send searches must not point that crawler at
+ * a noindexed tree: the only indexable surface this site has is the
+ * English one, so the schema lives with it and says nothing about any
+ * other. The root layout deliberately carries no schema — there is no
+ * <html> to hang one on there, and a page that serves two languages
+ * should not share one structured-data payload.
+ */
+function homeSchemaScript(): string {
+  const graph = [websiteSchema(SITE_URL, 'en'), organizationSchema(SITE_URL)];
+  return JSON.stringify(graph.length === 1 ? graph[0] : { '@context': 'https://schema.org', '@graph': graph });
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -42,7 +60,7 @@ export async function generateMetadata({
     path: `/${locale}`,
     title: isAr
       ? 'دليل العود — المرجع المستقل للعود الطبيعي وتوريد العطور بالجملة'
-      : 'OudGuide — The independent reference for natural oud & wholesale fragrance sourcing',
+      : 'OudGuide — The natural oud & wholesale fragrance reference',
     description: isAr
       ? 'المرجع المستقل للعود الطبيعي ودهن العود والعطور الشرقية، مع دليل منتجين موثّقين، موسوعة معارف، وخريطة أقاليم — وخدمة ربط تجارية محايدة.'
       : 'The independent reference for natural agarwood, Dehn Al Oud and heritage attars: a verified producer directory, an encyclopedia, a territory register, and a neutral wholesale matching service.',
@@ -149,6 +167,20 @@ export default async function HomePage({
 
   return (
     <>
+      {/* =============================================================
+          JSON-LD — WebSite + Organization, English home only.
+
+          The Arabic home renders nothing here: see homeSchemaScript,
+          which documents why the SearchAction must not point a
+          crawler at the noindexed tree.
+          ============================================================== */}
+      {!isAr && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: homeSchemaScript() }}
+        />
+      )}
+
       {/* ==============================================================
           1. ASYMMETRIC B2B PORTAL HERO — Command Masthead & Live Dossier
           ============================================================== */}
@@ -180,6 +212,27 @@ export default async function HomePage({
 
               <div style={{ maxWidth: 640, marginBottom: 24 }}>
                 <HeroSearch locale={locale} />
+              </div>
+
+              {/* Fast 1-Minute RFQ Dock (Tradeling Pattern) */}
+              <div className="fast-rfq-hero-dock">
+                <div className="cluster" style={{ gap: 10 }}>
+                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--green-50)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--green-700)' }}>
+                    <FileText size={16} />
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '0.86rem', fontWeight: 600, color: 'var(--green-950)', display: 'block' }}>
+                      {isAr ? 'هل تحتاج كميات تجارية أو عينات مخصصة؟' : 'Need wholesale volume or custom distillation?'}
+                    </span>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--ink-muted)' }}>
+                      {isAr ? 'قدّم متطلباتك واستلم عروض أسعار مباشرة دون عمولات وساطة' : 'Submit technical RFQ in 60s — zero commission bias'}
+                    </span>
+                  </div>
+                </div>
+                <Link href={`/${locale}/rfq`} className="btn btn-outline btn-sm" style={{ whiteSpace: 'nowrap', gap: 5 }}>
+                  <span>{isAr ? 'تقديم طلب توريد' : 'Post Bulk RFQ'}</span>
+                  <ArrowRight size={12} className="icon-dir-flip" />
+                </Link>
               </div>
 
               {/* 3 Core Trust Markers */}
@@ -378,6 +431,19 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* ==============================================================
+          3. LIVE B2B MARKETPLACE & INTELLIGENCE ENGINE (Apollo & Qogita Pattern)
+          ============================================================== */}
+      <section className="section section-eggshell">
+        <div className="container">
+          <MarketplaceExplorer
+            locale={locale}
+            isAr={isAr}
+            reviewedArticles={reviewedArticles}
+            producers={domain.listBusinesses() as any[]}
+          />
+        </div>
+      </section>
       {/* ==============================================================
           2. METRICS — the thin stat strip
           ============================================================== */}

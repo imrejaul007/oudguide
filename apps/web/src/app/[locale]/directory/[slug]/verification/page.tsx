@@ -26,15 +26,25 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
+  const isAr = locale === 'ar';
   const raw = businessRecordBySlug(slug);
   const name = raw?.name ?? 'Business';
 
+  /**
+   * The sibling-locale rule is the profile's: the registry has no
+   * per-locale records, so a slug that answers here answers there too.
+   * A record without a verifiable page would 404 in both trees anyway,
+   * and a 404's metadata is not served.
+   */
   return buildMetadata({
     path: `/${locale}/directory/${slug}/verification`,
-    title: `${name} — Verification Record · OudGuide`,
-    description: `What OudGuide has checked for ${name}: the evidence, the date, and the fields that remain supplier-declared.`,
+    title: isAr ? `سجل توثيق ${name} · دليل العود` : `${name} — Verification Record · OudGuide`,
+    description: isAr
+      ? `ما تحقّق منه دليل العود فعلاً لـ ${name}: الدليل، التاريخ، والحقول التي تبقى معلنة من البائع.`
+      : `What OudGuide has checked for ${name}: the evidence, the date, and which fields remain supplier-declared. The verification record for this profile.`,
     locale,
     type: 'article',
+    alternateLocalePath: `/${isAr ? 'en' : 'ar'}/directory/${slug}/verification`,
   });
 }
 
