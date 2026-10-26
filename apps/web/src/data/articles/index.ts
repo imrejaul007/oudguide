@@ -26,6 +26,7 @@ import { originRegionArticles } from './origin-regions.ts';
 import { originComparisonArticles } from './origin-comparisons.ts';
 import { destinationGuideArticles } from './destination-guides.ts';
 import { glossaryTermArticles } from './glossary-terms.ts';
+import { seoGapPageArticles } from './seo-gap-pages.ts';
 
 /**
  * The reviewed content layer.
@@ -108,6 +109,7 @@ export const articles: Article[] = [
   ...originComparisonArticles,
   ...destinationGuideArticles,
   ...glossaryTermArticles,
+  ...seoGapPageArticles,
   ...basicsArticles,
   ...hubArticles,
   ...qualityArticles,
