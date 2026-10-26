@@ -75,6 +75,13 @@ const SPECS: HubSpec[] = [
       'يغطي القسم المادة لا السوق. أما بحث الموردين أو أطر التسعير أو أسئلة الشحن، فاتبع روابط قسمي الشراء والتوريد لا من هنا.',
     children: [
       {
+        slug: 'oud-basics/getting-started',
+        label: 'Where to begin with oud: the four decisions, in order',
+        labelAr: 'من أين أبدأ مع العود: القرارات الأربعة بالترتيب',
+        blurb: 'The four decisions a first-timer makes, in the order that costs the least, and where on this site each one is answered.',
+        blurbAr: 'القرارات الأربعة التي يتخذها المبتدئ، بالترتيب الذي يكلف أقل، وأين في هذا الموقع يجيب كل واحد منها.',
+      },
+      {
         slug: 'oud-basics/what-is-agarwood',
         label: 'Agarwood: names, material and uses',
         labelAr: 'العود: الأسماء والمادة والاستخدامات',

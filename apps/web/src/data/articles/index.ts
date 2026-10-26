@@ -31,6 +31,7 @@ import { seoGapPageArticles } from './seo-gap-pages.ts';
 import { priceBaselineArticles } from './price-baseline-dataset.ts';
 import { oudAuthenticityProtocolArticles } from './oud-authenticity-protocol.ts';
 import { howToBuyOudArticles } from './how-to-buy-oud.ts';
+import { gettingStartedWithOudArticles } from './getting-started-with-oud.ts';
 import { editorialGuideOudBasics } from './editorial-guides-oud-basics.ts';
 import { editorialGuideCulture } from './editorial-guides-culture.ts';
 import { editorialGuideComparisons } from './editorial-guides-comparisons.ts';
@@ -128,6 +129,7 @@ export const articles: Article[] = [
   ...priceBaselineArticles,
   ...oudAuthenticityProtocolArticles,
   ...howToBuyOudArticles,
+  ...gettingStartedWithOudArticles,
   ...editorialGuideOudBasics,
   ...editorialGuideCulture,
   ...editorialGuideComparisons,
