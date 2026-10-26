@@ -410,7 +410,7 @@ export function publishedLabel(path: string, locale = 'en'): string | null {
     }
   }
 
-  const manifest = findManifestRecord(resolved);
+  const manifest = findManifestRecord(path) || findManifestRecord(resolved);
   if (manifest) {
     const title = String(manifest.h1_brief || manifest.title_brief || '').trim();
     if (title) return title;

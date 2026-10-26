@@ -173,3 +173,37 @@ export function jsonLdScript(
     graph.length === 1 ? graph[0] : { '@context': 'https://schema.org', '@graph': graph }
   );
 }
+
+/**
+ * The WebSite and SearchAction schema for the home page.
+ */
+export function websiteSchema(siteUrl: string, locale = 'en'): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'OudGuide',
+    url: siteUrl,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/${locale}/directory?search={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+}
+
+/**
+ * The Organization schema for OudGuide portal.
+ */
+export function organizationSchema(siteUrl: string): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'OudGuide',
+    url: siteUrl,
+    logo: `${siteUrl}/icon.png`,
+    description: 'The independent reference for natural agarwood, Dehn Al Oud and heritage attars.',
+  };
+}

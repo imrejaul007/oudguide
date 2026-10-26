@@ -25,7 +25,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/metadata';
+import { buildMetadata, SITE_URL } from '@/lib/metadata';
+import { websiteSchema, organizationSchema } from '@/lib/jsonld';
 
 export async function generateMetadata({
   params,
