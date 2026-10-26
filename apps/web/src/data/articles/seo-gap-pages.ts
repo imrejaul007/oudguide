@@ -170,8 +170,6 @@ export const seoGapPageArticles: Article[] = [
           'وكثيراً ما يستغل الغش التجاري سلوك هذا الحامل. ففي المستحضرات التجارية الرخيصة، يُستبدل زيت الصندل الطبيعي الثمين بزيوت معدنية أو محاليل كيميائية صناعية. ولذلك ينبغي للمشتري الذي يفحص عينة عود أن يراقب مسار الرائحة على شريط فحص ورقي لمدة ثمانٍ وأربعين ساعة: فالصندل الطبيعي يحتفظ بطابع خشبي ناعم تحت نفحات العود المتلاشية، بينما تترك الحوامل الصناعية أثراً كيميائياً واضحاً أو تفقد ثباتها فجأة بمجرد تطاير النفحات الأولية.',
         ],
       },
-    ],
-    sections: [
       {
         heading: 'What the distinction changes at the point of purchase',
         headingAr: 'ما الذي يغيّره التميير عند نقطة الشراء',
@@ -249,7 +247,7 @@ export const seoGapPageArticles: Article[] = [
         heading: 'Why the record beats the reading',
         headingAr: 'لماذا يتفوق السجل على القراءة',
         body: [
-          'A buyer who receives a lot and runs a physical check is measuring the material\'s state at that moment, which is only one data point in a handling history that is invisible without the producer\'s record. The distinction matters because storage conditions, transit humidity and re-distillation all shift the readings without changing the underlying resin, so two lots with identical origin claims can read differently for reasons that have nothing to do with quality. Asking for the harvest and distillation date, the storage conditions and the transit record is the only way to convert a physical reading into a verified statement rather than an observation.
+          'A buyer who receives a lot and runs a physical check is measuring the material\'s state at that moment, which is only one data point in a handling history that is invisible without the producer\'s record. The distinction matters because storage conditions, transit humidity and re-distillation all shift the readings without changing the underlying resin, so two lots with identical origin claims can read differently for reasons that have nothing to do with quality. Asking for the harvest and distillation date, the storage conditions and the transit record is the only way to convert a physical reading into a verified statement rather than an observation.'
         ],
         bodyAr: [
           'المشتري الذي يتسلم لوطاً ويضرب فحصاً مالياً يقيس حالة المادة في تلك اللحظة، والتي ليست إلا نقطة في تاريخ تعامل غير مرئي دون سجل المُنتج. ويهم التمييز لأن ظروف التخزين ورطوبة النقل وإعادة التقطير كلها تحرك القراءات دون تغيير الراتنج الكامن، وبالتالي لوطين يطابقان ادعاء منشأ يمكن أن يقيسا قراءتين مختلفتين لأسباب لا علاقة لها بالجودة. والطلب من تاريخ الجمع والتقارير التخزينية وسجل النقل هو الطريق الوحيد لتحويل الفحص المادي إلى بيان موثق لا مجرد ملاحظة.'
@@ -321,7 +319,7 @@ export const seoGapPageArticles: Article[] = [
         heading: 'The sequence a buyer follows before shipping',
         headingAr: 'تسلسل يتبعه المشتري قبل الشحن',
         body: [
-          'The sequence is: confirm the species on the paperwork, confirm the export or re-export permit is issued by the country of export, confirm the importing market\'s own permit or import regime applies, and only then move the material. Each step answers a different question, and skipping one does not make the others stronger. The permit is the common thread; the market regime is the layer that says who may lawfully take the next step.
+          'The sequence is: confirm the species on the paperwork, confirm the export or re-export permit is issued by the country of export, confirm the importing market\'s own permit or import regime applies, and only then move the material. Each step answers a different question, and skipping one does not make the others stronger. The permit is the common thread; the market regime is the layer that says who may lawfully take the next step.',
           'The reason the sequence matters is that a buyer who moves the material first and chases the paperwork after is the buyer who ends up holding a lot they cannot clear. The paperwork and the movement have to be ordered, and the order is set by the market\'s authority, not by the seller\'s schedule.'
         ],
         bodyAr: [
@@ -394,7 +392,7 @@ export const seoGapPageArticles: Article[] = [
         heading: 'Where the report fits in the full check',
         headingAr: 'أين يقع التقرير في الفحص الكامل',
         body: [
-          'The lab report is one channel in a three-channel check: the chemistry channel is the report, the provenance channel is the permit and handling record, and the commercial channel is the grade and price pressed against the documented range. A buyer who runs only one channel is running a check that the other two can defeat, and the report\'s honesty is that it admits it is only one of the three.
+          'The lab report is one channel in a three-channel check: the chemistry channel is the report, the provenance channel is the permit and handling record, and the commercial channel is the grade and price pressed against the documented range. A buyer who runs only one channel is running a check that the other two can defeat, and the report\'s honesty is that it admits it is only one of the three.',
           'The value of the report is therefore not that it settles the lot, but that it settles the chemistry claim and leaves the other two claims to their own channels. A buyer who knows the report\'s lane is a buyer who does not let a clean chemistry reading stand in for a provenance they never checked.'
         ],
         bodyAr: [
@@ -489,7 +487,7 @@ export const seoGapPageArticles: Article[] = [
         heading: 'Assembling an observation, not a figure',
         headingAr: 'تركيب ملاحظة لا رقم',
         body: [
-          'The observation the framework builds from has four fields: the documented price range, the conditions it came with (the form, the grade, the market, the date), the seller\'s stated conditions, and the gap between them. A single figure with no date, form or grade is not an observation, it is a claim, and the framework\'s discipline is to refuse to treat a claim as an observation.
+          'The observation the framework builds from has four fields: the documented price range, the conditions it came with (the form, the grade, the market, the date), the seller\'s stated conditions, and the gap between them. A single figure with no date, form or grade is not an observation, it is a claim, and the framework\'s discipline is to refuse to treat a claim as an observation.',
           'The buyer\'s job is to keep the fields separate and to read the gap, because the gap is where the transaction\'s real content lives. A seller who cannot state the conditions their figure came from is not giving a price, and the framework treats that the way it treats anything that will not anchor to a documented range: as a number that does not constrain anything.'
         ],
         bodyAr: [
@@ -562,7 +560,7 @@ export const seoGapPageArticles: Article[] = [
         heading: 'Smell-based signals, and where they stop',
         headingAr: 'إشارات الشم، وأين تتوقف',
         body: [
-          'Smell is a real channel for an attar and a limited one: a trained nose can read a difference between a high-oud attar and a mostly-carrier one, and can flag an off-note that points to an adulterant or to a turned product. But smell cannot separate the oud\'s origin, grade or the carrier\'s identity, and it cannot be a verdict on its own, because the same profile is reproducible with a carrier blend the buyer cannot see.
+          'Smell is a real channel for an attar and a limited one: a trained nose can read a difference between a high-oud attar and a mostly-carrier one, and can flag an off-note that points to an adulterant or to a turned product. But smell cannot separate the oud\'s origin, grade or the carrier\'s identity, and it cannot be a verdict on its own, because the same profile is reproducible with a carrier blend the buyer cannot see.',
           'The honest use of smell is as a signal that directs the other channels, the carrier question, the concentration question and the document, not as a substitute for them. A buyer who stops at the nose has run one channel; a buyer who uses the nose to decide which document to ask for has used it for what it actually does.',
         ],
         bodyAr: [
@@ -635,7 +633,7 @@ export const seoGapPageArticles: Article[] = [
         heading: 'The value chain from wood to finished perfume',
         headingAr: 'سلسلة القيمة من الخشب إلى العطر المنتهي',
         body: [
-          'The chain runs from the producing country, through the export permit, through the consuming market\'s import regime, into a distiller, and out as a finished perfume or attar, and each hand adds a claim and a document. A fine-fragrance buyer who buys at the finished-product end is buying into the whole chain\'s claims, and the document that anchors the chain is the permit and handling record, not the brand\'s marketing.
+          'The chain runs from the producing country, through the export permit, through the consuming market\'s import regime, into a distiller, and out as a finished perfume or attar, and each hand adds a claim and a document. A fine-fragrance buyer who buys at the finished-product end is buying into the whole chain\'s claims, and the document that anchors the chain is the permit and handling record, not the brand\'s marketing.',
           'The market structure is why the value question has to be answered by the industry estimate and the consumer-market record rather than by a single price: the value is carried across many hands, and each hand\'s claim is only as good as the document behind it. The honest buyer checks the chain, not the label on the final bottle.'
         ],
         bodyAr: [
