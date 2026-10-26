@@ -98,6 +98,11 @@ export function buildMetadata({
     if (sibling !== cleanPath) {
       languages[altLocale === 'en' ? 'ar' : 'en'] = `${SITE_URL}${sibling}`;
     }
+    // The English page is the default audience: x-default points at the
+    // English version of THIS page (not the home), so a crawler with no
+    // language signal lands on the equivalent English content.
+    languages['x-default'] =
+      `${SITE_URL}${cleanPath.replace(/^\/(en|ar)(?=\/|$)/, '/en')}`;
   }
 
   return {

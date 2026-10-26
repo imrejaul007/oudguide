@@ -23,6 +23,9 @@ import {
   ShieldCheck,
   ArrowRight,
   Sparkles,
+  Award,
+  CheckCircle2,
+  MapPin,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { buildMetadata, SITE_URL } from '@/lib/metadata';
@@ -147,143 +150,230 @@ export default async function HomePage({
   return (
     <>
       {/* ==============================================================
-          1. PORTAL MASTHEAD — the search-first index
+          1. ASYMMETRIC B2B PORTAL HERO — Command Masthead & Live Dossier
           ============================================================== */}
-      <section className="hero" style={{ textAlign: 'center' }}>
-        <div className="container" style={{ maxWidth: 880 }}>
-          <div className="hero-tag" style={{ marginBottom: 22 }}>
-            <Compass size={12} />
-            <span>
-              {isAr
-                ? 'المرجع المستقل للعود الطبيعي وتجارة العطور'
-                : 'The independent reference for natural oud & the fragrance trade'}
-            </span>
-          </div>
-
-          <h1 className="hero-title" style={{ marginBottom: 16 }}>
-            {isAr
-              ? 'ابحث، صحِّح، وتوّرّد العود الطبيعي بثقة.'
-              : 'Find, verify, and source natural oud with confidence.'}
-          </h1>
-
-          <p className="hero-lead" style={{ marginInline: 'auto', marginBottom: 36 }}>
-            {isAr
-              ? 'دليل منتجين موثّقين، موسوعة معارف راجعة، سجل أقاليم، وخدمة ربط تجارية محايدة — كل الأرقام التي تظهر هنا محسوبة من السجل نفسه.'
-              : 'A verified producer directory, a reviewed encyclopedia, a territory register and a neutral matching service. Every figure shown here is computed from the register itself.'}
-          </p>
-
-          <div style={{ maxWidth: 760, margin: '0 auto 44px' }}>
-            <HeroSearch locale={locale} />
-          </div>
-
-          {/* THE 4 PILLARS OF NATURAL OUD — Rich Visual Editorial Gallery */}
-          <div className="visual-showcase-grid">
-            <Link href={`/${locale}/products/oud-wood`} className="visual-card">
-              <img src="/images/hero-oud-wood.svg" alt="Raw Agarwood Heartwood" className="visual-card-img" />
-              <div className="visual-card-overlay" />
-              <div className="visual-card-content">
-                <span className="visual-card-badge">
-                  {isAr ? 'خشب خام وغطاس' : 'Raw Heartwood'}
-                </span>
-                <h3 className="visual-card-title">
-                  {isAr ? 'خشب العود الطبيعي والغطاس' : 'Natural Agarwood & Sinking Wood'}
-                </h3>
-                <p className="visual-card-desc">
+      <section className="hero" style={{ padding: 'clamp(40px, 6vw, 76px) 0' }}>
+        <div className="container">
+          <div className="hero-split-layout">
+            {/* Left Column: Command Editorial Masthead */}
+            <div className="hero-main-column">
+              <div className="hero-tag" style={{ marginBottom: 18, alignSelf: 'flex-start' }}>
+                <Compass size={12} />
+                <span>
                   {isAr
-                    ? 'كثافة الراتنج، درجات الغطاس الحقيقية، والتشريح النباتي لأشجار الأكويلاريا.'
-                    : 'Resin density, genuine sinking grades, and Aquilaria botanical verification.'}
-                </p>
-                <span className="visual-card-cta">
-                  <span>{isAr ? 'دليل الخشب' : 'Explore Heartwood'}</span>
-                  <ArrowRight size={12} className="icon-dir-flip" />
+                    ? 'السجل العالمي الموثق للعود الطبيعي والتوريد التجاري'
+                    : 'The Verified Global Repository for Natural Oud & Wholesale Trade'}
                 </span>
               </div>
-            </Link>
 
-            <Link href={`/${locale}/products/dehn-al-oud`} className="visual-card">
-              <img src="/images/hero-dehn-al-oud.svg" alt="Artisan Dehn Al Oud" className="visual-card-img" />
-              <div className="visual-card-overlay" />
-              <div className="visual-card-content">
-                <span className="visual-card-badge">
-                  {isAr ? 'تقطير حرفي' : 'Artisan Distillate'}
+              <h1 className="hero-title" style={{ fontSize: 'clamp(2.1rem, 3.8vw, 3.2rem)', lineHeight: 1.15, marginBottom: 18 }}>
+                {isAr
+                  ? 'السجل المستقل لمصادقة العود الطبيعي والتقطير التراثي.'
+                  : 'The independent authority for authentic agarwood & artisan distillates.'}
+              </h1>
+
+              <p className="hero-lead" style={{ marginBottom: 28, maxWidth: '54ch' }}>
+                {isAr
+                  ? 'دليل منتجين محكَّم، موسوعة معارف راجعة، سجل أقاليم، وبروتوكول مطابقة محايد لحماية بيانات المشترين.'
+                  : 'Documented distillers, reviewed botanical references, territory registers, and a neutral matching protocol engineered for wholesale procurement.'}
+              </p>
+
+              <div style={{ maxWidth: 640, marginBottom: 24 }}>
+                <HeroSearch locale={locale} />
+              </div>
+
+              {/* 3 Core Trust Markers */}
+              <div className="cluster" style={{ gap: 18, color: 'var(--ink-muted)', fontSize: '0.84rem' }}>
+                <span className="cluster" style={{ gap: 6 }}>
+                  <CheckCircle2 size={15} style={{ color: 'var(--green-700)' }} />
+                  <span>{isAr ? 'أقاليم منشأ موثقة' : 'Verified Provenance'}</span>
                 </span>
-                <h3 className="visual-card-title">
-                  {isAr ? 'دهن العود المقطر والمُعتَّق' : 'Artisan Dehn Al Oud & Pure Oils'}
-                </h3>
-                <p className="visual-card-desc">
-                  {isAr
-                    ? 'التقطير المائي، التعتيم بالأشعة، والفحص بالكروماتوغرافيا للزيوت الأصيلة.'
-                    : 'Hydro-distillation, aging chemistry, and GC-MS purity profiles.'}
-                </p>
-                <span className="visual-card-cta">
-                  <span>{isAr ? 'دليل الزيوت' : 'Explore Oils'}</span>
-                  <ArrowRight size={12} className="icon-dir-flip" />
+                <span className="cluster" style={{ gap: 6 }}>
+                  <CheckCircle2 size={15} style={{ color: 'var(--green-700)' }} />
+                  <span>{isAr ? 'فحص النقاء الكروماتوغرافي' : 'GC-MS Purity Profiles'}</span>
+                </span>
+                <span className="cluster" style={{ gap: 6 }}>
+                  <CheckCircle2 size={15} style={{ color: 'var(--green-700)' }} />
+                  <span>{isAr ? 'حجب الاتصال حتى الموافقة' : 'Encrypted Contact Redaction'}</span>
                 </span>
               </div>
-            </Link>
+            </div>
 
-            <Link href={`/${locale}/products/agarwood-chips`} className="visual-card">
-              <img src="/images/hero-oud-chip.svg" alt="Wild Incense Chips" className="visual-card-img" />
-              <div className="visual-card-overlay" />
-              <div className="visual-card-content">
-                <span className="visual-card-badge">
-                  {isAr ? 'بخور ومباخر' : 'Incense Grade'}
-                </span>
-                <h3 className="visual-card-title">
-                  {isAr ? 'رقائق وبخور العود البري' : 'Wild Agarwood Chips & Shavings'}
-                </h3>
-                <p className="visual-card-desc">
-                  {isAr
-                    ? 'نقاء الاحتراق، النكهات العطرية حسب الإقليم، وكشف الشمع والرصاص.'
-                    : 'Burn aromas by terroir, zero-filler standards, and injection detection.'}
-                </p>
-                <span className="visual-card-cta">
-                  <span>{isAr ? 'دليل الرقائق' : 'Explore Chips'}</span>
-                  <ArrowRight size={12} className="icon-dir-flip" />
-                </span>
+            {/* Right Column: Live Featured Supplier Spotlight Dossier */}
+            <div className="hero-spotlight-dossier">
+              <div className="hero-spotlight-cover">
+                <img src="/images/hero-attar-still.svg" alt="Al Mutalib Perfumes" />
+                <div className="hero-spotlight-cover-overlay" />
+                <div className="cluster" style={{ position: 'absolute', top: 14, insetInlineStart: 14, insetInlineEnd: 14, justifyContent: 'space-between' }}>
+                  <span className="badge badge-glass-light">
+                    <MapPin size={11} />
+                    Dubai, UAE
+                  </span>
+                  <span className="badge badge-gold">
+                    <Award size={11} />
+                    {isAr ? 'عضو سنوي معتمد' : 'Verified Member'}
+                  </span>
+                </div>
+                <div style={{ position: 'absolute', bottom: 12, insetInlineStart: 16, color: '#ffffff' }}>
+                  <span className="meta" style={{ color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', fontSize: '0.65rem' }}>
+                    {isAr ? 'ملف مورد مميز' : 'Featured Supplier Dossier'}
+                  </span>
+                  <h3 style={{ margin: '2px 0 0', fontSize: '1.2rem', color: '#ffffff' }}>
+                    Al Mutalib Perfumes
+                  </h3>
+                </div>
               </div>
-            </Link>
 
-            <Link href={`/${locale}/products/traditional-attars`} className="visual-card">
-              <img src="/images/hero-attar-still.svg" alt="Traditional Copper Stills" className="visual-card-img" />
-              <div className="visual-card-overlay" />
-              <div className="visual-card-content">
-                <span className="visual-card-badge">
-                  {isAr ? 'تقاليد كانوج' : 'Heritage Stills'}
-                </span>
-                <h3 className="visual-card-title">
-                  {isAr ? 'العطور الشرقية وتقطير الديغ' : 'Heritage Attars & Deg Distillation'}
-                </h3>
-                <p className="visual-card-desc">
+              <div className="hero-spotlight-body">
+                <p style={{ margin: '0 0 14px', fontSize: '0.85rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>
                   {isAr
-                    ? 'تقطير النحاس التقليدي فوق قاعدة الصندل الطبيعي وتركيبات التوريد الخاصة.'
-                    : 'Centuries-old copper Deg & Bhapka distillation onto pure sandalwood bases.'}
+                    ? 'مقطر ومورد جملة في سوق ديرة للعطور، متخصص في دهن العود الهندي والكمبودي المعتق والخلطات الملكية.'
+                    : 'Distiller and wholesale partner based in Deira Perfume Souk, specialising in rare aged Hindi and Cambodian oud oils.'}
                 </p>
-                <span className="visual-card-cta">
-                  <span>{isAr ? 'دليل التقطير' : 'Explore Stills'}</span>
-                  <ArrowRight size={12} className="icon-dir-flip" />
-                </span>
-              </div>
-            </Link>
-          </div>
 
-          {/* THE PORTAL INDEX — six destinations with honest counts */}
-          <div className="portal-grid">
-            {tiles.map((tile) => {
-              const Icon = tile.icon;
-              return (
-                <Link key={tile.key} href={tile.href} className="portal-tile">
-                  <div className="portal-tile-icon">
-                    <Icon size={19} />
+                <div className="grid-2" style={{ gap: 10, marginBottom: 18, background: 'var(--bg-eggshell)', padding: '10px 14px', borderRadius: 6 }}>
+                  <div>
+                    <span className="data-card-fact-label">{isAr ? 'الحد الأدنى' : 'Minimum Order'}</span>
+                    <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--ink)' }}>1 Tola / 100g</span>
                   </div>
                   <div>
-                    <div className="portal-tile-title">{tile.title}</div>
-                    <p className="portal-tile-desc">{tile.desc}</p>
-                    <div className="portal-tile-count">{tile.count}</div>
+                    <span className="data-card-fact-label">{isAr ? 'العينات' : 'Samples'}</span>
+                    <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--green-700)' }}>{isAr ? 'متاحة للفحص' : 'Available'}</span>
                   </div>
-                </Link>
-              );
-            })}
+                </div>
+
+                <div className="row-between" style={{ gap: 8 }}>
+                  <Link href={`/${locale}/directory/al-mutalib-perfumes`} className="btn btn-outline btn-sm">
+                    {isAr ? 'الملف الكامل' : 'Inspect Profile'}
+                  </Link>
+                  <Link href={`/${locale}/rfq?supplier=al-mutalib-perfumes`} className="btn btn-primary btn-sm" style={{ gap: 6 }}>
+                    <span>{isAr ? 'طلب تسعير مباشر' : 'Request Introduction'}</span>
+                    <ArrowRight size={12} className="icon-dir-flip" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==============================================================
+          2. TWO-TRACK DISCOVERY — Material Families & Producing Terroirs
+          ============================================================== */}
+      <section className="section section-white" style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
+        <div className="container">
+          <div className="row-between" style={{ marginBottom: 14 }}>
+            <div>
+              <span className="eyebrow">{isAr ? 'المصفوفة المرجعية' : 'Discovery Tracks'}</span>
+              <h2 className="h2" style={{ margin: 0 }}>
+                {isAr ? 'استكشف أصناف العود والأقاليم المنتجة' : 'Material Classifications & Producing Terroirs'}
+              </h2>
+            </div>
+            <Link href={`/${locale}/products`} className="btn btn-outline btn-sm">
+              {isAr ? 'جميع الأصناف' : 'All Product Families'}
+              <ArrowRight size={13} className="icon-dir-flip" />
+            </Link>
+          </div>
+
+          <div className="two-track-grid">
+            {/* Track 1: 4 Visual Pillar Cards */}
+            <div className="visual-showcase-grid" style={{ marginTop: 0 }}>
+              <Link href={`/${locale}/products/oud-wood`} className="visual-card">
+                <img src="/images/hero-oud-wood.svg" alt="Raw Agarwood Heartwood" className="visual-card-img" />
+                <div className="visual-card-overlay" />
+                <div className="visual-card-content">
+                  <span className="visual-card-badge">{isAr ? 'خشب خام' : 'Heartwood'}</span>
+                  <h3 className="visual-card-title">{isAr ? 'خشب العود والغطاس' : 'Agarwood Heartwood'}</h3>
+                  <p className="visual-card-desc">{isAr ? 'كثافة الراتنج وفحص الغطاس.' : 'Resin density & flotation metrics.'}</p>
+                </div>
+              </Link>
+
+              <Link href={`/${locale}/products/dehn-al-oud`} className="visual-card">
+                <img src="/images/hero-dehn-al-oud.svg" alt="Artisan Dehn Al Oud" className="visual-card-img" />
+                <div className="visual-card-overlay" />
+                <div className="visual-card-content">
+                  <span className="visual-card-badge">{isAr ? 'تقطير نقي' : 'Distillate'}</span>
+                  <h3 className="visual-card-title">{isAr ? 'دهن العود المُعتَّق' : 'Artisan Dehn Al Oud'}</h3>
+                  <p className="visual-card-desc">{isAr ? 'التقطير المائي والفحص المخبري.' : 'Hydro-distillates & aging chemistry.'}</p>
+                </div>
+              </Link>
+
+              <Link href={`/${locale}/products/agarwood-chips`} className="visual-card">
+                <img src="/images/hero-oud-chip.svg" alt="Wild Incense Chips" className="visual-card-img" />
+                <div className="visual-card-overlay" />
+                <div className="visual-card-content">
+                  <span className="visual-card-badge">{isAr ? 'بخور بري' : 'Incense'}</span>
+                  <h3 className="visual-card-title">{isAr ? 'رقائق البخور البري' : 'Wild Incense Chips'}</h3>
+                  <p className="visual-card-desc">{isAr ? 'نقاء الاحتراق وكشف الشمع.' : 'Burn aromas & wax detection.'}</p>
+                </div>
+              </Link>
+
+              <Link href={`/${locale}/products/traditional-attars`} className="visual-card">
+                <img src="/images/hero-attar-still.svg" alt="Traditional Copper Stills" className="visual-card-img" />
+                <div className="visual-card-overlay" />
+                <div className="visual-card-content">
+                  <span className="visual-card-badge">{isAr ? 'تقطير ديغ' : 'Heritage'}</span>
+                  <h3 className="visual-card-title">{isAr ? 'العطور التراثية والديغ' : 'Heritage Attars'}</h3>
+                  <p className="visual-card-desc">{isAr ? 'التقطير النحاسي على خشب الصندل.' : 'Copper Deg over pure sandalwood.'}</p>
+                </div>
+              </Link>
+            </div>
+
+            {/* Track 2: Producing Terroirs & Trade Hubs */}
+            <div className="terroir-register-card">
+              <div>
+                <span className="eyebrow" style={{ display: 'block', marginBottom: 6 }}>
+                  {isAr ? 'السجل الجغرافي' : 'Territory Index'}
+                </span>
+                <h3 style={{ fontSize: '1.2rem', margin: '0 0 10px', fontFamily: 'var(--font-display)' }}>
+                  {isAr ? 'أهم مراكز الإنتاج والتجارة' : 'Key Producing Terroirs & Trade Hubs'}
+                </h3>
+                <p style={{ margin: '0 0 16px', fontSize: '0.85rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
+                  {isAr
+                    ? 'تصفح التقارير الميدانية وحالات التوثيق عبر 249 إقليماً مسجلاً.'
+                    : 'Inspect field reports and documentation status across 249 registered territories.'}
+                </p>
+
+                <div className="stack-2">
+                  <Link href={`/${locale}/world/IN`} className="terroir-item-link">
+                    <div className="cluster" style={{ gap: 8 }}>
+                      <span className="badge badge-forest" style={{ fontSize: '0.7rem' }}>IN</span>
+                      <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>{isAr ? 'الهند (أسام وسيلهيت)' : 'India (Assam & Upper Valleys)'}</span>
+                    </div>
+                    <ArrowRight size={13} className="icon-dir-flip" />
+                  </Link>
+
+                  <Link href={`/${locale}/world/TH`} className="terroir-item-link">
+                    <div className="cluster" style={{ gap: 8 }}>
+                      <span className="badge badge-forest" style={{ fontSize: '0.7rem' }}>TH</span>
+                      <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>{isAr ? 'تايلاند (ترات وخاو ياي)' : 'Thailand (Trat & Khao Yai)'}</span>
+                    </div>
+                    <ArrowRight size={13} className="icon-dir-flip" />
+                  </Link>
+
+                  <Link href={`/${locale}/world/KH`} className="terroir-item-link">
+                    <div className="cluster" style={{ gap: 8 }}>
+                      <span className="badge badge-forest" style={{ fontSize: '0.7rem' }}>KH</span>
+                      <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>{isAr ? 'كمبوديا (كوه كونغ وبورسات)' : 'Cambodia (Koh Kong & Pursat)'}</span>
+                    </div>
+                    <ArrowRight size={13} className="icon-dir-flip" />
+                  </Link>
+
+                  <Link href={`/${locale}/world/AE`} className="terroir-item-link">
+                    <div className="cluster" style={{ gap: 8 }}>
+                      <span className="badge badge-forest" style={{ fontSize: '0.7rem' }}>AE</span>
+                      <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>{isAr ? 'الإمارات (مركز ديرة العالمي)' : 'United Arab Emirates (Deira Hub)'}</span>
+                    </div>
+                    <ArrowRight size={13} className="icon-dir-flip" />
+                  </Link>
+                </div>
+              </div>
+
+              <Link href={`/${locale}/world`} className="btn btn-outline btn-sm" style={{ marginTop: 14, justifyContent: 'center' }}>
+                <Globe size={13} />
+                <span>{isAr ? 'عرض كافة الـ 249 إقليماً' : 'Browse All 249 Territories'}</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -399,66 +489,80 @@ export default async function HomePage({
       </section>
 
       {/* ==============================================================
-          5. COUNTERFEIT AWARENESS — the single terracotta accent
+          5. SURVEILLANCE & AUTHENTICITY DASHBOARD — Laboratory Standards
           ============================================================== */}
       <section className="section section-white">
         <div className="container">
-          <div className="counterfeit-hub">
-            <div className="counterfeit-hub-header">
-              <span className="badge badge-terracotta">
-                <AlertTriangle size={11} />
-                {isAr ? 'توعية المضاد للغش' : 'Counterfeit Awareness'}
-              </span>
-              <h2 className="h2" style={{ marginTop: 16 }}>
-                {isAr ? 'معظم ما يباع كـ «عود طبيعي» ليس حقيقياً.' : 'Much of the agarwood sold online is not authentic.'}
-              </h2>
-              <p className="lede">
-                {isAr
-                  ? 'التعطير الاصطناعي، الحقن الكيميائي، وتضخيم درجات الغطاس شائعة في السوق المفتوح. هذه أبرز أشكال الغش الأربعة.'
-                  : 'Synthetic scenting, chemical injection and inflated sinking grades are widespread in open marketplaces. These are the four primary deceptions.'}
-              </p>
-            </div>
-
-            <div className="grid-2" style={{ gap: 14 }}>
-              <div className="counterfeit-item">
-                <h4>{isAr ? 'خشب الغطاس الاصطناعي (حقن الرصاص والشمع)' : 'Artificial sinking wood (lead & wax injection)'}</h4>
-                <p>
+          <div className="surveillance-dashboard">
+            <div className="row-between" style={{ alignItems: 'flex-start' }}>
+              <div>
+                <span className="badge badge-terracotta" style={{ marginBottom: 12 }}>
+                  <AlertTriangle size={11} />
+                  {isAr ? 'مرصد الرقابة وفحص الجودة' : 'Market Surveillance & Lab Standards'}
+                </span>
+                <h2 className="h2" style={{ margin: '0 0 8px' }}>
+                  {isAr ? 'الكشف المخبري عن أشكال الغش الأربعة' : 'Laboratory Detection of Market Adulteration'}
+                </h2>
+                <p className="lede" style={{ margin: 0, maxWidth: '64ch' }}>
                   {isAr
-                    ? 'خشب بري منخفض الجودة يُحقن بالرصاص المنصوب أو شمع الأسنان ليحاكي كثافة الغاطس. يُكشف بالأشعة وفحص رائحة الاحتراق.'
-                    : 'Low-grade wild timber injected with molten lead or dental wax to mimic sinker density. Detected via X-ray and burn-aroma testing.'}
+                    ? 'التعطير الاصطناعي، الحقن الكيميائي، وتزوير درجات الغطاس تستدعي تدقيقاً مخبرياً صارماً قبل أي صفقة جملة.'
+                    : 'Synthetic reconstitution, chemical fortification and inflated sinking grades demand strict laboratory protocols before wholesale commitment.'}
                 </p>
               </div>
-              <div className="counterfeit-item">
-                <h4>{isAr ? 'التخفيف بالمذيبات والمقويات الكيميائية' : 'Solvent dilution & chemical fortification'}</h4>
-                <p>
-                  {isAr
-                    ? 'زيوت العود مخففة بمذيبات صناعية عديمة الرائحة أو مقواة بمواد عطرية كيميائية لتقليد الثبات. يُكشف بالكروماتوغرافيا.'
-                    : 'Oud oils diluted with odorless solvents or fortified with chemical aromachemicals to fake longevity. Detected via GC-MS.'}
-                </p>
-              </div>
-              <div className="counterfeit-item">
-                <h4>{isAr ? 'انتحال المنشأ النباتي والجغرافي' : 'Botanical & geographic origin fraud'}</h4>
-                <p>
-                  {isAr
-                    ? 'خشب مستزرع يُباع كعود أسام البري القديم بفارق سعر يصل إلى عشرة أضعاف. يُكشف بتتبع المنشأ المعتمد.'
-                    : 'Plantation-grown wood sold as vintage wild Assam at up to 10× the price. Detected via certified origin tracing.'}
-                </p>
-              </div>
-              <div className="counterfeit-item">
-                <h4>{isAr ? 'وثائق تصدير سايتس مزورة' : 'Fabricated CITES export documentation'}</h4>
-                <p>
-                  {isAr
-                    ? 'طرود غير موثقة تُصادر من الجمارك بسبب تصاريح مزورة أو حصص غير مسجلة. تُكشف بالمطابقة مع السجلات الوطنية.'
-                    : 'Uncertified parcels seized by customs for counterfeit permits or unrecorded quotas. Detected against national forestry registries.'}
-                </p>
-              </div>
-            </div>
-
-            <div className="text-center" style={{ marginTop: 32 }}>
-              <Link href={`/${locale}/guides`} className="btn btn-outline">
-                {isAr ? 'اقرأ دليل الأصالة الكامل' : 'Read the full authenticity guide'}
-                <ArrowRight size={13} />
+              <Link href={`/${locale}/guides`} className="btn btn-outline btn-sm">
+                <span>{isAr ? 'دليل الأصالة الكامل' : 'Full Authenticity Guide'}</span>
+                <ArrowRight size={13} className="icon-dir-flip" />
               </Link>
+            </div>
+
+            <div className="surveillance-grid">
+              <div className="surveillance-card">
+                <div className="surveillance-card-head">
+                  <h4>{isAr ? 'خشب الغطاس المحقون' : 'Injected Sinking Timber'}</h4>
+                  <span className="surveillance-method-badge">X-Ray & Flotation</span>
+                </div>
+                <p>
+                  {isAr
+                    ? 'حقن الرصاص المصهور أو الشمع لتقليد كثافة الغاطس. يُكشف بالأشعة السينية وفحص رماد الاحتراق.'
+                    : 'Low-grade wild timber injected with molten lead or dental wax to mimic sinker density. Detected via X-ray radiography and burn-ash analysis.'}
+                </p>
+              </div>
+
+              <div className="surveillance-card">
+                <div className="surveillance-card-head">
+                  <h4>{isAr ? 'التخفيف الكيميائي والمذيبات' : 'Solvent Dilution & Fortification'}</h4>
+                  <span className="surveillance-method-badge">GC-MS Chromatography</span>
+                </div>
+                <p>
+                  {isAr
+                    ? 'تخفيف الزيوت بالمذيبات عديمة الرائحة أو إضافة مركبات صناعية لزيادة الثبات. يُكشف بالكروماتوغرافيا الغازية.'
+                    : 'Oud oils diluted with odorless solvents or fortified with chemical aromachemicals to fake longevity. Detected via GC-MS chromatography.'}
+                </p>
+              </div>
+
+              <div className="surveillance-card">
+                <div className="surveillance-card-head">
+                  <h4>{isAr ? 'تزوير المنشأ والنوع النباتي' : 'Botanical & Terroir Substitution'}</h4>
+                  <span className="surveillance-method-badge">Botanical Tracing</span>
+                </div>
+                <p>
+                  {isAr
+                    ? 'بيع الخشب المستزرع كعود أسام بري عتيق بفارق سعر هائل. يُكشف بالفحص المجهري لسجلات المنشأ.'
+                    : 'Plantation-grown wood sold as vintage wild Assam at up to 10x the price. Detected via documented facility logs and anatomical inspection.'}
+                </p>
+              </div>
+
+              <div className="surveillance-card">
+                <div className="surveillance-card-head">
+                  <h4>{isAr ? 'تزوير تصاريح سايتس CITES' : 'Fabricated CITES Quotas'}</h4>
+                  <span className="surveillance-method-badge">National Registry</span>
+                </div>
+                <p>
+                  {isAr
+                    ? 'تصاريح تصدير وهمية تؤدي إلى مصادرة الشحنات في الجمارك. تُكشف بالمطابقة مع السجلات الرسمية.'
+                    : 'Uncertified parcels seized by customs for counterfeit permits or unrecorded quotas. Verified against national forestry authority databases.'}
+                </p>
+              </div>
             </div>
           </div>
         </div>

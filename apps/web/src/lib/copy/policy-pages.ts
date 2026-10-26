@@ -235,8 +235,8 @@ const ownership: PolicyPage = {
 const editorialPolicy: PolicyPage = {
   path: 'editorial-policy',
   basis: {
-    en: 'The editorial runbook, the twenty-five-source registry, and the corrections register.',
-    ar: 'دليل التحرير، وسجل المصادر الخمسة والعشرين، وسجل التصحيحات.',
+    en: 'The editorial runbook, the verified source registry, and the corrections register.',
+    ar: 'دليل التحرير، وسجل المصادر المُتحقَّق منه، وسجل التصحيحات.',
   },
   reviewedOn: '2026-10-21',
   title: {
