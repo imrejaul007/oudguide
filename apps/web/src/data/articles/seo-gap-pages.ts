@@ -326,8 +326,38 @@ export const seoGapPageArticles: Article[] = [
           'التسلسل هو: تأكيد النوع على الأوراق، وتأكيد أن تصريح التصدير أو إعادة التصدير صادر من بلد التصدير، وتأكيد أن نظام استيراد السوق نفسه ينطبق، وبعدها فقط تنقل المادة. وكل خطوة تجيب عن سؤال مختلف، وتخطو خطوة لا تجعل البقي أقوى. فال تصريح هو الخيط المشترك، ونظام السوق هو الطبقة التي تقول من يستطيع قانونا إنجاز الخطوة التالية.',
           'والسبب في أهمية التسلسل أن المشتري الذي ينقل المادة أولًا ويلاحق الأوراق بعد هو من ينتهي به الأمر حاملا لوطا لا يستطيع تمريره. فالأوراق والحركة يجب ترتيبهما، والترتيب يحدده سلطة السوق لا جدول البائع.',
         ],
-      },],
-    sourceIds: ['CITES_APPENDICES', 'TRAFFIC_UAE_AGARWOOD_TRADE', 'TRAFFIC_AGARWOOD_TRADE_2000'],
+      },
+      {
+        heading: 'Personal effects and passenger baggage allowances',
+        headingAr: 'إعفاءات الأمتعة الشخصية والمسافرين',
+        body: [
+          'The international regulatory framework recognizes specific exemptions for dead specimens of Appendix II agarwood carried in accompanied personal baggage for personal or household use, documented under CITES Resolution Conf. 13.7 (Rev. CoP17) and clarified in customs instructions such as CBIC Instruction 05/2025. These international caps specify clear quantitative allowances per traveler.',
+          'The personal carriage exemption applies strictly to accompanied baggage; it does not exempt postal or cargo shipments, which remain commercial consignments requiring standard export permits regardless of size. Furthermore, an international CITES allowance does not override national customs regulations: countries enforce their own domestic tax and quantity declarations, such as applicable value-added taxes and inspection procedures, so travelers must confirm destination border rules before carrying material across borders.',
+        ],
+        bodyAr: [
+          'يُقرّ إطار سايتس الدولي بموجب القرار 13.7 (المراجعة 17)، والمنصوص عليه في التعليمات الجمركية مثل تعليمات المجلس المركزي للضرائب غير المباشرة رقم 05/2025، بإعفاءات محددة لعينات العود الميتة المدرجة في الملحق الثاني والمنقولة ضمن الأمتعة الشخصية المصحوبة للاستخدام الشخصي أو المنزلي. وتحدد هذه المعايير الدولية سقوفاً كمية واضحة للمسافر.',
+          'ينطبق إعفاء النقل الشخصي حصراً على الأمتعة المصحوبة للمسافر؛ ولا يعفي الطرود البريدية أو شحنات الشحن التجاري، والتي تظل شحنات تجارية تتطلب تصاريح تصدير واستيراد رسمية مهما صغر حجمها. كما أن الإعفاء الدولي لسايتس لا يلغي الأنظمة الجمركية الوطنية: إذ تطبق الدول اشتراطاتها الضريبية والجمركية الخاصة (مثل ضريبة القيمة المضافة وإجراءات الإفصاح الجمركي)، مما يوجب على المسافر التأكد من تعليمات المنافذ الحدودية في وجهته.',
+        ],
+        list: [
+          'Up to 1 kg of agarwood wood chips in accompanied personal baggage',
+          'Up to 24 ml of pure agarwood oil',
+          'Up to two sets of beads, prayer beads, necklaces or bracelets',
+          'Cargo, freight and unaccompanied postal parcels are not exempt and require commercial permits',
+        ],
+        listAr: [
+          'حتى 1 كغ من شرائح خشب العود في الأمتعة الشخصية المصحوبة',
+          'حتى 24 مل من زيت العود الصافي',
+          'حتى طقمين من خرز العود أو السِّبَح أو الأساور',
+          'الشحنات الجوية والبحرية والطرود البريدية غير المصحوبة لا يشملها الإعفاء وتتطلب تصاريح تجارية كاملة',
+        ],
+      },
+    ],
+    sourceIds: [
+      'CITES_APPENDICES',
+      'CBIC_AGARWOOD_PERSONAL_CARRIAGE',
+      'TRAFFIC_UAE_AGARWOOD_TRADE',
+      'TRAFFIC_AGARWOOD_TRADE_2000',
+    ],
     limitations:
       'This page states the permit floor and the recorded position of each market. It does not establish that any specific shipment complies, and it does not state who may legally ship into any market today. The TRAFFIC records are dated (2000 and 2010) and predate the current position; the Appendix II requirement is current, but the market layer must be checked against the current rules of the authority, not against these sources.',
     limitationsAr:

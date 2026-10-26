@@ -273,6 +273,21 @@ export const SOURCE_REGISTRY: Record<string, ArticleSource> = {
       'نصوص تشريعية وسياسية كاملة تتعلق بالأغذية والزراعة والغابات والتجارة من الدول الأعضاء في الفاو. وتثبت النص المنشور لأداة وطنية. ولا تثبت كيفية تطبيقها عملياً.',
     kind: 'regulatory',
   },
+
+  CBIC_AGARWOOD_PERSONAL_CARRIAGE: {
+    id: 'CBIC_AGARWOOD_PERSONAL_CARRIAGE',
+    label: 'CBIC Instruction 05/2025-Customs: CITES personal-carriage exemption for agarwood',
+    labelAr: 'تعليمات مجلس ضرائب الدخل والجمارك 05/2025-الجمارك: إعفاء سايتس من العود المنقول شخصياً',
+    url: 'https://sjexim.services/cbic-clarifies-cites-exemption-for-personal-carriage-of-agarwood-products/',
+    publisher: 'Central Board of Indirect Taxes and Customs (India), as clarified by the Ministry of Environment, Forest and Climate Change',
+    publisherAr: 'مجلس ضرائب الدخل والجمارك المركزية (الهند)، تقييداً من وزارة البيئة والغابات وتغيّر المناخ',
+    retrievedOn: '2026-10-26',
+    scope:
+      'Records the personal-carriage quantities under CITES Resolution Conf. 13.7 (Rev. CoP17) that are exempt from a CITES document for personal or household use of dead specimens of Appendix II agarwood: up to 1 kg of wood chips, up to 24 ml of oil, and two sets of beads or prayer beads (two necklaces or bracelets). It does not establish the personal-import law of any other country, and a national customs limit (for example a ZATCA allowance reported for Saudi personal imports) is a separate national layer that must be checked against that country’s current rules.',
+    scopeAr:
+      'يسجّل الكميات التي يُعفى فيها من وثيقة سايتس عند النقل الشخصي للعينات الميتة لأصناف الملحق الثاني من العود للاستخدام الشخصي أو المنزلي، بموجب قرار سايتس 13.7 (المراجعة 17): حتى كيلوغرام واحد من الشرائح، وحتى 24 مل من الزيت، وقضتان من الحبات (سبحتان أو عقدان). ولا يثبت قانون الاستيراد الشخصي لأي بلد آخر، فالسقف الجمركي الوطني (مثل ما أُفيد به عن السعودية) طبقة وطنية منفصلة يجب التحقق منها من قواعد البلد السارية.',
+    kind: 'regulatory',
+  },
 };
 
 /**
