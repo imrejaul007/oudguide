@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { domain } from '@/lib/data';
-import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe, Clock } from 'lucide-react';
+import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe, Clock, Truck, FileCheck2 } from 'lucide-react';
 import { BookmarkButton, ShareButton, ViewTracker } from '@/components/business/interactive-tools';
 import { ReportButton } from '@/components/business/report-button';
 import { ProfileFaq } from '@/components/business/profile-faq';
@@ -199,6 +199,49 @@ export default async function BusinessProfilePage({
                     <span key={o} className="chip">{o}</span>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {biz.serves_destinations && biz.serves_destinations.length > 0 && (
+              <div className="card" style={{ padding: 24, marginTop: 20 }}>
+                <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
+                  {isAr ? 'وجهات الشحن الموثقة' : 'Documented Destinations'}
+                </span>
+                <div className="cluster" style={{ gap: 8, alignItems: 'center', marginBottom: 10 }}>
+                  <Truck size={14} style={{ color: 'var(--green-600)' }} />
+                  <span style={{ fontSize: '0.88rem', fontWeight: 500, color: 'var(--ink)' }}>
+                    {biz.serves_destinations.length} {isAr ? 'وجهات تجارية' : 'destinations served'}
+                  </span>
+                </div>
+                <div className="cluster">
+                  {biz.serves_destinations.map((d) => (
+                    <span key={d} className="chip" style={{ fontSize: '0.75rem' }}>{d}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {biz.verification_state && biz.verification_state !== 'unverified' && (
+              <div className="card" style={{ padding: 20, marginTop: 20, background: 'var(--bg-sage)', borderColor: 'var(--green-200)' }}>
+                <div className="cluster" style={{ gap: 8, marginBottom: 8 }}>
+                  <FileCheck2 size={16} style={{ color: 'var(--green-700)' }} />
+                  <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--green-950)' }}>
+                    {isAr ? 'سجل التحقق والتوثيق' : 'Verification Record'}
+                  </span>
+                </div>
+                <p style={{ margin: '0 0 12px', fontSize: '0.82rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>
+                  {isAr
+                    ? 'اطلع على الأدلة وتواريخ الفحص والحقول المؤكدة مقابل المعلنة.'
+                    : 'Inspect audit evidence, review dates, and verified vs declared attributes.'}
+                </p>
+                <Link
+                  href={`/${locale}/directory/${slug}/verification`}
+                  className="btn btn-outline btn-sm"
+                  style={{ width: '100%', justifyContent: 'center', background: '#ffffff', gap: 6 }}
+                >
+                  <span>{isAr ? 'عرض سجل التوثيق' : 'View Audit Record'}</span>
+                  <ArrowRight size={13} className="icon-dir-flip" />
+                </Link>
               </div>
             )}
 

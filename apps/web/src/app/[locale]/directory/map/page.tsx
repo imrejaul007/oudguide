@@ -82,9 +82,9 @@ export default async function ProducerMapPage({
                 : 'The map plots documented producing terroirs and trading hubs across 249 countries. Coordinates are deliberately region-level to preserve the privacy of individual facilities.'}
             </p>
             <div style={{ marginTop: 20 }}>
-              <Link href={`/${locale}/directory`} className="btn btn-outline">
-                <ArrowLeft size={15} />
-                {isAr ? '← رجوع إلى الدليل' : '← Back to Directory'}
+              <Link href={`/${locale}/directory`} className="btn btn-outline btn-sm" style={{ gap: 6 }}>
+                <ArrowLeft size={14} className="icon-dir-flip" />
+                <span>{isAr ? 'العودة إلى الدليل' : 'Back to Directory'}</span>
               </Link>
             </div>
           </div>

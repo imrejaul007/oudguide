@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Compass, ArrowRight, ShieldCheck } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import {
@@ -169,6 +170,50 @@ export default async function ProductFamilyPage({
           </section>
         ))}
       </div>
+
+      {/* B2B SOURCING BRIDGE — Direct connection to verified producers */}
+      <section style={{ margin: '40px 0 20px' }}>
+        <div className="card-frame card-frame-accent" style={{ padding: '30px 32px', background: 'var(--bg-eggshell)' }}>
+          <div className="row-between" style={{ gap: 16, flexWrap: 'wrap' }}>
+            <div style={{ maxWidth: 540 }}>
+              <div className="cluster" style={{ gap: 8, marginBottom: 8 }}>
+                <ShieldCheck size={16} style={{ color: 'var(--green-700)' }} />
+                <span className="eyebrow" style={{ color: 'var(--green-800)', margin: 0 }}>
+                  {isAr ? 'التوريد بالجملة والتحقق' : 'Wholesale Sourcing & Verification'}
+                </span>
+              </div>
+              <h3 style={{ fontSize: '1.2rem', margin: '0 0 6px', color: 'var(--ink)' }}>
+                {isAr
+                  ? `البحث عن موردين معتمدين لـ ${articleTitle(article, locale)}`
+                  : `Source verified ${articleTitle(article, locale)}`}
+              </h3>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--ink-muted)', lineHeight: 1.6 }}>
+                {isAr
+                  ? 'تصفح الموردين المعتمدين في الدليل أو قدّم طلب توريد محايد ومشفّر للحصول على عروض مباشرة.'
+                  : 'Filter listed distillers and wholesalers handling this material, or submit a confidential RFQ to receive matched proposals.'}
+              </p>
+            </div>
+            <div className="cluster" style={{ gap: 10, flexWrap: 'wrap' }}>
+              <Link
+                href={`/${locale}/directory?family=${encodeURIComponent(articleTitle(article, 'en'))}`}
+                className="btn btn-outline btn-sm"
+                style={{ gap: 6, background: '#ffffff' }}
+              >
+                <Compass size={14} />
+                <span>{isAr ? 'عرض في الدليل' : 'Browse Directory'}</span>
+              </Link>
+              <Link
+                href={`/${locale}/rfq`}
+                className="btn btn-primary btn-sm"
+                style={{ gap: 6 }}
+              >
+                <span>{isAr ? 'تقديم طلب توريد' : 'Start Wholesale RFQ'}</span>
+                <ArrowRight size={13} className="icon-dir-flip" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* NEXT STEPS */}
       {article.nextSteps?.length ? (

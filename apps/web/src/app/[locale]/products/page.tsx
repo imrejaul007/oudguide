@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Package, ArrowRight } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import {
@@ -129,15 +130,27 @@ export default async function ProductsIndexPage({
                   key={family.slug}
                   href={family.href}
                   className="card"
-                  style={{ padding: 22, textDecoration: 'none' }}
+                  style={{ padding: 22, textDecoration: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
                 >
-                  <h3 style={{ fontSize: '1rem', marginBottom: 6 }}>{family.label}</h3>
-                  <p
-                    className="text-body"
-                    style={{ margin: 0, fontSize: '0.9rem', color: 'var(--ink-soft)' }}
-                  >
-                    {family.blurb}
-                  </p>
+                  <div>
+                    <div className="cluster" style={{ gap: 8, marginBottom: 12 }}>
+                      <span className="badge badge-accent">
+                        <Package size={11} />
+                        {isAr ? 'صنف' : 'Family'}
+                      </span>
+                    </div>
+                    <h3 style={{ fontSize: '1.05rem', margin: '0 0 8px', color: 'var(--ink)' }}>{family.label}</h3>
+                    <p
+                      className="text-body"
+                      style={{ margin: 0, fontSize: '0.88rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}
+                    >
+                      {family.blurb}
+                    </p>
+                  </div>
+                  <div className="cluster" style={{ marginTop: 16, color: 'var(--green-700)', fontSize: '0.82rem', fontWeight: 600, gap: 4 }}>
+                    <span>{isAr ? 'استكشف المواصفات' : 'Explore specifications'}</span>
+                    <ArrowRight size={13} className="icon-dir-flip" />
+                  </div>
                 </Link>
               ))}
             </div>
