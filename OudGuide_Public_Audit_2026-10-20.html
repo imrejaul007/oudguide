@@ -1,0 +1,419 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OudGuide public audit — 20 October 2026</title><style>body{font:16px/1.6 system-ui,sans-serif;color:#202020;max-width:1060px;margin:40px auto;padding:0 24px}h1{line-height:1.15}h2{margin-top:2.3em;border-bottom:1px solid #ddd;padding-bottom:.4em}h3{margin-top:2em}code{font-size:.85em;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;font-size:.88em}td,th{border:1px solid #ddd;padding:10px;text-align:left;vertical-align:top}pre{white-space:pre-wrap}li{margin:.3em 0}@media print{body{max-width:none;margin:10mm;font-size:10pt}h3{break-after:avoid}table{font-size:8pt}}</style><main><pre># OudGuide.com — Public Website Audit and Developer Remediation
+
+**Inspection date:** 20 October 2026.
+
+## Verdict
+
+The public build is a partial implementation, not ready for acceptance as the complete OudGuide portal. The clearest release blockers are repeated guide bodies, published broken destinations, contradictory contact/subscription rules, unsupported verification language, and demo-like opportunities labelled as live. This assessment concerns inspected public evidence, not an assertion that every backend feature is absent.
+
+## Method and limits
+
+This register contains 54 checked URL observations: 33 content-retrieved URLs (including language and query variants), one operator-login redirect, 12 published internal targets reported as 404, one malformed search-discovered URL reported as 404, three crawler endpoints inaccessible through the tool, three SVG references unsupported by the tool, and the intermittently inaccessible root. It is a sampled public-content and link audit, not an exhaustive rendered-browser crawl.
+
+Text was obtained through the web research tool, whose results can reflect provider caches. No production inquiry, payment, account, correction request, or privacy request was submitted. No access control was bypassed. Raw head tags, JS interactions, mobile presentation, Core Web Vitals, server-side data projection, database persistence and third-party integrations were not verified. Robots and sitemap access failures are NOT findings that those files are missing.
+
+## Comparison with the approved plan
+
+The v4 master instruction requires distinct seller location, material origin and buyer destination; retail and wholesale coverage; contact restrictions; source-backed knowledge; a neutral OudGuide intake; and separately controlled paid membership and introductions. Its route register explicitly distinguishes candidates from published pages.
+
+The original route record OG-0096 for Assam is a candidate with no finished article supplied. It requires original regional information and primary evidence. Its publication prerequisite resembles the check-like wording shown on the live page. The original Q05 field contains an internal privacy/interpretation note about unit conversion; that note is visible on the public RFQ. The inference is that planning metadata has been used too directly as public content. This is based on the supplied reference files and public rendering, not a review of application source code.
+
+## Positive foundations observed
+
+The public site exposes an English information structure and Arabic navigation, a guide index, country records, a three-result directory, a multi-stage RFQ interface, the intended annual headline price, commercial referral disclosure, privacy/correction interfaces, and an operator-login boundary. Those are useful starting points, but interfaces and labels are not end-to-end test evidence.
+
+## Priority definitions
+
+- **P0:** address before accepting the site as production-ready for scaled publication, paid membership or real supplier introductions.
+- **P1:** core content, discovery, UX and reliability fixes before broad promotion.
+- **P2:** presentation and measured optimization work; do not confuse untested with failed.
+
+## Findings and acceptance criteria
+
+### OG-A01 — Replace shared generic guide bodies (P0)
+
+**Evidence status:** observed.
+
+**Observed:** Seven inspected English article/hub destinations repeat the same main botanical, distillation and trade sections despite different titles. Grade, sample-plan, origin and local-buying questions are not answered specifically.
+
+**Required change:** Remove the fallback article from public templates. Store a unique reviewed body per published page. Keep incomplete candidates as drafts; use a real hub template for navigation.
+
+**Acceptance:** Strip navigation/referrals and compare main-content fingerprints; identical bodies are flagged. Each released page passes a question-specific editorial review.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/guides/oud-basics/what-is-agarwood`
+- `https://www.oudguide.com/en/guides/quality/seller-defined-super-grades`
+- `https://www.oudguide.com/en/guides/sourcing/wholesale-sample-plan`
+- `https://www.oudguide.com/en/guides/origins/india`
+- `https://www.oudguide.com/en/guides/origins/india/assam`
+- `https://www.oudguide.com/en/guides/oud-basics`
+- `https://www.oudguide.com/en/guides/buying/in/united-arab-emirates`
+
+### OG-A02 — Repair published broken links (P0)
+
+**Evidence status:** observed.
+
+**Observed:** Twelve followed internal destinations returned 404; one additional malformed locale URL found in search also returned 404. This is a checked sample, not a full-site error count.
+
+**Required change:** Use one published-route resolver. Resolve aliases to real equivalent pages; remove links to unpublished candidates. Do not redirect all missing pages to the homepage.
+
+**Acceptance:** A crawl from each public navigation entry produces no broken internal destinations; genuine missing resources retain proper 404 behavior. See the exact route register.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/directory/retailers/in/united-arab-emirates/dubai`
+- `https://www.oudguide.com/en/directory/wholesalers/serving/united-arab-emirates`
+- `https://www.oudguide.com/en/how-supplier-matching-works`
+- `https://www.oudguide.com/en/request-quote`
+- `https://www.oudguide.com/en/guides/cites-regulations`
+- `https://www.oudguide.com/en/glossary/hindi-muri`
+- `https://www.oudguide.com/en/directory/wholesalers/in/united-arab-emirates`
+- `https://www.oudguide.com/en/directory/retailers/in/united-arab-emirates`
+- `https://www.oudguide.com/en/directory/wholesalers/in/india/hojai`
+- `https://www.oudguide.com/en/guides/copper-deg-distillation`
+- `https://www.oudguide.com/en/guides/wild-vs-cultivated`
+- `https://www.oudguide.com/en/world/united-arab-emirates`
+- `https://www.oudguide.com/%24/directory/al-mutalib-perfumes`
+
+### OG-A03 — Remove unsupported verification claims (P0)
+
+**Evidence status:** observed.
+
+**Observed:** Public pages describe peer review, field documentation, certification and absolute contact protection without showing the associated evidence or assessment scope.
+
+**Required change:** Replace broad assurances with narrowly supported wording. Store reviewer, review date, source and scope per claim. Do not render a publication prerequisite as a completed badge.
+
+**Acceptance:** Every verification badge has a review record. No public statement treats payment, an ISO seed or a planning brief as provenance evidence.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/guides`
+- `https://www.oudguide.com/en/directory/assam-artisan-distillers`
+- `https://www.oudguide.com/en/directory/siam-trat-agarwood-co`
+- `https://www.oudguide.com/en/guides/origins/india/assam`
+
+### OG-A04 — Separate production opportunities from demo records (P0)
+
+**Evidence status:** observed.
+
+**Observed:** The publicly retrievable partner workspace labels opportunities live while exposing three inquiry IDs explicitly containing sample.
+
+**Required change:** Quarantine demo inquiries from production. A demonstration mode must be clearly labelled and isolated. Real partner opportunities need the intended eligibility/access policy.
+
+**Acceptance:** Production fixtures cannot appear in live opportunities. Anonymous and ineligible actors cannot obtain restricted briefs. This inspection did not establish a personal-data leak.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/partners/opportunities`
+
+### OG-A05 — Correct basic-listing website visibility (P0)
+
+**Evidence status:** observed.
+
+**Observed:** Both inspected basic supplier profiles display an official website link. The Assam profile also mixes basic and active-membership labels.
+
+**Required change:** Resolve website/contact exposure from approved owner authority, subscription entitlement and field-publication permission on the server. Use independent state fields for membership and checks.
+
+**Acceptance:** Basic, expired and suppressed records omit restricted contact values from HTML, JSON, search, schema and caches; authorized paid records show approved fields only.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/directory/assam-artisan-distillers`
+- `https://www.oudguide.com/en/directory/siam-trat-agarwood-co`
+
+### OG-A06 — Separate supplier contact publication from buyer-data release (P1)
+
+**Evidence status:** observed.
+
+**Observed:** The directory, membership and individual member profile describe different OTP/contact-unlock rules. These concern two different data flows.
+
+**Required change:** Apply subscription permission to public supplier contacts. Apply buyer authorization to disclosure of buyer details to suppliers. Rewrite each page against that single policy.
+
+**Acceptance:** An approved subscribed supplier can publish its approved contacts to visitors; no buyer PII is released merely because the supplier subscribes or pays for a lead.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/directory`
+- `https://www.oudguide.com/en/membership`
+- `https://www.oudguide.com/en/directory/al-mutalib-perfumes`
+- `https://www.oudguide.com/en/policies`
+
+### OG-A07 — Audit live supplier identities and business assertions (P0)
+
+**Evidence status:** observed.
+
+**Observed:** Business founding dates, distillery roles, sample availability and origin assertions are shown without visible sources. One official link uses the placeholder-like domain tratagarwood.example.th.
+
+**Required change:** Verify each organization and each capability independently. Quarantine unsupported records; distinguish demonstration entities from researched real companies. Do not label a business fake merely because verification is absent.
+
+**Acceptance:** Each public factual field has a source or explicit seller-declared status; production cannot publish fixture domains or invented company history.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/directory/siam-trat-agarwood-co`
+- `https://www.oudguide.com/en/directory/assam-artisan-distillers`
+- `https://www.oudguide.com/en/directory/al-mutalib-perfumes`
+
+### OG-A08 — Prevent country seeds becoming unsupported delivery promises (P1)
+
+**Evidence status:** observed.
+
+**Observed:** Country records retain research-only/not-assessed labels, yet the Bouvet Island page promises export clearance and qualified sourcing. ISO identity is not destination-service evidence.
+
+**Required change:** Keep all place records in the database, but publish useful country pages only after evidence review. Gate destination claims on dated product-specific supplier capabilities.
+
+**Acceptance:** A country with no assessed capability makes no shipping/compliance promise. Unfinished country stubs are excluded from the approved indexable set.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/world`
+- `https://www.oudguide.com/en/world/BV`
+- `https://www.oudguide.com/en/world/AE`
+- `https://www.oudguide.com/en/world/IN`
+
+### OG-A09 — Restore independent geography and role discovery (P1)
+
+**Evidence status:** observed.
+
+**Observed:** The visible directory has three results. The map lists Al Mutalib under Cambodian and Indonesian producing regions, while its profile location is Dubai; physical location and material handling are not clearly separated.
+
+**Required change:** Represent located-in, handles-origin, produces-in and serves-destination as distinct relationships. Add clear retail/wholesale modes and separate geographic selectors.
+
+**Acceptance:** A Dubai reseller of Cambodian material is never counted as a Cambodian production facility without an independently documented facility record.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/directory`
+- `https://www.oudguide.com/en/directory/map`
+- `https://www.oudguide.com/en/directory/al-mutalib-perfumes`
+
+### OG-A10 — Remove implementation notes from customer forms (P1)
+
+**Evidence status:** observed.
+
+**Observed:** The initial RFQ screen exposes Q identifiers and internal interpretation instructions. Planning metadata is appearing in customer-facing copy.
+
+**Required change:** Create separate admin notes and localized public labels/help text. Use distinct quantity/unit and amount/currency controls where required. Preserve the conditional logic.
+
+**Acceptance:** No internal QA IDs, publication checks or developer instructions appear in customer screens. Test each product branch with valid/invalid inputs; this audit did not execute those branches.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/rfq`
+
+### OG-A11 — Require named authorization for fallback introductions (P0)
+
+**Evidence status:** observed.
+
+**Observed:** Targeted inquiry pages show a supplier slug and describe automated fallback matching. The displayed copy is insufficient to demonstrate approved fallback recipients.
+
+**Required change:** Show a readable business name; distinguish selected-supplier inquiry from general matching. Any additional recipient needs explicit authorization before buyer details are released.
+
+**Acceptance:** A test named-supplier inquiry cannot be dispatched to another business without a new approved grant. Payment and fallback selection cannot override that check.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/rfq?supplier=siam-trat-agarwood-co`
+- `https://www.oudguide.com/en/rfq?supplier=al-mutalib-perfumes`
+
+### OG-A12 — Fix contradictory privacy and absolute security copy (P1)
+
+**Evidence status:** observed.
+
+**Observed:** RFQ copy combines approval-based disclosure with an absolute statement that data is never shown to suppliers. Absolute security assurances are also widespread.
+
+**Required change:** Describe the actual data flow: withheld until approval, approved recipient, permitted purpose and withdrawal handling. Use defensible security wording tied to controls.
+
+**Acceptance:** Privacy copy is consistent across RFQ, assistant, partner interface and policies. Security claims are checked against executed tests rather than decorative counters.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/rfq`
+- `https://www.oudguide.com/en/sourcing`
+- `https://www.oudguide.com/en/partners/opportunities`
+
+### OG-A13 — Implement reviewed Arabic content, not only Arabic chrome (P1)
+
+**Evidence status:** observed.
+
+**Observed:** The Arabic guide retains English title and body paragraphs; the Arabic homepage also contains untranslated categories and business descriptions.
+
+**Required change:** Track translation status per page. Publish reviewed Arabic equivalents; otherwise clearly link to the available English article rather than presenting it as translated.
+
+**Acceptance:** Arabic title, main body, form messages and navigation are localized; inspect RTL, mixed-script values and mobile layout in an actual browser.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/ar`
+- `https://www.oudguide.com/ar/guides/oud-basics/what-is-agarwood`
+
+### OG-A14 — Replace route-derived link labels and metadata leaks (P1)
+
+**Evidence status:** observed.
+
+**Observed:** Related-link cards expose slash-separated route wording and empty intent labels. Article and index pages show planning and check-like text.
+
+**Required change:** Render public display titles/explanations from published destination records, not raw manifest keys. Breadcrumbs should include useful country and regional parents.
+
+**Acceptance:** All contextual links have meaningful labels, valid published targets and appropriate relationships. No P1/P2, empty Intent text or technical route labels appear.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/guides/origins/india`
+- `https://www.oudguide.com/en/guides/origins/india/assam`
+- `https://www.oudguide.com/en/guides/sourcing/wholesale-sample-plan`
+- `https://www.oudguide.com/en/guides`
+
+### OG-A15 — Correct product-specific CTA destinations (P1)
+
+**Evidence status:** observed.
+
+**Observed:** Homepage links for several different material families share the same wholesaler-role query. The wood link uses a distiller-role query rather than a wood-family selector.
+
+**Required change:** Pass product family independently from business role and geography, and reflect the selection on the destination page.
+
+**Acceptance:** Selecting perfume oils, attars, private label or incense yields clearly differentiated relevant results or an honest empty state.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/directory?role=distiller`
+- `https://www.oudguide.com/en/directory?role=wholesaler`
+- `https://www.oudguide.com/en`
+
+### OG-A16 — Restore the broad portal positioning (P1)
+
+**Evidence status:** observed.
+
+**Observed:** The current hero/navigation and visible directory emphasize institutional wholesale distillers, while the brief also requires retail discovery and wider fragrance knowledge.
+
+**Required change:** Provide clear entry paths for learning, retail discovery and wholesale sourcing. Keep neutral OudGuide wholesale branding without inventing independence.
+
+**Acceptance:** A retail visitor can reach useful retail/local discovery without first entering a wholesale flow. Original content remains useful without a commercial referral.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en`
+- `https://www.oudguide.com/en/directory`
+
+### OG-A17 — Audit metadata and locale URL generation (P1)
+
+**Evidence status:** mixed_observed_and_requires_raw_html.
+
+**Observed:** Many retrieved page labels fall back to one site-level title. Search results showed an encoded-dollar locale URL that returns 404. Raw head tags were not accessible for a definitive metadata audit.
+
+**Required change:** Inspect actual HTML and rendered head: title, description, canonical, hreflang, robots, Open Graph and JSON-LD. Validate locale values; use equivalent-page redirects only.
+
+**Acceptance:** A URL-by-URL head-tag report documents distinct titles and correct canonicals; no placeholder locales are generated. Do not call duplicated raw metadata confirmed until inspected.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/%24/directory/al-mutalib-perfumes`
+- `https://www.oudguide.com/en/guides/quality/seller-defined-super-grades`
+- `https://www.oudguide.com/en/world/AE`
+
+### OG-A18 — Publish claim-specific sources and authorship (P1)
+
+**Evidence status:** observed.
+
+**Observed:** Inspected guides lack visible linked sources, named accountable reviewers and substantive evidence despite scientific/editorial framing.
+
+**Required change:** Add responsible authorship, source references, review dates, limitations and material-specific answers. Review laboratory, botanical and trade statements with appropriate sources.
+
+**Acceptance:** Each important factual claim can be traced to evidence. A reviewer badge records completed review rather than an intended workflow step.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/guides/oud-basics/what-is-agarwood`
+- `https://www.oudguide.com/en/guides/quality/seller-defined-super-grades`
+
+### OG-A19 — Approve actual billing configuration before charging (P0)
+
+**Evidence status:** observed_copy_production_correctness_unverified.
+
+**Observed:** Membership displays 0% VAT, automatic renewal and cancellation language. This audit cannot establish whether those settings match the operating entity or approved commercial terms.
+
+**Required change:** Confirm jurisdiction-appropriate tax configuration, invoice issuer, renewal/cancellation/refund terms and billing provider mode. Keep live charges disabled pending approval.
+
+**Acceptance:** Owner-approved terms match checkout, receipts, webhooks and expiry behavior. Test payments do not activate production rights; a success URL alone cannot grant membership.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/membership`
+
+### OG-A20 — Complete the operational privacy and ownership notice (P1)
+
+**Evidence status:** observed.
+
+**Observed:** The retrieved privacy page is mainly a rights summary and form. Policies mention a merchant partnership but do not establish the complete operator/data-processing arrangements.
+
+**Required change:** Publish approved operator identity, contact channel, data categories, purposes, recipients, retention, applicable transfer information and actual commercial relationship. Obtain qualified jurisdiction review.
+
+**Acceptance:** The notice describes the real service, not broad compliance assurances. Privacy requests have authenticated handling, status tracking and tested access controls.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/privacy`
+- `https://www.oudguide.com/en/policies`
+
+### OG-A21 — Treat admin, AI and lead workflows as unverified until tested (P1)
+
+**Evidence status:** not_end_to_end_tested.
+
+**Observed:** An admin login boundary exists and an assistant interface loads. Neither demonstrates per-role authorization, a real grounded assistant, durable leads or operational dispatch.
+
+**Required change:** Run the implementation acceptance suite against staging with authorized accounts and test providers. Review shared-key versus per-user operator access and auditability.
+
+**Acceptance:** Provide evidence for storage, OTP, recipient grants, tenant isolation, expiry, webhook reconciliation, withdrawal, redaction and assistant grounding. No claim of a breach is made here.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/en/admin`
+- `https://www.oudguide.com/en/sourcing`
+- `https://www.oudguide.com/en/partners/opportunities`
+
+### OG-A22 — Verify approved media, favicon and responsive presentation (P2)
+
+**Evidence status:** requires_visual_and_browser_testing.
+
+**Observed:** The discoverable hero/business image references are reusable local SVG assets. The tool could not render them; it also did not provide mobile screenshots or performance measurements.
+
+**Required change:** Compare actual images with approved assets; audit licensing and supplier attribution. Test the chosen logo/favicon, responsive layouts, accessibility and Core Web Vitals separately.
+
+**Acceptance:** Browser evidence demonstrates faithful authorized imagery, usable 320/375/768/1440-width layouts, correct tab icon and measured performance. Do not mark SVGs broken merely because this tool cannot render them.
+
+**Evidence URLs:**
+- `https://www.oudguide.com/images/hero-dehn-al-oud.svg`
+- `https://www.oudguide.com/images/hero-oud-chip.svg`
+- `https://www.oudguide.com/images/hero-attar-still.svg`
+
+## Exact published internal destinations reported as 404
+
+| Destination | Page containing the link | Intended journey |
+|---|---|---|
+| `/en/directory/retailers/in/united-arab-emirates/dubai` | `/en/world/AE` | Dubai retailer discovery |
+| `/en/directory/wholesalers/serving/united-arab-emirates` | `/en/world/AE` | Buyer-destination wholesale discovery |
+| `/en/how-supplier-matching-works` | `/en/guides/sourcing/wholesale-sample-plan` | Supplier-matching explanation |
+| `/en/request-quote` | `/en/guides/sourcing/wholesale-sample-plan` | Quote call-to-action alias |
+| `/en/guides/cites-regulations` | `/en` | Footer trade guidance |
+| `/en/glossary/hindi-muri` | `/en/guides/origins/india/assam` | Trade-term reference |
+| `/en/directory/wholesalers/in/united-arab-emirates` | `/en/world/AE` | Seller-country wholesale discovery |
+| `/en/directory/retailers/in/united-arab-emirates` | `/en/world/AE` | Seller-country retail discovery |
+| `/en/directory/wholesalers/in/india/hojai` | `/en/guides/origins/india/assam` | Origin-locality supplier discovery |
+| `/en/guides/copper-deg-distillation` | `/en` | Footer distillation guide |
+| `/en/guides/wild-vs-cultivated` | `/en` | Footer sourcing guide |
+| `/en/world/united-arab-emirates` | `/en/world/AE` | Country slug versus ISO route mismatch |
+
+The additional search-discovered path `/%24/directory/al-mutalib-perfumes` also returned 404. It was not counted among the 12 followed internal destinations. Recheck all statuses after deployment; do not permanently hardcode this snapshot as a current crawl.
+
+## Recommended repair order
+
+1. Disable production demo data and unsupported public claims. Stop publishing generic fallback guides; protect unfinished content without blocking the whole useful site.
+2. Repair route resolution, aliases and publication-aware linking. Preserve valid URLs, create equivalent redirects where warranted, and remove misleading links.
+3. Correct membership/contact semantics and named-recipient controls. Test before paid activation or real lead dispatch.
+4. Restore independent geography/product/role discovery and add researched organizations. Do not substitute fabricated seed suppliers for missing coverage.
+5. Commission and review genuinely distinct knowledge pages. Repair Arabic content and purpose-built hub templates.
+6. Complete raw HTML, sitemap, schema, accessibility, performance and operational acceptance testing.
+
+## SEO and evidence guidance
+
+Google&#x27;s spam guidance addresses scaled unoriginal pages with little user value. The observed duplication is a risk requiring correction, not proof of a manual action or an automatic duplicate-content penalty. Google also documents the importance of meaningful link labels and distinct page titles. If pages are temporarily noindexed while being repaired, allow the crawler to fetch the noindex instruction; robots blocking is not a substitute.
+
+Google&#x27;s AI search guidance applies ordinary search fundamentals rather than a special AI markup trick. IFRA explains that it does not itself issue certificates or authorize certification on its behalf; conformity must be described for its actual scope and intended use. Do not treat a site-wide certification badge as product-specific evidence.
+
+Official references consulted:
+
+- Google spam policies: `https://developers.google.com/search/docs/essentials/spam-policies`
+- Google AI features: `https://developers.google.com/search/docs/appearance/ai-features`
+- Google crawlable links: `https://developers.google.com/search/docs/crawling-indexing/links-crawlable`
+- Google noindex: `https://developers.google.com/search/docs/crawling-indexing/block-indexing`
+- Google title guidance: `https://developers.google.com/search/docs/appearance/title-link`
+- IFRA conformity information: `https://ifrafragrance.org/initiatives-positions/safe-use-fragrance-science/ifra-standards/certification-of-ifra-standards`
+
+## Evidence still needed for full acceptance
+
+Request the source/release identifier; implementation matrix; content publication register; role/tenant permission tests; form/OTP persistence tests; named-recipient dispatch tests; subscription and tax/provider setup; live-versus-demo controls; raw HTML/meta/schema/robots/sitemap export; original approved media records; browser screenshots and performance reports. A visible admin link, button, badge or statement is not a passing test.
+
+## Completion decision
+
+Retain the useful application structure and repair it rather than starting another cosmetic rebuild. Accept each workflow only after a working demonstration and corresponding test evidence. Do not use the counts of planned routes, countries or form fields as proof of completed research or implementation.
+</pre></main></html>
