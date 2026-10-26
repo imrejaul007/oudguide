@@ -1382,4 +1382,185 @@ termEntry({
     ],
     sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
   }),
+
+
+  termEntry({
+    slug: 'glossary/jura',
+    title: 'Jura',
+    titleAr: 'جورة',
+    summary:
+      'A shape-qualified trade name that circulates alongside the recorded wood-type vocabulary; what it denotes, and the readings the record does not settle.',
+    summaryAr:
+      'اسم تجاري مؤهل بالشكل، يدور إلى جانب مفردات أنواع الخشب المسجلة؛ ما يدل عليه، والقراءات التي لا يحسمها السجل.',
+    directAnswer:
+      'Jura is a shape-qualified trade name in the same vocabulary as Salla, Mori and Girmit. The recorded usage puts it in the form-and-shape word family that Gulf and South Asian counters use to name a lot, and the general referent is a cut of resinous wood sold under that name alongside the other recorded shapes. What the name does not settle is the lot behind it: the form, the grade, the origin and the resin content are the checks a lot has to pass, not facts the name carries. No source in the register settles Jura as a synonym of a specific recorded shape, and the entry leaves that open.',
+    directAnswerAr:
+      '«جورة» اسم تجاري مؤهل بالشكل، في نفس عائلة مفردات «سلة» و«موري» و«جيرمي». والاستعمال المسجل يضعه في عائلة كلمات الشكل والحجم التي تعتمدها منصات الخليج وجنوب آسيا لسمّ لوط، والمرجع العام قطعة خشب راتنجي تبيعها منصة ذلك الاسم إلى جانب الأشكال المسجلة الأخرى. وما لا يحسمه الاسم هو اللوط خلفه: فالشكل والدرجة والمنشأ ومحتوى الراتنج هي الفحوصات التي يمر بها اللوط، ليست حقائق يحملها الاسم. ولا مصدر في السجل يحسم «جورة» مرادفاً لشكل مسجل معين، والمدخلة تترك ذلك مفتوحا.',
+    spelling:
+      'The name circulates in the same word family as the other recorded shape names: Jura, or a transliteration of it, in the Latin-script listings, and the Arabic-market spelling alongside it. No trade body fixes an orthography for it, and the written form is evidence of the writer, not of the material. The usage is the form-and-shape vocabulary of the counter, and the spelling is the counter’s, not the record’s.',
+    spellingAr:
+      'يدور الاسم في نفس عائلة المفردات الأخرى المسجلة: «جورة» أو رحيمتها باللاتينية في قوائم البيع، والإملاء العربي في السوق بجانبها. ولا يثبّت أي جهاز تجاري إملاءً معينا لها، والصيغة المكتوبة دليل على الكاتب، لا على المادة. والاستعمال هو مفردات الشكل والحجم الخاصة بالمنصة، والإملاء هو الخاص بالمنصة، ليس الخاص بالسجل.',
+    usage:
+      'At the counter Jura sits with Salla, Mori, Girmit and the other recorded shape names, and a lot sold under it is sold as a shape: a cut of the wood named by that word in the same vocabulary. The name is the shape’s, and the shape does not clear the lot: the resin, the grade and the origin are the checks the lot has to pass, and the name carries none of them. A buyer who wants more than the shape reads the name as the counter’s word and asks the checks that the word does not settle.',
+      usageAr:
+      'في المنصة «جورة» تجلس مع «سلة» و«موري» و«جيرمي» والأسما الشكلية المسجلة الأخرى، ولوط تبيع تحتها يباع كشكل: قطعة من الخشب يسميها الكلمة تلك في نفس المفردات. فالاسم للشكل، والشكل لا ينقّي اللوط: فالراتنج والدرجة والمنشأ هي الفحوصات التي يمر بها اللوط، ولا يحمل الاسم شيئا منها. ومشتري يريد أكثر من الشكل يقرأ الكلمة كلمة المنصة ويسأل الفحوصات التي لا تحسمها الكلمة.',
+    examples:
+      'Two examples. A counter in a trade centre offers a lot sold as Jura next to one sold as Salla, and the two are two shape names in the same vocabulary, not two grades of the same name: the check is the lot, not the name. A listing sells a lot described as Jura with no grade, no origin and no resin figure, and the description is the shape’s word: the checks the lot has to pass are the grade, the origin and the resin, and the name clears none of them.',
+    examplesAr:
+      'مثالا: منصة في مركز تجاري تعرض لوطاً يباع بوصف «جورة» بجانب لوط يباع بوصف «سلة»، والاثنان اسما شكل في نفس المفردات، ليسا درجتيْن لنفس الاسم: فالشك هو اللوط، ليس الاسم. وقائمة تبيع لوطاً موصوفاً «جورة» بلا درجة ولا منشأ ولا رقم راتنج، والوصف هو كلمة الشكل: والفحوصات التي يمر بها اللوط هي الدرجة والمنشأ والراتنج، ولا يحسم الاسم شيئاً منها.',
+    alternatives:
+      'The word invites two readings, and the entry keeps both open. The recorded reading is the shape reading: Jura as a cut of resinous wood in the form-and-shape vocabulary. The readings it does not carry are the ones that need the lot’s checks: a specific grade, a specific origin, a specific resin content, a specific treatment. And the synonym question, Jura as a variant of another recorded shape, is a question the record does not settle, and the entry states that rather than merging the two spellings.',
+    alternativesAr:
+      'تدعو الكلمة قراءتين، والمدخلة تترك الاثنتين مفتوحتين. فالقراءة المسجلة هي قراءة الشكل: «جورة» قطعة من الخشب الراتنجي في مفردات الشكل والحجم. والقراءات التي لا تحملها هي التي تحتاج فحوص اللوط: درجة معينة، منشأ معيّن، محتوى راتنج معيّن، معالجة معينة. وسؤال المرادف، «جورة» صورةً لشكل آخر مسجل، سؤال لا يحسمه السجل، والمدخلة تقرر ذلك بدل دمج الإملاءين.',
+    doesNotProve:
+      'The name does not establish the grade, the origin, the resin content or the treatment of a lot sold under it. It does not establish a synonymy with another recorded shape, and it does not carry a figure: a weight, a price or a percentage. It is a shape word in the form vocabulary, and a shape word does not clear the lot it names.',
+    doesNotProveAr:
+      'لا يثبت الاسم درجة لوط يُباع تحت اسمها ولا منشأه ولا محتوى راتنجه ولا معالجته. ولا يثبت مرادفة مع شكل آخر مسجل، ولا يحمل رقماً: وزناً أو سعراً أو نسبة. وهو كلمة شكل في مفردات الشكل، وكلمة شكل لا تُخلص اللوط الذي تسميه.',
+    limitations:
+      'This entry records the shape reading of the name and states the readings it does not carry. It does not assign the name to a grade, an origin, a resin figure or a treatment, and it does not settle the synonym question with another recorded shape: the checks the lot has to pass are the checks, and the name is the counter’s word, not the checks themselves.',
+      limitationsAr:
+      'تسجل هذه المدخلة قراءة الشكل للاسم، وتقرر القراءات التي لا يحملها. ولا ترسم الاسم لدرجة أو منشأ أو رقم راتنج أو معالجة، ولا تحسم سؤال المرادف مع شكل آخر مسجل: فالفحوصات التي يمر بها اللوط هي الفحوصات، والاسم هو كلمة المنصة، ليست الفحوصات نفسها.',
+    related: [
+      { slug: 'glossary/salla', label: 'Salla, the recorded shape vocabulary' },
+      { slug: 'glossary/girmit', label: 'Girmit, a neighbouring recorded shape' },
+      { slug: 'quality/oud-misdescription-warning-signs', label: 'The signs where a claim does not fit the material' },
+      { slug: 'buying/beads-and-carvings', label: 'The shape family on a buyer’s page' },
+    ],
+    sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
+  }),
+
+  termEntry({
+    slug: 'glossary/muri',
+    title: 'Muri',
+    titleAr: 'موري',
+    summary:
+      'A trade name in the recorded wood-type vocabulary, and the near-spellings and qualified forms that sit alongside it in the same lists.',
+    summaryAr:
+      'اسم تجاري في مفردات أنواع الخشب المسجلة، والإملاءات القريبة والصيغ المؤهلة التي تجاوره في القوائم نفسها.',
+    directAnswer:
+      'Muri is a trade name in the recorded wood-type vocabulary, and the recorded usage lists it in the same word family as Mori, Hindi Muri and the other recorded qualified forms. The general referent is a category of resinous-wood material, and the name is one of the counter’s words, not the record’s. The entry records the family the name belongs to and the spellings that sit alongside it, and it leaves open the question of whether Muri is a variant of Mori or of another recorded name: the synonym question is the record’s, not the counter’s, and no source in the register settles it.',
+      directAnswerAr:
+      '«موري» اسم تجاري في مفردات أنواع الخشب المسجلة، والاستعمال المسجل يدرجه في نفس عائلة المفردات الخاصة بـ«موري» و«هندي موري» والصور المؤهلة المسجلة الأخرى. والمرجع العام فئة من الخشب الراتنجي، والاسم هو من أفعال المنصة، ليس السجل. والمدخلة تسجل العائلة التي ينتمي إليها الاسم والإملاءات المجاورة له، وتترك مفتوحاً إن كان «موري» صورةً من «موري» أو من اسم آخر مسجل: فسؤال المرادف هو الخاص بالسجل، ليس الخاص بالمنصة، ولا مصدر في السجل يحسمه.',
+    spelling:
+      'The name circulates in Latin script in invoices and listings, and in Arabic script in the Gulf market, alongside the recorded near-spellings Mori and Hindi Muri. No trade body fixes an orthography for it, and the written form is evidence of the writer, not of the material. The qualified forms that carry the name, ball-muri and mini-muri, are the counter’s own on the same word.',
+    spellingAr:
+      'يدور الاسم بالحروف اللاتينية في الفواتير والقوائم، وبالحروف العربية في سوق الخليج، إلى جانب الإملاءات القريبة المسجلة «موري» و«هندي موري». ولا يثبّت أي جهاز تجاري إملاءً معيّن له، والصيغة المكتوبة دليل على الكاتب، لا على المادة. والصور المؤهلة التي تحمل الاسم، «بال موري» و«ميني موري»، هي الخاصة بالمنصة على نفس الكلمة.',
+    usage:
+      'In the recorded usage the name is a wood-type word: a lot sold under it is a lot in the category the name marks in the counter’s vocabulary. The qualified forms, ball-muri and mini-muri, are the counter’s own on the same word: a form qualifier and a size qualifier on the same name, and the qualifier does not clear the lot. The check is the lot, not the name: the form, the grade, the origin and the resin content are the checks a lot has to pass, and the name carries none of them.',
+      usageAr:
+      'في الاستعمال المسجل الاسم كلمة نوع خشب: لوط تبيعها منصة تحت اسمها لوط في الفئة التي يحددها الاسم في مفردات المنصة. والصور المؤهلة، «بال موري» و«ميني موري»، هي الخاصة بالمنصة على نفس الكلمة: مؤهل شكل ومؤهِّل مقاس على نفس الاسم، والمؤهل لا يُنقّي اللوط. والشك هو اللوط، ليس الاسم: فالشكل والدرجة والمنشأ ومحتوى الراتنج هي الفحوصات التي يمر بها اللوط، والاسم لا يحمل شيئاً منها.',
+    examples:
+      'Two examples. A listing offers ball-muri and mini-muri side by side, and the two are two qualified forms of the same word, not two different recorded names: the check is the lot, not the qualifier. A counter sells a lot under Muri and a neighbouring spelling sits in the same list as Mori, and the two are the counter’s own in the same list, and the synonym question between them is the record’s, not the counter’s.',
+      examplesAr:
+      'مثالا: قائمة تعرض «بال موري» و«ميني موري» إلى جنب، والاتنين صيغتان مؤهلتان من نفس الكلمة، ليسا اسمين مسجلين مختلفين: فالشك هو اللوط، ليس المؤهل. ومنصة تبيع لوطاً تحت «موري» وإملاء مجاور يجاورها في نفس القائمة بوصف «موري»، والاتنان الخاصان بالمنصة في نفس القائمة، وسؤال المرادف بينهما هو الخاص بالسجل، ليس الخاص بالمنصة.',
+    alternatives:
+      'The word invites the readings it does not carry, and the entry keeps them open. The readings it does not settle: a specific grade, a specific origin, a specific resin content, and the synonym question with Mori or another recorded name. The qualifier in the qualified forms, ball- and mini-, is the counter’s own: a form and a size qualifier on the same word, and the qualifier does not clear the lot. And the entry does not merge Muri with Mori or any other recorded spelling, because the merger is a synonymy the record does not establish.',
+      alternativesAr:
+      'تدعو الكلمة القراءات التي لا تحملها، والمدخلة تتركها مفتوحة. فالقراءات التي لا تحسمها: درجة معينة، منشأ معيّن، محتوى راتنج معيّن، وسؤال المرادف مع «موري» أو اسم مسجل آخر. والمؤهِّل في الصيغ المؤهلة، «بال» و«ميني»، هو الخاص بالمنصة: مؤهل شكل ومؤهِّل مقاس على نفس الكلمة، والمؤهل لا يُنقّي اللوط. والمدخلة لا تدمج «موري» مع «موري» أو أي إملاء مسجل آخر، لأن الدمج هو مرادفة لا يثبتها السجل.',
+    doesNotProve:
+      'The name does not establish the grade, the origin, the resin content or the treatment of a lot sold under it. It does not establish a synonymy with Mori or another recorded name, and it does not carry a figure: a weight, a price or a percentage. It is a wood-type word in the recorded vocabulary, and the word is the counter’s, not the record’s.',
+      doesNotProveAr:
+      'لا يثبت الاسم درجة لوط تبيعها منصة تحت اسمها ولا منشأه ولا محتوى راتنجه ولا معالجته. ولا يثبت مرادفة مع «موري» أو اسم مسجل آخر، ولا يحمل رقماً: وزناً أو سعراً أو نسبة. وهو كلمة نوع خشب في المفردات المسجلة، والكلمة خاصة بالمنصة، ليس الخاص بالسجل.',
+    limitations:
+      'This entry records the wood-type usage of the name and the qualified forms that carry it, and it leaves the synonym question open. It does not assign the name to a grade, an origin, a resin figure or a treatment, and it does not merge Muri with Mori or another recorded spelling, because the merger is a synonymy the record does not establish.',
+      limitationsAr:
+      'تسجل هذه المدخلة استعمال النوع الخشبي للاسم والصيغ المؤهلة التي تحملها، وتترك سؤال المرادف مفتوحاً. ولا ترسم الاسم لدرجة أو منشأ أو رقم راتنج أو معالجة، ولا تدمج «موري» مع «موري» أو إملاء آخر مسجل، لأن الدمج هو مرادفة لا يثبتها السجل.',
+    related: [
+      { slug: 'glossary/mori', label: 'Mori, the recorded near-spelling' },
+      { slug: 'glossary/hindi-muri', label: 'Hindi Muri, the recorded qualified form' },
+      { slug: 'glossary/ball-muri', label: 'Ball Muri, the form qualifier' },
+      { slug: 'quality/oud-misdescription-warning-signs', label: 'The signs where a claim does not fit the material' },
+    ],
+    sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
+  }),
+
+  termEntry({
+    slug: 'glossary/kalakasi',
+    title: 'Kalakasi',
+    titleAr: 'كالاقسي',
+    summary:
+      'A name recorded in the producing-region vocabulary, and the place it points to, stated as a recorded association rather than as a settled producing claim.',
+    summaryAr:
+      'اسم مسجّل في مفردات مناطق الإنتاج، والمكان الذي يشير إليه، مصوغا علاقا مسجلا لا ادعاء إنتاج محسوما.',
+    directAnswer:
+      'Kalakasi is a name in the producing-region vocabulary that points to a place, and the record the register carries is the recorded producing geography of the resinous wood, which states the countries and regions where the material is recorded to form. The association the name carries, Kalakasi as a producing place, is stated as a recorded association: the name points to a place in the producing geography, and the place is recorded rather than established. The name does not clear the lot: a lot sold under it is a lot whose checks are the form, the grade, the origin and the resin content, and the name is the counter’s word for the place, not the checks themselves.',
+      directAnswerAr:
+      '«كالاقسي» اسم في مفردات مناطق الإنتاج يشير إلى مكان، والسجل الذي يحمله الدفتر هو الجغرافيا الإنتاجية المسجلة للخشب الراتنجي، التي تقرر الدول والمناطق التي تُسجل فيها المادة. والعلاقة التي يحملها الاسم، «كالاقسي» مكاناً لإنتاج، معلنة علاقا مسجلا: فالاسم يشير إلى مكان في الجغرافيا الإنتاجية، والمكان مسجل لا محسوم. والاسم لا يُنقّي اللوط: فلول تُباع تحتها لوط فحوصه هي الشكل والدرجة والمنشأ ومحتوى الراتنج، والاسم كلمة المنصة للمكان، ليست الفحوصات نفسها.',
+    spelling:
+      'The name circulates in the Latin script of the trade, and in the Arabic of the Gulf market, alongside the recorded producing-region vocabulary. No trade body fixes an orthography for it, and the written form is evidence of the writer, not of the place. The name is a place word, and the place it points to is the recorded association, not the settled claim.',
+    spellingAr:
+      'يدور الاسم بالحروف اللاتينية الخاصة بالتجارة، وفي العربية الخاصة بسوق الخليج، إلى جانب مفردات مناطق الإنتاج المسجلة. ولا يثبّت أي جهاز تجاري إملاءً معيّن له، والصيغة المكتوبة دليل على الكاتب، لا على المكان. والاسم كلمة مكان، والمكان الذي يشير إليه هو العلاقة المسجلة، ليس الادعاء المحسوم.',
+    usage:
+      'In the recorded usage the name points to a place in the producing geography: a lot sold under it is a lot that the counter names after the place. The place reading is the recorded association, and the check is the lot, not the name: the form, the grade, the origin and the resin content are the checks a lot has to pass, and the name is the counter’s word for the place, not the checks themselves. A buyer who wants the place, and not the word, asks the check that the word does not settle.',
+      usageAr:
+      'في الاستعمال المسجل الاسم يشير إلى مكان في الجغرافيا الإنتاجية: فلول تُباع تحتها لوط يسميها المنصة باسم المكان. وقراءة المكان هي العلاقة المسجلة، والشك هو اللوط، ليس الاسم: فالشكل والدرجة والمنشأ ومحتوى الراتنج هي الفحوصات التي يمر بها اللوط، والاسم هو كلمة المنصة للمكان، ليست الفحوصات نفسها. ومشتري يريد المكان، ليس الكلمة، يسأل الشك الذي لا يحسمه الكلمة.',
+    examples:
+      'Two examples. A counter lists a lot sold under Kalakasi next to one sold under another recorded producing-region name, and the two are two place words in the producing vocabulary, not two grades of the same place: the check is the lot, not the word. A listing sells a lot described as Kalakasi with no form, no grade and no resin figure, and the description is the place word: the checks the lot has to pass are the form, the grade and the resin, and the word clears none of them.',
+      examplesAr:
+      'مثالا: منصة تدرج لوطاً يُباع تحت اسم «كالاقسي» بجانب لوط يُباع تحت اسم منطقة إنتاج مسجل آخر، والاتنان كلمتا مكان في مفردات الإنتاج، ليسا درجتيْن لنفس المكان: فالشك هو اللوط، ليس الكلمة. وقائمة تبيع لوطاً موصوفاً «كالاقسي» بلا شكل ولا درجة ولا رقم راتنج، والوصف هو كلمة المكان: والفحوصات التي يمر بها اللوط هي الشكل والدرجة والراتنج، والكلمة لا تحسم شيئاً منها.',
+    alternatives:
+      'The word invites the place reading, and the entry records it as the recorded association. The readings it does not settle: a specific grade, a specific resin content, a specific treatment, and the producing claim beyond the recorded association. The entry states the name as the place word, and it keeps the producing claim open, because the place is the recorded association, and the claim is the checks, not the word.',
+      alternativesAr:
+      'تدعو الكلمة قراءة المكان، والمدخلة تسجلها علاقا مسجلا. والقراءات التي لا تحسمها: درجة معينة، محتوى راتنج معيّن، معالجة معينة، وادعاء إنتاج يتجاوز العلاقة المسجلة. والمدخلة تقرر الاسم كلمة مكان، وتبقي ادعاء الإنتاج مفتوحاً، لأن المكان هو العلاقة المسجلة، والادعاء هو الفحوصات، ليس الكلمة.',
+    doesNotProve:
+      'The name does not establish the grade, the resin content or the treatment of a lot sold under it. It does not establish the producing claim beyond the recorded association, and it does not carry a figure: a weight, a price or a percentage. It is a place word in the producing-region vocabulary, and the word is the counter’s, not the record’s.',
+      doesNotProveAr:
+      'لا يثبت الاسم درجة لوط تُباع تحت اسمها ولا محتوى راتنجه ولا معالجته. ولا يثبت ادعاء إنتاج يتجاوز العلاقة المسجلة، ولا يحمل رقماً: وزناً أو سعراً أو نسبة. وهو كلمة مكان في مفردات مناطق الإنتاج، والكلمة خاصة بالمنصة، ليس الخاص بالسجل.',
+    limitations:
+      'This entry records the place word and the recorded association it carries. It does not establish the producing claim beyond the recorded association, and it does not assign the name to a grade, a resin figure or a treatment. The limit of the entry is that the word is the counter’s place word, and the checks the lot has to pass are the checks, not the word.',
+      limitationsAr:
+      'تسجل هذه المدخلة كلمة المكان والعلاقة المسجلة التي تحملها. ولا تثبت ادعاء إنتاج يتجاوز العلاقة المسجلة، ولا ترسم الاسم لدرجة أو رقم راتنج أو معالجة. وحدّ المدخلة أن الكلمة هي كلمة المكان الخاصة بالمنصة، والفحوصات التي يمر بها اللوط هي الفحوصات، ليست الكلمة.',
+    related: [
+      { slug: 'glossary/jura', label: 'Jura, a shape word in the same vocabulary' },
+      { slug: 'origins/india', label: 'The recorded producing geography' },
+      { slug: 'quality/oud-misdescription-warning-signs', label: 'The signs where a claim does not fit the material' },
+      { slug: 'buying/beads-and-carvings', label: 'The shape family on a buyer’s page' },
+    ],
+    sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
+  }),
+
+  termEntry({
+    slug: 'glossary/qadeem',
+    title: 'Qadeem',
+    titleAr: 'قديم',
+    summary:
+      'An ageing descriptor in the recorded trade vocabulary, stated as a recorded descriptor rather than as a measurement of the material it describes.',
+    summaryAr:
+      'مؤلِّق عمر في المفردات التجارية المسجلة، معلنا مؤلِّقا مسجلا لا قياسا للمادة التي يصفها.',
+    directAnswer:
+      'Qadeem is an ageing descriptor in the recorded trade vocabulary: it names a material as aged, and the descriptor is the counter’s word for the age, not a measurement of it. The record the register carries is the recorded trade vocabulary, and the descriptor sits in it as a recorded word, and the check the word opens is the check on the lot, not the check on the word: the age, the grade and the resin content are the checks a lot has to pass, and the word is the counter’s, not the record’s. No source in the register measures the age the descriptor names, and the entry keeps the descriptor open to that check.',
+      directAnswerAr:
+      '«قديم» مؤلِّق عمر في المفردات التجارية المسجلة: يسمي مادة عتيقة، والتؤلُّق هو كلمة المنصة للعمر، ليس قياسا له. والسجل الذي يحمله الدفتر هو المفردات التجارية المسجلة، والمؤلِّق فيها فعل مسجل، والشك الذي يفتحه الكلمة هو الشك على اللوط، ليس الشك على الكلمة: فالعمر والدرجة ومحتوى الراتنج هي الفحوصات التي يمر بها اللوط، والكلمة هي الخاصة بالمنصة، ليست الخاص بالسجل. ولا مصدر في السجل يقيس العمر الذي يسميه المؤلِّق، والمدخلة تترك المؤلِّق مفتوحاً لتلك الفحوصة.',
+    spelling:
+      'The descriptor circulates in the Arabic of the trade, and in the Latin script alongside it, as a recorded word in the trade vocabulary. No trade body fixes a procedure for it, and the written form is evidence of the writer, not of the age. The descriptor is the counter’s word for the age, and the word is the counter’s, not the record’s.',
+    spellingAr:
+      'يدور المؤلِّق في العربية الخاصة بالتجارة، وفي اللاتينية بجانبه، كشكل مسجل في مفردات التجارة. ولا يثبّت أي جهاز تجاري إجراءً له، والصيغة المكتوبة دليل على الكاتب، لا على العمر. والمؤلِّق هو كلمة المنصة للعمر، والكلمة خاصة بالمنصة، ليست الخاص بالسجل.',
+    usage:
+      'In the recorded usage the descriptor is a word for the age: a lot sold under it is a lot the counter names as aged. The word is the counter’s, not the record’s, and the check the word opens is the check on the lot: the age, the grade and the resin content are the checks a lot has to pass, and the descriptor is the counter’s word for the age, not the check itself. A buyer who wants the age, and not the word, asks the check the word does not settle.',
+      usageAr:
+      'في الاستعمال المسجل المؤلِّق كلمة العمر: فلول تُباع تحتها لوط يسميه المنصة عتيقا. والكلمة خاصة بالمنصة، ليست الخاص بالسجل، والشك الذي تفتحه الكلمة هو الشك على اللوط: فالعمر والدرجة ومحتوى الراتنج هي الفحوصات التي يمر بها اللوط، والمؤلِّق هو كلمة المنصة للعمر، ليست الفحوصة نفسها. ومشتري يريد العمر، ليس الكلمة، يسأل الشك الذي لا تحسمه الكلمة.',
+    examples:
+      'Two examples. A counter sells a lot described as Qadeem next to one without the descriptor, and the two are two stated readings of the age, not two measurements: the check is the lot, not the word. A listing sells a lot described as Qadeem with no grade, no origin and no resin figure, and the description is the word: the checks the lot has to pass are the grade, the origin and the resin, and the word clears none of them.',
+      examplesAr:
+      'مثالا: منصة تبيع لوطاً موصوفاً «قديم» بجانب لوط بلا المؤلِّق، والاتنان قراءتان معلنتان للعمر، ليسا قياسين: فالشك هو اللوط، ليس الكلمة. وقائمة تبيع لوطاً موصوفاً «قديم» بلا درجة ولا منشأ ولا رقم راتنج، والوصف هو الكلمة: والفحوصات التي يمر بها اللوط هي الدرجة والمنشأ والراتنج، والكلمة لا تحسم شيئاً منها.',
+    alternatives:
+      'The word invites the age reading, and the entry records it as the recorded descriptor. The readings it does not settle: a specific measurement of the age, a specific grade, a specific resin content. The entry states the word as the counter’s descriptor for the age, and it keeps the check on the lot open, because the word is the counter’s, and the check is the record’s, not the word’s.',
+      alternativesAr:
+      'تدعو الكلمة قراءة العمر، والمدخلة تسجلها مؤلِّقا مسجلا. والقراءات التي لا تحسمها: قياس معين للعمر، درجة معينة، محتوى راتنج معين. والمدخلة تقرر الكلمة مؤلِّق المنصة للعمر، وتبقي الشك على اللوط مفتوحاً، لأن الكلمة خاصة بالمنصة، والشك خاص بالسجل، ليس الخاص بالكلمة.',
+    doesNotProve:
+      'The word does not establish a measurement of the age it names, the grade, the origin or the resin content of a lot sold under it. It does not carry a figure: a year, a weight, a price or a percentage. It is a descriptor in the recorded trade vocabulary, and the word is the counter’s, not the record’s.',
+      doesNotProveAr:
+      'لا تثبت الكلمة قياسا للعمر الذي تسميه، ولا درجة لوط تُباع تحت اسمها ولا منشأه ولا محتوى راتنجه. ولا تحمل رقماً: سنة أو وزناً أو سعراً أو نسبة. وهي مؤلِّق في المفردات التجارية المسجلة، والكلمة خاصة بالمنصة، ليس الخاص بالسجل.',
+    limitations:
+      'This entry records the descriptor as a recorded word in the trade vocabulary. It does not establish a measurement of the age it names, and it does not assign the word to a grade, an origin or a resin figure. The limit of the entry is that the word is the counter’s descriptor, and the check the lot has to pass is the check, not the word.',
+      limitationsAr:
+      'تسجل هذه المدخلة المؤلِّق كشكل مسجل في مفردات التجارة. ولا تثبت قياسا للعمر الذي يسميه، ولا ترسم الكلمة لدرجة أو منشأ أو رقم راتنج. وحدّ المدخلة أن الكلمة مؤلِّق المنصة، والشك الذي يمر به اللوط هو الشك، ليس الكلمة.',
+    related: [
+      { slug: 'quality/resin-measurement', label: 'Why a resin-content claim is not a measurement' },
+      { slug: 'quality/oud-misdescription-warning-signs', label: 'The signs where a claim does not fit the material' },
+      { slug: 'glossary/jura', label: 'Jura, a shape word in the same vocabulary' },
+      { slug: 'buying/assessing-suppliers', label: 'Assessing supplier information' },
+    ],
+    sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
+  }),
 ];
