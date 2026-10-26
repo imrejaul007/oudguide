@@ -1700,3 +1700,22 @@ export const originRegionArticles: Article[] = Object.entries(REGION_FACTS)
       sourceIds: facts.sourceIds,
     });
   });
+
+/**
+ * A country's own region pages, in the order the facts table records them.
+ *
+ * The entry for a country is the children list its country page carries:
+ * each region page's own title is the label and its own summary is the
+ * blurb, so there is no second, hand-maintained copy of either string.
+ * The country key is the region slug's second segment, matching the
+ * countrySlug the facts table records. A country with no documented
+ * sub-region carries no entry: Brunei and Bhutan have no region routes in
+ * the manifest, and a country page does not list a sub-division the
+ * sources never record.
+ */
+export const originRegionChildren: Record<string, Article[]> = {};
+
+for (const child of originRegionArticles) {
+  const country = child.slug.split('/')[1];
+  (originRegionChildren[country] ??= []).push(child);
+}

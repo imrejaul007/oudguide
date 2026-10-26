@@ -134,6 +134,10 @@ function ReviewedArticle({
   const related = resolvedRelated(article, locale);
   const children = hubChildren(article, locale);
   const isHub = article.kind === 'hub';
+  /* Origin pages list the region pages the register documents for the
+     country. A hub lists every article beneath it, so the two share the
+     card grid but the hub carries the section-wide label. */
+  const showsChildren = (isHub || article.kind === 'origin') && children.length > 0;
 
   return (
     <article className="container container-narrow" style={{ paddingTop: 40, paddingBottom: 60 }}>
@@ -201,6 +205,30 @@ function ReviewedArticle({
         <section style={{ marginBottom: 44 }}>
           <span className="eyebrow" style={{ marginBottom: 14, display: 'block' }}>
             {isAr ? 'في هذا القسم' : 'In this section'}
+          </span>
+          <div className="grid-2">
+            {children.map((child) => (
+              <Link
+                key={child.slug}
+                href={child.href}
+                className="card"
+                style={{ padding: 22, textDecoration: 'none' }}
+              >
+                <h3 style={{ fontSize: '1.1rem', marginBottom: 8 }}>{child.label}</h3>
+                <p className="text-body" style={{ margin: 0, fontSize: '0.94rem' }}>
+                  {child.blurb}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* A country page lists the region pages documented for that country */}
+      {!isHub && showsChildren && (
+        <section style={{ marginBottom: 44 }}>
+          <span className="eyebrow" style={{ marginBottom: 14, display: 'block' }}>
+            {isAr ? 'المناطق الموثَّقة في هذه الدولة' : 'Documented regions in this country'}
           </span>
           <div className="grid-2">
             {children.map((child) => (

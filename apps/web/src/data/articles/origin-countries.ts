@@ -1,4 +1,5 @@
 import { originCountry } from './geography-kit.ts';
+import { originRegionChildren } from './origin-regions.ts';
 import type { Article } from './types.ts';
 
 /**
@@ -991,3 +992,25 @@ export const originCountryArticles: Article[] = [
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_AGARWOOD_TRADE_2000'],
   }),
 ];
+
+/**
+ * Every country page lists the regions the register documents for that
+ * country. The labels and blurbs come from the region pages' own titles
+ * and summaries, so a country page cannot name a region in words the
+ * region page does not use. Brunei and Bhutan have no region routes in
+ * the manifest, so they carry no children: a country page never lists a
+ * sub-division the sources do not record.
+ */
+for (const article of originCountryArticles) {
+  const key = article.slug.replace('origins/', '');
+  const children = originRegionChildren[key];
+  if (children && children.length > 0) {
+    article.children = children.map((child) => ({
+      slug: child.slug,
+      label: child.title,
+      labelAr: child.titleAr,
+      blurb: child.summary,
+      blurbAr: child.summaryAr,
+    }));
+  }
+}

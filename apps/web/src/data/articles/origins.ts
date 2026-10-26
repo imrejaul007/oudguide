@@ -1,4 +1,5 @@
 import type { Article } from './types.ts';
+import { originRegionChildren } from './origin-regions.ts';
 
 /**
  * Origin-region and destination articles.
@@ -301,3 +302,35 @@ export const originArticles: Article[] = [
     taxonomyKey: 'AE',
   },
 ];
+
+/**
+ * The India page lists every region the register documents for the
+ * country: the hand-written Assam page and the five north-east regions
+ * in the shared facts table. The labels and blurbs come from each
+ * region page's own title and summary.
+ */
+for (const article of originArticles) {
+  if (article.slug !== 'origins/india') continue;
+  const assam = originArticles.find((a) => a.slug === 'origins/india/assam');
+  const others = originRegionChildren['india'] ?? [];
+  article.children = [
+    ...(assam
+      ? [
+          {
+            slug: assam.slug,
+            label: assam.title,
+            labelAr: assam.titleAr,
+            blurb: assam.summary,
+            blurbAr: assam.summaryAr,
+          },
+        ]
+      : []),
+    ...others.map((child) => ({
+      slug: child.slug,
+      label: child.title,
+      labelAr: child.titleAr,
+      blurb: child.summary,
+      blurbAr: child.summaryAr,
+    })),
+  ];
+}
