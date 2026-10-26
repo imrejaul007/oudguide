@@ -56,6 +56,58 @@ export interface MatchBrief {
 }
 
 /**
+ * A single buyer's RFQ, captured as market data — nothing that identifies
+ * the buyer.
+ *
+ * This is the original-data the site accumulates over time: when a buyer
+ * states a target price (and, for wood, a resin-density position), that is
+ * a real data point about where the market is. It is captured here, in the
+ * one place every submission funnels through, and held PII-free from the
+ * moment it is created — the buyer's name, channel and destination are not
+ * stored, so no later surface can leak them.
+ *
+ * It is NOT a price quote and NOT a market truth: it is one buyer's stated
+ * target. The public surface may only ever show it in aggregate, and the
+ * aggregate is k-anonymized (see `getMarketPriceAggregate`), so a single
+ * buyer's number cannot be read back out of it.
+ */
+export interface MarketDataPoint {
+  /** Stable id for the capture, not the inquiry — an inquiry can be
+   *  withdrawn and the market signal still stands. */
+  id: string;
+  recorded_at: Date;
+  product_family: string;
+  /** Stated target price per unit, parsed to a number when it is one. */
+  target_price?: number;
+  /** The unit the price was stated against, e.g. "tola", "kg", "ml". */
+  price_unit?: string;
+  quantity?: number | string;
+  quantity_unit?: string;
+  /** A qualitative density position, e.g. "high", "medium" — captured
+   *  as-is; a density claim is never converted to a measurement here. */
+  resin_density?: string;
+  origin_preference?: string;
+  samples_requested: boolean;
+}
+
+/**
+ * The one public form the market data may take: a k-anonymized price band
+ * per product family. A family with fewer than `k` captured points is
+ * omitted entirely, so the band always represents at least `k` buyers and
+ * no single target price can be isolated from it.
+ */
+export interface MarketPriceBand {
+  product_family: string;
+  n: number;
+  /** Inclusive min / max of the captured target prices. */
+  min_price: number;
+  max_price: number;
+  /** Arithmetic mean of the captured target prices. */
+  mean_price: number;
+  unit: string;
+}
+
+/**
  * A payment that has been confirmed by the billing provider.
  *
  * The membership is not activated by the act of asking for it. It is
@@ -108,6 +160,7 @@ export class OudGuideDomainService {
   private recipientGrants: Map<string, RecipientGrant> = new Map();
   private releases: Map<string, IntroductionRelease> = new Map();
   private outbox: Array<{ id: string; event: string; payload: any; created_at: Date }> = [];
+  private marketDataPoints: MarketDataPoint[] = [];
 
   constructor(initialBusinesses: RawBusinessProfile[] = []) {
     for (const b of initialBusinesses) {
@@ -468,6 +521,13 @@ export class OudGuideDomainService {
 
     this.inquiries.set(id, record);
 
+    // Capture the market data point. This is the original-data the site
+    // accumulates: what a buyer stated, PII-free, at the moment of
+    // submission. It is recorded even when the inquiry is later withdrawn,
+    // because the market signal is independent of the buyer's consent to be
+    // contacted.
+    this.captureMarketDataPoint(id, record);
+
     // Enqueue verification outbox notification
     this.outbox.push({
       id: `outbox_verify_${id}`,
@@ -513,6 +573,97 @@ export class OudGuideDomainService {
 
   public getInquiry(id: string): InquiryRecord | null {
     return this.inquiries.get(id) || null;
+  }
+
+  /**
+   * Pull a PII-free market data point out of a just-submitted inquiry.
+   *
+   * Only the fields that are market signals are copied; the buyer's
+   * identity, contact channel and destination are deliberately left behind.
+   * A price is kept as a number when it parses to one (a buyer typing
+   * "350" or "350 AED" both capture as 350); otherwise the point is still
+   * recorded, just without a price, because the density and quantity
+   * positions carry signal too.
+   */
+  private captureMarketDataPoint(inquiryId: string, record: InquiryRecord): void {
+    const fv = record.form_values;
+    const priceUnit =
+      (typeof fv.quantity_unit === 'string' && fv.quantity_unit.trim()) || undefined;
+
+    const rawPrice = record.target_price_per_unit ?? fv.target_price_per_unit;
+    let targetPrice: number | undefined;
+    if (rawPrice !== undefined && rawPrice !== '' && rawPrice !== null) {
+      const parsed = Number(String(rawPrice).replace(/[^0-9.]/g, ''));
+      if (Number.isFinite(parsed)) targetPrice = parsed;
+    }
+
+    const rawQty = record.quantity ?? fv.quantity;
+    const quantity =
+      rawQty !== undefined && rawQty !== '' ? Number(rawQty) || rawQty : undefined;
+
+    const point: MarketDataPoint = {
+      id: `md_${inquiryId}`,
+      recorded_at: record.created_at,
+      product_family: record.product_family,
+      target_price: targetPrice,
+      price_unit: priceUnit,
+      quantity,
+      quantity_unit: record.quantity_unit,
+      resin_density: fv.resin_density,
+      origin_preference: record.origin_preference,
+      samples_requested: record.samples_requested,
+    };
+
+    // A point with no signal at all (no price, no density, no origin
+    // position, no quantity) would just be noise, so it is not stored.
+    const hasSignal =
+      targetPrice !== undefined ||
+      point.resin_density ||
+      point.origin_preference ||
+      quantity !== undefined;
+    if (hasSignal) this.marketDataPoints.push(point);
+  }
+
+  /**
+   * Operator-gated view of the captured market points, oldest first.
+   * Every field is PII-free by construction; this accessor exists only on
+   * the domain service, so the operator surface can read it while the
+   * public API never can.
+   */
+  public getMarketDataPoints(): MarketDataPoint[] {
+    return [...this.marketDataPoints];
+  }
+
+  /**
+   * The public-safe form of the captured data: a k-anonymized price band
+   * per product family.
+   *
+   * A family whose captured points fall below `k` is omitted entirely —
+   * returning it as `{ n: 0 }` would still tell a reader "this family has
+   * been queried", which is a signal about demand. Omission is the honest
+   * answer when there is too little to say. Within a family that does
+   * appear, only min / max / mean are emitted, never an individual target.
+   */
+  getMarketPriceAggregate(k: number = 5): MarketPriceBand[] {
+    const byFamily = new Map<string, { prices: number[]; unit: string }>();
+    for (const p of this.marketDataPoints) {
+      if (p.target_price === undefined) continue;
+      const bucket = byFamily.get(p.product_family) ?? { prices: [], unit: p.price_unit || '' };
+      bucket.prices.push(p.target_price);
+      bucket.unit = bucket.unit || p.price_unit || '';
+      byFamily.set(p.product_family, bucket);
+    }
+
+    const bands: MarketPriceBand[] = [];
+    for (const [family, { prices, unit }] of byFamily) {
+      if (prices.length < k) continue;
+      const min_price = Math.min(...prices);
+      const max_price = Math.max(...prices);
+      const mean_price =
+        Math.round((prices.reduce((s, x) => s + x, 0) / prices.length) * 100) / 100;
+      bands.push({ product_family: family, n: prices.length, min_price, max_price, mean_price, unit });
+    }
+    return bands.sort((a, b) => a.product_family.localeCompare(b.product_family));
   }
 
   public getMatchBrief(inquiryId: string): MatchBrief | null {
