@@ -3,7 +3,8 @@ import { domain, directoryCounts } from '@/lib/data';
 import { DirectoryBrowser, type DirectoryBusiness } from '@/components/business/directory-browser';
 import { Compass, ShieldCheck, Map as MapIcon, Sparkles, Bookmark } from 'lucide-react';
 import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/metadata';
+import { buildMetadata, SITE_URL } from '@/lib/metadata';
+import { jsonLdScript } from '@/lib/jsonld';
 import { countryCodeForSlug, countryNamesFor, countrySlugForCode } from '@/lib/country-registry';
 import { pick } from '@/lib/copy/policy';
 import { contactPolicyCopy } from '@/lib/copy/policy';
@@ -35,7 +36,7 @@ export async function generateMetadata({
 
   return buildMetadata({
     path: `/${locale}/directory`,
-    title: isAr ? 'دليل المنتجين — مقطرون ومزارعون وموزعون' : 'Producer Directory — Distillers, Plantations and Wholesalers',
+    title: isAr ? 'دليل المنتجين — مقطرون ومزارعون وموزعون' : 'Oud Producer Directory — Distillers & Wholesalers',
     description: isAr
       ? 'تصفح الموردين المسجلين حسب الصنف والدور والموقع والمنشأ والوجهة، مع حالة المراجعة لكل سجل وما ينشره المالك بإذنه.'
       : 'Browse listed suppliers by material family, role, location, origin and destination, with each record\'s review status and what its owner chose to publish.',
@@ -190,6 +191,38 @@ export default async function DirectoryPage({
   return (
     <div className="section">
       <div className="container">
+        {/* STRUCTURED DATA — an ItemList of the suppliers the page renders
+            plus a breadcrumb trail. Built from the same `businesses` array
+            below, so the list can never name a record the page does not
+            show. The directory index emitted no schema at all before. */}
+        {(() => {
+          const script = jsonLdScript(
+            {
+              path: `/${locale}/directory`,
+              locale,
+              title: isAr ? 'دليل المنتجين' : 'Producer Directory',
+              description: isAr
+                ? 'تصفح الموردين المسجلين حسب الصنف والدور والموقع والمنشأ والوجهة، مع حالة المراجعة لكل سجل وما ينشره المالك بإذنه.'
+                : 'Browse listed suppliers by material family, role, location, origin and destination, with each record\'s review status and what its owner chose to publish.',
+              breadcrumbs: [
+                { label: isAr ? 'الرئيسية' : 'Home', href: `/${locale}` },
+                { label: isAr ? 'دليل المنتجين' : 'Directory', href: `/${locale}/directory` },
+              ],
+              itemList: businesses.map((b) => ({
+                label: b.name,
+                href: `/${locale}/directory/${b.slug}`,
+              })),
+            },
+            SITE_URL
+          );
+          return script ? (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: script }}
+            />
+          ) : null;
+        })()}
+
         <section className="masthead">
           <div className="masthead-inner">
             <div className="hero-tag">

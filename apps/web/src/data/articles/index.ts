@@ -31,6 +31,16 @@ import { seoGapPageArticles } from './seo-gap-pages.ts';
 import { priceBaselineArticles } from './price-baseline-dataset.ts';
 import { oudAuthenticityProtocolArticles } from './oud-authenticity-protocol.ts';
 import { howToBuyOudArticles } from './how-to-buy-oud.ts';
+import { editorialGuideOudBasics } from './editorial-guides-oud-basics.ts';
+import { editorialGuideCulture } from './editorial-guides-culture.ts';
+import { editorialGuideComparisons } from './editorial-guides-comparisons.ts';
+import { editorialGuideQuality } from './editorial-guides-quality.ts';
+import { editorialGuideUsingOud } from './editorial-guides-using-oud.ts';
+import { editorialGuideBuying } from './editorial-guides-buying.ts';
+import { editorialGuideSourcing } from './editorial-guides-sourcing.ts';
+import { editorialGuideTrade } from './editorial-guides-trade.ts';
+import { editorialGuideFragrance } from './editorial-guides-fragrance.ts';
+import { editorialGuideProduction } from './editorial-guides-production.ts';
 
 /**
  * The reviewed content layer.
@@ -118,6 +128,16 @@ export const articles: Article[] = [
   ...priceBaselineArticles,
   ...oudAuthenticityProtocolArticles,
   ...howToBuyOudArticles,
+  ...editorialGuideOudBasics,
+  ...editorialGuideCulture,
+  ...editorialGuideComparisons,
+  ...editorialGuideQuality,
+  ...editorialGuideUsingOud,
+  ...editorialGuideBuying,
+  ...editorialGuideSourcing,
+  ...editorialGuideTrade,
+  ...editorialGuideFragrance,
+  ...editorialGuideProduction,
   ...basicsArticles,
   ...hubArticles,
   ...qualityArticles,

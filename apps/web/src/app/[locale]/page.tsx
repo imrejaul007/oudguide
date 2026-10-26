@@ -68,7 +68,7 @@ export async function generateMetadata({
       : 'OudGuide — The natural oud & wholesale fragrance reference',
     description: isAr
       ? 'المرجع المستقل للعود الطبيعي ودهن العود والعطور الشرقية، مع دليل منتجين موثّقين، موسوعة معارف، وخريطة أقاليم — وخدمة ربط تجارية محايدة.'
-      : 'The independent reference for natural agarwood, Dehn Al Oud and heritage attars: a verified producer directory, an encyclopedia, a territory register, and a neutral wholesale matching service.',
+      : 'The independent reference for natural agarwood and heritage attars: a verified producer directory, an encyclopedia, and a neutral matching service.',
     locale,
     alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}`,
   });

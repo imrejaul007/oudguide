@@ -43,6 +43,14 @@ export async function generateMetadata({
     title,
     description,
     locale,
+    // The territory pages are ISO registry shells: they record that a place
+    // exists and is a valid destination, and say nothing about agarwood.
+    // The sitemap excludes them deliberately (see NON_INDEXABLE_TERRITORY_COUNT),
+    // but that exclusion only holds if the pages themselves also carry
+    // noindex — otherwise the 249 shell URLs linked from the home page and
+    // territory browser index and dilute crawl budget. Noindex here makes
+    // the sitemap's decision and the pages' own metadata agree.
+    noindex: true,
     alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}/world/${country.iso2.toUpperCase()}`,
   });
 }

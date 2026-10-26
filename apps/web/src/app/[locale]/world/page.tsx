@@ -34,7 +34,7 @@ export async function generateMetadata({
     title: isAr ? `خريطة الأقاليم — ${count} دولة وإقليماً` : `Territory Register — ${count} countries and territories`,
     description: isAr
       ? 'سجل جغرافي لـ 249 دولة وإقليماً يوثّق هوياتها ISO وعلاقتها بالعود. كل صفحة إقليم تبيّن ما هو موثّق وما هو غير موثّق فيها.'
-      : `A geographic register of ${count} countries and territories, each with its ISO identity and its relationship to oud. Every territory page states what is documented there and what is not.`,
+      : `A register of ${count} countries and territories, each with its ISO identity and its relationship to oud, stating what is documented and what is not.`,
     locale,
     alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}/world`,
   });
