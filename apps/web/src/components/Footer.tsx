@@ -33,6 +33,7 @@ export function Footer({ locale }: { locale: string }) {
         { href: `/${locale}/for-businesses`, label: isAr ? 'انضم كعضو سنوي' : 'Annual Membership (AED 1,200)' },
         { href: `/${locale}/partners/opportunities`, label: isAr ? 'بوابة الشركاء' : 'Partner Portal' },
         { href: `/${locale}/membership`, label: isAr ? 'مزايا العضوية' : 'Membership Benefits' },
+        { href: `/${locale}/shortlist`, label: isAr ? 'الموردون المحفوظون' : 'Saved suppliers' },
       ],
     },
     {

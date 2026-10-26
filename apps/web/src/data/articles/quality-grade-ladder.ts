@@ -366,6 +366,7 @@ export const gradeLadderArticles: Article[] = [
       'اعرف ما يمكن لتقرير مخبري إثباته وما لا يمكن',
     ],
     related: [
+      { slug: 'quality/grade-label-dataset', label: 'The OudGuide grade-label dataset' },
       { slug: 'quality/seller-defined-super-grades', label: 'Super, Double Super and Triple Super labels' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
       { slug: 'quality/assessment-and-testing-limits', label: 'Assessment and testing limits' },

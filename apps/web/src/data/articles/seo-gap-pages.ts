@@ -77,9 +77,9 @@ export const seoGapPageArticles: Article[] = [
     sourceIds: ['CITES_AGARWOOD_2004', 'ITTO_AGARWOOD_REVIEW', 'TRAFFIC_UAE_AGARWOOD_TRADE'],
     workedExample: {
       situation:
-        'A buyer is offered a lot described as wild Vietnamese oud, super grade, at a price below the documented range for that grade, and the seller offers a CITES permit as evidence.',
+        'This is a hypothetical example, not a real transaction. A buyer is offered a lot described as wild Vietnamese oud, super grade, at a price below the documented range for that grade, and the seller offers a CITES permit as evidence.',
       situationAr:
-        'يُعرض على مشتري لوطٌ يُوصف بعود فيتنامي بري، درجة فائقة، بسعر أدنى من النطاق الموثّق لتلك الدرجة، ويعرض البائع تصريح سايتس دليلا.',
+        'هذا مثال افتراضي لا صفقة حقيقية. يُعرض على مشتري لوطٌ يُوصف بعود فيتنامي بري، درجة فائقة، بسعر أدنى من النطاق الموثّق لتلك الدرجة، ويعرض البائع تصريح سايتس دليلا.',
       steps: [
         'Classify each claim: wild (method), Vietnam (origin), super grade (grade), price (value).',
         'Press the price against the grade: a below-range price for a claimed grade means one of the two claims is false; ask which.',
@@ -254,7 +254,7 @@ export const seoGapPageArticles: Article[] = [
         ],
       },
     ],
-    sourceIds: ['TRAFFIC_UAE_AGARWOOD_TRADE', 'CITES_AGARWOOD_2004'],
+    sourceIds: ['TRAFFIC_UAE_AGARWOOD_TRADE', 'CITES_AGARWOOD_2004', 'ITTO_AGARWOOD_REVIEW'],
     limitations:
       'This page explains what moisture and freshness checks can and cannot establish. It does not provide a freshness test a buyer can run to a verdict, and it does not establish the handling or storage history of any specific lot. The cited sources establish the trade structure and the listing regime; none of them records a moisture or storage measurement, so no specific freshness claim is verified here.',
     limitationsAr:
