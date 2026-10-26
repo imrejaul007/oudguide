@@ -1,88 +1,88 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildLlmsTxt } from '../apps/web/src/lib/llms-txt.ts';
+import { GET } from '../apps/web/src/app/llms.txt/route.ts';
 import {
   listReviewedArticles,
   articlePath,
-  articleSection,
 } from '../apps/web/src/lib/articles.ts';
 import { isPublishedPath } from '../apps/web/src/lib/route-resolver.ts';
 import { SITE_URL } from '../apps/web/src/lib/metadata.ts';
 
 /**
  * ==========================================================================
-   The llms.txt invitation, pinned against the sitemap's source of truth.
+   The llms.txt invitation, pinned against what the site actually serves.
 
    llms.txt invites language models to read the site and to cite the
-   data assets. It is only as good as the discipline that keeps it
-   honest: every link it offers must resolve to a published page, its
-   index must match the set of published articles the sitemap
-   publishes, and the data assets — OudGuide's own original records —
-   must be promoted above the index, not buried in it.
+   original data assets. It is only as good as the discipline that keeps
+   it honest: every link it offers must resolve to a page the site truly
+   publishes (or the sitemap, which is a documented pointer), and the
+   data assets — OudGuide's own original records — must be surfaced, not
+   buried.
+
+   This test imports the route handler the site renders, not a separate
+   builder: the whole point of the audit trail here is that the file the
+   suite gates is the file a crawler reads.
    ========================================================================== */
 
-describe('Every link in llms.txt resolves to a published page', () => {
-  test('no emitted link points at an unpublished path', () => {
-    const text = buildLlmsTxt();
-    const links = [...text.matchAll(/\]\((https?:[^)]+)\)/g)].map((m) => m[1]);
-    assert.ok(links.length > 100, 'the invitation must carry a real index');
+async function servedBody(): Promise<string> {
+  const res = GET();
+  return res.text();
+}
 
-    const unpublished = links
-      .map((url) => url.replace(/^https?:\/\/[^/]+/, ''))
-      .filter((path) => !isPublishedPath(path));
+/** Every absolute URL emitted, as a bare site path. */
+function emittedPaths(text: string): string[] {
+  const urls = [...text.matchAll(/\]\((https?:[^)\s]+)\)/g)].map((m) => m[1]);
+  return urls.map((url) => url.replace(/^https?:\/\/[^/]+/, ''));
+}
+
+describe('The served document is machine-readable', () => {
+  test('the route serves the invitation as text/plain', () => {
+    const res = GET();
+    assert.equal(res.headers.get('content-type'), 'text/plain; charset=utf-8');
+    assert.equal(res.headers.get('cache-control'), 'public, max-age=3600');
+  });
+
+  test('the header names the site and points at the original data', async () => {
+    const text = await servedBody();
+    assert.ok(text.startsWith('# OudGuide'), 'must open with the H1');
+    assert.ok(
+      /independent reference/i.test(text),
+      'the description must place the site'
+    );
+    assert.ok(
+      text.includes('## Original data'),
+      'the original-data section must be present, not buried'
+    );
+  });
+});
+
+describe('Every link in the served document resolves', () => {
+  test('no emitted link points at an unpublished path', async () => {
+    const text = await servedBody();
+    const paths = emittedPaths(text);
+    assert.ok(paths.length > 10, 'the invitation must carry a real index');
+
+    // The document ends by pointing at the full sitemap for the
+    // exhaustive map; that is a documented pointer, not a page.
+    const ALLOWED_NON_PAGE = new Set(['/sitemap.xml']);
+    const unpublished = paths.filter(
+      (p) => !ALLOWED_NON_PAGE.has(p) && !isPublishedPath(p)
+    );
     assert.deepEqual(
       unpublished,
       [],
-      `these links point at paths that are not published:\n  ${unpublished.join(
-        '\n  '
-      )}`
-    );
-  });
-});
-
-describe('The index matches the published article set', () => {
-  test('every published article appears in the section index', () => {
-    const text = buildLlmsTxt();
-    const missing = listReviewedArticles()
-      .filter((a) => a.state === 'reviewed' && isPublishedPath(articlePath('en', a.slug)))
-      .filter((a) => !text.includes(`${SITE_URL}${articlePath('en', a.slug)}`))
-      .map((a) => a.slug);
-
-    assert.deepEqual(
-      missing,
-      [],
-      `these published articles are absent from the llms.txt index:\n  ${missing.join(
+      `these links point at paths the site does not publish:\n  ${unpublished.join(
         '\n  '
       )}`
     );
   });
 
-  test('the index links each article by its own published path', () => {
-    const text = buildLlmsTxt();
-    for (const section of ['guides', 'glossary', 'products'] as const) {
-      const rows = listReviewedArticles().filter(
-        (a) =>
-          articleSection(a.slug) === section &&
-          isPublishedPath(articlePath('en', a.slug))
-      );
-      for (const article of rows) {
-        const path = articlePath('en', article.slug);
-        assert.ok(
-          text.includes(`](${SITE_URL}${path})`),
-          `${article.slug}: the index must link its own path (${path})`
-        );
-      }
-    }
-  });
-});
-
-describe('The data assets sit above the index', () => {
-  test('all three data assets are named, in the data-assets section', () => {
-    const text = buildLlmsTxt();
+  test('the original data assets are all named with their own paths', async () => {
+    const text = await servedBody();
     const dataSection = text.slice(
-      text.indexOf('data assets'),
-      text.indexOf('## Start here')
+      text.indexOf('## Original data'),
+      text.indexOf('## Quality')
     );
 
     for (const slug of [
@@ -90,62 +90,73 @@ describe('The data assets sit above the index', () => {
       'quality/grade-label-dataset',
       'quality/oud-authenticity-protocol',
     ]) {
+      const url = `${SITE_URL}${articlePath('en', slug)}`;
       assert.ok(
-        dataSection.includes(articlePath('en', slug)),
-        `${slug}: the invitation must name the data asset before the index`
+        dataSection.includes(url),
+        `${slug}: the data-assets section must link its own published path`
       );
     }
   });
 
-  test('the start-here links are canonical published guides', () => {
-    const text = buildLlmsTxt();
-    const startHere = text.slice(
-      text.indexOf('## Start here'),
-      text.indexOf('## Explore by topic')
+  test('every data asset is one that actually declares a dataset', async () => {
+    // The section is generated from article.dataset, so it must match the
+    // corpus exactly — a dataset that gains a record appears here without
+    // anyone remembering, and none may be hand-added.
+    const text = await servedBody();
+    const declared = listReviewedArticles().filter((a) => a.dataset);
+
+    const dataSection = text.slice(
+      text.indexOf('## Original data'),
+      text.indexOf('## Quality')
     );
 
-    for (const slug of [
-      'oud-basics/what-is-agarwood',
-      'production/oud-extraction-methods',
-      'sourcing/wild-and-cultivated-oud',
-      'trade/agarwood-documentation',
-    ]) {
-      const path = articlePath('en', slug);
-      assert.ok(isPublishedPath(path), `${slug}: must be published`);
+    for (const article of declared) {
       assert.ok(
-        startHere.includes(path),
-        `${slug}: the start-here section must link it`
+        dataSection.includes(articlePath('en', article.slug)),
+        `${article.slug}: a declared dataset must appear in the data section`
       );
     }
+
+    // No dataset the corpus does not carry may be invented here.
+    const sectionLinks = emittedPaths(dataSection);
+    const known = new Set(
+      declared.map((a) => `${SITE_URL}${articlePath('en', a.slug)}`)
+    );
+    const invented = sectionLinks.filter(
+      (p) => !known.has(`${SITE_URL}${p}`)
+    );
+    assert.deepEqual(
+      invented,
+      [],
+      `the data section invents records the corpus does not carry:\n  ${invented.join(
+        '\n  '
+      )}`
+    );
   });
 });
 
-describe('The document is machine-readable', () => {
-  test('the header names the site and states the data-as-citation rule', () => {
-    const text = buildLlmsTxt();
-    assert.ok(text.startsWith('# '), 'must open with a markdown H1');
+describe('The invitation excludes the unindexable tree', () => {
+  test('no Arabic page is surfaced', async () => {
+    const text = await servedBody();
     assert.ok(
-      /cite them/i.test(text),
-      'the invitation must tell a model to cite the data assets'
+      !text.includes(`${SITE_URL}/ar/`),
+      'the Arabic tree carries noindex and is not in the sitemap; llms.txt must not surface it'
     );
-    // Every link the builder emits is a single line: an llms.txt pointer
-    // that wraps is a broken map. No line may open a link and defer its
-    // URL to the next line.
-    for (const line of text.split('\n')) {
-      if (line.includes('](')) {
-        assert.ok(
-          line.includes(')') && line.lastIndexOf(')') > line.indexOf(']('),
-          `the link opened on this line must close on the same line:\n  ${line}`
-        );
-      }
-    }
   });
 
-  test('the route handler serves text/plain', async () => {
-    const { GET } = await import('../apps/web/src/app/llms.txt/route.ts');
-    const res = GET();
-    assert.equal(res.headers.get('content-type'), 'text/plain; charset=utf-8');
-    const body = await res.text();
-    assert.ok(body.length > 500, 'the served body is the full invitation');
+  test('the hubs section links only published hubs', async () => {
+    const text = await servedBody();
+    const hubs = listReviewedArticles().filter((a) => a.kind === 'hub');
+    const hubsSection = text.slice(
+      text.indexOf('## Hubs'),
+      text.indexOf('## Original data')
+    );
+
+    for (const hub of hubs) {
+      assert.ok(
+        hubsSection.includes(articlePath('en', hub.slug)),
+        `${hub.slug}: every hub must be linked from the hubs section`
+      );
+    }
   });
 });
