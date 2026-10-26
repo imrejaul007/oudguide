@@ -15,3 +15,9 @@ reference/OudGuide_Developer_Build_Pack_v3/*.html
 reference/OudGuide_Developer_Build_Pack_v3/*.xlsx
 reference/OudGuide_Developer_Build_Pack_v3/*.md
 reference/OudGuide_Developer_Build_Pack_v3/data/*.csv
+.next
+apps/web/.next
+.turbo
+dist
+build
+*.log
