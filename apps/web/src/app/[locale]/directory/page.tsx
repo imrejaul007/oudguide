@@ -188,6 +188,45 @@ export default async function DirectoryPage({
       : {}),
   };
 
+  /**
+   * The directory's standing questions, answered in the language of the pages
+   * that hold the full text. The block is visible on the page AND emitted as
+   * a `FAQPage` schema, so the two agree: each answer restates a claim already
+   * published on the ranking-policy, how-it-works or supplier-matching page
+   * and links back to it. A question with no visible, policy-backed answer is
+   * not added, because a schema claim must be something the page shows.
+   */
+  const faqItems: { question: string; answer: string; href: string }[] = [
+    {
+      question: isAr ? 'هل يستطيع مورد شراء موقع أفضل في الدليل؟' : 'Can a supplier buy a better position in the directory?',
+      answer: isAr
+        ? 'لا. الدليل لا يعمل ترتيباً مدفوعاً ولا توجد خانة مرعّاة ولا كتلة «مورد مميّز». داخل السجلات المطابقة للمرشِّحات، الترتيب هو ترتيب السجل نفسه. العضوية المدفوعة تنشر بيانات اتصال المورد على ملفه ولا ترفع السجل ولا تُقرأ عاملاً في الترتيب.'
+        : 'No. The directory runs no paid ranking and has no sponsored slot or "featured supplier" block. Within the records that match your filters, the order is the order the register holds them in. A paid membership publishes the supplier\'s own contact details; it does not move the record up and is not read as a ranking factor.',
+      href: `/${locale}/directory/ranking-policy`,
+    },
+    {
+      question: isAr ? 'كيف تُفصَح عن العلاقة التجارية؟' : 'How is a commercial relationship disclosed?',
+      answer: isAr
+        ? 'يحمل الموقع علاقة تجارية واحدة مع عمل في سجله، وهي مُفصَحة في صفحة الملكية وفي سياسة الترتيب. أي إحالة إلى متجر ذلك العمل تُوَّسم بأنها إحالة تجارية أينما ظهرت، ولا تُستعمل في مسار استقبال الجملة، ولا تؤثر في ترتيب النتائج.'
+        : 'The site holds one commercial relationship with a business in its register, disclosed on the ownership page and in the ranking policy. A referral to that business\'s retail site is labelled a commercial referral wherever it appears, is not used in the wholesale intake path, and does not affect the order of results.',
+      href: `/${locale}/directory/ranking-policy`,
+    },
+    {
+      question: isAr ? 'ما الفرق بين مرشِّحات الدليل الخمس؟' : 'What are the directory\'s five independent filters?',
+      answer: isAr
+        ? 'صنف المادة، ودور العمل، وموقعه، والمنشأ الذي يتعامل معه، والوجهات التي هو موثَّق بالشحن إليها، خمسة أسئلة مستقلة ولكلٍّ منها رابط خاص. دمجها في مرشِّح واحد هو ما جعل الدليل مضللاً سابقاً؛ فالشركة في دبي المتعاملة مع عود كمبودي لم تعد تظهر تحت إنتاج كمبوديا.'
+        : 'Material family, business role, location, origin handled and destination served are five independent questions, and each has its own URL. Combining them into a single filter is what made the directory misleading before: a Dubai company handling Cambodian agarwood no longer appears under Cambodian production.',
+      href: `/${locale}/directory/how-it-works`,
+    },
+    {
+      question: isAr ? 'ماذا يُنشئ طلب الجملة وما لا يُنشئ؟' : 'What does a wholesale request create, and what does it not?',
+      answer: isAr
+        ? 'الطلب يذكر متطلّبا؛ ليس أمراً ولا عرضاً ولا ينشئ عقداً مع أي مورد. تُحدَّد بياناتك لمورد فقط بعد أن تعتمده بالاسم لهذا الطلب وللحقول والقناة التي وافقت عليها، ويمكنك سحب الموافقة، أما التقديم الذي أُرسل فلا يمكن سحبه.'
+        : 'A request states a requirement. It is not an order, not an offer, and it does not create a contract with any supplier. Your details are released to a supplier only after you approve that supplier by name for that request and for the fields and channel you approved; you can withdraw the approval, but an introduction already sent cannot be recalled.',
+      href: `/${locale}/how-supplier-matching-works`,
+    },
+  ];
+
   return (
     <div className="section">
       <div className="container">
@@ -212,6 +251,13 @@ export default async function DirectoryPage({
                 label: b.name,
                 href: `/${locale}/directory/${b.slug}`,
               })),
+              // The FAQPage: one schema entry per visible question, each a
+              // restatement of a claim the ranking-policy, how-it-works or
+              // supplier-matching page already publishes. The visible block
+              // below and this array are defined from the same `faqItems`,
+              // so the schema can never carry a question the page does not
+              // show — the module's own rule.
+              faq: faqItems.map(({ question, answer }) => ({ question, answer })),
             },
             SITE_URL
           );
@@ -290,6 +336,54 @@ export default async function DirectoryPage({
             locationNames={locationNames}
           />
         </div>
+
+        {/* ABOUT THE DIRECTORY — standing questions, answered from the pages
+            that hold the full text. Each answer restates a claim the
+            ranking-policy, how-it-works or supplier-matching page already
+            publishes and links back to it, so the visible block, the FAQPage
+            schema (built from the same `faqItems`) and the policy copy stay
+            in step. */}
+        <section
+          style={{ marginTop: 56, borderTop: '1px solid var(--line)', paddingTop: 40 }}
+        >
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 500, margin: '0 0 6px' }}>
+            {isAr ? 'سئلة يَطرحها المشترون' : 'Questions buyers ask'}
+          </h3>
+          <p style={{ color: 'var(--ink-soft)', fontSize: '0.92rem', margin: '0 0 22px' }}>
+            {isAr
+              ? 'إجابات موجزة، مع الربط إلى الصفحات التي تحمل النص الكامل. لا يطرح هنا سؤال بلا جواب موثَّق.'
+              : 'Short answers, each linking to the page that holds the full text. No question is listed without a documented answer.'}
+          </p>
+          <div style={{ display: 'grid', gap: 26, gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))' }}>
+            {faqItems.map((item) => (
+              <div key={item.href}>
+                <h4
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    margin: '0 0 8px',
+                  }}
+                >
+                  {item.question}
+                </h4>
+                <p style={{ color: 'var(--ink-soft)', fontSize: '0.92rem', lineHeight: 1.65, margin: 0 }}>
+                  {item.answer}{' '}
+                  <Link
+                    href={item.href}
+                    style={{
+                      color: 'var(--green-600)',
+                      fontWeight: 500,
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {isAr ? 'اقرأ السياسة الكاملة' : 'Read the full policy'} →
+                  </Link>
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
