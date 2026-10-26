@@ -68,8 +68,8 @@ export function Footer({ locale }: { locale: string }) {
                 : 'The global independent reference for natural agarwood, artisanal Dehn Al Oud, heritage attars, and neutral wholesale B2B matching for commercial perfumers.'}
             </p>
             <div className="footer-col-trust">
-              <span className="badge badge-emerald"><Leaf size={11} /> CITES Appendix II documented</span>
-              <span className="badge badge-gold"><Lock size={11} /> {isAr ? 'بيانات الاتصال محجوبة افتراضياً' : 'Contact fields withheld by default'}</span>
+              <span className="badge badge-glass"><Leaf size={11} /> CITES Appendix II documented</span>
+              <span className="badge badge-glass"><Lock size={11} /> {isAr ? 'بيانات الاتصال محجوبة افتراضياً' : 'Contact fields withheld by default'}</span>
             </div>
           </div>
 

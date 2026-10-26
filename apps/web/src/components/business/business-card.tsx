@@ -157,14 +157,15 @@ export function BusinessCard({ business, locale, variant = 'full', sampleLabel }
           style={{ gap: 6 }}
         >
           {isAr ? 'الملف الكامل' : 'View profile'}
-          <ArrowRight size={13} />
+          <ArrowRight size={13} className="icon-dir-flip" />
         </Link>
         <Link
           href={`/${locale}/rfq?supplier=${business.slug}`}
           className="btn-link"
-          style={{ fontSize: '0.8rem', display: compact ? 'none' : '' }}
+          style={{ fontSize: '0.8rem', display: compact ? 'none' : 'inline-flex', gap: 4, alignItems: 'center' }}
         >
-          {isAr ? 'اطلب عرض سعر ←' : 'Request a quote →'}
+          <span>{isAr ? 'اطلب عرض سعر' : 'Request a quote'}</span>
+          <ArrowRight size={12} className="icon-dir-flip" />
         </Link>
       </div>
     </article>

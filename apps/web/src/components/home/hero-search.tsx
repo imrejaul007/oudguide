@@ -126,7 +126,7 @@ export function HeroSearch({ locale }: HeroSearchProps) {
 
       <button type="submit" className="btn btn-primary search-button">
         {isAr ? 'بحث' : 'Search'}
-        <ArrowRight size={14} />
+        <ArrowRight size={14} className="icon-dir-flip" />
       </button>
 
       {locationError && (

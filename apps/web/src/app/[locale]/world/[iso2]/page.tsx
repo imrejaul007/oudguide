@@ -182,9 +182,9 @@ export default async function CountryDetailPage({
                     <span style={{ fontSize: '0.76rem', color: 'var(--ink-soft)' }}>
                       {isAr ? 'الحد الأدنى' : 'MOQ'}: {b.minimum_order_quantity || (isAr ? 'مرونة' : 'Flexible')}
                     </span>
-                    <Link href={`/${locale}/directory/${b.slug}`} className="btn btn-outline btn-sm" style={{ padding: '4px 10px' }}>
+                    <Link href={`/${locale}/directory/${b.slug}`} className="btn btn-outline btn-sm" style={{ padding: '4px 10px', gap: 5 }}>
                       {isAr ? 'الملف' : 'Profile'}
-                      <ArrowRight size={11} />
+                      <ArrowRight size={11} className="icon-dir-flip" />
                     </Link>
                   </div>
                 </div>
@@ -239,7 +239,7 @@ export default async function CountryDetailPage({
             style={{ background: '#ffffff', color: 'var(--green-900)', borderColor: '#ffffff' }}
           >
             {isAr ? `تقديم طلب توريد إلى ${country.arabic_seed}` : `Submit RFQ for ${country.english_seed}`}
-            <ArrowRight size={14} />
+            <ArrowRight size={14} className="icon-dir-flip" />
           </Link>
         </div>
       </div>

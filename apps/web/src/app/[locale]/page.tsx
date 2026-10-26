@@ -289,7 +289,7 @@ export default async function HomePage({
               return (
                 <Link key={a.slug} href={articlePath(locale, a.slug)} className="review-item">
                   <div className="cluster" style={{ gap: 8 }}>
-                    <span className="badge badge-crimson" style={{ display: 'inline-flex' }}>
+                    <span className="badge badge-accent" style={{ display: 'inline-flex' }}>
                       <Kind size={11} />
                       {kindLabel}
                     </span>
@@ -313,16 +313,7 @@ export default async function HomePage({
         <div className="container">
           <div className="counterfeit-hub">
             <div className="counterfeit-hub-header">
-              <span
-                className="badge"
-                style={{
-                  display: 'inline-flex',
-                  background: 'var(--terracotta-tint)',
-                  color: 'var(--terracotta)',
-                  borderColor: '#e8d5cf',
-                  border: '1px solid #e8d5cf',
-                }}
-              >
+              <span className="badge badge-terracotta">
                 <AlertTriangle size={11} />
                 {isAr ? 'توعية المضاد للغش' : 'Counterfeit Awareness'}
               </span>
@@ -401,11 +392,11 @@ export default async function HomePage({
                   : `The assistant reads OudGuide's documented register directly: 249 territories, ${reviewed} reviewed articles and 67 conditional RFQ specifications. It matches your requirements against listed producers and explains terroirs, grading and CITES policy — on the public projection with contact fields already removed on the server.`}
               </p>
               <div className="cluster" style={{ marginTop: 28 }}>
-                <Link href={`/${locale}/sourcing`} className="btn btn-primary btn-lg">
+                <Link href={`/${locale}/sourcing`} className="btn btn-inverse btn-lg">
                   {isAr ? 'ابدأ المحادثة' : 'Start the conversation'}
-                  <ArrowRight size={14} />
+                  <ArrowRight size={14} className="icon-dir-flip" />
                 </Link>
-                <Link href={`/${locale}/directory/map`} className="btn btn-dark btn-lg">
+                <Link href={`/${locale}/directory/map`} className="btn btn-outline btn-lg" style={{ color: '#ffffff', borderColor: 'rgba(255,255,255,0.3)' }}>
                   <Globe size={14} />
                   {isAr ? 'خريطة المنتجين' : 'Producer map'}
                 </Link>
@@ -464,7 +455,7 @@ export default async function HomePage({
               { n: '04', t: isAr ? 'الموافقة بالاسم' : 'Named approval', d: isAr ? 'تراجع المرشحين واعتمد حتى ثلاثة موردين بالاسم قبل تسليم بياناتك لهم.' : 'Review candidates and approve up to three suppliers by name before your details are released.' },
             ].map((s) => (
               <div className="step-tile" key={s.n}>
-                <div className={`step-tile-num ${s.n === '01' ? 'crimson' : s.n === '02' ? 'emerald' : s.n === '03' ? 'charcoal' : 'crimson'}`}>
+                <div className="step-tile-num">
                   {s.n}
                 </div>
                 <h3 className="step-tile-title">{s.t}</h3>
@@ -476,7 +467,7 @@ export default async function HomePage({
           <div className="text-center" style={{ marginTop: 44 }}>
             <Link href={`/${locale}/rfq`} className="btn btn-primary btn-lg">
               {isAr ? 'ابدأ طلب توريد جملة' : 'Start a wholesale RFQ'}
-              <ArrowRight size={14} />
+              <ArrowRight size={14} className="icon-dir-flip" />
             </Link>
           </div>
         </div>

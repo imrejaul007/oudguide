@@ -101,7 +101,7 @@ export default async function ForBusinessesPage({
 
         <div className="grid-2" style={{ marginTop: 48, gap: 28 }}>
           {/* FREE TIER */}
-          <article className="card-frame" style={{ padding: 34, background: 'var(--bg-pearl)' }}>
+          <article className="card-frame" style={{ padding: 34, background: 'var(--bg-eggshell)' }}>
             <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
               {isAr ? 'مجاني' : 'Free'}
             </span>
@@ -112,7 +112,7 @@ export default async function ForBusinessesPage({
               {freeFeatures.map((feature, index) => (
                 <li key={index} className="cluster" style={{ gap: 10, alignItems: 'flex-start' }}>
                   <Check size={15} style={{ color: 'var(--green-600)', flexShrink: 0, marginTop: 3 }} />
-                  <span style={{ fontSize: '0.93rem' }}>{pick(feature, locale)}</span>
+                  <span style={{ fontSize: '0.93rem', color: 'var(--ink)' }}>{pick(feature, locale)}</span>
                 </li>
               ))}
             </ul>
@@ -124,10 +124,13 @@ export default async function ForBusinessesPage({
           </article>
 
           {/* PAID TIER */}
-          <article className="card-frame" style={{ padding: 34 }}>
-            <span className="eyebrow eyebrow-crimson" style={{ display: 'block', marginBottom: 8 }}>
-              {isAr ? 'العضوية السنوية' : 'Annual membership'}
-            </span>
+          <article className="card-frame card-frame-accent" style={{ padding: 34 }}>
+            <div className="row-between" style={{ marginBottom: 8 }}>
+              <span className="eyebrow" style={{ color: 'var(--green-700)' }}>
+                {isAr ? 'العضوية السنوية' : 'Annual membership'}
+              </span>
+              <span className="badge badge-gold">{isAr ? 'عضوية تجارية' : 'Commercial'}</span>
+            </div>
             <h2 className="h3" style={{ marginBottom: 8 }}>
               {pick(membershipCopy.priceHeadline, locale)}
             </h2>
@@ -137,8 +140,8 @@ export default async function ForBusinessesPage({
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }} className="stack-3">
               {memberFeatures.map((feature, index) => (
                 <li key={index} className="cluster" style={{ gap: 10, alignItems: 'flex-start' }}>
-                  <Check size={15} style={{ color: 'var(--green-600)', flexShrink: 0, marginTop: 3 }} />
-                  <span style={{ fontSize: '0.93rem' }}>{pick(feature, locale)}</span>
+                  <Check size={15} style={{ color: 'var(--brass)', flexShrink: 0, marginTop: 3 }} />
+                  <span style={{ fontSize: '0.93rem', color: 'var(--ink)' }}>{pick(feature, locale)}</span>
                 </li>
               ))}
             </ul>

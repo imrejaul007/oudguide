@@ -194,7 +194,7 @@ export function TerritoryBrowser({
             className="btn btn-outline btn-sm"
           >
             {isAr ? 'عرض المزيد' : 'Load more'}
-            <ArrowRight size={14} />
+            <ArrowRight size={14} className="icon-dir-flip" />
           </button>
         </div>
       )}
@@ -272,7 +272,7 @@ function TerritoryRow({ territory, locale, isAr }: { territory: Territory; local
           </div>
         </div>
       </div>
-      <ArrowRight size={16} style={{ color: 'var(--ink-soft)', flexShrink: 0 }} />
+      <ArrowRight size={16} className="icon-dir-flip" style={{ color: 'var(--ink-soft)', flexShrink: 0 }} />
     </Link>
   );
 }

@@ -63,16 +63,19 @@ export default async function MembershipPage({
 
         <div className="grid-2" style={{ marginTop: 44, gap: 28 }}>
           {/* WHAT IT GRANTS */}
-          <article className="card-frame" style={{ padding: 34 }}>
-            <span className="eyebrow eyebrow-crimson" style={{ display: 'block', marginBottom: 10 }}>
-              {isAr ? 'ما تمنحه العضوية' : 'What membership grants'}
-            </span>
+          <article className="card-frame card-frame-accent" style={{ padding: 34 }}>
+            <div className="row-between" style={{ marginBottom: 10 }}>
+              <span className="eyebrow" style={{ color: 'var(--green-700)' }}>
+                {isAr ? 'ما تمنحه العضوية' : 'What membership grants'}
+              </span>
+              <span className="badge badge-gold">{isAr ? 'مزايا معتمدة' : 'Verified'}</span>
+            </div>
             <h2 className="h3" style={{ marginBottom: 18 }}>
               {pick(membershipCopy.priceHeadline, locale)}
             </h2>
             <ul style={{ paddingInlineStart: '20px', margin: 0, lineHeight: 1.7 }}>
               {membershipCopy.benefits.map((benefit, index) => (
-                <li key={index} style={{ marginBottom: '10px' }}>
+                <li key={index} style={{ marginBottom: '10px', color: 'var(--ink)' }}>
                   {pick(benefit, locale)}
                 </li>
               ))}
@@ -82,7 +85,7 @@ export default async function MembershipPage({
           {/* WHAT IT DOES NOT GRANT */}
           <article
             className="card-frame"
-            style={{ padding: 34, background: 'var(--bg-pearl)' }}
+            style={{ padding: 34, background: 'var(--bg-eggshell)' }}
           >
             <span className="eyebrow" style={{ display: 'block', marginBottom: 10 }}>
               {isAr ? 'ما لا تمنحه العضوية' : 'What membership does not grant'}
@@ -103,7 +106,7 @@ export default async function MembershipPage({
             padding: '26px 30px',
             border: '1px solid var(--line)',
             borderRadius: 6,
-            background: 'var(--bg-pearl)',
+            background: 'var(--bg-eggshell)',
           }}
         >
           <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
@@ -111,7 +114,7 @@ export default async function MembershipPage({
           </span>
           <div style={{ lineHeight: 1.7 }}>
             <p className="text-body" style={{ marginBottom: 10 }}>
-              <strong>{pick(membershipCopy.priceHeadline, locale)}</strong> —{' '}
+              <strong style={{ color: 'var(--green-800)', fontSize: '1.05rem' }}>{pick(membershipCopy.priceHeadline, locale)}</strong> —{' '}
               {pick(membershipCopy.priceTaxNote, locale)}
             </p>
             <p className="text-body" style={{ marginBottom: 10 }}>

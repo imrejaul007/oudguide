@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, Menu, X, ChevronDown, Clock, MapPin, Compass, BookOpen, Crown, Leaf, Globe, Lock, Sparkles, Map as MapIcon, ShieldCheck } from 'lucide-react';
+import { Search, Menu, X, ArrowRight, ChevronDown, Clock, MapPin, Compass, BookOpen, Crown, Leaf, Globe, Lock, Sparkles, Map as MapIcon, ShieldCheck } from 'lucide-react';
 import { getNavGroups, getPrimaryNav, siteSettings } from '@/lib/constants';
 
 interface HeaderProps {
@@ -41,12 +41,24 @@ export function Header({ locale }: HeaderProps) {
       }
       if (e.key === 'Escape') {
         setIsSearchOpen(false);
+        setIsMenuOpen(false);
         setOpenGroup(null);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isMenuOpen]);
 
   useEffect(() => {
     try {
@@ -199,35 +211,99 @@ export function Header({ locale }: HeaderProps) {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="nav-toggle icon-button"
-              aria-label="Toggle menu"
-              style={{ display: 'none' }}
+              aria-label={isMenuOpen ? (isAr ? 'إغلاق القائمة' : 'Close menu') : (isAr ? 'فتح القائمة' : 'Open menu')}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation-drawer"
             >
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile drawer */}
+        {/* Off-canvas mobile navigation drawer */}
         {isMenuOpen && (
-          <div className="mobile-drawer">
-            {primaryNav.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setIsMenuOpen(false)}>
-                {item.label}
-              </Link>
-            ))}
-            <Link href={`/${locale}/sourcing`} onClick={() => setIsMenuOpen(false)}>
-              <Sparkles size={15} style={{ display: 'inline-block', marginRight: 8, verticalAlign: '-2px' }} />
-              {isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}
-            </Link>
-            <Link href={`/${locale}/directory/map`} onClick={() => setIsMenuOpen(false)}>
-              <MapIcon size={15} style={{ display: 'inline-block', marginRight: 8, verticalAlign: '-2px' }} />
-              {isAr ? 'خريطة المنتجين' : 'Producer Map'}
-            </Link>
-            <div className="cluster" style={{ marginTop: 16, borderTop: '1px solid var(--line)', paddingTop: 16 }}>
-              <Link href={`/${otherLocale}`} className="btn btn-outline btn-sm">{otherLocaleLabel}</Link>
-              <Link href={`/${locale}/rfq`} className="btn btn-primary btn-sm">{isAr ? 'طلب توريد' : 'Start RFQ'}</Link>
-            </div>
-          </div>
+          <>
+            <div
+              className="mobile-drawer-backdrop"
+              onClick={() => setIsMenuOpen(false)}
+              aria-hidden="true"
+            />
+            <aside
+              id="mobile-navigation-drawer"
+              className="mobile-drawer"
+              role="dialog"
+              aria-modal="true"
+              aria-label={isAr ? 'قائمة التنقل' : 'Navigation menu'}
+            >
+              <div className="mobile-drawer-head">
+                <div className="brand" style={{ gap: 10 }}>
+                  <div className="brand-mark" style={{ width: 32, height: 32 }}>
+                    <img
+                      src="/logo.png"
+                      alt="OudGuide"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  </div>
+                  <span className="brand-name" style={{ fontSize: '1.2rem' }}>OudGuide</span>
+                </div>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="icon-button"
+                  aria-label={isAr ? 'إغلاق' : 'Close'}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <nav className="mobile-drawer-nav">
+                {primaryNav.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span>{item.label}</span>
+                    <ChevronDown size={14} className="icon-dir-flip" style={{ transform: 'rotate(-90deg)', opacity: 0.4 }} />
+                  </Link>
+                ))}
+                <Link href={`/${locale}/sourcing`} onClick={() => setIsMenuOpen(false)}>
+                  <span className="cluster" style={{ gap: 8 }}>
+                    <Sparkles size={15} style={{ color: 'var(--green-600)' }} />
+                    {isAr ? 'مساعد التوريد' : 'Sourcing Assistant'}
+                  </span>
+                  <ChevronDown size={14} className="icon-dir-flip" style={{ transform: 'rotate(-90deg)', opacity: 0.4 }} />
+                </Link>
+                <Link href={`/${locale}/directory/map`} onClick={() => setIsMenuOpen(false)}>
+                  <span className="cluster" style={{ gap: 8 }}>
+                    <MapIcon size={15} style={{ color: 'var(--green-600)' }} />
+                    {isAr ? 'خريطة المنتجين' : 'Producer Map'}
+                  </span>
+                  <ChevronDown size={14} className="icon-dir-flip" style={{ transform: 'rotate(-90deg)', opacity: 0.4 }} />
+                </Link>
+              </nav>
+
+              <div className="mobile-drawer-footer">
+                <Link
+                  href={`/${otherLocale}`}
+                  className="btn btn-outline btn-sm"
+                  style={{ justifyContent: 'center' }}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Globe size={14} />
+                  <span>{otherLocaleLabel}</span>
+                </Link>
+                <Link
+                  href={`/${locale}/rfq`}
+                  className="btn btn-primary btn-sm"
+                  style={{ justifyContent: 'center' }}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <span>{isAr ? 'طلب توريد بالجملة' : 'Start Wholesale RFQ'}</span>
+                  <ArrowRight size={14} className="icon-dir-flip" />
+                </Link>
+              </div>
+            </aside>
+          </>
         )}
       </header>
 

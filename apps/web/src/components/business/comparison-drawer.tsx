@@ -64,7 +64,7 @@ export function ComparisonDrawer({
   const chosen = producers.filter((p) => selected.includes(p.id));
 
   // Attribute rows — the axes a wholesale buyer actually compares on.
-  const rows: { key: keyof ComparableProducer; label: string; labelAr: string; render?: (p: ComparableProducer) => React.ReactNode }[] = [
+  const rows: { key: string; label: string; labelAr: string; render?: (p: ComparableProducer) => React.ReactNode }[] = [
     {
       key: 'location',
       label: 'Location',
@@ -164,13 +164,13 @@ export function ComparisonDrawer({
           style={{
             position: 'fixed',
             bottom: 20,
-            insetInlineStart: '50%',
+            left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 120,
             background: 'var(--green-800)',
             color: '#fff',
             borderRadius: 999,
-            padding: '10px 10px 10px 20px',
+            padding: '10px 14px 10px 20px',
             display: 'flex',
             alignItems: 'center',
             gap: 14,

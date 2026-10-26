@@ -16,6 +16,8 @@ import {
   List,
   LayoutGrid,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { BookmarkButton } from './interactive-tools';
 import { ComparisonDrawer, type ComparableProducer } from './comparison-drawer';
@@ -248,11 +250,24 @@ export function DirectoryBrowser({
     setDebounced('');
     setFamily(initialFamily);
     setCountry('');
+    setCity('');
+    setArea('');
+    setOrigin('');
+    setDestination('');
     setRole('');
     setPage(1);
   };
 
-  const hasFilters = Boolean(query || family !== 'all' || country || role);
+  const hasFilters = Boolean(
+    query ||
+    family !== 'all' ||
+    country ||
+    city ||
+    area ||
+    origin ||
+    destination ||
+    role
+  );
 
   /**
    * The roles that at least one published business actually holds.
@@ -532,7 +547,7 @@ export function DirectoryBrowser({
                 <span className="directory-row-label" style={{ marginBottom: 0 }}>{isAr ? 'الشحن والعيّنة' : 'Ships & samples'}</span>
                 <span className="directory-row-label" style={{ marginBottom: 0 }}>{isAr ? 'الحد الأدنى' : 'Min. order'}</span>
                 <span className="directory-row-label" style={{ marginBottom: 0 }}>{isAr ? 'الحالة' : 'Status'}</span>
-                <span />
+                <span className="directory-row-label" style={{ marginBottom: 0, textAlign: 'end' }}>{isAr ? 'الإجراء' : 'Action'}</span>
               </div>
               {visible.map((b) => renderRow(b))}
             </div>
@@ -600,8 +615,9 @@ export function DirectoryBrowser({
                     onClick={() => setPage(Math.max(1, safePage - 1))}
                     disabled={safePage === 1}
                     className="pagination-btn"
+                    aria-label={isAr ? 'الصفحة السابقة' : 'Previous page'}
                   >
-                    ←
+                    <ChevronLeft size={16} className="icon-dir-flip" />
                   </button>
                   {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                     <button
@@ -616,8 +632,9 @@ export function DirectoryBrowser({
                     onClick={() => setPage(Math.min(totalPages, safePage + 1))}
                     disabled={safePage === totalPages}
                     className="pagination-btn"
+                    aria-label={isAr ? 'الصفحة التالية' : 'Next page'}
                   >
-                    →
+                    <ChevronRight size={16} className="icon-dir-flip" />
                   </button>
                   <span className="pagination-info">
                     {isAr

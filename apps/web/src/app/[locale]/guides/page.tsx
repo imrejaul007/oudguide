@@ -133,7 +133,7 @@ export default async function GuidesIndexPage({
                     style={{ padding: 20, textDecoration: 'none', display: 'block' }}
                   >
                     <div className="cluster" style={{ gap: 8, marginBottom: 10 }}>
-                      <span className="badge badge-crimson">
+                      <span className="badge badge-accent">
                         <Kind size={11} />
                         {kindLabel}
                       </span>
@@ -147,7 +147,7 @@ export default async function GuidesIndexPage({
                       style={{
                         margin: 0,
                         fontSize: '0.88rem',
-                        color: 'var(--ink-soft)',
+                        color: 'var(--ink-muted)',
                         display: '-webkit-box',
                         WebkitLineClamp: 2,
                         WebkitBoxOrient: 'vertical',
@@ -204,7 +204,8 @@ export default async function GuidesIndexPage({
                     href={`/${locale}/guides/${hub.slug}`}
                     className="btn btn-outline btn-sm"
                   >
-                    {isAr ? 'فتح القسم ←' : 'Open the section →'}
+                    <span>{isAr ? 'فتح القسم' : 'Open the section'}</span>
+                    <ArrowRight size={13} className="icon-dir-flip" />
                   </Link>
                 </div>
                 <p className="lede" style={{ marginBottom: 20, maxWidth: 820 }}>
@@ -287,8 +288,8 @@ export default async function GuidesIndexPage({
             </div>
           </div>
           <Link href={`/${locale}/guides/oud-basics`} className="btn btn-outline btn-sm" style={{ marginTop: 14 }}>
-            {isAr ? 'ابدأ بالمقالات المنشورة ←' : 'Start with the published articles →'}
-            <ArrowRight size={13} />
+            <span>{isAr ? 'ابدأ بالمقالات المنشورة' : 'Start with the published articles'}</span>
+            <ArrowRight size={13} className="icon-dir-flip" />
           </Link>
         </section>
       </div>

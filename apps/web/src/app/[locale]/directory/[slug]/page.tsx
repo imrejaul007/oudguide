@@ -108,7 +108,7 @@ export default async function BusinessProfilePage({
               )}
               {biz.sample_availability &&
                 (biz.verified_fields ?? []).includes('sample_availability') && (
-                  <span className="badge badge-crimson">
+                  <span className="badge badge-accent">
                     {isAr ? 'عينات متاحة' : 'Samples Available'}
                   </span>
                 )}
@@ -124,8 +124,9 @@ export default async function BusinessProfilePage({
                   <ExternalLink size={11} />
                 </a>
               )}
-              <Link href={`/${locale}/rfq?supplier=${slug}`} className="btn btn-primary btn-sm">
-                {isAr ? 'طلب تسعير ←' : 'Request Quote →'}
+              <Link href={`/${locale}/rfq?supplier=${slug}`} className="btn btn-primary btn-sm" style={{ gap: 6 }}>
+                <span>{isAr ? 'طلب تسعير' : 'Request Quote'}</span>
+                <ArrowRight size={13} className="icon-dir-flip" />
               </Link>
             </div>
           </div>
@@ -134,7 +135,7 @@ export default async function BusinessProfilePage({
         {/* EDITORIAL SPLIT — Description + Verification */}
         <div className="grid-2" style={{ gap: 32, marginBottom: 48, gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)' }}>
           <article className="card-frame" style={{ padding: 36 }}>
-            <span className="eyebrow eyebrow-crimson" style={{ marginBottom: 12, display: 'block' }}>
+            <span className="eyebrow" style={{ marginBottom: 12, display: 'block' }}>
               {isAr ? 'نبذة عن الشركة' : 'About the Producer'}
             </span>
             <h2 className="h3" style={{ marginBottom: 16 }}>
@@ -273,7 +274,8 @@ export default async function BusinessProfilePage({
                 </h2>
               </div>
               <Link href={`/${locale}/directory`} className="btn btn-outline btn-sm">
-                {isAr ? 'كل الدليل ←' : 'Full Directory →'}
+                <span>{isAr ? 'كل الدليل' : 'Full Directory'}</span>
+                <ArrowRight size={13} className="icon-dir-flip" />
               </Link>
             </div>
             <div className="grid-2" style={{ gap: 18 }}>

@@ -1,6 +1,6 @@
 'use client';
 
-import { MapPin } from 'lucide-react';
+import { MapPin, X } from 'lucide-react';
 
 /**
  * The directory's geography filters.
@@ -159,15 +159,26 @@ export function DirectoryGeographyFilters({
             {isAr ? 'الموقع' : 'Geography'}
           </span>
           {country && (
-            <span className="chip">
-              {isAr ? 'الموقع في' : 'Located in'}:{' '}
-              {locationNames[country] ?? country}
-            </span>
+            <button
+              onClick={() => onCountry('')}
+              className="chip cluster"
+              style={{ gap: 6, cursor: 'pointer', background: 'var(--green-50)', borderColor: 'var(--green-300)' }}
+              title={isAr ? 'إزالة عامل التصفية' : 'Remove filter'}
+            >
+              <span>{isAr ? 'الموقع في' : 'Located in'}: {locationNames[country] ?? country}</span>
+              <X size={12} style={{ color: 'var(--green-700)' }} />
+            </button>
           )}
           {city && (
-            <span className="chip">
-              {isAr ? 'المدينة' : 'City'}: {city.replace(/-/g, ' ')}
-            </span>
+            <button
+              onClick={() => onCity('')}
+              className="chip cluster"
+              style={{ gap: 6, cursor: 'pointer', background: 'var(--green-50)', borderColor: 'var(--green-300)' }}
+              title={isAr ? 'إزالة عامل التصفية' : 'Remove filter'}
+            >
+              <span>{isAr ? 'المدينة' : 'City'}: {city.replace(/-/g, ' ')}</span>
+              <X size={12} style={{ color: 'var(--green-700)' }} />
+            </button>
           )}
           {area && (
             <span className="chip">
@@ -175,17 +186,29 @@ export function DirectoryGeographyFilters({
             </span>
           )}
           {origin && (
-            <span className="chip">
-              {isAr ? 'منشأ المادة' : 'Material origin'}:{' '}
-              {origin.replace(/-/g, ' ')}
-            </span>
+            <button
+              onClick={() => onOrigin('')}
+              className="chip cluster"
+              style={{ gap: 6, cursor: 'pointer', background: 'var(--green-50)', borderColor: 'var(--green-300)' }}
+              title={isAr ? 'إزالة عامل التصفية' : 'Remove filter'}
+            >
+              <span>{isAr ? 'منشأ المادة' : 'Material origin'}: {origin.replace(/-/g, ' ')}</span>
+              <X size={12} style={{ color: 'var(--green-700)' }} />
+            </button>
           )}
           {destination && (
-            <span className="chip">
-              {isAr ? 'يشحن إلى' : 'Ships to'}:{' '}
-              {destinationCountries.find((d) => d.key === destination)?.label ??
-                destination}
-            </span>
+            <button
+              onClick={() => onDestination('')}
+              className="chip cluster"
+              style={{ gap: 6, cursor: 'pointer', background: 'var(--green-50)', borderColor: 'var(--green-300)' }}
+              title={isAr ? 'إزالة عامل التصفية' : 'Remove filter'}
+            >
+              <span>
+                {isAr ? 'يشحن إلى' : 'Ships to'}:{' '}
+                {destinationCountries.find((d) => d.key === destination)?.label ?? destination}
+              </span>
+              <X size={12} style={{ color: 'var(--green-700)' }} />
+            </button>
           )}
         </div>
       )}
