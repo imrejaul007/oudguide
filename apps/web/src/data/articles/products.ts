@@ -746,6 +746,7 @@ export const productFamilyArticles: Article[] = [
       { slug: 'buying/buying-bakhoor', label: 'Buying bakhoor with clear composition information' },
       { slug: 'fragrance/bakhoor-versus-raw-wood', label: 'Bakhoor and raw oud wood' },
       { slug: 'fragrance/oud-accords', label: 'Oud accords in fragrance composition' },
+      { slug: 'products/bakhoor-forms', label: 'The forms of bakhoor: what each one is' },
     ],
   }),
 

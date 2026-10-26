@@ -21,6 +21,7 @@ import { DEEPENING_8 } from './deepening-8.ts';
 import { sectionIndexArticles } from './section-indexes.ts';
 import { gradeLadderArticles } from './quality-grade-ladder.ts';
 import { productFamilyArticles } from './products.ts';
+import { bakhoorFormsArticles } from './bakhoor-forms.ts';
 import { originCountryArticles } from './origin-countries.ts';
 import { originRegionArticles } from './origin-regions.ts';
 import { originComparisonArticles } from './origin-comparisons.ts';
@@ -105,6 +106,7 @@ export const articles: Article[] = [
   ...sectionIndexArticles,
   ...gradeLadderArticles,
   ...productFamilyArticles,
+  ...bakhoorFormsArticles,
   ...originCountryArticles,
   ...originRegionArticles,
   ...originComparisonArticles,
