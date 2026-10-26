@@ -1,4 +1,7 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { buildMetadata, SITE_URL } from '@/lib/metadata';
+import { jsonLdScript } from '@/lib/jsonld';
 import { notFound } from 'next/navigation';
 import { domain } from '@/lib/data';
 import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe, Clock, Truck, FileCheck2 } from 'lucide-react';
@@ -11,6 +14,39 @@ const producerCovers: Record<string, string> = {
   'assam-artisan-distillers': '/images/hero-oud-chip.svg',
   'siam-trat-agarwood-co': '/images/hero-dehn-al-oud.svg',
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const isAr = locale === 'ar';
+
+  const biz = domain.getBusinessBySlug(slug);
+  if (!biz) {
+    return { title: 'Producer not found · OudGuide' };
+  }
+
+  const locationLabel = (biz.city ? `${biz.city}, ` : '') + (biz.country_name || biz.country_id);
+  const title = isAr
+    ? `${biz.name} — ${locationLabel} | دليل العود`
+    : `${biz.name} — ${biz.category || 'Oud Distiller & Wholesaler'} in ${locationLabel} | OudGuide`;
+  const description =
+    biz.description ||
+    (isAr
+      ? `الملف التجاري لـ ${biz.name}، المورد المعتمد للعود ودهن العود والمواد الطبيعية في ${locationLabel}.`
+      : `Commercial profile and verified firmographics for ${biz.name}, listed supplier in ${locationLabel}.`);
+
+  return buildMetadata({
+    path: `/${locale}/directory/${slug}`,
+    title,
+    description,
+    locale,
+    type: 'article',
+    alternateLocalePath: `/${isAr ? 'en' : 'ar'}/directory/${slug}`,
+  });
+}
 
 export default async function BusinessProfilePage({
   params,
@@ -32,6 +68,30 @@ export default async function BusinessProfilePage({
   return (
     <div className="section">
       <div className="container" style={{ maxWidth: 1080 }}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              jsonLdScript(
+                {
+                  path: `/${locale}/directory/${slug}`,
+                  title: biz.name,
+                  description: biz.description ?? '',
+                  business: {
+                    name: biz.name,
+                    description: biz.description,
+                    url: biz.website_url,
+                  },
+                  breadcrumbs: [
+                    { label: isAr ? 'الرئيسية' : 'Home', href: `/${locale}` },
+                    { label: isAr ? 'الدليل' : 'Directory', href: `/${locale}/directory` },
+                    { label: biz.name, href: `/${locale}/directory/${slug}` },
+                  ],
+                },
+                SITE_URL
+              ) ?? '',
+          }}
+        />
         <ViewTracker slug={slug} />
         {/* BREADCRUMB */}
         <nav className="cluster" style={{ justifyContent: 'space-between', marginBottom: 28 }}>

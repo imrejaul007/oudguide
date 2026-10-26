@@ -83,9 +83,12 @@ export function buildMetadata({
    */
   const languages: Record<string, string> = {};
   if (alternateLocalePath) {
-    const alt = alternateLocalePath.replace(/\/$/, '');
-    const altLocale = alt.startsWith('/ar/') ? 'ar' : 'en';
-    const sibling = alt.startsWith('/ar/') ? alt.replace(/^\/ar\//, '/en/') : alt.replace(/^\/en\//, '/ar/');
+    const alt = alternateLocalePath.replace(/\/$/, '') || '/';
+    const isAltAr = alt === '/ar' || alt.startsWith('/ar/');
+    const altLocale = isAltAr ? 'ar' : 'en';
+    const sibling = isAltAr
+      ? (alt === '/ar' ? '/en' : alt.replace(/^\/ar\//, '/en/'))
+      : (alt === '/en' ? '/ar' : alt.replace(/^\/en\//, '/ar/'));
 
     languages[locale] = `${SITE_URL}${cleanPath}`;
     languages[altLocale] = `${SITE_URL}${alt}`;
