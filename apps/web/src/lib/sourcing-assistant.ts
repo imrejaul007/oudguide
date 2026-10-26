@@ -307,6 +307,16 @@ export function rankProducers(
     }));
 }
 
+/**
+ * The guide catalog the assistant offers as follow-up reading.
+ *
+ * Every href is the canonical slug, not an alias. Three of the guides
+ * (wild vs plantation, copper-deg distillation, CITES documentation)
+ * used to link through the site's 301 alias redirects; those redirects
+ * stay in place for search traffic, but a link the assistant itself
+ * renders should not spend a redirect hop — a first-party link and the
+ * page it names should agree on which URL is canonical.
+ */
 const GUIDE_CATALOG: { label: string; href: string; keywords: string[] }[] = [
   {
     label: 'What is Agarwood',
@@ -315,17 +325,17 @@ const GUIDE_CATALOG: { label: string; href: string; keywords: string[] }[] = [
   },
   {
     label: 'Wild vs Plantation',
-    href: '/guides/wild-vs-cultivated',
+    href: '/guides/sourcing/wild-and-cultivated-oud',
     keywords: ['wild', 'plantation', 'cultivated', 'farmed', 'sustainable', 'inoculated'],
   },
   {
     label: 'Copper-Deg Alembic Distillation',
-    href: '/guides/copper-deg-distillation',
+    href: '/guides/production/oud-extraction-methods',
     keywords: ['distill', 'distillation', 'alembic', 'copper', 'deg', 'steam', 'extraction', 'made'],
   },
   {
     label: 'CITES & Export Regulations',
-    href: '/guides/cites-regulations',
+    href: '/guides/trade/agarwood-documentation',
     keywords: ['cites', 'export', 'permit', 'quota', 'regulation', 'legality', 'appendix', 'law'],
   },
 ];
@@ -550,7 +560,10 @@ export function createSourcingAssistant(data: AssistantDataSource) {
             ? 'تُدرج أنواع Aquilaria وGyrinops ضمن الملحق الثاني من اتفاقية سايتس. هذا يعني:\n\n• يلزم تصريح سايتس قبل أي استيراد أو تصدير دولي.\n• يلزم تقييم «غير الضرر» لتأكيد أن الحصاد لا يهددبقاء النوع.\n• تُصدر بعض الدول حصصاً تصديرية سنوية تُدار مركزياً.\n\nنوثّق لوائح سايتس لكل من 249 دولة وإقليم في سجلنا.'
             : 'Aquilaria and Gyrinops species are listed on CITES Appendix II. In practice this means:\n\n• A CITES permit is required before any cross-border import or export.\n• A Non-Detriment Finding must confirm the harvest does not threaten the species.\n• Certain states administer annual export quotas centrally.\n\nWe document each CITES regulation across all 249 registered territories.',
           suggestions,
-          references: [{ label: isAr ? 'لوائح سايتس' : 'CITES regulations', href: '/guides/cites-regulations' }],
+          // The canonical slug, not the alias — the alias redirect stays
+          // for search traffic, but a link the assistant renders points
+          // at the page's own address.
+          references: [{ label: isAr ? 'لوائح سايتس' : 'CITES regulations', href: '/guides/trade/agarwood-documentation' }],
         };
 
       case 'pricing':

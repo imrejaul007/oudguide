@@ -71,7 +71,12 @@ export default async function GlossaryTermPage({
 
   return (
     <article className="container container-narrow" style={{ paddingTop: 40, paddingBottom: 60 }}>
-      {/* STRUCTURED DATA — built from the same record the page renders from */}
+      {/* STRUCTURED DATA — a glossary entry is a definition, so the
+          page claims DefinedTerm (with the glossary hub as its term
+          set), not Article. The BreadcrumbList travels with it. The
+          description is the entry's own direct answer — the page's
+          lede — or the summary if the record has no direct answer, so
+          the schema never says more than the page does. */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -79,9 +84,16 @@ export default async function GlossaryTermPage({
             jsonLdScript(
               {
                 path: `/${locale}/glossary/${slug}`,
-                article,
+                locale,
                 title: articleTitle(article, locale),
                 description: articleSummary(article, locale),
+                definedTerm: {
+                  name: articleTitle(article, locale),
+                  description:
+                    (isAr && article.directAnswerAr) || article.directAnswer
+                      ? articleDirectAnswer(article, locale)
+                      : articleSummary(article, locale),
+                },
                 breadcrumbs: articleBreadcrumbs(article, locale).map((crumb) => ({
                   label: crumb.label,
                   href: crumb.href,

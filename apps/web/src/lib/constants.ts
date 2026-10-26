@@ -89,7 +89,12 @@ export function getNavGroups(locale: string): NavGroup[] {
         {
           label: pick('Distillation', 'التقطير'),
           labelAr: 'التقطير',
-          href: `/${locale}/guides/copper-deg-distillation`,
+          // The canonical slug, not the alias. `/guides/copper-deg-distillation`
+          // still redirects here for search traffic — the alias redirects
+          // stay in next.config.mjs — but a first-party link should point
+          // at the page's own address, so it does not spend a redirect hop
+          // and so the link and the page agree on which URL is canonical.
+          href: `/${locale}/guides/production/oud-extraction-methods`,
           description: pick('Copper deg vs modern steam', 'القدور النحاسية مقابل البخار'),
           descriptionAr: 'القدور النحاسية مقابل البخار',
         },
@@ -110,7 +115,11 @@ export function getNavGroups(locale: string): NavGroup[] {
         {
           label: pick('CITES & Trade', 'سايتس والتجارة'),
           labelAr: 'سايتس والتجارة',
-          href: `/${locale}/guides/cites-regulations`,
+          // The canonical slug, not the alias. `/guides/cites-regulations`
+          // still redirects here for search traffic — the alias redirects
+          // stay in next.config.mjs — but a first-party link should point
+          // at the page's own address.
+          href: `/${locale}/guides/trade/agarwood-documentation`,
           description: pick('Export permits and quotas', 'أذونات التصدير والحصص'),
           descriptionAr: 'أذونات التصدير والحصص',
         },

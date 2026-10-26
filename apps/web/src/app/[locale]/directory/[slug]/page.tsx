@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { buildMetadata, SITE_URL } from '@/lib/metadata';
 import { jsonLdScript } from '@/lib/jsonld';
 import { notFound } from 'next/navigation';
-import { domain, businessRecordBySlug, businessSummaryBySlug } from '@/lib/data';
+import { domain, businessSummaryBySlug } from '@/lib/data';
 import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe, Clock, Truck, FileCheck2 } from 'lucide-react';
 import { BookmarkButton, ShareButton, ViewTracker } from '@/components/business/interactive-tools';
 import { ReportButton } from '@/components/business/report-button';

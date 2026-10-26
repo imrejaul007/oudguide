@@ -72,7 +72,12 @@ export default async function GlossaryIndexPage({
               jsonLdScript(
                 {
                   path: `/${locale}/glossary`,
+                  locale,
                   article,
+                  // The page lists the terms it renders; the ItemList
+                  // claims that list, from the same array, so the schema
+                  // cannot name a term the page does not link to.
+                  itemList: terms.length > 0 ? terms : null,
                   title: articleTitle(article, locale),
                   description: articleSummary(article, locale),
                   breadcrumbs: [

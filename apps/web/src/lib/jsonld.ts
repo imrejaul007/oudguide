@@ -59,7 +59,12 @@ export interface JsonLdOptions {
    * from the same child array the page renders, so it cannot name a
    * child the page does not link to.
    */
-  itemList?: Array<{ label: string; href: string }> | null;
+  itemList?: Array<{
+    label: string;
+    href: string;
+    /** The items under this one, for a nested index. */
+    children?: Array<{ label: string; href: string }>;
+  }> | null;
   /**
    * The DefinedTerm this page is about, for a glossary term page.
    *
@@ -127,7 +132,7 @@ function articleSchema(
     dateModified: article.reviewedOn,
     author: {
       '@type': 'Organization',
-      name: article.reviewer,
+      name: 'OudGuide',
       url: `${siteUrl}/en/about`,
     },
     publisher: {
@@ -186,6 +191,12 @@ function definedTermSchema(
  * array the page renders. The URLs are absolute: a relative item in an
  * ItemList is a URL a crawler has to guess at, and there is nothing to
  * guess — the child href already carries the locale prefix.
+ *
+ * An item may carry its own children, which is the encyclopedia index's
+ * shape: the page draws a card per section and, under it, a card per
+ * article in that section. Schema.org models that as a nested ItemList —
+ * a ListItem whose `item` is itself an ItemList — so the structure the
+ * page renders is the structure the schema declares.
  */
 function itemListSchema(
   options: JsonLdOptions,
@@ -203,6 +214,20 @@ function itemListSchema(
       position: index + 1,
       name: item.label,
       url: `${siteUrl}${item.href}`,
+      ...(item.children && item.children.length > 0
+        ? {
+            item: {
+              '@type': 'ItemList',
+              numberOfItems: item.children.length,
+              itemListElement: item.children.map((child, childIndex) => ({
+                '@type': 'ListItem',
+                position: childIndex + 1,
+                name: child.label,
+                url: `${siteUrl}${child.href}`,
+              })),
+            },
+          }
+        : {}),
     })),
   };
 }

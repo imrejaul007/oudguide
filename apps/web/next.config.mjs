@@ -120,6 +120,23 @@ const nextConfig = {
   },
   async redirects() {
     /**
+     * Root redirect.
+     *
+     * A visitor or crawler requesting the bare root `/` is permanently
+     * redirected (308) to the default locale `/en`. A Next.js config
+     * redirect is evaluated before middleware and before the page router,
+     * so it yields a deterministic 308 instead of the 307 that
+     * `redirect()` in app/page.tsx or default edge middleware emits.
+     */
+    const rootRedirect = [
+      {
+        source: '/',
+        destination: '/en',
+        permanent: true,
+      },
+    ];
+
+    /**
      * The guides catch-all used to serve glossary terms and product
      * families as well, so every one of them had two URLs, one body and
      * two different canonicals. The manifest's path is the contract —
@@ -137,7 +154,12 @@ const nextConfig = {
       }
     }
 
-    return [...aliasRedirects, ...territoryRedirects, ...sectionRedirects];
+    return [
+      ...rootRedirect,
+      ...aliasRedirects,
+      ...territoryRedirects,
+      ...sectionRedirects,
+    ];
   },
   async rewrites() {
     /**

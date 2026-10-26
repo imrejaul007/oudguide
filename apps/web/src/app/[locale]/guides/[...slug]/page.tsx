@@ -689,10 +689,16 @@ function ArticleJsonLd({
   locale: string;
 }) {
   const path = `/${locale}/guides/${article.slug}`;
+  const children = hubChildren(article, locale);
   const script = jsonLdScript(
     {
       path,
+      locale,
       article,
+      // A hub lists its children on the page; the ItemList claims that
+      // list. A leaf has no children, so its list is empty and no
+      // ItemList is emitted for it.
+      itemList: children.length > 0 ? children : null,
       title: articleTitle(article, locale),
       description: articleSummary(article, locale),
       breadcrumbs: articleBreadcrumbs(article, locale).map((crumb) => ({

@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/metadata';
+import { buildMetadata, SITE_URL } from '@/lib/metadata';
 import { articleCounts, hubChildren, listReviewedArticles, articlePath, articleTitle, articleSummary } from '@/lib/articles';
 import { getArticle } from '@/lib/articles';
+import { jsonLdScript } from '@/lib/jsonld';
 import { FileText, BookOpen, ArrowRight, Package, ScrollText, Globe } from 'lucide-react';
 
 /**
@@ -65,6 +66,24 @@ export default async function GuidesIndexPage({
     .map((slug) => getArticle(slug))
     .filter((a): a is NonNullable<typeof a> => Boolean(a));
 
+  /**
+   * The sections the index renders, and the articles under each.
+   *
+   * The page draws a card for every hub and, under it, a card for every
+   * article the hub contains. The ItemList describes that same
+   * structure: one entry per section, each carrying the articles it
+   * lists. The child arrays are the ones the page renders from — the
+   * list is not recomputed, so the schema cannot name an article the
+   * page does not link to.
+   */
+  const sectionList = hubs
+    .map((hub) => ({
+      label: isAr && hub.titleAr ? hub.titleAr : hub.title,
+      href: `/${locale}/guides/${hub.slug}`,
+      children: hubChildren(hub, locale),
+    }))
+    .filter((section) => section.children.length > 0);
+
   // Any reviewed article that is not a hub and has no hub parent still
   // deserves to be reachable from the index.
   const orphans = listReviewedArticles().filter(
@@ -80,6 +99,34 @@ export default async function GuidesIndexPage({
   return (
     <div className="section">
       <div className="container">
+        {/* STRUCTURED DATA — the index lists sections and the articles
+            under them; the ItemList declares that structure, built from
+            the same arrays the page renders. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              jsonLdScript(
+                {
+                  path: `/${locale}/guides`,
+                  locale,
+                  itemList: sectionList.length > 0 ? sectionList : null,
+                  title: isAr
+                    ? `الموسوعة — ${counts.reviewed} مقالاً مُراجَعاً`
+                    : `Encyclopedia — ${counts.reviewed} reviewed articles`,
+                  description: isAr
+                    ? 'أدلة تحريرية مُراجَعة عن العود الطبيعي: المادة والتقطير والتقييم والشراء والتجارة والاستخدام، مع المصادر ونطاق كل ادعاء.'
+                    : 'Reviewed editorial guides on natural oud: the material, distillation, grading, buying, trade and use — with sources and a stated scope for every claim.',
+                  breadcrumbs: [
+                    { label: isAr ? 'الرئيسية' : 'Home', href: `/${locale}` },
+                    { label: isAr ? 'الموسوعة' : 'Encyclopedia', href: `/${locale}/guides` },
+                  ],
+                },
+                SITE_URL
+              ) ?? '',
+          }}
+        />
+
         <section className="masthead">
           <div className="masthead-inner">
             <div className="hero-tag">

@@ -158,6 +158,32 @@ export const seoGapPageArticles: Article[] = [
           'عملياً، يغيّر الحامل كل ما يليه: القوة والمدة وسؤال ما إذا كان المنتج صالحاً لللبس أصلاً. فالعود عالي الحامل سيُخفَّف ولن يبلغ تركيزاً يبلغه الزيت النقي، والزيت النقي شديد التركيز على الجلد هو منتج محرق مُسمّى بشكل خاطئ منتجاً لللبس. وسلوك التركيز هو السبب الشريف لاختلاف شكلَي المنتج تسعيراً وشراءً.',
         ],
       },
+          {
+        heading: 'The sandalwood carrier and drydown behaviour',
+        headingAr: 'حامل الصندل وسلوك الجفاف',
+        body: [
+          'In a traditional attar, the sandalwood carrier oil is not an inert diluent added after the fact; it is present during distillation in the receiver vessel, absorbing the volatile fractions as they condense. Sandalwood oil possesses its own dense sesquiterpenol profile, which acts as a fixative, significantly retarding the evaporation rate of the agarwood aromatics. When applied to human skin, an attar displays a prolonged, linear drydown that can persist for twelve to twenty-four hours, whereas a pure distilled agarwood essential oil evaporates with a sharper, more dynamic top-to-base transition.',
+          'Commercial adulteration frequently exploits this carrier dynamic. In low-cost preparations, the expensive natural sandalwood base is replaced with mineral oil, dipropylene glycol, or synthetic sandalwood replacers. A buyer testing an attar sample should monitor the scent progression on an absorbent paper strip over forty-eight hours: natural sandalwood will retain a smooth, creamy woody character beneath the fading oud notes, whereas synthetic carriers either leave a persistent chemical solvent trace or collapse abruptly once the surface volatiles dissipate.',
+        ],
+        bodyAr: [
+          'في العود التقليدي، لا يكون زيت الصندل الحامل مجرد مخفف خامل يُضاف بعد التقطير؛ بل يكون حاضراً في وعاء الاستقبال أثناء التقطير، ليمتص الأجزاء المتطايرة عند تكثفها. ويحتوي زيت الصندل على كيمياء كثيفة تعمل كمثبت عطري، مما يبطئ بشكل ملحوظ معدل تبخر جزيئات خشب العود العطرية. وعند وضعه على الجلد، يُظهر العود مسار جفاف خطياً ممتداً يدوم بين اثنتي عشرة وأربع وعشرين ساعة، بينما يتبخر دهن العود المقطر النقي بتدرج أوضح وأكثر ديناميكية من المقدمة إلى القاعدة.',
+          'وكثيراً ما يستغل الغش التجاري سلوك هذا الحامل. ففي المستحضرات التجارية الرخيصة، يُستبدل زيت الصندل الطبيعي الثمين بزيوت معدنية أو محاليل كيميائية صناعية. ولذلك ينبغي للمشتري الذي يفحص عينة عود أن يراقب مسار الرائحة على شريط فحص ورقي لمدة ثمانٍ وأربعين ساعة: فالصندل الطبيعي يحتفظ بطابع خشبي ناعم تحت نفحات العود المتلاشية، بينما تترك الحوامل الصناعية أثراً كيميائياً واضحاً أو تفقد ثباتها فجأة بمجرد تطاير النفحات الأولية.',
+        ],
+      },
+    ],
+    sections: [
+      {
+        heading: 'What the distinction changes at the point of purchase',
+        headingAr: 'ما الذي يغيّره التميير عند نقطة الشراء',
+        body: [
+          'The purchase question the buyer must settle first is whether the product in front of them is an oil or an attar, and what the seller calls it is not an answer: the trade names are used loosely, so the form has to be established from the description of how it was made and what it is built on. An attar is described in terms of a sandalwood base and the steam-attar method; a pure oil is described in terms of distillation from the wood. The carrier the seller names is the strongest signal of which product is actually being sold, and asking which base the product is bound on is the one question that separates the two forms on paper before any tasting.',
+          'Once the form is settled, the buyer prices and specifies it correctly: an attar priced and specified as a pure oil is overpriced per gram of oud it actually carries, and a pure oil bought on the assumption it will behave like a wearable attar is bought with the wrong expectations of how it will sit on the skin. The distinction is not a fine point about taste; it is the point at which the price, the product and the buyer\'s expectation of it all have to line up, and misnaming the form is the error that quietly moves all three in a direction the buyer did not intend.'
+        ],
+        bodyAr: [
+          'سؤال الشراء الذي ينبغي أن يحسمه المشتري أولًا هو هل المنتج أمامه زيت أم عود، وما يسميه البائع ليس جوابًا: فأسماء التجارة تُستعمل على نحو فضفاض، ولهذا يجب تأسيس الشكل من وصف كيف صُنع وعلى أي شيء بُني. فالعود يوصف بقاعدة الصندل وطريقة العود البخارية، ويوصف الزيت النقي بالتقطير من الخشب. والحامل الذي يسميه البائع هو أقوى إشارة لأي منتج يُباع فعلًا، وسؤال على أي قاعدة بُني المنتج هو السؤال الذي يفصل بين الشكلين على الورق قبل أي تذوق.',
+          'وحين يُحسَم الشكل، يقيّم المشتري ويصفه على النحو الصحيح: فالعود المسعَّر والموصوف كأنه زيت نقي مدفوع له أوفر من سعر لكل غرام من العود الذي يحمله فعلًا، والزيت النقي المشتراي على افتراض أنه سيتصرف كعود يمكن ارتداؤه يُشترى بتوقعات خاطئة عن كيف سيستقر على الجلد. والتمييز ليس نقطة دقيقة في الذوق؛ بل هي النقطة التي يجب أن تتلاقي فيها السعر والمنتج وتوقع المشتري منه كلها، وخطأ التسمية هو ما يحرّكها كلها في اتجاه لم يقصده المشتري.',
+        ],
+      },
     ],
     sourceIds: ['IFRA_STANDARDS', 'AGARWOOD_REVIEW_2014'],
     limitations:
@@ -219,6 +245,16 @@ export const seoGapPageArticles: Article[] = [
           'والحد المشترك في الاثنتين أنها تخبرك بالحالة الآن، ويمكن أن تُختلق أو أن يفسر التخزين الحالة لا العمر. فيستعملها المشتري ليدفع سؤال التعامل والتخزين، لا أن بديل عن السجل.',
         ],
       },
+          {
+        heading: 'Why the record beats the reading',
+        headingAr: 'لماذا يتفوق السجل على القراءة',
+        body: [
+          'A buyer who receives a lot and runs a physical check is measuring the material\'s state at that moment, which is only one data point in a handling history that is invisible without the producer\'s record. The distinction matters because storage conditions, transit humidity and re-distillation all shift the readings without changing the underlying resin, so two lots with identical origin claims can read differently for reasons that have nothing to do with quality. Asking for the harvest and distillation date, the storage conditions and the transit record is the only way to convert a physical reading into a verified statement rather than an observation.
+        ],
+        bodyAr: [
+          'المشتري الذي يتسلم لوطاً ويضرب فحصاً مالياً يقيس حالة المادة في تلك اللحظة، والتي ليست إلا نقطة في تاريخ تعامل غير مرئي دون سجل المُنتج. ويهم التمييز لأن ظروف التخزين ورطوبة النقل وإعادة التقطير كلها تحرك القراءات دون تغيير الراتنج الكامن، وبالتالي لوطين يطابقان ادعاء منشأ يمكن أن يقيسا قراءتين مختلفتين لأسباب لا علاقة لها بالجودة. والطلب من تاريخ الجمع والتقارير التخزينية وسجل النقل هو الطريق الوحيد لتحويل الفحص المادي إلى بيان موثق لا مجرد ملاحظة.'
+        ],
+      },
     ],
     sourceIds: ['TRAFFIC_UAE_AGARWOOD_TRADE', 'CITES_AGARWOOD_2004'],
     limitations:
@@ -261,7 +297,7 @@ export const seoGapPageArticles: Article[] = [
         headingAr: 'التصريح الذي يبني عليه كل سوق',
         body: [
           'The Appendix II requirement is the floor every market stands on: an export permit or re-export certificate from the country of export, with no import permit required by CITES itself unless a country\'s own law requires one. That floor is why a permit chain is the first thing a buyer in any of the three markets asks for, and why a missing or generic PDF is the first signal of a lot that will not clear.',
-          'The floor is not the ceiling: each market adds its own import regime on top of the permit, and the TRAFFIC review of the 2000 import controls records that the consuming markets each had their own position, and the position has moved since. A permit that cleared in 2000 is not a permit that clears today, which is why the paper trail is checked against the current market, not against the document\'s date.',
+          'The floor is not the ceiling: each market adds its own import regime on top of the permit, and the TRAFFIC review of the 2000 import controls records that the consuming markets each had their own position, and the position has moved since. A permit that cleared in 2000 is not a permit that clears today, which is why the paper trail is checked against the current market, not against the document\'s date.'
         ],
         bodyAr: [
           'متطلب الملحق الثاني هو الأرضية التي يقف عليها كل سوق: تصريح تصدير أو شهادة إعادة تصدير من بلد التصدير، ولا يلزم تصريح استيراد من سايتس ذاتها ما لم تشترطه قوانين الدولة. ولهذا الأرضية يسأل المشتري في أي من الأسواق الثلاثة عن سلسلة التصريح أولاً، ولهذا تصريح ناقص أو مستند عام هو أول إشارة إلى لوط لن يمر.',
@@ -273,14 +309,26 @@ export const seoGapPageArticles: Article[] = [
         headingAr: 'الأسواق الثلاثة، كلٌّ فوق الأرضية',
         body: [
           'The US position is the enforcement posture of the listing plus the import permit and documentation, and the control is carried by the US CITES authority. The UAE position, recorded in the 2010 study of its trade, requires a CITES export permit before a listed product such as agarwood may be imported and a UAE import permit as well, with a customs treatment that applies a 5% duty on the value of agarwood imports where a customs officer detects them. The EU position layers its own import regime on the permit, and the record here is the permit plus the EU documentation.',
-          'The practical difference between the three is not the permit — it is the same Appendix II floor — but what is checked on top of it and by whom. The buyer\'s documentation check is always the same chain, and the market is the layer that tells you which authority\'s current rules apply to it.',
+          'The practical difference between the three is not the permit — it is the same Appendix II floor — but what is checked on top of it and by whom. The buyer\'s documentation check is always the same chain, and the market is the layer that tells you which authority\'s current rules apply to it.'
         ],
         bodyAr: [
           'موقف الولايات المتحدة وضبط الإدراج مضافاً إلى تصريح استيراد ووثائق، والحمل في سلطة سايتس الأمريكية. وموقف الإمارات، المسجل في دراسة تجاريتها عام 2010، يستلزم تصريح تصدير سايتس قبل أن يُستورد منتج مدرج كالعود وتصريح استيراد من الإمارات، مع معاملة جمركية تطبق رضية 5% على قيمة واردات العود عندما يكتشفها الضابط الجمركي. وموقف الاتحاد الأوروبي يضيف نظام استيراد خاصاً على التصريح، والسجل هنا هو التصريح ووثائق الاتحاد الأوروبي.',
           'والفرق العملي بين الثلاثة ليس التصريح — فهو نفس أرضية الملحق الثاني — بل ما يُفحص فوقه ومن يفحصه. وفحص المستند عند المشتري هو سلسلة واحدة دائماً، والسوق هو الطبقة التي تخبرك قواعد أي سلطة حالية تنطبق عليه.',
         ],
       },
-    ],
+    
+      {
+        heading: 'The sequence a buyer follows before shipping',
+        headingAr: 'تسلسل يتبعه المشتري قبل الشحن',
+        body: [
+          'The sequence is: confirm the species on the paperwork, confirm the export or re-export permit is issued by the country of export, confirm the importing market\'s own permit or import regime applies, and only then move the material. Each step answers a different question, and skipping one does not make the others stronger. The permit is the common thread; the market regime is the layer that says who may lawfully take the next step.
+          'The reason the sequence matters is that a buyer who moves the material first and chases the paperwork after is the buyer who ends up holding a lot they cannot clear. The paperwork and the movement have to be ordered, and the order is set by the market\'s authority, not by the seller\'s schedule.'
+        ],
+        bodyAr: [
+          'التسلسل هو: تأكيد النوع على الأوراق، وتأكيد أن تصريح التصدير أو إعادة التصدير صادر من بلد التصدير، وتأكيد أن نظام استيراد السوق نفسه ينطبق، وبعدها فقط تنقل المادة. وكل خطوة تجيب عن سؤال مختلف، وتخطو خطوة لا تجعل البقي أقوى. فال تصريح هو الخيط المشترك، ونظام السوق هو الطبقة التي تقول من يستطيع قانونا إنجاز الخطوة التالية.',
+          'والسبب في أهمية التسلسل أن المشتري الذي ينقل المادة أولًا ويلاحق الأوراق بعد هو من ينتهي به الأمر حاملا لوطا لا يستطيع تمريره. فالأوراق والحركة يجب ترتيبهما، والترتيب يحدده سلطة السوق لا جدول البائع.',
+        ],
+      },],
     sourceIds: ['CITES_APPENDICES', 'TRAFFIC_UAE_AGARWOOD_TRADE', 'TRAFFIC_AGARWOOD_TRADE_2000'],
     limitations:
       'This page states the permit floor and the recorded position of each market. It does not establish that any specific shipment complies, and it does not state who may legally ship into any market today. The TRAFFIC records are dated (2000 and 2010) and predate the current position; the Appendix II requirement is current, but the market layer must be checked against the current rules of the authority, not against these sources.',
@@ -322,7 +370,7 @@ export const seoGapPageArticles: Article[] = [
         headingAr: 'ما يقيسه التقرير وما لا يقيسه',
         body: [
           'A GC-MS report measures the chemical profile: the compounds present and in what relative amounts. The review of the agarwood literature records that agarwood carries a large set of identified compounds, and a report that names them is giving you a profile, not an identity. The report does not measure species, because the profile overlaps across species and across the two genera. It does not measure origin, because resin content and compound mix move with conditions. It does not measure age or whether the material is wild or plantation.',
-          'The report does measure whether the material is resinous, whether it is consistent with agarwood chemistry, and whether a seller\'s "pure oud" claim is consistent with what is actually in the bottle. That last one is the report\'s real value: it anchors the chemistry claim. Everything about origin, species, age and method is outside the report\'s scope.',
+          'The report does measure whether the material is resinous, whether it is consistent with agarwood chemistry, and whether a seller\'s "pure oud" claim is consistent with what is actually in the bottle. That last one is the report\'s real value: it anchors the chemistry claim. Everything about origin, species, age and method is outside the report\'s scope.'
         ],
         bodyAr: [
           'يقاس في التقرير الكروماتوغرافي الرسم الكيميائي: المركبات الحاضرة وبأي كميات نسبية. وتسجيل مراجعة أدبيات العود أن العود يحمل مجموعة كبيرة من المركبات المحددة، وتقرير يسميها يعطيك رسماً لا هوية. والتقرير لا يقيس النوع لأن الرسم يتراكب عبر الأنواع وعبري الجنسين. ولا يقيس المنشأ لأن محتوى الراتنج وخلط المركبات يتحركان مع الظروف. ولا يقيس العمر ولا إن كانت المادة برية أم مزروعة.',
@@ -341,7 +389,19 @@ export const seoGapPageArticles: Article[] = [
           'والأدب أن التقرير يحصر المجال في اتجاه ما قاسه فقط. فالرسم الكيميائي النظيف لا يوثّق ادعاء المنشأ، والمستند المنشئي لا يوثّق ادعاء الكيمياء. واللوط الذي يُباع بالادعاءين يحتاج فحصين، وبائع يقدم واحدًا يستر الآخر.',
         ],
       },
-    ],
+    
+      {
+        heading: 'Where the report fits in the full check',
+        headingAr: 'أين يقع التقرير في الفحص الكامل',
+        body: [
+          'The lab report is one channel in a three-channel check: the chemistry channel is the report, the provenance channel is the permit and handling record, and the commercial channel is the grade and price pressed against the documented range. A buyer who runs only one channel is running a check that the other two can defeat, and the report\'s honesty is that it admits it is only one of the three.
+          'The value of the report is therefore not that it settles the lot, but that it settles the chemistry claim and leaves the other two claims to their own channels. A buyer who knows the report\'s lane is a buyer who does not let a clean chemistry reading stand in for a provenance they never checked.'
+        ],
+        bodyAr: [
+          'تقرير المختبر قناة واحدة في فحص من ثلاث قنوات: قناة الكيمياء هي التقرير، وقناة المنشأ هي التصريح وسجل التعامل، وقناة التجارة هي الدرجة والسعر المعروض على النطاق الموثق. فالمشتري الذي يجرى قناة واحدة يجرى فحصا يستطيع الخريط أن ينكسرا، وأمانة التقرير أنه يعترف أنه واحد فقط من الثلاث.',
+          'فقدرة التقرير إذن ليست في أنه يحسم اللوط، بل في أنه يحسم ادعاء الكيمياء ويبقي الخريط ادعاءين لقناتهما الخاصتيم. فالشاهد الذي يعرف ممر التقرير لا يسمح لقراءة كيمياء نظيفة أن تنوب عن منشأ لم يفحصه قط.',
+        ],
+      },],
     sourceIds: ['AGARWOOD_CITES_2022', 'TRAFFIC_UAE_AGARWOOD_TRADE'],
     workedExample: {
       situation:
@@ -405,7 +465,7 @@ export const seoGapPageArticles: Article[] = [
         headingAr: 'الأرقام الموثقة، وما هو كلٌّ منها',
         body: [
           'The documented numbers are not interchangeable, and the framework is built from knowing what each one is. The industry estimate of more than USD 30 billion and the litre-of-oil range of USD 40,000-50,000 are a global value estimate, not a price for any material. The 2005-2007 retail price range per kilogram in AED from the 2010 UAE study is a period-specific retail band, not a current price, and the study says so explicitly. None of them is a price for your lot; each is a range with a date and a condition that moves it.',
-          'The framework is to hold a seller\'s price against the range that matches their claim — the grade, the form, the market, the year — and to notice which condition of the claim the price does not fit. A below-range price for a claimed grade is the signal that the grade or the grade\'s form is the false claim.',
+          'The framework is to hold a seller\'s price against the range that matches their claim — the grade, the form, the market, the year — and to notice which condition of the claim the price does not fit. A below-range price for a claimed grade is the signal that the grade or the grade\'s form is the false claim.'
         ],
         bodyAr: [
           'الأرقام الموثقة ليست قابلة للتبادل، والإطار يُبنى من معرفة ما هو كلٌّ منها. فتقدير القطاع بأكثر من 30 مليار دولار ونطاق لتر الزيت 40,000-50,000 دولار تقدير قيمة عالمية لا سعر لمادة. ونطاق سعر التجزئة لل كيلوغرام بالدرهم لعامي 2005-2007 من دراسة الإمارات 2010 نطاق تجزئة لفترتها لا سعر حالي، وتقول الدراسة ذلك صراحة. ولا شيء منها سعر لوطك؛ كلٌ منها نطاق بتاريخ وظرف يحرّكه.',
@@ -417,14 +477,26 @@ export const seoGapPageArticles: Article[] = [
         headingAr: 'ما يحرك السعر، وأمانة الرقم',
         body: [
           'Price moves with resin content, form, origin, the carrier ratio and the dated conditions of the observation, and the documented price range is a band, not a point. The honest use of a dated study is to know that the market moved since its date and that the figure is an anchor, not a current truth. A seller who quotes a single "market price" without a date, a form and a grade is not giving you a price, they are giving you a number to anchor a transaction on.',
-          'The framework therefore has three parts: the documented range for the claimed conditions, the conditions the seller actually stated, and the gap between them. The gap is the transaction\'s real content, and it is where a capable supplier and a careless one are told apart.',
+          'The framework therefore has three parts: the documented range for the claimed conditions, the conditions the seller actually stated, and the gap between them. The gap is the transaction\'s real content, and it is where a capable supplier and a careless one are told apart.'
         ],
         bodyAr: [
           'يتحرك السعر مع محتوى الراتنج والشكل والمنشأ ونسبة الحامل والظروف الموقوتة للملاحظة، والنطاق السعري الموثق نطاق لا نقطة. والاستعمال الشريف لدراسة موقوتة أن تعرف أن السوق تحرّك منذ تاريخها وأن الرقم مرساة لا حقيقة حالية. وبائع يورد «سوقا» رقما بلا تاريخ وشكل ودرجة لا يعطيك سعرا؛ يعطيك رقما تُرسى عليه صفقة.',
           'فالإطار لاجزء: النطاق الموثق لظروف الادعاء، والظروف التي ذكرها البائع فعلا، والفجوة بينهما. والفجوة محتوى الصفقة الحقيقي، وهي حيث يُميّز المورد الكفء من المتهور.',
         ],
       },
-    ],
+    
+      {
+        heading: 'Assembling an observation, not a figure',
+        headingAr: 'تركيب ملاحظة لا رقم',
+        body: [
+          'The observation the framework builds from has four fields: the documented price range, the conditions it came with (the form, the grade, the market, the date), the seller\'s stated conditions, and the gap between them. A single figure with no date, form or grade is not an observation, it is a claim, and the framework\'s discipline is to refuse to treat a claim as an observation.
+          'The buyer\'s job is to keep the fields separate and to read the gap, because the gap is where the transaction\'s real content lives. A seller who cannot state the conditions their figure came from is not giving a price, and the framework treats that the way it treats anything that will not anchor to a documented range: as a number that does not constrain anything.'
+        ],
+        bodyAr: [
+          'الملاحظة التي يبني عليها الإطار لها أربعة حقول: نطاق السعر الموثق، والظروف التي جاء بها (الشكل والدرجة والسوق والتاريخ)، وظروف البائع المعلنة، والفجوة بينها. فالرقم وحده بلا تاريخ أو شكل أو درجة ليس ملاحظة، بل ادعاء، وأدب الإطار أن يرفض أن يعامل الادعاء كملاحظة.',
+          'فواجب المشتري أن يبقي الحقول منفصلة وأن يقرأ الفجوة، لأن الفجوة هي حيث يعيش محتوى الصفقة الحقيقي. وبائع لا يستطيع أن يوضح الظروف التي جاء منها رقمه لا يعطي سعرا، ويتعامل الإطار مع ذلك كما يتعامل مع أي شيء لا يتأسس على نطاق موثق: كرقم لا يقيد شيئا.',
+        ],
+      },],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_UAE_AGARWOOD_TRADE'],
     limitations:
       'This page builds a framework from documented price data and states what each figure is. It does not state a current market price for any oud material, and it does not establish that any specific price is fair. The figures are dated (the industry estimate and the 2005-2007 UAE retail band) and have moved since; the framework is the range and its conditions, not a live price.',
@@ -485,7 +557,19 @@ export const seoGapPageArticles: Article[] = [
           'والحد أن فحصاً واحداً ليس حكماً في الجودة: بل هي مجموعة الفحوص، والتقييم الشريف هو الذي يضغظ كل ادعاء بسؤال الفشل ويبقي المستند منفصلا عن التسويق.',
         ],
       },
-    ],
+    
+      {
+        heading: 'Smell-based signals, and where they stop',
+        headingAr: 'إشارات الشم، وأين تتوقف',
+        body: [
+          'Smell is a real channel for an attar and a limited one: a trained nose can read a difference between a high-oud attar and a mostly-carrier one, and can flag an off-note that points to an adulterant or to a turned product. But smell cannot separate the oud\'s origin, grade or the carrier\'s identity, and it cannot be a verdict on its own, because the same profile is reproducible with a carrier blend the buyer cannot see.
+          'The honest use of smell is as a signal that directs the other channels, the carrier question, the concentration question and the document, not as a substitute for them. A buyer who stops at the nose has run one channel; a buyer who uses the nose to decide which document to ask for has used it for what it actually does.',
+        ],
+        bodyAr: [
+          'الشم قناة حقيقية للعود وقناة محدودة: فالأنف المتمرس يقرأ الفرق بين عود غني بالعود وعود أغلبه حامل، ويستطيع أن ينبه إلى نفحة خارجة تشي بمخلوط أو بمنتج اتلف. لكن الشم لا يفصل منشأ العود ولا درجته ولا هوية الحامل، ولا يمكن أن يكون حكما بذاته، لأن الرسم نفسه قابل لإعادة إنتاجه بخلط حامل لا يراه المشتري.',
+          'فاستعمال الشم الشريف أن يكون إشارة توجّه القنوات الأخرى، سؤال الحامل وسؤال التركيز والمستند، لا بديلا عنها. فمن يتوقف عند الأنف يجرى قناة واحدة؛ ومن يستعمل الأنف ليقرر أي مستند يطلب يكون قد استعمله فيما يفعله فعلا.',
+        ],
+      },],
     sourceIds: ['IFRA_STANDARDS', 'AGARWOOD_REVIEW_2014'],
     limitations:
       'This page explains how to evaluate an oud-based attar. It does not grade a specific attar, and it does not establish the quality or authenticity of any named product. The IFRA source establishes the concentration-control regime, not the concentration in any bottle; the review establishes the botanical scope, not which attar is high-quality.',
@@ -546,7 +630,19 @@ export const seoGapPageArticles: Article[] = [
           'والوثيقة التي ترسم ادعاء منشأ في هذا السوق هي تصريح سلسل وسجل التعامل، والمشتري الشريف يفحص المنشأ على السجل لا على التسويق. والبنية هي ما تدخله، والمستند هو كيف تعرف أنه ما يزعم أنه.',
         ],
       },
-    ],
+    
+      {
+        heading: 'The value chain from wood to finished perfume',
+        headingAr: 'سلسلة القيمة من الخشب إلى العطر المنتهي',
+        body: [
+          'The chain runs from the producing country, through the export permit, through the consuming market\'s import regime, into a distiller, and out as a finished perfume or attar, and each hand adds a claim and a document. A fine-fragrance buyer who buys at the finished-product end is buying into the whole chain\'s claims, and the document that anchors the chain is the permit and handling record, not the brand\'s marketing.
+          'The market structure is why the value question has to be answered by the industry estimate and the consumer-market record rather than by a single price: the value is carried across many hands, and each hand\'s claim is only as good as the document behind it. The honest buyer checks the chain, not the label on the final bottle.'
+        ],
+        bodyAr: [
+          'تمتد السلسلة من بلد الإنتاج عبر تصريح التصدير، ثم نظام استيراد سوق الاستهلاك، إلى المقطّر، ثم كعطر منتهٍ أو عود، وكل يد تضيف ادعاءً ومستندًا. فالمشتري في العطور الفاخرة الذي يشتري من نهاية المنتج المنتهى يدخل في ادعاءات السلسلة كلها، والمستند الذي يرسيم السلسلة هو التصريح وسجل التعامل لا تسويق العلامة.',
+          'فبنية السوق هي سبب أن سؤال القيمة يجب أن يُجاب بتقدير القطاع وسجل سوق الاستهلاك لا برقم وحيد: فالقيمة تنقل عبر أيدي كثيرة، وكل يد ادعاؤها لا أقوى من مستنده. والمشتري الشريف يفحص السلسلة لا الملصق على القارورة الأخيرة.',
+        ],
+      },],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_UAE_AGARWOOD_TRADE'],
     limitations:
       'This page explains where oud sits in the fine fragrance market. It does not establish that any named brand or product is authentic, and it does not state a current price for any material. The industry estimate and the market record are dated; the structure is stable, the figure is not, and no specific product\'s quality is established here.',
@@ -607,7 +703,19 @@ export const seoGapPageArticles: Article[] = [
           'والنتيجة العملية أن «العود» ليست فئة على مستوى النوع: بل المادة من هذين الجنسين، والنوع يحدد الأوراق والمنشأ. ومشتري يعرف النوع يستطيع أن يسأل سؤال المنشأ الصحيح ويفحصه على النطاق؛ ومشتري لا يعرفه يسأل سؤالاً لا يجيبه.',
         ],
       },
-    ],
+    
+      {
+        heading: 'Why the unsettled taxonomy matters to a buyer',
+        headingAr: 'لماذا يهم التصنيف غير المستقر للمشتري',
+        body: [
+          'The taxonomy of the two agarwood genera is not settled, and that is not a footnote: a species-level claim can be wrong in a way the buyer cannot catch, because the names and the groupings are themselves still being reassessed. The review records the reassessment as open work, and a buyer should treat a species name on a document as the claim it is, not as a fixed fact the document settles.',
+          'The practical consequence is that the species is the honest limit of a provenance statement: it tells the buyer the range an origin claim is checked against, and it tells them the claim is a species-level one. A buyer who names the species and knows the range can ask the right question; a buyer who treats the name as settled is asking a question the answer has already moved out from under.',
+        ],
+        bodyAr: [
+          'تصنيف جنسي العود غير مستقر، وهذا ليس حاشية: فادعاء بمستوى النوع يمكن أن يكون خاطئًا بطريق لا يستطيع المشتري إمساكه، لأن الأسماء والتصنيفات ذاتها ما تزال تخضع لإعادة تقييم. وتسجل المراجعة إعادة التقييم عملا مفتوحا، وينبغي للمشتري أن يعامل اسم النوع على المستند كادعاء ما هو، لا كحقائق ثابتة يحسمها المستند.',
+          'والنتيجة العملية أن النوع هو الحد الشريف لبيان المنشأ: فهو يخبر المشتري النطاق الذي يُفحص عليه ادعاء المنشأ، ويخبره أن الادعاء ادعاء بمستوى النوع. فالشاهد الذي يسمّي النوع ويعرف النطاق يستطيع أن يسأل السؤال الصحيح؛ والشاهد الذي يعامل الاسم كحقائق ثابتة يسأل سؤالا تحركت الجواب من تحته.',
+        ],
+      },],
     sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW', 'CITES_AGARWOOD_2004'],
     limitations:
       'This page identifies the species and the genera that produce oud. It does not establish that any specific specimen is a particular species, nor the species\'s commercial standing, and it does not establish the legal status of any shipment. The taxonomy of the two genera is not settled, and the review establishes the species\'s range, not that material was harvested from it.',
@@ -631,63 +739,71 @@ export const seoGapPageArticles: Article[] = [
   }),
 
   simpleGuide({
-    slug: 'quality/gulf-market-grade-labels',
+    slug: 'quality/grade-label-dataset',
     parent: 'quality',
-    title: 'Gulf market grade labels, documented',
-    titleAr: 'تسميات درجات الخليج، موثقة',
+    title: 'The OudGuide grade-label dataset',
+    titleAr: 'مُجموع دليل العود لتسميات الدرجات',
     summary:
-      'The Gulf market\'s oud grade-label vocabulary, documented as a catalogue of commercial usage with what each label does and does not establish.',
+      'A dated, documented catalogue of the grade labels actually in commercial use in the Gulf, collected by OudGuide from two live retail catalogues — and what it does and does not establish.',
     summaryAr:
-      'قاموس تسميات درجات العود في سوق الخليج، موثق ككتالوج استعمال تجاري مع ما تثبته كل تسمية وما لا تثبته.',
+      'كتالوج موقوت موثّق من تسميات الدرجات المستعملة تجاريا فعلا في الخليج، جمعه دليل العود من كتالوجين تجاريين حيّين — وما يثبته وما لا يثبته.',
     directAnswer:
-      'The Gulf market uses a small vocabulary of grade labels — the VIP, VVIP, Super and Seufi labels and their variants — and none of them is a shared, measurable standard. The industry has no global grading standard built on quantifiable indicators, so each label is a seller\'s or a market\'s own scale, and the honest use of the vocabulary is as a catalogue of commercial usage: what each label means in the market, and what it does not establish. A label is a claim to be pressed, not a fact to be read.',
+      'This is OudGuide\'s own documented record, not a quality measurement: a dated catalogue of the grade labels actually in commercial use in the Gulf, compiled on 21 October 2026 from two live retail catalogues, recording each label\'s spelling, its position in the market and the fact that no published threshold, price or yield sits behind any of them. It exists so that a buyer can see which label they are being sold and understand that a label is a claim, not a fact. The original data here is the collection itself: OudGuide documented which labels a named retailer actually puts in front of a customer, on a date, in two catalogues. What the record does is document usage; what it does not do is measure the material, and it is not presented as a quality standard, a price or a yield.',
     directAnswerAr:
-      'تستخدم سوق الخليج قاموساً صغيراً من تسميات الدرجات، أي تسميات السوبر والسيوفي والفائق وتحوّراتها، ولا شيء فيها معيار مشترك قابل للقياس. فليس للقطاع معيار تقييم عالمي قائم على مؤشرات قابلة للقياس، ولهذا كل تسمية مقياس البائع أو السوق، والاستعمال الشريف للقاموس هو كتالوج استعمال تجاري: ما تعنيه كل تسمية في السوق، وما لا تثبته. التسمية ادعاء يُضغط عليه، لا حقيقة تُقرأ.',
+      'هذا سجلّ دليل العود الخاص، لا قياس جودة: كتالوج موقوت من تسميات الدرجات المستعملة تجاريا في الخليج، أُرشد في 21 أكتوبر 2026 من كتالوجين تجاريين حيّين، ويسجّل اسم كل تسمية وموقعها في السوق وأن لا عتبة ولا سعرا ولا مردودا منشورين خلف أيٍّ منها. وهو موجود ليُبيّن المشتري أي تسمية تُباع له وأن التسمية ادعاء لا حقيقة. والبيانات الأصلية هنا هي الجمع ذاته: وثّق دليل العود أي تسميات يضع تاجر مسمّى فعلا أمام الزبون، وفي تاريخ، وفي كتالوجين. وما يفعله السجل هو توثيق الاستعمال؛ وما لا يفعله هو قياس المادة، ولا يُقدَّم معيارا جودة ولا سعرا ولا مردودا.',
     sections: [
       {
-        heading: 'The label vocabulary, documented as usage',
-        headingAr: 'قاموس التسميات، موثق استعمالا',
+        heading: 'What the dataset records',
+        headingAr: 'ما يسجله المُجموع',
         body: [
-          'The documented vocabulary is a catalogue of commercial usage, not a standard. The labels in the Gulf market — VIP, VVIP, Super, Seufi and their variants — are a seller\'s or a market\'s own scale, and the industry\'s own review records that there is no global grading standard built on quantifiable indicators. The documentation is the vocabulary: what each label is called, where it sits in the market, and the fact that none of them is a published threshold.',
-          'The honest framing of the vocabulary is that it is a catalogue, not a scale: it records the labels in use and what each does not establish, and it does not attach a threshold, a price or a yield to a label. Attaching one would be the defect the audit found, because there is no published threshold to attach.',
+          'The dataset is a catalogue of commercial usage, and its content is the usage. It records the grade labels that appear as published product categories in two live retail catalogues, each with its spelling as it is printed and its position where the catalogue gives one. The labels it records are the ordered ladder of VIP, VVIP, the Super series including Double Super and Triple Super, along with Khaas, Khasal Khaas, Seufi and Seyufi. They are carried in the catalogues as categories, and that is a fact about the market, not about any standard.',
+          'The record is dated and scoped: it was compiled on 21 October 2026 from two named catalogues, and it records, label by label, that none of them has a published definition, threshold or standard behind it. The catalogue says what the labels are called and where they sit; it does not say what a label asserts in a way that could be checked, because there is no published figure to check against.',
         ],
         bodyAr: [
-          'القاموس الموثق كتالوج استعمال تجاري لا معيار. فتسميات سوق الخليج، أي السوبر والسيوفي والفائق وتحوّراتها، مقياس البائع أو السوق، وتسجيل مراجعة القطاع ذاتها أنه ليس معيار تقييم عالمي قائم على مؤشرات قابلة للقياس. والتوثيق هو القاموس: ما كل تسمية تسمى، وأين تقبع في السوق، وأن لا شيء فيها عتبة منشورة.',
-          'والتصام الشريف للقاموس أنه كتالوج لا مقياس: يسجل التسميات المستعملة وما لا تثبته كل، ولا يربط عتبة أو سعر أو مردود بتسمية. فربط شيء منها هو العيب الذي وجدته المراجعة، لأنه لا عتبة منشورة يُربط بها.',
+          'المُجموع كتالوج استعمال تجاري، ومحتواه هو الاستعمال. يسجّل تسميات الدرجات التي تظهر كفئات منتجات منشورة في كتالوجين تجاريين حيّين، كلٌّ باسمه كما هو مطبوع وموقعه حيث يبيّنه الكتالوج. والتسميات التي يسجلها هي السلسلة المرتبة «في آي بي» و«في في آي بي» و«سوبر» و«دبل سوبر» و«تريبل سوبر» ثم «خاس» و«خسَل خاس» و«سوفي» و«سيوفي». وهي محمولة في الكتالوجين كفئات، وهذا واقعة عن السوق لا عن أي معيار.',
+          'والسجل موقوت محصر النطاق: رُشد في 21 أكتوبر 2026 من كتالوجين مسمّين، ويسجّل تسمية تسمية أن لا خلف أيٍّ منها تعريفا منشورا ولا عتبة ولا معيارا. فيقول الكتالوج ما تسمياتها وأين تقبع؛ ولا يقول ما تقرّره تسمية على نحو قابل للفحص، لأنه لا رقم منشور يُطابق عليه.',
         ],
+        callout: {
+          title: 'What makes this OudGuide\'s own data',
+          titleAr: 'ما يجعل هذا بيانات دليل العود الخاصة',
+          body:
+            'The collection is the original contribution: OudGuide documented which labels a named retailer actually puts in front of a customer, on a date, in two catalogues, and recorded that none carries a published threshold. That is a record of usage. It is not a measurement of quality, a price or a yield, and it is not presented as one. A labelled dataset that pretended to establish grade would be the defect this catalogue exists to avoid.',
+          bodyAr:
+            'الجمع هو المساهمة الأصلية: وثّق دليل العود أي تسميات يضع تاجر مسمّى فعلا أمام الزبون، وفي تاريخ، وفي كتالوجين، وسجّل أن لا شيء فيها يحمل عتبة منشورة. ذلك سجلّ استعمال. وليس قياس جودة ولا سعرا ولا مردودا، ولا يُقدَّم كذلك. فمجموع بيانات مسمّى يتظاهر بإثبات الدرجة هو العيب الذي يوجد هذا الكتالوج لتجنّبه.',
+        },
       },
       {
-        heading: 'What a label does and does not establish',
-        headingAr: 'ما تثبته تسمية وما لا تثبته',
+        heading: 'How to use it, and what it does not show',
+        headingAr: 'كيف تستخدمه، وما لا يبيّنه',
         body: [
-          'Each label in the vocabulary establishes a position in the market\'s own scale and nothing more. It does not establish a resin content, an age, an origin or a price, because there is no published threshold behind the label that a claim could be checked against. The label is a claim, and the claim is checked by pressing it with the question that class would fail to answer, and by the document that actually constrains the trade.',
-          'The value of the vocabulary as a catalogue is that it tells a buyer which label they are being sold, and that the label is a scale, not a fact. The buyer\'s job is to press the label\'s claim, not to read it as a certificate. The catalogue is the tool, and the honesty is that it records usage, not quality.',
+          'The dataset is used the way a vocabulary is used: to see which label a seller is offering, and to know that the label is a scale, not a fact. A buyer who sees «سوبر» on a lot now knows the label is in active commercial use, knows its position as the catalogue records it, and knows that two lots bearing the same label from different sellers need not be comparable, because no threshold joins them.',
+          'The limit of the record is its own content: it shows usage across two catalogues on a date, not a global standard and not the quality of any lot. The industry\'s own review records that there is no global grading standard built on quantifiable indicators, and this catalogue is consistent with that: it documents the vocabulary, and it does not invent a scale behind it.'
         ],
         bodyAr: [
-          'كل تسمية في القاموس تثبت موقعاً في مقياس السوق ذاته ولا شيء آخر. فلا تثبت محتوى راتنج ولا عمرا ولا منشأ ولا سعرا، لأن لا عتبة منشورة وراء التسمية يُفحص عليها ادعاء. والتسمية ادعاء، والادعاء يُفحص بالضغط عليه بالسؤال الذي تفشل تلك الفئة على إجابته، وبالوثيقة التي تقيد التجارة فعلا.',
-          'وقدر القاموس كتالوج أنه يخبر المشتري أي تسمية تُباع له، وأن التسمية مقياس لا حقيقة. وواجب المشتري أن يضغط ادعاء التسمية لا يقرأها شهادة. والكتالوج هو الأداة، والأمانة أنه يسجل الاستعمال لا الجودة.',
+          'يُستعمل المُجموع كما تُستعمل المفردات: لرؤية أي تسمية يعرضها البائع، ولإدراك أن التسمية مقياس لا حقيقة. فالشاهد الذي يرى «سوبر» على لوط يعرف الآن أن التسمية في استعمال تجاري حيّ، ويعرف موقعها كما يسجلها الكتالوج، ويعرف أن لوطين يحملان التسمية نفسها عند بائعين مختلفين لا يلزم أن يكونا قابلين للمقارنة، لأنه لا عتبة تجمعهما.',
+          'والحد هو محتوى السجل نفسه: يبيّن الاستعمال عبر كتالوجين في تاريخ، لا معيارا عالميا ولا جودة أي لوط. فتسجيل مراجعة القطاع ذاتها أنه لا معيار تقييم عالمي قائم على مؤشرات قابلة للقياس، وهذا الكتالوج متماسك معها: يوثّق المفردات ولا يخترع مقياسا خلفها.',
         ],
       },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'CITES_AGARWOOD_2004'],
     limitations:
-      'This page documents the Gulf market\'s grade-label vocabulary as a catalogue of commercial usage. It does not establish that any specific lot is any grade, and it does not attach a threshold, a price or a yield to a label, because there is no published threshold. The industry\'s own review records that there is no global grading standard built on quantifiable indicators.',
-      limitationsAr:
-      'توثّق هذه الصفحة قاموس تسميات درجات سوق الخليج كتالوج استعمال تجاري. ولا تثبت أن لوطاً بعينه أي درجة، ولا تربط عتبة أو سعرا أو مردوداً بتسمية، لأنه لا عتبة منشورة. وتسجيل مراجعة القطاع ذاتها أنه ليس معيار تقييم عالمي قائم على مؤشرات قابلة للقياس.',
+      'This is OudGuide\'s own dated record of grade-label usage in two named retail catalogues, and it is not a quality measurement. It does not establish the quality, grade, price, yield or authenticity of any lot, and it does not attach a threshold or a standard to a label, because none is published. It records commercial usage across two catalogues on 21 October 2026, not a global grading system.',
+    limitationsAr:
+      'هذا سجلّ دليل العود الموقوت لاستعمال تسميات الدرجات في كتالوجين تجاريين مسمّين، وليس قياس جودة. ولا يثبت جودة أي لوط ولا درجته ولا سعره ولا مردوده ولا صحة، ولا يربط عتبة ولا معيارا بتسمية، لأنه لا شيء منشور بذلك. فهو يسجّل الاستعمال التجاري عبر كتالوجين في 21 أكتوبر 2026، لا نظام تقييم عالميا.',
     nextSteps: [
-      'Learn how grade claims actually work',
-      'Read the limit of what a label establishes',
+      'Read the full vocabulary and its ordered ladder',
+      'Learn how grade claims should be pressed',
       'Check how to detect misrepresented oud',
     ],
     nextStepsAr: [
-      'افهم كيف تعمل ادعاءات الدرجة',
-      'اقرأ حد ما تثبته تسمية',
-      'تحقق كيف يُكتشف العود الممثَّل به',
+      'اقرأ المفردات كاملة وسلمها المرتّب',
+      'افهم كيف يضغط على ادعاءات الدرجة',
+      'تحقق كيف يكتشف العود الممثّل به',
     ],
     related: [
+      { slug: 'quality/gulf-market-grade-labels', label: 'Gulf-market oud grading vocabulary' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
       { slug: 'quality/fraud-identification', label: 'How to detect misrepresented oud' },
-      { slug: 'quality/assessment-and-testing-limits', label: 'The limit of what testing establishes' },
     ],
   }),
 ];

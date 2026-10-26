@@ -42,8 +42,17 @@ describe('Article JSON-LD', () => {
     assert.equal(schema.description, article.summary);
     assert.equal(schema.datePublished, article.reviewedOn);
     assert.equal(schema.dateModified, article.reviewedOn);
-    assert.equal((schema.author as any).name, article.reviewer);
+    // The author is the OudGuide organization, not the record's reviewer
+    // string. The reviewer is a descriptor ("OudGuide editorial review"),
+    // not an entity, and a named reviewer surface is added only when the
+    // editorial register actually carries a person.
+    assert.equal((schema.author as any)['@type'], 'Organization');
+    assert.equal((schema.author as any).name, 'OudGuide');
     assert.equal((schema.publisher as any).name, 'OudGuide');
+    assert.equal((schema.publisher as any).url, `${SITE}/en/about`);
+    assert.equal((schema.publisher as any).logo, `${SITE}/icon.png`);
+    // The schema must name the page it describes.
+    assert.equal((schema.mainEntityOfPage as any).url, `${SITE}/en/guides/oud-basics/what-is-agarwood`);
   });
 
   test('the review date is the only date claimed', () => {

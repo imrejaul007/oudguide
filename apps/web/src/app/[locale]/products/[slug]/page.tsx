@@ -86,6 +86,7 @@ export default async function ProductFamilyPage({
             jsonLdScript(
               {
                 path: `/${locale}/products/${slug}`,
+                locale,
                 article,
                 title: articleTitle(article, locale),
                 description: articleSummary(article, locale),

@@ -38,7 +38,7 @@ export async function generateMetadata({
     title: isAr ? 'دليل المنتجين — مقطرون ومزارعون وموزعون' : 'Producer Directory — Distillers, Plantations and Wholesalers',
     description: isAr
       ? 'تصفح الموردين المسجلين حسب الصنف والدور والموقع والمنشأ والوجهة، مع حالة المراجعة لكل سجل وما ينشره المالك بإذنه.'
-      : 'Browse listed suppliers by material family, business role, location, material origin and destination served, with each record\'s review status and what its owner has chosen to publish.',
+      : 'Browse listed suppliers by material family, role, location, origin and destination, with each record\'s review status and what its owner chose to publish.',
     locale,
     alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}/directory`,
   });

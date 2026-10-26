@@ -97,7 +97,13 @@ export default async function ProductsIndexPage({
               jsonLdScript(
                 {
                   path: `/${locale}/products`,
+                  locale,
                   article,
+                  // The page lists the product families it renders; the
+                  // ItemList claims that list, from the same array, so
+                  // the schema cannot name a family the page does not
+                  // link to.
+                  itemList: families.length > 0 ? families : null,
                   title: articleTitle(article, locale),
                   description: articleSummary(article, locale),
                   breadcrumbs: [
