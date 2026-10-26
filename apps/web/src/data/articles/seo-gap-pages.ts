@@ -514,6 +514,7 @@ export const seoGapPageArticles: Article[] = [
       { slug: 'buying/evaluating-an-offer', label: 'How to evaluate a questionable offer' },
       { slug: 'buying/choosing-oud-oil', label: 'How to choose an oud oil purchase' },
       { slug: 'quality/fraud-identification', label: 'How to detect misrepresented oud' },
+      { slug: 'quality/gulf-price-baseline', label: 'The OudGuide price observation baseline' },
     ],
   }),
 
@@ -802,6 +803,7 @@ export const seoGapPageArticles: Article[] = [
       { slug: 'quality/gulf-market-grade-labels', label: 'Gulf-market oud grading vocabulary' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
       { slug: 'quality/fraud-identification', label: 'How to detect misrepresented oud' },
+      { slug: 'quality/gulf-price-baseline', label: 'The OudGuide price observation baseline' },
     ],
   }),
 ];

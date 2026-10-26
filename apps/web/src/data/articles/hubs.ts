@@ -180,6 +180,13 @@ const SPECS: HubSpec[] = [
         blurb: 'A dated, documented catalogue of the grade labels actually in commercial use in the Gulf, collected by OudGuide from two live retail catalogues — and what it does and does not establish.',
         blurbAr: 'كتالوج موقوت موثّق من تسميات الدرجات المستعملة تجاريا فعلا في الخليج، جمعه دليل العود من كتالوجين تجاريين حيّين — وما يثبته وما لا يثبته.',
       },
+      {
+        slug: 'quality/gulf-price-baseline',
+        label: 'The OudGuide price observation baseline',
+        labelAr: 'خطّ الأساس لملاحظات الأسعار من دليل العود',
+        blurb: 'A dated catalogue of the price bands observed in named public price lists, by documented origin and form, recorded 26 October 2026 — and what each observation does and does not establish.',
+        blurbAr: 'سجلّ مؤرَّخ يضمّ نطاقات الأسعار المرصودة في قوائم أسعار علنية مسمّاة، بحسب المصدر والشكل الموثَّقَين، سُجِّل في 26 أكتوبر 2026 — وما تثبته كل ملاحظة وما لا تثبته.',
+      },
     ],
     nextSteps: ['Learn what a laboratory report actually covers', 'Learn the limits of assessment', 'See how to evaluate a questionable offer'],
     nextStepsAr: ['اعرف ما الذي يغطيه التقرير المخبري فعلاً', 'اعرف حدود التقييم', 'تعلّم كيف تقيّم عرضاً مشكوكاً فيه'],
