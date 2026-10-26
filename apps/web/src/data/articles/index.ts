@@ -29,6 +29,7 @@ import { destinationGuideArticles } from './destination-guides.ts';
 import { glossaryTermArticles } from './glossary-terms.ts';
 import { seoGapPageArticles } from './seo-gap-pages.ts';
 import { priceBaselineArticles } from './price-baseline-dataset.ts';
+import { oudAuthenticityProtocolArticles } from './oud-authenticity-protocol.ts';
 
 /**
  * The reviewed content layer.
@@ -114,6 +115,7 @@ export const articles: Article[] = [
   ...glossaryTermArticles,
   ...seoGapPageArticles,
   ...priceBaselineArticles,
+  ...oudAuthenticityProtocolArticles,
   ...basicsArticles,
   ...hubArticles,
   ...qualityArticles,

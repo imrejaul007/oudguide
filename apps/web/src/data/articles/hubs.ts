@@ -153,6 +153,13 @@ const SPECS: HubSpec[] = [
         blurbAr: 'كيف يكتشف المشتري العود المغشوش أو المستبدل أو الممثَّل به: أي الادعاءات ينبغي التحقق منها، وما الوثائق التي تُطلب، وماذا لا تثبته أي وثيقة بمفردها.',
       },
       {
+        slug: 'quality/oud-authenticity-protocol',
+        label: 'The OudGuide oud authenticity protocol',
+        labelAr: 'بروتوكول دليل العود للتحقق من أصالة العود',
+        blurb: 'The five checks a buyer can run alone — resin, density, burn, scent persistence and price — in a fixed order, and the one laboratory test and one document that actually carry evidence on their own.',
+        blurbAr: 'التحققات الخمس التي يجريها المشتري وحده — راتنج وكثافة وحرق وديمومة رائحة وسعر — بترتيب ثابت، مع الفحص المخبري الوحيد والوثيقة الوحيدة اللذين يحملان دليلًا فعلًا.',
+      },
+      {
         slug: 'quality/freshness-moisture-testing',
         label: 'Testing oud freshness and moisture',
         labelAr: 'اختبار حداثة العود ورطوبته',
