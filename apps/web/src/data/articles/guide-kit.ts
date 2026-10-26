@@ -47,6 +47,11 @@ export interface SimpleGuideSpec {
    * also emits a Dataset schema from the same record.
    */
   dataset?: { variableMeasured: string[] };
+  /**
+   * Mark a guide as an ordered procedure, so the page also emits a HowTo
+   * schema whose steps are the guide's own sections.
+   */
+  howTo?: boolean;
   limitations: string;
   limitationsAr: string;
   nextSteps: string[];
@@ -84,6 +89,7 @@ export function simpleGuide(spec: SimpleGuideSpec): Article {
     // one table rather than being duplicated into each article.
     workedExample: spec.workedExample ?? WORKED_EXAMPLES[spec.slug],
     dataset: spec.dataset,
+    howTo: spec.howTo,
     limitations: spec.limitations,
     limitationsAr: spec.limitationsAr,
     reviewer: REVIEWER,

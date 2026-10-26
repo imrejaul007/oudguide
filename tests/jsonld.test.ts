@@ -348,3 +348,120 @@ describe('FAQPage JSON-LD', () => {
     assert.equal(graph.find((g) => g['@type'] === 'FAQPage'), undefined);
   });
 });
+
+describe('HowTo JSON-LD', () => {
+  test('the authenticity protocol emits a HowTo from its own sections', () => {
+    const protocol = getArticle('quality/oud-authenticity-protocol')!;
+    assert.ok(protocol.howTo, 'the protocol must be marked as a procedure');
+
+    const graph = buildJsonLd(
+      {
+        path: '/en/guides/quality/oud-authenticity-protocol',
+        article: protocol,
+        howTo: {
+          name: protocol.title,
+          description: protocol.summary,
+          steps: protocol.sections.map((s) => s.heading),
+        },
+        title: protocol.title,
+        description: protocol.summary,
+      },
+      SITE
+    );
+
+    const howTo = graph.find((g) => g['@type'] === 'HowTo') as any;
+    assert.ok(howTo, 'the protocol must produce a HowTo schema');
+    // The Article remains too: a procedure claim is additive.
+    assert.ok(graph.find((g) => g['@type'] === 'Article'), 'the Article schema remains');
+    // The steps are exactly the section headings, in order, numbered.
+    assert.equal(howTo.step.length, protocol.sections.length);
+    assert.equal(howTo.step[0].position, 1);
+    assert.equal(howTo.step[0].name, protocol.sections[0].heading);
+    for (let i = 0; i < howTo.step.length; i++) {
+      assert.equal((howTo.step[i] as any).position, i + 1);
+    }
+  });
+
+  test('a guide that is not a procedure produces no HowTo', () => {
+    const graph = buildJsonLd(
+      {
+        path: '/en/guides/oud-basics/what-is-agarwood',
+        article,
+        title: article.title,
+        description: article.summary,
+      },
+      SITE
+    );
+
+    assert.equal(
+      graph.find((g) => g['@type'] === 'HowTo'),
+      undefined,
+      'an ordinary guide must not claim to be a procedure'
+    );
+  });
+});
+
+describe('Service + Offer JSON-LD', () => {
+  test('a page that publishes a price produces a Service with an Offer', () => {
+    const graph = buildJsonLd(
+      {
+        path: '/en/membership',
+        title: 'Annual Membership',
+        description: 'A description of the membership page.',
+        service: {
+          name: 'OudGuide annual commercial membership',
+          description: 'A supplier publishes its own contact details; no buyer data.',
+          price: 1200,
+          priceCurrency: 'AED',
+        },
+      },
+      SITE
+    );
+
+    const service = graph.find((g) => g['@type'] === 'Service') as any;
+    assert.ok(service, 'a priced service must produce a Service schema');
+    // The Offer records exactly the published figure and currency.
+    assert.equal(service.offers['@type'], 'Offer');
+    assert.equal(service.offers.price, 1200);
+    assert.equal(service.offers.priceCurrency, 'AED');
+    // The page says checkout is not active, so the schema must not
+    // invent an availability claim.
+    assert.equal(service.offers.availability, undefined);
+    // The provider is OudGuide, pointing at a real page.
+    assert.equal(service.provider.name, 'OudGuide');
+    assert.equal(service.provider.url, `${SITE}/en/about`);
+  });
+
+  test('a Service with no price carries no Offer', () => {
+    const graph = buildJsonLd(
+      {
+        path: '/en/membership',
+        title: 'Annual Membership',
+        description: 'A description.',
+        service: {
+          name: 'A service with no published figure',
+          description: 'No price is published.',
+        },
+      },
+      SITE
+    );
+
+    const service = graph.find((g) => g['@type'] === 'Service') as any;
+    assert.ok(service, 'the Service is still emitted');
+    assert.equal(service.offers.price, undefined, 'no figure, no price in the Offer');
+    assert.equal(service.offers.priceCurrency, undefined, 'no figure, no currency');
+  });
+
+  test('a page with no service option produces no Service schema', () => {
+    const graph = buildJsonLd(
+      {
+        path: '/en/membership',
+        title: 'Annual Membership',
+        description: 'A description.',
+      },
+      SITE
+    );
+
+    assert.equal(graph.find((g) => g['@type'] === 'Service'), undefined);
+  });
+});

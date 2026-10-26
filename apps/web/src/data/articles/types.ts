@@ -225,4 +225,12 @@ export interface Article {
      */
     variableMeasured: string[];
   };
+
+  /**
+   * Marks a guide that is an ordered procedure, so the page also emits a
+   * HowTo schema. The HowTo's steps are built from the article's own
+   * sections in the renderer, so they cannot name a step the page does
+   * not render — the same rule that governs the Dataset schema.
+   */
+  howTo?: boolean;
 }

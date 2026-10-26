@@ -102,6 +102,34 @@ export interface JsonLdOptions {
     datePublished?: string;
     dateModified?: string;
   } | null;
+  /**
+   * The HowTo schema for an ordered procedure.
+   *
+   * The steps are built from the article's own rendered sections, so the
+   * schema cannot name a step the page does not show. Additive: it
+   * stacks next to the Article schema, it does not replace it.
+   */
+  howTo?: {
+    name: string;
+    description?: string;
+    /** One HowToStep per rendered section, in order. */
+    steps: string[];
+  } | null;
+  /**
+   * The Service + Offer schema for a page that publishes a real, approved
+   * price — currently only the membership page, where AED 1,200/year is
+   * the one figure the page stands behind. The offer records exactly that
+   * figure and its currency, and no availability claim, because the page
+   * says checkout is not yet active.
+   */
+  service?: {
+    name: string;
+    description: string;
+    /** The published price figure, as a number. */
+    price?: number;
+    /** ISO 4217 currency code of the published figure. */
+    priceCurrency?: string;
+  } | null;
 }
 
 /**
@@ -382,6 +410,76 @@ function datasetSchema(
   };
 }
 
+/**
+ * The HowTo schema for an ordered procedure.
+ *
+ * Each step is one of the page's own section headings, in order, so the
+ * schema cannot name a step the page does not render. The full reasoning
+ * for each step is in the Article schema that this stacks next to; the
+ * HowTo only claims that the page is an ordered set of steps.
+ */
+function howToSchema(
+  options: JsonLdOptions
+): Record<string, unknown> | null {
+  const howTo = options.howTo;
+  if (!howTo || howTo.steps.length === 0) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: howTo.name,
+    ...(howTo.description ? { description: howTo.description } : {}),
+    url: `${options.path}`,
+    step: howTo.steps.map((name, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name,
+    })),
+  };
+}
+
+/**
+ * The Service + Offer schema for a page that publishes a real, approved
+ * price.
+ *
+ * Today that is only the membership page, where the published figure is
+ * the one the page stands behind. The Offer records exactly that figure
+ * and its currency; because the page says checkout is not yet active, the
+ * Offer omits any availability claim rather than asserting one the page
+ * does not make.
+ */
+function serviceSchema(
+  options: JsonLdOptions,
+  siteUrl: string
+): Record<string, unknown> | null {
+  const svc = options.service;
+  if (!svc) return null;
+
+  const offer: Record<string, unknown> = {
+    '@type': 'Offer',
+    url: `${siteUrl}${options.path}`,
+    description: svc.description,
+  };
+  if (svc.price !== undefined && svc.priceCurrency) {
+    offer.price = svc.price;
+    offer.priceCurrency = svc.priceCurrency;
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: svc.name,
+    description: svc.description,
+    url: `${siteUrl}${options.path}`,
+    provider: {
+      '@type': 'Organization',
+      name: 'OudGuide',
+      url: `${siteUrl}/en/about`,
+    },
+    offers: offer,
+  };
+}
+
 function localeOf(path: string): string {
   return path.startsWith('/ar/') || path === '/ar' ? 'ar' : 'en';
 }
@@ -411,6 +509,16 @@ export function buildJsonLd(
   if (options.dataset) {
     const ds = datasetSchema(options, siteUrl);
     if (ds) graph.push(ds);
+  }
+
+  if (options.howTo) {
+    const ht = howToSchema(options);
+    if (ht) graph.push(ht);
+  }
+
+  if (options.service) {
+    const svc = serviceSchema(options, siteUrl);
+    if (svc) graph.push(svc);
   }
 
   if (options.business) {

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { Crown, ShieldCheck, Check, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/metadata';
+import { buildMetadata, SITE_URL } from '@/lib/metadata';
+import { jsonLdScript } from '@/lib/jsonld';
 import { contactPolicyCopy, membershipCopy, pick } from '@/lib/copy/policy';
 
 /**
@@ -44,9 +45,46 @@ export default async function MembershipPage({
   const { locale } = await params;
   const isAr = locale === 'ar';
 
+  // The one approved figure the page stands behind: AED 1,200 a year.
+  // The Service + Offer schema records exactly that figure and currency
+  // and makes no availability claim, because the page says checkout is
+  // not yet active. It is built from the same description the page
+  // renders, so the schema does not say anything the page does not show.
+  const membershipSchema = jsonLdScript(
+    {
+      path: `/${locale}/membership`,
+      locale,
+      title: isAr
+        ? 'العضوية السنوية — انشر ملف شركتك'
+        : 'Annual Membership — Publish Your Business Profile',
+      description: isAr
+        ? 'عضوية سنوية بـ 1,200 درهم. تتيح نشر بيانات اتصالك أنت على ملفك، ولا تمنحك أي بيانات مشترٍ. الدفع غير مفعّل حتى تُعتمد الشروط.'
+        : 'Annual membership at AED 1,200. It lets you publish your own contact details on your profile, and grants no access to buyer details. Checkout stays disabled until the terms are approved.',
+      service: {
+        name: isAr ? 'العضوية التجارية السنوية' : 'OudGuide annual commercial membership',
+        description: isAr
+          ? 'تنشر العضوية بيانات الاتصال الخاصة بالمورد على ملفه، ولا تمنح أي وصول إلى بيانات المشترين.'
+          : 'Membership lets a supplier publish its own contact details on its profile and grants no access to buyer details.',
+        price: 1200,
+        priceCurrency: 'AED',
+      },
+      breadcrumbs: [
+        { label: isAr ? 'الرئيسية' : 'Home', href: `/${locale}` },
+        { label: isAr ? 'العضوية' : 'Membership', href: `/${locale}/membership` },
+      ],
+    },
+    SITE_URL
+  );
+
   return (
     <div className="section">
       <div className="container" style={{ maxWidth: 1000 }}>
+        {membershipSchema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: membershipSchema }}
+          />
+        )}
         <section className="masthead">
           <div className="masthead-inner">
             <div className="hero-tag">

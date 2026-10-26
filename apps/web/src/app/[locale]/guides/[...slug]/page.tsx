@@ -740,6 +740,18 @@ function ArticleJsonLd({
             dateModified: article.reviewedOn,
           }
         : null,
+      // A marked procedure (the authenticity protocol) is also a HowTo:
+      // its steps are the guide's own rendered section headings, in order,
+      // so the schema cannot name a step the page does not show.
+      howTo: article.howTo
+        ? {
+            name: articleTitle(article, locale),
+            description: articleSummary(article, locale),
+            steps: article.sections.map((section) =>
+              locale === 'ar' && section.headingAr ? section.headingAr : section.heading
+            ),
+          }
+        : null,
       title: articleTitle(article, locale),
       description: articleSummary(article, locale),
       breadcrumbs: articleBreadcrumbs(article, locale).map((crumb) => ({

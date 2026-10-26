@@ -26,6 +26,7 @@ export const oudAuthenticityProtocolArticles: Article[] = [
   simpleGuide({
     slug: 'quality/oud-authenticity-protocol',
     parent: 'quality',
+    howTo: true,
     title: 'The OudGuide oud authenticity protocol',
     titleAr: 'بروتوكول دليل العود للتحقق من أصالة العود',
     summary:
