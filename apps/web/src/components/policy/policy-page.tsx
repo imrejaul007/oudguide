@@ -81,20 +81,25 @@ export function PolicyPageView({
 
         <div style={{ marginTop: 40 }}>
           {page.sections.map((section) => (
-            <section key={section.heading.en} style={{ marginBottom: 32 }}>
-              <h2 className="h3" style={{ marginBottom: 10 }}>
+            <div key={section.heading.en} className="policy-section-card">
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 500, color: 'var(--green-950)', marginBottom: 12 }}>
                 {isAr ? section.heading.ar : section.heading.en}
               </h2>
               {section.body.map((paragraph, index) => (
                 <p
                   key={index}
                   className="text-body"
-                  style={index === section.body.length - 1 ? { margin: 0 } : { marginBottom: 8 }}
+                  style={{
+                    color: 'var(--ink)',
+                    fontSize: '0.94rem',
+                    lineHeight: 1.7,
+                    margin: index === section.body.length - 1 ? 0 : '0 0 12px',
+                  }}
                 >
                   {isAr ? paragraph.ar : paragraph.en}
                 </p>
               ))}
-            </section>
+            </div>
           ))}
         </div>
 

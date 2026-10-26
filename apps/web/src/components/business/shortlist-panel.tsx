@@ -1,5 +1,11 @@
 'use client';
 
+const producerCovers: Record<string, string> = {
+  'al-mutalib-perfumes': '/images/hero-attar-still.svg',
+  'assam-artisan-distillers': '/images/hero-oud-chip.svg',
+  'siam-trat-agarwood-co': '/images/hero-dehn-al-oud.svg',
+};
+
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Bookmark, Trash2, GitCompare, ArrowRight, MapPin } from 'lucide-react';
@@ -100,47 +106,56 @@ export function ShortlistPanel({
 
       <div className="grid-3">
         {saved.map((p) => (
-          <article key={p.id} className="card" style={{ padding: 22 }}>
-            <div className="row-between" style={{ marginBottom: 10, alignItems: 'flex-start' }}>
-              <h3 className="discipline-title" style={{ fontSize: '1.1rem', margin: 0 }}>
-                <Link href={`/${locale}/directory/${p.slug}`}>{p.name}</Link>
-              </h3>
-              <button
-                onClick={() => remove(p.id)}
-                className="icon-button"
-                style={{ width: 30, height: 30 }}
-                aria-label={isAr ? 'إزالة' : 'Remove'}
-              >
-                <Trash2 size={13} />
-              </button>
+          <article key={p.id} className="data-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div>
+              <div className="data-card-cover" style={{ height: 110 }}>
+                <img
+                  src={producerCovers[p.slug] || '/images/hero-oud-chip.svg'}
+                  alt={p.name}
+                />
+                <div className="data-card-cover-overlay" />
+              </div>
+              <div className="row-between" style={{ marginBottom: 8, alignItems: 'flex-start' }}>
+                <h3 className="data-card-name" style={{ fontSize: '1.05rem', margin: 0 }}>
+                  <Link href={`/${locale}/directory/${p.slug}`}>{p.name}</Link>
+                </h3>
+                <button
+                  onClick={() => remove(p.id)}
+                  className="icon-button"
+                  style={{ width: 28, height: 28 }}
+                  aria-label={isAr ? 'إزالة' : 'Remove'}
+                >
+                  <Trash2 size={13} />
+                </button>
+              </div>
+
+              <div className="biz-location" style={{ marginBottom: 10 }}>
+                <MapPin size={11} />
+                {p.city ? `${p.city}, ` : ''}{p.country_name}
+              </div>
+
+              {p.product_families && p.product_families.length > 0 && (
+                <div className="biz-tags" style={{ marginBottom: 12 }}>
+                  {p.product_families.slice(0, 3).map((f) => (
+                    <span key={f} className="chip" style={{ fontSize: '0.7rem' }}>{f}</span>
+                  ))}
+                </div>
+              )}
+
+              {p.minimum_order_quantity && (
+                <p className="meta" style={{ textTransform: 'none', letterSpacing: '0.02em', marginBottom: 14 }}>
+                  {isAr ? 'الحد الأدنى' : 'MOQ'}: {p.minimum_order_quantity}
+                </p>
+              )}
             </div>
 
-            <p className="biz-location">
-              <MapPin size={11} />
-              {p.city ? `${p.city}, ` : ''}{p.country_name}
-            </p>
-
-            {p.product_families && p.product_families.length > 0 && (
-              <div className="biz-tags">
-                {p.product_families.slice(0, 3).map((f) => (
-                  <span key={f} className="chip" style={{ fontSize: '0.7rem' }}>{f}</span>
-                ))}
-              </div>
-            )}
-
-            {p.minimum_order_quantity && (
-              <p className="meta" style={{ textTransform: 'none', letterSpacing: '0.02em', marginBottom: 14 }}>
-                MOQ: {p.minimum_order_quantity}
-              </p>
-            )}
-
-            <div className="cluster" style={{ gap: 8 }}>
+            <div className="cluster" style={{ gap: 8, marginTop: 14, paddingTop: 12, borderTop: '1px solid var(--line)' }}>
               <Link href={`/${locale}/directory/${p.slug}`} className="btn btn-outline btn-sm">
                 {isAr ? 'الملف' : 'Profile'}
               </Link>
-              <Link href={`/${locale}/rfq?supplier=${p.slug}`} className="btn btn-primary btn-sm">
-                {isAr ? 'طلب تسعير' : 'Request quote'}
-                <ArrowRight size={13} />
+              <Link href={`/${locale}/rfq?supplier=${p.slug}`} className="btn btn-primary btn-sm" style={{ gap: 5 }}>
+                <span>{isAr ? 'طلب تسعير' : 'Request quote'}</span>
+                <ArrowRight size={12} className="icon-dir-flip" />
               </Link>
             </div>
           </article>

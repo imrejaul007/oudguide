@@ -24,7 +24,7 @@ import { SITE_URL } from '@/lib/metadata';
 import { editorialCopy } from '@/lib/copy/policy';
 import { pick } from '@/lib/copy/policy';
 import { resolveSources } from '@/data/articles/sources';
-import { ArrowRight, FileText, ShieldCheck, ExternalLink } from 'lucide-react';
+import { ArrowRight, FileText, ShieldCheck, ExternalLink, BookOpenCheck, CheckCircle2, Clock } from 'lucide-react';
 
 /**
  * The guide renderer.
@@ -164,43 +164,36 @@ function ReviewedArticle({
         ))}
       </nav>
 
-      <header style={{ marginBottom: 36 }}>
-        <div className="cluster" style={{ gap: 8, marginBottom: 18 }}>
+      <div className="editorial-hero-card">
+        <div className="cluster" style={{ gap: 8, marginBottom: 16 }}>
           {isHub ? (
             <span className="badge badge-emerald">
-              {isAr ? 'فهرس قسم' : 'Section index'}
+              <BookOpenCheck size={11} />
+              {isAr ? 'فهرس قسم رئيسي' : 'Curated Section Hub'}
             </span>
           ) : (
             <span className="badge badge-emerald">
-              {isAr ? 'مقال مُراجَع' : 'Reviewed article'}
+              <CheckCircle2 size={11} />
+              {isAr ? 'مقال تحريري مُراجَع' : 'Reviewed Editorial Guide'}
             </span>
           )}
           <span className="badge badge-locked">
-            {isAr ? `مراجعة ${article.reviewedOn}` : `Reviewed ${article.reviewedOn}`}
+            <Clock size={11} />
+            {isAr ? `آخر تدقيق ${article.reviewedOn}` : `Audited ${article.reviewedOn}`}
           </span>
         </div>
 
-        <h1 style={{ marginBottom: 18, maxWidth: '22ch' }}>{articleH1(article, locale)}</h1>
-        <p className="lede">{articleDirectAnswer(article, locale)}</p>
-      </header>
+        <h1 style={{ marginBottom: 14, color: 'var(--ink)' }}>{articleH1(article, locale)}</h1>
+        <p className="lede" style={{ margin: 0 }}>{articleSummary(article, locale)}</p>
+      </div>
 
-      {/* THE ANSWER — the paragraph that exists to answer the question */}
-      <div
-        style={{
-          background: 'var(--bg-eggshell)',
-          border: '1px solid var(--line)',
-          borderInlineStart: '2px solid var(--green-600)',
-          borderRadius: 6,
-          padding: '24px 28px',
-          marginBottom: 44,
-        }}
-      >
-        <h3 style={{ marginBottom: 10 }}>
-          {isAr ? 'الجواب المباشر' : 'The direct answer'}
+      {/* THE DIRECT ANSWER — clear authoritative summary */}
+      <div className="direct-answer-box">
+        <h3>
+          <CheckCircle2 size={17} style={{ color: 'var(--green-700)' }} />
+          <span>{isAr ? 'الجواب المباشر والملخص التنفيذي' : 'Direct Answer & Executive Summary'}</span>
         </h3>
-        <p className="text-body" style={{ margin: 0 }}>
-          {articleDirectAnswer(article, locale)}
-        </p>
+        <p>{articleDirectAnswer(article, locale)}</p>
       </div>
 
       {/* HUB CONTENTS — a hub lists the articles beneath it */}
@@ -330,38 +323,40 @@ function ReviewedArticle({
         </p>
       </section>
 
-      {/* SOURCES — with the scope each one covers */}
+      {/* SOURCES — Citation Grid */}
       {sources.length > 0 && (
-        <section style={{ marginTop: 40 }}>
-          <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
-            {isAr ? 'المصادر' : 'Sources'}
-          </span>
-          <ol style={{ paddingInlineStart: '20px', margin: 0 }}>
+        <section style={{ marginTop: 44 }}>
+          <div className="row-between" style={{ marginBottom: 14 }}>
+            <div>
+              <span className="eyebrow" style={{ display: 'block', marginBottom: 4 }}>
+                {isAr ? 'المصادر والوثائق المرجعية' : 'Cited Scientific & Trade Sources'}
+              </span>
+              <h3 style={{ margin: 0, fontSize: '1.2rem', fontFamily: 'var(--font-display)' }}>
+                {isAr ? 'سجل المصادر المحكّمة' : 'Verification Bibliography'}
+              </h3>
+            </div>
+            <span className="badge badge-locked">
+              {sources.length} {isAr ? 'مصادر موثقة' : 'Verified Sources'}
+            </span>
+          </div>
+          <div className="citation-grid">
             {sources.map((source) => (
-              <li key={source.id} style={{ marginBottom: '16px' }}>
-                <a
-                  href={source.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ fontWeight: 600, color: 'var(--green-700)' }}
-                >
-                  {isAr && source.labelAr ? source.labelAr : source.label}
-                  <ExternalLink size={11} style={{ marginInlineStart: 6, verticalAlign: 'middle' }} />
-                </a>
-                <span className="meta" style={{ display: 'block', marginTop: 2, textTransform: 'none' }}>
-                  {source.publisher}
-                  {isAr && source.publisherAr ? ` · ${source.publisherAr}` : ''} ·{' '}
-                  {isAr ? 'تاريخ الاطلاع' : 'retrieved'} {source.retrievedOn}
-                </span>
-                <span
-                  className="text-body"
-                  style={{ display: 'block', marginTop: 4, fontSize: '0.92rem', color: 'var(--ink-soft)' }}
-                >
-                  {isAr && source.scopeAr ? source.scopeAr : source.scope}
-                </span>
-              </li>
+              <div key={source.id} className="citation-card">
+                <div>
+                  <a href={source.url} target="_blank" rel="noopener noreferrer">
+                    <span>{isAr && source.labelAr ? source.labelAr : source.label}</span>
+                    <ExternalLink size={12} style={{ flexShrink: 0 }} />
+                  </a>
+                  <span className="meta" style={{ display: 'block', margin: '6px 0', textTransform: 'none', fontSize: '0.78rem' }}>
+                    {source.publisher} · {isAr ? 'اطلاع' : 'Retrieved'} {source.retrievedOn}
+                  </span>
+                  <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
+                    {isAr && source.scopeAr ? source.scopeAr : source.scope}
+                  </p>
+                </div>
+              </div>
             ))}
-          </ol>
+          </div>
         </section>
       )}
 

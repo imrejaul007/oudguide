@@ -1,4 +1,4 @@
-import { Sparkles, ShieldCheck } from 'lucide-react';
+import { Sparkles, ShieldCheck, Award, Lock, FileSearch } from 'lucide-react';
 import { SourcingAssistant } from '@/components/sourcing/assistant-client';
 import type { Metadata } from 'next';
 import { buildMetadata } from '@/lib/metadata';
@@ -63,6 +63,58 @@ export default async function SourcingPage({
             </p>
           </div>
         </section>
+
+        {/* SOURCING PILLARS — 3 Core Architectural Controls */}
+        <div className="sourcing-pillar-strip">
+          <div className="sourcing-pillar">
+            <div className="sourcing-pillar-icon">
+              <FileSearch size={18} />
+            </div>
+            <div>
+              <h4 style={{ margin: '0 0 4px', fontSize: '0.92rem', color: 'var(--ink)' }}>
+                {isAr ? 'تحقق نباتي وكيميائي' : 'Botanical & Chemical Verification'}
+              </h4>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--ink-muted)', lineHeight: 1.45 }}>
+                {isAr
+                  ? 'التحقق من جنس الأكويلاريا وفحوص الكروماتوغرافيا ومصادقة الغطاس.'
+                  : 'Aquilaria species cross-referencing and laboratory purity standards.'}
+              </p>
+            </div>
+          </div>
+
+          <div className="sourcing-pillar">
+            <div className="sourcing-pillar-icon">
+              <Lock size={18} />
+            </div>
+            <div>
+              <h4 style={{ margin: '0 0 4px', fontSize: '0.92rem', color: 'var(--ink)' }}>
+                {isAr ? 'حجب بيانات الاتصال على الخادم' : 'Server-Side Contact Redaction'}
+              </h4>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--ink-muted)', lineHeight: 1.45 }}>
+                {isAr
+                  ? 'حجب تلقائي لجميع أرقام الهواتف والبريد الإلكتروني على مستوى الخادم.'
+                  : 'Server-side projection redaction before the assistant reads the registry.'}
+              </p>
+            </div>
+          </div>
+
+          <div className="sourcing-pillar">
+            <div className="sourcing-pillar-icon">
+              <Award size={18} />
+            </div>
+            <div>
+              <h4 style={{ margin: '0 0 4px', fontSize: '0.92rem', color: 'var(--ink)' }}>
+                {isAr ? 'ربط تجاري محايد' : 'Neutral Matching Protocol'}
+              </h4>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--ink-muted)', lineHeight: 1.45 }}>
+                {isAr
+                  ? 'لا عمولات وساطة ولا تحيز إعلاني، مع موافقة صريحة بالاسم.'
+                  : 'Zero commission bias, anonymized briefs, and buyer-approved releases.'}
+              </p>
+            </div>
+          </div>
+        </div>
+
 
         <div style={{ marginTop: 40 }}>
           <SourcingAssistant locale={locale} />

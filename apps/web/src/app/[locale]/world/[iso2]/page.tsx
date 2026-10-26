@@ -45,6 +45,12 @@ export async function generateMetadata({
   });
 }
 
+const producerCovers: Record<string, string> = {
+  'al-mutalib-perfumes': '/images/hero-attar-still.svg',
+  'assam-artisan-distillers': '/images/hero-oud-chip.svg',
+  'siam-trat-agarwood-co': '/images/hero-dehn-al-oud.svg',
+};
+
 export default async function CountryDetailPage({
   params,
 }: {
@@ -163,23 +169,32 @@ export default async function CountryDetailPage({
           {businesses.length > 0 ? (
             <div className="grid-2" style={{ gap: 16 }}>
               {businesses.map((b: any) => (
-                <div key={b.id} className="card" style={{ padding: 20 }}>
-                  <div className="row-between" style={{ marginBottom: 8, gap: 8 }}>
-                    <h4 style={{ margin: 0, fontSize: '0.98rem' }}>
-                      <Link href={`/${locale}/directory/${b.slug}`}>{b.name}</Link>
-                    </h4>
-                    {b.contact_unlocked ? (
-                      <span className="badge badge-emerald"><Award size={10} /> {isAr ? 'عضو' : 'Member'}</span>
-                    ) : (
-                      <span className="badge badge-locked"><Lock size={10} /> {isAr ? 'محمي' : 'Protected'}</span>
-                    )}
+                <div key={b.id} className="data-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <div className="data-card-cover" style={{ height: 95 }}>
+                      <img
+                        src={producerCovers[b.slug] || '/images/hero-oud-chip.svg'}
+                        alt={b.name}
+                      />
+                      <div className="data-card-cover-overlay" />
+                    </div>
+                    <div className="row-between" style={{ marginBottom: 8, gap: 8 }}>
+                      <h4 className="data-card-name" style={{ margin: 0, fontSize: '0.98rem' }}>
+                        <Link href={`/${locale}/directory/${b.slug}`}>{b.name}</Link>
+                      </h4>
+                      {b.contact_unlocked ? (
+                        <span className="badge badge-emerald"><Award size={10} /> {isAr ? 'عضو' : 'Member'}</span>
+                      ) : (
+                        <span className="badge badge-locked"><Lock size={10} /> {isAr ? 'محمي' : 'Protected'}</span>
+                      )}
+                    </div>
+                    <div className="biz-location" style={{ marginBottom: 8 }}>
+                      <MapPin size={11} />
+                      {b.city} · {b.category}
+                    </div>
                   </div>
-                  <div className="biz-location" style={{ marginBottom: 8 }}>
-                    <MapPin size={11} />
-                    {b.city} · {b.category}
-                  </div>
-                  <div className="row-between" style={{ gap: 10 }}>
-                    <span style={{ fontSize: '0.76rem', color: 'var(--ink-soft)' }}>
+                  <div className="row-between" style={{ gap: 10, marginTop: 12, paddingTop: 10, borderTop: '1px solid var(--line)' }}>
+                    <span style={{ fontSize: '0.76rem', color: 'var(--ink-muted)' }}>
                       {isAr ? 'الحد الأدنى' : 'MOQ'}: {b.minimum_order_quantity || (isAr ? 'مرونة' : 'Flexible')}
                     </span>
                     <Link href={`/${locale}/directory/${b.slug}`} className="btn btn-outline btn-sm" style={{ padding: '4px 10px', gap: 5 }}>
