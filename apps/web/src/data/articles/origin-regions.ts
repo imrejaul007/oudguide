@@ -414,6 +414,8 @@ const REGION_FACTS: Record<string, RegionFacts> = {
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },
       { slug: 'sourcing/supplier-origin-destination', label: 'Seller location, material origin and buyer destination' },
       { slug: 'buying/choosing-oud-wood', label: 'Choosing an oud wood purchase' },
+    
+      { slug: 'origins/india/mizoram', label: 'Mizoram — Bordering Indian agarwood region', labelAr: 'ميزورام — منطقة عود هندية مجاورة' },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_AGARWOOD_TRADE_2000'],
   },
@@ -439,6 +441,9 @@ const REGION_FACTS: Record<string, RegionFacts> = {
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },
       { slug: 'sourcing/supplier-origin-destination', label: 'Seller location, material origin and buyer destination' },
       { slug: 'buying/choosing-oud-wood', label: 'Choosing an oud wood purchase' },
+    
+      { slug: 'origins/india/tripura', label: 'Tripura — Bordering Indian agarwood region', labelAr: 'تريبورا — منطقة عود هندية مجاورة' },
+      { slug: 'origins/india/meghalaya', label: 'Meghalaya — Bordering Indian agarwood region', labelAr: 'ميغالايا — منطقة عود هندية مجاورة' },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_AGARWOOD_TRADE_2000'],
   },
@@ -589,6 +594,9 @@ const REGION_FACTS: Record<string, RegionFacts> = {
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },
       { slug: 'sourcing/supplier-origin-destination', label: 'Seller location, material origin and buyer destination' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
+    
+      { slug: 'origins/india/nagaland', label: 'Nagaland — Northeast Indian agarwood region', labelAr: 'ناغالاند — منطقة عود في شمال شرق الهند' },
+      { slug: 'origins/india/mizoram', label: 'Mizoram — Northeast Indian agarwood region', labelAr: 'ميزورام — منطقة عود في شمال شرق الهند' },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_AGARWOOD_TRADE_2000'],
   },
@@ -614,6 +622,9 @@ const REGION_FACTS: Record<string, RegionFacts> = {
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },
       { slug: 'sourcing/supplier-origin-destination', label: 'Seller location, material origin and buyer destination' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
+    
+      { slug: 'origins/india/assam', label: 'Assam — Northeast Indian agarwood region', labelAr: 'أسام — منطقة عود في شمال شرق الهند' },
+      { slug: 'origins/india/tripura', label: 'Tripura — Northeast Indian agarwood region', labelAr: 'تريبورا — منطقة عود في شمال شرق الهند' },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_AGARWOOD_TRADE_2000'],
   },
@@ -639,6 +650,9 @@ const REGION_FACTS: Record<string, RegionFacts> = {
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },
       { slug: 'sourcing/supplier-origin-destination', label: 'Seller location, material origin and buyer destination' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
+    
+      { slug: 'origins/india/manipur', label: 'Manipur — Northeast Indian agarwood region', labelAr: 'مانيبور — منطقة عود في شمال شرق الهند' },
+      { slug: 'origins/india/tripura', label: 'Tripura — Northeast Indian agarwood region', labelAr: 'تريبورا — منطقة عود في شمال شرق الهند' },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_AGARWOOD_TRADE_2000'],
   },
@@ -664,6 +678,9 @@ const REGION_FACTS: Record<string, RegionFacts> = {
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },
       { slug: 'sourcing/supplier-origin-destination', label: 'Seller location, material origin and buyer destination' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
+    
+      { slug: 'origins/india/manipur', label: 'Manipur — Northeast Indian agarwood region', labelAr: 'مانيبور — منطقة عود في شمال شرق الهند' },
+      { slug: 'origins/india/assam', label: 'Assam — Northeast Indian agarwood region', labelAr: 'أسام — منطقة عود في شمال شرق الهند' },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_AGARWOOD_TRADE_2000'],
   },
@@ -689,6 +706,9 @@ const REGION_FACTS: Record<string, RegionFacts> = {
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },
       { slug: 'sourcing/supplier-origin-destination', label: 'Seller location, material origin and buyer destination' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
+    
+      { slug: 'origins/india/meghalaya', label: 'Meghalaya — Northeast Indian agarwood region', labelAr: 'ميغالايا — منطقة عود في شمال شرق الهند' },
+      { slug: 'origins/bangladesh/sylhet', label: 'Sylhet — Bordering Surma valley agarwood division', labelAr: 'سيلهيت — إقليم عود مجاور في وادي سورما' },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_AGARWOOD_TRADE_2000'],
   },
@@ -1089,6 +1109,9 @@ const REGION_FACTS: Record<string, RegionFacts> = {
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },
       { slug: 'sourcing/supplier-origin-destination', label: 'Seller location, material origin and buyer destination' },
       { slug: 'trade/document-review-limits', label: 'What reviewing a document can establish' },
+    
+      { slug: 'origins/india/nagaland', label: 'Nagaland — Bordering Indian agarwood region', labelAr: 'ناغالاند — منطقة عود هندية مجاورة' },
+      { slug: 'origins/india/manipur', label: 'Manipur — Bordering Indian agarwood region', labelAr: 'مانيبور — منطقة عود هندية مجاورة' },
     ],
     sourceIds: ['ITTO_AGARWOOD_REVIEW', 'TRAFFIC_AGARWOOD_TRADE_2000', 'CITES_APPENDICES'],
   },

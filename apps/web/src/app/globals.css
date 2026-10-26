@@ -4590,3 +4590,143 @@ a.btn-crimson {
     align-items: flex-start;
   }
 }
+
+
+/* ==========================================================================
+   Section 28: Tradeling & Qogita B2B Hero Widget & Category Navigation
+   ========================================================================== */
+
+/* Modern Qogita-Style Category Pills */
+.qogita-category-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0 16px;
+  margin-bottom: 24px;
+  scrollbar-width: none;
+}
+.qogita-category-strip::-webkit-scrollbar {
+  display: none;
+}
+.qogita-category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid var(--line-strong);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: all 0.18s ease;
+}
+.qogita-category-pill:hover {
+  background: var(--green-950);
+  color: #ffffff;
+  border-color: var(--green-950);
+  transform: translateY(-1px);
+}
+
+/* Tradeling Quick RFQ Widget */
+.tradeling-rfq-widget {
+  background: #ffffff;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  padding: clamp(20px, 3vw, 28px);
+  box-shadow: var(--shadow-xl);
+  text-align: start;
+  position: relative;
+  overflow: hidden;
+}
+.tradeling-rfq-widget::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green-700) 0%, var(--brass) 100%);
+}
+.tradeling-rfq-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.tradeling-rfq-badge-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--green-50);
+  border: 1px solid var(--green-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-700);
+}
+.tradeling-rfq-head-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--green-950);
+  font-family: var(--font-sans);
+}
+.tradeling-rfq-subtitle {
+  font-size: 0.84rem;
+  color: var(--ink-muted);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+.tradeling-rfq-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.tradeling-rfq-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tradeling-rfq-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+.tradeling-rfq-row {
+  display: flex;
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .tradeling-rfq-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.tradeling-rfq-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 20px;
+}
+.tradeling-rfq-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 0.76rem;
+  color: var(--ink-muted);
+  flex-wrap: wrap;
+  gap: 8px;
+}

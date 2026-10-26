@@ -5,7 +5,9 @@ import { seed } from '@/lib/data';
 import { buildMetadata } from '@/lib/metadata';
 import { editorialCopy, pick } from '@/lib/copy/policy';
 import { resolvePublishedPath, publishedLabel } from '@/lib/route-resolver';
-import { MapPin, Info, BookOpen, Award, Lock, FileText, ArrowRight } from 'lucide-react';
+import { getArticle } from '@/lib/articles';
+import { countrySlugForCode } from '@/lib/country-registry';
+import { MapPin, Info, BookOpen, Award, Lock, FileText, ArrowRight, Globe } from 'lucide-react';
 
 /**
  * Per-territory metadata.
@@ -87,6 +89,87 @@ export default async function CountryDetailPage({
       return { href: target, label: publishedLabel(r.path, locale) };
     })
     .filter((r: any): r is { href: string; label: string } => Boolean(r && r.label));
+
+  /**
+   * The "On this territory" block.
+   *
+   * The related-brief list above is built from the manifest, which is
+   * a planning register: it describes routes that may not be published
+   * editorial articles. This block is the deterministic counterpart —
+   * it names the pages that actually exist for THIS territory, so a
+   * reader who lands on a territory page has somewhere to go next.
+   *
+   * Three kinds of target, in the order a buyer would want them:
+   *
+   *   1. The country buying guide (`buying/in/<country>`) — what to
+   *      check when buying in this market.
+   *   2. The origin-country article (`origins/<country>`) — when the
+   *      territory is also a producing country.
+   *   3. The two directory filters — the wholesalers that handle
+   *      material from this country, and the wholesalers that serve
+   *      it as a destination.
+   *
+   * Every candidate goes through `resolvePublishedPath`, and a null
+   * result drops the link. The resolver is the site's no-broken-links
+   * rule: the block can only ever emit hrefs the site can serve.
+   *
+   * The block is capped at four links so that it stays a strip rather
+   * than becoming a second index on the page.
+   */
+  const countrySlug = countrySlugForCode(country.iso2) ?? country.proposed_slug;
+
+  const territoryLinks: { href: string; label: string; labelAr?: string }[] = [];
+
+  // 1. The country buying guide.
+  const buyingArticle = getArticle(`buying/in/${countrySlug}`);
+  if (buyingArticle) {
+    const href = resolvePublishedPath(`/${locale}/guides/buying/in/${countrySlug}`, locale);
+    if (href) {
+      territoryLinks.push({
+        href,
+        label: buyingArticle.title,
+        labelAr: buyingArticle.titleAr,
+      });
+    }
+  }
+
+  // 2. The origin-country article, when this territory produces oud.
+  const originArticle = getArticle(`origins/${countrySlug}`);
+  if (originArticle) {
+    const href = resolvePublishedPath(`/${locale}/guides/origins/${countrySlug}`, locale);
+    if (href) {
+      territoryLinks.push({
+        href,
+        label: originArticle.title,
+        labelAr: originArticle.titleAr,
+      });
+    }
+  }
+
+  // 3. The two directory filters. The country NAME slug is what the
+  // published filter paths carry — the filter list on the directory
+  // page derives its slugs from the registry the same way.
+  const directoryTargets: { path: string; en: string; ar: string }[] = [
+    {
+      path: `/${locale}/directory/wholesalers/by-origin/${countrySlug}`,
+      en: `Wholesalers handling ${country.english_seed} material`,
+      ar: `موردو الجملة الذين يتعاملون بمادة ${country.arabic_seed}`,
+    },
+    {
+      path: `/${locale}/directory/wholesalers/serving/${countrySlug}`,
+      en: `Wholesalers serving ${country.english_seed}`,
+      ar: `موردو الجملة الذين يخدمون ${country.arabic_seed}`,
+    },
+  ];
+
+  for (const target of directoryTargets) {
+    const href = resolvePublishedPath(target.path, locale);
+    if (href) {
+      territoryLinks.push({ href, label: target.en, labelAr: target.ar });
+    }
+  }
+
+  const territoryBlock = territoryLinks.slice(0, 4);
 
   return (
     <div className="section">
@@ -230,6 +313,23 @@ export default async function CountryDetailPage({
               {relatedRoutes.map((r) => (
                 <li key={r.href}>
                   <Link href={r.href}>{r.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* ON THIS TERRITORY — the deterministic outbound block */}
+        {territoryBlock.length > 0 && (
+          <div className="card-frame" style={{ padding: 28, marginBottom: 32 }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 500, margin: '0 0 14px', display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Globe size={15} style={{ color: 'var(--green-600)' }} />
+              {isAr ? 'في هذا الإقليم' : 'On this territory'}
+            </h3>
+            <ul style={{ paddingInlineStart: '20px', margin: 0, fontSize: '0.9rem', lineHeight: 1.7 }}>
+              {territoryBlock.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href}>{isAr && link.labelAr ? link.labelAr : link.label}</Link>
                 </li>
               ))}
             </ul>

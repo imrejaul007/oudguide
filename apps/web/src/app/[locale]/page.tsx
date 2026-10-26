@@ -11,6 +11,7 @@ import {
 } from '@/lib/articles';
 import { HeroSearch } from '@/components/home/hero-search';
 import { MarketplaceExplorer } from '@/components/home/marketplace-explorer';
+import { HeroQuickRfq } from '@/components/home/hero-quick-rfq';
 import { BusinessCard } from '@/components/business/business-card';
 import {
   List,
@@ -27,6 +28,10 @@ import {
   Award,
   CheckCircle2,
   MapPin,
+  Flame,
+  FlaskConical,
+  TreePine,
+  Building2,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { buildMetadata, SITE_URL } from '@/lib/metadata';
@@ -210,6 +215,33 @@ export default async function HomePage({
                   : 'Documented distillers, reviewed botanical references, territory registers, and a neutral matching protocol engineered for wholesale procurement.'}
               </p>
 
+              {/* Qogita-Style Marketplace Category Pills */}
+              <div className="qogita-category-strip">
+                <Link href={`/${locale}/products/oud-wood`} className="qogita-category-pill">
+                  <TreePine size={14} style={{ color: "var(--green-700)" }} />
+                  <span>{isAr ? 'خشب وغطاس' : 'Raw Heartwood'}</span>
+                </Link>
+                <Link href={`/${locale}/products/dehn-al-oud`} className="qogita-category-pill">
+                  <FlaskConical size={14} style={{ color: "var(--green-700)" }} />
+                  <span>{isAr ? 'دهن عود نقي' : 'Pure Dehn Al Oud'}</span>
+                </Link>
+                <Link href={`/${locale}/products/agarwood-chips`} className="qogita-category-pill">
+                  <Flame size={14} style={{ color: "var(--brass)" }} />
+                  <span>{isAr ? 'رقائق بخور بري' : 'Incense Chips'}</span>
+                </Link>
+                <Link href={`/${locale}/products/traditional-attars`} className="qogita-category-pill">
+                  <Sparkles size={14} style={{ color: "var(--brass)" }} />
+                  <span>{isAr ? 'عطور تراثية' : 'Heritage Attars'}</span>
+                </Link>
+                <Link href={`/${locale}/products/private-label`} className="qogita-category-pill">
+                  <Package size={14} style={{ color: "var(--green-700)" }} />
+                  <span>{isAr ? 'تصنيع خاص' : 'Private Label'}</span>
+                </Link>
+                <Link href={`/${locale}/directory`} className="qogita-category-pill">
+                  <Building2 size={14} style={{ color: "var(--green-700)" }} />
+                  <span>{isAr ? 'المصانع المعتمدة' : 'Verified Distillers'}</span>
+                </Link>
+              </div>
               <div style={{ maxWidth: 640, marginBottom: 24 }}>
                 <HeroSearch locale={locale} />
               </div>
@@ -252,59 +284,9 @@ export default async function HomePage({
               </div>
             </div>
 
-            {/* Right Column: Live Featured Supplier Spotlight Dossier */}
-            <div className="hero-spotlight-dossier">
-              <div className="hero-spotlight-cover">
-                <img src="/images/hero-attar-still.svg" alt="Al Mutalib Perfumes" />
-                <div className="hero-spotlight-cover-overlay" />
-                <div className="cluster" style={{ position: 'absolute', top: 14, insetInlineStart: 14, insetInlineEnd: 14, justifyContent: 'space-between' }}>
-                  <span className="badge badge-glass-light">
-                    <MapPin size={11} />
-                    Dubai, UAE
-                  </span>
-                  <span className="badge badge-gold">
-                    <Award size={11} />
-                    {isAr ? 'عضو سنوي معتمد' : 'Verified Member'}
-                  </span>
-                </div>
-                <div style={{ position: 'absolute', bottom: 12, insetInlineStart: 16, color: '#ffffff' }}>
-                  <span className="meta" style={{ color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', fontSize: '0.65rem' }}>
-                    {isAr ? 'ملف مورد مميز' : 'Featured Supplier Dossier'}
-                  </span>
-                  <h3 style={{ margin: '2px 0 0', fontSize: '1.2rem', color: '#ffffff' }}>
-                    Al Mutalib Perfumes
-                  </h3>
-                </div>
-              </div>
-
-              <div className="hero-spotlight-body">
-                <p style={{ margin: '0 0 14px', fontSize: '0.85rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>
-                  {isAr
-                    ? 'مقطر ومورد جملة في سوق ديرة للعطور، متخصص في دهن العود الهندي والكمبودي المعتق والخلطات الملكية.'
-                    : 'Distiller and wholesale partner based in Deira Perfume Souk, specialising in rare aged Hindi and Cambodian oud oils.'}
-                </p>
-
-                <div className="grid-2" style={{ gap: 10, marginBottom: 18, background: 'var(--bg-eggshell)', padding: '10px 14px', borderRadius: 6 }}>
-                  <div>
-                    <span className="data-card-fact-label">{isAr ? 'الحد الأدنى' : 'Minimum Order'}</span>
-                    <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--ink)' }}>1 Tola / 100g</span>
-                  </div>
-                  <div>
-                    <span className="data-card-fact-label">{isAr ? 'العينات' : 'Samples'}</span>
-                    <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--green-700)' }}>{isAr ? 'متاحة للفحص' : 'Available'}</span>
-                  </div>
-                </div>
-
-                <div className="row-between" style={{ gap: 8 }}>
-                  <Link href={`/${locale}/directory/al-mutalib-perfumes`} className="btn btn-outline btn-sm">
-                    {isAr ? 'الملف الكامل' : 'Inspect Profile'}
-                  </Link>
-                  <Link href={`/${locale}/rfq?supplier=al-mutalib-perfumes`} className="btn btn-primary btn-sm" style={{ gap: 6 }}>
-                    <span>{isAr ? 'طلب تسعير مباشر' : 'Request Introduction'}</span>
-                    <ArrowRight size={12} className="icon-dir-flip" />
-                  </Link>
-                </div>
-              </div>
+            {/* Right Column: Tradeling-Style Quick RFQ Engine */}
+            <div>
+              <HeroQuickRfq locale={locale} isAr={isAr} />
             </div>
           </div>
         </div>
