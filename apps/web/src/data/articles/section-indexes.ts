@@ -114,6 +114,8 @@ export const sectionIndexArticles: Article[] = [
       { slug: 'glossary/gaharu', label: 'Gaharu', labelAr: 'gaharu', blurb: 'The Malay and Indonesian word for agarwood, and what the Indonesian trade uses it for.', blurbAr: 'الكلمة الملايوية والإندونيسية للعود، وما تستعملها التجارة الإندونيسية له.' },
       { slug: 'glossary/oud-accord', label: 'Oud Accord', labelAr: 'أوز العود', blurb: 'A manufactured fragrance material, and why it must not be described as oud.', blurbAr: 'مادة عطرية مصنّعة، ولماذا لا يجوز وصفها بأنها عود.' },
       { slug: 'glossary/jinko', label: 'Jinko', labelAr: 'جينكو', blurb: 'The Japanese and Chinese trade word for agarwood, and the grade systems built around it.', blurbAr: 'الكلمة اليابانية والصينية للعود، وأنظمة الدرجات المبنية حولها.' },
+      { slug: 'glossary/murruxi', label: 'Murruxi (Murūki)', labelAr: 'مروكي', blurb: 'A Gulf market name for a quality tier, often confused with Morocco; what it refers to and what it does not establish.', blurbAr: 'لقب تسويقي خليجي لمرتبة جودة، يُخلط أحياناً بالمغرب؛ ما يشير إليه وما لا يثبته.' },
+      { slug: 'glossary/kashmuri', label: 'Kashmuri (Kashmiri)', labelAr: 'كشميري', blurb: 'A perfumery tier and scent character, not a botanical species or grower region; what the label establishes.', blurbAr: 'مرتبة عطرية وطابع رائحة، وليس نوعاً نباتياً أو منطقة إنتاج؛ ما يثبته الوسم.' },
     ],
   },
 

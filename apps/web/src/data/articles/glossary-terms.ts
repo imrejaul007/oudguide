@@ -1296,4 +1296,90 @@ termEntry({
     ],
     sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
   }),
+  termEntry({
+    slug: 'glossary/murruxi',
+    title: 'Murruxi (Murūki): the market name, not a grower region',
+    titleAr: '«مرُوكي» أو «مرُوكي»: الاسم التسويقي وليس منطقة إنتاج',
+    summary:
+      'What the spelling records, where the market name is attested, the reading that confuses it with Morocco, and what the name does not establish about the material behind it.',
+    summaryAr:
+      'ما يثبته الإملاء، وأين وُجد الاسم التسويقي، والقراءة التي تحشره مع المغرب، وما لا يثبته الاسم عن المادة التي يقف وراءه.',
+    directAnswer:
+      '«Murruxi», also written Murūki, Marouki, or المرويكي, is not a species, not a grower region, and not a botanically defined material. It is a trade name: a category that Gulf retail and wholesale price lists use to describe a quality tier of agarwood that is frequently sold as a blend or a mixed-origin lot. No source establishes a single botanical origin, a single harvest year, or a resin percentage behind the name, which is why a label on a bottle or a chip tray is a seller\'s classification, not a fact. A buyer who sees the name should press it against the questions this site sets for any grade label: what is the stated origin, what is the stated form, and what paperwork proves each.',
+    directAnswerAr:
+      '«مِرُوكِي»، وتُكتب أحياناً ماروخي أو المرويكي، ليست نوعاً علمياً ولا منطقة إنتاج ولا مادة محددة نباتياً. إنها لقب تسويقي: فئة تستخدمها قوائم التجزئة والجملة الخليجية لوصف مرحلة جودة في تجارة العود، وتُباع عادة خليطاً أو دفعة متعددة المصادر. ولا تثبت أيّة جهة مصدره النباتي الوحيد ولا سنة جنيّ محددة ولا نسبة راتنج ثابتة، ومن ثمّ فإن الوسم على الزجاجة أو صينية الشرائح تصنيف البائع لا حقيقة يجب التحقق من منشأها المزعوم وشكلها المزعوم ووثائقها.',
+    spelling:
+      'The name circulates in the Gulf in Arabic as المرويكي or مرُوكي, and in English transliteration as Murruxi, Murūki, Marouki, or even Moroccan oud. The Latin spelling is not stable: one retailer will print the Arabic word, another the Latinised Murruxi, and a third will treat it as a descriptor of Moroccan origin. The instability is part of the point. The name has no fixed reference, which is why it is useful to the trade: it names a tier, and a tier is a marketing slot, not a botanical one.',
+    spellingAr:
+      'ينتشر اللقب في الخليج عربياً باسم المرويكي أو مرُوكي، ولاتينياً بمرّوكسي أو موروخي، بل حتى بوصف أنه «عود مغربي». الإملاء اللاتيني غير مستقر: يبعّته قائمة عربية، وترحّمه قائمة أخرى، وتعتبره ثالثة وصفاً للمغربية. عدم الاستقرار هو جوهر المسألة: الاسم لا مرجع ثابت له، ولهذا يفيد التجارة؛ لأنه يسمّي مرحلة، والمرحلة خانة تسويقية لا خانة نباتية.',
+    usage:
+      'In the Gulf market lists recorded in this site\'s own price baseline, the spelling is used as a category a seller can put on a tray of chips, a bottle of attar, or a wholesale box, alongside the grade names such as Seufi or VIP. It is associated in the market with a sweet, honeyed, resin-dense lot; the sweet profile is a sensory description, not a definition, and a different lot can carry the same name and read differently on the nose. The spelling also appears on retail pages as an origin name, where it is being used to mean a particular place, and there the name is stretched past its documented use as a tier.',
+    usageAr:
+      'في قوائم السوق الخليجية المسجّلة في خطّ الأساس الخاص بالموقع، يُستعمل اللقب خانة يضعها البائع على صينية شرائح أو زجاجة مطارية أو كرتون جملة، في جملة مع أسماء المراتب مثل سعوفي وفي بي. ويُوصف في السوق بطابع حلو عسلي كثيف الراتنج؛ الوصف الحسي وصف ليس تعريفا، وقد يحمل لوط آخر الاسم نفسه ويختلف على الشمّ. كما يظهر اللقب على صفحات تجزئة اسماً لمنطقة، فيكون مددّا على استعماله الموثّق كمرحلة.',
+    examples:
+      'Two examples show the name in the market. A Gulf wholesaler lists a Murruxi oil at a per-tola price between the Seufi and the VIP tiers and describes it as sweet and smoky; the listing does not record the source country or the harvest vintage. A retail page in a GCC market calls a bundle of chips Murruxi and, in the same text, describes it as «from the forests of Morocco». The second example is the one to flag: Morocco is not a range state for any agarwood-producing genus. That is why the name, when it is used as a place, is a claim that needs the same paperwork check as any other origin claim.',
+    examplesAr:
+      'مثالا يوضّحان موقع الاسم في السوق. يدرج موزّع خليجي في قايمة أسعاره زيت مرُوكي بسعر التولة في مرحلة بين سعوفي وفي بي، وبيانه: حلو ودُخاني؛ ولا يسجّل المصدر ولا سنة الجنيّ. وصف تجزئة خليجي يسمّي رزمة شرائح بمسمّى مرُوكي ثم يصفها في النص نفسه بأنها «من غابات المغرب». المثال الثاني هو الواجب التنبيه إليه: المغرب ليس دولة نطاقاً لأيّ جنس منتِج للعود، فإذا استُخدم الاسم اسماً لمكان كان ادعاءً يتطلّب نفس فحص الأوراق الذي تتطلبه كل ادعاءات المنشأ.',
+    alternatives:
+      'The name invites three readings. The trade reading is the one this site documents: a Gulf market name for a quality tier, usually sold as a blended or mixed-origin lot. A second reading treats it as a botanical origin, Morocco; that reading is not supported by the documented range of the genus, so a listing that offers the name that way is asserting a provenance the name does not carry. A third reading stretches the name to mean a scent profile, sweet and honeyed; the profile is a description of many lots, not a marker of any lot, so the name, read as scent, is a promise about character rather than a fact about a sample.',
+    alternativesAr:
+      'الاسم يستدعي ثلاث قراءات. القراءة الأولى التي يوثقها الموقع: لقب سوق خليجي لمرحلة جودة، يُباع غالباً خليطاً أو من عدة مصادر. والقراءة الثانية: أنه اسم منطقة، المغرب؛ وهي قراءة لا تدعمها مدوّنة نطاق الجنسين، فإذا قدّمت قائمة الاسم بهذه الطريقة فهي تدّعي منشأً لا يحمله اللقب. والقراءة الثالثة: أنه وصف حسي، حلو عسلي؛ والوصف صفات كثيرة لوطات لا علامة لوط بعينه، فالاسم مقروءاً كرائح وعد بشخصية لا حقيقة عن عيّنة.',
+    doesNotProve:
+      'The name does not establish the species, the country of harvest, the harvest year, the resin density, or the price. It does not establish that a lot labeled Murruxi is from Morocco, and it does not establish that two lots with the same label came from the same source or that one is finer. The name is a marketing tier; the tier does not clear the material.',
+    doesNotProveAr:
+      'لا يثبته الاسم النوع ولا بلد الجنيّ ولا سنة الجنيّ ولا كثافة الراتنج ولا السعر. ولا يثبت أن لوطاً موصوماً به من المغرب، ولا أن لوطين يحملان الاسم نفسه من مصدر واحد، ولا أن أحدهما أرقى. الاسم خانة تسويقية، والخانة لا تُنقّي المادة.',
+    limitations:
+      'This entry documents the name as it circulates in the Gulf market lists and the market names in a GCC retail text; it does not record a botanical origin, a species, a harvest date, or a resin figure. The trade name is a category, and this entry states what the category does not prove rather than assigning it a meaning.',
+    limitationsAr:
+      'توثّق هذه المدخلة الاسم كما يجري في قوائم أسعار الخليج وأسماء سوقية في نصوص تجزئة خليجية؛ ولا توثق منشأً نباتياً ولا نوعاً ولا تاريخ جنيّ ولا رقماً راتنجياً. الاسم التسويقي خانة، وهذه المدخلة تصف ما لا تثبته الخانة لا أن تعيّن لها معنى.',
+    related: [
+      { slug: 'quality/gulf-market-grade-labels', label: 'Gulf-market oud grading vocabulary' },
+      { slug: 'quality/grade-label-dataset', label: 'The OudGuide grade-label dataset' },
+      { slug: 'quality/fraud-identification', label: 'Oud fraud and counterfeit identification' },
+    ],
+    sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
+  }),
+  termEntry({
+    slug: 'glossary/kashmuri',
+    title: 'Kashmuri (Kashmiri): the perfumery accord, not a species',
+    titleAr: '«كشميري»: الوصف العطري وليس نوعاً علمياً',
+    summary:
+      'Why Kashmiri oud is a perfumery term for a scent character rather than a plant from the Kashmir valley, and what the name does and does not establish.',
+    summaryAr:
+      'لماذا عود كشميري لقب عطري لصفة رائحة وليس نوعاً نبتياً من وادي كشمير، وما يثبته الاسم وما لا يثبته.',
+    directAnswer:
+      '«Kashmiri» or «Kashmuri» oud is not the name of a species, not a name for wood harvested in the Kashmir valley, and not a documented botanical origin. In the perfumery and attar trade the name refers to a scent character: a sweet, often honeyed or incense-adjacent profile, usually an attar or a blended attar, that is sold under the Kashmiri label. The name is a category of odor, not a material; a bottle labeled Kashmiri may contain any oil and any origin, and the label, like other sell-through vocabulary in the trade, does not establish what is in the bottle. A buyer who wants to know what the name refers to should treat it the way this site treats grade labels: press the seller for origin, form, and documentation.',
+    directAnswerAr:
+      '«كشميري» أو «كشميري» ليس اسم نوع علمي، ولا اسماً لخشب جُني في وادي كشمير، ولا منشأ نباتي موثّق. في تجارة العطور والمطاريات يشير اللقب إلى صفة في الرائحة: طابع حلو غالباً يميل إلى عسلي أو بخور، يُباع غالباً مطارياً أو خليط مطارية على وسم كشميري. اللقب خانة في الريح لا خانة في المادة؛ فالزجاجة الموصومة بالكشميري قد تحتوي أي زيت وأي منشأ، والوسم، كغيره من التسميات التجارية، لا يثبت ما في الزجاجة. المشتري الذي يريد معرفة المرجع يضغط على البائع بالسؤال عن المنشأ والشكل والوثائق، كما تفعل هذه الصفحة مع كل أوصاف جودة.',
+    spelling:
+      'The name circulates in the Gulf and South-Asian attar trade as Kashmiri in English, as kashmuri or كشميري in the Arabic attar catalogues, and in a transliterated form that does not stabilize. The English spelling Kashmiri is the one that carries a place reading: Kashmir, the region. The Arabic spelling is a trade word. Neither spelling is stable, and neither is defined. A catalog of attar tiers in a GCC shop will list Kashmiri next to the other attar tiers, and the reader takes the name as a tier, not as a place, and that is the documented usage.',
+    spellingAr:
+      'ينتشر اللقب في تجارة الخليج وجنوب آسيا للمطاريات، كشميري بالإنجليزية وكشميري بالعربية، وبصورة مُرحَّمة غير مستقرة. الإملاء الإنجليزي يحمل قراءة مكانية: كشمير، المنطقة؛ والإملاء العربي اسم سوق. كلاهما غير مستقر وغير متعريف. قوائم المطاريات في محلات الخليج تحتفي «كشميري» في جملة مع المراحل الأخرى من المطارية، والقارئ يأخذ اللقب مرحلة لا مكاناً، وهذا هو الاستعمال الموثّق.',
+    usage:
+      'In the attar market the name is a tier, the way the grade labels are tiers in the chip trade. A seller offers a Kashmiri attar that is sweet, honeyed, and often compared to a particular incense character; the description is a promise about the scent, not a description of a plant. The word also surfaces on retail pages where it is stretched to mean a place of origin; that reading is a category error, because no source records the Kashmir region as a producing state for the genus. The usage that carries weight is the attar-tier usage, and the place usage is a claim that the tier does not establish.',
+    usageAr:
+      'في سوق المطارية اللقب مرحلة، كما المراحل في تجارة الشرائح. يقدّم البائع مطارة «كشميري» حلو يميل إلى عسلي وغالباً يوصف بوصفه قريب من البخور؛ الوصف وعد بطابع الرائحة لا وصف نبات. والاسم يظهر أيضاً على صفحات تجزئة يمدّدها البائع إلى منطقة إنتاج؛ وهي قراءة غير صائبة، لأن لا جهة سجّلت منطقة كشمير من مواطن إنتاج الجنسين. الاستعمال الذي يملّكه اللقب هو استعمال مرحلة المطارية، وقراءة المكان ادعاء تبيّن الخانة أنها لا تثبته.',
+    examples:
+      'Two examples. A Gulf attar counter lists Kashmiri as one of its tier names, describes the tier as sweet and incense-leaning, and sells it per tola; the listing does not record the origin of the oil, and that is consistent with the name as used in the market. A GCC retail page describes a Kashmiri oud oil as «a premium Kashmiri origin from the Kashmir valley», stretching the name into a place claim; the name, as a tier, does not carry that reading, and the place reading needs paperwork that the name alone does not supply.',
+    examplesAr:
+      'مثالا: عارض مطارية خليجي يدرج «كشميري» بين مراحل المطارية، ويصف المرحلة بأنها حلو يميل إلى البخور، وبيعه بالتولة؛ ولا يسجّل المنشأ، وهذا متسق مع الاستعمال الموثق. وصف تجزئة خليجي يبيّن «زيت عود كشميري فاخر من وادي كشمير»، فيمدّد اللقب إلى ادعاء مكان؛ فمرحلة «كشميري» لا تحمل القراءة المكانية، والقراءة المكانية تتطلّب وثائق لا يسدّها اللقب وحده.',
+    alternatives:
+      'The name has two documented readings and one undocumented one. The attar-tier reading is the one this site records: a tier in the oil market with a sweet, incense-leaning character. The place reading, Kashmir as a producing region, is not a documented usage; it is a claim that needs the same paperwork check as any origin claim. A third reading, Kashmiri as a single plant, is not supported by the documented range of the genus, and it is a misreading of the name.',
+    alternativesAr:
+      'يحمل اللقب قراءتين موثّقتين وقراءة غير موثّقة. قراءة مرحلة المطارية هي الموثّقة هنا: مرحلة في سوق الزيوت بطابع حلو يميل إلى البخور. قراءة المكان، كشمير بوصفها منطقة إنتاج، ليست استعمالاً موثّقا؛ بل ادعاء يتطلّب نفس فحص أوراق المنشأ. والقراءة الثالثة، أن «كشميري» نبات واحد، لا تدعمها مدوّنة نطاق الجنسين، وهي قراءة خاطئة للاسم.',
+    doesNotProve:
+      'The name does not establish the species, the producing region, the oil origin, the harvest year, or the composition of a bottle. It does not establish that a lot sold as Kashmiri came from Kashmir or from any particular country, and it does not establish that the scent character of one bottle is the character of another. It is a tier, and a tier does not clear the material behind it.',
+    doesNotProveAr:
+      'لا يثبت اللقب النوع ولا منطقة الإنتاج ولا أصل الزيت ولا سنة الجنيّ ولا تركيب زجاجة. ولا يثبت أن ما بيع بوصفه «كشميري» من كشمير أو من أي بلد بعينه، ولا يثبت أن طابع زجاجة هو طابع أخرى. اللقب مرحلة، والمرحلة لا تُنقّي ما وراءها من مادة.',
+    limitations:
+      'This entry records the attar-tier usage of the name and states that the place usage is a claim, not a documented origin. It does not assign the name to a species, a producing region, or a resin figure. The limit of the entry is that the market name is a category, and the category does not clear the material behind it.',
+    limitationsAr:
+      'تسجّل هذه المدخلة استعمال «كشميري» مرحلة في المطارية، وتوضّح أن القراءة المكانية ادعاء لا منشأ موثّق. ولا تربط اللقب بنوع علمي ولا منطقة إنتاج ولا رقم راتنج. حدّ المدخلة أن الاسم التسويقي خانة، والخانة لا تُنقّي ما وراها من مادة.',
+    related: [
+      { slug: 'quality/gulf-market-grade-labels', label: 'Gulf-market oud grading vocabulary' },
+      { slug: 'quality/grade-label-dataset', label: 'The OudGuide grade-label dataset' },
+      { slug: 'quality/fraud-identification', label: 'Oud fraud and counterfeit identification' },
+    ],
+    sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
+  }),
 ];

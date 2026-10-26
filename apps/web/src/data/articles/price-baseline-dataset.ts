@@ -126,6 +126,7 @@ export const priceBaselineArticles: Article[] = [
       { slug: 'quality/fraud-identification', label: 'Oud fraud and counterfeit identification' },
       { slug: 'buying/evaluating-an-offer', label: 'Evaluating a questionable offer' },
       { slug: 'quality/assessment-and-testing-limits', label: 'The limit of what testing and documentation establish' },
+      { slug: 'glossary/murruxi', label: 'Murruxi (Murūki): the market name, not a grower region' },
     ],
     parent: 'quality',
   }),
