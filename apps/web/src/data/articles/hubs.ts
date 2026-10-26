@@ -1,4 +1,4 @@
-import type { Article } from './types.ts';
+import type { Article, ArticleRelated } from './types.ts';
 
 /**
  * The editorial hubs.
@@ -44,11 +44,23 @@ interface HubSpec {
   nextSteps: string[];
   nextStepsAr: string[];
   sourceIds: string[];
+  /**
+   * Sibling-hub links. The renderer shows these as a "related reading"
+   * block on the hub page, so a reader of one silo has a first-order
+   * path into a neighbouring silo. Without them the 14 hubs are 14
+   * separate topics to a crawler rather than one coherent entity.
+   * All targets are reviewed hubs, so the content-integrity gate passes.
+   */
+  related?: ArticleRelated[];
 }
 
 const SPECS: HubSpec[] = [
   {
     slug: 'oud-basics',
+    related: [
+      { slug: 'production', label: 'Production', labelAr: 'الإنتاج' },
+      { slug: 'fragrance', label: 'Fragrance', labelAr: 'العطور' },
+    ],
     title: 'Oud Basics',
     titleAr: 'أساسيات العود',
     summary: 'What agarwood is, which trees produce it, and how the material is named and used.',
@@ -97,6 +109,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'quality',
+    related: [
+      { slug: 'production', label: 'Production', labelAr: 'الإنتاج' },
+      { slug: 'trade', label: 'Trade', labelAr: 'التجارة' },
+    ],
     title: 'Quality',
     titleAr: 'الجودة',
     summary: 'How grading claims work, what testing can establish, and where the vocabulary is trade convention.',
@@ -201,6 +217,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'sourcing',
+    related: [
+      { slug: 'buying', label: 'Buying', labelAr: 'الشراء' },
+      { slug: 'trade', label: 'Trade', labelAr: 'التجارة' },
+    ],
     title: 'Sourcing',
     titleAr: 'التوريد',
     summary: 'Wholesale process, sampling, quotations and how supplier introductions work.',
@@ -249,6 +269,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'buying',
+    related: [
+      { slug: 'sourcing', label: 'Sourcing', labelAr: 'التوريد' },
+      { slug: 'quality', label: 'Quality', labelAr: 'الجودة' },
+    ],
     title: 'Buying',
     titleAr: 'الشراء',
     summary: 'Framesworks for choosing and evaluating oud, wood, oil and fragrance.',
@@ -262,6 +286,13 @@ const SPECS: HubSpec[] = [
     scopeAr:
       'لا شيء في هذا القسم توصية ببائع أو سعر أو منشأ بعينه. والأطر عامة عمداً لتُطبَّق على أي عرض.',
     children: [
+      {
+        slug: 'buying/how-to-buy-oud',
+        label: 'How to buy oud: first, which oud you mean',
+        labelAr: 'كيف تشترِي العود: أوّلًا، أيّ عود تقصد',
+        blurb: 'The word names two products — the fragrant resinous wood and the stringed instrument. This page tells you which one you are buying, and, if the fragrance, how to buy it well.',
+        blurbAr: 'تسمّي الكلمة منتجين: الخشب الراتنجي العطري والأداة الوترية. وتبيّن هذه الصفحة أيّهما تشتري، فإن كان العطر، كيف تشتريه على الوجه الصحيح.',
+      },
       {
         slug: 'buying/choosing-oud-wood',
         label: 'Choosing an oud wood purchase',
@@ -575,6 +606,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'production',
+    related: [
+      { slug: 'quality', label: 'Quality', labelAr: 'الجودة' },
+      { slug: 'trade', label: 'Trade', labelAr: 'التجارة' },
+    ],
     title: 'Production',
     titleAr: 'الإنتاج',
     summary: 'Distillation, extraction, yields and processing location.',
@@ -616,6 +651,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'trade',
+    related: [
+      { slug: 'sourcing', label: 'Sourcing', labelAr: 'التوريد' },
+      { slug: 'quality', label: 'Quality', labelAr: 'الجودة' },
+    ],
     title: 'Trade',
     titleAr: 'التجارة',
     summary: 'Conservation status, documentation and shipping.',
@@ -664,6 +703,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'using-oud',
+    related: [
+      { slug: 'products', label: 'Fragrance Product Families', labelAr: 'أصناف المنتجات العطرية' },
+      { slug: 'fragrance', label: 'Fragrance', labelAr: 'العطور' },
+    ],
     title: 'Using Oud',
     titleAr: 'استخدام العود',
     summary: 'Practical use: formats, equipment, application and storage.',
@@ -705,6 +748,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'fragrance',
+    related: [
+      { slug: 'culture', label: 'Culture', labelAr: 'الثقافة' },
+      { slug: 'using-oud', label: 'Using Oud', labelAr: 'استخدام العود' },
+    ],
     title: 'Fragrance',
     titleAr: 'العطور',
     summary: 'Oud in perfumery: notes, concentrations, accords and credits.',
@@ -760,6 +807,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'culture',
+    related: [
+      { slug: 'origins', label: 'Origins', labelAr: 'الأقاليم' },
+      { slug: 'fragrance', label: 'Fragrance', labelAr: 'العطور' },
+    ],
     title: 'Culture',
     titleAr: 'الثقافة',
     summary: 'How oud is used and understood across cultures.',
@@ -794,6 +845,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'origins',
+    related: [
+      { slug: 'comparisons', label: 'Comparisons', labelAr: 'المقارنات' },
+      { slug: 'trade', label: 'Trade', labelAr: 'التجارة' },
+    ],
     title: 'Origins',
     titleAr: 'الأقاليم',
     summary: 'Region-specific material, terminology and trade context.',
@@ -930,6 +985,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'comparisons',
+    related: [
+      { slug: 'origins', label: 'Origins', labelAr: 'الأقاليم' },
+      { slug: 'quality', label: 'Quality', labelAr: 'الجودة' },
+    ],
     title: 'Comparisons',
     titleAr: 'المقارنات',
     summary: 'Side-by-side comparison of origins and their claims.',
@@ -993,6 +1052,10 @@ const SPECS: HubSpec[] = [
   },
   {
     slug: 'collecting',
+    related: [
+      { slug: 'quality', label: 'Quality', labelAr: 'الجودة' },
+      { slug: 'using-oud', label: 'Using Oud', labelAr: 'استخدام العود' },
+    ],
     title: 'Collecting',
     titleAr: 'التجميع',
     summary: 'Documenting and caring for an oud collection.',
@@ -1059,7 +1122,7 @@ export const hubArticles: Article[] = SPECS.map((spec) => ({
   reviewedOn: REVIEWED_ON,
   nextSteps: spec.nextSteps,
   nextStepsAr: spec.nextStepsAr,
-  related: [],
+  related: spec.related ?? [],
   children: spec.children,
   parent: spec.slug === 'oud-basics' ? undefined : 'guides-index',
 }));
