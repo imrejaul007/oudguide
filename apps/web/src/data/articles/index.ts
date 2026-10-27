@@ -29,6 +29,7 @@ import { destinationGuideArticles } from './destination-guides.ts';
 import { glossaryTermArticles } from './glossary-terms.ts';
 import { seoGapPageArticles } from './seo-gap-pages.ts';
 import { priceBaselineArticles } from './price-baseline-dataset.ts';
+import { gradingSystemsReconciliationArticles } from './grading-systems-reconciliation.ts';
 import { oudAuthenticityProtocolArticles } from './oud-authenticity-protocol.ts';
 import { howToBuyOudArticles } from './how-to-buy-oud.ts';
 import { gettingStartedWithOudArticles } from './getting-started-with-oud.ts';
@@ -130,6 +131,7 @@ export const articles: Article[] = [
   ...oudAuthenticityProtocolArticles,
   ...howToBuyOudArticles,
   ...gettingStartedWithOudArticles,
+  ...gradingSystemsReconciliationArticles,
   ...editorialGuideOudBasics,
   ...editorialGuideCulture,
   ...editorialGuideComparisons,

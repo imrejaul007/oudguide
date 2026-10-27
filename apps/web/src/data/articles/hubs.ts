@@ -162,6 +162,13 @@ const SPECS: HubSpec[] = [
         blurbAr: 'البنية العامة لادعاء التقييم، وأي أجزائه قابلة للتحقق.',
       },
       {
+        slug: 'quality/grading-systems-reconciliation',
+        label: 'How the oud grading systems line up',
+        labelAr: 'كيف تتطابق أنظمة تقييم العود',
+        blurb: 'Six systems are six kinds of claim: a page that says which is which, and where two of them are never comparable.',
+        blurbAr: 'ستة أنظمة ستة أنواع من الادعاء: صفحة تبيّن أيّ نوع كلٌّ منها، وأين لا تكون نسختان منها قابلتين للمقارنة قط.',
+      },
+      {
         slug: 'quality/lab-report-reading',
         label: 'How to read the scope of a laboratory report',
         labelAr: 'كيف تقرأ نطاق تقرير مخبري',

@@ -1,4 +1,5 @@
 import { Sparkles, ShieldCheck, Award, Lock, FileSearch } from 'lucide-react';
+import Link from 'next/link';
 import { SourcingAssistant } from '@/components/sourcing/assistant-client';
 import type { Metadata } from 'next';
 import { buildMetadata } from '@/lib/metadata';
@@ -128,6 +129,29 @@ export default async function SourcingPage({
             <p style={{ marginTop: 10, marginBottom: 0 }}>
               {pick(securityClaimCopy.notClaimed, locale)}
             </p>
+          </div>
+        </div>
+
+        {/* COMPLIANCE — surface the trade & conservation documents this flow depends on */}
+        <div style={{ marginTop: 32, paddingTop: 28, borderTop: '1px solid var(--line)' }}>
+          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 500, margin: '0 0 8px', color: 'var(--ink)' }}>
+            {isAr ? 'التوفيق قبل الشراء' : 'Compliance before you buy'}
+          </h4>
+          <p style={{ color: 'var(--ink-soft)', fontSize: '0.9rem', margin: '0 0 16px', maxWidth: 680, lineHeight: 1.7 }}>
+            {isAr
+              ? 'التوريد العودى مسألة قانونية قبل أن تكون تجارية. راجع هذه الوثائق قبل أن تكتشف أي طلب توريد، لأنها تحدد ما يمكن استيراده ومن أين وما تحتاجه الورقة عند العبور.'
+              : 'Agarwood sourcing is a compliance question before it is a commercial one. Read these documents before you file a sourcing brief, because they set what may be imported, from where, and what paperwork a shipment must carry at the border.'}
+          </p>
+          <div className="cluster" style={{ marginTop: 0, gap: 10, flexWrap: 'wrap' }}>
+            <Link href={`/${locale}/guides/trade/agarwood-documentation`} className="btn btn-outline btn-sm">
+              {isAr ? 'وثائق الحماية والتجارة' : 'Conservation & trade documentation'}
+            </Link>
+            <Link href={`/${locale}/guides/trade/cites-import-by-market`} className="btn btn-outline btn-sm">
+              {isAr ? 'استيراد سايتس حسب السوق' : 'CITES import by market'}
+            </Link>
+            <Link href={`/${locale}/guides/trade/document-review-limits`} className="btn btn-outline btn-sm">
+              {isAr ? 'ما تثبته مراجعة وثيقة' : 'What reviewing a document establishes'}
+            </Link>
           </div>
         </div>
       </div>
