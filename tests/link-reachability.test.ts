@@ -100,6 +100,7 @@ const CHROME_NON_ARTICLE_PATHS: string[] = [
   'glossary',
   'guides',
   'how-supplier-matching-works',
+  'market',
   'membership',
   'partners/opportunities',
   'policies',

@@ -21,6 +21,7 @@ export function Footer({ locale }: { locale: string }) {
         { href: `/${locale}/directory`, label: isAr ? 'دليل المقطرين' : 'Distillers Directory' },
         { href: `/${locale}/directory/map`, label: isAr ? 'خريطة المنتجين' : 'Producer Map' },
         { href: `/${locale}/world`, label: isAr ? 'خريطة 249 دولة' : '249 Country Map' },
+        { href: `/${locale}/market`, label: isAr ? 'سوق العود — نطاقات الأسعار' : 'Oud Market — Price Bands' },
         { href: `/${locale}/world/IN`, label: isAr ? 'الهند (أسام)' : 'India (Assam Estates)' },
         { href: `/${locale}/world/KH`, label: isAr ? 'كمبوديا (كوه كونغ)' : 'Cambodia (Koh Kong)' },
       ],

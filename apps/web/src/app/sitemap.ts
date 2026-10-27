@@ -47,6 +47,10 @@ const STATIC_PAGES: string[] = [
   '/en/shortlist',
   '/en/membership',
   '/en/for-businesses',
+  // The public market-data surface: the visual face of the price-observation
+  // baseline. It is a real, static page (not a dynamic route), so it is
+  // indexable and belongs in the sitemap alongside the other shells.
+  '/en/market',
   // The B2B wholesale portal's public pages: the landing, the quick
   // requirement form, and the supplier storefront index. The per-buyer
   // receipts (/b2b/quote/<id>) and the supplier console (/b2b/supplier)
@@ -94,6 +98,8 @@ const ARABIC_STATIC_PAGES: string[] = [
   '/ar/shortlist',
   '/ar/membership',
   '/ar/for-businesses',
+  // The Arabic market-data surface, mirroring the English shell.
+  '/ar/market',
   // The B2B wholesale portal's public pages, mirroring the English tree.
   '/ar/b2b',
   '/ar/b2b/quote',

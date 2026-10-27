@@ -154,6 +154,13 @@ export function getNavGroups(locale: string): NavGroup[] {
           descriptionAr: '249 دولة وإقليم موثق',
         },
         {
+          label: pick('Oud Market', 'سوق العود'),
+          labelAr: 'سوق العود',
+          href: `/${locale}/market`,
+          description: pick('Observed price bands, dated', 'نطاقات أسعار مرصودة، مؤرَّخة'),
+          descriptionAr: 'نطاقات أسعار مرصودة، مؤرَّخة',
+        },
+        {
           label: pick('Producer Map', 'خريطة المنتجين'),
           labelAr: 'خريطة المنتجين',
           href: `/${locale}/directory/map`,

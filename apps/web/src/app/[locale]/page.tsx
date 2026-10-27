@@ -13,6 +13,7 @@ import { HeroSearch } from '@/components/home/hero-search';
 import { MarketplaceExplorer } from '@/components/home/marketplace-explorer';
 import { HeroQuickRfq } from '@/components/home/hero-quick-rfq';
 import { BusinessCard } from '@/components/business/business-card';
+import { MarketPreview } from '@/components/market/MarketPreview';
 import {
   List,
   BookOpen,
@@ -488,6 +489,10 @@ export default async function HomePage({
           )}
         </div>
       </section>
+
+      {/* 3b. MARKET SURFACE PREVIEW — the visual face of the price-observation
+            baseline; the full currency-segregated chart lives at /market. */}
+      <MarketPreview locale={locale} isAr={isAr} />
 
       {/* ==============================================================
           4. RECENTLY REVIEWED — the editorial lane
