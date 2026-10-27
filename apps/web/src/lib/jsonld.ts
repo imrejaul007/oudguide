@@ -101,6 +101,15 @@ export interface JsonLdOptions {
     variableMeasured?: string[];
     datePublished?: string;
     dateModified?: string;
+    /**
+     * The absolute URL of the machine-readable file the dataset is served
+     * at (the /data/[slug] route). When present, a distribution is
+     * emitted, so a crawler fetching the Dataset knows where to read
+     * the data rather than parsing the article's HTML.
+     */
+    downloadUrl?: string;
+    /** The format the download is served in, for the distribution. */
+    downloadFormat?: string;
   } | null;
   /**
    * The HowTo schema for an ordered procedure.
@@ -383,6 +392,21 @@ function datasetSchema(
 
   const language = options.locale ?? localeOf(options.path);
 
+  const distribution: Record<string, unknown>[] = [];
+  // When the dataset is also served as a stable file, say where, so a
+  // crawler that wants the data fetches the file instead of parsing the
+  // article. The description is what the record is, not a download.
+  if (ds.downloadUrl) {
+    distribution.push({
+      '@type': 'Distribution',
+      downloadUrl: ds.downloadUrl,
+      downloadType: 'application/json',
+      encodingFormat: ds.downloadFormat ?? 'application/json',
+      ...(ds.license ? { license: ds.license } : {}),
+      description: ds.description,
+    });
+  }
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
@@ -393,6 +417,7 @@ function datasetSchema(
     ...(ds.variableMeasured && ds.variableMeasured.length > 0
       ? { variableMeasured: ds.variableMeasured }
       : {}),
+    ...(distribution.length > 0 ? { distribution } : {}),
     creator: {
       '@type': 'Organization',
       name: 'OudGuide',

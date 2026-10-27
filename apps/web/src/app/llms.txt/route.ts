@@ -59,6 +59,13 @@ export function GET() {
     lines.push(
       `- [${articleTitle(ds, 'en')}](${url}) — ${articleSummary(ds, 'en')} Records: ${vars}.`
     );
+    // The record's machine-readable form, when it is published as a
+    // file: a data URL an engine can fetch instead of parsing the HTML.
+    if (ds.dataset?.downloadPath) {
+      lines.push(
+        `  - Machine-readable: ${SITE_URL}${ds.dataset.downloadPath} (JSON, dated ${ds.reviewedOn}).`
+      );
+    }
   }
   lines.push(``);
 

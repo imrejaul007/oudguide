@@ -113,6 +113,9 @@ export const priceBaselineArticles: Article[] = [
         'conditions recorded',
         'date of observation',
       ],
+      downloadPath: '/data/gulf-price-baseline',
+      license:
+        'CC BY 4.0 — attribution: OudGuide, compiled 2026-10-26. A dated record of observed bands, not a market index or average.',
     },
     limitations:
       'This is OudGuide’s own dated record of observed price bands, and it is not a market index, an average, or a price list. It does not establish the price, quality or authenticity of any lot, and it does not attach a threshold or a standard to an origin or a grade, because the entries are commercial observations, not measurements. The record states what named public lists and named study records state on a date; it does not verify any entry across markets, and it keeps a recorded claim apart from a multi-listing band. The RFQ capture that feeds new observations is per-session until a durable store is wired in, so the published baseline remains a dated compilation. Prices move with conditions, and a dated band does not follow them on its own.',

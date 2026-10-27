@@ -46,7 +46,13 @@ export interface SimpleGuideSpec {
    * price observation baseline): declare them as data assets, so the page
    * also emits a Dataset schema from the same record.
    */
-  dataset?: { variableMeasured: string[] };
+  dataset?: {
+    variableMeasured: string[];
+    /** The path where the machine-readable snapshot is served. */
+    downloadPath?: string;
+    /** A license statement, when OudGuide publishes one for this record. */
+    license?: string;
+  };
   /**
    * Mark a guide as an ordered procedure, so the page also emits a HowTo
    * schema whose steps are the guide's own sections.

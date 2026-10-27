@@ -224,6 +224,15 @@ export interface Article {
      * Each one must be a column the page actually publishes.
      */
     variableMeasured: string[];
+    /**
+     * The path under the host where the machine-readable snapshot is
+     * served (e.g. `/data/gulf-price-baseline`). When present, the
+     * Dataset schema's distribution points at it, and llms.txt links
+     * to it. Omitted for a dataset that has no published file.
+     */
+    downloadPath?: string;
+    /** A license statement for the record, when OudGuide publishes one. */
+    license?: string;
   };
 
   /**

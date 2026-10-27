@@ -738,6 +738,15 @@ function ArticleJsonLd({
             variableMeasured: article.dataset.variableMeasured,
             datePublished: article.reviewedOn,
             dateModified: article.reviewedOn,
+            license: article.dataset.license,
+            // When the record is also served as a stable file (the price
+            // observation baseline is, at /data/gulf-price-baseline), the
+            // distribution points a crawler at that file so it reads the
+            // data without parsing the article. Absolute, from SITE_URL.
+            downloadUrl: article.dataset.downloadPath
+              ? `${SITE_URL}${article.dataset.downloadPath}`
+              : undefined,
+            downloadFormat: 'application/json',
           }
         : null,
       // A marked procedure (the authenticity protocol) is also a HowTo:
