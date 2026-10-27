@@ -95,6 +95,22 @@ export function GET() {
     lines.push(``);
   }
 
+  // The visual market-data surface, in its OWN section. The "Original data"
+  // block above is deliberately gated to link only each dataset's own
+  // published path and its machine-readable file (the suite asserts no
+  // record there that the corpus does not carry). A sibling visual page is
+  // a different asset, so it is surfaced here rather than inside that
+  // block — an answer engine that reads the record and the JSON is pointed
+  // at the currency-segregated chart as well.
+  lines.push(`## Market data (visual reference)`);
+  lines.push(
+    `- [Oud market — price bands](${SITE_URL}/en/market) — the Gulf ` +
+      `price-observation baseline drawn as currency-segregated price bands, ` +
+      `the visual face of the quality/gulf-price-baseline dataset (whose ` +
+      `machine-readable JSON is listed in the Original data section above).`
+  );
+  lines.push(``);
+
   // The directory and the service pages — the commercial surfaces.
   lines.push(`## Producer directory & services`);
   lines.push(`- [Producer directory](${SITE_URL}/en/directory) — documented suppliers by family, role, origin and destination`);
