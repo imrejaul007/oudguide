@@ -1,4 +1,5 @@
 import { gulfPriceBaseline } from './gulf-price-baseline.ts';
+import { gradeLabelCatalogue } from './grade-label-catalogue.ts';
 
 /**
  * The machine-readable datasets OudGuide publishes.
@@ -10,6 +11,7 @@ import { gulfPriceBaseline } from './gulf-price-baseline.ts';
  */
 export const DATASETS: Record<string, unknown> = {
   'gulf-price-baseline': gulfPriceBaseline,
+  'grade-label-catalogue': gradeLabelCatalogue,
 };
 
 export const DATASET_SLUGS = Object.keys(DATASETS);
