@@ -39,6 +39,7 @@ const KNOWN_UNPREFIXED_ROOTS = new Set([
   'for-businesses',
   // The public market-data surface, a shell page like the others above.
   'market',
+  'brands',
   'policies',
   'privacy',
   'corrections',

@@ -273,6 +273,7 @@ export function isPublishedPath(path: string): boolean {
     'directory',
     'directory/map',
     'world',
+    'brands',
     'guides',
     'glossary',
     'products',
