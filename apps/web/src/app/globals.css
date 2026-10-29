@@ -843,8 +843,8 @@ h4, .h4 {
 
 .badge-gold {
   background: var(--brass-tint);
-  color: #7d5819;
-  border: 1px solid #e6d7ba;
+  color: var(--brass);
+  border: 1px solid var(--brass-light);
 }
 
 .badge-crimson {
@@ -3398,7 +3398,7 @@ a.btn-crimson {
   flex-shrink: 0;
 }
 
-.rank-1 { background: linear-gradient(135deg, #f5e1a4, #c59b27); }
+.rank-1 { background: linear-gradient(135deg, #e3c484, #c59b27); }
 .rank-2 { background: linear-gradient(135deg, #e8ebee, #b8c0c7); }
 .rank-3 { background: linear-gradient(135deg, #e2c5a4, #b98a5e); }
 
@@ -3773,7 +3773,7 @@ a.btn-crimson {
 .mobile-drawer-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(7, 29, 21, 0.45);
+  background: rgba(10, 61, 49, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 199;
@@ -3936,7 +3936,7 @@ a.btn-crimson {
 .visual-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7, 29, 21, 0.12) 0%, rgba(7, 29, 21, 0.75) 60%, rgba(7, 29, 21, 0.95) 100%);
+  background: linear-gradient(180deg, rgba(10, 61, 49, 0.12) 0%, rgba(10, 61, 49, 0.75) 60%, rgba(10, 61, 49, 0.95) 100%);
   pointer-events: none;
 }
 .visual-card-content {
@@ -3981,7 +3981,7 @@ a.btn-crimson {
 .visual-card-cta {
   font-size: 0.78rem;
   font-weight: 600;
-  color: #f5e1a4;
+  color: #e3c484;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -4011,7 +4011,7 @@ a.btn-crimson {
 .data-card-cover-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7, 29, 21, 0.1) 0%, rgba(7, 29, 21, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(10, 61, 49, 0.1) 0%, rgba(10, 61, 49, 0.75) 100%);
 }
 
 /* Product family card image preview */
@@ -4038,7 +4038,7 @@ a.btn-crimson {
 .product-card-cover-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7, 29, 21, 0.15) 0%, rgba(7, 29, 21, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(10, 61, 49, 0.15) 0%, rgba(10, 61, 49, 0.8) 100%);
 }
 
 
@@ -4090,7 +4090,7 @@ a.btn-crimson {
   border-radius: 6px;
   padding: 24px 28px;
   margin: 32px 0 40px;
-  box-shadow: 0 4px 16px rgba(7, 29, 21, 0.04);
+  box-shadow: 0 4px 16px rgba(10, 61, 49, 0.04);
 }
 .direct-answer-box h3 {
   font-family: var(--font-display);
@@ -4269,7 +4269,7 @@ a.btn-crimson {
 }
 .hero-spotlight-dossier:hover {
   transform: translateY(-3px);
-  box-shadow: 0 24px 44px -8px rgba(7, 29, 21, 0.22);
+  box-shadow: 0 24px 44px -8px rgba(10, 61, 49, 0.22);
 }
 
 .hero-spotlight-cover {
@@ -4286,7 +4286,7 @@ a.btn-crimson {
 .hero-spotlight-cover-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7, 29, 21, 0.1) 0%, rgba(7, 29, 21, 0.85) 100%);
+  background: linear-gradient(180deg, rgba(10, 61, 49, 0.1) 0%, rgba(10, 61, 49, 0.85) 100%);
 }
 
 .hero-spotlight-body {
@@ -4497,14 +4497,14 @@ a.btn-crimson {
 .b2b-catalog-cover-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7, 29, 21, 0.1) 0%, rgba(7, 29, 21, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(10, 61, 49, 0.1) 0%, rgba(10, 61, 49, 0.8) 100%);
 }
 
 .b2b-quote-pill {
   font-size: 0.7rem;
   font-weight: 600;
-  color: #f5e1a4;
-  background: rgba(7, 29, 21, 0.75);
+  color: #e3c484;
+  background: rgba(10, 61, 49, 0.75);
   border: 1px solid rgba(245, 225, 164, 0.4);
   padding: 3px 8px;
   border-radius: 4px;
@@ -4590,7 +4590,7 @@ a.btn-crimson {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  box-shadow: 0 4px 14px rgba(7, 29, 21, 0.05);
+  box-shadow: 0 4px 14px rgba(10, 61, 49, 0.05);
 }
 @media (max-width: 640px) {
   .fast-rfq-hero-dock {
