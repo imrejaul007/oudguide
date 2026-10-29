@@ -58,6 +58,13 @@ export interface SimpleGuideSpec {
    * schema whose steps are the guide's own sections.
    */
   howTo?: boolean;
+  /**
+   * The standing questions the guide answers, one set of visible Q&As the
+   * page also mirrors as a FAQPage schema. Each answer must restate a claim
+   * the page itself publishes — the page is the source of truth.
+   */
+  faq?: Array<{ question: string; answer: string }>;
+  faqAr?: Array<{ question: string; answer: string }>;
   limitations: string;
   limitationsAr: string;
   nextSteps: string[];
@@ -96,6 +103,8 @@ export function simpleGuide(spec: SimpleGuideSpec): Article {
     workedExample: spec.workedExample ?? WORKED_EXAMPLES[spec.slug],
     dataset: spec.dataset,
     howTo: spec.howTo,
+    faq: spec.faq,
+    faqAr: spec.faqAr,
     limitations: spec.limitations,
     limitationsAr: spec.limitationsAr,
     reviewer: REVIEWER,

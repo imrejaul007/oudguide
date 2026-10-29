@@ -133,6 +133,50 @@ export const priceBaselineArticles: Article[] = [
       'طابق عرضاً مشكوكاً مع النطاق المرصود',
       'اعرف حدّ ما تثبته الفحوص والوثائق',
     ],
+    faq: [
+      {
+        question: 'What is the OudGuide price baseline?',
+        answer:
+          'It is OudGuide’s own dated record, not a market index: a catalogue of observed price bands by documented origin and form, recorded 26 October 2026 from named public price lists in the Gulf, Indian and Indonesian markets. Each entry carries its band, currency, market, the conditions it was stated under, and where it was observed.',
+      },
+      {
+        question: 'Is a price band in the baseline a quote or a fair value?',
+        answer:
+          'No. A band is what named public lists stated on a date under named conditions; it is not a quote, not a fair value, not a prediction, and not a market average. It is used the way a reference range is used: to hold a seller’s figure, stated under its own conditions, against the observed band for those same conditions and to read the gap between them.',
+      },
+      {
+        question: 'Is a “recorded claim” the same as an observed band?',
+        answer:
+          'No, and the record keeps the two apart. A recorded claim is a figure a single listing or report stated, not one OudGuide verified across markets; it is flagged as such and is not a band. The two dated study anchors from the industry’s own reviews are records of what those reviews state, not 2026 observations.',
+      },
+      {
+        question: 'What does the baseline not establish?',
+        answer:
+          'It does not establish the price, quality or authenticity of any lot, and it does not attach a threshold or a standard to an origin or a grade, because the entries are commercial observations, not measurements. It does not verify any entry across markets. The RFQ capture that feeds new observations is per-session until a durable store is wired in, so the published baseline remains a dated compilation, updated by new compilations rather than a live feed.',
+      },
+    ],
+    faqAr: [
+      {
+        question: 'ما هو خطّ الأساس السعري من دليل العود؟',
+        answer:
+          'هو سجلّ خاص بدليل العود، مؤرَّخ، وليس مؤشر سوق: فهرس نطاقات أسعار مرصودة بحسب المصدر والشكل الموثقين، سُجّل في 26 أكتوبر 2026 من قوائم أسعار علنية مسمّاة في الأسواق الخليجية والهندية والإندونيسية. كل بند يحمل نطاقه وعموته وسوقه والظروف التي ذُكر فيها ومكان رصده.',
+      },
+      {
+        question: 'هل نطاق السعر في خطّ الأساس عرض أم قيمة عادلة؟',
+        answer:
+          'لا. فالنطاق ما ذكرته قوائم علنية مسمّاة في تاريخ وظروف مسمّاة؛ ليس عرضا، ولا قيمة عادلة، ولا توقعا، ولا تمسيطاً للسوق. ويُستعمل كما يُستعمل نطاق مرجعي: لمقابلة رقم البائع بظروفه مع النطاق المرصود للظروف نفسها وقراءة الهوّة بينهما.',
+      },
+      {
+        question: 'هل «الادعاء المسجّل» مساوٍ لنطاق مرصود؟',
+        answer:
+          'لا، ويفصل السجلّ بينهما. فالادعاء المسجّل رقم ذكرته قائمة مفردة أو تقرير مفرد، لم يتحقق منه دليل العود عبر الأسواق؛ يُوسم على ذلك وليس نطاقا. أما المسنَدان البحثيان المؤرَّخان من مراجعات القطاع نفسه فهما سجلّان لما تذكره تلك المراجعات، لا ملاحظتان لعام 2026.',
+      },
+      {
+        question: 'ماذا لا يثبته خطّ الأساس؟',
+        answer:
+          'لا يثبت سعر أي دفعة ولا جودتها ولا أصالتها، ولا يربط عتبة أو معيارا بمصدر أو مرتبة، لأن البنود ملاحظات تجارية لا قياسات. ولا يتحقق من أي بند عبر الأسواق. والتقاط عبر طلب العروض الذي يغذّي ملاحظات جديدة يعمل ضمن الجلسة حتى يوصَل مخزن دائم، فيبقى خطّ الأساس المنشور تجميعا مؤرخا، يُحدّث بتجمعات جديدة لا بتدفق حي.',
+      },
+    ],
     related: [
       { slug: 'buying/oud-oil-price-framework', label: 'A buyer’s framework for oud oil price' },
       { slug: 'quality/grade-label-dataset', label: 'The OudGuide grade-label dataset' },

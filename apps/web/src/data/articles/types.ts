@@ -242,4 +242,20 @@ export interface Article {
    * not render — the same rule that governs the Dataset schema.
    */
   howTo?: boolean;
+
+  /**
+   * The standing questions a guide answers, one set of visible Q&As the
+   * page also mirrors as a `FAQPage` schema.
+   *
+   * Google retired FAQ rich results, but the schema still feeds LLM answer
+   * engines — which is exactly what the GEO layer optimizes. Each answer
+   * restates a claim the page itself publishes, and the schema is built
+   * from this same array the visible block renders, so it can never carry
+   * a question the page does not show — the rule that governs the Dataset
+   * and HowTo schemas. Optional: a guide without standing Q&As carries
+   * neither a visible block nor a FAQPage.
+   */
+  faq?: Array<{ question: string; answer: string }>;
+  /** The Arabic counterpart, rendered and schema-emitted on the AR page. */
+  faqAr?: Array<{ question: string; answer: string }>;
 }

@@ -113,6 +113,40 @@ export const seoGapPageArticles: Article[] = [
       'اقرأ حدود ما تثبته الوثائق',
       'تحقق مما يجب أن تحمله شحنة سايتس',
     ],
+    faq: [
+      {
+        question: 'Is oud fraud usually a counterfeit object?',
+        answer:
+          'No. Most oud fraud is not a counterfeit object but a misrepresented one: material that is real agarwood described with a false grade, origin, age, yield or method. The four claim classes each have their own failure mode, and the detection method is to press each class with the question a true statement can answer and a false one cannot.',
+      },
+      {
+        question: 'What is the one document class that actually constrains the trade?',
+        answer:
+          'The CITES permit and its paperwork chain. Every species of the agarwood-producing genera is in CITES Appendix II, so a legal import needs an export or re-export permit the issuing authority is accountable for. It is the only statement where a falsehood has a legal consequence. What the paperwork does not do is grade the material or certify a seller’s method or age claims.',
+      },
+      {
+        question: 'Are a low price, a sinking test or visual resin signs a verdict?',
+        answer:
+          'No. They are signals that direct the questions, not verdicts. A price below the documented range for a claimed grade is the strongest sign that one claim is false; a sinking test tells you density, which is a correlate of resin content, not a measure of it; visual resin signs are necessary but not sufficient, because adulterated and blended material passes every visual and physical check and is still misrepresented.',
+      },
+    ],
+    faqAr: [
+      {
+        question: 'هل الغش في العود عادةً منتج مزيف؟',
+        answer:
+          'لا. فمعظم غش العود ليس غشّا في المنتج بل في تمثيله: مادة حقيقية من العود توصف بدرجة أو منشأ أو عمر أو مردود أو طريقة كاذبة. ولكل فئة من الفئات الأربع طريقة فشل خاصة، ومنهج الكشف أن تضغط كل فئة بالسؤال الذي يستطيع بيان حقيقي أن يجيبه ويفشل بيان كاذب.',
+      },
+      {
+        question: 'ما فئة الوثائق الوحيدة التي تقيد التجارة فعلا؟',
+        answer:
+          'تصريح سايتس وسلسل أوراقه. فكل نوع من جنسي إنتاج العود مدرج في الملحق الثاني، لذا يستلزم الاستيراد المشروع تصريح تصدير أو إعادة تصدير مسؤول عنه الجهة المصدِّرة، وهو البيان الوحيد الذي يترتب على كذبه عاقبة قانونية. وما لا تفعله الأوراق أنها لا تقيّم المادة ولا توثّق ادعاء البائع عن الطريقة أو العمر.',
+      },
+      {
+        question: 'هل السعر المنخفض أو اختبار الغرق أو العلامات البصرية للراتنج حكم؟',
+        answer:
+          'لا. فهي إشارات توجه الأسئلة لا أحكام. فالسعر تحت النطاق الموثق لدرجة مطلوبة أقوى إشارة إلى أن ادعاء كاذب، واختبار الغرق يخبرك بالكثافة وهي مترابطة مع محتوى الراتنج لا مقياس له، والعلامات البصرية شرط لازم غير كافٍ إذ تجتاز المادة المغشوشة والمخلوطة كل الفحوص وتبقى ممثّلة.',
+      },
+    ],
     related: [
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
       { slug: 'quality/lab-report-reading', label: 'How to read an oud lab report' },
@@ -371,6 +405,40 @@ export const seoGapPageArticles: Article[] = [
       'اقرأ ما يجب أن تحمله شحنة سايتس',
       'افهم حد مراجعة المستندات',
       'تحقق كيف يختلف الشحن حسب شكل المنتج',
+    ],
+    faq: [
+      {
+        question: 'What does a CITES Appendix II agarwood shipment require?',
+        answer:
+          'Because all species of the agarwood-producing genera are in CITES Appendix II, a legal shipment requires an export or re-export permit from the country of export, with the importing market’s own controls layered on top. The US adds the import documentation and the enforcement posture of the listing; the UAE requires a CITES export permit before import and a UAE import permit, with a 5% duty where a customs officer detects the material; the EU layers its own import regime on the permit.',
+      },
+      {
+        question: 'Where does the paperwork actually constrain a lot?',
+        answer:
+          'In the paperwork chain, not the material itself. The permit is the floor every market stands on, and each market adds its own import regime on top of it. A missing or generic permit is the first signal that a lot will not clear. The sequence is to confirm the species on the paperwork, confirm the export permit is issued by the country of export, confirm the importing market’s regime applies, and only then move the material.',
+      },
+      {
+        question: 'Are personal or passenger baggage exemptions an exception?',
+        answer:
+          'Only for accompanied personal or household baggage, documented under CITES Resolution Conf. 13.7 (Rev. CoP17) and customs instructions such as CBIC Instruction 05/2025. The exemption does not apply to postal or cargo shipments, which remain commercial consignments requiring standard export permits, and it does not override a country’s own customs and tax rules.',
+      },
+    ],
+    faqAr: [
+      {
+        question: 'ماذا تحتاج شحنة عود مدرجة في الملحق الثاني من سايتس؟',
+        answer:
+          'بما أن كل أنواع جنسي إنتاج العود مدرجة في الملحق الثاني، فإن الشحنة المشروعة تحتاج تصريح تصدير أو إعادة تصدير من بلد التصدير، وتتراكب ضوابط السوق المستورد فوقها. وتضيف الولايات المتحدة وثائق الاستيراد وضبط الإدراج، وتحتاج الإمارات تصريح تصدير سايتس قبل الاستيراد وتصريح استيراد من الإمارات مع رضية 5% عندما يكتشف الضابط المادة، ويضيف الاتحاد الأوروبي نظام استيراد خاصا على التصريح.',
+      },
+      {
+        question: 'أين تقيد سلسل الأوراق اللوط فعلا؟',
+        answer:
+          'في سلسل الأوراق لا في المادة نفسها. فال تصريح هو الأرضية التي يقف عليها كل سوق، وكل سوق يضيف نظام استيراد فوقه. وتصريح ناقص أو مستند عام أول إشارة إلى أن اللوط لن يمر. والتسلسل أن تؤكد النوع على الأوراق، ثم أن تصريح التصدير صادر من بلد التصدير، ثم أن نظام السوق المستورد ينطبق، وبعدها فقط تنقل المادة.',
+      },
+      {
+        question: 'هل إعفاءات الأمتعة الشخصية استثناء؟',
+        answer:
+          'للامتعة الشخصية أو المنزلية المرفقة فقط، وفق قرار سايتس المعتمد بإعفاءات المرافقة الشخصية، وتعليمات الجمارك المعنية. ولا ينطبق الإعفاء على الشحنات البريدية أو البضائع، التي تبقى شحنا تجارية تحتاج تصاريح صدور قياسية، ولا يلغي قواعد الجمارك والرسوم الوطنية.',
+      },
     ],
     related: [
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },

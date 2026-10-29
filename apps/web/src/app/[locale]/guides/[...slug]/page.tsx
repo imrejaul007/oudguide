@@ -143,6 +143,10 @@ function ReviewedArticle({
      country. A hub lists every article beneath it, so the two share the
      card grid but the hub carries the section-wide label. */
   const showsChildren = (isHub || article.kind === 'origin') && children.length > 0;
+  // The standing Q&As, in the page's own language. The same array the
+  // ArticleJsonLd above mirrors as a FAQPage, so the visible block and the
+  // schema cannot diverge.
+  const faqItems = (isAr && article.faqAr ? article.faqAr : article.faq) ?? [];
 
   return (
     <article className="container container-narrow" style={{ paddingTop: 40, paddingBottom: 60 }}>
@@ -334,6 +338,38 @@ function ReviewedArticle({
                 ? article.workedExample.takeawayAr
                 : article.workedExample.takeaway}
             </p>
+          </div>
+        </section>
+      )}
+
+      {/* STANDING QUESTIONS — the guide's Q&As, visible and crawlable, and
+          the same array the FAQPage schema above is built from. Rendered as
+          plain headings and answers, not a client Accordion: a server page,
+          and an answer engine needs the Q&A in crawlable HTML, not in
+          collapsed content. A guide without standing Q&As carries none. */}
+      {faqItems.length > 0 && (
+        <section style={{ marginTop: 44 }}>
+          <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
+            {isAr ? 'أسئلة متكررة' : 'Frequently asked'}
+          </span>
+          <div style={{ display: 'grid', gap: 24 }}>
+            {faqItems.map((item, index) => (
+              <div key={index} style={{ borderBottom: '1px solid var(--line)', paddingBottom: 20 }}>
+                <h4
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    margin: '0 0 8px',
+                  }}
+                >
+                  {item.question}
+                </h4>
+                <p style={{ color: 'var(--ink-soft)', fontSize: '0.92rem', lineHeight: 1.65, margin: 0 }}>
+                  {item.answer}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
       )}
@@ -723,6 +759,12 @@ function ArticleJsonLd({
 }) {
   const path = `/${locale}/guides/${article.slug}`;
   const children = hubChildren(article, locale);
+  const isAr = locale === 'ar';
+  // The FAQPage is built from the same standing-Q&A array the visible block
+  // renders, in the page's own language, so the schema can never carry a
+  // question the page does not show — the rule that governs the Dataset and
+  // HowTo schemas. A guide without standing Q&As carries neither.
+  const visibleFaq = (isAr && article.faqAr ? article.faqAr : article.faq) ?? null;
   const script = jsonLdScript(
     {
       path,
@@ -788,6 +830,10 @@ function ArticleJsonLd({
         : null,
       title: articleTitle(article, locale),
       description: articleSummary(article, locale),
+      // A guide with standing Q&As mirrors them as a FAQPage. The array is
+      // the same one the visible block below renders, in the page's own
+      // language, so the two agree by construction.
+      faq: visibleFaq && visibleFaq.length > 0 ? visibleFaq : null,
       breadcrumbs: articleBreadcrumbs(article, locale).map((crumb) => ({
         label: crumb.label,
         href: crumb.href,

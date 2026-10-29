@@ -152,6 +152,40 @@ export const qualityBuyingArticles: Article[] = [
       'تصف هذه الصفحة اختبار الكثافة ومواضع فشله المعروفة. ولا تضع عتبة، ولا تثبت نسبة الراتنج لأي مادة، ولا تقيّم أي قطعة بعينها.',
     nextSteps: ['Read how grading claims work', 'Learn what photographs can establish', 'See how to evaluate an offer'],
     nextStepsAr: ['اقرأ كيف تعمل ادعاءات التقييم', 'اعرف ما الذي تثبته الصور', 'اعرف كيف تقيّم عرضاً'],
+    faq: [
+      {
+        question: 'What does a sinking test actually show?',
+        answer:
+          'It shows the wood is dense enough to sink in water, which is a real correlate of resin content and a useful first screen when sorting a consignment. The same tree’s unresinated wood floats, so the test separates resinous pieces from ordinary ones.',
+      },
+      {
+        question: 'Does sinking mean the oud is genuine?',
+        answer:
+          'No. A block weighted with lead, wax or dense filler sinks for the same reason a genuine block does, and surface resin can be painted on. A density result is a screening observation, not a verification of authenticity, resin content or age.',
+      },
+      {
+        question: 'Can a seller defeat the test?',
+        answer:
+          'Yes, in well-known ways: adding weight with metal shot, wax or filler, painting resin on the surface, or selecting one piece for the test and swapping it afterwards. This is why a test witnessed on the actual delivery beats a photograph.',
+      },
+    ],
+    faqAr: [
+      {
+        question: 'ماذا يثبت اختبار الغرق فعلا؟',
+        answer:
+          'يُثبت أن الخشب كثيف بما يكفي ليغرق في الماء، وهي إشارة مترابطة مع محتوى الراتنج وفرز أولي مفيد عند فرز شحنة. فالخشب غير المحتوِ من الشجرة نفسها يطفو، لذا يفصل الاختبار القطع الراتنجية عن العادية.',
+      },
+      {
+        question: 'هل الغرق يعني أن العود أصيل؟',
+        answer:
+          'لا. فالقطعة المثقلة بالرصاص أو الشمع أو حشو كثيف تغرق للسبب نفسه الذي تغرق به القطعة الأصلية، ويمكن طلاء الراتنج على السطح. ونتيجة الكثافة ملاحظة فرز، لا توثيق للأصالة ولا لمحتوى الراتنج ولا للعمر.',
+      },
+      {
+        question: 'هل يمكن للبائع هزيمة الاختبار؟',
+        answer:
+          'نعم، بطرق معروفة: إضافة وزن بالرصاص أو الشمع أو الحشو، أو طلاء الراتنج على السطح، أو اختيار قطعة للاختبار ثم تبديلها بعده. ولهذا يتفوق الاختبار المشهود على الشحنة الفعلية على صورة.',
+      },
+    ],
     related: [
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
       { slug: 'quality/photo-evidence-limits', label: 'What product photographs can establish' },
@@ -269,6 +303,40 @@ export const qualityBuyingArticles: Article[] = [
       'تشرح هذه الصفحة كيف يُقرأ نطاق تقرير مخبري. ولا تفسر أي تقرير بعينه، ولا ترشّح أي مختبر، ولا تثبت أن مادة أصلية.',
     nextSteps: ['Read the limits of assessment', 'Read what a document can establish', 'See how to evaluate an offer'],
     nextStepsAr: ['اقرأ حدود التقييم', 'اقرأ ما الذي يمكن لوثيقة إثباته', 'اعرف كيف تقيّم عرضاً'],
+    faq: [
+      {
+        question: 'What does a laboratory (chromatographic) report actually establish?',
+        answer:
+          'It establishes what a sample was found to contain, on the day it was analysed, by the method named. It is not a statement about the origin of the material, the age of the tree, the distillation method, or the commercial quality of the lot. What it shows is narrower than a certificate: that certain compounds were or were not found by one method on one sample.',
+      },
+      {
+        question: 'Is a clean report that found no synthetic markers a certificate of authenticity?',
+        answer:
+          'No — that is the most common mistake in reading these reports. “Not detected” means the compound was not found by the stated method within its detection limit. It is not the same as “not present”, and it is not a certificate of authenticity. A report that lists twenty identified compounds and says nothing about plasticisers, solvents or synthetic aromatics has not cleared the sample of those things; it simply has not looked for them.',
+      },
+      {
+        question: 'Which questions reveal the real scope of a report?',
+        answer:
+          'Which sample was analysed — a photograph of a batch, a sample drawn at the factory, or a sample a buyer supplied; which method and what it detects; what the sample was treated as before analysis; and what was not tested. A report only narrows the field in the direction it measured, so the chemistry it settles is left to its own channel while the provenance claim is checked against the permit and handling record.',
+      },
+    ],
+    faqAr: [
+      {
+        question: 'ماذا يثبت التقرير المخبري الكروماتوغرافي فعلا؟',
+        answer:
+          'يثبت ما وُجد في عيّنة، يوم تحليلها، بالطريقة المذكورة. وليس بيانا عن منشأ المادة ولا عن عمر الشجرة ولا عن طريقة التقطير ولا عن الجودة التجارية للوط. وما يثبته أضيق من الشهادة: أن مركبات معينة وُجدت أو لم تُرصد بطريقة واحدة على عيّنة واحدة.',
+      },
+      {
+        question: 'هل النتيجة النظيفة الخالية من المؤشرات الاصطناعية شهادة أصالة؟',
+        answer:
+          'لا؛ فذلك شائع كأخطاء القراءة. «لم يُرصد» تعني أن المركب لم يُعثر عليه بالطريقة المذكورة ضمن حدّ الكشف فيها، وهي ليست «غير موجود»، وليست شهادة أصالة. فالتقرير الذي يذكر عشرين مركبا معرَّفا ولا يقول شيئا عن اللدائن أو المذيبات أو العطور الاصطناعية لم يبرئ العيّنة منها؛ بل لم يبحث عنها.',
+      },
+      {
+        question: 'أيّ الأسئلة تكشف النطاق الحقيقي للتقرير؟',
+        answer:
+          'أيّ عيّنة حُلِّلت: صورة للوط، أم عيّنة سحبت من المصنع، أم عيّنة قدّمها المشتري؟ وأيّ طريقة وما الذي تكشفه؟ وما الذي جَرى للعيّنة قبل التحليل؟ وما الذي لم يُختبَر؟ فالتقرير يضيّق المجال في الاتجاه الذي قاسه فقط، لذا يُترَك ادعاء الكيمياء لقناته ويُفحص ادعاء المنشأ على سلسلة التصاريح وسجل التعامل.',
+      },
+    ],
     related: [
       { slug: 'quality/assessment-and-testing-limits', label: 'Assessment and testing limits' },
       { slug: 'trade/document-review-limits', label: 'What reviewing a document can establish' },
