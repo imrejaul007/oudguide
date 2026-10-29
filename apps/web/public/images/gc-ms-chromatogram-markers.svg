@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" role="img" aria-label="GC-MS gas chromatography peak profile showing authentic sesquiterpene markers vs synthetic adulterants">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdfdfc" />
+      <stop offset="100%" stop-color="#f7f6f2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="url(#bgGrad4)" rx="8" />
+  <rect x="1" y="1" width="798" height="498" fill="none" stroke="#e4e7e2" stroke-width="1" rx="7" />
+
+  <!-- Title & Header -->
+  <text x="40" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#256049" letter-spacing="1.5">ANALYTICAL PURITY VERIFICATION</text>
+  <text x="40" y="74" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#14181a">GC-MS Chromatographic Fingerprint Profile</text>
+  <text x="40" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#5c6661">Gas Chromatography-Mass Spectrometry sesquiterpene elution vs. synthetic diluents</text>
+
+  <!-- Plot Area Frame -->
+  <g transform="translate(60, 130)">
+    <rect width="680" height="280" fill="#ffffff" stroke="#e4e7e2" rx="6" />
+
+    <!-- Gridlines (Hairline) -->
+    <line x1="0" y1="70" x2="680" y2="70" stroke="#f0efec" stroke-width="1" />
+    <line x1="0" y1="140" x2="680" y2="140" stroke="#f0efec" stroke-width="1" />
+    <line x1="0" y1="210" x2="680" y2="210" stroke="#f0efec" stroke-width="1" />
+    <line x1="170" y1="0" x2="170" y2="280" stroke="#f0efec" stroke-width="1" />
+    <line x1="340" y1="0" x2="340" y2="280" stroke="#f0efec" stroke-width="1" />
+    <line x1="510" y1="0" x2="510" y2="280" stroke="#f0efec" stroke-width="1" />
+
+    <!-- Baseline Axis -->
+    <line x1="0" y1="250" x2="680" y2="250" stroke="#ced5ce" stroke-width="1.5" />
+
+    <!-- Chromatographic Trace (Abundance curve) -->
+    <!-- Authentic Sesquiterpene Peaks in Forest Green -->
+    <path d="M 10 250
+             L 50 250 Q 55 230 60 250
+             L 90 250 Q 95 240 100 250
+             L 140 250 Q 150 170 160 250
+             L 190 250 Q 205 60 220 250
+             L 240 250 Q 255 110 270 250
+             L 300 250 Q 320 40 340 250
+             L 360 250 Q 375 130 390 250
+             L 420 250 Q 440 90 460 250
+             L 490 250 Q 500 210 510 250
+             L 550 250 Q 570 160 590 250
+             L 640 250 L 670 250"
+          fill="none" stroke="#256049" stroke-width="2.5" />
+
+    <!-- Adulterant Peak (Simulated Synthetic Benzyl Benzoate / DEP spike) in Brass/Orange -->
+    <path d="M 115 250 Q 120 15 125 250" fill="none" stroke="#d95926" stroke-width="2" stroke-dasharray="3 2" />
+
+    <!-- Peak Identifications & Direct Labels -->
+    <!-- Adulterant Tag -->
+    <text x="120" y="10" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#d95926" text-anchor="middle">Adulterant Peak</text>
+    <text x="120" y="22" font-family="system-ui, sans-serif" font-size="9.5" fill="#d95926" text-anchor="middle">(DEP / Phthalate)</text>
+
+    <!-- Marker 1: beta-Agarofuran -->
+    <line x1="205" y1="55" x2="205" y2="35" stroke="#256049" stroke-width="1" />
+    <text x="205" y="30" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#14181a" text-anchor="middle">β-Agarofuran</text>
+
+    <!-- Marker 2: Agarospirol -->
+    <line x1="320" y1="35" x2="320" y2="15" stroke="#256049" stroke-width="1" />
+    <text x="320" y="10" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#14181a" text-anchor="middle">Agarospirol</text>
+
+    <!-- Marker 3: Jinkoh-eremol -->
+    <line x1="440" y1="85" x2="440" y2="65" stroke="#256049" stroke-width="1" />
+    <text x="440" y="60" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#14181a" text-anchor="middle">Jinkoh-eremol</text>
+
+    <!-- Marker 4: Chromone derivatives -->
+    <line x1="570" y1="155" x2="570" y2="135" stroke="#256049" stroke-width="1" />
+    <text x="570" y="130" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#14181a" text-anchor="middle">2-(2-Phenylethyl)chromones</text>
+
+    <!-- Axis Labels -->
+    <text x="10" y="270" font-family="system-ui, sans-serif" font-size="10.5" fill="#8b948f">0 min</text>
+    <text x="340" y="270" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#5c6661" text-anchor="middle">Retention Time (Minutes) →</text>
+    <text x="670" y="270" font-family="system-ui, sans-serif" font-size="10.5" fill="#8b948f" text-anchor="end">45 min</text>
+  </g>
+</svg>

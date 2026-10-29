@@ -1,0 +1,40 @@
+family,manifest_routes,live_200,live_redirect,live_404,unprobed,reviewed_articles,research_briefs,priority
+Home,1,1,0,0,0,0,0,P1
+Guide index,1,1,0,0,0,0,0,P1
+Directory root,1,1,0,0,0,0,0,P1
+World index,1,1,0,0,0,0,0,P1
+Product index,1,1,0,0,0,1,0,P1
+Glossary index,1,1,0,0,0,1,0,P1
+Brand index,1,1,0,0,0,0,0,P1
+Public policy,9,9,0,0,0,0,0,P1
+Contact form,1,0,0,1,0,0,0,P1
+Correction form,1,1,0,0,0,0,0,P1
+Business intake,1,0,0,1,0,0,0,P1
+Claim flow,1,0,0,1,0,0,0,P1
+Membership,1,1,0,0,0,0,0,P1
+Legal,4,3,0,1,0,0,0,P1
+RFQ,1,0,1,0,0,0,0,P1
+Retail handoff,1,0,0,1,0,0,0,P1
+Search,1,0,0,1,0,0,0,P1
+Comparison utility,1,0,0,1,0,0,0,P1
+Editorial hub,12,12,0,0,0,12,0,P1
+Editorial guide,83,82,1,0,0,83,0,P1
+Origin country,15,15,0,0,0,15,0,P1
+Origin region,41,41,0,0,0,41,0,P2
+Buyer country / territory,249,0,249,0,0,0,0,P3
+Located-in country directory,72,72,0,0,0,0,0,P2
+Destination directory,36,36,0,0,0,0,0,P2
+Destination buying guide,36,36,0,0,0,36,0,P2
+Origin-handling directory,15,15,0,0,0,0,0,P2
+Located-in city directory,64,64,0,0,0,0,0,P2
+Neighborhood directory,16,16,0,0,0,0,0,P3
+Business category,24,24,0,0,0,0,0,P1
+Product family,24,24,0,0,0,24,0,P1
+Trade terminology,32,31,1,0,0,32,0,P2
+Origin comparison,6,6,0,0,0,6,0,P3
+Private/utility,14,0,0,14,0,0,0,P1
+Partner programme,1,0,0,1,0,0,0,P1
+Partner intake,1,0,0,1,0,0,0,P1
+Consent utility,1,0,0,1,0,0,0,P1
+Privacy utility,1,0,0,1,0,0,0,P1
+TOTAL,772,495,252,25,0,251,0,

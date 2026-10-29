@@ -133,6 +133,13 @@ export const qualityBuyingArticles: Article[] = [
       {
         heading: 'What the test does, and the ways it is defeated',
         headingAr: 'ما الذي يفعله الاختبار، وكيف يُهزم',
+        image: {
+          src: '/images/hydrostatic-sinking-test.svg',
+          alt: 'Hydrostatic density chart showing buoyant agarwood, half-sinking grade, and true sinking grade wood',
+          altAr: 'مخطط الكثافة الهيدروستاتيكية يوضح درجات العود: الطافي، نصف الغاطس، وخشب الغطاس الكامل',
+          caption: 'Hydrostatic buoyancy tiers: density determined by resin saturation vs. water threshold of 1.00 g/cm³.',
+          captionAr: 'مستويات الطفو الهيدروستاتيكي: تتحدد الكثافة بدرجة تشبع الراتنج مقارنة بعتبة كثافة الماء (1.00 جم/سم³).',
+        },
         body: [
           'The test is simple: a piece of wood is put in water and observed. Natural agarwood sinks as the resin accumulates; the same tree\'s unresinated wood floats. That makes it a genuinely useful first screen when sorting a consignment.',
           'It is defeated in several well-known ways. Metal shot, wax or dense filler can be introduced to add weight. Surface resin can be painted on. A piece can be selected for the test and swapped afterwards, which is why a witnessed test on the actual delivery beats a photograph.',
@@ -274,6 +281,13 @@ export const qualityBuyingArticles: Article[] = [
       {
         heading: 'Reading the report against the claim',
         headingAr: 'قراءة التقرير على الادعاء',
+        image: {
+          src: '/images/gc-ms-chromatogram-markers.svg',
+          alt: 'Gas chromatography-mass spectrometry GC-MS peak profile showing pure agarwood sesquiterpene markers vs adulterant synthetic peaks',
+          altAr: 'مخطط التحليل الكروماتوغرافي الغازي مع قياس الطيف الكتلي يوضح مؤشرات سيسكويتربين العود النقي مقابل قمم الغش الاصطناعي',
+          caption: 'GC-MS retention profile: identifying authentic sesquiterpene markers (agarospirol, agarofuran) against synthetic diluents (DEP, phthalates).',
+          captionAr: 'مخطط الاستبقاء الكروماتوغرافي: تمييز مؤشرات سيسكويتربين العود الأصيل (أغاروسبيرول، أغاروفوران) من المذيبات الاصطناعية ومركبات الفثالات المضافة.',
+        },
         body: [
           "The way to use the report is to hold each of the seller's claims up against what the report actually measured. A \"pure oud oil\" claim is checked against the profile: does the profile read as a resinous heartwood, and is there evidence of a carrier or adulterant? A grade or origin claim is not answered by the report, because the report did not measure grade or origin; it is answered by the permit chain and the handling record.",
           'The discipline is that a report only narrows the field in the direction it measured. A clean chemistry profile does not certify the origin claim, and an origin document does not certify the chemistry claim. A lot that is being sold on both claims needs both checks, and a seller who offers only one is hiding the other.',

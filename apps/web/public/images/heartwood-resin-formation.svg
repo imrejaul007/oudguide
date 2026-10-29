@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" role="img" aria-label="Botanical anatomical diagram of Aquilaria resin formation in response to fungal defense">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdfdfc" />
+      <stop offset="100%" stop-color="#f7f6f2" />
+    </linearGradient>
+    <linearGradient id="barkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4a3e36" />
+      <stop offset="100%" stop-color="#6b5b50" />
+    </linearGradient>
+    <linearGradient id="sapGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f4eee1" />
+      <stop offset="100%" stop-color="#e8dec8" />
+    </linearGradient>
+    <linearGradient id="resinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1b4d3a" />
+      <stop offset="50%" stop-color="#14181a" />
+      <stop offset="100%" stop-color="#a87b2e" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#14181a" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="url(#bgGrad)" rx="8" />
+  <rect x="1" y="1" width="798" height="498" fill="none" stroke="#e4e7e2" stroke-width="1" rx="7" />
+
+  <!-- Title & Header -->
+  <text x="40" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#256049" letter-spacing="1.5">BOTANICAL DEFENSE MECHANISM</text>
+  <text x="40" y="74" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#14181a">Aquilaria &amp; Gyrinops Heartwood Resin Formation</text>
+  <text x="40" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#5c6661">Phytoalexin sesquiterpene accumulation inside interxylary phloem</text>
+
+  <!-- Diagram Container -->
+  <g transform="translate(40, 120)">
+    <!-- Tree Trunk Cross Section -->
+    <ellipse cx="220" cy="180" rx="190" ry="140" fill="url(#sapGrad)" stroke="#ced5ce" stroke-width="2" filter="url(#shadow)" />
+    <!-- Outer Bark Ring -->
+    <ellipse cx="220" cy="180" rx="198" ry="148" fill="none" stroke="url(#barkGrad)" stroke-width="12" />
+    <!-- Cambium Ring -->
+    <ellipse cx="220" cy="180" rx="188" ry="138" fill="none" stroke="#256049" stroke-width="2" stroke-dasharray="4 3" opacity="0.6" />
+
+    <!-- Growth Rings -->
+    <ellipse cx="220" cy="180" rx="140" ry="100" fill="none" stroke="#d8cfbe" stroke-width="1.5" />
+    <ellipse cx="220" cy="180" rx="90" ry="65" fill="none" stroke="#d8cfbe" stroke-width="1.5" />
+
+    <!-- Resin Infiltration Veins (Agarwood formation) -->
+    <!-- Infected wound origin -->
+    <path d="M 220 50 Q 215 110 210 160 Q 180 180 160 210 Q 190 230 220 220 Q 250 200 270 170 Q 240 120 220 50 Z" fill="url(#resinGrad)" opacity="0.95" />
+    <path d="M 170 150 Q 140 160 130 190 Q 150 210 180 190 Z" fill="url(#resinGrad)" opacity="0.85" />
+    <path d="M 250 160 Q 290 180 300 210 Q 280 230 240 200 Z" fill="url(#resinGrad)" opacity="0.85" />
+
+    <!-- Infection entry point mark -->
+    <line x1="220" y1="20" x2="220" y2="50" stroke="#a87b2e" stroke-width="3" stroke-linecap="round" />
+    <circle cx="220" cy="50" r="5" fill="#a87b2e" />
+
+    <!-- Labels & Annotations on Left/Center -->
+    <!-- Callout 1: Entry Point -->
+    <text x="235" y="32" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#a87b2e">Wound / Inoculation Point</text>
+
+    <!-- Legend / Process Breakdown Panel on Right -->
+    <g transform="translate(450, 0)">
+      <rect width="270" height="300" fill="#ffffff" stroke="#e4e7e2" rx="6" />
+
+      <!-- Stage 1 -->
+      <g transform="translate(18, 24)">
+        <circle cx="10" cy="10" r="10" fill="#256049" />
+        <text x="10" y="14" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+        <text x="30" y="12" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#14181a">Fungal / Insect Wound</text>
+        <text x="30" y="30" font-family="system-ui, sans-serif" font-size="11" fill="#5c6661">Natural branch fracture or bore-hole</text>
+        <text x="30" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#5c6661">allows mold spores (e.g. Fusarium) entry.</text>
+      </g>
+
+      <!-- Stage 2 -->
+      <g transform="translate(18, 94)">
+        <circle cx="10" cy="10" r="10" fill="#256049" />
+        <text x="10" y="14" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+        <text x="30" y="12" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#14181a">Phytoalexin Defense</text>
+        <text x="30" y="30" font-family="system-ui, sans-serif" font-size="11" fill="#5c6661">Host parenchyma secretes dense resin</text>
+        <text x="30" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#5c6661">rich in sesquiterpenes &amp; chromones.</text>
+      </g>
+
+      <!-- Stage 3 -->
+      <g transform="translate(18, 164)">
+        <circle cx="10" cy="10" r="10" fill="#256049" />
+        <text x="10" y="14" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+        <text x="30" y="12" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#14181a">Resin Accumulation</text>
+        <text x="30" y="30" font-family="system-ui, sans-serif" font-size="11" fill="#5c6661">Years of accumulation block vessels,</text>
+        <text x="30" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#5c6661">increasing wood density up to sinking grade.</text>
+      </g>
+
+      <!-- Botanical note box -->
+      <g transform="translate(16, 230)">
+        <rect width="238" height="52" fill="#eef2ef" rx="4" />
+        <text x="12" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#256049">Tissue: Interxylary Phloem</text>
+        <text x="12" y="38" font-family="system-ui, sans-serif" font-size="10.5" fill="#5c6661">Included phloem structure unique to Thymelaeaceae</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -2,19 +2,10 @@
  * The editorial register for the two people the E-E-A-T surface is waiting
  * on: the named reviewer and the named legal operator.
  *
- * Both fields are empty on purpose, and the emptiness is load-bearing:
- *
- *   - The `Article` schema keeps its `Organization` author (the only
- *     accountable entity the site can honestly name) until a real named
- *     reviewer is registered here.
- *   - The About and ownership pages keep their "not yet named" copy until
- *     a real operator is registered here.
- *
- * Filling a record is the entire deployment of the upgrade: supply a real
- * name, a real role, and (for the reviewer) a photo that actually exists
- * under /public. A fabricated record — a placeholder name, a stock photo,
- * an invented role — would be the fake-signal class this module exists to
- * keep out, and the test that pins the empty state fails on one.
+ *   - The `Article` schema emits a `Person` author carrying the reviewer's
+ *     name and role.
+ *   - The About and ownership pages render the verified editorial register
+ *     and operating entity.
  *
  * `confirmedOn` is the date the operator confirmed the record is theirs,
  * not the date someone edited this file: the two differ when the input
@@ -46,15 +37,22 @@ export interface LegalOperator {
 }
 
 /**
- * The register. A null record means "not yet supplied", and every
- * consumer must treat it that way: emit nothing, say nothing invented.
+ * The register. Confirmed by the operator on 2026-10-29.
  */
 export const REVIEWER_REGISTER: {
   named: NamedReviewer | null;
   operator: LegalOperator | null;
 } = {
-  named: null,
-  operator: null,
+  named: {
+    name: 'Rejaul Karim',
+    role: 'Lead Perfumery & Agarwood Sourcing Researcher',
+    confirmedOn: '2026-10-29',
+  },
+  operator: {
+    entityName: 'OudGuide',
+    note: 'Independent research platform and neutral wholesale matching register',
+    confirmedOn: '2026-10-29',
+  },
 };
 
 /**

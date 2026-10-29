@@ -27,6 +27,13 @@ export const productionTradeArticles: Article[] = [
       {
         heading: 'What the vessel contributes',
         headingAr: 'ما الذي يضيفه الإناء',
+        image: {
+          src: '/images/deg-bhapka-distillation.svg',
+          alt: 'Technical schematic of traditional Indian copper deg still and submerged bhapka condensation receiver',
+          altAr: 'رسم هندسي للقدر النحاسي الهندي التقليدي (القدّ) والمستقبِل المغمور في حوض الماء (البهابكا)',
+          caption: 'Traditional hydro-distillation apparatus: direct wood-fired copper deg connected via bamboo chonga to submerged receiver bhapka.',
+          captionAr: 'جهاز التقطير المائي التقليدي: قدّ نحاسي فوق نار الحطب متصل بقصبة الخيزران (تشونغا) بمستقبل نحاسي مغمور في حوض تبريد.',
+        },
         body: [
           'Copper is not an inert container. Over a long distillation, trace copper compounds pass into the oil, and the characteristic profile associated with traditional copper-deg oud is partly a function of that contact. A stainless vessel does not contribute those compounds.',
           'The heat profile is the other half. A wood fire gives an irregular, rising heat with a slow ramp and long contact time, which carries more of the heavy, resinous, smoky fraction. Pressurised steam is faster, cooler at the surface and more selective, which keeps the top notes clean and leaves the heavy fraction behind.',

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" role="img" aria-label="Physical hydrostatic sinking test diagram showing density tiers of agarwood in water">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdfdfc" />
+      <stop offset="100%" stop-color="#f7f6f2" />
+    </linearGradient>
+    <linearGradient id="waterColumn" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eaf3f8" />
+      <stop offset="100%" stop-color="#cbe1ee" />
+    </linearGradient>
+    <linearGradient id="sinkingWood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14181a" />
+      <stop offset="70%" stop-color="#2a231d" />
+      <stop offset="100%" stop-color="#0b0b0b" />
+    </linearGradient>
+    <linearGradient id="halfSinkingWood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#544336" />
+      <stop offset="100%" stop-color="#735b49" />
+    </linearGradient>
+    <linearGradient id="buoyantWood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cfb997" />
+      <stop offset="100%" stop-color="#b89e76" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="url(#bgGrad3)" rx="8" />
+  <rect x="1" y="1" width="798" height="498" fill="none" stroke="#e4e7e2" stroke-width="1" rx="7" />
+
+  <!-- Title & Header -->
+  <text x="40" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#256049" letter-spacing="1.5">HYDROSTATIC SPECIFIC GRAVITY</text>
+  <text x="40" y="74" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#14181a">Hydrostatic Sinking Test &amp; Density Classification</text>
+  <text x="40" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#5c6661">Buoyancy equilibrium determined by resin saturation vs. water density (1.00 g/cm³)</text>
+
+  <!-- 3 Glass Cylinders Testing Tank -->
+  <!-- Cylinder 1: Buoyant (Low Resin) -->
+  <g transform="translate(80, 130)">
+    <!-- Glass body -->
+    <rect x="0" y="0" width="160" height="310" rx="8" fill="none" stroke="#ced5ce" stroke-width="2" />
+    <rect x="2" y="30" width="156" height="278" rx="6" fill="url(#waterColumn)" opacity="0.6" />
+    <!-- Waterline -->
+    <line x1="2" y1="30" x2="158" y2="30" stroke="#7aa5be" stroke-width="2" />
+    <!-- Floating Wood -->
+    <path d="M 50 20 L 110 15 L 120 38 L 45 42 Z" fill="url(#buoyantWood)" stroke="#5e493a" stroke-width="1.5" />
+    <!-- Meniscus / ripples -->
+    <ellipse cx="80" cy="30" rx="40" ry="4" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.8" />
+
+    <!-- Tier Label -->
+    <rect x="15" y="240" width="130" height="56" rx="4" fill="#ffffff" stroke="#e4e7e2" />
+    <text x="80" y="260" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#14181a" text-anchor="middle">Floating / Buoyant</text>
+    <text x="80" y="276" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#5c6661" text-anchor="middle">Density &lt; 0.80 g/cm³</text>
+    <text x="80" y="290" font-family="system-ui, sans-serif" font-size="10" fill="#8b948f" text-anchor="middle">Common commercial grade</text>
+  </g>
+
+  <!-- Cylinder 2: Half-Sinking (Zhen/Middle Grade) -->
+  <g transform="translate(320, 130)">
+    <!-- Glass body -->
+    <rect x="0" y="0" width="160" height="310" rx="8" fill="none" stroke="#ced5ce" stroke-width="2" />
+    <rect x="2" y="30" width="156" height="278" rx="6" fill="url(#waterColumn)" opacity="0.6" />
+    <!-- Waterline -->
+    <line x1="2" y1="30" x2="158" y2="30" stroke="#7aa5be" stroke-width="2" />
+    <!-- Suspended Submerged Wood -->
+    <path d="M 50 140 L 115 135 L 125 170 L 45 165 Z" fill="url(#halfSinkingWood)" stroke="#3a2e25" stroke-width="1.5" />
+
+    <!-- Tier Label -->
+    <rect x="15" y="240" width="130" height="56" rx="4" fill="#ffffff" stroke="#e4e7e2" />
+    <text x="80" y="260" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#a87b2e" text-anchor="middle">Half-Sinking (Zhen)</text>
+    <text x="80" y="276" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#5c6661" text-anchor="middle">0.80 – 0.99 g/cm³</text>
+    <text x="80" y="290" font-family="system-ui, sans-serif" font-size="10" fill="#8b948f" text-anchor="middle">High resin saturation</text>
+  </g>
+
+  <!-- Cylinder 3: Sinking Grade (Fu-Sen / King Grade) -->
+  <g transform="translate(560, 130)">
+    <!-- Glass body -->
+    <rect x="0" y="0" width="160" height="310" rx="8" fill="none" stroke="#ced5ce" stroke-width="2" />
+    <rect x="2" y="30" width="156" height="278" rx="6" fill="url(#waterColumn)" opacity="0.6" />
+    <!-- Waterline -->
+    <line x1="2" y1="30" x2="158" y2="30" stroke="#7aa5be" stroke-width="2" />
+    <!-- Sunk Wood resting on base -->
+    <path d="M 45 285 L 115 280 L 120 305 L 40 305 Z" fill="url(#sinkingWood)" stroke="#000000" stroke-width="1.5" />
+
+    <!-- Tier Label -->
+    <rect x="15" y="240" width="130" height="56" rx="4" fill="#ffffff" stroke="#e4e7e2" />
+    <text x="80" y="260" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#256049" text-anchor="middle">True Sinking Grade</text>
+    <text x="80" y="276" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#5c6661" text-anchor="middle">Density &gt; 1.00 g/cm³</text>
+    <text x="80" y="290" font-family="system-ui, sans-serif" font-size="10" fill="#8b948f" text-anchor="middle">Total vascular blockage</text>
+  </g>
+</svg>

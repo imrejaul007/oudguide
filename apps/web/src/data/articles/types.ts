@@ -66,6 +66,14 @@ export interface ArticleSection {
   /** Optional bullet list. */
   list?: string[];
   listAr?: string[];
+  /** Optional technical schematic or diagram. */
+  image?: {
+    src: string;
+    alt: string;
+    altAr?: string;
+    caption?: string;
+    captionAr?: string;
+  };
   /**
    * A short aside the reader should not skip — usually a caveat, a worked
    * example, or a "what this does not prove".

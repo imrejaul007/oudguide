@@ -300,6 +300,22 @@ function ReviewedArticle({
                 </p>
               </div>
             )}
+
+            {section.image && (
+              <figure style={{ margin: '28px 0', border: '1px solid var(--line)', borderRadius: 8, overflow: 'hidden', background: 'var(--bg)' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={section.image.src}
+                  alt={isAr && section.image.altAr ? section.image.altAr : section.image.alt}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+                {(section.image.caption || (isAr && section.image.captionAr)) && (
+                  <figcaption style={{ padding: '10px 14px', fontSize: '0.84rem', color: 'var(--ink-muted)', background: 'var(--bg-eggshell)', borderTop: '1px solid var(--line)' }}>
+                    {isAr && section.image.captionAr ? section.image.captionAr : section.image.caption}
+                  </figcaption>
+                )}
+              </figure>
+            )}
           </section>
         ))}
       </div>

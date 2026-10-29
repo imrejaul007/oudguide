@@ -42,12 +42,10 @@ describe('Article JSON-LD', () => {
     assert.equal(schema.description, article.summary);
     assert.equal(schema.datePublished, article.reviewedOn);
     assert.equal(schema.dateModified, article.reviewedOn);
-    // The author is the OudGuide organization, not the record's reviewer
-    // string. The reviewer is a descriptor ("OudGuide editorial review"),
-    // not an entity, and a named reviewer surface is added only when the
-    // editorial register actually carries a person.
-    assert.equal((schema.author as any)['@type'], 'Organization');
-    assert.equal((schema.author as any).name, 'OudGuide');
+    // Author is the confirmed named reviewer registered in REVIEWER_REGISTER
+    assert.equal((schema.author as any)['@type'], 'Person');
+    assert.equal((schema.author as any).name, 'Rejaul Karim');
+    assert.equal((schema.author as any).jobTitle, 'Lead Perfumery & Agarwood Sourcing Researcher');
     assert.equal((schema.publisher as any).name, 'OudGuide');
     assert.equal((schema.publisher as any).url, `${SITE}/en/about`);
     assert.equal((schema.publisher as any).logo, `${SITE}/icon.png`);

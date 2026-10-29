@@ -106,6 +106,13 @@ export const basicsArticles: Article[] = [
       {
         heading: 'How the resin forms',
         headingAr: 'كيف يتكون الراتنج',
+        image: {
+          src: '/images/heartwood-resin-formation.svg',
+          alt: 'Botanical diagram of Aquilaria heartwood resin formation showing xylem wound reaction and phytoalexin accumulation',
+          altAr: 'رسم تشريحي نباتي لتكوّن راتنج العود في خشب قلب شجرة أكيلاريا استجابة للجرح ودفاعا ضد الفطريات',
+          caption: 'Cross-section of Aquilaria trunk illustrating sesquiterpene resin infiltration into interxylary phloem following fungal inoculation.',
+          captionAr: 'مقطع عرضي في جذع شجرة العود (أكيلاريا) يوضح ترسب الراتنج العطري في اللحاء الداخلي عقب تلقيح الفطريات.',
+        },
         body: [
           'Healthy agarwood trees are not notably fragrant. The wood only becomes valuable after the tree is wounded and the wound is colonised by fungi, which trigger the tree to deposit oleoresin into the surrounding heartwood over a period of years. This is why plantation agarwood is inoculated deliberately, and why wild agarwood is found in trees that have been damaged by storms, insects or boring.',
           'Two consequences follow for a buyer. The first is that "wild" is not a synonym for "better" — it describes how the tree was wounded, not how good the resulting material is, and planted trees can produce resin of equal quality. The second is that a tree which has never been wounded produces no agarwood at all, so an "oud tree" in a photograph is usually an ordinary tree until something happens to it.',

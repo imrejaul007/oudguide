@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" role="img" aria-label="Technical diagram of traditional Indian copper deg and bhapka hydro-distillation apparatus">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdfdfc" />
+      <stop offset="100%" stop-color="#f7f6f2" />
+    </linearGradient>
+    <linearGradient id="copperDeg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c6683c" />
+      <stop offset="50%" stop-color="#a85226" />
+      <stop offset="100%" stop-color="#7a3614" />
+    </linearGradient>
+    <linearGradient id="copperBhapka" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97e52" />
+      <stop offset="100%" stop-color="#964319" />
+    </linearGradient>
+    <linearGradient id="waterBath" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d8e8f2" />
+      <stop offset="100%" stop-color="#b4d4e6" />
+    </linearGradient>
+    <linearGradient id="fireGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#d95926" />
+      <stop offset="70%" stop-color="#eda100" />
+      <stop offset="100%" stop-color="#fff275" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="url(#bgGrad2)" rx="8" />
+  <rect x="1" y="1" width="798" height="498" fill="none" stroke="#e4e7e2" stroke-width="1" rx="7" />
+
+  <!-- Title & Header -->
+  <text x="40" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#256049" letter-spacing="1.5">HYDRO-DISTILLATION ENGINEERING</text>
+  <text x="40" y="74" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#14181a">Traditional Copper Deg &amp; Bhapka Alembic Apparatus</text>
+  <text x="40" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#5c6661">Direct-fired water distillation with submerged bamboo chonga receiver</text>
+
+  <!-- Ground Plane -->
+  <line x1="40" y1="430" x2="760" y2="430" stroke="#ced5ce" stroke-width="2" />
+
+  <!-- Fire Hearth / Furnace (Bhatti) -->
+  <path d="M 90 430 L 110 320 L 290 320 L 310 430 Z" fill="#8c827a" />
+  <rect x="150" y="360" width="100" height="70" rx="8" fill="#3a3430" />
+  <!-- Flame inside hearth -->
+  <path d="M 170 430 Q 180 370 200 365 Q 220 370 230 430 Q 210 400 200 425 Q 190 400 170 430 Z" fill="url(#fireGrad)" />
+
+  <!-- Copper Still (Deg) -->
+  <!-- Main Pot Body -->
+  <path d="M 120 320 Q 100 240 160 190 L 240 190 Q 300 240 280 320 Z" fill="url(#copperDeg)" stroke="#5e280c" stroke-width="1.5" />
+  <!-- Sealed Neck & Lid (Sarposh) -->
+  <path d="M 170 190 L 175 160 L 225 160 L 230 190 Z" fill="url(#copperDeg)" />
+  <ellipse cx="200" cy="160" rx="30" ry="8" fill="#b55829" stroke="#5e280c" stroke-width="1.5" />
+  <!-- Mud / Clay Seal Band (Dhamru) -->
+  <rect x="165" y="180" width="70" height="12" rx="4" fill="#6e5a4e" opacity="0.9" />
+
+  <!-- Bamboo Vapor Delivery Tube (Chonga) wrapped in twine -->
+  <path d="M 215 160 Q 250 110 360 120 L 480 180 Q 520 200 520 250" fill="none" stroke="#a87b2e" stroke-width="14" stroke-linecap="round" />
+  <path d="M 215 160 Q 250 110 360 120 L 480 180 Q 520 200 520 250" fill="none" stroke="#d49b40" stroke-width="10" stroke-linecap="round" />
+  <!-- Twine wrap texture lines -->
+  <line x1="260" y1="125" x2="265" y2="135" stroke="#704e14" stroke-width="2" />
+  <line x1="310" y1="115" x2="315" y2="125" stroke="#704e14" stroke-width="2" />
+  <line x1="360" y1="115" x2="365" y2="125" stroke="#704e14" stroke-width="2" />
+  <line x1="410" y1="140" x2="415" y2="150" stroke="#704e14" stroke-width="2" />
+  <line x1="460" y1="165" x2="465" y2="175" stroke="#704e14" stroke-width="2" />
+
+  <!-- Cooling Water Bath (Gaddi Tank) -->
+  <rect x="420" y="240" width="200" height="190" rx="6" fill="#f0efec" stroke="#ced5ce" stroke-width="2" />
+  <rect x="422" y="255" width="196" height="173" rx="4" fill="url(#waterBath)" opacity="0.75" />
+  <!-- Water surface ripple -->
+  <path d="M 425 255 Q 470 250 520 255 Q 570 260 615 255" fill="none" stroke="#7aa5be" stroke-width="2" />
+
+  <!-- Copper Receiver Flask (Bhapka) submerged in cooling tank -->
+  <g transform="translate(470, 260)">
+    <path d="M 30 0 L 70 0 L 85 40 Q 100 100 50 130 Q 0 100 15 40 Z" fill="url(#copperBhapka)" stroke="#5e280c" stroke-width="1.5" />
+    <!-- Oil layer on top of hydrosol -->
+    <ellipse cx="50" cy="50" rx="32" ry="10" fill="#a87b2e" opacity="0.8" />
+  </g>
+
+  <!-- Annotations & Labels -->
+  <!-- 1. Deg Pot -->
+  <g transform="translate(70, 190)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#14181a">Copper Still (Deg)</text>
+    <text x="0" y="16" font-family="system-ui, sans-serif" font-size="10.5" fill="#5c6661">Soaked agarwood chips &amp; spring water</text>
+  </g>
+
+  <!-- 2. Clay Seal -->
+  <g transform="translate(70, 140)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#a87b2e">Dhamru Seal</text>
+    <text x="0" y="14" font-family="system-ui, sans-serif" font-size="10" fill="#5c6661">Clay, jute twine &amp; organic paste</text>
+  </g>
+
+  <!-- 3. Chonga Pipe -->
+  <g transform="translate(320, 85)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#14181a" text-anchor="middle">Bamboo Chonga Tube</text>
+    <text x="0" y="16" font-family="system-ui, sans-serif" font-size="10.5" fill="#5c6661" text-anchor="middle">Air-cooled vapor transit</text>
+  </g>
+
+  <!-- 4. Water Bath & Bhapka -->
+  <g transform="translate(640, 280)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#14181a">Water Condenser Tank</text>
+    <text x="0" y="16" font-family="system-ui, sans-serif" font-size="10.5" fill="#5c6661">Continuously refreshed cold bath</text>
+    <text x="0" y="44" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#256049">Submerged Bhapka</text>
+    <text x="0" y="60" font-family="system-ui, sans-serif" font-size="10.5" fill="#5c6661">Receiver collecting essential oil</text>
+    <text x="0" y="74" font-family="system-ui, sans-serif" font-size="10.5" fill="#5c6661">floating atop dense hydrosol</text>
+  </g>
+</svg>
