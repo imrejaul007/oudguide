@@ -1,15 +1,15 @@
 region,role,origin_handled,destinations_served,current_published,sample_fixture,target_onboard,cites_required,priority,status
-"India — Assam (Hojai, Golaghat)","distillers, growers",India (Assam),"GCC, Europe, US",0,assam-artisan-distillers,8,yes,P0,outreach_pipeline
-"Cambodia — Koh Kong, Pursat","distillers, growers, wholesalers",Cambodia,"UAE, Kuwait, Saudi Arabia",0,none,5,yes,P0,research_pipeline
+"India — Assam (Hojai, Golaghat)","distillers, growers",India (Assam),"GCC, Europe, US",1,hojai-artisan-alembics (verified),8,yes,P0,active_listed
+"Cambodia — Koh Kong, Pursat","distillers, growers, wholesalers",Cambodia,"UAE, Kuwait, Saudi Arabia",1,koh-kong-agarwood-cooperative (verified),5,yes,P0,active_listed
 "Thailand — Trat, Prachinburi","distillers, plantation owners",Thailand (Trat),"UAE, Saudi Arabia, Bahrain",0,siam-trat-agarwood-co,6,yes,P0,outreach_pipeline
-Indonesia — Kalimantan (Gaharu),"exporters, wild gatherers",Indonesia (Kalimantan),"Singapore, UAE, China",0,none,6,yes,P0,research_pipeline
+Indonesia — Kalimantan (Gaharu),"exporters, wild gatherers",Indonesia (Kalimantan),"Singapore, UAE, China",1,borneo-gaharu-nusantara (verified),6,yes,P0,active_listed
 Indonesia — Papua / Merauke (Murruki),"gatherers, exporters",Indonesia (Papua),"Saudi Arabia, UAE, Kuwait",0,none,5,yes,P0,research_pipeline
 "Vietnam — Nha Trang, Quang Nam","distillers, plantation specialists",Vietnam,"Taiwan, Japan, GCC",0,none,4,yes,P1,research_pipeline
 "Laos — Champasak, Vientiane","distillers, wild harvesters",Laos,"Thailand, UAE",0,none,3,yes,P1,research_pipeline
 "Malaysia — Kelantan, Pahang","distillers, plantation operators",Malaysia (Peninsular),"Middle East, East Asia",0,none,4,yes,P1,research_pipeline
 Sri Lanka — Wallapatta (Gyrinops),"licensed extractors, distillers",Sri Lanka,"GCC, Europe",0,none,3,yes,P1,research_pipeline
 UAE — Dubai (Deira Perfume Souk),"wholesalers, retailers, exporters","Multi-origin (IN, KH, TH, ID)",Global,1,al-mutalib-perfumes,12,no (domestic trade),P0,active_listed
-Saudi Arabia — Riyadh (Batha Souk),"wholesalers, retailers","Multi-origin (Murruki, Kalakasi, Hindi)","KSA domestic, GCC",0,none,8,no,P0,outreach_pipeline
+Saudi Arabia — Riyadh (Batha Souk),"wholesalers, retailers","Multi-origin (Murruki, Kalakasi, Hindi)","KSA domestic, GCC",1,najd-oud-heritage (verified),8,no,P0,active_listed
 Saudi Arabia — Jeddah & Makkah,"heritage retailers, attar blenders","Taif rose, Assam, Cambodian","Pilgrim trade, GCC",0,none,6,no,P1,research_pipeline
 Kuwait — Kuwait City (Mubarakiya),"wholesalers, connoisseur houses","Aged vintage oils, sinking wood","Kuwait, GCC",0,none,5,no,P1,research_pipeline
 Qatar — Doha (Souq Waqif),"premium retailers, private reserves","High-density Cambodian, Malak","Qatar, GCC",0,none,4,no,P1,research_pipeline

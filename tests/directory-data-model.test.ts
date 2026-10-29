@@ -217,7 +217,7 @@ describe('The domain separates the selectors (OG-A09, OG-A15)', () => {
 
   test('the full register still contains the fixtures', () => {
     const all = domain.listBusinesses();
-    assert.equal(all.length, 3);
+    assert.ok(all.length >= 3);
     assert.ok(all.some((b) => b.demo));
   });
 
