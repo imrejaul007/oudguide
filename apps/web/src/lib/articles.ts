@@ -24,6 +24,7 @@
 import type { Article, ArticleKind, ArticleSource } from '../data/articles/types.ts';
 import { seed } from './data.ts';
 import { articles } from '../data/articles/index.ts';
+import { REVIEWER_REGISTER, namedReviewerDisplay } from './reviewer-register.ts';
 
 export type { Article, ArticleKind, ArticleSource, ArticleSection, ArticleRelated } from '../data/articles/types.ts';
 
@@ -311,7 +312,19 @@ export function articleLimitations(article: Article, locale: string): string {
   return article.limitations;
 }
 
+/**
+ * The reviewer a guide's review-record line displays.
+ *
+ * The named reviewer, when the editorial register carries one, because a
+ * named, accountable reviewer is the E-E-A-T signal the descriptor
+ * "OudGuide editorial review" is not. While the register is empty the
+ * descriptor stays, so the line never shows a name the site has not
+ * registered. The register is the only place a name may be introduced;
+ * a per-article name would be a claim this layer cannot verify.
+ */
 export function articleReviewer(article: Article, locale: string): string {
+  const named = namedReviewerDisplay(REVIEWER_REGISTER);
+  if (named) return named;
   if (locale === 'ar' && article.reviewerAr) return article.reviewerAr;
   return article.reviewer;
 }

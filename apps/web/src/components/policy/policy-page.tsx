@@ -1,6 +1,7 @@
 import { Scale } from 'lucide-react';
 import type { PolicyPage } from '@/lib/copy/policy-pages';
 import { directoryCounts } from '@/lib/data';
+import { REVIEWER_REGISTER } from '@/lib/reviewer-register';
 
 /**
  * The renderer for the eleven public policy pages.
@@ -76,6 +77,61 @@ export function PolicyPageView({
                 {isAr ? 'قيد المراجعة' : 'In research review'}
               </div>
             </div>
+          </div>
+        )}
+
+        {/*
+          The editorial register, when it carries a record.
+
+          This is the only surface where a named reviewer or operator may
+          appear: the schema's Person author and every guide's review-record
+          line resolve through this same register, so a claim in the schema
+          is visible here. While the register is empty (today) this block
+          renders nothing and the "not yet named" copy in the sections is
+          the whole of what the page says about who is behind the reviews.
+        */}
+        {(REVIEWER_REGISTER.named || REVIEWER_REGISTER.operator) && (
+          <div className="card-frame" style={{ marginTop: 40, padding: 24 }}>
+            <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
+              {isAr ? 'السجل التحريري' : 'The editorial register'}
+            </span>
+            {REVIEWER_REGISTER.named && (
+              <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start', marginBottom: 12 }}>
+                {REVIEWER_REGISTER.named.photoUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={REVIEWER_REGISTER.named.photoUrl}
+                    alt={REVIEWER_REGISTER.named.name}
+                    width={56}
+                    height={56}
+                    style={{ borderRadius: '50%', flexShrink: 0 }}
+                  />
+                )}
+                <div>
+                  <p className="text-body" style={{ margin: 0, fontWeight: 600 }}>
+                    {REVIEWER_REGISTER.named.name}
+                    <span className="meta"> · {REVIEWER_REGISTER.named.role}</span>
+                  </p>
+                  <span className="meta">
+                    {isAr ? 'أُكِّد السجل' : 'Record confirmed'}:{' '}
+                    {REVIEWER_REGISTER.named.confirmedOn}
+                  </span>
+                </div>
+              </div>
+            )}
+            {REVIEWER_REGISTER.operator && (
+              <p className="text-body" style={{ margin: 0 }}>
+                {isAr
+                  ? `الكيان التشغيلي: ${REVIEWER_REGISTER.operator.entityName}`
+                  : `Operating entity: ${REVIEWER_REGISTER.operator.entityName}`}
+                {REVIEWER_REGISTER.operator.note && (
+                  <span className="meta">
+                    {' '}
+                    {isAr ? ` — ${REVIEWER_REGISTER.operator.note}` : ` — ${REVIEWER_REGISTER.operator.note}`}
+                  </span>
+                )}
+              </p>
+            )}
           </div>
         )}
 

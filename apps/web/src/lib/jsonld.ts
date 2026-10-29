@@ -1,6 +1,10 @@
 import type { Article } from '../data/articles/types.ts';
 import { resolveSources } from '../data/articles/sources.ts';
 import { articleBreadcrumbs, articleTitle } from './articles.ts';
+import {
+  REVIEWER_REGISTER,
+  articleSchemaAuthor,
+} from './reviewer-register.ts';
 
 /**
  * Structured data.
@@ -188,17 +192,18 @@ function articleSchema(
       : title;
 
   /**
-   * Author and publisher are the OudGuide organization, not the record's
-   * reviewer string.
+   * Author is the named reviewer when the register carries one, and the
+   * OudGuide organization otherwise.
    *
-   * `article.reviewer` is a descriptor — "OudGuide editorial review" —
-   * not an entity, and a schema author must be one. The rule this module
-   * opens with applies: a claim in the schema must be visible on the
-   * page, and the page does not present a named reviewer. The reviewer
-   * surface is added as a Person once the editorial register carries a
-   * real named reviewer; until then the organization is the only
-   * accountable entity the schema can honestly name.
+   * `articleSchemaAuthor` is the register this module's opening rule asks
+   * for: it is the single place a real name may be introduced, and the
+   * Person form carries only what the record carries — its own name and
+   * role, no photo, URL or affiliation the record does not hold. While
+   * the register is empty the organization remains the only accountable
+   * entity the schema may honestly name.
    */
+  const author = articleSchemaAuthor(REVIEWER_REGISTER, siteUrl);
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -207,11 +212,7 @@ function articleSchema(
     inLanguage: language === 'ar' ? 'ar' : 'en',
     datePublished: article.reviewedOn,
     dateModified: article.reviewedOn,
-    author: {
-      '@type': 'Organization',
-      name: 'OudGuide',
-      url: `${siteUrl}/en/about`,
-    },
+    author,
     publisher: {
       '@type': 'Organization',
       name: 'OudGuide',
