@@ -43,6 +43,13 @@ export function CoverageCounts({ locale, isAr }: CoverageCountsProps) {
 
   const totalCovered = rows.length;
 
+  // Graceful degradation: with only a handful of documented countries the
+  // "where the register reaches" list under-sells rather than signals
+  // breadth, so the band hides until the register actually spans three or
+  // more documented countries. It reappears on its own as real records are
+  // published — there is no flag to flip by hand.
+  if (totalCovered < 3) return null;
+
   return (
     <section className="section section-sage">
       <div className="container">
