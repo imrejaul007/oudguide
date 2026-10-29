@@ -1,9 +1,44 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { Map as MapIcon, ArrowLeft, Compass } from 'lucide-react';
 import { domain } from '@/lib/data';
+import { buildMetadata } from '@/lib/metadata';
 import centroids from '@/data/region_centroids.json';
 import { ProducerMapLoader } from '@/components/map/producer-map-loader';
 import type { MapRegion } from '@/components/map/producer-map';
+
+/**
+ * The producer map's metadata.
+ *
+ * The page is a machine-generated surface — the region set is computed from
+ * the documented-facility records, so the two languages carry their own
+ * fixed copy here rather than deriving the title from data that changes
+ * with every seed. The hreflang pair is the sibling under the other locale.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isAr = locale === 'ar';
+
+  const title = isAr
+    ? 'خريطة المنتجين والأسواق الموثّقة'
+    : 'The documented producer and market map';
+  const description = isAr
+    ? 'خريطة المناطق الموثّقة في سجلّ المرافق: أين يُمثَّل العود فعلياً في مناطق الإنتاج ومناطق السوق، من دون إدراج أيّ بائع على بلد لا تتعامل منشأته فيه.'
+    : 'The documented regions on the facility record: where oud material is actually handled across producing and market regions, with no reseller plotted on a country its facility does not operate in.';
+
+  return buildMetadata({
+    path: `/${locale}/directory/map`,
+    title,
+    description,
+    locale,
+    alternateLocalePath: `/${locale === 'ar' ? 'en' : 'ar'}/directory/map`,
+  });
+}
+
 
 export default async function ProducerMapPage({
   params,
