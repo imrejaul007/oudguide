@@ -5116,3 +5116,436 @@ a.btn-crimson {
   line-height: 1.45;
 }
 .pricing-include-strip .pricing-include-item svg { flex-shrink: 0; margin-top: 2px; color: var(--green-700); }
+
+
+/* ==========================================================================
+   Section 31: B2B Yellow Page Directory & Wholesale Marketplace Architecture
+   ========================================================================== */
+
+/* --- Dual-Input "What + Where" Split Search Engine --- */
+.yp-split-search {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.yp-split-search:focus-within {
+  border-color: var(--green-600);
+  box-shadow: 0 4px 20px rgba(14, 138, 106, 0.12);
+}
+
+.yp-search-field-what {
+  flex: 3 1 320px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-inline-end: 1px solid var(--line);
+  background: transparent;
+}
+
+.yp-search-field-where {
+  flex: 2 1 220px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg-eggshell);
+}
+
+.yp-search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+}
+
+.yp-search-input::placeholder {
+  color: var(--ink-soft);
+}
+
+.yp-search-select {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--ink);
+  outline: none;
+  cursor: pointer;
+}
+
+.yp-search-btn {
+  flex: 0 0 auto;
+  border-radius: 0;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .yp-split-search {
+    flex-direction: column;
+  }
+  .yp-search-field-what {
+    border-inline-end: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .yp-search-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
+  }
+}
+
+/* --- Role Sourcing Carousel / Pills --- */
+.yp-role-carousel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 16px;
+  margin-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.yp-role-carousel::-webkit-scrollbar { display: none; }
+
+.yp-role-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  font-size: 0.8rem;
+  font-weight: 550;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.yp-role-pill:hover {
+  border-color: var(--green-300);
+  color: var(--green-700);
+  background: var(--green-50);
+}
+
+.yp-role-pill.active {
+  background: var(--green-700);
+  color: #ffffff;
+  border-color: var(--green-700);
+  box-shadow: 0 1px 4px rgba(14, 138, 106, 0.25);
+}
+
+.yp-role-pill-count {
+  font-size: 0.72rem;
+  opacity: 0.8;
+  padding: 1px 5px;
+  border-radius: var(--r-pill);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.yp-role-pill.active .yp-role-pill-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+/* --- Yellow Page Alphabetical A-Z Sourcing Index --- */
+.yp-az-index {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 8px 0 14px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+  scrollbar-width: none;
+}
+
+.yp-az-index::-webkit-scrollbar { display: none; }
+
+.yp-az-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-inline-end: 6px;
+  white-space: nowrap;
+}
+
+.yp-az-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: var(--r-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.yp-az-letter:hover:not(:disabled) {
+  background: var(--green-50);
+  color: var(--green-700);
+  border-color: var(--green-200);
+}
+
+.yp-az-letter.active {
+  background: var(--green-700);
+  color: #ffffff;
+  border-color: var(--green-700);
+}
+
+.yp-az-letter:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* --- Rich B2B Yellow Page Business Card --- */
+.b2b-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: 24px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  position: relative;
+  box-shadow: var(--shadow-xs);
+}
+
+.b2b-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.b2b-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.b2b-card-crest {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--r-md);
+  background: var(--green-950);
+  color: var(--brass-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 650;
+  border: 1.5px solid rgba(199, 154, 78, 0.35);
+  box-shadow: 0 2px 8px rgba(5, 38, 32, 0.2);
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+
+.b2b-card-title-row {
+  flex: 1;
+  min-width: 0;
+}
+
+.b2b-card-name {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 650;
+  color: var(--ink);
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+
+.b2b-card-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.b2b-card-name a:hover {
+  color: var(--green-700);
+}
+
+.b2b-card-loc {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+/* 4-Fact Operational Spec Matrix */
+.b2b-spec-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  background: var(--bg-eggshell);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  margin: 14px 0;
+}
+
+@media (max-width: 768px) {
+  .b2b-spec-matrix {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.b2b-spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.b2b-spec-lbl {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+.b2b-spec-val {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sourcing Tags */
+.b2b-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.b2b-card-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.74rem;
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+  background: var(--bg-sage);
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  font-weight: 500;
+}
+
+/* Action Footbar */
+.b2b-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.b2b-card-action-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- Persistent Floating Wholesale RFQ Dock (Tradeling & ThomasNet Pattern) --- */
+.floating-rfq-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(94%, 960px);
+  background: var(--green-950);
+  color: #ffffff;
+  border-radius: var(--r-xl);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 95;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.floating-rfq-dock-lead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.floating-rfq-dock-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(14, 138, 106, 0.25);
+  color: var(--green-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.floating-rfq-dock-title {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 2px;
+}
+
+.floating-rfq-dock-guarantees {
+  font-size: 0.74rem;
+  color: rgba(233, 243, 239, 0.75);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .floating-rfq-dock {
+    flex-direction: column;
+    align-items: stretch;
+    bottom: 12px;
+    padding: 14px 18px;
+    gap: 12px;
+  }
+}
+

@@ -4,6 +4,7 @@ import { Building2, ArrowRight, ShieldCheck, PackageOpen } from 'lucide-react';
 import { buildMetadata } from '@/lib/metadata';
 import { domain } from '@/lib/data';
 import { portalCopy, pick } from '@/lib/copy/b2b-portal';
+import { FloatingRfqDock } from '@/components/b2b/floating-rfq-dock';
 
 export async function generateMetadata({
   params,
@@ -108,6 +109,7 @@ export default async function B2bSuppliersPage({
             </Link>
           ))}
         </div>
+        <FloatingRfqDock locale={locale} isAr={isAr} />
       </div>
     </div>
   );

@@ -18,6 +18,11 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  MapPin,
+  Building2,
+  Award,
+  FileText,
+  CheckCircle2,
 } from 'lucide-react';
 import { BookmarkButton } from './interactive-tools';
 import { ComparisonDrawer, type ComparableProducer } from './comparison-drawer';
@@ -102,6 +107,17 @@ const FAMILY_FILTERS: {
 
 const PAGE_SIZE = 8;
 
+const EN_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const AR_ALPHABET = 'أبتثجحخدذرزسشصضطظعغفقكلمنهوي'.split('');
+
+function getMonogram(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  }
+  return name.slice(0, 2).toUpperCase();
+}
+
 function sortRecords(records: DirectoryBusiness[], sort: SortKey): DirectoryBusiness[] {
   const sorted = [...records];
   switch (sort) {
@@ -177,6 +193,7 @@ export function DirectoryBrowser({
   // hand-edited URL cannot put the browser into a state the directory
   // cannot explain.
   const [role, setRole] = useState(isDirectoryRole(initialRole) ? initialRole : '');
+  const [letter, setLetter] = useState('');
   const [page, setPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
   const [view, setView] = useState<'list' | 'grid'>('list');
@@ -208,6 +225,11 @@ export function DirectoryBrowser({
     if (!handlesOrigin(b, origin)) return false;
     if (!servesDestination(b, destination)) return false;
 
+    if (letter) {
+      const firstChar = (b.name.trim()[0] || '').toUpperCase();
+      if (firstChar !== letter.toUpperCase()) return false;
+    }
+
     if (!q) return true;
     const hay = [
       b.name,
@@ -226,7 +248,7 @@ export function DirectoryBrowser({
   const filtered = useMemo(
     () => sortRecords(businesses.filter(filterOne), sort),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [businesses, debounced, family, country, city, area, origin, destination, role, sort]
+    [businesses, debounced, family, country, city, area, origin, destination, role, letter, sort]
   );
 
   /**
@@ -238,7 +260,7 @@ export function DirectoryBrowser({
   const sampleMatches = useMemo(
     () => samples.filter((s) => s.demo !== true || !query).filter(filterOne),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [samples, debounced, family, country, city, area, origin, destination, role]
+    [samples, debounced, family, country, city, area, origin, destination, role, letter]
   );
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
@@ -255,6 +277,7 @@ export function DirectoryBrowser({
     setOrigin('');
     setDestination('');
     setRole('');
+    setLetter('');
     setPage(1);
   };
 
@@ -266,7 +289,8 @@ export function DirectoryBrowser({
     area ||
     origin ||
     destination ||
-    role
+    role ||
+    letter
   );
 
   /**
@@ -285,122 +309,145 @@ export function DirectoryBrowser({
     return DIRECTORY_ROLE_SLUGS.filter((r) => held.has(r));
   }, [businesses]);
 
+  const roleCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const r of availableRoles) {
+      counts[r] = businesses.filter((b) => !b.demo && holdsRole(b, r)).length;
+    }
+    return counts;
+  }, [availableRoles, businesses]);
+
+  const activeLetters = useMemo(() => {
+    const letters = new Set<string>();
+    for (const b of businesses) {
+      if (b.demo) continue;
+      const first = (b.name.trim()[0] || '').toUpperCase();
+      if (first) letters.add(first);
+    }
+    return letters;
+  }, [businesses]);
+
   const recordTypeOf = (b: DirectoryBusiness) => {
     if (b.contact_unlocked) return isAr ? 'عضو معتمد' : 'Verified member';
     if (b.has_active_membership) return isAr ? 'عضوية نشطة' : 'Active membership';
     return isAr ? 'سجل أساسي' : 'Basic record';
   };
 
-  const renderRow = (b: DirectoryBusiness, extraBadge: React.ReactNode = null) => (
-    <div className="directory-row" key={b.id}>
-      <div>
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginBottom: 4 }}>
-          <h3 className="directory-row-name" style={{ flex: '1 1 auto', minWidth: 0 }}>
-            <Link href={`/${locale}/directory/${b.slug}`}>{b.name}</Link>
-          </h3>
-          <BookmarkButton slug={b.slug} locale={locale} />
-          {extraBadge}
+  const renderRow = (b: DirectoryBusiness, extraBadge: React.ReactNode = null) => {
+    const monogram = getMonogram(b.name);
+    return (
+      <div className="directory-row" key={b.id} style={{ alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center', minWidth: 0 }}>
+          <div
+            className="b2b-card-crest"
+            style={{ width: 40, height: 40, fontSize: '0.95rem', flexShrink: 0 }}
+            aria-hidden="true"
+          >
+            {monogram}
+          </div>
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginBottom: 2 }}>
+              <h3 className="directory-row-name" style={{ flex: '1 1 auto', minWidth: 0, margin: 0 }}>
+                <Link href={`/${locale}/directory/${b.slug}`}>{b.name}</Link>
+              </h3>
+              <BookmarkButton slug={b.slug} locale={locale} />
+              {extraBadge}
+            </div>
+            <div className="directory-row-value" style={{ color: 'var(--ink-muted)', fontSize: '0.8rem' }}>
+              {b.city ? `${b.city}, ` : ''}
+              {b.country_name || b.country_id}
+              {b.established_year ? ` · ${isAr ? 'تأسس في' : 'Est.'} ${b.established_year}` : ''}
+            </div>
+          </div>
         </div>
-        <div className="directory-row-value" style={{ color: 'var(--ink-muted)', fontSize: '0.8rem' }}>
-          {b.city ? `${b.city}, ` : ''}
-          {b.country_name || b.country_id}
-          {b.established_year ? ` · ${isAr ? 'تأسس في' : 'Est.'} ${b.established_year}` : ''}
-        </div>
-      </div>
 
-      <div>
-        <span className="directory-row-label">{isAr ? 'الأصناف' : 'Materials'}</span>
-        <div className="directory-row-list" style={{ display: 'block' }}>
+        <div>
+          <span className="directory-row-label">{isAr ? 'الأصناف' : 'Materials'}</span>
+          <div className="directory-row-list" style={{ display: 'block' }}>
+            <span className="directory-row-value">
+              {(b.product_families ?? []).slice(0, 3).join(' · ') || '—'}
+            </span>
+            {(b.product_families?.length ?? 0) > 3 && (
+              <span style={{ color: 'var(--ink-soft)', fontSize: '0.72rem' }}>
+                {isAr ? `+${b.product_families!.length - 3} أخرى` : `+${b.product_families!.length - 3} more`}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <span className="directory-row-label">{isAr ? 'ينقل إلى' : 'Ships to'}</span>
           <span className="directory-row-value">
-            {(b.product_families ?? []).slice(0, 3).join(' · ') || '—'}
+            {b.serves_destinations?.length
+              ? `${b.serves_destinations.length} ${isAr ? 'وجهات موثقة' : 'documented destination' + (b.serves_destinations.length === 1 ? '' : 's')}`
+              : '—'}
           </span>
-          {(b.product_families?.length ?? 0) > 3 && (
-            <span style={{ color: 'var(--ink-soft)', fontSize: '0.72rem' }}>
-              {isAr ? `+${b.product_families!.length - 3} أخرى` : `+${b.product_families!.length - 3} more`}
+          {b.sample_availability != null && (
+            <span style={{ display: 'block', fontSize: '0.72rem', color: b.sample_availability ? 'var(--green-700)' : 'var(--ink-soft)', marginTop: 2 }}>
+              {b.sample_availability ? (isAr ? 'العينات متاحة' : 'Samples available') : isAr ? 'لا عينات' : 'No samples'}
             </span>
           )}
         </div>
-      </div>
 
-      <div>
-        <span className="directory-row-label">{isAr ? 'ينقل إلى' : 'Ships to'}</span>
-        <span className="directory-row-value">
-          {b.serves_destinations?.length
-            ? `${b.serves_destinations.length} ${isAr ? 'وجهات موثقة' : 'documented destination' + (b.serves_destinations.length === 1 ? '' : 's')}`
-            : '—'}
-        </span>
-        {b.sample_availability != null && (
-          <span style={{ display: 'block', fontSize: '0.72rem', color: b.sample_availability ? 'var(--green-600)' : 'var(--ink-soft)', marginTop: 3 }}>
-            {b.sample_availability ? (isAr ? 'العينات متاحة' : 'Samples available') : isAr ? 'لا عينات' : 'No samples'}
+        <div>
+          <span className="directory-row-label">{isAr ? 'الحد الأدنى' : 'Min. order'}</span>
+          <span className="directory-row-value" style={{ fontSize: '0.82rem', fontWeight: 600 }}>
+            {b.minimum_order_quantity || '—'}
           </span>
-        )}
-      </div>
+        </div>
 
-      <div>
-        <span className="directory-row-label">{isAr ? 'الحد الأدنى' : 'Min. order'}</span>
-        <span className="directory-row-value" style={{ fontSize: '0.8rem' }}>
-          {b.minimum_order_quantity || '—'}
-        </span>
-      </div>
+        <div>
+          <span className="directory-row-label">{isAr ? 'الحالة' : 'Status'}</span>
+          <span
+            className={`badge ${b.contact_unlocked ? 'badge-emerald' : 'badge-locked'}`}
+            style={{ display: 'inline-flex' }}
+          >
+            {recordTypeOf(b)}
+          </span>
+        </div>
 
-      <div>
-        <span className="directory-row-label">{isAr ? 'الحالة' : 'Status'}</span>
-        <span
-          className={`badge ${b.contact_unlocked ? 'badge-emerald' : 'badge-locked'}`}
-          style={{ display: 'inline-flex' }}
-        >
-          {recordTypeOf(b)}
-        </span>
+        <div style={{ textAlign: 'end', display: 'flex', gap: 6, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+          <Link
+            href={`/${locale}/b2b/quote?supplier=${b.slug}`}
+            className="btn btn-primary btn-sm"
+            style={{ gap: 4, padding: '5px 10px', fontSize: '0.75rem' }}
+          >
+            <FileText size={11} />
+            <span>{isAr ? 'تسعير' : 'RFQ'}</span>
+          </Link>
+          <Link
+            href={`/${locale}/directory/${b.slug}`}
+            className="btn btn-outline btn-sm"
+            style={{ gap: 4, padding: '5px 9px', fontSize: '0.75rem' }}
+          >
+            <span>{isAr ? 'الملف' : 'Profile'}</span>
+            <ArrowRight size={11} className="icon-dir-flip" />
+          </Link>
+        </div>
       </div>
-
-      <div style={{ textAlign: 'end' }}>
-        <Link
-          href={`/${locale}/directory/${b.slug}`}
-          className="btn btn-outline btn-sm"
-          style={{ gap: 5 }}
-        >
-          {isAr ? 'الملف' : 'Profile'}
-          <ArrowRight size={12} />
-        </Link>
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div>
-      {/* FILTER BAR */}
-      <div className="card" style={{ padding: 20, marginBottom: 24 }}>
-        <div className="row-between" style={{ marginBottom: 14 }}>
-          <div style={{ position: 'relative', flex: '1 1 320px', maxWidth: 520 }}>
-            <Search
-              size={16}
-              style={{
-                position: 'absolute',
-                insetInlineStart: 14,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                color: 'var(--ink-soft)',
-                pointerEvents: 'none',
-              }}
-            />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={isAr
-                ? 'ابحث بالاسم، الصنف، أو الإقليم...'
-                : 'Search by name, material, or terroir...'}
-              className="form-input"
-              style={{ paddingInlineStart: 40 }}
-              aria-label={isAr ? 'بحث في الدليل' : 'Search directory'}
-            />
+      {/* YELLOW PAGE DUAL SPLIT SEARCH & FILTER COMMAND BAR */}
+      <div className="card" style={{ padding: '20px 22px', marginBottom: 24 }}>
+        {/* Top Control Bar with Results Count & View Options */}
+        <div className="row-between" style={{ marginBottom: 16 }}>
+          <div className="cluster" style={{ gap: 8 }}>
+            <span className="badge badge-emerald" style={{ fontWeight: 600 }}>
+              <Filter size={12} />
+              {filtered.length} {isAr ? 'مورد موثق' : 'Verified Suppliers'}
+            </span>
+            {hasFilters && (
+              <button onClick={resetFilters} className="btn btn-ghost btn-sm" style={{ padding: '4px 8px' }}>
+                <X size={13} />
+                <span>{isAr ? 'إعادة تعيين الكل' : 'Clear all'}</span>
+              </button>
+            )}
           </div>
 
-          <div className="cluster">
-            <span className="badge badge-crimson">
-              <Filter size={11} />
-              {filtered.length} {isAr ? 'نتيجة' : 'Results'}
-            </span>
+          <div className="cluster" style={{ gap: 8 }}>
             <button
               onClick={() => setView(view === 'list' ? 'grid' : 'list')}
               className="icon-button"
@@ -412,38 +459,104 @@ export function DirectoryBrowser({
             <button
               onClick={() => setShowFilters(!showFilters)}
               className="btn btn-outline btn-sm"
+              style={{ gap: 6 }}
             >
-              <SlidersHorizontal size={14} />
-              {isAr ? 'عوامل التصفية' : 'Filters'}
+              <SlidersHorizontal size={13} />
+              <span>{isAr ? 'تصفية جغرافية' : 'Geography Facets'}</span>
             </button>
-            {hasFilters && (
-              <button onClick={resetFilters} className="btn btn-ghost btn-sm">
-                <X size={14} />
-                {isAr ? 'إعادة تعيين' : 'Reset'}
-              </button>
-            )}
           </div>
         </div>
 
-        {/*
-          The active role, stated outside the filter panel.
+        {/* The Classic Yellow Page "What + Where" Split Search Engine */}
+        <div className="yp-split-search">
+          <div className="yp-search-field-what">
+            <Search size={18} style={{ color: 'var(--green-700)', flexShrink: 0 }} />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={isAr
+                ? 'ابحث بالاسم، الصنف، الدرجة، أو نوع التقطير...'
+                : 'Search company, material family, resin grade, or distillation...'}
+              className="yp-search-input"
+              aria-label={isAr ? 'بحث عن مورد' : 'Search supplier or material'}
+            />
+          </div>
 
-          The role chips live behind the "Filters" toggle, so a reader who
-          arrives at /en/directory/wholesalers saw a filtered list with
-          no indication of what had filtered it. The role is a published
-          URL and a reader has to be able to see what it means.
-        */}
-        {role && (
-          <div className="cluster" style={{ marginBottom: 14 }}>
-            <span className="eyebrow" style={{ marginBottom: 0 }}>
-              {isAr ? 'الدور' : 'Role'}
-            </span>
-            <span className="chip">{directoryRoleLabel(role, locale)}</span>
+          <div className="yp-search-field-where">
+            <MapPin size={16} style={{ color: 'var(--ink-soft)', flexShrink: 0 }} />
+            <select
+              value={country || (city ? `city:${city}` : '')}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (!val) {
+                  setCountry('');
+                  setCity('');
+                } else if (val.startsWith('city:')) {
+                  setCountry('');
+                  setCity(val.replace('city:', ''));
+                } else {
+                  setCountry(val);
+                  setCity('');
+                }
+                setPage(1);
+              }}
+              className="yp-search-select"
+              aria-label={isAr ? 'تحديد الموقع' : 'Filter by location'}
+            >
+              <option value="">{isAr ? 'كل الدول والمناطق' : 'All Territories'}</option>
+              {locationCountries.map((c) => (
+                <option key={c.key} value={c.key}>
+                  {isAr ? c.labelAr : c.label}
+                </option>
+              ))}
+              {cityOptions.length > 0 && (
+                <optgroup label={isAr ? 'المدن والمراكز' : 'Cities & Hubs'}>
+                  {cityOptions.map((c) => (
+                    <option key={`city:${c.key}`} value={`city:${c.key}`}>
+                      {c.label}
+                    </option>
+                  ))}
+                </optgroup>
+              )}
+            </select>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setPage(1)}
+            className="btn btn-primary yp-search-btn"
+          >
+            <span>{isAr ? 'بحث' : 'Find Suppliers'}</span>
+            <ArrowRight size={13} className="icon-dir-flip" />
+          </button>
+        </div>
+
+        {/* Business Role Sourcing Carousel with Counts */}
+        {availableRoles.length > 0 && (
+          <div className="yp-role-carousel">
+            <button
+              onClick={() => { setRole(''); setPage(1); }}
+              className={`yp-role-pill ${role === '' ? 'active' : ''}`}
+            >
+              <span>{isAr ? 'كل الأدوار' : 'All Roles'}</span>
+              <span className="yp-role-pill-count">{businesses.filter((b) => !b.demo).length}</span>
+            </button>
+            {availableRoles.map((r) => (
+              <button
+                key={r}
+                onClick={() => { setRole(role === r ? '' : r); setPage(1); }}
+                className={`yp-role-pill ${role === r ? 'active' : ''}`}
+              >
+                <span>{directoryRoleLabel(r, locale)}</span>
+                <span className="yp-role-pill-count">{roleCounts[r] ?? 0}</span>
+              </button>
+            ))}
           </div>
         )}
 
-        {/* Material family chips */}
-        <div className="filter-chip-row">
+        {/* Material Family Quick Pills */}
+        <div className="filter-chip-row" style={{ marginBottom: 12 }}>
           {FAMILY_FILTERS.map((f) => {
             const Icon = f.icon;
             return (
@@ -458,6 +571,32 @@ export function DirectoryBrowser({
             );
           })}
         </div>
+
+        {/* Alphabetical A–Z Jump Index Strip */}
+        <nav className="yp-az-index" aria-label={isAr ? 'الفهرس الأبجدي' : 'Alphabetical index'}>
+          <span className="yp-az-label">{isAr ? 'أبجدياً:' : 'A–Z:'}</span>
+          <button
+            onClick={() => { setLetter(''); setPage(1); }}
+            className={`yp-az-letter ${letter === '' ? 'active' : ''}`}
+            style={{ minWidth: 32 }}
+          >
+            {isAr ? 'الكل' : 'All'}
+          </button>
+          {(isAr ? AR_ALPHABET : EN_ALPHABET).map((char) => {
+            const hasMatches = activeLetters.has(char.toUpperCase());
+            return (
+              <button
+                key={char}
+                onClick={() => { setLetter(letter === char ? '' : char); setPage(1); }}
+                disabled={!hasMatches}
+                className={`yp-az-letter ${letter === char ? 'active' : ''}`}
+                title={hasMatches ? `${char}` : undefined}
+              >
+                {char}
+              </button>
+            );
+          })}
+        </nav>
 
         {/* Role filter — the business's own roles, not a parsed label. */}
         {showFilters && availableRoles.length > 0 && (
@@ -669,68 +808,129 @@ function GridCard({
 }) {
   const locationLabel =
     (b.city ? `${b.city}, ` : '') + (b.country_name || b.country_id);
+  const monogram = getMonogram(b.name);
+  const roles = (b.roles ?? []).slice(0, 3);
+  const families = (b.product_families ?? []).slice(0, 3);
+  const moreFamilies = (b.product_families?.length ?? 0) - families.length;
 
   return (
-    <article className="data-card">
-      <div className="data-card-head">
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
+    <article className="b2b-card" data-slug={b.slug}>
+      <div className="b2b-card-head">
+        <div className="b2b-card-crest" aria-hidden="true">
+          {monogram}
+        </div>
+        <div className="b2b-card-title-row">
+          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginBottom: 4 }}>
             {sample && (
               <span className="badge badge-gold" style={{ display: 'inline-flex' }}>
                 {isAr ? 'سجل تجريبي' : 'Sample record'}
               </span>
             )}
-            <span className={`badge ${b.contact_unlocked ? 'badge-emerald' : 'badge-locked'}`} style={{ display: 'inline-flex' }}>
-              {b.contact_unlocked
-                ? (isAr ? 'عضو معتمد' : 'Verified member')
-                : (isAr ? 'ملف محمي' : 'Basic record')}
-            </span>
+            {b.contact_unlocked ? (
+              <span className="badge badge-emerald" style={{ display: 'inline-flex' }}>
+                <Award size={11} />
+                {isAr ? 'عضو معتمد' : 'Verified Member'}
+              </span>
+            ) : b.verification_state === 'owner_verified' ? (
+              <span className="badge badge-gold" style={{ display: 'inline-flex' }}>
+                <CheckCircle2 size={11} />
+                {isAr ? 'ملكية موثقة' : 'Owner Verified'}
+              </span>
+            ) : (
+              <span className="badge badge-locked" style={{ display: 'inline-flex' }}>
+                {isAr ? 'ملف محمي' : 'Basic Record'}
+              </span>
+            )}
           </div>
-          <h3 className="data-card-name">
+
+          <h3 className="b2b-card-name">
             <Link href={`/${locale}/directory/${b.slug}`}>{b.name}</Link>
           </h3>
-          <div className="biz-location" style={{ marginBottom: 0, marginTop: 4 }}>
-            {locationLabel}
-          </div>
+
+          <p className="b2b-card-loc">
+            <MapPin size={12} style={{ color: 'var(--green-700)', flexShrink: 0 }} />
+            <span>{locationLabel}</span>
+          </p>
         </div>
+
         <div className="cluster" style={{ gap: 4, flexShrink: 0 }}>
           <BookmarkButton slug={b.slug} locale={locale} />
         </div>
       </div>
 
-      <div className="data-card-facts">
-        <div>
-          <span className="data-card-fact-label">{isAr ? 'الأصناف' : 'Materials'}</span>
-          <span className="data-card-fact-value">
-            {(b.product_families ?? []).slice(0, 3).join(' · ') || '—'}
+      {b.description && (
+        <p style={{ margin: '2px 0 10px', fontSize: '0.86rem', lineHeight: 1.6, color: 'var(--ink-muted)' }}>
+          {b.description}
+        </p>
+      )}
+
+      {/* 4-Fact Operational Spec Matrix */}
+      <div className="b2b-spec-matrix">
+        <div className="b2b-spec-item">
+          <span className="b2b-spec-lbl">{isAr ? 'التأسيس' : 'Est.'}</span>
+          <span className="b2b-spec-val">{b.established_year ?? '—'}</span>
+        </div>
+        <div className="b2b-spec-item">
+          <span className="b2b-spec-lbl">{isAr ? 'الحد الأدنى' : 'Min. order'}</span>
+          <span className="b2b-spec-val" title={b.minimum_order_quantity || undefined}>
+            {b.minimum_order_quantity || '—'}
           </span>
         </div>
-        <div>
-          <span className="data-card-fact-label">{isAr ? 'تأسس في' : 'Established'}</span>
-          <span className="data-card-fact-value">{b.established_year ?? '—'}</span>
+        <div className="b2b-spec-item">
+          <span className="b2b-spec-lbl">{isAr ? 'العينات' : 'Samples'}</span>
+          <span className="b2b-spec-val" style={{ color: b.sample_availability ? 'var(--green-700)' : 'inherit' }}>
+            {b.sample_availability == null
+              ? '—'
+              : b.sample_availability
+              ? (isAr ? 'متاحة' : 'Available')
+              : (isAr ? 'غير متاحة' : 'None')}
+          </span>
         </div>
-        <div>
-          <span className="data-card-fact-label">{isAr ? 'الحد الأدنى' : 'Min. order'}</span>
-          <span className="data-card-fact-value">{b.minimum_order_quantity || '—'}</span>
-        </div>
-        <div>
-          <span className="data-card-fact-label">{isAr ? 'الشحن إلى' : 'Ships to'}</span>
-          <span className="data-card-fact-value">
+        <div className="b2b-spec-item">
+          <span className="b2b-spec-lbl">{isAr ? 'التصدير' : 'Export Reach'}</span>
+          <span className="b2b-spec-val">
             {b.serves_destinations?.length
-              ? `${b.serves_destinations.length} ${isAr ? 'وجهات' : 'dest.'}`
+              ? `${b.serves_destinations.length} ${isAr ? 'دول' : 'dests.'}`
               : '—'}
           </span>
         </div>
       </div>
 
-      <div className="cluster" style={{ gap: 12, marginTop: 4 }}>
+      {/* Sourcing Tags */}
+      <div className="b2b-card-tags">
+        {roles.map((r) => (
+          <span key={r} className="b2b-card-tag" style={{ background: 'var(--green-50)', color: 'var(--green-800)', borderColor: 'var(--green-100)' }}>
+            {directoryRoleLabel(r, locale)}
+          </span>
+        ))}
+        {families.map((f) => (
+          <span key={f} className="b2b-card-tag">
+            {f}
+          </span>
+        ))}
+        {moreFamilies > 0 && (
+          <span className="b2b-card-tag" style={{ opacity: 0.75 }}>
+            {isAr ? `+${moreFamilies} أخرى` : `+${moreFamilies} more`}
+          </span>
+        )}
+      </div>
+
+      {/* Action Footbar */}
+      <div className="b2b-card-actions">
         <Link
           href={`/${locale}/directory/${b.slug}`}
           className="btn btn-outline btn-sm"
+        >
+          <span>{isAr ? 'عرض الملف' : 'View Storefront'}</span>
+          <ArrowRight size={12} className="icon-dir-flip" />
+        </Link>
+        <Link
+          href={`/${locale}/b2b/quote?supplier=${b.slug}`}
+          className="btn btn-primary btn-sm"
           style={{ gap: 5 }}
         >
-          {isAr ? 'الملف الكامل' : 'View profile'}
-          <ArrowRight size={12} />
+          <FileText size={12} />
+          <span>{isAr ? 'طلب تسعير' : 'Request Quote'}</span>
         </Link>
       </div>
     </article>

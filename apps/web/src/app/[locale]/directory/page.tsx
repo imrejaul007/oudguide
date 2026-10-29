@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { domain, directoryCounts } from '@/lib/data';
 import { DirectoryBrowser, type DirectoryBusiness } from '@/components/business/directory-browser';
+import { FloatingRfqDock } from '@/components/b2b/floating-rfq-dock';
 import { Compass, ShieldCheck, Map as MapIcon, Sparkles, Bookmark } from 'lucide-react';
 import type { Metadata } from 'next';
 import { buildMetadata, SITE_URL } from '@/lib/metadata';
@@ -384,6 +385,7 @@ export default async function DirectoryPage({
             ))}
           </div>
         </section>
+        <FloatingRfqDock locale={locale} isAr={isAr} />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { MapPin, Award, Lock, ArrowRight } from 'lucide-react';
+import { MapPin, Award, Lock, ArrowRight, ShieldCheck, CheckCircle2, FileText, Globe } from 'lucide-react';
 import { BookmarkButton, ShareButton } from './interactive-tools';
 import {
   directoryRoleLabel,
@@ -45,11 +45,14 @@ interface BusinessCardProps {
   sampleLabel?: string | null;
 }
 
-const producerCovers: Record<string, string> = {
-  'al-mutalib-perfumes': '/images/hero-attar-still.svg',
-  'assam-artisan-distillers': '/images/hero-oud-chip.svg',
-  'siam-trat-agarwood-co': '/images/hero-dehn-al-oud.svg',
-};
+/** Generate a 2-character monogram crest for the supplier mark. */
+function getMonogram(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  }
+  return name.slice(0, 2).toUpperCase();
+}
 
 export function BusinessCard({ business, locale, variant = 'full', sampleLabel }: BusinessCardProps) {
   const isAr = locale === 'ar';
@@ -59,126 +62,149 @@ export function BusinessCard({ business, locale, variant = 'full', sampleLabel }
     (business.city ? `${business.city}, ` : '') +
     (business.country_name || business.country_id);
 
-  const roles = (business.roles ?? []).slice(0, compact ? 2 : 3);
-  const families = (business.product_families ?? []).slice(0, compact ? 2 : 3);
+  const roles = (business.roles ?? []).slice(0, compact ? 2 : 4);
+  const families = (business.product_families ?? []).slice(0, compact ? 2 : 4);
   const moreFamilies = (business.product_families?.length ?? 0) - families.length;
 
-  const verifiedFacts = (business.verified_fields ?? []).includes('established_year');
-  const facts: { label: string; value: string | null }[] = [
-    { label: isAr ? 'تأسس في' : 'Established', value: business.established_year ? `${business.established_year}` : null },
-    { label: isAr ? 'الحد الأدنى للطلب' : 'Minimum order', value: business.minimum_order_quantity },
-    { label: isAr ? 'العينات' : 'Samples', value: business.sample_availability == null ? null : business.sample_availability ? (isAr ? 'متاحة' : 'Available') : (isAr ? 'غير متاحة' : 'Not available') },
-    {
-      label: isAr ? 'ينقل إلى' : 'Ships to',
-      value: business.serves_destinations && business.serves_destinations.length
-        ? `${business.serves_destinations.length} ${isAr ? 'وجهات' : 'destination' + (business.serves_destinations.length === 1 ? '' : 's')}`
-        : null,
-    },
-  ];
+  const verifiedEstablished = (business.verified_fields ?? []).includes('established_year');
+  const monogram = getMonogram(business.name);
 
   return (
-    <article className="data-card">
-      <div className="data-card-cover">
-        <img
-          src={producerCovers[business.slug] || '/images/hero-oud-chip.svg'}
-          alt={business.name}
-        />
-        <div className="data-card-cover-overlay" />
-      </div>
-      <div className="data-card-head">
-        <div style={{ flex: 1, minWidth: 0 }}>
-          {business.contact_unlocked ? (
-            <span className="badge badge-emerald" style={{ display: 'inline-flex', marginBottom: 8 }}>
-              <Award size={11} />
-              {isAr ? 'عضو معتمد' : 'Verified Member'}
-            </span>
-          ) : (
-            <span className="badge badge-locked" style={{ display: 'inline-flex', marginBottom: 8 }}>
-              <Lock size={11} />
-              {isAr ? 'ملف محمي' : 'Basic Record'}
-            </span>
-          )}
-          {sampleLabel && (
-            <span className="badge badge-gold" style={{ display: 'inline-flex', marginBottom: 8 }}>
-              {sampleLabel}
-            </span>
-          )}
-          <h3 className="data-card-name">
+    <article className="b2b-card" data-slug={business.slug}>
+      {/* Header with Monogram Crest & Business Identity */}
+      <div className="b2b-card-head">
+        <div className="b2b-card-crest" aria-hidden="true">
+          {monogram}
+        </div>
+        <div className="b2b-card-title-row">
+          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginBottom: 4 }}>
+            {business.contact_unlocked ? (
+              <span className="badge badge-emerald" style={{ display: 'inline-flex' }}>
+                <Award size={11} />
+                {isAr ? 'عضو معتمد' : 'Verified Member'}
+              </span>
+            ) : business.verification_state === 'owner_verified' ? (
+              <span className="badge badge-gold" style={{ display: 'inline-flex' }}>
+                <CheckCircle2 size={11} />
+                {isAr ? 'ملكية موثقة' : 'Owner Verified'}
+              </span>
+            ) : (
+              <span className="badge badge-locked" style={{ display: 'inline-flex' }}>
+                <Lock size={11} />
+                {isAr ? 'سجل أساسي' : 'Basic Record'}
+              </span>
+            )}
+            {sampleLabel && (
+              <span className="badge badge-gold" style={{ display: 'inline-flex' }}>
+                {sampleLabel}
+              </span>
+            )}
+          </div>
+
+          <h3 className="b2b-card-name">
             <Link href={`/${locale}/directory/${business.slug}`}>{business.name}</Link>
           </h3>
+
+          <p className="b2b-card-loc">
+            <MapPin size={12} style={{ color: 'var(--green-700)', flexShrink: 0 }} />
+            <span>{locationLabel}</span>
+          </p>
         </div>
+
         <div className="cluster" style={{ gap: 4, flexShrink: 0 }}>
           <BookmarkButton slug={business.slug} locale={locale} />
           <ShareButton title={business.name} locale={locale} />
         </div>
       </div>
 
-      <div className="biz-location" style={{ margin: compact ? 0 : 4 }}>
-        <MapPin size={11} />
-        {locationLabel}
-      </div>
-
       {!compact && business.description && (
-        <p style={{ margin: '6px 0 0', fontSize: '0.88rem', lineHeight: 1.6, color: 'var(--ink-muted)' }}>
+        <p style={{ margin: '4px 0 10px', fontSize: '0.86rem', lineHeight: 1.6, color: 'var(--ink-muted)' }}>
           {business.description}
         </p>
       )}
 
-      <div className="biz-tags" style={{ marginTop: 4 }}>
-        {roles.map((role) => (
-          <span key={role} className="chip" style={{ fontSize: '0.72rem' }}>
-            {directoryRoleLabel(role, locale)}
+      {/* 4-Fact Operational Spec Matrix */}
+      <div className="b2b-spec-matrix">
+        <div className="b2b-spec-item">
+          <span className="b2b-spec-lbl">{isAr ? 'التأسيس' : 'Est.'}</span>
+          <span className="b2b-spec-val">
+            {business.established_year ? (
+              <>
+                {business.established_year}
+                {verifiedEstablished && (
+                  <span style={{ fontSize: '0.68rem', color: 'var(--green-700)', marginInlineStart: 3 }}>✓</span>
+                )}
+              </>
+            ) : '—'}
+          </span>
+        </div>
+
+        <div className="b2b-spec-item">
+          <span className="b2b-spec-lbl">{isAr ? 'الحد الأدنى' : 'Min. Order'}</span>
+          <span className="b2b-spec-val" title={business.minimum_order_quantity || undefined}>
+            {business.minimum_order_quantity || '—'}
+          </span>
+        </div>
+
+        <div className="b2b-spec-item">
+          <span className="b2b-spec-lbl">{isAr ? 'العينات' : 'Samples'}</span>
+          <span className="b2b-spec-val" style={{ color: business.sample_availability ? 'var(--green-700)' : 'inherit' }}>
+            {business.sample_availability == null
+              ? '—'
+              : business.sample_availability
+              ? (isAr ? 'متاحة' : 'Available')
+              : (isAr ? 'غير متاحة' : 'None')}
+          </span>
+        </div>
+
+        <div className="b2b-spec-item">
+          <span className="b2b-spec-lbl">{isAr ? 'التصدير' : 'Export Reach'}</span>
+          <span className="b2b-spec-val">
+            {business.serves_destinations?.length
+              ? `${business.serves_destinations.length} ${isAr ? 'دول' : 'dests.'}`
+              : '—'}
+          </span>
+        </div>
+      </div>
+
+      {/* Sourcing Tags: Roles & Product Families */}
+      <div className="b2b-card-tags">
+        {roles.map((r) => (
+          <span key={r} className="b2b-card-tag" style={{ background: 'var(--green-50)', color: 'var(--green-800)', borderColor: 'var(--green-100)' }}>
+            {directoryRoleLabel(r, locale)}
           </span>
         ))}
+        {families.map((f) => (
+          <span key={f} className="b2b-card-tag">
+            {f}
+          </span>
+        ))}
+        {moreFamilies > 0 && (
+          <span className="b2b-card-tag" style={{ opacity: 0.75 }}>
+            {isAr ? `+${moreFamilies} أخرى` : `+${moreFamilies} more`}
+          </span>
+        )}
       </div>
 
-      <div>
-        <div className="data-card-fact-label" style={{ marginTop: compact ? 0 : 10 }}>
-          {isAr ? 'الأصناف المتعامل بها' : 'Materials handled'}
+      {/* High-Converting Action Footbar */}
+      <div className="b2b-card-actions">
+        <div className="b2b-card-action-group">
+          <Link
+            href={`/${locale}/directory/${business.slug}`}
+            className="btn btn-outline btn-sm"
+          >
+            <span>{isAr ? 'عرض الملف' : 'View Storefront'}</span>
+            <ArrowRight size={12} className="icon-dir-flip" />
+          </Link>
         </div>
-        <div className="directory-row-list">
-          {families.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-          {moreFamilies > 0 && <li>{isAr ? `+${moreFamilies} أخرى` : `+${moreFamilies} more`}</li>}
-        </div>
-      </div>
 
-      {!compact && (
-        <div className="data-card-facts">
-          {facts.map((f) => (
-            <div key={f.label}>
-              <span className="data-card-fact-label">{f.label}</span>
-              <span className="data-card-fact-value">
-                {f.value ?? <span style={{ color: 'var(--ink-soft)' }}>—</span>}
-              </span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {verifiedFacts && business.established_year && (
-        <div className="meta meta-green" style={{ marginTop: compact ? 2 : 8, display: 'flex', gap: 6, alignItems: 'center' }}>
-          {isAr ? `تأسس ${business.established_year} (محكَّم)` : `Est. ${business.established_year} (verified)`}
-        </div>
-      )}
-
-      <div className="cluster" style={{ marginTop: compact ? 10 : 14, gap: 14 }}>
         <Link
-          href={`/${locale}/directory/${business.slug}`}
-          className="btn btn-outline btn-sm"
-          style={{ gap: 6 }}
+          href={`/${locale}/b2b/quote?supplier=${business.slug}`}
+          className="btn btn-primary btn-sm"
+          style={{ gap: 5 }}
         >
-          {isAr ? 'الملف الكامل' : 'View profile'}
-          <ArrowRight size={13} className="icon-dir-flip" />
-        </Link>
-        <Link
-          href={`/${locale}/rfq?supplier=${business.slug}`}
-          className="btn-link"
-          style={{ fontSize: '0.8rem', display: compact ? 'none' : 'inline-flex', gap: 4, alignItems: 'center' }}
-        >
-          <span>{isAr ? 'اطلب عرض سعر' : 'Request a quote'}</span>
-          <ArrowRight size={12} className="icon-dir-flip" />
+          <FileText size={12} />
+          <span>{isAr ? 'طلب تسعير' : 'Request Quote'}</span>
         </Link>
       </div>
     </article>
