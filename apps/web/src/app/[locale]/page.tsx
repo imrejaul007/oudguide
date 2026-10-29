@@ -12,6 +12,8 @@ import {
 import { HeroSearch } from '@/components/home/hero-search';
 import { MarketplaceExplorer } from '@/components/home/marketplace-explorer';
 import { HeroQuickRfq } from '@/components/home/hero-quick-rfq';
+import { CoverageCounts } from '@/components/home/coverage-counts';
+import { DataHubSection } from '@/components/home/data-hub-section';
 import { BusinessCard } from '@/components/business/business-card';
 import { MarketPreview } from '@/components/market/MarketPreview';
 import {
@@ -294,6 +296,33 @@ export default async function HomePage({
       </section>
 
       {/* ==============================================================
+          1b. TRUST KPI STRIP — the register's scale, read at the top.
+          Lifted from below the marketplace to directly under the hero,
+          per the yello.ae pattern: scale is established before the page
+          asks the visitor to act. Figures stay computed, never hard-coded.
+          ============================================================== */}
+      <div className="container" style={{ marginTop: 0 }}>
+        <div className="metrics trust-strip">
+          <div className="metric">
+            <div className="metric-value">{reviewed}</div>
+<div className="metric-label">{isAr ? 'مقالاً راجعاً' : 'Reviewed articles'}</div>
+          </div>
+          <div className="metric">
+            <div className="metric-value">249</div>
+<div className="metric-label">{isAr ? 'أقالماً في السجل' : 'Territories in the register'}</div>
+          </div>
+          <div className="metric">
+            <div className="metric-value">{publishedRecords}</div>
+<div className="metric-label">{isAr ? 'سجلاً منشوراً في الدليل' : 'Published directory records'}</div>
+          </div>
+          <div className="metric">
+            <div className="metric-value">{briefs}</div>
+<div className="metric-label">{isAr ? 'موجزاً بحثياً قيد الإعداد' : 'Research briefs in preparation'}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* ==============================================================
           2. TWO-TRACK DISCOVERY — Material Families & Producing Terroirs
           ============================================================== */}
       <section className="section section-white" style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
@@ -415,6 +444,12 @@ export default async function HomePage({
       </section>
 
       {/* ==============================================================
+          2b. COVERAGE COUNTS — top producing/trading regions with
+          published-record counts, yello.ae location-list pattern.
+          ============================================================== */}
+      <CoverageCounts locale={locale} isAr={isAr} />
+
+      {/* ==============================================================
           3. LIVE B2B MARKETPLACE & INTELLIGENCE ENGINE (Apollo & Qogita Pattern)
           ============================================================== */}
       <section className="section section-eggshell">
@@ -427,30 +462,12 @@ export default async function HomePage({
           />
         </div>
       </section>
-      {/* ==============================================================
-          2. METRICS — the thin stat strip
-          ============================================================== */}
-      <div className="container" style={{ marginTop: 56 }}>
-        <div className="metrics">
-          <div className="metric">
-            <div className="metric-value">{reviewed}</div>
-            <div className="metric-label">{isAr ? 'مقالاً راجعاً' : 'Reviewed articles'}</div>
-          </div>
-          <div className="metric">
-            <div className="metric-value">249</div>
-            <div className="metric-label">{isAr ? 'أقالماً في السجل' : 'Territories in the register'}</div>
-          </div>
-          <div className="metric">
-            <div className="metric-value">{publishedRecords}</div>
-            <div className="metric-label">{isAr ? 'سجلاً منشوراً في الدليل' : 'Published directory records'}</div>
-          </div>
-          <div className="metric">
-            <div className="metric-value">{briefs}</div>
-            <div className="metric-label">{isAr ? 'موجزاً بحثياً قيد الإعداد' : 'Research briefs in preparation'}</div>
-          </div>
-        </div>
-      </div>
 
+      {/* ==============================================================
+          3b. PUBLIC DATA HUB — a distinct B2B data band. Pitches the
+          public projection only; never sells raw contacts.
+          ============================================================== */}
+      <DataHubSection locale={locale} isAr={isAr} />
       {/* ==============================================================
           3. FEATURED RECORDS — the register at a glance
           ============================================================== */}
