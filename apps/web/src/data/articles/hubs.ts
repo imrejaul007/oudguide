@@ -266,6 +266,13 @@ const SPECS: HubSpec[] = [
         blurb: 'What a disclosure is, what the record can check on it, and the claims the absence of a disclosure does not establish.',
         blurbAr: 'ما هو الإفصاح، وما يستطيع السجل فحصه عليه، والادعاءات التي لا يثبتها غياب الإفصاح.',
       },
+      {
+        slug: 'quality/boya-and-fat-oud-grades',
+        label: 'Boya Oud, White Wood Wax, and Fat Oud Classifications',
+        labelAr: 'عود البويا وشمع الخشب الأبيض وتصنيفات العود المشحم',
+        blurb: 'What Boya wood, Boya oil, and Fat Oud (Oud Mushaham) represent in commercial trade: extraction methods, natural fatty acid fractions versus tallow adulteration, and analytical verification.',
+        blurbAr: 'ما يمثّله خشب البويا وزيت البويا والعود المشحم في التجارة: الأصول النباتية، وطرق الاستخلاص، والأحماض الدهنية الطبيعية مقابل الغش بالشحوم، والتحقق المخبري.',
+      },
     ],
     nextSteps: ['Learn what a laboratory report actually covers', 'Learn the limits of assessment', 'See how to evaluate a questionable offer'],
     nextStepsAr: ['اعرف ما الذي يغطيه التقرير المخبري فعلاً', 'اعرف حدود التقييم', 'تعلّم كيف تقيّم عرضاً مشكوكاً فيه'],

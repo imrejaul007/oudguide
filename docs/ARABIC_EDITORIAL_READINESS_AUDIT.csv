@@ -1,6 +1,7 @@
 file_name,relative_path,arabic_word_count,integrity_violations,terminology_alignment_score,lexical_integrity,readiness_status
 bakhoor-forms.ts,apps/web/src/data/articles/bakhoor-forms.ts,738,0,1/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 basics.ts,apps/web/src/data/articles/basics.ts,630,0,4/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
+boya-and-fat-oud-grades.ts,apps/web/src/data/articles/boya-and-fat-oud-grades.ts,1024,0,5/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 checklists.ts,apps/web/src/data/articles/checklists.ts,947,0,2/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 deepening-2.ts,apps/web/src/data/articles/deepening-2.ts,2502,0,2/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 deepening-3.ts,apps/web/src/data/articles/deepening-3.ts,2147,0,1/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
@@ -24,7 +25,7 @@ editorial-guides-trade.ts,apps/web/src/data/articles/editorial-guides-trade.ts,7
 editorial-guides-using-oud.ts,apps/web/src/data/articles/editorial-guides-using-oud.ts,1213,0,1/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 geography-kit.ts,apps/web/src/data/articles/geography-kit.ts,1231,0,1/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 getting-started-with-oud.ts,apps/web/src/data/articles/getting-started-with-oud.ts,712,0,1/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
-glossary-terms.ts,apps/web/src/data/articles/glossary-terms.ts,11685,0,2/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
+glossary-terms.ts,apps/web/src/data/articles/glossary-terms.ts,11934,0,3/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 glossary.ts,apps/web/src/data/articles/glossary.ts,913,0,3/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 grading-systems-reconciliation.ts,apps/web/src/data/articles/grading-systems-reconciliation.ts,719,0,0/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 guide-kit.ts,apps/web/src/data/articles/guide-kit.ts,26,0,0/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
@@ -33,7 +34,7 @@ guides-quality.ts,apps/web/src/data/articles/guides-quality.ts,4023,0,5/5,CLEAN_
 guides-sourcing.ts,apps/web/src/data/articles/guides-sourcing.ts,2706,0,4/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 guides-using.ts,apps/web/src/data/articles/guides-using.ts,3516,0,4/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 how-to-buy-oud.ts,apps/web/src/data/articles/how-to-buy-oud.ts,618,0,1/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
-hubs.ts,apps/web/src/data/articles/hubs.ts,3618,0,5/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
+hubs.ts,apps/web/src/data/articles/hubs.ts,3648,0,5/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 origin-comparisons.ts,apps/web/src/data/articles/origin-comparisons.ts,2353,0,4/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 origin-countries.ts,apps/web/src/data/articles/origin-countries.ts,6379,0,4/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF
 origin-regions.ts,apps/web/src/data/articles/origin-regions.ts,5915,0,4/5,CLEAN_PASS,READY_FOR_HUMAN_SIGN_OFF

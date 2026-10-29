@@ -153,6 +153,7 @@ glossary/jura,glossary,glossary,"Jura","جورة",412,yes,2,yes,no,no,pending_hu
 glossary/muri,glossary,glossary,"Muri","موري",397,yes,2,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/glossary/muri
 glossary/kalakasi,glossary,glossary,"Kalakasi","كالاقسي",384,yes,2,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/glossary/kalakasi
 glossary/qadeem,glossary,glossary,"Qadeem","قديم",367,yes,2,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/glossary/qadeem
+glossary/boya,glossary,glossary,"Boya","بويا",182,yes,2,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/glossary/boya
 quality/fraud-identification,guide,quality,"Oud fraud and counterfeit identification","تعرّف على الغش والعود المزيف",518,no,3,yes,yes,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/quality/fraud-identification
 fragrance/oud-oil-vs-attar,guide,fragrance,"Oud oil vs attar: what each actually is","دهن العود مقابل العود: ما هو كلٌّ منهما فعلا",669,yes,2,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/fragrance/oud-oil-vs-attar
 quality/freshness-moisture-testing,guide,quality,"Testing oud freshness and moisture","اختبار حداثة العود ورطوبته",405,no,3,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/quality/freshness-moisture-testing
@@ -200,6 +201,7 @@ fragrance/musk-terminology,guide,fragrance,"Musk terminology in fragrance","مص
 fragrance/sandalwood-versus-agarwood,guide,fragrance,"Sandalwood and agarwood: different materials","السنط والعنبر: مواد مختلفة",430,no,2,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/fragrance/sandalwood-versus-agarwood
 production/oil-and-hydrosol,guide,production,"Oil and hydrosol are different products","الزيت والحيدروسول منتجان مختلفان",404,no,2,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/production/oil-and-hydrosol
 production/distilled-oil-versus-extract,guide,production,"Distilled oil and other extracts","الزيت المقطر والمستخلصات الأخرى",401,no,2,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/production/distilled-oil-versus-extract
+quality/boya-and-fat-oud-grades,guide,quality,"Boya Oud, White Wood Wax, and Fat Oud Classifications","عود البويا وشمع الخشب الأبيض وتصنيفات العود المشحم",778,yes,3,yes,yes,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/quality/boya-and-fat-oud-grades
 oud-basics/what-is-agarwood,guide,oud-basics,"Agarwood: names, material and uses","العود: الأسماء والمادة والاستخدامات",515,no,2,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/oud-basics/what-is-agarwood
 oud-basics,hub,root,"Oud Basics","أساسيات العود",92,no,4,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/oud-basics
 quality,hub,root,"Quality","الجودة",90,no,4,yes,no,no,pending_human_signoff,2026-10-20,https://www.oudguide.com/en/guides/quality

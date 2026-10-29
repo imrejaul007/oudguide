@@ -1563,4 +1563,49 @@ termEntry({
     ],
     sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
   }),
+
+  termEntry({
+    slug: 'glossary/boya',
+    title: 'Boya',
+    titleAr: 'بويا',
+    summary:
+      'The trade term for low-resin Aquilaria sapwood and the pale waxy distillation oil extracted from it, distinct from heartwood Dehn Al Oud.',
+    summaryAr:
+      'مصطلح تجاري لخشب الحطب الأبيض قليل الراتنج والزيت الشمعي الفاتح المستخلص منه، مميزاً عن دهن العود المستخرج من خشب القلب.',
+    directAnswer:
+      'Boya is the trade descriptor for the pale, non-resinous or sparsely veined sapwood of the Aquilaria tree and the viscous, low-sesquiterpene oil distilled from it. In South Asian distillation centers, it represents the lowest extraction grade, valued as an affordable base for traditional attar compounding, but distinct in chemical density, aroma, and commercial value from pure heartwood Dehn Al Oud. In Southeast Asian trade, the phonetically similar Gaharu Buaya refers to Aetoxylon sympetalum, an entirely separate swamp species.',
+    directAnswerAr:
+      '«البويا» مصطلح تجاري يطلق على خشب الحطب الأبيض غير المشبع بالراتنج لشجرة الأكيلاريا، وعلى الزيت الشمعي الفاتح قليل السيسكويتربين المقطر منه. ويمثل في مراكز التقطير بجنوب آسيا أدنى درجات الاستخلاص التجاري، ويستخدم كقاعدة اقتصادية لتثبيت الخلطات العطرية، ولكنه يختلف كلياً في كثافته الكيميائية وقيمته السوقية عن دهن العود الخالص. وفي جنوب شرق آسيا، يشير مصطلح «غارو بوايا» إلى فصيلة الإيتوكسيلون المستنقعية المستقلة.',
+    spelling:
+      'The term is written as Boya in South Asian trade lists and English market descriptions, and as بويا in Arabic market usage. In Malay and Indonesian trade, Gaharu Buaya (crocodile agarwood) refers to Aetoxylon sympetalum.',
+    spellingAr:
+      'يكتب المصطلح بصيغة «بويا» في قوائم التجارة والأسواق العربية. وفي أسواق الملايو وإندونيسيا، يشير مصطلح «غارو بوايا» إلى شجرة الإيتوكسيلون.',
+    usage:
+      'In commercial extraction, Boya wood is distilled to produce a pale, waxy oleoresin used in bulk perfumery and soap bases. When sold honestly, it is priced as an economy carrier; when misrepresented, it is dyed and sold as premium single-origin Dehn Al Oud.',
+    usageAr:
+      'في الاستخلاص التجاري، يُقطر خشب البويا لإنتاج زيت شمعي فاتح يستخدم في صناعات الصابون وتثبيت العطور. وعندما يباع بأمانة، يسعر كحامل عطري اقتصادي؛ أما في حالات الغش التجاري، فيصبغ ويباع على أنه دهن عود خالص عالي الدرجة.',
+    examples:
+      'Two examples. A distiller processes non-infected sapwood to produce agarwood wax for industrial compounding, clearly marked as Boya grade. A retailer offers a dark, thick oil labeled as Assam Super at an unusually low price, which laboratory analysis reveals to be Boya sapwood oil dyed and thinned with chemical solvents.',
+    examplesAr:
+      'مثالان. مقطر يستخلص خشب الحطب الأبيض لإنتاج شمع العود للأغراض الصناعية موسوماً بوضوح كصنف بويا. وبائع تجزئة يعرض زيتاً داكناً باسم سوبر أسام بسعر منخفض جداً، ويثبت الفحص المخبري أنه زيت بويا مصبوغ ومخفف بمذيبات كيميائية.',
+    alternatives:
+      'Boya sapwood oil vs heartwood Dehn Al Oud vs Gaharu Buaya. The entry records the functional trade distinction: sapwood extract is not resin-dense heartwood oil.',
+    alternativesAr:
+      'زيت حطب البويا مقابل دهن عود خشب القلب مقابل غارو بوايا الإندونيسي. تسجل المدخلة التمييز الوظيفي: مستخلص الحطب الأبيض ليس دهن خشب القلب المشبع.',
+    doesNotProve:
+      'The term Boya does not establish a legal CITES species grade, a specific percentage of sesquiterpenes, or a certification of purity. It is a commercial descriptor for sapwood origin.',
+    doesNotProveAr:
+      'لا يثبت مصطلح بويا رتبة رسمية في معاهدة سايتس، ولا نسبة محددة من السيسكويتربين، ولا شهادة نقاوة. إنه توصيف تجاري لمنشأ خشب الحطب الأبيض.',
+    limitations:
+      'This entry documents trade usage across Indian and Southeast Asian markets. It does not certify the purity or chemical composition of any commercial product sold under the name.',
+    limitationsAr:
+      'توثق هذه المدخلة الاستعمال التجاري في أسواق الهند وجنوب شرق آسيا. ولا تصادق على نقاوة أو تركيب أي منتج يباع بهذا الاسم في الأسواق.',
+    related: [
+      { slug: 'quality/boya-and-fat-oud-grades', label: 'Boya Oud and Fat Oud classifications' },
+      { slug: 'quality/fraud-identification', label: 'Oud fraud and counterfeit identification' },
+      { slug: 'production/oud-extraction-methods', label: 'Distillation and extraction comparisons' },
+      { slug: 'products/oud-oil', label: 'Dehn Al Oud product family' },
+    ],
+    sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
+  }),
 ];
