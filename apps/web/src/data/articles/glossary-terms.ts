@@ -1608,4 +1608,49 @@ termEntry({
     ],
     sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
   }),
+
+  termEntry({
+    slug: 'glossary/moattaq',
+    title: 'Moattaq',
+    titleAr: 'معتق',
+    summary:
+      'The traditional Arabic trade descriptor for aged, matured Dehn Al Oud, signifying natural oxidation and sesquiterpene rounding.',
+    summaryAr:
+      'الوصف التجاري العربي التراثي لدهن العود المتقادم والناضج، دالاً على التأكسد الطبيعي وتبلمر السيسكويتربين.',
+    directAnswer:
+      'Moattaq (معتق, meaning aged or matured) is the primary commercial descriptor in Gulf perfumery for Dehn Al Oud that has undergone years of patient curation in airtight dark glass. Natural maturation allows sharp monoterpenic distillation top notes to dissipate while heavy sesquiterpene alcohols polymerize into a smooth, balsamic, leathery profile. The term is a qualitative market descriptor, not an analytical certification of age, and genuine vintage lots command substantial price premiums over fresh distillations.',
+    directAnswerAr:
+      '«معتق» هو الوصف التجاري الأبرز في أسواق العطور الخليجية لدهن العود الذي خضع لسنوات من النضج الطبيعي الهادئ في زجاج داكن محكم. ويسمح التعتيق الطبيعي بتلاشي النوتات الحادة المتطايرة الناتجة عن التقطير الحديث، بينما تندمج كحوليات السيسكويتربين في قوام بلسمي ناعم يميل إلى الجلد والحلاوة. والكلمة وصف سوقي كيفي وليست شهادة تحليلية لعمر الزيت، وتحقق الأدهان المعتقة الأصيلة أسعاراً تفوق الزيوت الحديثة بأضعاف.',
+    spelling:
+      'The term is written as Moattaq, Muattaq, or Mottaq in Latin transliterations, and as معتق in Arabic trade usage. In historical catalogs it frequently appears alongside Qadeem.',
+    spellingAr:
+      'يكتب المصطلح بصيغة «معتق» في الأسواق العربية، وبالحروف اللاتينية بعدة تهجئات متقاربة. وفي الكتالوجات التاريخية يقترن غالباً بصفة «قديم».',
+    usage:
+      'In trade usage, Moattaq designates an oil whose initial raw pungency has been smoothed through chronological aging. When applied legitimately, it reflects real vintage inventory; when abused, it is applied to fresh oils baked under artificial heat to mimic darkness and viscosity.',
+    usageAr:
+      'في الاستعمال التجاري، يطلق «معتق» على دهن العود الذي لُطفت حدته الأولية بمرور السنين. وعندما يستعمل بأمانة، يعبر عن مخزون عتيق حقيقي؛ وعند التلاعب، يطلق على زيوت حديثة طُبخت حرارياً لمحاكاة القوام الداكن واللزوجة.',
+    examples:
+      'Two examples. A connoisseur cellar presents a 1995 Assam distillation documented in borosilicate glass, correctly labeled as Hindi Moattaq. A commercial kiosk labels a fresh, watery Thai oil as Moattaq after heating it with caramelizing sugars.',
+    examplesAr:
+      'مثالان. خزانة مقتنٍ تعرض تقطيراً لعام 1995 من أسام محفوظاً في زجاج بوروسيليكات وموسوماً بدقة كـ«هندي معتق». وكشك تجاري يسمي زيتاً تايلاندياً حديثاً خفيفاً «معتق» بعد تسخينه حرارياً لإكسابه لوناً داكناً.',
+    alternatives:
+      'Moattaq (aged/cured) vs Jadeed (freshly distilled) vs Qadeem (vintage/historical). The entry records the chronological trade distinction.',
+    alternativesAr:
+      'معتق (ناضج مخزون) مقابل جديد (مقطر حديثاً) مقابل قديم (تاريخي). تسجل المدخلة التمييز الزمني التجاري.',
+    doesNotProve:
+      'The term Moattaq does not establish a laboratory measurement of age, a legal warranty of vintage, or a test of chemical purity. It is an editorial and commercial descriptor.',
+    doesNotProveAr:
+      'لا يثبت وسم معتق قياساً مخبرياً لعمر الزيت، ولا ضماناً قانونياً لسنة التقطير، ولا فحصاً للنقاوة الكيميائية. إنه وصف تحريري وتجاري.',
+    limitations:
+      'This entry documents trade usage across Gulf and South Asian markets. It does not certify the age, harvest year, or chemical purity of any commercial oil sold under the label.',
+    limitationsAr:
+      'توثق هذه المدخلة الاستعمال التجاري في أسواق الخليج وجنوب آسيا. ولا تصادق على عمر أو سنة حصاد أو نقاوة أي دهن يباع بهذا المسمى.',
+    related: [
+      { slug: 'quality/aged-vintage-dehn-al-oud', label: 'Aged and vintage Dehn Al Oud science and valuation' },
+      { slug: 'glossary/qadeem', label: 'Qadeem trade descriptor' },
+      { slug: 'production/oud-extraction-methods', label: 'Distillation and extraction comparisons' },
+      { slug: 'collecting/aging-and-storage-care', label: 'Proper storage and aging care for oud collections' },
+    ],
+    sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
+  }),
 ];
