@@ -94,6 +94,10 @@ export default async function ProductFamilyPage({
                   label: crumb.label,
                   href: crumb.href,
                 })),
+                product: {
+                  name: articleTitle(article, locale),
+                  description: articleSummary(article, locale),
+                },
               },
               SITE_URL
             ) ?? '',

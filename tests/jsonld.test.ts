@@ -1,7 +1,7 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildJsonLd, jsonLdScript } from '../apps/web/src/lib/jsonld.ts';
+import { buildJsonLd, jsonLdScript, organizationSchema } from '../apps/web/src/lib/jsonld.ts';
 import { getArticle } from '../apps/web/src/lib/articles.ts';
 
 
@@ -397,6 +397,93 @@ describe('HowTo JSON-LD', () => {
       graph.find((g) => g['@type'] === 'HowTo'),
       undefined,
       'an ordinary guide must not claim to be a procedure'
+    );
+  });
+
+  test('the HowTo url is absolute, like every other builder', () => {
+    const protocol = getArticle('quality/oud-authenticity-protocol')!;
+    const graph = buildJsonLd(
+      {
+        path: '/en/guides/quality/oud-authenticity-protocol',
+        article: protocol,
+        howTo: { name: protocol.title, description: protocol.summary, steps: ['s1', 's2'] },
+        title: protocol.title,
+        description: protocol.summary,
+      },
+      SITE
+    );
+
+    const howTo = graph.find((g) => g['@type'] === 'HowTo') as any;
+    assert.ok(howTo, 'the protocol produces a HowTo');
+    assert.equal(
+      howTo.url,
+      `${SITE}/en/guides/quality/oud-authenticity-protocol`,
+      'the HowTo url must be absolute, not a relative path'
+    );
+  });
+});
+
+describe('Product JSON-LD', () => {
+  test('a product-family page emits a Product next to its Article', () => {
+    const graph = buildJsonLd(
+      {
+        path: '/en/products/oud-wood',
+        article: {
+          slug: 'products/oud-wood',
+          kind: 'product',
+          title: 'Oud Wood',
+          summary: 'The resinous heartwood, graded by resin density and region.',
+          directAnswer: 'A product-format reference.',
+          sections: [],
+          sourceIds: ['AGARWOOD_CITES_2022', 'AGARWOOD_REVIEW_2014'],
+          reviewedOn: '2026-10-26',
+          limitations: 'No supplier price is published on the platform; a quote comes through the RFQ.',
+        } as any,
+        title: 'Oud Wood',
+        description: 'The resinous heartwood, graded by resin density and region.',
+        product: { name: 'Oud Wood', description: 'The resinous heartwood, graded by resin density and region.' },
+      },
+      SITE
+    );
+
+    const product = graph.find((g) => g['@type'] === 'Product') as any;
+    assert.ok(product, 'the family page produces a Product schema');
+    // The Product is additive to the Article, which carries the citations.
+    assert.ok(graph.find((g) => g['@type'] === 'Article'), 'the Article schema remains');
+    // It names only what the page publishes: no offers, sku, price,
+    // availability or stock may be invented.
+    assert.equal(product.offers, undefined, 'a family page publishes no price, so no offers');
+    assert.equal(product.sku, undefined, 'no sku is published');
+    assert.equal(product.image, undefined, 'no product image is published');
+    assert.equal(product.url, `${SITE}/en/products/oud-wood`);
+  });
+
+  test('a page that declares no product produces no Product schema', () => {
+    const graph = buildJsonLd(
+      {
+        path: '/en/glossary/dehn-al-oud',
+        title: 'Dehn Al Oud',
+        description: 'The distilled resin of heartwood.',
+      },
+      SITE
+    );
+
+    assert.equal(
+      graph.find((g) => g['@type'] === 'Product'),
+      undefined,
+      'a non-product page must not claim to be a product'
+    );
+  });
+});
+
+describe('Organization sameAs', () => {
+  test('an empty sameAs is not emitted — a fabricated profile is a fake signal', () => {
+    const org = organizationSchema(SITE);
+    assert.ok(org, 'the organization schema is emitted');
+    assert.equal(
+      'sameAs' in org,
+      false,
+      'no genuine external profile is registered yet, so no sameAs is emitted'
     );
   });
 });

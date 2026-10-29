@@ -139,6 +139,21 @@ export interface JsonLdOptions {
     /** ISO 4217 currency code of the published figure. */
     priceCurrency?: string;
   } | null;
+  /**
+   * The Product schema for a product-family page.
+   *
+   * A family page explains a FORMAT a buyer searches for — "oud wood", "oud
+   * oil", beads — and the schema type that says that is Product. It is emitted
+   * ADDITIVE to the Article schema, which carries the citation and author
+   * machinery; the Product carries only the machine signal that the page is
+   * about a product. No offers, no sku, no price and no availability: the
+   * page publishes none, and a Product schema that invented them would be the
+   * fake-signal class the module's opening rule forbids.
+   */
+  product?: {
+    name: string;
+    description?: string;
+  } | null;
 }
 
 /**
@@ -444,7 +459,8 @@ function datasetSchema(
  * HowTo only claims that the page is an ordered set of steps.
  */
 function howToSchema(
-  options: JsonLdOptions
+  options: JsonLdOptions,
+  siteUrl: string
 ): Record<string, unknown> | null {
   const howTo = options.howTo;
   if (!howTo || howTo.steps.length === 0) return null;
@@ -454,7 +470,7 @@ function howToSchema(
     '@type': 'HowTo',
     name: howTo.name,
     ...(howTo.description ? { description: howTo.description } : {}),
-    url: `${options.path}`,
+    url: `${siteUrl}${options.path}`,
     step: howTo.steps.map((name, index) => ({
       '@type': 'HowToStep',
       position: index + 1,
@@ -537,7 +553,7 @@ export function buildJsonLd(
   }
 
   if (options.howTo) {
-    const ht = howToSchema(options);
+    const ht = howToSchema(options, siteUrl);
     if (ht) graph.push(ht);
   }
 
@@ -549,6 +565,11 @@ export function buildJsonLd(
   if (options.business) {
     const schema = businessSchema(options, siteUrl);
     if (schema) graph.push(schema);
+  }
+
+  if (options.product) {
+    const product = productSchema(options, siteUrl);
+    if (product) graph.push(product);
   }
 
   if (options.faq && options.faq.length > 0) {
@@ -606,8 +627,41 @@ export function websiteSchema(siteUrl: string, locale = 'en'): Record<string, un
 }
 
 /**
- * The Organization schema for OudGuide portal.
+ * The Product schema for a product-family page.
+ *
+ * Stacked additively next to the Article schema by buildJsonLd. It claims
+ * only that the page is about a product and names it; it carries no offers,
+ * sku, price, availability or stock claim, because the family page publishes
+ * none of them — price and availability belong to a supplier through the
+ * RFQ, not to the format. A Product that asserted any of them would be
+ * fabricating the very signals the module's opening rule forbids.
  */
+function productSchema(
+  options: JsonLdOptions,
+  siteUrl: string
+): Record<string, unknown> | null {
+  const product = options.product;
+  if (!product) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    ...(product.description ? { description: product.description } : {}),
+    url: `${siteUrl}${options.path}`,
+  };
+}
+
+/**
+ * The Organization schema for OudGuide portal.
+ *
+ * `sameAs` lists OudGuide's own external profiles. The list starts empty
+ * and is owner-filled: a sameAs URL must be a genuine OudGuide profile, and
+ * a fabricated one would be the same class of defect the module's opening
+ * rule forbids. Until a URL is added here it is not emitted.
+ */
+const SAME_AS: string[] = [];
+
 export function organizationSchema(siteUrl: string): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
@@ -616,5 +670,6 @@ export function organizationSchema(siteUrl: string): Record<string, unknown> {
     url: siteUrl,
     logo: `${siteUrl}/icon.png`,
     description: 'The independent reference for natural agarwood, Dehn Al Oud and heritage attars.',
+    ...(SAME_AS.length > 0 ? { sameAs: SAME_AS } : {}),
   };
 }
