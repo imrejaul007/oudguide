@@ -636,7 +636,7 @@ export const destinationGuideArticles: Article[] = [
     channels: REGIMES["sg"].channels,
     channelsAr: REGIMES["sg"].channelsAr,
     local: "Heritage trading houses on Arab Street maintain historic inventories of aged vintage oils. Wholesale buyers must ensure Singapore re-export permits cross-reference the original Indonesian or Malaysian export declarations.",
-    localAr: "تحتفظ المتاجر التراثية في شارع العرب بمخزونات قديمة من الزيوت المعتقة. ويجب على مشتري الجملة التأكد من أن تصاريح إعادة التصدير السنغافورية تشير بدقة إل إقرارات التصدير الأصلية من إندونيسيا أو ماليزيا.",
+    localAr: "تحتفظ المتاجر التراثية في شارع العرب بمخزونات قديمة من الزيوت المعتقة. ويجب على مشتري الجملة التأكد من أن تصاريح إعادة التصدير السنغافورية تشير بدقة إلى إقرارات التصدير الأصلية من إندونيسيا أو ماليزيا.",
     directorySlug: 'serving/singapore',
     sourceIds: ["CITES_APPENDICES", "ITTO_AGARWOOD_REVIEW"],
   }),

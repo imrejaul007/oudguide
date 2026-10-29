@@ -498,7 +498,7 @@ export const glossaryTermArticles: Article[] = [
     directAnswer:
       'Girmit is a near-spelling recorded in the same Gulf trade usage as Girmi, differing in the ending consonant. It is a wood-type name with the same general referent, and it is used with the same looseness. Whether it is a variant spelling of Girmi, a separate name, or a name one market uses where another uses Girmi is not established here, and the entry takes no position on any of the three.',
     directAnswerAr:
-      '«جيرميت» إملاء قريب مسجَّل في الاستعمال التجاري الخليجي نفسه الذي فيه «جيرمي»، ويختلف في حرف النهاية. وهو اسم لنوع من الخشب له المرجع العام نفسه، ويُستعمل بالالفضاوة المفاوزة نفسها. وأمّا إن كان إملاءً آخر لجيرمي أم اسماً مستقلاً أم اسماً يستعمله سوقٌ حيث يستعمل آخر جيرمي، فليس مثبتاً هنا، ولا تاخذ هذه المدخلة موقفاً من أيّها.',
+      '«جيرميت» إملاء قريب مسجَّل في الاستعمال التجاري الخليجي نفسه الذي فيه «جيرمي»، ويختلف في حرف النهاية. وهو اسم لنوع من الخشب له المرجع العام نفسه، ويُستعمل باليسر نفسه. وأمّا إن كان إملاءً آخر لجيرمي أم اسماً مستقلاً أم اسماً يستعمله سوقٌ حيث يستعمل آخر جيرمي، فليس مثبتاً هنا، ولا تاخذ هذه المدخلة موقفاً من أيّها.',
     spelling:
       'The name is written in Latin script as Girmit, and the Gulf usage carries the same letters in Arabic script. In a trade that passes much of its vocabulary in writing, a difference in the final letters is the kind of variation that arises routinely — through a scribe, through a transliteration habit, through a supplier\'s house usage. That is a reason to record the difference carefully, not a reason to assume the words differ in meaning.',
     spellingAr:

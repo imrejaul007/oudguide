@@ -56,7 +56,7 @@ export const editorialGuideBuying: Article[] = [
           'The comparison stops where the record stops, and the record stops at a figure a buyer pays on a date. The record gives a recorded price for the oil and a wide range for the retail, and the two are the record’s statements, not the price the buyer pays today. A comparison that ends in a number is a comparison that ends in a claim the record does not carry, and the page will not end in a number, because ending in a number is the move the record does not support. The buyer’s position is to compare the two figures against the four conditions, to see where the difference actually is, and to be told plainly that a figure on a date is the seller’s figure, not the record’s, and the comparison is the showing of the four conditions under the two figures, not the closing of the two figures into one. That showing is the framework, and the framework is what the page carries.',
         ],
         bodyAr: [
-          'تتوقف المقارنة حيث يتوقف السجل، والسجل يتوقف عند رقم يدفعه المشتري في تاريخ. والسجل يعطي رقما مسجلا للزيت ونطاقا واسعا للتجزئة، وكلاهما عبارتا السجل، ليس السعر الذي يدفعه المشتري اليوم. ومقارنة تنتهي برقم مقارنة تنتهي بادعاء لا يحمله السجل، ولن تكون الصفحة تنتهي برقم، لأن النهاية برقم هي الحركة التي لا يدعمها السجل. وموضع المشتري أن يقارن الرقمين على الظروف الأربعة، ويرى أين تقع الفروق فعلا، وأن يُقال له بوضوح أن رقبا بتاريخ هو رقم البائع، ليس رقم السجل، والمقارنة هي تبيّن الظروف الأربعة تحت الرقمين، ليس إقفال الرقمين في واحد. وهذا التبيّن هو الإطار، والإطار هو ما تحمله الصفحة.',
+          'تتوقف المقارنة حيث يتوقف السجل، والسجل يتوقف عند رقم يدفعه المشتري في تاريخ. والسجل يعطي رقما مسجلا للزيت ونطاقا واسعا للتجزئة، وكلاهما عبارتا السجل، ليس السعر الذي يدفعه المشتري اليوم. ومقارنة تنتهي برقم مقارنة تنتهي بادعاء لا يحمله السجل، ولن تكون الصفحة تنتهي برقم، لأن النهاية برقم هي الحركة التي لا يدعمها السجل. وموضع المشتري أن يقارن الرقمين على الظروف الأربعة، ويرى أين تقع الفروق فعلا، وأن يُقال له بوضوح أن رقما بتاريخ هو رقم البائع، ليس رقم السجل، والمقارنة هي تبيّن الظروف الأربعة تحت الرقمين، ليس إقفال الرقمين في واحد. وهذا التبيّن هو الإطار، والإطار هو ما تحمله الصفحة.',
         ],
         list: [
           'Compare two figures only when they are figures for the same form, the same grade, the same origin and the same age.',
@@ -66,7 +66,7 @@ export const editorialGuideBuying: Article[] = [
         listAr: [
           'قارن رقماً فقط حين يكونان رقمين لنفس الشكل ونفس الدرجة ونفس المنشأ ونفس العمر.',
           'وتقرأ النطاق الواسع واقعا مسجلا أنه لا رقم سوق واحد يُغلق به مقارنة.',
-          'واعمل رقبا بتاريخ رقم البائع، لا رقم السجل.',
+          'واعمل رقما بتاريخ رقم البائع، لا رقم السجل.',
         ],
       },
     ],
@@ -242,7 +242,7 @@ export const editorialGuideBuying: Article[] = [
           'The two lanes are different in what they carry, and the record carries both. The in-person lane is the lane the market study documents: the recorded retail structure, the recorded importing and re-exporting positions, and the recorded forms the market carries in the in-person setting, which is the recorded form of the material as it meets the buyer in the market. The online lane is the lane the material moves in as a form of record, and the record carries the forms the material moves in: the same material, the same forms, the same recorded prices and ranges, moving in a lane that the record describes as a form of market rather than a form of guarantee. The two lanes are therefore the two forms the market carries, and the comparison of the two is the comparison of the two forms, which is the whole of what the record carries on the two against one another.',
         ],
         bodyAr: [
-          'الحومتان مختلفتان في ما تحملان، والسجل يحمل كلتاهما. حومة الحضور هي الحومة التي توثقها دراسة السوق: هيكل التجزئة المسجل، ومراكز الاستيراد وإعادة التصدير المسجلة، والأشكال المسجلة التي يحملها السوق في بيئة الحضور، وهذا هو الشكل المسجل للمادة كما تلتقي المشتري في السوق. وحومة الإنترنت هي الحومة التي تسير فيها المادة شكلا للسجل، والسجل يحمل الأشكال التي تسير فيها المادة: نفس المادة، نفس الأشكال، نفس الأسعار والنطاقات المسجلة، تسير في حومة يصفها السجل شكلا للسوق، ليس شكلا للضمانة. فالالحومتان هما الشكلان اللذان يحملهما السوق، ومقارنة الاثنين هي مقارنة الشكلين، وهذا هو كل ما يحمله السجل في أحدهما ضد الآخر.',
+          'الحومتان مختلفتان في ما تحملان، والسجل يحمل كلتاهما. حومة الحضور هي الحومة التي توثقها دراسة السوق: هيكل التجزئة المسجل، ومراكز الاستيراد وإعادة التصدير المسجلة، والأشكال المسجلة التي يحملها السوق في بيئة الحضور، وهذا هو الشكل المسجل للمادة كما تلتقي المشتري في السوق. وحومة الإنترنت هي الحومة التي تسير فيها المادة شكلا للسجل، والسجل يحمل الأشكال التي تسير فيها المادة: نفس المادة، نفس الأشكال، نفس الأسعار والنطاقات المسجلة، تسير في حومة يصفها السجل شكلا للسوق، ليس شكلا للضمانة. فالحومتان هما الشكلان اللذان يحملهما السوق، ومقارنة الاثنين هي مقارنة الشكلين، وهذا هو كل ما يحمله السجل في أحدهما ضد الآخر.',
         ],
       },
       {

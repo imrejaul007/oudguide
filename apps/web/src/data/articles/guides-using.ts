@@ -426,7 +426,7 @@ export const usingFragranceArticles: Article[] = [
     directAnswer:
       'An oud accord is a fragrance material composed to reproduce the character of oud from defined chemical materials. It exists because a genuine distillation is expensive, constrained in supply and partly unstable, and perfumers need the tonal character available reliably. It is a legitimate and widely used ingredient, and a fragrance built on one is a real product rather than a substitute sold fraudulently. What it is not is oud: it contains no agarwood, and describing it as oud is a misrepresentation rather than a matter of taste or marketing latitude.',
     directAnswerAr:
-      'أوز العود مادة عطرية مركّبة لتقليد طابع العود من مواد كيميائية محددة. وقد وُجد لأن التقطير الحقيقي غالٍ ومحدود التوريد وجزء منه غير مستقر،والعطارون يحتاجون الطابع متاحاً بثبات. وهو مكوّن مشروع مستعمل على نطاق واسع، والعطر المبني عليه منتج حقيقي لا بديل يُباع احتيالاً. لكنه ليس عوداً: لا يحتوي خشب عود، ووصفه بالعود تحريف لا مسألة ذوق أو هوامش تسويقية.',
+      'أوز العود مادة عطرية مركّبة لتقليد طابع العود من مواد كيميائية محددة. وقد وُجد لأن التقطير الحقيقي غالٍ ومحدود التوريد وجزء منه غير مستقر، والعطارون يحتاجون الطابع متاحاً بثبات. وهو مكوّن مشروع مستعمل على نطاق واسع، والعطر المبني عليه منتج حقيقي لا بديل يُباع احتيالاً. لكنه ليس عوداً: لا يحتوي خشب عود، ووصفه بالعود تحريف لا مسألة ذوق أو هوامش تسويقية.',
     sections: [
       {
         heading: 'Why the distinction is enforced',
@@ -607,7 +607,7 @@ export const usingFragranceArticles: Article[] = [
           'The trade term and the materia medica name overlap, which is a useful reminder for a buyer: a term that is centuries old may still carry an ordinary commercial meaning today, and using its age as evidence of quality would be a mistake.',
         ],
         bodyAr: [
-          'تصف النصوص الصينية الكلاسيكية المادة واستعمالاتها، ويمكن تتبّع الاسم والتجارة عبر فترة طويلة.مع ذلك وما لا يفعله السجل الكلاسيكي هو وضع معيار جودة بالمعنى الحديث، فمقطع عن فضل المادة ليس مواصفة مقيَّمة.',
+          'تصف النصوص الصينية الكلاسيكية المادة واستعمالاتها، ويمكن تتبّع الاسم والتجارة عبر فترة طويلة. مع ذلك وما لا يفعله السجل الكلاسيكي هو وضع معيار جودة بالمعنى الحديث، فمقطع عن فضل المادة ليس مواصفة مقيَّمة.',
           'وتداخل المصطلح التجاري مع اسم قائمة الأدوية تذكير مفيد للمشتري: فمصطلح عمره قرون قد يحمل اليوم معنى تجارياً عادياً، واستخدام قِدَمه دليلاً على الجودة خطأ.',
         ],
       },
@@ -734,7 +734,7 @@ export const usingFragranceArticles: Article[] = [
           'التوثيق: سجل كامل يرافق القطعة، وهو أول ما يطلبه المشتري. وغيابه أكبر سبب للخصم في السوق.',
           'الحالة: القطعة المفتوحة أو المكشوفة أو المشوّهة تساوي أقل من السليمة، والفرق فيزيائي ومرئي.',
           'قابلية التعرف: لا يستطيع المشتري دفع سعر متخصص لشيء لا يستطيع تأكيده. والتعرف الواضح — مرجع الدفعة والملصق والمظهر المميز — هو ما يسمح بالتعرف على القطعة لاحقاً.',
-          'ولا شيء من هذه مسألة ذوق، ولا شيء منها يتحسن بوصف القطعة.الوصف أجمل. ما يتحسن منها هو الاحتفاظ بالسجل والقطعة.',
+          'ولا شيء من هذه مسألة ذوق، ولا شيء منها يتحسن بوصف القطعة. الوصف أجمل. ما يتحسن منها هو الاحتفاظ بالسجل والقطعة.',
         ],
       },
     ],

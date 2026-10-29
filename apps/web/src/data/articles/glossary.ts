@@ -178,7 +178,7 @@ export const glossaryArticles: Article[] = [
     whatItRefersTo:
       'The practice is old and widespread across the Gulf and South Asia, and the word covers both the finished material and the act of making it. Because the oil used may itself be a blend, an accord or a genuine distillation, a bakhoor product can vary far more than its name suggests.',
     whatItRefersToAr:
-      'الممارسة قديمة ومنتشرة في الخليج وجنوب آسيا، والكلمة تغطي المادة المصنوعة والفعل الذي أنتجها معاً. ولأن الزيت المستعمل قد يكون مزيجاً أو أوزاً أو تقطيراً حقيقياً،فقد يختلف منتج البخور اختلافاً أكبر بكثير مما يوحي به اسمه.',
+      'الممارسة قديمة ومنتشرة في الخليج وجنوب آسيا، والكلمة تغطي المادة المصنوعة والفعل الذي أنتجها معاً. ولأن الزيت المستعمل قد يكون مزيجاً أو أوزاً أو تقطيراً حقيقياً، فقد يختلف منتج البخور اختلافاً أكبر بكثير مما يوحي به اسمه.',
     whatItDoesNotProve:
       'The word does not establish that the wood is agarwood, that the oil is a true distillation, or the ratio of oil to wood. It is also used for products made from other woods and for entirely synthetic fragrance materials.',
     whatItDoesNotProveAr:
