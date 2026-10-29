@@ -4949,3 +4949,134 @@ a.btn-crimson {
   border-radius: 0;
 }
 .trust-strip .metric { padding: 22px 20px; }
+
+/* ==========================================================================
+   Section 30: Tiered pricing cards (for-businesses, membership)
+   yello.ae pattern: side-by-side tiers, one highlighted, shared-benefits strip.
+   OudGuide inverts the tiers: a free "claim your profile" tier and one
+   highlighted paid "annual membership" tier. No paid-ranking tier, no fake
+   third tier.
+   ========================================================================== */
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+@media (max-width: 720px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+.pricing-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: clamp(28px, 3.5vw, 40px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* The highlighted paid tier. */
+.pricing-card.featured {
+  border: 2px solid var(--green-700);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+.pricing-card.featured::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-top-left-radius: var(--r-lg);
+  border-top-right-radius: var(--r-lg);
+  background: var(--green-700);
+}
+
+.pricing-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.pricing-card-tier {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.pricing-card.featured .pricing-card-tier { color: var(--green-700); }
+
+.pricing-price {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1;
+  margin: 4px 0 2px;
+}
+.pricing-price .pricing-price-unit {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 0;
+}
+.pricing-price-note {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+  line-height: 1.5;
+}
+
+.pricing-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  flex: 1;
+}
+.pricing-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.93rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.pricing-list li svg { flex-shrink: 0; margin-top: 3px; }
+
+.pricing-card-footnote {
+  margin-top: 22px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* Shared "all tiers include" strip, yello's common-benefits panel. */
+.pricing-include-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 22px;
+  padding: 22px 24px;
+  background: var(--bg-eggshell);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+@media (max-width: 720px) { .pricing-include-strip { grid-template-columns: 1fr; } }
+.pricing-include-strip .pricing-include-item {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  line-height: 1.45;
+}
+.pricing-include-strip .pricing-include-item svg { flex-shrink: 0; margin-top: 2px; color: var(--green-700); }

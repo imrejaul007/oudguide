@@ -99,57 +99,82 @@ export default async function ForBusinessesPage({
           </div>
         </section>
 
-        <div className="grid-2" style={{ marginTop: 48, gap: 28 }}>
+        <div className="pricing-grid" style={{ marginTop: 48 }}>
           {/* FREE TIER */}
-          <article className="card-frame" style={{ padding: 34, background: 'var(--bg-eggshell)' }}>
-            <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
-              {isAr ? 'مجاني' : 'Free'}
-            </span>
-            <h2 className="h3" style={{ marginBottom: 18 }}>
-              {isAr ? 'توثيق الملكية' : 'Ownership claim'}
-            </h2>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }} className="stack-3">
+          <article className="pricing-card">
+            <div className="pricing-card-head">
+              <span className="pricing-card-tier">{isAr ? 'مجاني' : 'Free'}</span>
+            </div>
+            <div className="pricing-price">{isAr ? 'وثيقة ملكية' : 'Claim your profile'}</div>
+            <p className="pricing-price-note">
+              {isAr
+                ? 'توثيق الملف مجاني ولا يحتاج إلى عضوية.'
+                : 'Ownership claim is free and does not require a membership.'}
+            </p>
+            <ul className="pricing-list">
               {freeFeatures.map((feature, index) => (
-                <li key={index} className="cluster" style={{ gap: 10, alignItems: 'flex-start' }}>
-                  <Check size={15} style={{ color: 'var(--green-600)', flexShrink: 0, marginTop: 3 }} />
-                  <span style={{ fontSize: '0.93rem', color: 'var(--ink)' }}>{pick(feature, locale)}</span>
+                <li key={index}>
+                  <Check size={15} style={{ color: 'var(--green-600)' }} />
+                  <span>{pick(feature, locale)}</span>
                 </li>
               ))}
             </ul>
-            <p className="meta" style={{ marginTop: 20, textTransform: 'none' }}>
+            <p className="pricing-card-footnote">
               {isAr
-                ? 'التوثيق لا ينشر بيانات الاتصال، ولا يمنحك وصولاً إلى بيانات المشترين.'
+                ? 'توثيق الملف لا ينشر بيانات الاتصال، ولا يمنحك وصولا إلى بيانات المشترين.'
                 : 'A claim publishes no contact details and gives you no access to buyer data.'}
             </p>
           </article>
 
-          {/* PAID TIER */}
-          <article className="card-frame card-frame-accent" style={{ padding: 34 }}>
-            <div className="row-between" style={{ marginBottom: 8 }}>
-              <span className="eyebrow" style={{ color: 'var(--green-700)' }}>
+          {/* PAID TIER — the one highlighted */}
+          <article className="pricing-card featured">
+            <div className="pricing-card-head">
+              <span className="pricing-card-tier">
                 {isAr ? 'العضوية السنوية' : 'Annual membership'}
               </span>
               <span className="badge badge-gold">{isAr ? 'عضوية تجارية' : 'Commercial'}</span>
             </div>
-            <h2 className="h3" style={{ marginBottom: 8 }}>
-              {pick(membershipCopy.priceHeadline, locale)}
-            </h2>
-            <p className="text-body" style={{ marginBottom: 18, fontSize: '0.93rem' }}>
+            <div className="pricing-price">
+              {isAr ? '1,200' : 'AED 1,200'}
+              <span className="pricing-price-unit">{isAr ? 'درهم سنويا' : 'per year'}</span>
+            </div>
+            <p className="pricing-price-note">
               {pick(membershipCopy.priceTaxNote, locale)}
             </p>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }} className="stack-3">
+            <ul className="pricing-list">
               {memberFeatures.map((feature, index) => (
-                <li key={index} className="cluster" style={{ gap: 10, alignItems: 'flex-start' }}>
-                  <Check size={15} style={{ color: 'var(--brass)', flexShrink: 0, marginTop: 3 }} />
-                  <span style={{ fontSize: '0.93rem', color: 'var(--ink)' }}>{pick(feature, locale)}</span>
+                <li key={index}>
+                  <Check size={15} style={{ color: 'var(--brass)' }} />
+                  <span>{pick(feature, locale)}</span>
                 </li>
               ))}
             </ul>
-            <p className="meta" style={{ marginTop: 20, textTransform: 'none' }}>
+            <p className="pricing-card-footnote">
               {pick(membershipCopy.notABenefit, locale)}
             </p>
           </article>
         </div>
+
+        {/* WHAT EVERY TIER INCLUDES — the shared-benefits strip */}
+        <div className="pricing-include-strip">
+          <div className="pricing-include-item">
+            <Check size={15} />
+            <span>
+              {isAr
+                ? 'سجل موثّق بحالة المراجعة، بلا ترتيب مدفوع ولا كتلة مميّزة.'
+                : 'A documented register with review status — no paid ranking, no featured slot.'}
+            </span>
+          </div>
+          <div className="pricing-include-item">
+            <Check size={15} />
+            <span>
+              {isAr
+                ? 'مرشحات مستقلة للصنف والدور والموقع والمنشأ والوجهة.'
+                : 'Independent filters for material, role, location, origin and destination.'}
+            </span>
+          </div>
+        </div>
+
 
         {/* WHAT WE DO NOT CLAIM */}
         <div

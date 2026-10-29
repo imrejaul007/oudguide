@@ -99,9 +99,9 @@ export default async function MembershipPage({
           </div>
         </section>
 
-        <div className="grid-2" style={{ marginTop: 44, gap: 28 }}>
+        <div className="pricing-grid" style={{ marginTop: 44 }}>
           {/* WHAT IT GRANTS */}
-          <article className="card-frame card-frame-accent" style={{ padding: 34 }}>
+          <article className="pricing-card featured">
             <div className="row-between" style={{ marginBottom: 10 }}>
               <span className="eyebrow" style={{ color: 'var(--green-700)' }}>
                 {isAr ? 'ما تمنحه العضوية' : 'What membership grants'}
@@ -121,10 +121,7 @@ export default async function MembershipPage({
           </article>
 
           {/* WHAT IT DOES NOT GRANT */}
-          <article
-            className="card-frame"
-            style={{ padding: 34, background: 'var(--bg-eggshell)' }}
-          >
+          <article className="pricing-card">
             <span className="eyebrow" style={{ display: 'block', marginBottom: 10 }}>
               {isAr ? 'ما لا تمنحه العضوية' : 'What membership does not grant'}
             </span>
