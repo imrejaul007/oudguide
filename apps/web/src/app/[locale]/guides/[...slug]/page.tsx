@@ -24,6 +24,11 @@ import { SITE_URL } from '@/lib/metadata';
 import { editorialCopy } from '@/lib/copy/policy';
 import { pick } from '@/lib/copy/policy';
 import { resolveSources } from '@/data/articles/sources';
+import {
+  lineageFor,
+  newestCompiledOn,
+  oldestCompiledOn,
+} from '@/data/datasets/price-snapshot-lineage';
 import { ArrowRight, FileText, ShieldCheck, ExternalLink, BookOpenCheck, CheckCircle2, Clock } from 'lucide-react';
 
 /**
@@ -732,22 +737,42 @@ function ArticleJsonLd({
       // is built from the record's own declaration, so it records only the
       // variables the page actually publishes.
       dataset: article.dataset
-        ? {
-            name: articleTitle(article, locale),
-            description: articleSummary(article, locale),
-            variableMeasured: article.dataset.variableMeasured,
-            datePublished: article.reviewedOn,
-            dateModified: article.reviewedOn,
-            license: article.dataset.license,
-            // When the record is also served as a stable file (the price
-            // observation baseline is, at /data/gulf-price-baseline), the
-            // distribution points a crawler at that file so it reads the
-            // data without parsing the article. Absolute, from SITE_URL.
-            downloadUrl: article.dataset.downloadPath
-              ? `${SITE_URL}${article.dataset.downloadPath}`
-              : undefined,
-            downloadFormat: 'application/json',
-          }
+        ? (() => {
+            // The dataset's dates follow its own dated readings, not the
+            // article's review date: when the record is registered in the
+            // price-snapshot lineage, datePublished is the oldest
+            // compiledOn and dateModified the newest, so the schema moves
+            // the moment a second snapshot lands in the lineage. Records
+            // outside the lineage (the grade-label catalogue) keep the
+            // article's review date as both.
+            const lineageSlug = article.dataset.downloadPath
+              ? article.dataset.downloadPath.split('/').pop() ?? null
+              : null;
+            const published =
+              lineageSlug && lineageFor(lineageSlug)
+                ? oldestCompiledOn(lineageSlug)
+                : null;
+            const modified =
+              lineageSlug && lineageFor(lineageSlug)
+                ? newestCompiledOn(lineageSlug)
+                : null;
+            return {
+              name: articleTitle(article, locale),
+              description: articleSummary(article, locale),
+              variableMeasured: article.dataset.variableMeasured,
+              datePublished: published ?? article.reviewedOn,
+              dateModified: modified ?? article.reviewedOn,
+              license: article.dataset.license,
+              // When the record is also served as a stable file (the price
+              // observation baseline is, at /data/gulf-price-baseline), the
+              // distribution points a crawler at that file so it reads the
+              // data without parsing the article. Absolute, from SITE_URL.
+              downloadUrl: article.dataset.downloadPath
+                ? `${SITE_URL}${article.dataset.downloadPath}`
+                : undefined,
+              downloadFormat: 'application/json',
+            };
+          })()
         : null,
       // A marked procedure (the authenticity protocol) is also a HowTo:
       // its steps are the guide's own rendered section headings, in order,
