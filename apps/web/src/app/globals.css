@@ -1,14 +1,17 @@
 /* ============================================================================
-   OudGuide — Clean Premium Design System
-   White + deep forest green. Editorial grid discipline. One warm accent.
+   OudGuide — Cool data-directory design system
+   White + cool-mist base, modern emerald green as the signature, one warm
+   brass accent. Editorial grid discipline kept, but cooler and all-sans.
 
-   Research basis: premium deep-green brand sites succeed by making green the
-   signature (not an accent) across nav/controls/type/footer, alternating white
-   with eggshell and pale-sage fields, adding exactly ONE warm accent, and
-   letting a strict Swiss grid + restrained type scale carry the hierarchy.
+   Research basis: premium B2B data products (the "Cool data-directory"
+   register) succeed by making a confident emerald green the signature
+   across nav/controls/type/footer, alternating white with a cool mist and
+   a pale sage field, keeping exactly ONE warm accent, and letting a strict
+   Swiss grid + confident sans type carry the hierarchy.
 
-   Typography: Newsreader (Latin display serif) · Plus Jakarta Sans (UI) ·
-               Amiri (Arabic display) · IBM Plex Sans Arabic (Arabic UI)
+   Typography: Plus Jakarta Sans (Latin display + UI) ·
+               IBM Plex Sans Arabic (Arabic display + body).
+   All-sans. The Newsreader serif and Amiri Arabic serif are retired.
    ============================================================================ */
 
 /* All-sans "Cool data-directory" direction: Plus Jakarta Sans (Latin display + UI),
@@ -255,7 +258,9 @@ h4, .h4 {
   font-family: var(--font-arabic-display);
   letter-spacing: 0;
   line-height: 1.45;
-  font-weight: 400;
+  /* Confident all-sans display weight, matching the Latin h1/h2 (800/700)
+     so the Arabic headers carry the same data-directory register. */
+  font-weight: 600;
 }
 
 [dir='rtl'] h4, [dir='rtl'] .h4 { font-family: var(--font-arabic); font-weight: 600; }
