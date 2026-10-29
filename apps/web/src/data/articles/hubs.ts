@@ -218,13 +218,6 @@ const SPECS: HubSpec[] = [
         blurbAr: 'كيف تقيّم جودة عود العود: الحامل، والتركيز، وفحص الرائحة، والوثيقة التي ترسمه فعلا.',
       },
       {
-        slug: 'quality/reading-an-oud-lab-report',
-        label: 'How to read an oud lab or GC-MS report',
-        labelAr: 'كيف تقرأ تقرير مختبر أو فحص كروماتوغرافي للعود',
-        blurb: 'What a GC-MS or lab report on oud actually measures, how to read it against the seller\'s claim, and why a clean report does not authenticate the lot.',
-        blurbAr: 'ما الذي يقيسه تقرير الفحص الكروماتوغرافي أو المختبري للعود فعلا، وكيف تقرأه على ادعاء البائع، ولماذا لا يوثّق تقرير نظيف اللوط.',
-      },
-      {
         slug: 'quality/grade-label-dataset',
         label: 'The OudGuide grade-label dataset',
         labelAr: 'مُجموع دليل العود لتسميات الدرجات',

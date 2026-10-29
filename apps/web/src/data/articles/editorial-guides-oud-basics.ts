@@ -210,7 +210,7 @@ export const editorialGuideOudBasics: Article[] = [
     related: [
       { slug: 'oud-basics/what-is-agarwood', label: 'Agarwood: names, material and uses' },
       { slug: 'quality/assessment-and-testing-limits', label: 'The limit of what testing and documentation establish' },
-      { slug: 'quality/reading-an-oud-lab-report', label: 'How to read an oud lab or GC-MS report' },
+      { slug: 'quality/lab-report-reading', label: 'How to read an oud lab or GC-MS report' },
       { slug: 'oud-basics/which-species-makes-oud', label: 'Which species makes oud' },
     ],
   }),

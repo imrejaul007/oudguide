@@ -237,6 +237,30 @@ export const qualityBuyingArticles: Article[] = [
             '"لم يُرصد" تعني أن المركب لم يُعثر عليه بالطريقة المذكورة ضمن حد الكشف فيها. وهي ليست مساوية لـ"غير موجود"، وليست شهادة أصالة.',
         },
       },
+      {
+        heading: 'Reading the report against the claim',
+        headingAr: 'قراءة التقرير على الادعاء',
+        body: [
+          "The way to use the report is to hold each of the seller's claims up against what the report actually measured. A \"pure oud oil\" claim is checked against the profile: does the profile read as a resinous heartwood, and is there evidence of a carrier or adulterant? A grade or origin claim is not answered by the report, because the report did not measure grade or origin; it is answered by the permit chain and the handling record.",
+          'The discipline is that a report only narrows the field in the direction it measured. A clean chemistry profile does not certify the origin claim, and an origin document does not certify the chemistry claim. A lot that is being sold on both claims needs both checks, and a seller who offers only one is hiding the other.',
+        ],
+        bodyAr: [
+          'طريقة استعمال التقرير أن تُرفَع كل ادعاء من ادعاءات البائع بما قاسه التقرير فعلا. فيُفحص ادعاء «زيت عود نقي» على الرسم: هل يقرأ الرسم كقلب خشبي راتنجي، وهل يوجد دليل على حامل أو مادة مضافة؟ ولا يجيب التقرير عن ادعاء درجة أو منشأ، لأنه لم يقيس الدرجة ولا المنشأ؛ بل يجيب على ذلك سلسل التصاريح وسجل التعامل.',
+          'والأدب أن التقرير يضيّق المجال في الاتجاه الذي قاسه فقط. فالرسم الكيميائي النظيف لا يوثّق ادعاء المنشأ، والمستند المنشئي لا يوثّق ادعاء الكيمياء. واللوط الذي يُباع على الادعاءين معاً يحتاج فحصين، وبائع يقدم واحداً يَسْتَر الآخر.',
+        ],
+      },
+      {
+        heading: 'Where the report fits in the full check',
+        headingAr: 'أين يقع التقرير في الفحص الكامل',
+        body: [
+          "The lab report is one channel in a three-channel check: the chemistry channel is the report, the provenance channel is the permit and handling record, and the commercial channel is the grade and price pressed against the documented range. A buyer who runs only one channel is running a check the other two can defeat, and the report's honesty is that it admits it is only one of the three.",
+          "The value of the report is therefore not that it settles the lot, but that it settles the chemistry claim and leaves the other two claims to their own channels. A buyer who knows the report's lane is a buyer who does not let a clean chemistry reading stand in for a provenance they never checked.",
+        ],
+        bodyAr: [
+          'تقرير المختبر قناة واحدة في فحص من ثلاث قنوات: قناة الكيمياء هي التقرير، وقناة المنشأ هي التصريح وسجل التعامل، وقناة التجارة هي الدرجة والسعر المعروضان على النطاق الموثق. فالمشتري الذي يجري قناة واحدة يجرى فحصاً يستطيع الطرفان الآخران نقضه، وأمانة التقرير أنه يعترف بأنه واحد فقط من الثلاث.',
+          'فقدرة التقرير إذن ليست في أنه يحسم اللوط، بل في أنه يحسم ادعاء الكيمياء ويبقي الادعاءين الآخرين لقناتيهما الخاصتين. فالمشتري الذي يعرف نطاق التقرير لا يسمح لقراءة كيمياء نظيفة أن تنوب عن منشأ لم يفحصه قط.',
+        ],
+      },
     ],
     sourceIds: ['AGARWOOD_CITES_2022', 'CITES_APPENDICES', 'AGARWOOD_REVIEW_2014'],
     limitations:

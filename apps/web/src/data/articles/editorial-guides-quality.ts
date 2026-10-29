@@ -328,7 +328,7 @@ export const editorialGuideQuality: Article[] = [
       'اقرأ صفحة سجل الدفعات وما تحمله',
     ],
     related: [
-      { slug: 'quality/reading-an-oud-lab-report', label: 'What a lot lab report establishes' },
+      { slug: 'quality/lab-report-reading', label: 'What a lab report establishes, and what it does not' },
       { slug: 'quality/sinking-claims', label: 'What a sinking claim shows' },
       { slug: 'quality/batch-records', label: 'What batch records carry' },
       { slug: 'oud-basics/resin-formation', label: 'What the resin record says about formation' },

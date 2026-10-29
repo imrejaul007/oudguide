@@ -88,6 +88,11 @@ const ALIASES = [
     to: '/guides/oud-basics/what-is-agarwood',
     reason: 'The short form of the agarwood guide path.',
   },
+  {
+    from: '/guides/quality/reading-an-oud-lab-report',
+    to: '/guides/quality/lab-report-reading',
+    reason: 'Two lab-report pages were merged; the scope-of-a-report guide is the survivor and its unique sections were folded into it.',
+  },
 ];
 
 const aliasRedirects = [];

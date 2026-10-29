@@ -167,7 +167,7 @@ export const oudAuthenticityProtocolArticles: Article[] = [
       { slug: 'quality/fraud-identification', label: 'How to detect misrepresented oud' },
       { slug: 'quality/oud-grading-explained', label: 'How oud grading claims work' },
       { slug: 'trade/agarwood-documentation', label: 'Conservation and trade documentation' },
-      { slug: 'quality/reading-an-oud-lab-report', label: 'How to read an oud lab or GC-MS report' },
+      { slug: 'quality/lab-report-reading', label: 'How to read an oud lab or GC-MS report' },
     ],
   }),
 ];
