@@ -137,11 +137,11 @@ export function AdminDashboard({
       {pendingActions.length > 0 && (
         <section
           className="card-frame"
-          style={{ borderColor: '#e6d7ba', background: 'var(--brass-tint)' }}
+          style={{ borderColor: 'var(--brass)', background: 'var(--brass-tint)' }}
         >
           <div className="cluster" style={{ gap: 10, marginBottom: 16 }}>
-            <Clock size={17} style={{ color: '#7d5819' }} />
-            <h2 style={{ fontSize: '1.1rem', margin: 0, color: '#7d5819' }}>
+            <Clock size={17} style={{ color: 'var(--brass)' }} />
+            <h2 style={{ fontSize: '1.1rem', margin: 0, color: 'var(--brass)' }}>
               {isAr ? 'إجراءات معلّقة' : 'Pending Actions'}
             </h2>
           </div>

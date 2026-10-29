@@ -346,7 +346,7 @@ export default async function CountryDetailPage({
 
         {/* CTA */}
         <div className="card-frame card-frame-accent" style={{ background: 'var(--green-900)', color: 'var(--ink-on-green)', padding: 40, textAlign: 'center' }}>
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 400, color: '#ffffff', margin: '0 0 10px' }}>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 600, color: '#ffffff', margin: '0 0 10px' }}>
             {isAr
               ? `طلب توريد إلى ${country.arabic_seed}`
               : `Request a supplier introduction for ${country.english_seed}`}

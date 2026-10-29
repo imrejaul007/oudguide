@@ -220,7 +220,7 @@ export default async function BusinessProfilePage({
         <div className="card" style={{ padding: 0, overflow: 'hidden', marginBottom: 32 }}>
           <div style={{ height: 320, position: 'relative', background: 'var(--green-900)' }}>
             <img src={coverImage} alt={biz.name} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,42,32,0.20) 0%, rgba(14,42,32,0.88) 100%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(10,61,49,0.20) 0%, rgba(10,61,49,0.88) 100%)' }} />
 
             <div className="cluster" style={{ position: 'absolute', top: 18, left: 18, right: 18, justifyContent: 'space-between' }}>
               <span className="badge badge-glass-light">
