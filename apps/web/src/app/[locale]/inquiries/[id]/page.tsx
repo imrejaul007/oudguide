@@ -136,7 +136,7 @@ export default async function InquiryStatusPage({
           className="privacy-shield"
           style={{
             background: 'var(--terracotta-tint)',
-            borderColor: '#e8d5cf',
+            borderColor: 'var(--terracotta-line)',
             borderInlineStartColor: 'var(--terracotta)',
             marginBottom: 24,
           }}

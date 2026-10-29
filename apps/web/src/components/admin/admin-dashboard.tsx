@@ -80,7 +80,7 @@ export function AdminDashboard({
 }) {
   const toneClass: Record<AdminStat['tone'], { bg: string; fg: string }> = {
     green: { bg: 'var(--green-50)', fg: 'var(--green-700)' },
-    brass: { bg: 'var(--brass-tint)', fg: '#7d5819' },
+    brass: { bg: 'var(--brass-tint)', fg: 'var(--brass)' },
     neutral: { bg: 'var(--bg-eggshell)', fg: 'var(--ink-muted)' },
   };
 

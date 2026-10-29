@@ -539,7 +539,7 @@ function ReviewedArticle({
           </h2>
           <p
             style={{
-              color: 'rgba(232,239,233,0.72)',
+              color: 'rgba(233,243,239,0.72)',
               fontSize: '0.95rem',
               lineHeight: 1.68,
               margin: '0 auto 24px',

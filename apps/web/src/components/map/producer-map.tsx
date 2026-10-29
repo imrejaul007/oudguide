@@ -51,15 +51,15 @@ function FitBounds({ points }: { points: [number, number][] }) {
   return null;
 }
 
-/** Brass pin icon matching the Majlis palette. */
+/** Brass pin icon matching the Cool data-directory palette. */
 function brassIcon(role: 'producer' | 'market') {
-  const fill = role === 'producer' ? '#c59b27' : '#5c161d';
-  const stroke = role === 'producer' ? '#8c6a15' : '#3d0e14';
+  const fill = role === 'producer' ? 'var(--brass-light)' : 'var(--terracotta)';
+  const stroke = role === 'producer' ? 'var(--color-gold-dark)' : '#6e2a1f';
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40">
       <path d="M15 0C6.7 0 0 6.7 0 15c0 11 15 25 15 25s15-14 15-25C30 6.7 23.3 0 15 0z"
             fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>
-      <circle cx="15" cy="15" r="6" fill="#fcfaf6" stroke="${stroke}" stroke-width="1"/>
+      <circle cx="15" cy="15" r="6" fill="var(--bg-paper)" stroke="${stroke}" stroke-width="1"/>
       <circle cx="15" cy="15" r="2.4" fill="${fill}"/>
     </svg>
   `;
@@ -150,7 +150,7 @@ export function ProducerMap({
                       style={{
                         fontSize: '0.85rem',
                         fontWeight: 600,
-                        color: '#5c161d',
+                        color: 'var(--terracotta)',
                         textDecoration: 'none',
                       }}
                     >

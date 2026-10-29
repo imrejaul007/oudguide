@@ -130,7 +130,7 @@ function AdminLoginClient({
                   marginBottom: 16,
                   padding: '11px 14px',
                   background: 'var(--terracotta-tint)',
-                  border: '1px solid #e8d5cf',
+                  border: '1px solid var(--terracotta-line)',
                   borderRadius: 6,
                   color: 'var(--terracotta)',
                   fontSize: '0.85rem',

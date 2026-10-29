@@ -135,7 +135,7 @@ export function HeroSearch({ locale }: HeroSearchProps) {
           style={{
             flexBasis: '100%',
             fontSize: '0.75rem',
-            color: '#d98b8b',
+            color: '#c98a82',
             textAlign: 'center',
             fontFamily: 'var(--font-sans)',
           }}

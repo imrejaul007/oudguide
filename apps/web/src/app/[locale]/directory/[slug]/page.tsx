@@ -255,7 +255,7 @@ export default async function BusinessProfilePage({
               }}>
                 {biz.name}
               </h1>
-              <p style={{ fontSize: '0.95rem', color: 'rgba(232,239,233,0.72)', margin: 0, fontFamily: 'var(--font-sans)' }}>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(233,243,239,0.72)', margin: 0, fontFamily: 'var(--font-sans)' }}>
                 {biz.city ? `${biz.city}, ` : ''}{biz.country_name || biz.country_id}
                 {biz.established_year &&
                   (biz.verified_fields ?? []).includes('established_year') && (

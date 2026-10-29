@@ -125,7 +125,7 @@ export default async function PrivacyPage({
             style={{
               marginTop: 32,
               borderLeftColor: 'var(--color-emerald)',
-              background: 'linear-gradient(135deg, #f0faf5, #e3f2ea)',
+              background: 'linear-gradient(135deg, var(--green-50), var(--green-100))',
             }}
           >
             <CheckCircle2 size={28} className="privacy-shield-icon" style={{ color: 'var(--color-emerald)' }} />

@@ -681,7 +681,7 @@ export default async function HomePage({
                 <div className="meta" style={{ color: 'var(--green-200)', marginBottom: 12 }}>
                   {isAr ? 'ما يغطيه المساعد' : 'What it covers'}
                 </div>
-                <ul style={{ margin: 0, paddingLeft: 18, color: 'rgba(232,239,233,0.78)', fontSize: '0.88rem', lineHeight: 1.8 }}>
+                <ul style={{ margin: 0, paddingLeft: 18, color: 'rgba(233,243,239,0.78)', fontSize: '0.88rem', lineHeight: 1.8 }}>
                   <li>{isAr ? 'تتابق الإقليم، الصنف، ونطاق الكمية' : 'Terroir, product family and volume matching'}</li>
                   <li>{isAr ? 'أشكال الغش الأربعة وطرق الكشف المخبرية' : 'The four fraud types and lab detection methods'}</li>
                   <li>{isAr ? 'متطلبات سايتس الملحق الثاني وقرارات عدم الإضرار' : 'CITES Appendix II duties and non-detriment findings'}</li>

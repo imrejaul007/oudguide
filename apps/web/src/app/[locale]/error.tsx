@@ -33,7 +33,7 @@ export default function LocaleError({
             height: 56,
             borderRadius: '50%',
             background: 'var(--terracotta-tint)',
-            border: '1px solid #e8d5cf',
+            border: '1px solid var(--terracotta-line)',
             color: 'var(--terracotta)',
             display: 'inline-flex',
             alignItems: 'center',

@@ -351,7 +351,7 @@ export default async function CountryDetailPage({
               ? `طلب توريد إلى ${country.arabic_seed}`
               : `Request a supplier introduction for ${country.english_seed}`}
           </h3>
-          <p style={{ color: 'rgba(232,239,233,0.72)', fontSize: '0.9rem', maxWidth: '640px', margin: '0 auto 18px', lineHeight: 1.65 }}>
+          <p style={{ color: 'rgba(233,243,239,0.72)', fontSize: '0.9rem', maxWidth: '640px', margin: '0 auto 18px', lineHeight: 1.65 }}>
             {isAr
               ? 'حدد متطلباتك. يتولى دليل العود مطابقتك مع موردين، ولا يقدّم طلبك إلا لمن تعتمدهم بالاسم. وتُراجع متطلبات التوثيق لكل منتج ومسار ووجهة على حدة.'
               : 'Specify your requirement. OudGuide matches you with suppliers, and nothing is sent to one unless you approve them by name. Documentation requirements are assessed per product, route and destination.'}
