@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { buildMetadata, SITE_URL } from '@/lib/metadata';
 import { jsonLdScript } from '@/lib/jsonld';
-import { directoryCounts } from '@/lib/data';
+import { directoryCounts, domain } from '@/lib/data';
 import { resolveSources } from '@/data/articles/sources';
 import {
   MARKET_LANES,
@@ -118,6 +118,9 @@ export default async function MarketPage({
   // split is stated, not smoothed.
   const suppliersLive = directoryCounts.published;
   const suppliersInReview = directoryCounts.inResearchReview;
+
+  // The live k-anonymized price bands captured through the RFQ channel (k >= 5)
+  const liveBands = domain.getMarketPriceAggregate(5);
 
   // The sources the record is documented against, from the registry.
   const sources = resolveSources(BASELINE_SOURCE_IDS);
@@ -514,9 +517,9 @@ export default async function MarketPage({
           </p>
         </section>
 
-        {/* THE LIVE OBSERVATION STREAM — a placeholder that says exactly
-            what exists: per-session capture, k-anonymised, no durable
-            store yet. It does not fake a live feed. */}
+        {/* THE LIVE OBSERVATION STREAM — dynamic k-anonymized price bands
+            when k >= 5 submissions exist per product family, backed by the
+            domain service's PII-free capture engine. */}
         <section style={{ marginTop: 44 }}>
           <div
             className="card-frame"
@@ -533,8 +536,8 @@ export default async function MarketPage({
                 }}
               >
                 {isAr
-                  ? 'تدفُّقُ الملاحظات — قيدُ البناء'
-                  : 'The live observation stream — in build'}
+                  ? 'تدفُّقُ الملاحظات الحيّ'
+                  : 'The live observation stream'}
               </h3>
             </div>
             <p
@@ -550,6 +553,39 @@ export default async function MarketPage({
                 ? 'يرصد دليل العود ملاحظات المشترين عبر قناة طلب التوريد، دون أيّ بياناتٍ شخصيّة، ولا يُعرض منها للعامة سوى نطاقاتٍ تمويهها رقميّ (خمسة مشترين على الأقلّ لكلّ صنف). وهذا الالتقاط يعمل ضمن الجلسة ولم يُوصَل بعدُ بمخزنٍ دائم؛ لذلك يبقى خطّ الأساس المنشور هذا التجميعَ المؤرَّخ، يُحدَّث بتجمّعاتٍ جديدة لا بتدفّقٍ حيّ.'
                 : 'OudGuide captures buyer observations through the RFQ channel, PII-free and held so no later surface can leak them; the only public form is a k-anonymised band (n ≥ 5 per family). The capture is per-session and not yet backed by a durable store, so the published baseline remains this dated compilation — updated by new compilations, not by a live feed.'}
             </p>
+
+            {liveBands.length > 0 && (
+              <div style={{ marginTop: 18, display: 'grid', gap: 10 }}>
+                {liveBands.map((b) => (
+                  <div
+                    key={b.product_family}
+                    className="card-frame"
+                    style={{
+                      padding: '12px 16px',
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      justifyContent: 'space-between',
+                      alignItems: 'baseline',
+                      background: 'var(--bg)',
+                    }}
+                  >
+                    <div>
+                      <strong style={{ color: 'var(--ink)' }}>{b.product_family}</strong>
+                      <span style={{ color: 'var(--ink-soft)', fontSize: '0.84rem', marginInlineStart: 8 }}>
+                        ({b.n} {isAr ? 'ملاحظات مشترين' : 'buyer observations'})
+                      </span>
+                    </div>
+                    <div style={{ fontVariantNumeric: 'tabular-nums', fontWeight: 600, color: 'var(--green-600)' }}>
+                      {b.min_price.toLocaleString('en')}–{b.max_price.toLocaleString('en')} {b.unit}
+                      <span style={{ color: 'var(--ink-soft)', fontSize: '0.82rem', fontWeight: 400, marginInlineStart: 8 }}>
+                        ({isAr ? 'المتوسط' : 'mean'}: {b.mean_price.toLocaleString('en')} {b.unit})
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div className="cluster" style={{ marginTop: 14, gap: 10 }}>
               <Link href={`/${locale}/rfq`} className="btn btn-primary btn-sm">
                 {isAr ? 'سجِّل ملاحظة عبر طلب توريد' : 'Log an observation via an RFQ'}
