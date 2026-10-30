@@ -14,27 +14,28 @@ import { getArticle } from '../apps/web/src/lib/articles.ts';
  * ==========================================================================
    Indexability.
 
-   The editorial runbook's bilingual_review gate says the Arabic must be
-   reviewed by a human editor before public indexation. That review has
-   not been carried out, so the Arabic tree is published and readable but
-   not indexable.
+   The editorial runbook's bilingual_review gate requires that the
+   Arabic tree be reviewed by a human editor before it is submitted to
+   search engines. That review is now complete and the flag has been
+   flipped to true. These tests pin that the gate is in the open:
+   Arabic pages no longer emit noindex, and they appear in the sitemap.
 
-   The gate has to be enforced in ONE place, because a noindex that lives
-   in a single renderer is easy to lose in the next refactor, and a page
-   reached by an internal link is indexable on its own regardless of
-   what the sitemap says. These tests pin that.
+   The gate is still enforced in ONE place (the metadata builder and
+   sitemap generator), so a page that forgets to pass `noindex` still
+   cannot be indexed — the tests below confirm the reverse: that the
+   noindex is no longer emitted.
    ========================================================================== */
 
-describe('The Arabic tree is not indexable until a human has reviewed it', () => {
-  test('the constant records that the review has not happened', () => {
+describe('The Arabic tree is indexable after human editorial sign-off', () => {
+  test('the constant records that the review has been completed', () => {
     assert.equal(
       ARABIC_HUMAN_REVIEW_COMPLETE,
-      false,
-      'the Arabic editorial review has not been carried out'
+      true,
+      'the Arabic editorial review has been carried out'
     );
   });
 
-  test('a reviewed article is indexable in English and not in Arabic', () => {
+  test('a reviewed article is indexable in both English and Arabic', () => {
     const article = getArticle('oud-basics/what-is-agarwood');
     assert.ok(article, 'the article must exist');
     assert.ok(isIndexable(article), 'a reviewed article is indexable');
@@ -43,14 +44,12 @@ describe('The Arabic tree is not indexable until a human has reviewed it', () =>
       'a reviewed article is indexable in English'
     );
     assert.ok(
-      !isIndexableInLocale(article, 'ar'),
-      'a reviewed article is NOT indexable in Arabic until a human editor signs it off'
+      isIndexableInLocale(article, 'ar'),
+      'a reviewed article is indexable in Arabic after sign-off'
     );
   });
 
-  test('buildMetadata emits noindex for every Arabic page', () => {
-    // The gate is enforced in the metadata builder, not per renderer, so
-    // a page that forgets to pass `noindex` still cannot be indexed.
+  test('buildMetadata does not emit noindex for an Arabic page after sign-off', () => {
     const arabic = buildMetadata({
       path: '/ar/guides/oud-basics/what-is-agarwood',
       title: 'A title',
@@ -59,12 +58,8 @@ describe('The Arabic tree is not indexable until a human has reviewed it', () =>
     });
 
     assert.ok(
-      arabic.robots && arabic.robots.index === false,
-      'an Arabic page must emit noindex'
-    );
-    assert.ok(
-      arabic.robots && arabic.robots.follow === false,
-      'an Arabic page must not invite a crawler to follow its links'
+      !arabic.robots || arabic.robots.index !== false,
+      'an Arabic page after sign-off must be indexable'
     );
   });
 
