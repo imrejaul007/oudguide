@@ -4,7 +4,8 @@ import { buildMetadata, SITE_URL } from '@/lib/metadata';
 import { jsonLdScript } from '@/lib/jsonld';
 import { notFound } from 'next/navigation';
 import { domain, businessSummaryBySlug } from '@/lib/data';
-import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe, Clock, Truck, FileCheck2 } from 'lucide-react';
+import { countryNamesFor } from '@/lib/country-registry';
+import { MapPin, ShieldCheck, Lock, Award, ExternalLink, ArrowRight, CheckCircle2, Globe, Clock, Truck, FileCheck2, Building2, Package, Sparkles, FileText } from 'lucide-react';
 import { BookmarkButton, ShareButton, ViewTracker } from '@/components/business/interactive-tools';
 import { ReportButton } from '@/components/business/report-button';
 import { ProfileFaq } from '@/components/business/profile-faq';
@@ -133,8 +134,24 @@ export default async function BusinessProfilePage({
   }
 
   const coverImage = producerCovers[slug] || '/images/hero-oud-chip.svg';
+  const listings = await domain.listPublishedListings({ business_id: biz.id });
   const allBusinesses = domain.listBusinesses({ excludeDemo: true });
-  const similar = allBusinesses.filter((b) => b.slug !== slug).slice(0, 4);
+
+  // Intelligent similar supplier matching based on shared material families, roles, and region
+  const similar = allBusinesses
+    .filter((b) => b.slug !== slug)
+    .map((b) => {
+      let score = 0;
+      if (b.country_id === biz.country_id) score += 3;
+      const sharedFamilies = (b.product_families ?? []).filter((f) => (biz.product_families ?? []).includes(f));
+      score += sharedFamilies.length * 2;
+      const sharedRoles = (b.roles ?? []).filter((r) => (biz.roles ?? []).includes(r));
+      score += sharedRoles.length;
+      return { business: b, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map((s) => s.business);
 
   const faqItems = [
     {
@@ -247,9 +264,9 @@ export default async function BusinessProfilePage({
               <h1 style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(1.7rem, 3.2vw, 2.5rem)',
-                fontWeight: 300,
+                fontWeight: 650,
                 lineHeight: 1.1,
-                letterSpacing: '-0.022em',
+                letterSpacing: '-0.03em',
                 margin: '4px 0 6px',
                 color: '#ffffff',
               }}>
@@ -375,15 +392,55 @@ export default async function BusinessProfilePage({
                 <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
                   {isAr ? 'وجهات الشحن الموثقة' : 'Documented Destinations'}
                 </span>
-                <div className="cluster" style={{ gap: 8, alignItems: 'center', marginBottom: 10 }}>
-                  <Truck size={14} style={{ color: 'var(--green-600)' }} />
-                  <span style={{ fontSize: '0.88rem', fontWeight: 500, color: 'var(--ink)' }}>
+                <div className="cluster" style={{ gap: 8, alignItems: 'center', marginBottom: 12 }}>
+                  <Truck size={14} style={{ color: 'var(--green-700)' }} />
+                  <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--ink)' }}>
                     {biz.serves_destinations.length} {isAr ? 'وجهات تجارية' : 'destinations served'}
                   </span>
                 </div>
-                <div className="cluster">
-                  {biz.serves_destinations.map((d) => (
-                    <span key={d} className="chip" style={{ fontSize: '0.75rem' }}>{d}</span>
+                <div className="cluster" style={{ gap: 6 }}>
+                  {biz.serves_destinations.map((d) => {
+                    const names = countryNamesFor(d);
+                    const label = names ? (isAr ? names.ar : names.en) : d.toUpperCase();
+                    return (
+                      <Link
+                        key={d}
+                        href={`/${locale}/world/${d.toUpperCase()}`}
+                        className="chip"
+                        style={{ fontSize: '0.76rem', textDecoration: 'none' }}
+                      >
+                        <span>{label}</span>
+                        <span style={{ opacity: 0.6, fontSize: '0.68rem', marginInlineStart: 3 }}>({d.toUpperCase()})</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {biz.facilities && biz.facilities.length > 0 && (
+              <div className="card" style={{ padding: 24, marginTop: 20 }}>
+                <span className="eyebrow" style={{ display: 'block', marginBottom: 12 }}>
+                  {isAr ? 'المعامل والمنشآت الموثقة' : 'Documented Facilities & Stills'}
+                </span>
+                <div className="stack-2">
+                  {biz.facilities.map((fac, idx) => (
+                    <div key={idx} style={{ padding: '8px 12px', background: 'var(--bg-eggshell)', borderRadius: 'var(--r-sm)', border: '1px solid var(--line)' }}>
+                      <div className="cluster" style={{ justifyContent: 'space-between', gap: 6 }}>
+                        <span style={{ fontSize: '0.82rem', fontWeight: 600, textTransform: 'capitalize' }}>
+                          <Building2 size={12} style={{ verticalAlign: '-1px', marginInlineEnd: 4, color: 'var(--green-700)' }} />
+                          {fac.type} facility
+                        </span>
+                        {fac.documented && (
+                          <span className="badge badge-emerald" style={{ fontSize: '0.65rem', padding: '2px 6px' }}>
+                            {isAr ? 'موثق' : 'Verified'}
+                          </span>
+                        )}
+                      </div>
+                      <p style={{ margin: '4px 0 0', fontSize: '0.78rem', color: 'var(--ink-muted)' }}>
+                        {[fac.city, fac.region, fac.country_name || fac.country_id].filter(Boolean).join(', ')}
+                      </p>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -439,6 +496,56 @@ export default async function BusinessProfilePage({
           </aside>
         </div>
 
+        {/* WHOLESALE CATALOG & IN-STOCK LOTS */}
+        {listings.length > 0 && (
+          <section style={{ marginBottom: 48 }}>
+            <div className="row-between" style={{ marginBottom: 18 }}>
+              <div>
+                <span className="eyebrow">{isAr ? 'الكتالوج التجاري المتاح' : 'Wholesale Catalog & In-Stock Lots'}</span>
+                <h2 className="h2" style={{ margin: 0 }}>
+                  {isAr ? 'المواد والعروض المسجلة لهذا المورد' : 'Available Material Lots & Distillations'}
+                </h2>
+              </div>
+              <Link href={`/${locale}/b2b/quote?supplier=${slug}`} className="btn btn-primary btn-sm" style={{ gap: 5 }}>
+                <FileText size={12} />
+                <span>{isAr ? 'طلب تسعير جملة' : 'Request Wholesale Quote'}</span>
+              </Link>
+            </div>
+
+            <div style={{ display: 'grid', gap: 14, gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
+              {listings.map((l) => (
+                <div key={l.id} className="card-frame" style={{ padding: 20, display: 'flex', flexDirection: 'column' }}>
+                  <span className="badge badge-emerald" style={{ alignSelf: 'flex-start', marginBottom: 8, fontSize: '0.72rem' }}>
+                    {l.product_family}
+                  </span>
+                  <h3 style={{ margin: '0 0 6px', fontSize: '1.05rem', fontWeight: 600 }}>{l.name}</h3>
+                  {l.description && (
+                    <p style={{ margin: '0 0 12px', fontSize: '0.84rem', color: 'var(--ink-muted)', lineHeight: 1.55, flex: 1 }}>
+                      {l.description}
+                    </p>
+                  )}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 12, borderTop: '1px solid var(--line)', marginTop: 'auto' }}>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--ink-soft)' }}>
+                      {l.moq ? (
+                        <span>{isAr ? 'الحد الأدنى' : 'MOQ'}: <strong style={{ color: 'var(--ink)' }}>{l.moq} {l.unit || ''}</strong></span>
+                      ) : (
+                        <span>{l.sample_available ? (isAr ? 'عينات متاحة' : 'Samples available') : '—'}</span>
+                      )}
+                    </div>
+                    <Link
+                      href={`/${locale}/b2b/quote?supplier=${slug}&family=${encodeURIComponent(l.product_family)}`}
+                      className="btn btn-outline btn-sm"
+                      style={{ padding: '4px 10px', fontSize: '0.75rem' }}
+                    >
+                      <span>{isAr ? 'طلب تسعير' : 'Inquire'}</span>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* SOURCING FAQ */}
         <ProfileFaq
           locale={locale}
@@ -452,7 +559,7 @@ export default async function BusinessProfilePage({
               <div>
                 <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>{isAr ? 'موردون آخرون' : 'Other Producers'}</span>
                 <h2 className="h2">
-                  {isAr ? 'موردون ومصانع أخرى في الدليل' : 'Other Verified Distillers in Registry'}
+                  {isAr ? 'موردون ومصانع أخرى ذات صلة' : 'Related Verified Distillers in Registry'}
                 </h2>
               </div>
               <Link href={`/${locale}/directory`} className="btn btn-outline btn-sm">
@@ -462,25 +569,46 @@ export default async function BusinessProfilePage({
             </div>
             <div className="grid-2" style={{ gap: 18 }}>
               {similar.map((s) => (
-                <Link
+                <div
                   key={s.id}
-                  href={`/${locale}/directory/${s.slug}`}
-                  className="card"
-                  style={{ textDecoration: 'none', padding: 22, display: 'block' }}
+                  className="b2b-card"
+                  style={{ padding: 20 }}
                 >
-                  <div className="row-between" style={{ gap: 10, marginBottom: 4 }}>
-                    <h4 className="biz-name" style={{ margin: 0 }}>{s.name}</h4>
-                    <ArrowRight size={14} style={{ color: 'var(--green-600)', flexShrink: 0, marginTop: 4 }} />
+                  <div className="row-between" style={{ gap: 10, marginBottom: 6 }}>
+                    <h4 className="biz-name" style={{ margin: 0, fontSize: '1.05rem', fontWeight: 600 }}>
+                      <Link href={`/${locale}/directory/${s.slug}`}>{s.name}</Link>
+                    </h4>
+                    {s.contact_unlocked ? (
+                      <span className="badge badge-emerald" style={{ fontSize: '0.68rem' }}>{isAr ? 'معتمد' : 'Verified'}</span>
+                    ) : null}
                   </div>
                   <div className="biz-location" style={{ marginBottom: 8 }}>
-                    <MapPin size={11} />
+                    <MapPin size={11} style={{ color: 'var(--green-700)' }} />
                     {s.city ? `${s.city}, ` : ''}{s.country_name || s.country_id}
                   </div>
-                  <p style={{ margin: 0, fontSize: '0.85rem', lineHeight: 1.55, color: 'var(--ink-muted)' }}>
+                  <p style={{ margin: '0 0 12px', fontSize: '0.84rem', lineHeight: 1.55, color: 'var(--ink-muted)' }}>
                     {s.description?.slice(0, 110)}
                     {s.description && s.description.length > 110 ? '…' : ''}
                   </p>
-                </Link>
+                  <div className="b2b-card-actions" style={{ paddingTop: 10, marginTop: 'auto' }}>
+                    <Link
+                      href={`/${locale}/directory/${s.slug}`}
+                      className="btn btn-outline btn-sm"
+                      style={{ padding: '4px 9px', fontSize: '0.75rem' }}
+                    >
+                      <span>{isAr ? 'الملف' : 'Profile'}</span>
+                      <ArrowRight size={11} className="icon-dir-flip" />
+                    </Link>
+                    <Link
+                      href={`/${locale}/b2b/quote?supplier=${s.slug}`}
+                      className="btn btn-primary btn-sm"
+                      style={{ padding: '4px 10px', fontSize: '0.75rem', gap: 4 }}
+                    >
+                      <FileText size={11} />
+                      <span>{isAr ? 'طلب تسعير' : 'Quote'}</span>
+                    </Link>
+                  </div>
+                </div>
               ))}
             </div>
           </section>

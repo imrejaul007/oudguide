@@ -9,9 +9,11 @@ import {
   Quote,
   MapPin,
   CheckCircle2,
+  FileText,
 } from 'lucide-react';
 import { buildMetadata } from '@/lib/metadata';
 import { domain, businessSummaryBySlug } from '@/lib/data';
+import { countryNamesFor } from '@/lib/country-registry';
 import { portalCopy, pick } from '@/lib/copy/b2b-portal';
 
 export async function generateMetadata({
@@ -143,15 +145,21 @@ export default async function B2bSupplierStorefrontPage({
               <div>
                 <p className="discipline-note">{isAr ? 'يشحن إلى' : 'Ships to'}</p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  {raw.serves_destinations!.map((code) => (
-                    <Link
-                      key={code}
-                      href={`/${locale}/world/${code.toUpperCase()}`}
-                      className="filter-chip"
-                    >
-                      {code.toUpperCase()}
-                    </Link>
-                  ))}
+                  {raw.serves_destinations!.map((code) => {
+                    const names = countryNamesFor(code);
+                    const label = names ? (isAr ? names.ar : names.en) : code.toUpperCase();
+                    return (
+                      <Link
+                        key={code}
+                        href={`/${locale}/world/${code.toUpperCase()}`}
+                        className="filter-chip"
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <span>{label}</span>
+                        <span style={{ opacity: 0.6, fontSize: '0.72rem', marginInlineStart: 4 }}>({code.toUpperCase()})</span>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             ) : null}
@@ -209,16 +217,26 @@ export default async function B2bSupplierStorefrontPage({
                   {listing.description ? (
                     <p className="discipline-body" style={{ margin: '0 0 10px' }}>{listing.description}</p>
                   ) : null}
-                  <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', fontSize: '0.85rem', color: 'var(--ink-muted)' }}>
-                    {listing.moq ? (
-                      <span>
-                        {isAr ? 'حد أدنى' : 'MOQ'}: {listing.moq}
-                        {listing.unit ? ` ${listing.unit}` : ''}
-                      </span>
-                    ) : null}
-                    {listing.sample_available ? (
-                      <span>{isAr ? 'عينات متوفرة' : 'samples available'}</span>
-                    ) : null}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 14, paddingTop: 12, borderTop: '1px solid var(--line)' }}>
+                    <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', fontSize: '0.85rem', color: 'var(--ink-muted)' }}>
+                      {listing.moq ? (
+                        <span>
+                          {isAr ? 'حد أدنى' : 'MOQ'}: <strong style={{ color: 'var(--ink)' }}>{listing.moq} {listing.unit || ''}</strong>
+                        </span>
+                      ) : null}
+                      {listing.sample_available ? (
+                        <span style={{ color: 'var(--green-700)' }}>{isAr ? 'عينات متوفرة' : 'samples available'}</span>
+                      ) : null}
+                    </div>
+
+                    <Link
+                      href={`/${locale}/b2b/quote?supplier=${encodeURIComponent(slug)}&family=${encodeURIComponent(listing.product_family)}`}
+                      className="btn btn-outline btn-sm"
+                      style={{ padding: '4px 10px', fontSize: '0.75rem', gap: 4 }}
+                    >
+                      <FileText size={11} />
+                      <span>{isAr ? 'طلب تسعير' : 'Quote'}</span>
+                    </Link>
                   </div>
                 </div>
               ))}
