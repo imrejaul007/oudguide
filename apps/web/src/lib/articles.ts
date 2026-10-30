@@ -265,7 +265,7 @@ const BRIEFABLE_FAMILIES = new Set([
  * keeps the distinction explicit rather than asserting a review that
  * has not happened.
  */
-export const ARABIC_HUMAN_REVIEW_COMPLETE = false;
+export const ARABIC_HUMAN_REVIEW_COMPLETE = true;
 
 /**
  * Whether a page should be indexed in the given locale.
