@@ -46,6 +46,7 @@ import { editorialGuideFragrance } from './editorial-guides-fragrance.ts';
 import { editorialGuideProduction } from './editorial-guides-production.ts';
 import { boyaAndFatOudArticles } from './boya-and-fat-oud-grades.ts';
 import { vintageAndBurningArticles } from './vintage-and-burning-guides.ts';
+import { shelfLifeAndDurabilityArticles } from './shelf-life-and-durability.ts';
 
 /**
  * The reviewed content layer.
@@ -148,6 +149,7 @@ export const articles: Article[] = [
   ...editorialGuideProduction,
   ...boyaAndFatOudArticles,
   ...vintageAndBurningArticles,
+  ...shelfLifeAndDurabilityArticles,
   ...basicsArticles,
   ...hubArticles,
   ...qualityArticles,

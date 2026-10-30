@@ -930,6 +930,13 @@ const SPECS: HubSpec[] = [
         blurb: 'The thermodynamics that separates resin vaporization from wood combustion, charcoal ash-bed technique, and precision electric heaters.',
         blurbAr: 'الفيزياء الكامنة التي تفصل تطاّر الراتنجات عن احتراق الخشب، وتقنية سرّة الرماد، وأجهزة التسخين الكهربائي الدقيقة.',
       },
+      {
+        slug: 'using-oud/oud-shelf-life-and-longevity',
+        label: 'Does oud go bad? Shelf life and longevity',
+        labelAr: 'هل يفسد العود؟ العمر التخزيني',
+        blurb: 'Whether stored oud degrades at all, how wood, oil, and bakhoor differ in durability, and the on-hand checks that tell you old material is still good.',
+        blurbAr: 'هل يتحلل العود المحفوظ اصلا، وكيف تختلف مدة بقاء الخشب والزيت والبخور، والفحوصات الملموسة التي تخبرك أن المادة القديمة ما تزال صالحة.',
+      },
     ],
     nextSteps: ['Choose the right equipment', 'Label your samples properly', 'Read intended-use instructions'],
     nextStepsAr: ['اختر المعدات المناسبة', 'سمِّ عيناتك بشكل صحيح', 'اقرأ تعليمات الاستخدام المقصود'],

@@ -1653,4 +1653,50 @@ termEntry({
     ],
     sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
   }),
+
+  termEntry({
+    slug: 'glossary/attar',
+    title: 'Attar',
+    titleAr: 'عطر إيتار',
+    summary:
+      'The concentrated perfume preparation in which a scent (here, oud) is carried on a base such as sandalwood oil and then applied to the skin.',
+    summaryAr:
+      'الإعداد العطري المركّز الذي يُحمَل فيه العطر (وهنا العود) على أساس كزيت الصندل ثم يُطبَّق على البشرة.',
+    directAnswer:
+      'Attar is not the oud oil itself but a finished application of it: the scent material is fixed onto a carrier base, most often sandalwood, and used as a concentrated, alcohol-free skin preparation, as opposed to a sprayed or diluted perfume. An attar is therefore a formulation, and what makes one good is the base and the ratio, not the fact that oud is in it.',
+    directAnswerAr:
+      'الإيتار ليس دهن العود بذاته بل استعمال مكتمل له: تُثبَّت المادة العطرية على قاعدة حاملة، غالباً الصندل، ويُستعمل إعداداً مركّزاً خالياً من الكحول للبشرة، على خلاف العطر المُرشَّ أو المُخفَّف. فالإيتار صيغة، وما يُميز الجودة منه هو الأساس والنسبة لا حقيقة وجود العود فيه.',
+    spelling:
+      'The term is written attar, ittar, ittar, and itr in Latin transliterations, and عطر إيتار or اتّار in Arabic. The spelling does not settle the carrier: two attars can carry the same name over different bases and different ratios.',
+    spellingAr:
+      'يُكتب المصطلح بحروف لاتينية بعدة إسقاطات متقاربة، ويقابله في العربية «عطر إيتار» أو «اتّار». ولا يحسم الإملاء أساس الحامل؛ فصياغان تحملان الاسم نفسه قد تبنين على أساسين مختلفين ونسبتين مختلفتين.',
+    usage:
+      'In trade usage attar designates the concentrated preparation sold in small bottles and applied drop by drop to the skin, worn rather than sprayed. It is distinct from a pure Dehn Al Oud sold as a base material and from a sprayed or diluted fragrance: the carrier base and the application format are what put it in the attar class.',
+    usageAr:
+      'في الاستعمال التجاري يصف الإيتار الإعداد المركّز الذي يُباع في قوارير صغيرة ويُطبق قطرةً قطرة على البشرة، يُلبَس لا يُرشَّ. وهو يُفرَّق عن دهن العود الصافي المباعة كخامة وعن العطر المُرشَّ أو المُخفَّف؛ فالقاعدة الحاملة وصيغة التطبيق ما يضعه في صنف الإيتار.',
+    examples:
+      'An attar on a sandalwood base at a high oud-carry ratio reads richer and longer than one on the same base at a low ratio. A preparation sold as attar whose base is not stated, or whose concentration cannot be read, is the case to check before purchase: the name does not say what is in it.',
+    examplesAr:
+      'إيتار على أساس الصندل بنسبة حمل عالية للعود يقرأ أثقل وأدوم من واحد على الأساس نفسه بنسبة حمل منخفضة. وإعداد يُباع إيتاراً ولا يُحدَّد أساسه ولا يمكن قراءة تركيزه هو ما يجب فحصه قبل الشراء: فالاسم لا يقول ما فيه.',
+    alternatives:
+      'Attar (the application, carried on a base) vs Dehn Al Oud (the pure scent material) vs perfume oil or spray (the diluted or applied consumer format). The relationship between these spellings is format, not identity.',
+    alternativesAr:
+      'الإيتار (الإعداد المحمّل على أساس) مقابل دهن العود (المادة العطرية الصافية) مقابل الزيت أو الرذاذ (صيغة المستهلك المُخفَّفة أو المُطبَّقة). والعلاقة بين هذه الأسماء علاقة صيغة لا هوية.',
+    doesNotProve:
+      'The term attar does not establish the carrier, the concentration, or the authenticity of the oud in the preparation. It names the class of product, not its composition or quality.',
+    doesNotProveAr:
+      'لا يثبت وسم الإيتار الأساس الحامل ولا التركيز ولا أصالة العود في الإعداد. فهو يسمّي صنف المنتج لا تركيبه ولا جودته.',
+    limitations:
+      'This entry documents trade usage of the term across Indian, Southeast Asian, and Gulf markets. It does not certify the carrier, concentration, or oud content of any commercial attar sold under the name.',
+    limitationsAr:
+      'توثق هذه المدخلة الاستعمال التجاري للمصطلح في أسواق الهند وجنوب شرق آسيا والخليج. ولا تصادق على أساس حامل أو تركيز أو محتوى العود في أي إيتار تجاري يباع بهذا الاسم.',
+    related: [
+      { slug: 'comparisons/attar-oud-oil-fragrance-oil', label: 'Attar, oud oil, and fragrance oil compared' },
+      { slug: 'fragrance/oud-oil-vs-attar', label: 'Oud oil versus attar' },
+      { slug: 'products/attars', label: 'Attars product family' },
+      { slug: 'quality/attar-quality-testing', label: 'Testing attar quality' },
+      { slug: 'glossary/dehn-al-oud', label: 'Dehn Al Oud defined' },
+    ],
+    sourceIds: ['AGARWOOD_REVIEW_2014', 'ITTO_AGARWOOD_REVIEW'],
+  }),
 ];
