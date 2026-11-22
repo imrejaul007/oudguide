@@ -321,18 +321,18 @@ export function RfqWizard({
       )}
 
       {/* NAVIGATION */}
-      <div className="row-between">
+      <div className="rfq-nav-bar">
         <button
           type="button"
           onClick={() => setStageIndex((i) => Math.max(0, i - 1))}
           disabled={stageIndex === 0}
-          className="btn btn-outline btn-sm"
+          className="btn btn-outline btn-sm rfq-nav-back"
         >
           <ChevronLeft size={14} />
           {isAr ? 'السابق' : 'Back'}
         </button>
 
-        <div className="cluster" style={{ gap: 8 }}>
+        <div className="rfq-nav-privacy">
           <span className="meta" style={{ textTransform: 'none', letterSpacing: '0.02em' }}>
             <Lock size={11} style={{ display: 'inline', verticalAlign: 'middle', marginInlineEnd: 4 }} />
             {isAr
@@ -342,7 +342,7 @@ export function RfqWizard({
         </div>
 
         {isLast ? (
-          <button type="submit" disabled={submitting} className="btn btn-primary btn-lg">
+          <button type="submit" disabled={submitting} className="btn btn-primary btn-lg rfq-nav-submit">
             {submitting ? <Loader2 size={16} className="spin" /> : <ShieldCheck size={16} />}
             {isAr ? 'إرسال الطلب ←' : 'Submit inquiry →'}
           </button>
@@ -350,7 +350,7 @@ export function RfqWizard({
           <button
             type="button"
             onClick={() => setStageIndex((i) => Math.min(visibleStages.length - 1, i + 1))}
-            className="btn btn-primary btn-lg"
+            className="btn btn-primary btn-lg rfq-nav-next"
           >
             {isAr ? 'التالي' : 'Continue'}
             <ChevronRight size={15} />

@@ -469,6 +469,38 @@ export function handleRequest(req: IncomingMessage, res: ServerResponse): void {
     'Content-Security-Policy',
     "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'"
   );
+  // RFC 8288 Link header pointing at agent resources
+  res.setHeader('Link', '</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="alternate"; type="text/markdown", </.well-known/mcp/server-card.json>; rel="service-desc"');
+
+  // Markdown content negotiation for AI agents
+  const acceptHeader = req.headers['accept'] || '';
+  if (acceptHeader.includes('text/markdown') && (path === '/' || path === '/en' || path === '/ar' || path === '/en/' || path === '/ar/')) {
+    const md = '# OudGuide — The Natural Oud & Wholesale Fragrance Reference\n\n' +
+      '> The verified global authority and B2B wholesale matching protocol for authentic agarwood (Aquilaria spp.), pure hydro-distilled Dehn Al Oud, and heritage attars.\n\n' +
+      '## Core Services & Market Data\n\n' +
+      '### 1. Verified Producer Directory\n' +
+      '- **Scope**: Documented distillers, plantations, and wholesalers across 249 registered territories.\n' +
+      '- **Verification**: Terroir validation, distillation logging, and GC-MS purity profiles.\n' +
+      '- **Browse**: ' + SITE_URL + '/en/directory\n\n' +
+      '### 2. Transparent Pricing & Market Benchmarks\n' +
+      '- **Verified Supplier Membership**: AED 1,200 / year (Direct contact publishing & verified badge).\n' +
+      '- **Indicative Wholesale Wood Bands**: $35 - $120 / tola for graded incense chips; $15,000+ / kg for wild sinking-grade heartwood.\n' +
+      '- **Pure Dehn Al Oud Oil Bands**: $180 - $450 / tola for artisan hydro-distillates.\n' +
+      '- **Pricing & Membership**: ' + SITE_URL + '/en/membership\n' +
+      '- **Market Price Baseline**: ' + SITE_URL + '/en/market\n\n' +
+      '### 3. Neutral Wholesale RFQ Protocol\n' +
+      '- **Submit RFQ**: ' + SITE_URL + '/en/rfq\n' +
+      '- **Quick Quote**: ' + SITE_URL + '/en/b2b/quote\n\n' +
+      '## Machine-Readable Resources\n' +
+      '- Plain-Text LLM Map: ' + SITE_URL + '/llms.txt\n' +
+      '- Full Corpus: ' + SITE_URL + '/llms-full.txt\n' +
+      '- MCP Server Card: ' + SITE_URL + '/.well-known/mcp/server-card.json\n' +
+      '- MCP API: ' + SITE_URL + '/api/mcp\n';
+    res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+    res.setHeader('Vary', 'Accept');
+    res.end(md);
+    return;
+  }
   if (isUtility) {
     res.setHeader('X-Robots-Tag', 'noindex,nofollow');
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
@@ -663,6 +695,209 @@ export function handleRequest(req: IncomingMessage, res: ServerResponse): void {
     return;
   }
 
+  
+  // MCP Server Card (SEP-1649)
+  if (path === '/.well-known/mcp/server-card.json') {
+    const card = {
+      $schema: 'https://modelcontextprotocol.io/schemas/server-card/v1.json',
+      name: 'oudguide',
+      version: '1.0.0',
+      description: 'OudGuide natural agarwood & heritage fragrance intelligence and verified producer directory',
+      endpoint: SITE_URL + '/api/mcp',
+      capabilities: {
+        tools: { listChanged: false },
+        resources: { subscribe: false, listChanged: false },
+        prompts: { listChanged: false }
+      },
+      tools: [
+        {
+          name: 'search_producers',
+          description: 'Search verified distillers, plantations, and suppliers across global oud producing regions',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              query: { type: 'string', description: 'Search keyword or material family' },
+              country: { type: 'string', description: 'Country ISO2 code' },
+              role: { type: 'string', description: 'Supplier role' }
+            }
+          }
+        },
+        {
+          name: 'get_market_prices',
+          description: 'Retrieve observed benchmark price ranges for natural agarwood and pure distillates',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              material: { type: 'string', description: 'Material name' }
+            }
+          }
+        },
+        {
+          name: 'request_wholesale_quote',
+          description: 'Submit buyer procurement requirement for direct wholesale quotations from accredited distillers',
+          inputSchema: {
+            type: 'object',
+            required: ['material', 'volume', 'destination'],
+            properties: {
+              material: { type: 'string', description: 'Material or product family required' },
+              volume: { type: 'string', description: 'Required volume or quantity' },
+              destination: { type: 'string', description: 'Destination country' }
+            }
+          }
+        }
+      ]
+    };
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.end(JSON.stringify(card, null, 2));
+    return;
+  }
+
+  // MCP API Endpoint
+  if (path === '/api/mcp') {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.end(JSON.stringify({
+      jsonrpc: '2.0',
+      result: {
+        protocolVersion: '2024-11-05',
+        capabilities: { tools: {}, resources: {}, prompts: {} },
+        serverInfo: { name: 'oudguide', version: '1.0.0' }
+      }
+    }));
+    return;
+  }
+
+  
+  // Contact page
+  if (path === "/en/contact" || path === "/en/contact/" || path === "/ar/contact" || path === "/ar/contact/") {
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.end(baseLayout("Contact & Inquiries — OudGuide", `
+      <div class="hero">
+        <h2>Official Contact & Sourcing Channels</h2>
+        <p>Inquiries are handled through neutral, encrypted procurement protocols to protect buyer and supplier privacy.</p>
+        <p><a class="cta" href="/en/rfq/">Submit Wholesale RFQ &rarr;</a> <a class="cta" href="/en/sourcing/" style="margin-left:12px;">Sourcing Assistant &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>Direct Channels</h3>
+        <ul>
+          <li><a href="/en/rfq/">Wholesale RFQ & Matching</a> &mdash; Direct quotes from verified distillers</li>
+          <li><a href="/en/membership/">Producer Membership & Claim</a> &mdash; Verified facility listing</li>
+          <li><a href="/en/corrections/">Editorial Corrections</a> &mdash; Scientific and regulatory feedback</li>
+          <li><a href="/en/partners/opportunities/">Partnership Opportunities</a> &mdash; Institutional research</li>
+        </ul>
+      </div>
+    `, path));
+    return;
+  }
+
+  // Perfume manufacturing guide
+  if (path === "/en/for-businesses/perfume-manufacturing" || path === "/en/for-businesses/perfume-manufacturing/" || path === "/ar/for-businesses/perfume-manufacturing" || path === "/ar/for-businesses/perfume-manufacturing/") {
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.end(baseLayout("Private Label & Perfume Manufacturing — OudGuide", `
+      <div class="hero">
+        <h2>Contract Perfume Manufacturing in the UAE & GCC</h2>
+        <p>Comprehensive guide to custom formulation, oil maceration, IFRA compliance, MoIAT/SFDA registration, and verified fragrance facilities.</p>
+        <p><a class="cta" href="/en/rfq/">Request Manufacturing Quotes &rarr;</a></p>
+      </div>
+    `, path));
+    return;
+  }
+
+  // Candidate Aliases / Redirects
+  // Candidate planning route redirects
+  if (path.includes('/businesses/add')) {
+    res.statusCode = 308;
+    res.setHeader('Location', path.startsWith('/ar') ? '/ar/membership' : '/en/membership');
+    res.end();
+    return;
+  }
+  if (path.startsWith('/en/account') || path.startsWith('/ar/account')) {
+    res.statusCode = 308;
+    res.setHeader('Location', path.startsWith('/ar') ? '/ar/b2b/supplier' : '/en/b2b/supplier');
+    res.end();
+    return;
+  }
+  if (path.endsWith('/sign-in') || path.endsWith('/sign-in/')) {
+    res.statusCode = 308;
+    res.setHeader('Location', path.startsWith('/ar') ? '/ar/b2b/supplier/login' : '/en/b2b/supplier/login');
+    res.end();
+    return;
+  }
+  if (path.includes('/request-quote/received')) {
+    res.statusCode = 308;
+    res.setHeader('Location', path.startsWith('/ar') ? '/ar/b2b/quote' : '/en/b2b/quote');
+    res.end();
+    return;
+  }
+  if (path.includes('/request-quote/recipients')) {
+    res.statusCode = 308;
+    res.setHeader('Location', path.startsWith('/ar') ? '/ar/rfq' : '/en/rfq');
+    res.end();
+    return;
+  }
+  if (path.includes('/request-quote/status')) {
+    res.statusCode = 308;
+    res.setHeader('Location', path.startsWith('/ar') ? '/ar/inquiries' : '/en/inquiries');
+    res.end();
+    return;
+  }
+  if (path.includes('/membership/complete')) {
+    res.statusCode = 308;
+    res.setHeader('Location', path.startsWith('/ar') ? '/ar/membership' : '/en/membership');
+    res.end();
+    return;
+  }
+  if (path === '/en/partners' || path === '/en/partners/' || path === '/ar/partners' || path === '/ar/partners/') {
+    res.statusCode = 308;
+    res.setHeader('Location', path.startsWith('/ar') ? '/ar/partners/opportunities' : '/en/partners/opportunities');
+    res.end();
+    return;
+  }
+  if (path.includes('/partners/apply')) {
+    res.statusCode = 308;
+    res.setHeader('Location', path.startsWith('/ar') ? '/ar/partners/opportunities' : '/en/partners/opportunities');
+    res.end();
+    return;
+  }
+
+  if (path.endsWith("/search") || path.endsWith("/search/")) {
+    res.statusCode = 308;
+    res.setHeader("Location", path.startsWith("/ar") ? "/ar/directory" : "/en/directory");
+    res.end();
+    return;
+  }
+  if (path.endsWith("/retail") || path.endsWith("/retail/")) {
+    res.statusCode = 308;
+    res.setHeader("Location", path.startsWith("/ar") ? "/ar/products" : "/en/products");
+    res.end();
+    return;
+  }
+  if (path.includes("/businesses/claim")) {
+    res.statusCode = 308;
+    res.setHeader("Location", path.startsWith("/ar") ? "/ar/membership" : "/en/membership");
+    res.end();
+    return;
+  }
+  if (path.includes("/partners/lead-terms")) {
+    res.statusCode = 308;
+    res.setHeader("Location", path.startsWith("/ar") ? "/ar/partners/opportunities" : "/en/partners/opportunities");
+    res.end();
+    return;
+  }
+  if (path.includes("/privacy/requests")) {
+    res.statusCode = 308;
+    res.setHeader("Location", path.startsWith("/ar") ? "/ar/privacy" : "/en/privacy");
+    res.end();
+    return;
+  }
+  if (path.endsWith("/compare") || path.endsWith("/compare/")) {
+    res.statusCode = 308;
+    res.setHeader("Location", path.startsWith("/ar") ? "/ar/shortlist" : "/en/shortlist");
+    res.end();
+    return;
+  }
+
   // Sitemap
   if (path === '/sitemap.xml') {
     const validRoutes = seed.routes.filter((r: any) => r.phase !== 'archived');
@@ -678,7 +913,7 @@ ${validRoutes.map((r: any) => `  <url><loc>${SITE_URL}${r.path}</loc></url>`).jo
   // Robots
   if (path === '/robots.txt') {
     res.setHeader('Content-Type', 'text/plain');
-    res.end(`User-agent: *\nAllow: /$\nAllow: /en/\nDisallow: /en/inquiries/\nDisallow: /en/rfq/submit\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+    res.end(`User-agent: *\nAllow: /$\nAllow: /en/\nDisallow: /en/inquiries/\nDisallow: /en/rfq/submit\nContent-Signal: search=yes, ai-train=no\nSitemap: ${SITE_URL}/sitemap.xml\n`);
     return;
   }
 

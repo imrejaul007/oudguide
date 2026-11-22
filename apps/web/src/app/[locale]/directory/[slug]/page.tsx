@@ -235,11 +235,11 @@ export default async function BusinessProfilePage({
 
         {/* MAJLIS HERO COVER */}
         <div className="card" style={{ padding: 0, overflow: 'hidden', marginBottom: 32 }}>
-          <div style={{ height: 320, position: 'relative', background: 'var(--green-900)' }}>
-            <img src={coverImage} alt={biz.name} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} />
+          <div className="profile-hero-cover" style={{ position: 'relative', background: 'var(--green-900)' }}>
+            <img src={coverImage} alt={biz.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(10,61,49,0.20) 0%, rgba(10,61,49,0.88) 100%)' }} />
 
-            <div className="cluster" style={{ position: 'absolute', top: 18, left: 18, right: 18, justifyContent: 'space-between' }}>
+            <div className="cluster" style={{ position: 'relative', zIndex: 1, justifyContent: 'space-between', marginBottom: 20 }}>
               <span className="badge badge-glass-light">
                 <MapPin size={12} />
                 {biz.city ? `${biz.city}, ` : ''}{biz.country_name || biz.country_id}
@@ -257,7 +257,7 @@ export default async function BusinessProfilePage({
               )}
             </div>
 
-            <div style={{ position: 'absolute', bottom: 24, left: 28, right: 28, color: 'var(--ink-on-green)' }}>
+            <div style={{ position: 'relative', zIndex: 1, marginTop: 'auto', color: 'var(--ink-on-green)' }}>
               <span className="badge badge-gold" style={{ marginBottom: 12 }}>
                 {biz.business_type || biz.category || 'Producer'}
               </span>
@@ -318,7 +318,7 @@ export default async function BusinessProfilePage({
         </div>
 
         {/* EDITORIAL SPLIT — Description + Verification */}
-        <div className="grid-2" style={{ gap: 32, marginBottom: 48, gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)' }}>
+        <div className="profile-editorial-split">
           <article className="card-frame" style={{ padding: 36 }}>
             <span className="eyebrow" style={{ marginBottom: 12, display: 'block' }}>
               {isAr ? 'نبذة عن الشركة' : 'About the Producer'}
@@ -512,7 +512,7 @@ export default async function BusinessProfilePage({
               </Link>
             </div>
 
-            <div style={{ display: 'grid', gap: 14, gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
+            <div style={{ display: 'grid', gap: 14, gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))' }}>
               {listings.map((l) => (
                 <div key={l.id} className="card-frame" style={{ padding: 20, display: 'flex', flexDirection: 'column' }}>
                   <span className="badge badge-emerald" style={{ alignSelf: 'flex-start', marginBottom: 8, fontSize: '0.72rem' }}>

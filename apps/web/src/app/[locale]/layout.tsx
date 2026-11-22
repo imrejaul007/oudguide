@@ -3,6 +3,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ToasterProvider } from '@/components/ui/use-toast';
 import { isSupportedLocale } from '@/lib/articles';
+import { WebMcpProvider } from '@/components/agent/WebMcpProvider';
 
 /**
  * The locale layout.
@@ -39,6 +40,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={isAr ? 'rtl' : 'ltr'}>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -47,9 +49,30 @@ export default async function LocaleLayout({
           href="/ornaments/gold-pattern.svg"
           fetchPriority="low"
         />
+      
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined') {
+                const mc = navigator.modelContext || window.modelContext;
+                if (mc && typeof mc.registerTool === 'function') {
+                  try {
+                    mc.registerTool({
+                      name: 'search_producers',
+                      description: 'Search verified distillers, plantations, and wholesalers across global oud producing regions',
+                      inputSchema: { type: 'object', properties: { query: { type: 'string' }, country: { type: 'string' } } },
+                      execute: () => ({ status: 'active' })
+                    });
+                  } catch (e) {}
+                }
+              }
+            `,
+          }}
+        />
       </head>
       <body>
         <ToasterProvider>
+          <WebMcpProvider />
           <Header locale={locale} />
           <main style={{ minHeight: '80vh' }}>{children}</main>
           <Footer locale={locale} />

@@ -47,6 +47,14 @@ import { editorialGuideProduction } from './editorial-guides-production.ts';
 import { boyaAndFatOudArticles } from './boya-and-fat-oud-grades.ts';
 import { vintageAndBurningArticles } from './vintage-and-burning-guides.ts';
 import { shelfLifeAndDurabilityArticles } from './shelf-life-and-durability.ts';
+import { commercialCutsArticles } from './commercial-cuts-guides.ts';
+import { microTerroirArticles } from './micro-terroir-guides.ts';
+import { gccLocalMarketsArticles } from './gcc-local-markets-guide.ts';
+import { sampleEvaluationArticles } from './sample-evaluation-guide.ts';
+import { lifestyleAndCompoundingArticles } from './lifestyle-and-compounding-guides.ts';
+import { topicalAuthorityArticles } from './topical-authority-guides.ts';
+import { connoisseurAndTerroirArticles } from './connoisseur-and-terroir-guides.ts';
+import { measurementArticles } from './measurement-guides.ts';
 
 /**
  * The reviewed content layer.
@@ -150,6 +158,14 @@ export const articles: Article[] = [
   ...boyaAndFatOudArticles,
   ...vintageAndBurningArticles,
   ...shelfLifeAndDurabilityArticles,
+  ...commercialCutsArticles,
+  ...microTerroirArticles,
+  ...gccLocalMarketsArticles,
+  ...sampleEvaluationArticles,
+  ...lifestyleAndCompoundingArticles,
+  ...topicalAuthorityArticles,
+  ...connoisseurAndTerroirArticles,
+  ...measurementArticles,
   ...basicsArticles,
   ...hubArticles,
   ...qualityArticles,

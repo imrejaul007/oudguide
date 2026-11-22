@@ -50,7 +50,7 @@ export function HeroQuickRfq({ locale, isAr }: HeroQuickRfqProps) {
           : 'Specify your requirement and receive competitive wholesale quotations directly from accredited distillers and producers.'}
       </p>
 
-      <form onSubmit={handleSubmit} className="tradeling-rfq-form">
+      <form onSubmit={handleSubmit} className="tradeling-rfq-form" toolname="request_wholesale_quote" tooldescription="Submit technical requirement for competitive wholesale quotations directly from accredited distillers" data-tool-name="request_wholesale_quote" data-tool-description="Submit technical requirement for competitive wholesale quotations directly from accredited distillers">
         <div className="tradeling-rfq-input-group">
           <label className="tradeling-rfq-label">
             {isAr ? 'المادة أو الصنف المطلوب' : 'Material or Product Family'}

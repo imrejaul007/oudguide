@@ -419,6 +419,13 @@ const SPECS: HubSpec[] = [
         blurb: 'The questions that get answered by a capable supplier and avoided by others.',
         blurbAr: 'الأسئلة التي يجيب عنها مورد كفء ويتفاداها غيره.',
       },
+      {
+        slug: 'buying/evaluating-agarwood-samples',
+        label: 'Evaluating agarwood and oil samples before wholesale procurement',
+        labelAr: 'تقييم عينات خشب ودهن العود قبل الشراء بالجملة',
+        blurb: 'Representative sampling parameters, thermodynamic electric plate testing tiers, and GC-MS laboratory verification.',
+        blurbAr: 'المعايير الفيزيائية للعينات والتقييم الحراري المنضبط بالمباخر الكهربائية وفحص كروماتوغرافيا الغاز.',
+      },
       // The country buying guides, then the two purchase-shape pages.
       //
       // The 36 country guides were sitemap-only until now: no hub

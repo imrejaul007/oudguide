@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { domain, directoryCounts } from '@/lib/data';
 import { DirectoryBrowser, type DirectoryBusiness } from '@/components/business/directory-browser';
+import { GCC_COMMERCIAL_CITIES } from '@/data/gcc-commercial-cities';
 import { FloatingRfqDock } from '@/components/b2b/floating-rfq-dock';
 import { Compass, ShieldCheck, Map as MapIcon, Sparkles, Bookmark } from 'lucide-react';
 import type { Metadata } from 'next';

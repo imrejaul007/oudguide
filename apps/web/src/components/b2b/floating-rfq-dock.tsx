@@ -14,7 +14,7 @@ export function FloatingRfqDock({ locale, isAr }: FloatingRfqDockProps) {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    // Only show after user scrolls past 300px
+    // Only show after user scrolls past 320px
     const handleScroll = () => {
       if (window.scrollY > 320) {
         setVisible(true);
@@ -39,7 +39,7 @@ export function FloatingRfqDock({ locale, isAr }: FloatingRfqDockProps) {
         <div className="floating-rfq-dock-icon">
           <Zap size={18} />
         </div>
-        <div style={{ minWidth: 0 }}>
+        <div style={{ minWidth: 0, flex: 1 }}>
           <h4 className="floating-rfq-dock-title">
             {isAr
               ? 'هل تحتاج كميات تجارية أو عينات مخصصة؟'
@@ -58,10 +58,10 @@ export function FloatingRfqDock({ locale, isAr }: FloatingRfqDockProps) {
         </div>
       </div>
 
-      <div className="cluster" style={{ gap: 10, flexShrink: 0 }}>
+      <div className="floating-rfq-dock-actions">
         <Link
           href={`/${locale}/b2b/quote`}
-          className="btn btn-primary btn-sm"
+          className="btn btn-primary btn-sm floating-rfq-dock-btn"
           style={{ gap: 6, padding: '9px 18px' }}
         >
           <FileText size={14} />
@@ -71,11 +71,11 @@ export function FloatingRfqDock({ locale, isAr }: FloatingRfqDockProps) {
         <button
           type="button"
           onClick={() => setDismissed(true)}
-          className="icon-button"
-          style={{ color: 'rgba(255, 255, 255, 0.65)', width: 28, height: 28 }}
+          className="icon-button floating-rfq-dock-dismiss"
+          style={{ color: 'rgba(255, 255, 255, 0.65)', width: 32, height: 32 }}
           aria-label={isAr ? 'إغلاق' : 'Dismiss'}
         >
-          <X size={15} />
+          <X size={16} />
         </button>
       </div>
     </aside>

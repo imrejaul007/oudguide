@@ -186,7 +186,7 @@ export default async function B2bPortalPage({
             </Link>
           </div>
 
-          <div style={{ display: 'grid', gap: 16, gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
+          <div style={{ display: 'grid', gap: 16, gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))' }}>
             {suppliers.slice(0, 4).map((s) => (
               <div key={s.id} className="b2b-card" style={{ padding: 22 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, marginBottom: 10 }}>

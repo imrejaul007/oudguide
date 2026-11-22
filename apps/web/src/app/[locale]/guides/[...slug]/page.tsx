@@ -29,6 +29,8 @@ import {
   newestCompiledOn,
   oldestCompiledOn,
 } from '@/data/datasets/price-snapshot-lineage';
+import { ShopWithPartner } from '@/components/retail/shop-with-partner';
+import { OudUnitConverter } from '@/components/tools/oud-unit-converter';
 import { ArrowRight, FileText, ShieldCheck, ExternalLink, BookOpenCheck, CheckCircle2, Clock } from 'lucide-react';
 
 /**
@@ -319,6 +321,11 @@ function ReviewedArticle({
           </section>
         ))}
       </div>
+
+      {/* Interactive unit converter for traditional measurements guide */}
+      {article.slug === "using-oud/traditional-oud-measurements-and-units" && (
+        <OudUnitConverter locale={locale} />
+      )}
 
       {/* WORKED EXAMPLE — the manifest's required section for a guide */}
       {article.workedExample && (

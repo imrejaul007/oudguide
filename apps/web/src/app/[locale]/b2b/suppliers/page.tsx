@@ -57,7 +57,7 @@ export default async function B2bSuppliersPage({
           </div>
         </section>
 
-        <div className="supplier-grid" style={{ marginTop: 24, display: 'grid', gap: 16, gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
+        <div className="supplier-grid" style={{ marginTop: 24, display: 'grid', gap: 16, gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))' }}>
           {suppliers.map((supplier) => (
             <Link
               key={supplier.id}

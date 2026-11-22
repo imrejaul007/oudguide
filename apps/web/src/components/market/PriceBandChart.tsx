@@ -204,10 +204,12 @@ function Lane({ lane, records, isAr }: LaneProps) {
       {/* The plot. Fixed width so the label overlay and the SVG stay in
           step; the wrapper scrolls horizontally below 640px. */}
       <div
+        className="price-band-scroll-container"
         style={{
           overflowX: 'auto',
           overflowY: 'hidden',
           paddingBottom: 4,
+          WebkitOverflowScrolling: 'touch',
         }}
       >
         <div dir="ltr" style={{ position: 'relative', width: W, height: H }}>

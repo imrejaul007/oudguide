@@ -18,6 +18,7 @@ import { buildMetadata, SITE_URL } from '@/lib/metadata';
 import { jsonLdScript } from '@/lib/jsonld';
 import { resolveSources } from '@/data/articles/sources';
 import { MaterialSuppliers } from '@/components/business/material-suppliers';
+import { ShopWithPartner } from '@/components/retail/shop-with-partner';
 
 /**
  * A product family.
@@ -177,7 +178,13 @@ export default async function ProductFamilyPage({
       </div>
 
       {/* WHO SELLS THIS MATERIAL — the supplier register for this family */}
-      <MaterialSuppliers
+      <ShopWithPartner
+          locale={locale}
+          itemCategoryEn={articleTitle(article, "en")}
+          itemCategoryAr={articleTitle(article, "ar")}
+        />
+
+        <MaterialSuppliers
         locale={locale}
         familySlug={slug}
         familyName={articleTitle(article, 'en')}
