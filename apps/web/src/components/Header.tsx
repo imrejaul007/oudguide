@@ -99,22 +99,22 @@ export function Header({ locale }: HeaderProps) {
 
   return (
     <>
-      {/* 1. Green ribbon — the one dark band above the header */}
+      {/* 1. Green ribbon — strictly one line on all screen sizes */}
       <div className="ribbon">
         <div className="container ribbon-inner">
-          <span className="ribbon-item">
-            <Leaf size={11} style={{ color: 'var(--green-300)' }} />
-            {isAr ? 'وثائق سايتس — الملحق الثاني' : 'CITES Appendix II documented'}
+          <span className="ribbon-item ribbon-item-primary">
+            <Leaf size={11} style={{ color: 'var(--green-300)', flexShrink: 0 }} />
+            <span>{isAr ? 'وثائق سايتس — الملحق الثاني' : 'CITES Appendix II documented'}</span>
           </span>
-          <span className="ribbon-sep">•</span>
-          <span className="ribbon-item">
-            <Globe size={11} style={{ color: 'var(--green-300)' }} />
-            {isAr ? '249 دولة وإقليماً في السجل' : '249 territories in the register'}
+          <span className="ribbon-sep hidden-mobile">•</span>
+          <span className="ribbon-item ribbon-item-secondary hidden-mobile">
+            <Globe size={11} style={{ color: 'var(--green-300)', flexShrink: 0 }} />
+            <span>{isAr ? '249 دولة وإقليماً في السجل' : '249 territories in the register'}</span>
           </span>
-          <span className="ribbon-sep">•</span>
-          <span className="ribbon-item">
-            <Lock size={11} style={{ color: 'var(--green-300)' }} />
-            {isAr ? 'بيانات الاتصال تُحجب افتراضياً' : 'Contact fields withheld by default'}
+          <span className="ribbon-sep hidden-tablet">•</span>
+          <span className="ribbon-item ribbon-item-tertiary hidden-tablet">
+            <Lock size={11} style={{ color: 'var(--green-300)', flexShrink: 0 }} />
+            <span>{isAr ? 'بيانات الاتصال تُحجب افتراضياً' : 'Contact fields withheld by default'}</span>
           </span>
         </div>
       </div>
@@ -139,7 +139,7 @@ export function Header({ locale }: HeaderProps) {
           </Link>
 
           {/* Primary nav with mega menu */}
-          <nav className="primary-nav hidden-mobile">
+          <nav className="primary-nav hidden-tablet">
             {primaryNav.map((item) => {
               const group = item.groupKey ? navGroups.find((g) => g.key === item.groupKey) : undefined;
               if (!group) {
@@ -191,7 +191,7 @@ export function Header({ locale }: HeaderProps) {
           <div className="header-cta">
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="search-trigger hidden-mobile"
+              className="search-trigger hidden-tablet"
               title="Search"
               aria-label="Open search"
             >
@@ -200,11 +200,21 @@ export function Header({ locale }: HeaderProps) {
               <kbd>⌘K</kbd>
             </button>
 
-            <Link href={`/${otherLocale}`} className="lang-pill hidden-mobile" title="Switch language">
+            {/* Mobile search button */}
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="icon-button mobile-search-toggle"
+              aria-label={isAr ? 'فتح البحث' : 'Open search'}
+              title={isAr ? 'بحث' : 'Search'}
+            >
+              <Search size={18} />
+            </button>
+
+            <Link href={`/${otherLocale}`} className="lang-pill hidden-tablet" title="Switch language">
               {otherLocale === 'ar' ? 'العربية' : 'EN'}
             </Link>
 
-            <Link href={`/${locale}/rfq`} className="btn btn-primary btn-sm hidden-mobile">
+            <Link href={`/${locale}/rfq`} className="btn btn-primary btn-sm hidden-tablet">
               {isAr ? 'طلب توريد' : 'Start RFQ'}
             </Link>
 
@@ -254,6 +264,21 @@ export function Header({ locale }: HeaderProps) {
                   <X size={18} />
                 </button>
               </div>
+
+              {/* Mobile drawer quick search bar */}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsSearchOpen(true);
+                }}
+                className="mobile-drawer-search-bar"
+                aria-label={isAr ? 'ابحث في الموسوعة والدليل' : 'Search encyclopedia & directory'}
+              >
+                <Search size={15} style={{ color: 'var(--green-600)', flexShrink: 0 }} />
+                <span>{isAr ? 'ابحث في الموسوعة والدليل...' : 'Search encyclopedia & directory...'}</span>
+                <kbd>⌘K</kbd>
+              </button>
 
               <nav className="mobile-drawer-nav">
                 {primaryNav.map((item) => (

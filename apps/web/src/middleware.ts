@@ -44,7 +44,10 @@ const KNOWN_UNPREFIXED_ROOTS = new Set([
   'privacy',
   'corrections',
   'partners',
+  'sign-in',
+  'account',
   'inquiries',
+  'contact',
   // The B2B wholesale portal. A bare /b2b request (no locale prefix) is a
   // real page, so it redirects to the default locale like every other
   // root instead of 404ing.
@@ -113,6 +116,86 @@ function isExemptPath(pathname: string): boolean {
 }
 
 export async function middleware(request: NextRequest) {
+  // RFC 8288 Link header pointing at llms.txt & alternate markdown
+  const LINK_HEADER = '</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="alternate"; type="text/markdown", </.well-known/mcp/server-card.json>; rel="service-desc"';
+
+  const acceptHeader = request.headers.get('accept') || '';
+  if (acceptHeader.includes('text/markdown')) {
+    const isAr = pathname.startsWith('/ar');
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.oudguide.com').replace(/\/$/, '');
+    const md = isAr
+      ? `# دليل العود — المرجع المستقل للعود الطبيعي وتوريد العطور بالجملة
+
+> السجل العالمي الموثق لمصادقة العود الطبيعي والتقطير التراثي وبروتوكول المطابقة المحايد لتوريد الجملة.
+
+## الخدمات وبيانات السوق
+
+### 1. دليل المنتجين المعتمدين
+- **النطاق**: مقطرون ومزارع وموزعون موثقون عبر 249 إقليماً مسجلاً.
+- **التوثيق**: التحقق الميداني من المنشأ، سجلات التقطير، وفحص النقاء الكروماتوغرافي GC-MS.
+- **الرابط**: ${siteUrl}/ar/directory
+
+### 2. الأسعار الشفافة ونطاقات السوق الموثقة
+- **عضوية الموردين المعتمدين**: 1,200 درهم إماراتي سنويًا (نشر بيانات الاتصال وشارة التوثيق).
+- **نطاق أسعار خشب العود بالجملة**: من 35 إلى 120 دولار للتولة للرقائق؛ وأكثر من 15,000 دولار للكيلوجرام للغطاس البري.
+- **نطاق أسعار دهن العود النقي**: من 180 إلى 450 دولار للتولة للتقطير التراثي الحرفي.
+- **صفحة العضوية والأسعار**: ${siteUrl}/ar/membership
+- **مرصد أسعار السوق**: ${siteUrl}/ar/market
+
+### 3. طلب عروض أسعار الجملة المحايد (RFQ)
+- **تقديم طلب توريد**: ${siteUrl}/ar/rfq
+- **طلب تسعير سريع**: ${siteUrl}/ar/b2b/quote
+
+## المصادر والروابط الآلية
+- خريطة الموقع النصية: ${siteUrl}/llms.txt
+- المحتوى الكامل للذكاء الاصطناعي: ${siteUrl}/llms-full.txt
+- بطاقة خادم MCP: ${siteUrl}/.well-known/mcp/server-card.json
+- واجهة MCP: ${siteUrl}/api/mcp
+`
+      : `# OudGuide — The Natural Oud & Wholesale Fragrance Reference
+
+> The verified global authority and B2B wholesale matching protocol for authentic agarwood (Aquilaria spp.), pure hydro-distilled Dehn Al Oud, and heritage attars.
+
+## Core Capabilities & Services
+
+### 1. Verified Producer Directory
+- **Scope**: Documented distillers, plantations, and wholesalers across 249 registered territories.
+- **Verification Standards**: Terroir documentation, facility auditing, and GC-MS purity profile inspection.
+- **Browse Directory**: ${siteUrl}/en/directory
+
+### 2. Transparent Pricing & Market Benchmarks
+- **Verified Supplier Membership**: AED 1,200 / year (Direct contact publishing & verified badge).
+- **Indicative Wholesale Wood Bands**: $35 - $120 / tola ($3,000 - $10,000 / kg) for graded incense chips; $15,000+ / kg for wild sinking-grade heartwood.
+- **Pure Dehn Al Oud Oil Bands**: $180 - $450 / tola for artisan hydro-distillates.
+- **Pricing & Membership Details**: ${siteUrl}/en/membership
+- **Observed Market Price Baseline**: ${siteUrl}/en/market
+
+### 3. Neutral Wholesale RFQ Protocol
+- **Submit Bulk RFQ**: ${siteUrl}/en/rfq
+- **Instant 1-Minute Quote**: ${siteUrl}/en/b2b/quote
+
+### 4. Laboratory Standards & Adulteration Surveillance
+- **Surveillance**: Detection of lead/wax injected sinking wood, solvent dilution in oils, botanical species substitution, and fraudulent CITES documentation.
+- **Authenticity Guides**: ${siteUrl}/en/guides
+
+## Machine-Readable Resources
+- Plain Text Map: ${siteUrl}/llms.txt
+- Full Knowledge Base: ${siteUrl}/llms-full.txt
+- MCP Server Card (SEP-1649): ${siteUrl}/.well-known/mcp/server-card.json
+- MCP API Endpoint: ${siteUrl}/api/mcp
+`;
+
+    return new NextResponse(md, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/markdown; charset=utf-8',
+        'Vary': 'Accept',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+        'Link': LINK_HEADER,
+      },
+    });
+  }
+
   const { pathname, search } = request.nextUrl;
 
   // 1. Admin gating ---------------------------------------------------
@@ -179,6 +262,7 @@ export async function middleware(request: NextRequest) {
       sameSite: 'lax',
     });
   }
+  response.headers.set('Link', '</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="alternate"; type="text/markdown", </.well-known/mcp/server-card.json>; rel="service-desc"');
   return response;
 }
 

@@ -175,7 +175,7 @@ export default async function B2bSupplierStorefrontPage({
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 6 }}>
               {raw.website_url ? (
                 <li>
-                  <a href={raw.website_url} target="_blank" rel="noopener noreferrer">
+                  <a href={raw.website_url} target="_blank" rel="sponsored noopener noreferrer">
                     {raw.website_url.replace(/^https?:\/\//, '')}
                   </a>
                 </li>
@@ -209,7 +209,7 @@ export default async function B2bSupplierStorefrontPage({
               </p>
             </div>
           ) : (
-            <div style={{ display: 'grid', gap: 14, gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
+            <div style={{ display: 'grid', gap: 14, gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))' }}>
               {listings.map((listing) => (
                 <div key={listing.id} className="card-frame" style={{ padding: 18 }}>
                   <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--ink-500)' }}>{listing.product_family}</p>

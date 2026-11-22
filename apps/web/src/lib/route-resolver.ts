@@ -282,6 +282,8 @@ export function isPublishedPath(path: string): boolean {
     'shortlist',
     'membership',
     'for-businesses',
+    'for-businesses/perfume-manufacturing',
+    'contact',
     'market',
     'policies',
     'privacy',

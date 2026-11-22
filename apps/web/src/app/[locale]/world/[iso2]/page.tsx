@@ -7,7 +7,8 @@ import { editorialCopy, pick } from '@/lib/copy/policy';
 import { resolvePublishedPath, publishedLabel } from '@/lib/route-resolver';
 import { getArticle } from '@/lib/articles';
 import { countrySlugForCode } from '@/lib/country-registry';
-import { MapPin, Info, BookOpen, Award, Lock, FileText, ArrowRight, Globe } from 'lucide-react';
+import { GCC_COMMERCIAL_CITIES } from '@/data/gcc-commercial-cities';
+import { Building2, MapPin, Info, BookOpen, Award, Lock, FileText, ArrowRight, Globe } from 'lucide-react';
 
 /**
  * Per-territory metadata.

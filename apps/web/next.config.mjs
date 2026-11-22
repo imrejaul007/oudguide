@@ -64,6 +64,101 @@ for (const country of countryRegistry) {
  */
 const ALIASES = [
   {
+    from: '/businesses/add',
+    to: '/membership',
+    reason: 'Business onboarding and listing portal.',
+  },
+  {
+    from: '/businesses/claim',
+    to: '/membership',
+    reason: 'Business profile claim flow.',
+  },
+  {
+    from: '/account',
+    to: '/b2b/supplier',
+    reason: 'Supplier console and account management.',
+  },
+  {
+    from: '/account/businesses',
+    to: '/b2b/supplier',
+    reason: 'Supplier console business listings.',
+  },
+  {
+    from: '/account/inquiries',
+    to: '/b2b/supplier',
+    reason: 'Supplier console inquiry inbox.',
+  },
+  {
+    from: '/account/subscription',
+    to: '/membership',
+    reason: 'Supplier membership and subscription management.',
+  },
+  {
+    from: '/account/media',
+    to: '/b2b/supplier',
+    reason: 'Supplier media and facility documentation.',
+  },
+  {
+    from: '/account/team',
+    to: '/b2b/supplier',
+    reason: 'Supplier account team management.',
+  },
+  {
+    from: '/account/settings',
+    to: '/b2b/supplier',
+    reason: 'Supplier console preferences.',
+  },
+  {
+    from: '/account/opportunities',
+    to: '/b2b/supplier',
+    reason: 'Supplier wholesale lead matching feed.',
+  },
+  {
+    from: '/account/lead-purchases',
+    to: '/b2b/supplier',
+    reason: 'Supplier introduction purchases.',
+  },
+  {
+    from: '/account/integrations',
+    to: '/b2b/supplier',
+    reason: 'Supplier notification integrations.',
+  },
+  {
+    from: '/sign-in',
+    to: '/b2b/supplier/login',
+    reason: 'Supplier console authentication.',
+  },
+  {
+    from: '/request-quote/received',
+    to: '/b2b/quote',
+    reason: 'Wholesale quote intake acknowledgement.',
+  },
+  {
+    from: '/request-quote/recipients',
+    to: '/rfq',
+    reason: 'Wholesale inquiry recipient selection.',
+  },
+  {
+    from: '/request-quote/status',
+    to: '/inquiries',
+    reason: 'Inquiry status tracking.',
+  },
+  {
+    from: '/membership/complete',
+    to: '/membership',
+    reason: 'Membership reconciliation status.',
+  },
+  {
+    from: '/partners',
+    to: '/partners/opportunities',
+    reason: 'Partner opportunity programme overview.',
+  },
+  {
+    from: '/partners/apply',
+    to: '/partners/opportunities',
+    reason: 'Partner supplier intake.',
+  },
+  {
     from: '/request-quote',
     to: '/rfq',
     reason: 'The quote-journey alias. The RFQ form is the wholesale intake; there is no separate quote page.',
@@ -92,6 +187,36 @@ const ALIASES = [
     from: '/guides/quality/reading-an-oud-lab-report',
     to: '/guides/quality/lab-report-reading',
     reason: 'Two lab-report pages were merged; the scope-of-a-report guide is the survivor and its unique sections were folded into it.',
+  },
+  {
+    from: "/search",
+    to: "/directory",
+    reason: "Search utility query redirects to business directory.",
+  },
+  {
+    from: "/retail",
+    to: "/products",
+    reason: "Retail finished formats redirect to product families hub.",
+  },
+  {
+    from: "/businesses/claim",
+    to: "/membership",
+    reason: "Business profile claim flow redirects to verified producer membership.",
+  },
+  {
+    from: "/partners/lead-terms",
+    to: "/partners/opportunities",
+    reason: "Partner lead terms redirect to partnership opportunities.",
+  },
+  {
+    from: "/privacy/requests",
+    to: "/privacy",
+    reason: "Privacy requests redirect to data rights portal.",
+  },
+  {
+    from: "/compare",
+    to: "/shortlist",
+    reason: "Supplier comparison utility redirects to shortlist.",
   },
 ];
 
@@ -241,6 +366,7 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Link', value: '</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="alternate"; type="text/markdown", </.well-known/mcp/server-card.json>; rel="service-desc"' },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         ],

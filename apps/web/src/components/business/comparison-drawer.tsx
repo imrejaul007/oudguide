@@ -161,19 +161,22 @@ export function ComparisonDrawer({
       {/* TRIGGER BAR */}
       {chosen.length > 0 && (
         <div
+          className="comparison-trigger-bar"
           style={{
             position: 'fixed',
-            bottom: 20,
+            bottom: 'max(20px, env(safe-area-inset-bottom, 20px))',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 120,
             background: 'var(--green-800)',
             color: '#fff',
             borderRadius: 999,
-            padding: '10px 14px 10px 20px',
+            padding: '10px 14px 10px 18px',
             display: 'flex',
             alignItems: 'center',
-            gap: 14,
+            justifyContent: 'space-between',
+            gap: 12,
+            width: 'min(92vw, 420px)',
             boxShadow: 'var(--shadow-xl)',
           }}
         >

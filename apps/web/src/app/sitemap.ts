@@ -47,6 +47,8 @@ const STATIC_PAGES: string[] = [
   '/en/shortlist',
   '/en/membership',
   '/en/for-businesses',
+  '/en/for-businesses/perfume-manufacturing',
+  '/en/contact',
   // The public market-data surface: the visual face of the price-observation
   // baseline. It is a real, static page (not a dynamic route), so it is
   // indexable and belongs in the sitemap alongside the other shells.
@@ -98,6 +100,8 @@ const ARABIC_STATIC_PAGES: string[] = [
   '/ar/shortlist',
   '/ar/membership',
   '/ar/for-businesses',
+  '/ar/for-businesses/perfume-manufacturing',
+  '/ar/contact',
   // The Arabic market-data surface, mirroring the English shell.
   '/ar/market',
   // The B2B wholesale portal's public pages, mirroring the English tree.
@@ -177,7 +181,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // remain reachable and linked from the Arabic navigation.
   if (ARABIC_HUMAN_REVIEW_COMPLETE) {
     for (const article of listReviewedArticles()) {
-      push(articlePath('ar', article.slug), 0.6, 'weekly');
+      const arReviewedOn = article.reviewedOn ? new Date(article.reviewedOn) : fallbackLastModified;
+      push(articlePath('ar', article.slug), 0.6, 'weekly', arReviewedOn);
     }
     for (const path of ARABIC_STATIC_PAGES) {
       push(path, 0.6, 'monthly');

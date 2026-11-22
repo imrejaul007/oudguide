@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "pnpm --filter @oudguide/web dev",
     "build": "pnpm -r build",
-    "test": "node --experimental-strip-types --test tests/*.test.ts tests/*.test.js",
-    "test:policy": "node --test tests/lead-policy.test.js",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:policy": "node --experimental-strip-types --test tests/lead-policy.test.ts",
     "db:migrate": "node scripts/migrate.js",
     "db:seed": "node scripts/seed.js",
     "validate:pack": "python3 reference/OudGuide_Developer_Build_Pack_v3/engineering/validate_pack.py"

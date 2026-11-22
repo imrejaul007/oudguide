@@ -18,6 +18,7 @@ import { buildMetadata, SITE_URL } from '@/lib/metadata';
 import { jsonLdScript } from '@/lib/jsonld';
 import { resolveSources } from '@/data/articles/sources';
 import { MaterialSuppliers } from '@/components/business/material-suppliers';
+import { ShopWithPartner } from '@/components/retail/shop-with-partner';
 
 /**
  * A product family.
@@ -131,7 +132,7 @@ export default async function ProductFamilyPage({
         <span className="badge badge-emerald" style={{ marginBottom: 14 }}>
           {isAr ? 'فئة منتجات' : 'Product family'}
         </span>
-        <h1 style={{ marginBottom: 16, maxWidth: '22ch' }}>{articleTitle(article, locale)}</h1>
+        <h1 style={{ marginBottom: 16, maxWidth: '100%' }}>{articleTitle(article, locale)}</h1>
         <p className="lede">{articleDirectAnswer(article, locale)}</p>
       </header>
 
@@ -177,7 +178,13 @@ export default async function ProductFamilyPage({
       </div>
 
       {/* WHO SELLS THIS MATERIAL — the supplier register for this family */}
-      <MaterialSuppliers
+      <ShopWithPartner
+          locale={locale}
+          itemCategoryEn={articleTitle(article, "en")}
+          itemCategoryAr={articleTitle(article, "ar")}
+        />
+
+        <MaterialSuppliers
         locale={locale}
         familySlug={slug}
         familyName={articleTitle(article, 'en')}

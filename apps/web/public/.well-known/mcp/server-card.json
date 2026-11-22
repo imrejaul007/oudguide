@@ -1,0 +1,56 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card/v1.json",
+  "name": "oudguide",
+  "version": "1.0.0",
+  "description": "OudGuide natural agarwood & heritage fragrance intelligence and verified producer directory",
+  "endpoint": "/api/mcp",
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "search_producers",
+      "description": "Search verified distillers, plantations, and suppliers across global oud producing regions",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Search keyword or material family" },
+          "country": { "type": "string", "description": "Country ISO2 code (e.g. IN, TH, KH, AE)" },
+          "role": { "type": "string", "description": "Supplier role (e.g. distillers, wholesalers, growers)" }
+        }
+      }
+    },
+    {
+      "name": "get_market_prices",
+      "description": "Retrieve observed benchmark price ranges for natural agarwood and pure distillates",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "material": { "type": "string", "description": "Material name (e.g. agarwood-chips, dehn-al-oud, wild-heartwood)" }
+        }
+      }
+    },
+    {
+      "name": "request_wholesale_quote",
+      "description": "Submit buyer procurement requirement for direct wholesale quotations from accredited distillers",
+      "inputSchema": {
+        "type": "object",
+        "required": ["material", "volume", "destination"],
+        "properties": {
+          "material": { "type": "string", "description": "Material or product family required" },
+          "volume": { "type": "string", "description": "Required volume or quantity" },
+          "destination": { "type": "string", "description": "Destination country" }
+        }
+      }
+    }
+  ]
+}

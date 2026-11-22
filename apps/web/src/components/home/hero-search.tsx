@@ -88,7 +88,7 @@ export function HeroSearch({ locale }: HeroSearchProps) {
   };
 
   return (
-    <form onSubmit={handleSearch} className="hero-search">
+    <form onSubmit={handleSearch} className="hero-search" toolname="search_producers" tooldescription="Search verified distillers, plantations, and suppliers across global oud producing regions" data-tool-name="search_producers" data-tool-description="Search verified distillers, plantations, and suppliers across global oud producing regions">
       <div className="search-field">
         <Search size={18} />
         <input
