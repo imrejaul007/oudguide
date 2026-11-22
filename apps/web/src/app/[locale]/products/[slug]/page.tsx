@@ -132,7 +132,7 @@ export default async function ProductFamilyPage({
         <span className="badge badge-emerald" style={{ marginBottom: 14 }}>
           {isAr ? 'فئة منتجات' : 'Product family'}
         </span>
-        <h1 style={{ marginBottom: 16, maxWidth: '22ch' }}>{articleTitle(article, locale)}</h1>
+        <h1 style={{ marginBottom: 16, maxWidth: '100%' }}>{articleTitle(article, locale)}</h1>
         <p className="lede">{articleDirectAnswer(article, locale)}</p>
       </header>
 

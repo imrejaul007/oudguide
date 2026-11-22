@@ -33,24 +33,15 @@ export function ShopWithPartner({
         gap: 12,
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <ShoppingBag size={18} style={{ color: 'var(--green-700)' }} />
-          <span style={{ fontWeight: 600, fontSize: 15, color: 'var(--text)' }}>
-            {dest.callToActionEn && (isAr ? dest.callToActionAr : dest.callToActionEn)}
-          </span>
-          <span
-            style={{
-              fontSize: 11,
-              padding: '2px 8px',
-              borderRadius: 4,
-              background: 'var(--surface)',
-              border: '1px solid var(--border)',
-              color: 'var(--text-muted)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.04em',
-            }}
-          >
+      <div className="retail-partner-head">
+        <div className="retail-partner-info">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <ShoppingBag size={18} style={{ color: 'var(--green-700)', flexShrink: 0 }} />
+            <span style={{ fontWeight: 600, fontSize: 15, color: 'var(--text)' }}>
+              {dest.callToActionEn && (isAr ? dest.callToActionAr : dest.callToActionEn)}
+            </span>
+          </div>
+          <span className="badge badge-locked" style={{ fontSize: 10, alignSelf: 'flex-start', marginInlineStart: 26 }}>
             {isAr ? 'شريك تجزئة معتمد' : 'Verified Retail Partner'}
           </span>
         </div>
@@ -59,22 +50,17 @@ export function ShopWithPartner({
           href={dest.url}
           target="_blank"
           rel="sponsored noopener noreferrer"
-          className="action-link"
+          className="btn btn-primary btn-sm retail-partner-btn"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: 6,
-            fontWeight: 600,
-            fontSize: 14,
-            padding: '6px 14px',
-            borderRadius: 6,
-            background: 'var(--green-700)',
-            color: '#fff',
             textDecoration: 'none',
+            whiteSpace: 'nowrap',
           }}
         >
           <span>{isAr ? 'زيارة المتجر' : 'Visit Storefront'}</span>
-          <ExternalLink size={14} />
+          <ExternalLink size={13} />
         </a>
       </div>
 

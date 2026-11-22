@@ -6070,3 +6070,130 @@ body:has(.comparison-trigger-bar) .floating-rfq-dock {
     word-break: break-word !important;
   }
 }
+
+/* ==========================================================================
+   Section 31: Header One-Line Enforcement & Product Page UI Alignment
+   ========================================================================== */
+
+/* Strict one-line top utility ribbon */
+.ribbon {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+}
+
+.ribbon-inner {
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  justify-content: center !important;
+  gap: 16px !important;
+}
+
+@media (max-width: 640px) {
+  .ribbon {
+    padding: 5px 10px !important;
+    font-size: 0.65rem !important;
+  }
+
+  .ribbon-inner {
+    gap: 6px !important;
+    justify-content: center !important;
+  }
+
+  .ribbon-item-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 0.65rem !important;
+  }
+
+  /* Header main row strictly one line */
+  .site-header-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 54px !important;
+    padding-inline: var(--gutter) !important;
+  }
+
+  .brand {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .brand-text {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  .brand-name {
+    font-size: 1.15rem !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .brand-tagline,
+  .brand-name-ar {
+    display: none !important;
+  }
+
+  .header-cta {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Product Card Cover: Fix negative margins on mobile to eliminate overlay overhang */
+  .product-card-cover {
+    margin: -16px -14px 12px -14px !important;
+    border-top-left-radius: var(--r-md) !important;
+    border-top-right-radius: var(--r-md) !important;
+    height: 110px !important;
+  }
+
+  /* Retail partner callout on mobile */
+  .retail-partner-head {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .retail-partner-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+
+  .retail-partner-btn {
+    width: 100% !important;
+    min-height: 44px !important;
+    justify-content: center !important;
+  }
+
+  /* Material suppliers card on mobile */
+  .material-supplier-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .material-supplier-cta {
+    width: 100% !important;
+    min-height: 44px !important;
+    justify-content: center !important;
+  }
+}

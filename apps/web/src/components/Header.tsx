@@ -99,22 +99,22 @@ export function Header({ locale }: HeaderProps) {
 
   return (
     <>
-      {/* 1. Green ribbon — the one dark band above the header */}
+      {/* 1. Green ribbon — strictly one line on all screen sizes */}
       <div className="ribbon">
         <div className="container ribbon-inner">
-          <span className="ribbon-item">
-            <Leaf size={11} style={{ color: 'var(--green-300)' }} />
-            {isAr ? 'وثائق سايتس — الملحق الثاني' : 'CITES Appendix II documented'}
-          </span>
-          <span className="ribbon-sep">•</span>
-          <span className="ribbon-item">
-            <Globe size={11} style={{ color: 'var(--green-300)' }} />
-            {isAr ? '249 دولة وإقليماً في السجل' : '249 territories in the register'}
+          <span className="ribbon-item ribbon-item-primary">
+            <Leaf size={11} style={{ color: 'var(--green-300)', flexShrink: 0 }} />
+            <span>{isAr ? 'وثائق سايتس — الملحق الثاني' : 'CITES Appendix II documented'}</span>
           </span>
           <span className="ribbon-sep hidden-mobile">•</span>
-          <span className="ribbon-item hidden-mobile">
-            <Lock size={11} style={{ color: 'var(--green-300)' }} />
-            {isAr ? 'بيانات الاتصال تُحجب افتراضياً' : 'Contact fields withheld by default'}
+          <span className="ribbon-item ribbon-item-secondary hidden-mobile">
+            <Globe size={11} style={{ color: 'var(--green-300)', flexShrink: 0 }} />
+            <span>{isAr ? '249 دولة وإقليماً في السجل' : '249 territories in the register'}</span>
+          </span>
+          <span className="ribbon-sep hidden-tablet">•</span>
+          <span className="ribbon-item ribbon-item-tertiary hidden-tablet">
+            <Lock size={11} style={{ color: 'var(--green-300)', flexShrink: 0 }} />
+            <span>{isAr ? 'بيانات الاتصال تُحجب افتراضياً' : 'Contact fields withheld by default'}</span>
           </span>
         </div>
       </div>
